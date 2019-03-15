@@ -1,0 +1,23 @@
+#menu {
+    background-color: #1B2E4F;
+    padding: 10px;
+    color: white;
+    text-align: center;
+}
+
+#menu a {
+    color: white;
+}
+
+#footer {
+    background-color: #1B2E4F;
+}
+
+.card-header {
+    background-color: #1B2E4F;
+    color: white;
+}
+
+.navigation {
+    text-align: center;
+}
