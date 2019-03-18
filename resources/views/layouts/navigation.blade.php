@@ -1,7 +1,7 @@
 <div id="navigation">
     @if(Auth::check())
         <hr>
-        Início > Teste
+            @yield('path')
         <hr>
     @else
         <br>
