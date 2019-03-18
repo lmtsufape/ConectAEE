@@ -9,6 +9,19 @@
     color: white;
 }
 
+#menu-right, #menu-left {
+    width: 50%;
+    display: inline;
+}
+
+#menu-right {
+    margin-left: 20%;
+}
+
+#menu-left {
+    margin-right: 20%;
+}
+
 #footer {
     background-color: #1B2E4F;
 }
@@ -20,4 +33,9 @@
 
 .navigation {
     text-align: center;
+}
+
+@media (max-width: 1000px) {
+    #barra-logos{display: none;}
+    .btn-toggle{display: block;}
 }
