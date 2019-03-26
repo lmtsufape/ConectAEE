@@ -28,7 +28,7 @@ return [
         'file'    => 'O :attribute deve estar contido entre :min e :max kilobytes.',
         'string'  => 'O :attribute deve conter entre :min e :max caracteres.',
         'array'   => 'O :attribute deve conter entre :min e :max itens.',
-    ]
+    ],
     'boolean'              => 'O :attribute deve ser verdadeiro ou falso.',
     'confirmed'            => 'A senha e sua confirmação não são iguais',
     'date'                 => 'O :attribute não é uma data válida.',
