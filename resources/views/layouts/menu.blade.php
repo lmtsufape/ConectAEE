@@ -39,16 +39,23 @@
         </ul>
         <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
             @if(Auth::check())
-                <li>
-                    <a href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                        Sair
+                <li class="dropdown">
+                    <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        {{\Auth::user()->name}} <span class="caret"></span>
                     </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </li>      
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                Sair
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
+                </li>    
             @else
                 <li><a class="menu-principal" href="{{ route('login') }}">Entrar</a></li>
                 <li><a class="menu-principal" href="{{ route('register') }}">Cadastrar</a></li>
