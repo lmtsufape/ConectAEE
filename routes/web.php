@@ -19,3 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
+
+//Rotas para alunos
+Route::get('/CadastrarAluno', 'AlunoController@getCadastrar')->name('aluno.getCadastrar');
+Route::post('/CadastrarAluno/Novo', 'AlunoController@postCadastrar')->name('aluno.postCadastrar');
