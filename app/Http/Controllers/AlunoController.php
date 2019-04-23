@@ -6,14 +6,20 @@ use App\Aluno;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class AlunoController extends Controller
-{
-  public function getCadastrar()
-  {
+class AlunoController extends Controller{
+
+  public function listar(){
+    $alunos = \App\Aluno::all();
+    return view("aluno.listar",[
+      'alunos' => $alunos
+    ]);
+  }
+
+  public function cadastrar(){
       return view("aluno.cadastrar");
   }
 
-  public function postCadastrar(Request $request){
+  public function criar(Request $request){
       $validator = Validator::make($request->all(), [
           'nome' => ['required','min:2','max:191']
       ]);
