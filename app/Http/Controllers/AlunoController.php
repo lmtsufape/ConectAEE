@@ -15,7 +15,15 @@ class AlunoController extends Controller{
   }
 
   public static function listar(){
-    $alunos = \App\Aluno::all();
+    $gerenciars = \Auth::user()->gerenciars;
+    $alunos = array();
+
+    foreach($gerenciars as $gerenciar){
+      array_push($alunos,$gerenciar->aluno);
+    }
+
+    //dd($alunos);
+
     return view("aluno.listar",[
       'alunos' => $alunos
     ]);
