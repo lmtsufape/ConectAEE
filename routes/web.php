@@ -24,3 +24,4 @@ Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/aluno/cadastrar', 'AlunoController@cadastrar')->name('aluno.cadastrar');
 Route::post('/aluno/criar', 'AlunoController@criar')->name('aluno.criar');
 Route::get('/aluno/listar', 'AlunoController@listar')->name('aluno.listar');
+Route::get('/aluno/gerenciar', 'AlunoController@gerenciar')->name('aluno.gerenciar');
