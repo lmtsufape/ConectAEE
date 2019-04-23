@@ -9,9 +9,12 @@ use Illuminate\Support\Facades\Validator;
 
 class AlunoController extends Controller{
 
-  public static function gerenciar(){
+  public static function gerenciar($id_aluno){
+    $aluno = Aluno::find($id_aluno);
 
-    return view("aluno.gerenciar");
+    return view("aluno.gerenciar",[
+      'aluno' => $aluno,
+    ]);
   }
 
   public static function listar(){
@@ -53,5 +56,20 @@ class AlunoController extends Controller{
       $gerenciar->save();
 
       return redirect()->route("aluno.listar")->with('success','O Aluno'.$aluno->nome.'foi cadastrado');
+  }
+
+  public function gerenciarPermissoes($id_aluno){
+    $aluno = Aluno::find($id_aluno);
+    $gerenciars = $aluno->gerenciars;
+
+    $gerenciadores = array();
+    foreach($gerenciars as $gerenciar){
+      array_push($gerenciadores,$gerenciar->gerenciador);
+    }
+
+    return view('aluno.permissoes',[
+      'aluno' => $aluno,
+      'gerenciadores' => $gerenciadores,
+    ]);
   }
 }
