@@ -17,12 +17,15 @@
             <thead>
               <tr>
                   <th>Nome</th>
+                  <th>Cargo</th>
               </tr>
             </thead>
             <tbody>
-                @foreach ($gerenciadores as $gerenciador)
+                @foreach ($gerenciars as $gerenciar)
                 <tr>
-                  <td data-title="Nome">{{ $gerenciador->name }}</td>
+                  <td data-title="Nome">{{ $gerenciar->gerenciador->name }} </td>
+                  
+                  <td data-title="Cargo">{{ ($gerenciar->isAdministrador) ? 'true' : 'false' }}</td>
                 </tr>
                 @endforeach
             </tbody>
