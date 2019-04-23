@@ -6,7 +6,7 @@
           <div class="panel-heading">Novo Aluno</div>
 
           <div class="panel-body">
-              <form class="form-horizontal" method="POST" action="{{ route("aluno.postCadastrar") }}">
+              <form class="form-horizontal" method="POST" action="{{ route("aluno.criar") }}">
                   {{ csrf_field() }}
 
                   <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">

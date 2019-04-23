@@ -21,5 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 
 //Rotas para alunos
-Route::get('/CadastrarAluno', 'AlunoController@getCadastrar')->name('aluno.getCadastrar');
-Route::post('/CadastrarAluno/Novo', 'AlunoController@postCadastrar')->name('aluno.postCadastrar');
+Route::get('/aluno/cadastrar', 'AlunoController@cadastrar')->name('aluno.cadastrar');
+Route::post('/aluno/criar', 'AlunoController@criar')->name('aluno.criar');
+Route::get('/aluno/listar', 'AlunoController@listar')->name('aluno.listar');
