@@ -9,7 +9,12 @@ use Illuminate\Support\Facades\Validator;
 
 class AlunoController extends Controller{
 
-  public function listar(){
+  public static function gerenciar(){
+
+    return view("aluno.gerenciar");
+  }
+
+  public static function listar(){
     $alunos = \App\Aluno::all();
     return view("aluno.listar",[
       'alunos' => $alunos
@@ -39,6 +44,6 @@ class AlunoController extends Controller{
       $gerenciar->cargo_id = NULL;
       $gerenciar->save();
 
-      return view("home");
+      return redirect()->route("aluno.listar")->with('success','O Aluno'.$aluno->nome.'foi cadastrado');
   }
 }

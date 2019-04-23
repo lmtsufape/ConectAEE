@@ -2,15 +2,43 @@
 @section('title','Início')
 @section('path','Início')
 @section('content')
-    <div class="panel panel-default">
-          <div class="panel-heading">Listar</div>
-
-          <div class="panel-body">
-              @foreach($alunos as $aluno)
-                {{$aluno->nome}}<br>
-              @endforeach
-          </div>
-
-          <a href="{{route('aluno.cadastrar')}}">Cadastrar</a>
+  <div class="panel panel-default">
+    <div class="panel-heading">Alunos</div>
+      @if (\Session::has('success'))
+        <br>
+        <div class="alert alert-success">
+            <strong>Sucesso!</strong>
+            {!! \Session::get('success') !!}
         </div>
+      @endif
+      <div class="panel-body">
+        <div id="tabela" class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                  <th>Nome</th>
+                  <th>Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ($alunos as $aluno)
+                <tr>
+                  <td data-title="Nome">{{ $aluno->nome }}</td>
+                  <td>
+                    <a class="btn btn-success" href="{{ route("aluno.gerenciar") }}">
+                      Gerenciar
+                    </a>
+                  </td>
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel-footer">
+        <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
+        <a class="btn btn-success" href="{{ route("aluno.cadastrar")}}">Novo</a>
+      </div>
+    </div>
 @endsection
