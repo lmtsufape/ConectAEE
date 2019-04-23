@@ -49,7 +49,7 @@ class AlunoController extends Controller{
       $gerenciar = new Gerenciar();
       $gerenciar->user_id = \Auth::user()->id;
       $gerenciar->aluno_id = $aluno->id;
-      $gerenciar->cargo_id = NULL;
+      $gerenciar->cargo_id = $request->cargo;
       $gerenciar->save();
 
       return redirect()->route("aluno.listar")->with('success','O Aluno'.$aluno->nome.'foi cadastrado');
