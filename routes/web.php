@@ -25,3 +25,4 @@ Route::get('/aluno/cadastrar', 'AlunoController@cadastrar')->name('aluno.cadastr
 Route::post('/aluno/criar', 'AlunoController@criar')->name('aluno.criar');
 Route::get('/aluno/listar', 'AlunoController@listar')->name('aluno.listar');
 Route::get('/aluno/{id}/gerenciar/', 'AlunoController@gerenciar')->name('aluno.gerenciar');
+Route::get('/aluno/{id}/gerenciar/permissoes','AlunoController@gerenciarPermissoes')->name('aluno.permissoes');

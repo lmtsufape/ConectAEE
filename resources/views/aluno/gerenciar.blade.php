@@ -6,9 +6,10 @@
         <div class="panel-heading">Início</div>
         <div class="panel-body">
           <div class="form-group">
-              <div class="col-md-6 col-md-offset-4">
-                  <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
-              </div>
+            <strong>Nome:</strong> {{$aluno->nome}}
+            <br><br>
+            <a class="btn btn-primary" href={{route('aluno.permissoes',['id'=>$aluno->id])}}>Gerenciar Permissões</a>
+            <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
           </div>
         </div>
     </div>

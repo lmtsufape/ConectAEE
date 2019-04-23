@@ -23,6 +23,11 @@ class GerenciarSeeder extends Seeder
                 'cargo_id' => rand(1,4),
                 'user_id' => rand(1,$users_count),
             ]);
+            factory(Gerenciar::class)->create([
+                'aluno_id' => $aluno->id,
+                'cargo_id' => rand(1,4),
+                'user_id' => rand(1,$users_count),
+            ]);
         }
         
         //factory(Gerenciar::class, count(Aluno::all()))->create();
