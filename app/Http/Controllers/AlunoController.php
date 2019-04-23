@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Aluno;
+use App\Gerenciar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -31,6 +32,12 @@ class AlunoController extends Controller{
       $aluno = new Aluno();
       $aluno->nome = $request->nome;
       $aluno->save();
+
+      $gerenciar = new Gerenciar();
+      $gerenciar->user_id = \Auth::user()->id;
+      $gerenciar->aluno_id = $aluno->id;
+      $gerenciar->cargo_id = NULL;
+      $gerenciar->save();
 
       return view("home");
   }
