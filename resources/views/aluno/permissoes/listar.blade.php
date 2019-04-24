@@ -18,14 +18,19 @@
               <tr>
                   <th>Nome</th>
                   <th>Cargo</th>
+                  <th>Administrador</th>
               </tr>
             </thead>
             <tbody>
                 @foreach ($gerenciars as $gerenciar)
                 <tr>
                   <td data-title="Nome">{{ $gerenciar->gerenciador->name }} </td>
-                  
-                  <td data-title="Cargo">{{ ($gerenciar->isAdministrador) ? 'true' : 'false' }}</td>
+                  @if($gerenciar->cargo->especializacao == NULL)
+                    <td data-title="Cargo">{{ $gerenciar->cargo->nome }} </td>
+                  @else
+                    <td data-title="Cargo">{{ $gerenciar->cargo->especializacao }} </td>
+                  @endif
+                  <td data-title="Administrador">{{ ($gerenciar->isAdministrador) ? 'Sim' : 'Não' }}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -35,7 +40,7 @@
 
       <div class="panel-footer">
         <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
-        <a class="btn btn-success" href="{{ route("aluno.cadastrar")}}">Novo</a>
+        <a class="btn btn-success" href="{{ route("aluno.permissoes.cadastrar",['id' => $aluno->id])}}">Novo</a>
       </div>
     </div>
 @endsection

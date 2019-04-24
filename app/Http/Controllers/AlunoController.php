@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Aluno;
 use App\Gerenciar;
+use App\Cargo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -63,9 +65,34 @@ class AlunoController extends Controller{
     $aluno = Aluno::find($id_aluno);
     $gerenciars = $aluno->gerenciars;
 
-    return view('aluno.permissoes',[
+    return view('aluno.permissoes.listar',[
       'aluno' => $aluno,
       'gerenciars' => $gerenciars,
     ]);
+  }
+
+  public function cadastrarPermissao($id_aluno){
+    $aluno = Aluno::find($id_aluno);
+    $cargos = Cargo::where('especializacao','=',NULL)->get();
+
+    return view('aluno.permissoes.cadastrar',[
+      'aluno' => $aluno,
+      'cargos' => $cargos,
+    ]);
+  }
+
+  public function criarPermissao(Request $request){
+    dd($request->all());
+    $gerenciar = new Gerenciar();
+    $user = User::where('username','=',$request->username)->first();
+    $gerenciar->user_id = $user->id;
+    $gerenciar->aluno_id = $request->aluno;
+    $cargo = Cargo::where('nome','=',$request->cargo)->where('especializacao','=',NULL)->first();
+    $gerenciar->cargo_id = $cargo->id;
+    if($request->isAdministrador = "true"){
+      $gerenciar->isAdministrador = $request->isAdministrador;
+    }
+    $gerenciar->save();
+    dd($gerenciar);
   }
 }
