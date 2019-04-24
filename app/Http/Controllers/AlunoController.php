@@ -53,6 +53,7 @@ class AlunoController extends Controller{
       $gerenciar->user_id = \Auth::user()->id;
       $gerenciar->aluno_id = $aluno->id;
       $gerenciar->cargo_id = $request->cargo;
+      $gerenciar->isAdministrador = True;
       $gerenciar->save();
 
       return redirect()->route("aluno.listar")->with('success','O Aluno'.$aluno->nome.'foi cadastrado');
@@ -62,14 +63,9 @@ class AlunoController extends Controller{
     $aluno = Aluno::find($id_aluno);
     $gerenciars = $aluno->gerenciars;
 
-    $gerenciadores = array();
-    foreach($gerenciars as $gerenciar){
-      array_push($gerenciadores,$gerenciar->gerenciador);
-    }
-
     return view('aluno.permissoes',[
       'aluno' => $aluno,
-      'gerenciadores' => $gerenciadores,
+      'gerenciars' => $gerenciars,
     ]);
   }
 }
