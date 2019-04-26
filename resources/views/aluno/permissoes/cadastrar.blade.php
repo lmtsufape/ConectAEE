@@ -4,7 +4,13 @@
 @section('content')
     <div class="panel panel-default">
           <div class="panel-heading">Novo Gerenciador</div>
-
+          @if (\Session::has('Fail'))
+          <br>
+          <div class="alert alert-danger">
+              <strong>Erro!</strong>
+              {!! \Session::get('Fail') !!}
+          </div>
+        @endif
           <div class="panel-body">
               <form class="form-horizontal" method="POST" action="{{ route("aluno.permissoes.criar") }}">
                   {{ csrf_field() }}
@@ -32,7 +38,11 @@
                             <select name="cargo" class="form-control" onchange="showEspecializacao(this)">
                                     <option value="" selected disabled hidden>Escolha o Cargo</option>
                                     @foreach($cargos as $cargo)
-                                        <option value="{{$cargo->nome}}">{{$cargo->nome}}</option>
+                                        @if($cargo->nome == old('cargo'))
+                                            <option value="{{$cargo->nome}}" selected>{{$cargo->nome}}</option>
+                                        @else 
+                                            <option value="{{$cargo->nome}}">{{$cargo->nome}}</option>
+                                        @endif
                                     @endforeach
                                 </select>
 
@@ -44,7 +54,11 @@
                     </div>
                 </div>
 
-                <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}" style="display: none">
+                @if(old('cargo') == "Profissional Externo")
+                    <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}">
+                @else
+                    <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}" style="display: none">
+                @endif
                         <label for="especializacao" class="col-md-4 control-label">Especialização</label>
   
                         <div class="col-md-6">

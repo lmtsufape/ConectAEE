@@ -82,17 +82,46 @@ class AlunoController extends Controller{
   }
 
   public function criarPermissao(Request $request){
-    dd($request->all());
-    $gerenciar = new Gerenciar();
+    //Validação dos dados
+    $rules = array(
+      'username' => 'required|exists:users,username',
+      'cargo' => 'required',
+      'especializacao' => 'required_if:cargo,==,Profissional Externo',
+    );
+    $messages = array(
+      'username.required' => 'Necessário inserir um nome de usuário.',
+      'username.exists' => 'O usuário em questão não está cadastrado.',
+      'cargo.required' => 'Selecione um cargo.',
+      'especializacao.required_if' => 'Necessário inserir uma especialização.',
+    );
+    $validator = Validator::make($request->all(),$rules,$messages);
+
+    if($validator->fails()){
+      return redirect()->back()->withErrors($validator->errors())->withInput();
+    }
+    
+    //Se já existe a relação
     $user = User::where('username','=',$request->username)->first();
+      // $gerenciar = Gerenciar::where('aluno_id','=',$request->aluno)->where('user_id','=',$user->id)->first();
+      // if($gerenciar != NULL){
+      //   return redirect()->back()->withInput()->with('Fail','O usuário '.$user->name.' já possui permissões.');
+      // }
+
+    //Criação do Gerencimento
+    $gerenciar = new Gerenciar();
     $gerenciar->user_id = $user->id;
-    $gerenciar->aluno_id = $request->aluno;
+    $gerenciar->aluno_id = (int) $request->aluno;
     $cargo = Cargo::where('nome','=',$request->cargo)->where('especializacao','=',NULL)->first();
     $gerenciar->cargo_id = $cargo->id;
-    if($request->isAdministrador = "true"){
+    if($request->exists('isAdministrador')){
       $gerenciar->isAdministrador = $request->isAdministrador;
     }
+    return "Foi";
     $gerenciar->save();
-    dd($gerenciar);
+
+    return redirect()->route(
+      'aluno.permissoes',[
+        'id' => $gerenciar->aluno_id,
+      ])->with('Success','O usuário '.$user->name.' agora possui permissão.');
   }
 }

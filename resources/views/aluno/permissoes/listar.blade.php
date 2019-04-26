@@ -4,11 +4,11 @@
 @section('content')
   <div class="panel panel-default">
     <div class="panel-heading">Permissões de {{$aluno->nome}}</div>
-      @if (\Session::has('success'))
+      @if (\Session::has('Success'))
         <br>
         <div class="alert alert-success">
             <strong>Sucesso!</strong>
-            {!! \Session::get('success') !!}
+            {!! \Session::get('Success') !!}
         </div>
       @endif
       <div class="panel-body">
