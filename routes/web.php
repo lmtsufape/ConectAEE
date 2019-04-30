@@ -26,3 +26,5 @@ Route::post('/aluno/criar', 'AlunoController@criar')->name('aluno.criar');
 Route::get('/aluno/listar', 'AlunoController@listar')->name('aluno.listar');
 Route::get('/aluno/{id}/gerenciar/', 'AlunoController@gerenciar')->name('aluno.gerenciar');
 Route::get('/aluno/{id}/gerenciar/permissoes','AlunoController@gerenciarPermissoes')->name('aluno.permissoes');
+Route::get('/aluno/{id}/gerenciar/permissoes/cadastrar','AlunoController@cadastrarPermissao')->name('aluno.permissoes.cadastrar');
+Route::post('/aluno/gerenciar/permissoes/criar','AlunoController@criarPermissao')->name('aluno.permissoes.criar');

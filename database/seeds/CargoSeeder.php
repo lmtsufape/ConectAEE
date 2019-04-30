@@ -28,7 +28,7 @@ class CargoSeeder extends Seeder
         ]);
 
         factory(Cargo::class)->create([
-            'nome' => "Profissional Externo de Saúde",
+            'nome' => "Profissional Externo",
             'especializacao' => NULL,
         ]);
     }

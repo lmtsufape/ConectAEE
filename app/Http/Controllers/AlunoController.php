@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Aluno;
 use App\Gerenciar;
+use App\Cargo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -63,9 +65,62 @@ class AlunoController extends Controller{
     $aluno = Aluno::find($id_aluno);
     $gerenciars = $aluno->gerenciars;
 
-    return view('aluno.permissoes',[
+    return view('aluno.permissoes.listar',[
       'aluno' => $aluno,
       'gerenciars' => $gerenciars,
     ]);
+  }
+
+  public function cadastrarPermissao($id_aluno){
+    $aluno = Aluno::find($id_aluno);
+    $cargos = Cargo::where('especializacao','=',NULL)->get();
+
+    return view('aluno.permissoes.cadastrar',[
+      'aluno' => $aluno,
+      'cargos' => $cargos,
+    ]);
+  }
+
+  public function criarPermissao(Request $request){
+    //Validação dos dados
+    $rules = array(
+      'username' => 'required|exists:users,username',
+      'cargo' => 'required',
+      'especializacao' => 'required_if:cargo,==,Profissional Externo',
+    );
+    $messages = array(
+      'username.required' => 'Necessário inserir um nome de usuário.',
+      'username.exists' => 'O usuário em questão não está cadastrado.',
+      'cargo.required' => 'Selecione um cargo.',
+      'especializacao.required_if' => 'Necessário inserir uma especialização.',
+    );
+    $validator = Validator::make($request->all(),$rules,$messages);
+
+    if($validator->fails()){
+      return redirect()->back()->withErrors($validator->errors())->withInput();
+    }
+    
+    //Se já existe a relação
+    $user = User::where('username','=',$request->username)->first();
+      // $gerenciar = Gerenciar::where('aluno_id','=',$request->aluno)->where('user_id','=',$user->id)->first();
+      // if($gerenciar != NULL){
+      //   return redirect()->back()->withInput()->with('Fail','O usuário '.$user->name.' já possui permissões.');
+      // }
+
+    //Criação do Gerencimento
+    $gerenciar = new Gerenciar();
+    $gerenciar->user_id = $user->id;
+    $gerenciar->aluno_id = (int) $request->aluno;
+    $cargo = Cargo::where('nome','=',$request->cargo)->where('especializacao','=',NULL)->first();
+    $gerenciar->cargo_id = $cargo->id;
+    if($request->exists('isAdministrador')){
+      $gerenciar->isAdministrador = $request->isAdministrador;
+    }
+    $gerenciar->save();
+
+    return redirect()->route(
+      'aluno.permissoes',[
+        'id' => $gerenciar->aluno_id,
+      ])->with('Success','O usuário '.$user->name.' agora possui permissão.');
   }
 }

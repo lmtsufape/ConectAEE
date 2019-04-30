@@ -13,4 +13,8 @@ class Gerenciar extends Model
     public function gerenciador(){
         return $this->hasOne(User::class,'id','user_id');
     }
+
+    public function cargo(){
+        return $this->hasOne(Cargo::class,'id','cargo_id');
+    }
 }
