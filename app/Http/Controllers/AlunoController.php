@@ -116,7 +116,6 @@ class AlunoController extends Controller{
     if($request->exists('isAdministrador')){
       $gerenciar->isAdministrador = $request->isAdministrador;
     }
-    return "Foi";
     $gerenciar->save();
 
     return redirect()->route(
