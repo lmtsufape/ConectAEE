@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
-        <div class="panel-heading">Objetivos</div>
+        <div class="panel-heading">Atividades</div>
 
           @if (\Session::has('success'))
             <br>
@@ -29,13 +29,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($objetivos as $objetivo)
+                  @foreach ($atividades as $atividade)
                     <tr>
-                      <td data-title="Título">{{ $objetivo->titulo }}</td>
-                      <td data-title="Descrição">{{ $objetivo->descricao }}</td>
-                      <td data-title="Prioridade">{{ $objetivo->prioridade }}</td>
-                      <td data-title="Tipo">{{ $objetivo->tipo }}</td>
-                      <td data-title="Data">{{ $objetivo->data }}</td>
+                      <td data-title="Título">{{ $atividade->titulo }}</td>
+                      <td data-title="Descrição">{{ $atividade->descricao }}</td>
+                      <td data-title="Prioridade">{{ $atividade->prioridade }}</td>
+                      <td data-title="Tipo">{{ $atividade->tipo }}</td>
+                      <td data-title="Data">{{ $atividade->data }}</td>
                       <td>
                         <a class="btn btn-success" href="{{ route("objetivo.atividades.listar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id])}}">Ver</a>
                       </td>

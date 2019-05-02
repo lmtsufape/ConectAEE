@@ -34,3 +34,6 @@ Route::post('/aluno/gerenciar/permissoes/criar','AlunoController@criarPermissao'
 Route::get('/aluno/{id_aluno}/objetivos/cadastrar','ObjetivoController@cadastrar')->name('objetivo.cadastrar');
 Route::post('/aluno/objetivos/criar', 'ObjetivoController@criar')->name('objetivo.criar');
 Route::get('/aluno/{id_aluno}/objetivos/listar','ObjetivoController@listar')->name('objetivo.listar');
+
+//Rotas para atividade
+Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/atividades/listar','AtividadeController@listar')->name('objetivo.atividades.listar');
