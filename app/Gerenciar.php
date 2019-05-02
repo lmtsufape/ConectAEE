@@ -10,7 +10,7 @@ class Gerenciar extends Model
         return $this->hasOne(Aluno::class,'id','aluno_id');
     }
 
-    public function gerenciador(){
+    public function user(){
         return $this->hasOne(User::class,'id','user_id');
     }
 
