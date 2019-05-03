@@ -8,21 +8,7 @@
 			<div class="col-md-8 col-md-offset-2">
 
 				<div class="panel panel-default">
-				<div class="panel-heading">Gerenciamento de <strong>{{$aluno->nome}}</strong></div>
-					<div class="panel-body">
-						<div class="form-group">
-							<strong>Nome:</strong> {{$aluno->nome}}
-							<br><br>
-							@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
-								<a class="btn btn-primary" href={{route('aluno.permissoes',['id'=>$aluno->id])}}>Gerenciar Permissões</a>
-							@endif
-							<a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
-						</div>
-					</div>
-				</div>
-
-				<div class="panel panel-default">
-					<div class="panel-heading">Fórum de <strong>{{$aluno->nome}} <a style="margin-left: 50%" href="{{route('aluno.forum',['id_aluno'=>$aluno->id])}}" class="btn btn-primary">Todas as mensagens</a></strong></div>
+					<div class="panel-heading">Fórum de <strong>{{$aluno->nome}}</strong></div>
 						<div class="panel-body">
 							@if ($errors->has('texto'))
 								<div style="margin-left: 1%; margin-right: 1%" class="alert alert-danger">

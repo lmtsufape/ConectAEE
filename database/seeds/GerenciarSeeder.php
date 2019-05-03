@@ -21,16 +21,25 @@ class GerenciarSeeder extends Seeder
             $array = range(1,4);
             shuffle($array);
 
+            $array_users = range(2,count(User::all()));
+            shuffle($array);
+
             factory(Gerenciar::class)->create([
                 'aluno_id' => $aluno->id,
                 'cargo_id' => array_pop($array),
-                'user_id' => rand(1,$users_count),
+                'user_id' => 1,
                 'isAdministrador' => True,
             ]);
             factory(Gerenciar::class)->create([
                 'aluno_id' => $aluno->id,
                 'cargo_id' => array_pop($array),
-                'user_id' => rand(1,$users_count),
+                'user_id' => array_pop($array_users),
+                'isAdministrador' => True,
+            ]);
+            factory(Gerenciar::class)->create([
+                'aluno_id' => $aluno->id,
+                'cargo_id' => array_pop($array),
+                'user_id' => array_pop($array_users),
                 'isAdministrador' => False,
             ]);
         }
