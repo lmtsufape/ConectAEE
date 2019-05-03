@@ -27,7 +27,7 @@
                     <tbody>
                         @foreach ($gerenciars as $gerenciar)
                         <tr>
-                          <td data-title="Nome">{{ $gerenciar->gerenciador->name }} </td>
+                          <td data-title="Nome">{{ $gerenciar->user->name }} </td>
                           @if($gerenciar->cargo->especializacao == NULL)
                             <td data-title="Cargo">{{ $gerenciar->cargo->nome }} </td>
                           @else

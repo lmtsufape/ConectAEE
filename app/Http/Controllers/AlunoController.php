@@ -6,6 +6,8 @@ use App\User;
 use App\Aluno;
 use App\Gerenciar;
 use App\Cargo;
+use App\ForumAluno;
+use App\MensagemForumAluno;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,8 +16,11 @@ class AlunoController extends Controller{
   public static function gerenciar($id_aluno){
     $aluno = Aluno::find($id_aluno);
 
+    $mensagens = MensagemForumAluno::where('forum_aluno_id','=',$aluno->forum->id)->orderBy('created_at','desc')->take(5)->get();
+
     return view("aluno.gerenciar",[
       'aluno' => $aluno,
+      'mensagens' => $mensagens,
     ]);
   }
 
@@ -50,6 +55,10 @@ class AlunoController extends Controller{
       $aluno = new Aluno();
       $aluno->nome = $request->nome;
       $aluno->save();
+      
+      $forum = new ForumAluno();
+      $forum->aluno_id = $aluno->id;
+      $forum->save;
 
       $gerenciar = new Gerenciar();
       $gerenciar->user_id = \Auth::user()->id;

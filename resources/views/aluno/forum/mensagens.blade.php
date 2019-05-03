@@ -2,26 +2,13 @@
 @section('title','Início')
 @section('path','Início')
 @section('content')
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
-				<div class="panel panel-default">
-				  <div class="panel-heading">Gerenciamento de <strong>{{$aluno->nome}}</strong></div>
-					<div class="panel-body">
-						<div class="form-group">
-							<strong>Nome:</strong> {{$aluno->nome}}
-							<br><br>
-							@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
-								<a class="btn btn-primary" href={{route('aluno.permissoes',['id'=>$aluno->id])}}>Gerenciar Permissões</a>
-							@endif
-              <a class="btn btn-primary" href={{route("objetivo.listar", ["id_aluno"=>$aluno->id]) }}>Objetivos</a>
-							<a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
-						</div>
-					</div>
-				</div>
 
 				<div class="panel panel-default">
-					<div id="forum" class="panel-heading">Fórum de <strong>{{$aluno->nome}} <a style="margin-left: 40%" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary">Todas as mensagens</a></strong></div>
+					<div id="forum" class="panel-heading">Fórum de <strong>{{$aluno->nome}}</strong></div>
 						<div class="panel-body">
 							@if ($errors->has('texto'))
 								<div style="margin-left: 1%; margin-right: 1%" class="alert alert-danger">
@@ -30,13 +17,13 @@
 								</div>
 							@endif
 							<form class="form-horizontal" method="POST" action="{{route('aluno.forum.mensagem.enviar')}}">
-							  @csrf
-							  <input name="forum_id" type="text" value={{$aluno->forum->id}} hidden>
+							@csrf
+							<input name="forum_id" type="text" value={{$aluno->forum->id}} hidden>
 
-                <div style="margin: 1%" class="form-group">
-                  <input name="mensagem" style="width:80%; display: inline" class="form-control" type="text">
-                  <button style="width:18%" type="submit" class="btn btn-success">Enviar</button>
-                </div>
+							<div style="margin: 1%" class="form-group">
+								<input name="mensagem" style="width:80%; display: inline" class="form-control" type="text">
+								<button style="width:18%" type="submit" class="btn btn-success">Enviar</button>
+							</div>
 							</form>
 						</div>
 
@@ -66,10 +53,10 @@
 								@endforeach
 							</div>
 						</div>
-            
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 @endsection
