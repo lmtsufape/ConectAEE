@@ -21,6 +21,12 @@ class CreateObjetivosTable extends Migration
             $table->string('tipo');
             $table->dateTime('data');
             $table->timestamps();
+
+            $table->integer('aluno_id')->unsigned();
+            $table->foreign('aluno_id')->references('id')->on('alunos')->onDelete('cascade');;
+
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
         });
     }
 

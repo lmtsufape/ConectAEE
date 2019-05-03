@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Objetivo;
 use App\Aluno;
 use DateTime;
+use Auth;
 
 class ObjetivoController extends Controller
 {
@@ -38,18 +39,17 @@ class ObjetivoController extends Controller
       $objetivo->prioridade = $request->prioridade;
       $objetivo->tipo = $request->tipo;
       $objetivo->data = new DateTime();
+      $objetivo->aluno_id = $request->id_aluno;
+      $objetivo->user_id = Auth::user()->id;
       $objetivo->save();
-
-      $aluno = Aluno::find( $request->id_aluno);
-
 
       return redirect()->route("objetivo.listar", ["id_aluno" => $request->id_aluno])->with('success','Objetivo cadastrado.');
   }
 
   public function listar($id_aluno){
 
-      $objetivos = Objetivo::all();
       $aluno = Aluno::find($id_aluno);
+      $objetivos = $aluno->objetivos;
 
       return view("objetivo.listar", ['aluno' => $aluno,
                                       'objetivos' => $objetivos]);

@@ -37,7 +37,7 @@
                       <td data-title="Tipo">{{ $objetivo->tipo }}</td>
                       <td data-title="Data">{{ $objetivo->data }}</td>
                       <td>
-                        <a class="btn btn-success" href="{{ route("objetivo.atividades.listar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id])}}">Ver</a>
+                        <a class="btn btn-success" href="{{ route("objetivo.atividades.listar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id])}}">Atividades</a>
                       </td>
                     </tr>
                   @endforeach
