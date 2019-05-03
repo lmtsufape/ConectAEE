@@ -8,7 +8,7 @@
 			<div class="col-md-8 col-md-offset-2">
 
 				<div class="panel panel-default">
-					<div class="panel-heading">Fórum de <strong>{{$aluno->nome}}</strong></div>
+					<div id="forum" class="panel-heading">Fórum de <strong>{{$aluno->nome}}</strong></div>
 						<div class="panel-body">
 							@if ($errors->has('texto'))
 								<div style="margin-left: 1%; margin-right: 1%" class="alert alert-danger">

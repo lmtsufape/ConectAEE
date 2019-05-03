@@ -22,7 +22,7 @@
 				</div>
 
 				<div class="panel panel-default">
-					<div class="panel-heading">Fórum de <strong>{{$aluno->nome}} <a style="margin-left: 40%" href="{{route('aluno.forum',['id_aluno'=>$aluno->id])}}" class="btn btn-primary">Todas as mensagens</a></strong></div>
+					<div id="forum" class="panel-heading">Fórum de <strong>{{$aluno->nome}} <a style="margin-left: 40%" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary">Todas as mensagens</a></strong></div>
 						<div class="panel-body">
 							@if ($errors->has('texto'))
 								<div style="margin-left: 1%; margin-right: 1%" class="alert alert-danger">

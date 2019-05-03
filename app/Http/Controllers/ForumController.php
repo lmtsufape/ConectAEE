@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\MensagemForumAluno;
 use Illuminate\Support\Facades\Validator;
 use App\Aluno;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 
 
 class ForumController extends Controller
@@ -31,7 +33,7 @@ class ForumController extends Controller
         $mensagem->forum_aluno_id = $request->forum_id;
         $mensagem->save();
         
-        return redirect()->back();
+        return Redirect::to(URL::previous() . "#forum");
     }
 
     public function abrirForumAluno($id_aluno){
