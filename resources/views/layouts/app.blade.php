@@ -19,6 +19,8 @@
 
     @include('layouts.body')
 
+    @include('layouts.footer')
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     @include('layouts.scripts')
