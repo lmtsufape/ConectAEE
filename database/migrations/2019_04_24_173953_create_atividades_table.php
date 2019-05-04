@@ -16,13 +16,13 @@ class CreateAtividadesTable extends Migration
         Schema::create('atividades', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('titulo');
-            $table->text('descricao');
+            $table->text('descricao')->nullable();
             $table->string('prioridade');
-            $table->string('tipo');
+            $table->string('status');
             $table->dateTime('data');
 
             $table->integer('objetivo_id')->unsigned();
-            $table->foreign('objetivo_id')->references('id')->on('objetivos');
+            $table->foreign('objetivo_id')->references('id')->on('objetivos')->onDelete('cascade');;
             $table->timestamps();
         });
     }

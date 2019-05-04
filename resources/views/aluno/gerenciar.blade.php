@@ -7,6 +7,7 @@
 			<div class="col-md-8 col-md-offset-2">
 				<div class="panel panel-default">
 				  <div class="panel-heading">Gerenciamento de <strong>{{$aluno->nome}}</strong></div>
+
 					<div class="panel-body">
 						<div class="form-group">
 							<strong>Nome:</strong> {{$aluno->nome}}
@@ -15,8 +16,12 @@
 								<a class="btn btn-primary" href={{route('aluno.permissoes',['id'=>$aluno->id])}}>Gerenciar Permissões</a>
 							@endif
               <a class="btn btn-primary" href={{route("objetivo.listar", ["id_aluno"=>$aluno->id]) }}>Objetivos</a>
-							<a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
+
 						</div>
+					</div>
+
+					<div class="panel-footer">
+						<a class="btn btn-danger" href="{{ route("aluno.listar")}}">Voltar</a>
 					</div>
 				</div>
 
@@ -66,7 +71,7 @@
 								@endforeach
 							</div>
 						</div>
-            
+
 					</div>
 				</div>
 			</div>

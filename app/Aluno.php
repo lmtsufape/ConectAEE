@@ -10,9 +10,9 @@ class Aluno extends Model
         return $this->hasMany(Gerenciar::class);
     }
 
-
     public function objetivos(){
         return $this->hasMany(Objetivo::class);
+    }
 
     public function forum(){
         return $this->hasOne(ForumAluno::class);

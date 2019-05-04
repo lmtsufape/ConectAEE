@@ -47,7 +47,7 @@
           </div>
 
           <div class="panel-footer">
-            <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
+            <a class="btn btn-danger" href="{{route("aluno.gerenciar" , ['id_aluno'=>$aluno->id])}}">Voltar</a>
             <a class="btn btn-success" href="{{ route("objetivo.cadastrar" , ['id_aluno'=>$aluno->id])}}">Novo</a>
           </div>
         </div>
