@@ -42,4 +42,8 @@ class User extends Authenticatable
     public function gerenciars(){
         return $this->hasMany(Gerenciar::class);
     }
+
+    public function objetivos(){
+        return $this->hasMany(Objetivo::class);
+    }
 }
