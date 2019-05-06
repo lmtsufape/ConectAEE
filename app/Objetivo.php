@@ -20,4 +20,10 @@ class Objetivo extends Model
   {
       return $this->belongsTo('App\User');
   }
+
+  public function tipoObjetivo()
+  {
+      return $this->hasOne('App\TipoObjetivo','id','tipo_objetivo_id');
+  }
+
 }

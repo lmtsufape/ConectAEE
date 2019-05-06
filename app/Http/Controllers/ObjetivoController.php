@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 use App\Objetivo;
+use App\TipoObjetivo;
 use App\Aluno;
 use DateTime;
 use Auth;
@@ -12,7 +14,8 @@ use Auth;
 class ObjetivoController extends Controller
 {
   public function cadastrar($id_aluno){
-      $tipos = ["Educação", "Saúde"];
+      $tipos = TipoObjetivo::all();
+
       $prioridades = ["Alta","Média","Baixa"];
       $aluno = Aluno::find($id_aluno);
 
@@ -37,10 +40,10 @@ class ObjetivoController extends Controller
       $objetivo->titulo = $request->titulo;
       $objetivo->descricao = $request->descricao;
       $objetivo->prioridade = $request->prioridade;
-      $objetivo->tipo = $request->tipo;
       $objetivo->data = new DateTime();
       $objetivo->aluno_id = $request->id_aluno;
       $objetivo->user_id = Auth::user()->id;
+      $objetivo->tipo_objetivo_id = $request->tipo;
       $objetivo->save();
 
       return redirect()->route("objetivo.listar", ["id_aluno" => $request->id_aluno])->with('success','Objetivo cadastrado.');

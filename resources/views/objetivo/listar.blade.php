@@ -32,11 +32,11 @@
                 <tbody>
                   @foreach ($objetivos as $objetivo)
                     <tr>
-                      <td data-title="Título">{{ $objetivo->user->name}}</td>
+                      <td data-title="Usuário">{{ $objetivo->user->name}}</td>
                       <td data-title="Título">{{ $objetivo->titulo }}</td>
                       <td data-title="Descrição">{{ $objetivo->descricao }}</td>
                       <td data-title="Prioridade">{{ $objetivo->prioridade }}</td>
-                      <td data-title="Tipo">{{ $objetivo->tipo }}</td>
+                      <td data-title="Tipo">{{ $objetivo->tipoObjetivo->tipo }}</td>
                       <td data-title="Data">{{ $objetivo->data }}</td>
                       <td>
                         <a class="btn btn-success" href="{{ route("objetivo.atividades.listar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id])}}">Atividades</a>
