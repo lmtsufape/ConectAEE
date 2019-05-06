@@ -40,6 +40,7 @@
                       <td data-title="Data">{{ $objetivo->data }}</td>
                       <td>
                         <a class="btn btn-success" href="{{ route("objetivo.atividades.listar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id])}}">Atividades</a>
+                        <a class="btn btn-success" href="{{ route("objetivo.sugestoes.listar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id])}}">Sugestões</a>
                       </td>
                     </tr>
                   @endforeach

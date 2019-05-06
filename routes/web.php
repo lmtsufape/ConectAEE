@@ -41,6 +41,11 @@ Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/atividades/listar','Ativid
 Route::post('/aluno/objetivos/atividades/criar', 'AtividadeController@criar')->name('objetivo.atividades.criar');
 Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/atividades/cadastrar','AtividadeController@cadastrar')->name('objetivo.atividades.cadastrar');
 
+//Rotas para sugestão
+Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/sugestoes/listar','SugestaoController@listar')->name('objetivo.sugestoes.listar');
+Route::post('/aluno/objetivos/sugestoes/criar', 'SugestaoController@criar')->name('objetivo.sugestoes.criar');
+Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/sugestoes/cadastrar','SugestaoController@cadastrar')->name('objetivo.sugestoes.cadastrar');
+
 //Rotas para foruns
 Route::post('/aluno/forum/mensagem/enviar','ForumController@enviarMensagemForumAluno')->name('aluno.forum.mensagem.enviar');
 Route::get('/aluno/{id_aluno}/forum','ForumController@abrirForumAluno')->name('aluno.forum');
