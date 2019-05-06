@@ -16,6 +16,13 @@ class CreateSugestaosTable extends Migration
         Schema::create('sugestaos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+
+            $table->string('titulo');
+            $table->text('descricao')->nullable();
+            $table->dateTime('data');
+            $table->integer('objetivo_id')->unsigned();
+
+            $table->foreign('objetivo_id')->references('id')->on('objetivos')->onDelete('cascade');
         });
     }
 

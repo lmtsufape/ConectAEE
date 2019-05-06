@@ -11,6 +11,11 @@ class Objetivo extends Model
       return $this->hasMany('App\Atividade');
   }
 
+  public function sugestoes()
+  {
+      return $this->hasMany('App\Sugestao');
+  }
+
   public function aluno()
   {
       return $this->belongsTo('App\Aluno');
