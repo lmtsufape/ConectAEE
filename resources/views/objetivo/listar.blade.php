@@ -21,6 +21,7 @@
               <table class="table table-hover">
                 <thead>
                   <tr>
+                      <th>Usuario</th>
                       <th>Título</th>
                       <th>Descrição</th>
                       <th>Prioridade</th>
@@ -31,6 +32,7 @@
                 <tbody>
                   @foreach ($objetivos as $objetivo)
                     <tr>
+                      <td data-title="Título">{{ $objetivo->user->name}}</td>
                       <td data-title="Título">{{ $objetivo->titulo }}</td>
                       <td data-title="Descrição">{{ $objetivo->descricao }}</td>
                       <td data-title="Prioridade">{{ $objetivo->prioridade }}</td>
