@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Objetivo;
 use App\Aluno;
+use App\MensagemForumObjetivo;
 use DateTime;
 use Auth;
 
@@ -53,6 +54,13 @@ class ObjetivoController extends Controller
 
       return view("objetivo.listar", ['aluno' => $aluno,
                                       'objetivos' => $objetivos]);
+  }
+
+  public function gerenciar($id_objetivo){
+      
+      $objetivo = Objetivo::find($id_objetivo);
+      $mensagens = MensagemForumObjetivo::where('forum_objetivo_id','=',$objetivo->forum->id)->orderBy('created_at','desc')->take(5)->get();
+      return view("objetivo.gerenciar",['objetivo' => $objetivo,'mensagens'=>$mensagens]);
   }
 
 }

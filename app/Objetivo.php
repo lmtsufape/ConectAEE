@@ -25,4 +25,8 @@ class Objetivo extends Model
   {
       return $this->belongsTo('App\User');
   }
+
+  public function forum(){
+    return $this->hasOne(ForumObjetivo::class);
+  }
 }
