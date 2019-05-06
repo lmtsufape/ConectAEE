@@ -38,6 +38,7 @@ Route::get('/aluno/{id_aluno}/objetivos/listar','ObjetivoController@listar')->na
 
 //Rotas para atividade
 Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/atividades/listar','AtividadeController@listar')->name('objetivo.atividades.listar');
+Route::post('/aluno/objetivos/atividades/criar', 'AtividadeController@criar')->name('objetivo.atividades.criar');
 Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/atividades/cadastrar','AtividadeController@cadastrar')->name('objetivo.atividades.cadastrar');
 
 //Rotas para foruns

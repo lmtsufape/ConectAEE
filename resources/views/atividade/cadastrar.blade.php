@@ -6,13 +6,14 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
-        <div class="panel-heading">Novo Objetivo</div>
+        <div class="panel-heading">Nova Atividade</div>
 
           <div class="panel-body">
-              <form class="form-horizontal" method="POST" action="{{ route("objetivo.criar") }}">
+              <form class="form-horizontal" method="POST" action="{{ route("objetivo.atividades.criar") }}">
                   {{ csrf_field() }}
 
                   <input id="id_aluno" type="hidden" class="form-control" name="id_aluno" value="{{ $aluno->id }}">
+                  <input id="id_objetivo" type="hidden" class="form-control" name="id_objetivo" value="{{ $objetivo->id }}">
 
                   <div class="form-group{{ $errors->has('titulo') ? ' has-error' : '' }}">
                       <label for="titulo" class="col-md-4 control-label">Título</label>
@@ -44,27 +45,27 @@
 
 
                   <div class="form-group{{ $errors->has('tipo') ? ' has-error' : '' }}">
-                      <label for="tipo" class="col-md-4 control-label">Tipo</label>
+                      <label for="status" class="col-md-4 control-label">Status</label>
 
                       <div class="col-md-6">
-                        <select id="tipo" class="form-control" name="tipo" autofocus>
+                        <select id="status" class="form-control" name="status" autofocus>
 
-                          @if (old('tipo') == null)
-                              <option value="" selected disabled hidden>Escolha o tipo</option>
+                          @if (old('status') == null)
+                              <option value="" selected disabled hidden>Escolha o status</option>
                           @endif
 
-                          @foreach($tipos as $tipo)
-                              @if(old('tipo') == $tipo)
-                                  <option value={{$tipo}} selected>{{$tipo}}</option>
+                          @foreach($statuses as $status)
+                              @if(old('status') == $status)
+                                  <option value={{$status}} selected>{{$status}}</option>
                               @else
-                                  <option value={{$tipo}}>{{$tipo}}</option>
+                                  <option value={{$status}}>{{$status}}</option>
                               @endif
                           @endforeach
                         </select>
 
-                        @if ($errors->has('tipo'))
+                        @if ($errors->has('status'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('tipo') }}</strong>
+                                <strong>{{ $errors->first('status') }}</strong>
                             </span>
                         @endif
                       </div>
