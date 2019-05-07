@@ -18,7 +18,6 @@ class CreateObjetivosTable extends Migration
             $table->string('titulo');
             $table->text('descricao');
             $table->string('prioridade');
-            $table->string('tipo');
             $table->dateTime('data');
             $table->timestamps();
 
@@ -27,6 +26,11 @@ class CreateObjetivosTable extends Migration
 
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->integer('tipo_objetivo_id')->unsigned();
+            $table->foreign('tipo_objetivo_id')->references('id')->on('tipo_objetivos')->onDelete('cascade');
+
+
         });
     }
 
