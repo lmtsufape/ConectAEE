@@ -46,4 +46,39 @@ class ForumController extends Controller
             'mensagens' => $mensagens,
         ]);
     }
+
+    public function enviarMensagemForumObjetivo(Request $request){
+        //dd($request->all());
+
+        $rules = array(
+            'mensagem' => 'required',
+        );
+        $messages = array(
+            'mensagem.required' => 'O campo de mensagem não pode estar vazio.',
+        );
+        $validator = Validator::make($request->all(),$rules,$messages);
+
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator->errors())->withInput();
+        }
+        
+        $mensagem = new MensagemForumObjetivo();
+        $mensagem->texto = $request->mensagem;
+        $mensagem->user_id = \Auth::user()->id;
+        $mensagem->forum_aluno_id = $request->forum_id;
+        $mensagem->save();
+        
+        return Redirect::to(URL::previous() . "#forum");
+    }
+
+    public function abrirForumObjetivo($id_objetivo){
+        $aluno = Objetivo::find($id_objetivo);
+
+        $mensagens = MensagemForumObjetivo::where('forum_aluno_id','=',$aluno->forum->id)->orderBy('created_at','desc')->get();
+
+        return view("aluno.forum.mensagens",[
+            'aluno' => $aluno,
+            'mensagens' => $mensagens,
+        ]);
+    }
 }

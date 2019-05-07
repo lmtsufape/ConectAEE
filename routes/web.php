@@ -35,6 +35,7 @@ Route::post('/aluno/gerenciar/permissoes/criar','AlunoController@criarPermissao'
 Route::get('/aluno/{id_aluno}/objetivos/cadastrar','ObjetivoController@cadastrar')->name('objetivo.cadastrar');
 Route::post('/aluno/objetivos/criar', 'ObjetivoController@criar')->name('objetivo.criar');
 Route::get('/aluno/{id_aluno}/objetivos/listar','ObjetivoController@listar')->name('objetivo.listar');
+Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar','ObjetivoController@gerenciar')->name('objetivo.gerenciar');
 
 //Rotas para atividade
 Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/atividades/listar','AtividadeController@listar')->name('objetivo.atividades.listar');
@@ -49,6 +50,8 @@ Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/sugestoes/cadastrar','Suge
 //Rotas para foruns
 Route::post('/aluno/forum/mensagem/enviar','ForumController@enviarMensagemForumAluno')->name('aluno.forum.mensagem.enviar');
 Route::get('/aluno/{id_aluno}/forum','ForumController@abrirForumAluno')->name('aluno.forum');
+Route::post('/aluno/objetivo/forum/mensagem/enviar','ForumController@enviarMensagemForumObjetivo')->name('objetivo.forum.mensagem.enviar');
+Route::get('/aluno/{id_aluno}/objetivo/{id_objetivo}/forum','ForumController@abrirForumObjetivo')->name('objetivo.forum');
 
 //rotas para statuses
 Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/status/cadastrar','StatusController@cadastrar')->name('objetivo.status.cadastrar');

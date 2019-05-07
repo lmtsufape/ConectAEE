@@ -49,6 +49,7 @@
                         <a class="btn btn-success" href="{{ route("objetivo.atividades.listar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id])}}">Atividades</a>
                         <a class="btn btn-success" href="{{ route("objetivo.sugestoes.listar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id])}}">Sugestões</a>
                         <a class="btn btn-success" href="{{ route("objetivo.status.cadastrar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id])}}">Status</a>
+                        <a class="btn btn-success" href="{{ route("objetivo.gerenciar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id])}}">Gerenciar</a>
                       </td>
                     </tr>
                   @endforeach
