@@ -31,4 +31,9 @@ class Objetivo extends Model
       return $this->hasOne('App\TipoObjetivo','id','tipo_objetivo_id');
   }
 
+  public function statusObjetivo()
+  {
+      return $this->hasMany('App\StatusObjetivo');
+  }
+
 }

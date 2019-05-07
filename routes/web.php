@@ -50,3 +50,6 @@ Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/sugestoes/cadastrar','Suge
 Route::post('/aluno/forum/mensagem/enviar','ForumController@enviarMensagemForumAluno')->name('aluno.forum.mensagem.enviar');
 Route::get('/aluno/{id_aluno}/forum','ForumController@abrirForumAluno')->name('aluno.forum');
 
+//rotas para statuses
+Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/status/cadastrar','StatusController@cadastrar')->name('objetivo.status.cadastrar');
+Route::post('/aluno/objetivos/status/criar', 'StatusController@criar')->name('objetivo.status.criar');
