@@ -55,9 +55,9 @@
 
                           @foreach($tipos as $tipo)
                               @if(old('tipo') == $tipo)
-                                  <option value={{$tipo}} selected>{{$tipo}}</option>
+                                  <option value={{$tipo->id}} selected>{{$tipo->tipo}}</option>
                               @else
-                                  <option value={{$tipo}}>{{$tipo}}</option>
+                                  <option value={{$tipo->id}}>{{$tipo->tipo}}</option>
                               @endif
                           @endforeach
                         </select>
