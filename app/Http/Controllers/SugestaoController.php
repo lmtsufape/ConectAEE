@@ -40,7 +40,7 @@ class SugestaoController extends Controller
       $sugestao->objetivo_id = $request->id_objetivo;
       $sugestao->save();
 
-      return redirect()->route("objetivo.sugestoes.listar", ["id_aluno" => $request->id_aluno, "id_objetivo" => $request->id_objetivo])->with('success','Objetivo cadastrado.');
+      return redirect()->route("objetivo.sugestoes.listar", ["id_aluno" => $request->id_aluno, "id_objetivo" => $request->id_objetivo])->with('success','Sugestão cadastrada.');
   }
 
   public function listar($id_aluno, $id_objetivo){

@@ -26,7 +26,8 @@ class Objetivo extends Model
       return $this->belongsTo('App\User');
   }
 
-  public function forum(){
+  public function forum()
+  {
     return $this->hasOne(ForumObjetivo::class);
   }
 
@@ -34,4 +35,10 @@ class Objetivo extends Model
   {
       return $this->hasOne('App\TipoObjetivo','id','tipo_objetivo_id');
   }
+
+  public function statusObjetivo()
+  {
+      return $this->hasMany('App\StatusObjetivo');
+  }
+
 }
