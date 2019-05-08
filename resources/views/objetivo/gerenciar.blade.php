@@ -25,15 +25,15 @@
 					  <a class="btn btn-primary" href={{route("objetivo.sugestoes.listar", ["id_objetivos"=>$objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Sugestões</a>
 				  </div>
 				</div>
-				  
+
 
 				  <div class="panel panel-default">
 
-					<div class="panel-heading">Fórum do objetivo: {{$objetivo->titulo}}</div>
+					<div class="panel-heading">Fórum do objetivo: {{$objetivo->titulo}} | <a class="btn btn-primary" href="{{route('objetivo.forum',['aluno' => $objetivo->aluno->id, 'objetivo' => $objetivo->id])."#forum"}}">Todas as Mensagens</a></div>
 					<div class="panel-body">
 						<form class="form-horizontal" method="POST" action="{{route('objetivo.forum.mensagem.enviar')}}">
 							@csrf
-							<input name="forum_id" type="text" value="{{$objetivo->forum}}" hidden>
+							<input name="forum_id" type="text" value="{{$objetivo->forum->id}}" hidden>
 							<div style="margin: 1%" class="form-group">
 								<input name="mensagem" style="width:80%; display: inline" class="form-control" type="text">
 								<button style="width:18%" type="submit" class="btn btn-success">Enviar</button>
