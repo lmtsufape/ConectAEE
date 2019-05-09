@@ -24,9 +24,7 @@
                       <th>Usuario</th>
                       <th>Título</th>
                       <th>Descrição</th>
-                      <th>Prioridade</th>
-                      <th>Histórico de Status</th>
-                      <th>Tipo</th>
+                      <th>Concluído</th>
                       <th>Data</th>
                   </tr>
                 </thead>
@@ -36,19 +34,13 @@
                       <td data-title="Usuário">{{ $objetivo->user->name}}</td>
                       <td data-title="Título">{{ $objetivo->titulo }}</td>
                       <td data-title="Descrição">{{ $objetivo->descricao }}</td>
-                      <td data-title="Prioridade">{{ $objetivo->prioridade }}</td>
-
-                      <td data-title="Histórico de Status">
-                        @foreach ($objetivo->statusObjetivo as $statusObjetivo)
-                          {{ $statusObjetivo->status->status }} {{ $statusObjetivo->data}} </br></br>
-                        @endforeach
-                      </td>
-                      <td data-title="Tipo">{{ $objetivo->tipoObjetivo->tipo }}</td>
+                      @if($objetivo->concluido)
+                        <td data-title="Concluído">Sim</td>
+                      @else
+                        <td data-title="Concluído">Não</td>
+                      @endif
                       <td data-title="Data">{{ $objetivo->data }}</td>
                       <td>
-                        <a class="btn btn-success" href="{{ route("objetivo.atividades.listar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id])}}">Atividades</a>
-                        <a class="btn btn-success" href="{{ route("objetivo.sugestoes.listar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id])}}">Sugestões</a>
-                        <a class="btn btn-success" href="{{ route("objetivo.status.cadastrar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id])}}">Status</a>
                         <a class="btn btn-success" href="{{ route("objetivo.gerenciar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id])}}">Gerenciar</a>
                       </td>
                     </tr>

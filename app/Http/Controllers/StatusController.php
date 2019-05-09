@@ -41,6 +41,6 @@ class StatusController extends Controller
 
       $statusObjetivo->save();
 
-      return redirect()->route("objetivo.listar", ["id_aluno" => $request->id_aluno])->with('success','Status atualizado.');
+      return redirect()->route("objetivo.gerenciar", ["id_aluno" => $request->id_aluno, "id_objetivo" => $request->id_objetivo])->with('success','Status atualizado.');
   }
 }

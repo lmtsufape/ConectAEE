@@ -36,6 +36,8 @@ Route::get('/aluno/{id_aluno}/objetivos/cadastrar','ObjetivoController@cadastrar
 Route::post('/aluno/objetivos/criar', 'ObjetivoController@criar')->name('objetivo.criar');
 Route::get('/aluno/{id_aluno}/objetivos/listar','ObjetivoController@listar')->name('objetivo.listar');
 Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar','ObjetivoController@gerenciar')->name('objetivo.gerenciar');
+Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/concluir','ObjetivoController@concluir')->name('objetivo.concluir');
+Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/desconcluir','ObjetivoController@desconcluir')->name('objetivo.desconcluir');
 
 //Rotas para atividade
 Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/atividades/listar','AtividadeController@listar')->name('objetivo.atividades.listar');

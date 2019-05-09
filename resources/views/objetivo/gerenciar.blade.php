@@ -15,14 +15,34 @@
 						|
 						<strong>Prioridade: </strong>{{$objetivo->prioridade}}
 						|
-						<strong>Tipo: </strong>{{$objetivo->tipo}}
+						<strong>Tipo: </strong>{{$objetivo->tipoObjetivo->tipo}}
+						|
+						<strong>Concluído: </strong>
+						@if($objetivo->concluido)
+							Sim
+						@else
+							Não
+						@endif
 						<br>
 						<strong>Descrição: </strong>{{$objetivo->descricao}}
+						<br>
+						<strong>Histórico de Status: </strong>
+							@foreach ($objetivo->statusObjetivo as $statusObjetivo)
+								| {{ $statusObjetivo->status->status }} {{ $statusObjetivo->data}}
+							@endforeach
+						</td>
 					</div>
 				  </div>
 				  <div class="panel-footer">
-					  <a class="btn btn-primary" href={{route("objetivo.atividades.listar", ["id_objetivos"=>$objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Atividades</a>
-					  <a class="btn btn-primary" href={{route("objetivo.sugestoes.listar", ["id_objetivos"=>$objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Sugestões</a>
+					  <a class="btn btn-primary" href={{ route("objetivo.atividades.listar", ["id_objetivos" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Atividades</a>
+					  <a class="btn btn-primary" href={{ route("objetivo.sugestoes.listar", ["id_objetivos" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Sugestões</a>
+						<a class="btn btn-primary" href={{ route("objetivo.status.cadastrar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Status</a>
+
+						@if($objetivo->user->id == \Auth::user()->id && $objetivo->concluido == false)
+							<a class="btn btn-success" style = "margin-left: 350px; " href={{ route("objetivo.concluir" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Concluir</a>
+						@elseif($objetivo->user->id == \Auth::user()->id && $objetivo->concluido == true)
+							<a class="btn btn-danger" style = "margin-left: 330px; " href={{ route("objetivo.desconcluir" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Desconcluir</a>
+						@endif
 				  </div>
 				</div>
 
