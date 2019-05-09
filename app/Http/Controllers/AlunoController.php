@@ -55,7 +55,7 @@ class AlunoController extends Controller{
       $aluno = new Aluno();
       $aluno->nome = $request->nome;
       $aluno->save();
-      
+
       $forum = new ForumAluno();
       $forum->aluno_id = $aluno->id;
       $forum->save;
@@ -74,7 +74,7 @@ class AlunoController extends Controller{
     $aluno = Aluno::find($id_aluno);
     $gerenciars = $aluno->gerenciars;
 
-    return view('aluno.permissoes.listar',[
+    return view('permissoes.listar',[
       'aluno' => $aluno,
       'gerenciars' => $gerenciars,
     ]);
@@ -84,7 +84,7 @@ class AlunoController extends Controller{
     $aluno = Aluno::find($id_aluno);
     $cargos = Cargo::where('especializacao','=',NULL)->get();
 
-    return view('aluno.permissoes.cadastrar',[
+    return view('permissoes.cadastrar',[
       'aluno' => $aluno,
       'cargos' => $cargos,
     ]);
@@ -108,7 +108,7 @@ class AlunoController extends Controller{
     if($validator->fails()){
       return redirect()->back()->withErrors($validator->errors())->withInput();
     }
-    
+
     //Se já existe a relação
     $user = User::where('username','=',$request->username)->first();
       // $gerenciar = Gerenciar::where('aluno_id','=',$request->aluno)->where('user_id','=',$user->id)->first();
