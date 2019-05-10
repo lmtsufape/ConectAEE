@@ -129,7 +129,7 @@ class AlunoController extends Controller{
 
     return redirect()->route(
       'aluno.permissoes',[
-        'id' => $gerenciar->aluno_id,
+        'id_aluno' => $gerenciar->aluno_id,
       ])->with('Success','O usuário '.$user->name.' agora possui permissão.');
   }
 }

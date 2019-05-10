@@ -40,10 +40,10 @@
                   </table>
                 </div>
               </div>
-        
+
               <div class="panel-footer">
                 <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
-                <a class="btn btn-success" href="{{ route("aluno.permissoes.cadastrar",['id' => $aluno->id])}}">Novo</a>
+                <a class="btn btn-success" href="{{ route("aluno.permissoes.cadastrar",['id_aluno' => $aluno->id])}}">Novo</a>
               </div>
             </div>
         </div>

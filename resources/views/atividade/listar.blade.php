@@ -26,6 +26,9 @@
                       <th>Prioridade</th>
                       <th>Status</th>
                       <th>Data</th>
+                      @if($objetivo->user->id == \Auth::user()->id)
+                        <th>Ação</th>
+                      @endif
                   </tr>
                 </thead>
                 <tbody>
@@ -36,6 +39,14 @@
                       <td data-title="Prioridade">{{ $atividade->prioridade }}</td>
                       <td data-title="Status">{{ $atividade->status }}</td>
                       <td data-title="Data">{{ $atividade->data }}</td>
+
+                      <td data-title="Ação">
+                        @if($atividade->objetivo->user->id == \Auth::user()->id && $atividade->concluido == false)
+            						  <a class="btn btn-success" href={{ route("objetivo.atividades.concluir" , ['id_objetivo' => $objetivo->id, 'id_atividade' => $atividade->id, 'id_aluno' => $aluno->id]) }}>Concluir</a>
+            						@elseif($atividade->objetivo->user->id == \Auth::user()->id && $atividade->concluido == true)
+                          <a class="btn btn-danger" href={{ route("objetivo.atividades.desconcluir" , ['id_objetivo' => $objetivo->id, 'id_atividade' => $atividade->id, 'id_aluno' => $aluno->id]) }}>Desconcluir</a>
+            						@endif
+                      </td>
                     </tr>
                   @endforeach
                 </tbody>

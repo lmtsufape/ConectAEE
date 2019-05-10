@@ -20,6 +20,7 @@ class CreateAtividadesTable extends Migration
             $table->string('prioridade');
             $table->string('status');
             $table->dateTime('data');
+            $table->boolean('concluido')->default(false);
 
             $table->integer('objetivo_id')->unsigned();
             $table->foreign('objetivo_id')->references('id')->on('objetivos')->onDelete('cascade');;

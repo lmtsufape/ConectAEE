@@ -24,10 +24,10 @@ Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/aluno/cadastrar', 'AlunoController@cadastrar')->name('aluno.cadastrar');
 Route::post('/aluno/criar', 'AlunoController@criar')->name('aluno.criar');
 Route::get('/aluno/listar', 'AlunoController@listar')->name('aluno.listar');
-Route::get('/aluno/{id}/gerenciar/', 'AlunoController@gerenciar')->name('aluno.gerenciar');
-Route::get('/aluno/{id}/gerenciar/permissoes','AlunoController@gerenciarPermissoes')->name('aluno.permissoes');
+Route::get('/aluno/{id_aluno}/gerenciar/', 'AlunoController@gerenciar')->name('aluno.gerenciar');
+Route::get('/aluno/{id_aluno}/gerenciar/permissoes','AlunoController@gerenciarPermissoes')->name('aluno.permissoes');
 
-Route::get('/aluno/{id}/gerenciar/permissoes/cadastrar','AlunoController@cadastrarPermissao')->name('aluno.permissoes.cadastrar');
+Route::get('/aluno/{id_aluno}/gerenciar/permissoes/cadastrar','AlunoController@cadastrarPermissao')->name('aluno.permissoes.cadastrar');
 Route::post('/aluno/gerenciar/permissoes/criar','AlunoController@criarPermissao')->name('aluno.permissoes.criar');
 
 
@@ -40,9 +40,11 @@ Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/concluir','Objet
 Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/desconcluir','ObjetivoController@desconcluir')->name('objetivo.desconcluir');
 
 //Rotas para atividade
-Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/atividades/listar','AtividadeController@listar')->name('objetivo.atividades.listar');
-Route::post('/aluno/objetivos/atividades/criar', 'AtividadeController@criar')->name('objetivo.atividades.criar');
-Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/atividades/cadastrar','AtividadeController@cadastrar')->name('objetivo.atividades.cadastrar');
+Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/atividades/listar','AtividadeController@listar')->name('objetivo.atividades.listar');
+Route::post('/aluno/objetivos/gerenciar/atividades/criar', 'AtividadeController@criar')->name('objetivo.atividades.criar');
+Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/atividades/cadastrar','AtividadeController@cadastrar')->name('objetivo.atividades.cadastrar');
+Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/atividades/{id_atividade}/concluir','AtividadeController@concluir')->name('objetivo.atividades.concluir');
+Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/atividades/{id_atividade}/desconcluir','AtividadeController@desconcluir')->name('objetivo.atividades.desconcluir');
 
 //Rotas para sugestão
 Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/sugestoes/listar','SugestaoController@listar')->name('objetivo.sugestoes.listar');
