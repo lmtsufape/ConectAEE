@@ -28,7 +28,7 @@
                         <tr>
                           <td data-title="Nome">{{ $aluno->nome }}</td>
                           <td>
-                            <a class="btn btn-success" href="{{ route("aluno.gerenciar",['id'=>$aluno->id]) }}">
+                            <a class="btn btn-success" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
                               Gerenciar
                             </a>
                           </td>

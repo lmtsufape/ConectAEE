@@ -34,8 +34,8 @@
 					</div>
 				  </div>
 				  <div class="panel-footer">
-					  <a class="btn btn-primary" href={{ route("objetivo.atividades.listar", ["id_objetivos" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Atividades</a>
-					  <a class="btn btn-primary" href={{ route("objetivo.sugestoes.listar", ["id_objetivos" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Sugestões</a>
+					  <a class="btn btn-primary" href={{ route("objetivo.atividades.listar", ["id_objetivo" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Atividades</a>
+					  <a class="btn btn-primary" href={{ route("objetivo.sugestoes.listar", ["id_objetivo" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Sugestões</a>
 						<a class="btn btn-primary" href={{ route("objetivo.status.cadastrar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Status</a>
 
 						@if($objetivo->user->id == \Auth::user()->id && $objetivo->concluido == false)

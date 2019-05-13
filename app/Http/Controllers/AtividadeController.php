@@ -58,4 +58,35 @@ class AtividadeController extends Controller
                                        'atividades' => $atividades]);
   }
 
+  public function concluir($id_aluno, $id_objetivo, $id_atividade){
+
+    $aluno = Aluno::find($id_aluno);
+    $objetivo = Objetivo::find($id_objetivo);
+    $atividades = $objetivo->atividades;
+
+    $atividade = Atividade::find($id_atividade);
+    $atividade->concluido = True;
+    $atividade->update();
+
+    return redirect()->route("objetivo.atividades.listar", ['aluno' => $aluno,
+                                                            'objetivo' => $objetivo,
+                                                            'atividades' => $atividades]);
+  }
+
+  public function desconcluir($id_aluno, $id_objetivo, $id_atividade){
+
+    $aluno = Aluno::find($id_aluno);
+    $objetivo = Objetivo::find($id_objetivo);
+    $atividades = $objetivo->atividades;
+
+    $atividade = Atividade::find($id_atividade);
+    $atividade->concluido = False;
+    $atividade->update();
+
+    return redirect()->route("objetivo.atividades.listar", ['aluno' => $aluno,
+                                                            'objetivo' => $objetivo,
+                                                            'atividades' => $atividades]);
+
+  }
+
 }
