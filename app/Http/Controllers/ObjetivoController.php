@@ -59,11 +59,38 @@ class ObjetivoController extends Controller
                                       'objetivos' => $objetivos]);
   }
 
-  public function gerenciar($id_objetivo){
-      
+  public function gerenciar($id_aluno, $id_objetivo){
+
+      $aluno = Aluno::find($id_aluno);
       $objetivo = Objetivo::find($id_objetivo);
       $mensagens = MensagemForumObjetivo::where('forum_objetivo_id','=',$objetivo->forum->id)->orderBy('created_at','desc')->take(5)->get();
-      return view("objetivo.gerenciar",['objetivo' => $objetivo,'mensagens'=>$mensagens]);
+
+      return view("objetivo.gerenciar",['aluno' => $aluno,
+                                        'objetivo' => $objetivo,
+                                        'mensagens'=>$mensagens]);
   }
+
+  public function concluir($id_aluno, $id_objetivo){
+
+    $objetivo = Objetivo::find($id_objetivo);
+
+    $objetivo->concluido = True;
+    $objetivo->update();
+
+    return redirect()->route("objetivo.gerenciar", ["id_aluno" => $id_aluno, "id_objetivo" => $id_objetivo])->with('success','O objetivo foi concluído.');
+
+  }
+
+  public function desconcluir($id_aluno, $id_objetivo){
+
+    $objetivo = Objetivo::find($id_objetivo);
+
+    $objetivo->concluido = False;
+    $objetivo->update();
+
+    return redirect()->route("objetivo.gerenciar", ["id_aluno" => $id_aluno, "id_objetivo" => $id_objetivo])->with('success','O objetivo foi concluído.');
+
+  }
+
 
 }

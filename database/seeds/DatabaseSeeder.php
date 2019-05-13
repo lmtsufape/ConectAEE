@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TipoObjetivoSeeder::class);
         $this->call(ObjetivoSeeder::class);
         $this->call(StatusSeeder::class);
+        $this->call(StatusObjetivoSeeder::class);
         $this->call(AtividadeSeeder::class);
         $this->call(SugestaoSeeder::class);
         $this->call(ForumObjetivoSeeder::class);

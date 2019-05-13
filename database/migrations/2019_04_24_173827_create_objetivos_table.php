@@ -19,6 +19,7 @@ class CreateObjetivosTable extends Migration
             $table->text('descricao');
             $table->string('prioridade');
             $table->dateTime('data');
+            $table->boolean('concluido')->default(false);
             $table->timestamps();
 
             $table->integer('aluno_id')->unsigned();
