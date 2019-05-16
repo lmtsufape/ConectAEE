@@ -120,11 +120,21 @@ class AlunoController extends Controller{
     $gerenciar = new Gerenciar();
     $gerenciar->user_id = $user->id;
     $gerenciar->aluno_id = (int) $request->aluno;
-    $cargo = Cargo::where('nome','=',$request->cargo)->where('especializacao','=',NULL)->first();
+
+    $cargo = NULL;
+    if($request->cargo == 'Profissional Externo'){
+      $cargo = new Cargo();
+      $cargo->nome = 'Profissional Externo';
+      $cargo->especializacao = $request->especializacao;
+      $cargo->save();
+    }else{
+      $cargo = Cargo::where('nome','=',$request->cargo)->where('especializacao','=',NULL)->first();
+    }
     $gerenciar->cargo_id = $cargo->id;
     if($request->exists('isAdministrador')){
       $gerenciar->isAdministrador = $request->isAdministrador;
     }
+    //dd($gerenciar);
     $gerenciar->save();
 
     return redirect()->route(
