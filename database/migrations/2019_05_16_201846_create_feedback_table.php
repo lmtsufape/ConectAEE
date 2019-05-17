@@ -16,9 +16,9 @@ class CreateFeedbackTable extends Migration
         Schema::create('feedback', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('texto');
-            $table->integer('objetivo_id');
+            $table->integer('sugestao_id');
             $table->integer('user_id');
-            $table->foreign('objetivo_id')->references('id')->on('objetivos')->onDelete('cascade');
+            $table->foreign('sugestao_id')->references('id')->on('sugestaos')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

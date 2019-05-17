@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Objetivo;
+use App\Sugestao;
 use App\Feedback;
 
 class FeedbackSeeder extends Seeder
@@ -13,13 +13,13 @@ class FeedbackSeeder extends Seeder
      */
     public function run()
     {
-        $objetivos = Objetivo::all();
-        foreach($objetivos as $objetivo){
-            $gerenciars = $objetivo->aluno->gerenciars;
+        $sugestoes = Sugestao::all();
+        foreach($sugestoes as $sugestao){
+            $gerenciars = $sugestao->objetivo->aluno->gerenciars;
             foreach($gerenciars as $gerenciar){
                 factory(Feedback::class)->create([
                     'user_id' => $gerenciar->user->id,
-                    'objetivo_id' => $objetivo->id,
+                    'sugestao_id' => $sugestao->id,
                 ]);
             }
         }

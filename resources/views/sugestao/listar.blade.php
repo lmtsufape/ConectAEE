@@ -24,6 +24,7 @@
                       <th>Título</th>
                       <th>Descrição</th>
                       <th>Data</th>
+                      <th>Feedbacks</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -32,6 +33,9 @@
                       <td data-title="Título">{{ $sugestao->titulo }}</td>
                       <td data-title="Descrição">{{ $sugestao->descricao }}</td>
                       <td data-title="Data">{{ $sugestao->data }}</td>
+                      <td data-title="Feedbacks">
+                        <a class="btn btn-success" href="{{ route("objetivo.sugestoes.feedbacks.listar" , ['id_sugestao' => $sugestao->id, 'id_aluno'=>$sugestao->objetivo->aluno->id, 'id_objetivo' => $sugestao->objetivo->id])}}">Ver</a>
+                      </td>
                     </tr>
                   @endforeach
                 </tbody>

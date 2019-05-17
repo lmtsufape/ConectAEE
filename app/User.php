@@ -46,4 +46,8 @@ class User extends Authenticatable
     public function objetivos(){
         return $this->hasMany(Objetivo::class);
     }
+
+    public function feedbacks(){
+        return $this->hasMany(Feedback::class);
+    }
 }

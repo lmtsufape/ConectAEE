@@ -51,6 +51,10 @@ Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/sugestoes/listar','Sugesta
 Route::post('/aluno/objetivos/sugestoes/criar', 'SugestaoController@criar')->name('objetivo.sugestoes.criar');
 Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/sugestoes/cadastrar','SugestaoController@cadastrar')->name('objetivo.sugestoes.cadastrar');
 
+//
+Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/sugestoes/{id_sugestao}/feedbacks/listar','FeedbackController@listar')->name('objetivo.sugestoes.feedbacks.listar');
+Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/sugestoes/{id_sugestao}/feedbacks/criar','FeedbackController@cadastrar')->name('objetivo.sugestoes.feedbacks.cadastrar');
+
 //Rotas para foruns
 Route::post('/aluno/forum/mensagem/enviar','ForumController@enviarMensagemForumAluno')->name('aluno.forum.mensagem.enviar');
 Route::get('/aluno/{id_aluno}/forum','ForumController@abrirForumAluno')->name('aluno.forum');
