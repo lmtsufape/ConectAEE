@@ -41,7 +41,7 @@ class ForumController extends Controller
     public function abrirForumAluno($id_aluno){
         $aluno = Aluno::find($id_aluno);
 
-        $mensagens = MensagemForumAluno::where('forum_aluno_id','=',$aluno->forum->id)->orderBy('created_at','desc')->get();
+        $mensagens = MensagemForumAluno::where('forum_aluno_id','=',$aluno->forum->id)->orderBy('id','desc')->get();
 
         return view("forum.aluno.mensagens",[
             'aluno' => $aluno,
@@ -76,7 +76,7 @@ class ForumController extends Controller
     public function abrirForumObjetivo($id_objetivo){
         $objetivo = Objetivo::find($id_objetivo);
 
-        $mensagens = MensagemForumObjetivo::where('forum_objetivo_id','=',$objetivo->forum->id)->orderBy('created_at','desc')->get();
+        $mensagens = MensagemForumObjetivo::where('forum_objetivo_id','=',$objetivo->forum->id)->orderBy('id','desc')->get();
 
         return view("forum.objetivo.mensagens",[
             'objetivo' => $objetivo,
