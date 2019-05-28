@@ -1,6 +1,6 @@
 @extends('layouts.principal')
 @section('title','Início')
-@section('path','Início')
+@section('navbar','Início')
 @section('content')
 <div class="container">
   <div class="row">

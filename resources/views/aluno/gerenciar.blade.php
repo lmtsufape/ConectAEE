@@ -1,6 +1,10 @@
 @extends('layouts.principal')
 @section('title','Início')
-@section('path','Início')
+
+@section('navbar')
+<a href="{{route('aluno.listar')}}">Alunos</a> | Gerenciar: <strong>{{$aluno->nome}}</strong>
+@endsection
+
 @section('content')
 	<div class="container">
 		<div class="row">
@@ -10,7 +14,7 @@
 
 					<div class="panel-body">
 						<div class="form-group">
-							<strong>Nome:</strong> {{$aluno->nome}}
+							<strong>Dado:</strong> dados
 							<br><br>
 							@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
 								<a class="btn btn-primary" href={{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}>Gerenciar Permissões</a>
@@ -26,7 +30,18 @@
 				</div>
 
 				<div class="panel panel-default">
-					<div id="forum" class="panel-heading">Fórum de <strong>{{$aluno->nome}} <a style="margin-left: 40%" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary">Todas as mensagens</a></strong></div>
+					<div id="forum" class="panel-heading">
+						<div id="card-title">
+
+							<div id="card-title-left">
+								Fórum 
+							</div>
+							<div id="card-title-right">
+								<a style="display: inline-block; text-align: center" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary">Todas as mensagens</a></strong>
+							</div>
+
+						</div>
+					</div>
 						<div class="panel-body">
 							@if ($errors->has('texto'))
 								<div style="margin-left: 1%; margin-right: 1%" class="alert alert-danger">

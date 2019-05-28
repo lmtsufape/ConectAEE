@@ -5,20 +5,26 @@
     text-align: center;
 }
 
+#card-title {
+    background-color: #1B2E4F;
+    color: white;
+    text-align: center;
+}
+
 #menu a {
     color: white;
 }
 
-#menu-right, #menu-left {
+#menu-right, #menu-left, #card-title-right, #card-title-left {
     width: 50%;
     display: inline;
 }
 
-#menu-right {
+#menu-right, #card-title-right {
     margin-left: 20%;
 }
 
-#menu-left {
+#menu-left, #card-title-left  {
     margin-right: 20%;
 }
 
