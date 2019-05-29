@@ -30,7 +30,6 @@ Route::get('/aluno/{id_aluno}/gerenciar/permissoes','AlunoController@gerenciarPe
 Route::get('/aluno/{id_aluno}/gerenciar/permissoes/cadastrar','AlunoController@cadastrarPermissao')->name('aluno.permissoes.cadastrar');
 Route::post('/aluno/gerenciar/permissoes/criar','AlunoController@criarPermissao')->name('aluno.permissoes.criar');
 
-
 //Rotas para objetivos
 Route::get('/aluno/{id_aluno}/objetivos/cadastrar','ObjetivoController@cadastrar')->name('objetivo.cadastrar');
 Route::post('/aluno/objetivos/criar', 'ObjetivoController@criar')->name('objetivo.criar');
@@ -50,6 +49,10 @@ Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/atividades/{id_a
 Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/sugestoes/listar','SugestaoController@listar')->name('objetivo.sugestoes.listar');
 Route::post('/aluno/objetivos/sugestoes/criar', 'SugestaoController@criar')->name('objetivo.sugestoes.criar');
 Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/sugestoes/cadastrar','SugestaoController@cadastrar')->name('objetivo.sugestoes.cadastrar');
+
+//
+Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/sugestoes/{id_sugestao}/feedbacks/listar','FeedbackController@listar')->name('objetivo.sugestoes.feedbacks.listar');
+Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/sugestoes/{id_sugestao}/feedbacks/criar','FeedbackController@cadastrar')->name('objetivo.sugestoes.feedbacks.cadastrar');
 
 //Rotas para foruns
 Route::post('/aluno/forum/mensagem/enviar','ForumController@enviarMensagemForumAluno')->name('aluno.forum.mensagem.enviar');

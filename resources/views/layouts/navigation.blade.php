@@ -5,6 +5,7 @@
     @if(!($url == '/login'))
     @if(!($url == '/register'))
     @if(!($url == ''))
+    @if(!($url == '/aluno/listar'))
 
     <div style="margin-top: -30px" class="container">
         <hr>
@@ -24,4 +25,6 @@
     @endif
     @endif
     @endif
+    @endif
+
 </div>
