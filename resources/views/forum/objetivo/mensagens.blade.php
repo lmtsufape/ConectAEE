@@ -1,6 +1,12 @@
 @extends('layouts.principal')
 @section('title','Início')
-@section('path','Início')
+@section('navbar')
+<a href="{{route('aluno.listar')}}">Alunos</a>
+ > <a href="{{route('aluno.gerenciar',$objetivo->aluno->id)}}">Gerenciar: <strong>{{$objetivo->aluno->nome}}</strong></a>
+ > <a href="{{route('objetivo.listar',$objetivo->aluno->id)}}">Objetivos</a>
+ > <a href="{{route('objetivo.gerenciar',[$objetivo->aluno->id,$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
+ > Fórum
+@endsection
 @section('content')
 
 	<div class="container">
@@ -8,7 +14,7 @@
 			<div class="col-md-8 col-md-offset-2">
 
 				<div class="panel panel-default">
-					<div id="forum" class="panel-heading">Fórum de <strong>{{$objetivo->nome}}</strong></div>
+					<div id="forum" class="panel-heading">Fórum de <strong>{{$objetivo->titulo}}</strong></div>
 						<div class="panel-body">
 							@if ($errors->has('texto'))
 								<div style="margin-left: 1%; margin-right: 1%" class="alert alert-danger">
