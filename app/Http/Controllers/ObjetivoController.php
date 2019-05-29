@@ -63,7 +63,7 @@ class ObjetivoController extends Controller
 
       $aluno = Aluno::find($id_aluno);
       $objetivo = Objetivo::find($id_objetivo);
-      $mensagens = MensagemForumObjetivo::where('forum_objetivo_id','=',$objetivo->forum->id)->orderBy('created_at','desc')->take(5)->get();
+      $mensagens = MensagemForumObjetivo::where('forum_objetivo_id','=',$objetivo->forum->id)->orderBy('id','desc')->take(5)->get();
 
       return view("objetivo.gerenciar",['aluno' => $aluno,
                                         'objetivo' => $objetivo,
