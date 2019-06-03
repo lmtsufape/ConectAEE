@@ -1,10 +1,10 @@
- <?php
+<?php
 
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Instituicao extends Model
+class Endereco extends Model
 {
-
+    //
 }
