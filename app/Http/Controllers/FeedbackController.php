@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sugestao;
+use App\Feedback;
+use \Auth;
 
 class FeedbackController extends Controller
 {
@@ -27,5 +29,22 @@ class FeedbackController extends Controller
             'objetivo' => $objetivo,
             'sugestao' => $sugestao,
         ]);
+    }
+
+    public function criar(Request $request){
+
+        $feedback = new Feedback();
+        $feedback->texto = $request->feedback;
+        $feedback->sugestao_id = $request->id_sugestao;
+        $feedback->user_id = Auth::user()->id;
+
+        $feedback->save();
+
+        return redirect()->route(
+            'objetivo.sugestoes.feedbacks.listar',
+            [
+                $request->id_aluno, $request->id_objetivo, $request->id_sugestao,
+            ]
+        );
     }
 }

@@ -18,25 +18,23 @@
       <div class="panel panel-default">
         <div class="panel-heading">Feedbacks de <strong>{{$sugestao->titulo}}</strong></div>
         <div class="panel-body">
-            <form class="form-horizontal" method="POST" action="{{ route("objetivo.status.criar") }}">
+            <form class="form-horizontal" method="POST" action="{{ route("objetivo.sugestoes.feedbacks.criar") }}">
                 {{ csrf_field() }}
 
                 <input id="id_aluno" type="hidden" class="form-control" name="id_aluno" value="{{ $aluno->id }}">
                 <input id="id_objetivo" type="hidden" class="form-control" name="id_objetivo" value="{{ $objetivo->id }}">
+                <input id="id_sugestao" type="hidden" class="form-control" name="id_sugestao" value="{{ $sugestao->id }}">
 
                 <div class="form-group{{ $errors->has('tipo') ? ' has-error' : '' }}">
-                    <label for="status" class="col-md-4 control-label">Status</label>
+                    <label for="feedback" class="col-md-4 control-label">Status</label>
 
                     <div class="col-md-6">
-                      <select id="status" class="form-control" name="status" autofocus>
+                      
+                      <textarea name="feedback" class="form-control" placeholder="Informe seu feedback."></textarea>
 
-                        @if (old('status') == null)
-                            <option value="" selected disabled hidden>Escolha o status</option>
-                        @endif
-
-                      @if ($errors->has('status'))
+                      @if ($errors->has('feedback'))
                           <span class="help-block">
-                              <strong>{{ $errors->first('status') }}</strong>
+                              <strong>{{ $errors->first('feedback') }}</strong>
                           </span>
                       @endif
                     </div>
@@ -46,10 +44,8 @@
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
                         <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
-                        <button type="submit" class="btn btn-success">
-                            Cadastrar
-                        </button>
-                    </div>
+                        <input value="Enviar" type="submit" class="btn btn-success">
+                     </div>
                 </div>
             </form>
         </div>
