@@ -32,13 +32,13 @@ class UserSeeder extends Seeder
 
         factory(User::class)->create([
             'name' => "Eberson",
-            'username' => "bersin",
+            'username' => "eberson.lmts",
             'telefone' => "(81) 91111-1111",
         ]);
 
         factory(User::class)->create([
             'name' => "Adelino",
-            'username' => "adelino",
+            'username' => "adelino.lmts",
             'telefone' => "(81) 91111-1111",
         ]);
 

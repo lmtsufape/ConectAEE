@@ -142,4 +142,11 @@ class AlunoController extends Controller{
         'id_aluno' => $gerenciar->aluno_id,
       ])->with('Success','O usuário '.$user->name.' agora possui permissão.');
   }
+
+  public function removerPermissao($id_aluno,$id_permissao){
+    $gerenciar = Gerenciar::find($id_permissao);
+    $gerenciar->delete();
+
+    return redirect()->back()->with('Removed','Permissões removidas com sucesso.');
+  }
 }
