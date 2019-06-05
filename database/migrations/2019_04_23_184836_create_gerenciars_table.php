@@ -18,11 +18,11 @@ class CreateGerenciarsTable extends Migration
             $table->boolean('isAdministrador')->default(False);
             $table->integer('user_id');
             $table->integer('aluno_id');
-            $table->integer('cargo_id')->nullable();
+            $table->integer('perfil_id')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('aluno_id')->references('id')->on('alunos')->onDelete('cascade');
-            $table->foreign('cargo_id')->references('id')->on('cargos')->onDelete('cascade');
+            $table->foreign('perfil_id')->references('id')->on('perfils')->onDelete('cascade');
 
             $table->timestamps();
         });

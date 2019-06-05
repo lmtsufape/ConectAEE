@@ -12,6 +12,32 @@
                           <form class="form-horizontal" method="POST" action="{{ route("aluno.criar") }}">
                               {{ csrf_field() }}
 
+                              <font size="5" class="row">
+                                Quem é você?
+                              </font>
+
+                              <div class="form-group{{ $errors->has('papel') ? ' has-error' : '' }}">
+                                  <label for="perfil" class="col-md-4 control-label">Perfil</label>
+
+                                  <div class="col-md-6">
+                                    <select id="papel" class="form-control" name="papel">
+                                      <option value="" selected disabled hidden>Escolha seu perfil</option>
+                                      <option value="1" >Responsável</option>
+                                      <option value="2" >Professor AEE</option>
+                                    </select>
+
+                                    @if ($errors->has('papel'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('papel') }}</strong>
+                                        </span>
+                                    @endif
+                                  </div>
+                              </div>
+
+                              <font size="5" class="row">
+                                Dados do Aluno:
+                              </font>
+
                               <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
                                   <label for="nome" class="col-md-4 control-label">Nome</label>
 
@@ -50,7 +76,7 @@
                                   <label for="data_nascimento" class="col-md-4 control-label">Data de Nascimento</label>
                                   <div class="col-md-6">
 
-                                      <input id="data_nascimento" type=date class="form-control" name="data_nascimento" value="{{ old('data_nascimento') }}">
+                                      <input id="data_nascimento" type="date" class="form-control" name="data_nascimento" value="{{ old('data_nascimento') }}">
 
                                       @if ($errors->has('data_nascimento'))
                                           <span class="help-block">
@@ -60,19 +86,86 @@
                                   </div>
                               </div>
 
-                              <div class="form-group{{ $errors->has('cargo') ? ' has-error' : '' }}">
-                                  <label for="perfil" class="col-md-4 control-label">Papel</label>
+                              <font size="5" class="row">
+                                Endereço do Aluno:
+                              </font>
+
+                              <div class="form-group{{ $errors->has('rua') ? ' has-error' : '' }}">
+                                  <label for="rua" class="col-md-4 control-label">Rua</label>
 
                                   <div class="col-md-6">
-                                    <select id="cargo" class="form-control" name="cargo" autofocus>
-                                      <option value="" selected disabled hidden>Escolha o cargo</option>
-                                      <option value="1" >Responsável</option>
-                                      <option value="2" >Professor AEE</option>
+
+                                      <input id="rua" type="text" class="form-control" name="rua" value="{{ old('rua') }}">
+
+                                      @if ($errors->has('rua'))
+                                          <span class="help-block">
+                                              <strong>{{ $errors->first('rua') }}</strong>
+                                          </span>
+                                      @endif
+                                  </div>
+                              </div>
+
+                              <div class="form-group{{ $errors->has('numero') ? ' has-error' : '' }}">
+                                  <label for="numero" class="col-md-4 control-label">Número</label>
+
+                                  <div class="col-md-2">
+
+                                      <input id="numero" type="text" class="form-control" name="numero" value="{{ old('numero') }}">
+
+                                      @if ($errors->has('numero'))
+                                          <span class="help-block">
+                                              <strong>{{ $errors->first('numero') }}</strong>
+                                          </span>
+                                      @endif
+                                  </div>
+                              </div>
+
+                              <div class="form-group{{ $errors->has('bairro') ? ' has-error' : '' }}">
+                                  <label for="bairro" class="col-md-4 control-label">Bairro</label>
+
+                                  <div class="col-md-6">
+
+                                      <input id="bairro" type="text" class="form-control" name="bairro" value="{{ old('bairro') }}">
+
+                                      @if ($errors->has('bairro'))
+                                          <span class="help-block">
+                                              <strong>{{ $errors->first('bairro') }}</strong>
+                                          </span>
+                                      @endif
+                                  </div>
+                              </div>
+
+                              <div class="form-group{{ $errors->has('cidade') ? ' has-error' : '' }}">
+                                  <label for="cidade" class="col-md-4 control-label">Cidade</label>
+
+                                  <div class="col-md-6">
+
+                                      <input id="cidade" type="text" class="form-control" name="cidade" value="{{ old('cidade') }}">
+
+                                      @if ($errors->has('cidade'))
+                                          <span class="help-block">
+                                              <strong>{{ $errors->first('cidade') }}</strong>
+                                          </span>
+                                      @endif
+                                  </div>
+                              </div>
+
+                              <div class="form-group{{ $errors->has('estado') ? ' has-error' : '' }}">
+                                  <label for="perfil" class="col-md-4 control-label">Estado</label>
+
+                                  <div class="col-md-3">
+                                    <select id="estado" class="form-control" name="estado">
+                                      <option value="" selected disabled hidden>Escolha o estado</option>
+
+                                      @foreach($estados as $estado)
+                                        <option value={{$estado}}> {{ $estado }} </option>
+                                      @endforeach
+
                                     </select>
 
-                                    @if ($errors->has('cargo'))
+                                    @if ($errors->has('estado'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('cargo') }}</strong>
+                                            <strong>{{ $errors->first('estado') }}</strong>
                                         </span>
                                     @endif
                                   </div>

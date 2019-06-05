@@ -1,6 +1,6 @@
 <?php
 
-use App\Cargo;
+use App\Perfil;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -15,7 +15,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(Cargo::class, function (Faker $faker) {
+$factory->define(Perfil::class, function (Faker $faker) {
     return [
         'nome' => $faker->name,
         'especializacao' => $faker->name,

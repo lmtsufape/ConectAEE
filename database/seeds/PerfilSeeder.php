@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Cargo;
+use App\Perfil;
 
-class CargoSeeder extends Seeder
+class PerfilSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,22 +12,22 @@ class CargoSeeder extends Seeder
      */
     public function run()
     {
-        factory(Cargo::class)->create([
+        factory(Perfil::class)->create([
             'nome' => "Responsável",
             'especializacao' => NULL,
         ]);
 
-        factory(Cargo::class)->create([
+        factory(Perfil::class)->create([
             'nome' => "Professor AEE",
             'especializacao' => NULL,
         ]);
 
-        factory(Cargo::class)->create([
+        factory(Perfil::class)->create([
             'nome' => "Professor Regular",
             'especializacao' => NULL,
         ]);
 
-        factory(Cargo::class)->create([
+        factory(Perfil::class)->create([
             'nome' => "Profissional Externo",
             'especializacao' => NULL,
         ]);
