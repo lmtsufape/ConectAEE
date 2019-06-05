@@ -44,8 +44,11 @@ class AlunoController extends Controller{
   }
 
   public function criar(Request $request){
+
       $validator = Validator::make($request->all(), [
-          'nome' => ['required','min:2','max:191']
+          'nome' => ['required','min:2','max:191'],
+          'sexo' => ['required'],
+          'data_nascimento' => ['required','date','before:today'],
       ]);
 
       if($validator->fails()){
@@ -54,11 +57,14 @@ class AlunoController extends Controller{
 
       $aluno = new Aluno();
       $aluno->nome = $request->nome;
+      $aluno->sexo = $request->sexo;
+      $aluno->data_de_nascimento = $request->data_nascimento;
+
       $aluno->save();
 
       $forum = new ForumAluno();
       $forum->aluno_id = $aluno->id;
-      $forum->save;
+      $forum->save();
 
       $gerenciar = new Gerenciar();
       $gerenciar->user_id = \Auth::user()->id;
