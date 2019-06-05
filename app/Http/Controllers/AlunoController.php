@@ -49,10 +49,15 @@ class AlunoController extends Controller{
   public function criar(Request $request){
 
       $validator = Validator::make($request->all(), [
+          'perfil' => ['required'],
           'nome' => ['required','min:2','max:191'],
           'sexo' => ['required'],
           'data_nascimento' => ['required','date','before:today'],
-          'sexo' => ['required'],
+          'logradouro' => ['required'],
+          'numero' => ['required','numeric'],
+          'bairro' => ['required'],
+          'cidade' => ['required'],
+          'estado' => ['required'],
       ]);
 
       if($validator->fails()){
@@ -63,8 +68,16 @@ class AlunoController extends Controller{
       $aluno->nome = $request->nome;
       $aluno->sexo = $request->sexo;
       $aluno->data_de_nascimento = $request->data_nascimento;
-
       $aluno->save();
+
+      $endereco = new Endereco();
+      $endereco->numero = $request->numero;
+      $endereco->logradouro = $request->logradouro;
+      $endereco->bairro = $request->bairro;
+      $endereco->cidade = $request->cidade;
+      $endereco->estado = $request->estado;
+
+      $pessoa->endereco()->save($endereco);
 
       $forum = new ForumAluno();
       $forum->aluno_id = $aluno->id;

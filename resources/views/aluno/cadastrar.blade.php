@@ -12,29 +12,29 @@
                           <form class="form-horizontal" method="POST" action="{{ route("aluno.criar") }}">
                               {{ csrf_field() }}
 
-                              <font size="5" class="row">
-                                Quem é você?
+                              <font size="4" class="row">
+                                Seu Perfil:
                               </font>
 
-                              <div class="form-group{{ $errors->has('papel') ? ' has-error' : '' }}">
+                              <div class="form-group{{ $errors->has('perfil') ? ' has-error' : '' }}">
                                   <label for="perfil" class="col-md-4 control-label">Perfil</label>
 
                                   <div class="col-md-6">
-                                    <select id="papel" class="form-control" name="papel">
+                                    <select id="perfil" class="form-control" name="perfil">
                                       <option value="" selected disabled hidden>Escolha seu perfil</option>
                                       <option value="1" >Responsável</option>
                                       <option value="2" >Professor AEE</option>
                                     </select>
 
-                                    @if ($errors->has('papel'))
+                                    @if ($errors->has('perfil'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('papel') }}</strong>
+                                            <strong>{{ $errors->first('perfil') }}</strong>
                                         </span>
                                     @endif
                                   </div>
                               </div>
 
-                              <font size="5" class="row">
+                              <font size="4" class="row">
                                 Dados do Aluno:
                               </font>
 
@@ -86,20 +86,20 @@
                                   </div>
                               </div>
 
-                              <font size="5" class="row">
+                              <font size="4" class="row">
                                 Endereço do Aluno:
                               </font>
 
-                              <div class="form-group{{ $errors->has('rua') ? ' has-error' : '' }}">
-                                  <label for="rua" class="col-md-4 control-label">Rua</label>
+                              <div class="form-group{{ $errors->has('logradouro') ? ' has-error' : '' }}">
+                                  <label for="logradouro" class="col-md-4 control-label">Logradouro</label>
 
                                   <div class="col-md-6">
 
-                                      <input id="rua" type="text" class="form-control" name="rua" value="{{ old('rua') }}">
+                                      <input id="logradouro" type="text" class="form-control" name="logradouro" value="{{ old('logradouro') }}">
 
-                                      @if ($errors->has('rua'))
+                                      @if ($errors->has('logradouro'))
                                           <span class="help-block">
-                                              <strong>{{ $errors->first('rua') }}</strong>
+                                              <strong>{{ $errors->first('logradouro') }}</strong>
                                           </span>
                                       @endif
                                   </div>
@@ -108,7 +108,8 @@
                               <div class="form-group{{ $errors->has('numero') ? ' has-error' : '' }}">
                                   <label for="numero" class="col-md-4 control-label">Número</label>
 
-                                  <div class="col-md-2">
+
+                                  <div class="col-md-6">
 
                                       <input id="numero" type="text" class="form-control" name="numero" value="{{ old('numero') }}">
 

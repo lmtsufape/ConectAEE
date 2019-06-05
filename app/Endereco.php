@@ -8,6 +8,6 @@ class Endereco extends Model
 {
   public function aluno()
   {
-     return $this->belongsTo('App\Aluno');
+     return $this->belongsTo('App\Aluno','endereco_id');
   }
 }
