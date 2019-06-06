@@ -6,6 +6,7 @@ use App\User;
 use App\Aluno;
 use App\Gerenciar;
 use App\Perfil;
+use App\Endereco;
 use App\ForumAluno;
 use App\MensagemForumAluno;
 use Illuminate\Http\Request;
@@ -48,11 +49,12 @@ class AlunoController extends Controller{
 
   public function criar(Request $request){
 
+
       $validator = Validator::make($request->all(), [
           'perfil' => ['required'],
           'nome' => ['required','min:2','max:191'],
           'sexo' => ['required'],
-          'data_nascimento' => ['required','date','before:today'],
+          'data_nascimento' => ['required','date','before:today','after:01/01/1900'],
           'logradouro' => ['required'],
           'numero' => ['required','numeric'],
           'bairro' => ['required'],
@@ -64,20 +66,21 @@ class AlunoController extends Controller{
           return redirect()->back()->withErrors($validator->errors())->withInput();
       }
 
-      $aluno = new Aluno();
-      $aluno->nome = $request->nome;
-      $aluno->sexo = $request->sexo;
-      $aluno->data_de_nascimento = $request->data_nascimento;
-      $aluno->save();
-
       $endereco = new Endereco();
       $endereco->numero = $request->numero;
       $endereco->logradouro = $request->logradouro;
       $endereco->bairro = $request->bairro;
       $endereco->cidade = $request->cidade;
       $endereco->estado = $request->estado;
+      $endereco->save();
 
-      $pessoa->endereco()->save($endereco);
+      $aluno = new Aluno();
+      $aluno->nome = $request->nome;
+      $aluno->sexo = $request->sexo;
+      $aluno->data_de_nascimento = $request->data_nascimento;
+
+      $aluno->endereco_id = $endereco->id;
+      $aluno->save();
 
       $forum = new ForumAluno();
       $forum->aluno_id = $aluno->id;

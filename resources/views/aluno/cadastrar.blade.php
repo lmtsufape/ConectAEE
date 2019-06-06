@@ -20,10 +20,23 @@
                                   <label for="perfil" class="col-md-4 control-label">Perfil</label>
 
                                   <div class="col-md-6">
-                                    <select id="perfil" class="form-control" name="perfil">
-                                      <option value="" selected disabled hidden>Escolha seu perfil</option>
-                                      <option value="1" >Responsável</option>
-                                      <option value="2" >Professor AEE</option>
+                                    <select id="perfil" class="form-control" name="perfil" autofocus>
+
+                                      @if (old('perfil') == null)
+                                          <option selected disabled hidden>Escolha seu perfil</option>
+                                      @endif
+
+                                      @if(old('perfil') == "1")
+                                          <option value="1" selected>Responsável</option>
+                                      @else
+                                          <option value="1">Responsável</option>
+                                      @endif
+
+                                      @if(old('perfil') == "2")
+                                          <option value="2" selected>Professor AEE</option>
+                                      @else
+                                          <option value=2>Professor AEE</option>
+                                      @endif
                                     </select>
 
                                     @if ($errors->has('perfil'))
@@ -42,7 +55,7 @@
                                   <label for="nome" class="col-md-4 control-label">Nome</label>
 
                                   <div class="col-md-6">
-                                      <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}" autofocus>
+                                      <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}">
 
                                       @if ($errors->has('nome'))
                                           <span class="help-block">
@@ -58,10 +71,18 @@
 
                                 <div class="col-md-6">
 
-                                  <input type="radio" id="sexo1" name="sexo" value="M" class="custom-control-inline">
+                                  @if(old('sexo') == "M")
+                                    <input type="radio" id="sexo1" name="sexo" value="M" checked="checked">
+                                  @else
+                                    <input type="radio" id="sexo1" name="sexo" value="M">
+                                  @endif
                                   <label class="custom-control-label" for="sexo1">Masculino</label>
 
-                                  <input type="radio" id="sexo2" name="sexo" value="F" class="custom-control-inline">
+                                  @if(old('sexo') == "F")
+                                    <input type="radio" id="sexo2" name="sexo" value="F" checked="checked">
+                                  @else
+                                    <input type="radio" id="sexo2" name="sexo" value="F">
+                                  @endif
                                   <label class="custom-control-label" for="sexo2">Feminino</label>
 
                                   @if ($errors->has('sexo'))
@@ -156,10 +177,17 @@
 
                                   <div class="col-md-3">
                                     <select id="estado" class="form-control" name="estado">
-                                      <option value="" selected disabled hidden>Escolha o estado</option>
+
+                                      @if (old('estado') == null)
+                                        <option selected disabled hidden>Escolha o estado</option>
+                                      @endif
 
                                       @foreach($estados as $estado)
-                                        <option value={{$estado}}> {{ $estado }} </option>
+                                        @if(old('estado') == $estado)
+                                          <option value={{$estado}} selected> {{ $estado }} </option>
+                                        @else
+                                          <option value={{$estado}}> {{ $estado }} </option>
+                                        @endif
                                       @endforeach
 
                                     </select>
