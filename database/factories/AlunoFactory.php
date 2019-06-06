@@ -17,6 +17,8 @@ use Faker\Generator as Faker;
 
 $factory->define(Aluno::class, function (Faker $faker) {
     return [
-        'nome' => $faker->name,
+      'nome' => $faker->name,
+      'sexo' => $faker->randomElement($array = array ('M','F')),
+      'data_de_nascimento' => $faker->date($format = 'd-m-Y',$max = 'now'),
     ];
 });

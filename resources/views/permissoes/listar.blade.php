@@ -36,7 +36,7 @@
                     <thead>
                       <tr>
                           <th>Nome</th>
-                          <th>Cargo</th>
+                          <th>Perfil</th>
                           <th>Administrador</th>
                           @if($atual->isAdministrador)
                           <th>Remover</th>
@@ -48,10 +48,10 @@
                         @foreach ($gerenciars as $gerenciar)
                         <tr>
                           <td data-title="Nome">{{ $gerenciar->user->name }} </td>
-                          @if($gerenciar->cargo->especializacao == NULL)
-                            <td data-title="Cargo">{{ $gerenciar->cargo->nome }} </td>
+                          @if($gerenciar->perfil->especializacao == NULL)
+                            <td data-title="Perfil">{{ $gerenciar->perfil->nome }} </td>
                           @else
-                            <td data-title="Cargo">{{ $gerenciar->cargo->especializacao }} </td>
+                            <td data-title="Perfil">{{ $gerenciar->perfil->especializacao }} </td>
                           @endif
                           <td data-title="Administrador">{{ ($gerenciar->isAdministrador) ? 'Sim' : 'Não' }}</td>
                           

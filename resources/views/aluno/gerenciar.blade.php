@@ -14,7 +14,20 @@
 
 					<div class="panel-body">
 						<div class="form-group">
-							<strong>Dado:</strong> dados
+							<strong>Nome:</strong> {{$aluno->nome}}
+							<strong>Sexo:</strong> {{$aluno->sexo}}
+							<br/>
+							<strong>Data de Nascimento:</strong> {{$aluno->data_de_nascimento}}
+							<br/>
+							<strong>Endereço:</strong>
+							<br/>
+
+							<strong>Logradouro:</strong> {{$aluno->endereco->logradouro}}
+							<strong>Número:</strong> {{$aluno->endereco->numero}}
+							<br/>
+							<strong>Bairro:</strong> {{$aluno->endereco->bairro}}
+							<strong>Cidade:</strong> {{$aluno->endereco->cidade}}
+							<strong>Estado:</strong> {{$aluno->endereco->estado}}
 							<br><br>
 							@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
 								<a class="btn btn-primary" href={{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}>Gerenciar Permissões</a>
@@ -34,7 +47,7 @@
 						<div id="card-title">
 
 							<div id="card-title-left">
-								Fórum 
+								Fórum
 							</div>
 							<div id="card-title-right">
 								<a style="display: inline-block; text-align: center" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary">Todas as mensagens</a></strong>

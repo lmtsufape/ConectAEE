@@ -26,19 +26,19 @@ class GerenciarSeeder extends Seeder
 
             factory(Gerenciar::class)->create([
                 'aluno_id' => $aluno->id,
-                'cargo_id' => array_pop($array),
+                'perfil_id' => array_pop($array),
                 'user_id' => 1,
                 'isAdministrador' => True,
             ]);
             factory(Gerenciar::class)->create([
                 'aluno_id' => $aluno->id,
-                'cargo_id' => array_pop($array),
+                'perfil_id' => array_pop($array),
                 'user_id' => array_pop($array_users),
                 'isAdministrador' => True,
             ]);
             factory(Gerenciar::class)->create([
                 'aluno_id' => $aluno->id,
-                'cargo_id' => array_pop($array),
+                'perfil_id' => array_pop($array),
                 'user_id' => array_pop($array_users),
                 'isAdministrador' => False,
             ]);

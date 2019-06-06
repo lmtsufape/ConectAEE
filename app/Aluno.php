@@ -16,6 +16,10 @@ class Aluno extends Model
 
     public function forum(){
         return $this->hasOne(ForumAluno::class);
-
     }
+
+    public function endereco(){
+        return $this->hasOne(Endereco::class,'id','endereco_id');
+    }
+
 }

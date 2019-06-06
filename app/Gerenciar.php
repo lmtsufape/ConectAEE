@@ -14,7 +14,7 @@ class Gerenciar extends Model
         return $this->hasOne(User::class,'id','user_id');
     }
 
-    public function cargo(){
-        return $this->hasOne(Cargo::class,'id','cargo_id');
+    public function perfil(){
+        return $this->hasOne(Perfil::class,'id','perfil_id');
     }
 }
