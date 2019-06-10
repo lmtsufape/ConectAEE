@@ -15,8 +15,8 @@ class CreateEnderecosTable extends Migration
     {
         Schema::create('enderecos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('numero');
-            $table->string('rua');
+            $table->string('numero');
+            $table->string('logradouro');
             $table->string('bairro');
             $table->string('cidade');
             $table->string('estado');

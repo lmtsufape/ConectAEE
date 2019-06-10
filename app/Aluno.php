@@ -19,7 +19,7 @@ class Aluno extends Model
     }
 
     public function endereco(){
-        return $this->hasOne(Endereco::class);
+        return $this->hasOne(Endereco::class,'id','endereco_id');
     }
 
 }

@@ -18,6 +18,10 @@ class CreateAlunosTable extends Migration
             $table->string('nome');
             $table->char('sexo');
             $table->date('data_de_nascimento');
+            $table->integer('endereco_id');
+
+            $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
