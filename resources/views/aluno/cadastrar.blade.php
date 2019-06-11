@@ -113,6 +113,40 @@
                               </div>
 
                               <font size="4" class="row">
+                                Dados Médicos:
+                              </font>
+
+                              <div class="form-group{{ $errors->has('cid') ? ' has-error' : '' }}">
+                                  <label for="cid" class="col-md-4 control-label">CID</label>
+
+                                  <div class="col-md-6">
+
+                                      <input id="cid" type="text" class="form-control" placeholder="X000" name="cid" value="{{ old('cid') }}">
+
+                                      @if ($errors->has('cid'))
+                                          <span class="help-block">
+                                              <strong>{{ $errors->first('cid') }}</strong>
+                                          </span>
+                                      @endif
+                                  </div>
+                              </div>
+
+                              <div class="form-group{{ $errors->has('descricaoCid') ? ' has-error' : '' }}">
+                                  <label for="descricaoCid" class="col-md-4 control-label">Descrição do CID</label>
+
+                                  <div class="col-md-6">
+
+                                      <input id="descricaoCid" type="text" class="form-control" name="descricaoCid" value="{{ old('descricaoCid') }}">
+
+                                      @if ($errors->has('descricaoCid'))
+                                          <span class="help-block">
+                                              <strong>{{ $errors->first('descricaoCid') }}</strong>
+                                          </span>
+                                      @endif
+                                  </div>
+                              </div>
+
+                              <font size="4" class="row">
                                 Endereço do Aluno:
                               </font>
 

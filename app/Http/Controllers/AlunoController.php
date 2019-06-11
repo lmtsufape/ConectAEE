@@ -54,6 +54,8 @@ class AlunoController extends Controller{
           'perfil' => ['required'],
           'nome' => ['required','min:2','max:191'],
           'sexo' => ['required'],
+          'cid' => ['nullable','regex:/(^([a-zA-z])(\d)(\d)(\d)$)/u'],
+          'descricaoCid' => ['required_with:cid'],
           'data_nascimento' => ['required','date','before:today','after:01/01/1900'],
           'logradouro' => ['required'],
           'numero' => ['required','numeric'],
@@ -77,6 +79,8 @@ class AlunoController extends Controller{
       $aluno = new Aluno();
       $aluno->nome = $request->nome;
       $aluno->sexo = $request->sexo;
+      $aluno->cid = $request->cid;
+      $aluno->descricao_cid = $request->descricaoCid;
       $aluno->data_de_nascimento = $request->data_nascimento;
 
       $aluno->endereco_id = $endereco->id;
@@ -93,7 +97,7 @@ class AlunoController extends Controller{
       $gerenciar->isAdministrador = True;
       $gerenciar->save();
 
-      return redirect()->route("aluno.listar")->with('success','O Aluno'.$aluno->nome.'foi cadastrado');
+      return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.'foi cadastrado');
   }
 
   public function gerenciarPermissoes($id_aluno){

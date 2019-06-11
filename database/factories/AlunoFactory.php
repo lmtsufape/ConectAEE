@@ -18,6 +18,8 @@ use Faker\Generator as Faker;
 $factory->define(Aluno::class, function (Faker $faker) {
     return [
       'nome' => $faker->name,
+      'cid' => 'H910',
+      'descricao_cid' => 'Perda de audição ototóxica',
       'sexo' => $faker->randomElement($array = array ('M','F')),
       'data_de_nascimento' => $faker->date($format = 'd-m-Y',$max = 'now'),
     ];

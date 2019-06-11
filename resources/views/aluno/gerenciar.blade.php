@@ -16,6 +16,8 @@
 						<div class="form-group">
 							<strong>Nome:</strong> {{$aluno->nome}}
 							<strong>Sexo:</strong> {{$aluno->sexo}}
+							<strong>CID:</strong> {{$aluno->cid}}
+							<strong>Descrição CID:</strong> {{$aluno->descricao_cid}}
 							<br/>
 							<strong>Data de Nascimento:</strong> {{$aluno->data_de_nascimento}}
 							<br/>
