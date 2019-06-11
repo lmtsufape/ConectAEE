@@ -32,6 +32,7 @@
                   <tr>
                       <th>Usuário</th>
                       <th>Feedback</th>
+                      <th>Horário</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -39,6 +40,7 @@
                     <tr>
                       <td data-title="Usuário">{{ $feedback->user->name }}</td>
                       <td data-title="Feedback">{{ $feedback->texto }}</td>
+                      <td data-title="Horário">{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$feedback->updated_at)->format('d-m-Y (H:i)') }}</td>
                     </tr>
                   @endforeach
                 </tbody>
@@ -54,7 +56,7 @@
             ])}}">Voltar</a>
             <a class="btn btn-success" href="{{route('objetivo.sugestoes.feedbacks.cadastrar',[
               $sugestao->objetivo->aluno->id,$sugestao->objetivo->id,$sugestao->id,
-            ])}}">Novo</a>
+            ])}}">Enviar novo feedback</a>
           </div>
         </div>
     </div>

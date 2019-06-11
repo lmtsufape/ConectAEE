@@ -20,6 +20,8 @@ class CreateGerenciarsTable extends Migration
             $table->integer('aluno_id');
             $table->integer('perfil_id')->nullable();
 
+            $table->unique(['user_id','aluno_id']);
+            
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('aluno_id')->references('id')->on('alunos')->onDelete('cascade');
             $table->foreign('perfil_id')->references('id')->on('perfils')->onDelete('cascade');

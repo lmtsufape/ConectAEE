@@ -130,13 +130,17 @@ class AlunoController extends Controller{
       'especializacao.required_if' => 'Necessário inserir uma especialização.',
     );
     $validator = Validator::make($request->all(),$rules,$messages);
-
     if($validator->fails()){
       return redirect()->back()->withErrors($validator->errors())->withInput();
     }
 
+
     //Se já existe a relação
     $user = User::where('username','=',$request->username)->first();
+    if((Gerenciar::where('user_id','=',$user->id)->where('aluno_id','=',$request->aluno))->first()){
+      $validator->errors()->add('username','O usuário já possui permissões de acesso ao aluno.');
+      return redirect()->back()->withErrors($validator->errors())->withInput();
+    }
       // $gerenciar = Gerenciar::where('aluno_id','=',$request->aluno)->where('user_id','=',$user->id)->first();
       // if($gerenciar != NULL){
       //   return redirect()->back()->withInput()->with('Fail','O usuário '.$user->name.' já possui permissões.');
