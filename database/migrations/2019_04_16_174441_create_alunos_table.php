@@ -16,10 +16,11 @@ class CreateAlunosTable extends Migration
         Schema::create('alunos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome');
-            $table->string('cid')->nullable();
-            $table->string('descricao_cid')->nullable();
             $table->char('sexo');
             $table->date('data_de_nascimento');
+            $table->string('cid')->nullable();
+            $table->string('descricao_cid')->nullable();
+            $table->text('observacao')->nullable();
             $table->integer('endereco_id');
 
             $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('cascade');
