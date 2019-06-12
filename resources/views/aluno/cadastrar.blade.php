@@ -18,49 +18,14 @@
                               {{ csrf_field() }}
 
                               <font size="4" class="row">
-                                Seu Perfil:
-                              </font>
-
-                              <div class="form-group{{ $errors->has('perfil') ? ' has-error' : '' }}">
-                                  <label for="perfil" class="col-md-4 control-label">Perfil</label>
-
-                                  <div class="col-md-6">
-                                    <select id="perfil" class="form-control" name="perfil" autofocus>
-
-                                      @if (old('perfil') == null)
-                                          <option selected disabled hidden>Escolha seu perfil</option>
-                                      @endif
-
-                                      @if(old('perfil') == "1")
-                                          <option value="1" selected>Responsável</option>
-                                      @else
-                                          <option value="1">Responsável</option>
-                                      @endif
-
-                                      @if(old('perfil') == "2")
-                                          <option value="2" selected>Professor AEE</option>
-                                      @else
-                                          <option value=2>Professor AEE</option>
-                                      @endif
-                                    </select>
-
-                                    @if ($errors->has('perfil'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('perfil') }}</strong>
-                                        </span>
-                                    @endif
-                                  </div>
-                              </div>
-
-                              <font size="4" class="row">
-                                Dados do Aluno:
+                                Dados Pessoais:
                               </font>
 
                               <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
                                   <label for="nome" class="col-md-4 control-label">Nome</label>
 
                                   <div class="col-md-6">
-                                      <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}">
+                                      <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}" autofocus>
 
                                       @if ($errors->has('nome'))
                                           <span class="help-block">
@@ -113,41 +78,7 @@
                               </div>
 
                               <font size="4" class="row">
-                                Dados Médicos:
-                              </font>
-
-                              <div class="form-group{{ $errors->has('cid') ? ' has-error' : '' }}">
-                                  <label for="cid" class="col-md-4 control-label">CID</label>
-
-                                  <div class="col-md-6">
-
-                                      <input id="cid" type="text" class="form-control" placeholder="X000" name="cid" value="{{ old('cid') }}">
-
-                                      @if ($errors->has('cid'))
-                                          <span class="help-block">
-                                              <strong>{{ $errors->first('cid') }}</strong>
-                                          </span>
-                                      @endif
-                                  </div>
-                              </div>
-
-                              <div class="form-group{{ $errors->has('descricaoCid') ? ' has-error' : '' }}">
-                                  <label for="descricaoCid" class="col-md-4 control-label">Descrição do CID</label>
-
-                                  <div class="col-md-6">
-
-                                      <input id="descricaoCid" type="text" class="form-control" name="descricaoCid" value="{{ old('descricaoCid') }}">
-
-                                      @if ($errors->has('descricaoCid'))
-                                          <span class="help-block">
-                                              <strong>{{ $errors->first('descricaoCid') }}</strong>
-                                          </span>
-                                      @endif
-                                  </div>
-                              </div>
-
-                              <font size="4" class="row">
-                                Endereço do Aluno:
+                                Endereço:
                               </font>
 
                               <div class="form-group{{ $errors->has('logradouro') ? ' has-error' : '' }}">
@@ -234,6 +165,93 @@
                                     @if ($errors->has('estado'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('estado') }}</strong>
+                                        </span>
+                                    @endif
+                                  </div>
+                              </div>
+
+                              <font size="4" class="row">
+                                Dados Médicos:
+                              </font>
+
+                              <div class="form-group{{ $errors->has('cid') ? ' has-error' : '' }}">
+                                  <label for="cid" class="col-md-4 control-label">CID</label>
+
+                                  <div class="col-md-6">
+
+                                      <input id="cid" type="text" class="form-control" placeholder="X000" name="cid" value="{{ old('cid') }}">
+
+                                      @if ($errors->has('cid'))
+                                          <span class="help-block">
+                                              <strong>{{ $errors->first('cid') }}</strong>
+                                          </span>
+                                      @endif
+                                  </div>
+                              </div>
+
+                              <div class="form-group{{ $errors->has('descricaoCid') ? ' has-error' : '' }}">
+                                  <label for="descricaoCid" class="col-md-4 control-label">Descrição do CID</label>
+
+                                  <div class="col-md-6">
+
+                                      <input id="descricaoCid" type="text" class="form-control" name="descricaoCid" value="{{ old('descricaoCid') }}">
+
+                                      @if ($errors->has('descricaoCid'))
+                                          <span class="help-block">
+                                              <strong>{{ $errors->first('descricaoCid') }}</strong>
+                                          </span>
+                                      @endif
+                                  </div>
+                              </div>
+
+                              <font size="4" class="row">
+                                Outras Observacões:
+                              </font>
+
+                              <div class="form-group{{ $errors->has('observacao') ? ' has-error' : '' }}">
+                                  <label for="observacao" class="col-md-4 control-label">Observações</label>
+
+                                  <div class="col-md-6">
+                                      <textarea id="observacao" rows = "5" cols = "50" class="form-control" name="observacao" value="{{ old('observacao') }}" ></textarea>
+
+                                      @if ($errors->has('observacao'))
+                                          <span class="help-block">
+                                              <strong>{{ $errors->first('observacao') }}</strong>
+                                          </span>
+                                      @endif
+                                  </div>
+                              </div>
+
+                              <font size="4" class="row">
+                                Perfil do Cadastrante:
+                              </font>
+
+                              <div class="form-group{{ $errors->has('perfil') ? ' has-error' : '' }}">
+                                  <label for="perfil" class="col-md-4 control-label">Perfil</label>
+
+                                  <div class="col-md-6">
+                                    <select id="perfil" class="form-control" name="perfil">
+
+                                      @if (old('perfil') == null)
+                                          <option selected disabled hidden>Escolha seu perfil</option>
+                                      @endif
+
+                                      @if(old('perfil') == "1")
+                                          <option value="1" selected>Responsável</option>
+                                      @else
+                                          <option value="1">Responsável</option>
+                                      @endif
+
+                                      @if(old('perfil') == "2")
+                                          <option value="2" selected>Professor AEE</option>
+                                      @else
+                                          <option value=2>Professor AEE</option>
+                                      @endif
+                                    </select>
+
+                                    @if ($errors->has('perfil'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('perfil') }}</strong>
                                         </span>
                                     @endif
                                   </div>
