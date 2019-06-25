@@ -11,4 +11,15 @@ function showEspecializacao(val){
     }
 }
 
+function showResponsavel(val){
+    responsavel = document.getElementById('div-responsavel');
+    login = document.getElementById('login');
+    if(val.value == '2'){
+        responsavel.style.display = 'block';
+    }else{
+        responsavel.style.display = 'none';
+        login.value = '';
+    }
+}
+
 </script>
