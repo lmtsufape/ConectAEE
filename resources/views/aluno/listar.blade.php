@@ -7,14 +7,23 @@
         <div class="col-md-8 col-md-offset-2">
           <div class="panel panel-default">
             <div class="panel-heading">Alunos</div>
-              @if (\Session::has('success'))
-                <br>
-                <div class="alert alert-success">
-                    <strong>Sucesso!</strong>
-                    {!! \Session::get('success') !!}
-                </div>
-              @endif
+              
               <div class="panel-body">
+
+                @if (\Session::has('success'))
+                  <br>
+                  <div class="alert alert-success">
+                      <strong>Sucesso!</strong>
+                      {!! \Session::get('success') !!}
+                  </div>
+                @endif
+                @if (\Session::has('password'))
+                  <div class="alert alert-success">
+                      <strong>Sucesso!</strong>
+                      {!! \Session::get('password') !!}
+                  </div>
+                @endif
+
                 <div id="tabela" class="table-responsive">
                   <table class="table table-hover">
                     <thead>
