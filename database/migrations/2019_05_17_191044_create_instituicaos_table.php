@@ -18,7 +18,10 @@ class CreateInstituicaosTable extends Migration
             $table->string('nome');
             $table->string('telefone',15)->nullable();
             $table->string('email')->nullable();
-            $table->string('endereco');
+            $table->integer('endereco_id');
+
+            $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
