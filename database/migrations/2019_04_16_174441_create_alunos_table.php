@@ -21,6 +21,7 @@ class CreateAlunosTable extends Migration
             $table->string('cid')->nullable();
             $table->string('descricao_cid')->nullable();
             $table->text('observacao')->nullable();
+            $table->string('codigo')->unique();
             $table->integer('endereco_id');
 
             $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('cascade');

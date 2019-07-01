@@ -50,6 +50,22 @@ class AlunoController extends Controller{
                                       'instituicoes' => $instituicoes]);
   }
 
+  public function buscar(){
+
+    return view("aluno.buscar", ['codigo' => [],
+                                 'aluno' => []]);
+  }
+
+  public function buscarCodigo(Request $request){
+
+    $codigo = $request->codigo;
+
+    $aluno = Aluno::where('codigo','=', $codigo)->first();
+
+    return view("aluno.buscar", ['aluno' => $aluno, 'codigo' => $codigo]);
+
+  }
+
   public function criar(Request $request){
 
       $validator = Validator::make($request->all(), [
@@ -91,6 +107,13 @@ class AlunoController extends Controller{
       $aluno->observacao = $request->observacao;
       $aluno->data_de_nascimento = $request->data_nascimento;
       $aluno->endereco_id = $endereco->id;
+
+      do{
+        $codigo = str_random(8);
+        $alunoCodigo = Aluno::where('codigo','=',$codigo)->first();
+      }while($alunoCodigo != NULL);
+
+      $aluno->codigo = $codigo;
       $aluno->save();
 
       $aluno->instituicoes()->attach($request->instituicoes);
@@ -123,6 +146,10 @@ class AlunoController extends Controller{
       }
 
       return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.' foi cadastrado.')->with('password', 'A senha do usuário é '.$password.'.');
+  }
+
+  public function requisitarPermissao($id_aluno){
+    $aluno = Aluno::find($id_aluno);
   }
 
   public function gerenciarPermissoes($id_aluno){
@@ -208,4 +235,17 @@ class AlunoController extends Controller{
 
     return redirect()->back()->with('Removed','Permissões removidas com sucesso.');
   }
+
+  // public function buscar(Request $request){
+  //   $termo = $request->termo;
+  //
+  //   if(!is_null($termo)){
+  //     $aluno = Aluno::orWhere('name', 'ilike', '%'.$termo.'%')
+  //                             ->orWhere('estado', 'ilike', '%'.$termo.'%')
+  //                             ->orWhere('cidade', 'ilike', '%'.$termo.'%')
+  //                             ->orWhereHas('coordenador', function ($query) use ($termo) {
+  //                               $query->where('name', 'ilike', '%'.$termo.'%');
+  //                              })->get();
+  // }
+
 }
