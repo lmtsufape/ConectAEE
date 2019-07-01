@@ -11,7 +11,20 @@ function showEspecializacao(val){
     }
 }
 
+function showResponsavel(val){
+    responsavel = document.getElementById('div-responsavel');
+    login = document.getElementById('login');
+    if(val.value == '2'){
+        responsavel.style.display = 'block';
+    }else{
+        responsavel.style.display = 'none';
+        login.value = '';
+    }
+}
+
 </script>
 
 <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
 <link href="{{ asset('css/select2-bootstrap.min.css') }}" rel="stylesheet">
+
+

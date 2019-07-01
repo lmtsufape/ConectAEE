@@ -46,9 +46,7 @@
                               @endif
                             @endforeach
                           </select>
-
-
-
+                          
                           @if ($errors->has("instituicoes"))
                             <span class="help-block">
                               <strong>{{ $errors->first("instituicoes") }}</strong>
@@ -56,7 +54,6 @@
                           @endif
 
                         </div>
-
                       </div>
 
                       <div class="form-group">
@@ -74,7 +71,7 @@
                       </center>
 
                     @endif
-
+                    
                     <font size="4" class="row">
                       Identificação:
                     </font>
@@ -286,36 +283,63 @@
                     </font>
 
                     <div class="form-group{{ $errors->has('perfil') ? ' has-error' : '' }}">
-                        <label for="perfil" class="col-md-4 control-label">Perfil <font color="red">*</font> </label>
+                      <label for="perfil" class="col-md-4 control-label">Perfil</label>
 
-                        <div class="col-md-6">
-                          <select id="perfil" class="form-control" name="perfil">
-
-                            @if (old('perfil') == null)
-                                <option selected disabled hidden>Escolha seu perfil</option>
-                            @endif
-
-                            @if(old('perfil') == "1")
-                                <option value="1" selected>Responsável</option>
-                            @else
-                                <option value="1">Responsável</option>
-                            @endif
-
-                            @if(old('perfil') == "2")
-                                <option value="2" selected>Professor AEE</option>
-                            @else
-                                <option value=2>Professor AEE</option>
-                            @endif
-                          </select>
-
-                          @if ($errors->has('perfil'))
-                              <span class="help-block">
-                                  <strong>{{ $errors->first('perfil') }}</strong>
-                              </span>
+                      <div class="col-md-6">
+                        <select id="perfil" class="form-control" name="perfil" onchange="showResponsavel(this)">
+                          @if (old('perfil') == null)
+                            <option id="perfil" selected disabled hidden>Escolha seu perfil</option>
                           @endif
-                        </div>
+
+                          @if(old('perfil') == "1")
+                            <option id="perfil" value="1" selected>Responsável</option>
+                          @else
+                            <option id="perfil" value="1">Responsável</option>
+                          @endif
+
+                          @if(old('perfil') == "2")
+                            <option id="perfil" value="2" selected>Professor AEE</option>
+                          @else
+                            <option id="perfil" value=2>Professor AEE</option>
+                          @endif
+                        </select>
+
+                        @if ($errors->has('perfil'))
+                          <span class="help-block">
+                            <strong>{{ $errors->first('perfil') }}</strong>
+                          </span>
+                        @endif
+                      </div>
                     </div>
 
+                    @if(old('perfil') == "2")
+                      <div id="div-responsavel" style="display: block">
+                    @else
+                      <div id="div-responsavel" style="display: none">
+                    @endif
+
+                    <font size="4" class="row">
+                      Cadastro de Responsável:
+                    </font>
+                                
+                    <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                      <label for="username" class="col-md-4 control-label">Nome de Usuário</label>
+                                
+                      <div class="col-md-6">
+                        @if (old('username') == null)
+                          <input name="username" type="text" class="form-control" value="{{old('username')}}">
+                        @else
+                          <input name="username" type="text" class="form-control">
+                        @endif
+                                        
+                        @if ($errors->has('username'))
+                          <span class="help-block">
+                            <strong>{{ $errors->first('username') }}</strong>
+                          </span>
+                        @endif
+                      </div>
+                    </div>
+                    
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
                             <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>

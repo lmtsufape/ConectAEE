@@ -66,6 +66,9 @@ class AlunoController extends Controller{
           'bairro' => ['required'],
           'cidade' => ['required'],
           'estado' => ['required'],
+          'username' => ['required_if:perfil,==,2','unique:users']
+      ],[
+        'username.required_if' => 'É necessário criar um usuário quando o cadastrante é um Professor AEE',
       ]);
 
       if($validator->fails()){
@@ -103,7 +106,23 @@ class AlunoController extends Controller{
       $gerenciar->isAdministrador = True;
       $gerenciar->save();
 
-      return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.' foi cadastrado');
+      $password = str_random(6);
+
+      if($request->perfil == 2){
+        $user = new User();
+        $user->username = $request->username;
+        $user->password = bcrypt($password);
+        $user->save();
+
+        $gerenciar = new Gerenciar();
+        $gerenciar->user_id = $user->id;
+        $gerenciar->aluno_id = $aluno->id;
+        $gerenciar->perfil_id = $request->perfil;
+        $gerenciar->isAdministrador = True;
+        $gerenciar->save();
+      }
+
+      return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.' foi cadastrado.')->with('password', 'A senha do usuário é '.$password.'.');
   }
 
   public function gerenciarPermissoes($id_aluno){
