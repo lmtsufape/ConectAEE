@@ -11,16 +11,14 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                      <div class="panel-heading">Novo Aluno: Instituição</div>
+                      <div class="panel-heading">Nova Instituição</div>
 
                       <div class="panel-body">
                           <form class="form-horizontal" method="POST" action="{{ route("instituicao.criar") }}">
                               {{ csrf_field() }}
 
-                              <input id="id_instituicao" type="hidden" class="form-control" name="id_instituicao" value="{{ $instituicao->id }}">
-
-                              <font size="4" class="row">
-                                Instituição:
+                              <font size="4" class="row" >
+                                Instituição
                               </font>
 
                               <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">

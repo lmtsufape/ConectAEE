@@ -16,6 +16,12 @@ class InstituicaoController extends Controller
       return view("instituicao.cadastrar", ['estados' => $estados]);
   }
 
+  public function inserir(){
+      $instituicoes = Instituicao::all();
+
+      return view("instituicao.inserir", ['instituicoes' => $instituicoes]);
+  }
+
   public function criar(Request $request){
 
       $validator = Validator::make($request->all(), [
