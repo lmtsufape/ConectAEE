@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Instituicao;
 use App\Aluno;
 use App\Gerenciar;
 use App\Perfil;
@@ -33,8 +34,6 @@ class AlunoController extends Controller{
       array_push($alunos,$gerenciar->aluno);
     }
 
-    //dd($alunos);
-
     return view("aluno.listar",[
       'alunos' => $alunos
     ]);
@@ -44,13 +43,18 @@ class AlunoController extends Controller{
       $estados = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA',
                   'PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
 
-      return view("aluno.cadastrar", ['estados' => $estados]);
+      $tamanho = 1;
+      $instituicoes = Instituicao::all();
+
+      return view("aluno.cadastrar", ['estados' => $estados,'tamanho' => $tamanho,
+                                      'instituicoes' => $instituicoes]);
   }
 
   public function criar(Request $request){
 
       $validator = Validator::make($request->all(), [
           'perfil' => ['required'],
+          'instituicoes' => ['required'],
           'nome' => ['required','min:2','max:191'],
           'sexo' => ['required'],
           'cid' => ['nullable','regex:/(^([a-zA-z])(\d)(\d)(\d)$)/u'],
@@ -88,6 +92,8 @@ class AlunoController extends Controller{
       $aluno->data_de_nascimento = $request->data_nascimento;
       $aluno->endereco_id = $endereco->id;
       $aluno->save();
+
+      $aluno->instituicoes()->attach($request->instituicoes);
 
       $forum = new ForumAluno();
       $forum->aluno_id = $aluno->id;

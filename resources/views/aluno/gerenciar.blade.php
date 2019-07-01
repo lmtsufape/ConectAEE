@@ -19,22 +19,38 @@
 							<strong>Data de Nascimento:</strong> {{$aluno->data_de_nascimento}}
 							<br/>
 							<strong>Endereço:</strong>
-							<br/><br/>
 
-							<strong>CID:</strong> {{$aluno->cid}}
-							<strong>Descrição CID:</strong> {{$aluno->descricao_cid}}
-							<br/><br/>
+							<?php
+								echo $aluno->endereco->logradouro, ", ",
+								$aluno->endereco->numero, ", ",
+								$aluno->endereco->bairro, ", ",
+								$aluno->endereco->cidade, " - ",
+								$aluno->endereco->estado;
+							?>
 
-							<strong>Logradouro:</strong> {{$aluno->endereco->logradouro}}
-							<strong>Número:</strong> {{$aluno->endereco->numero}}
 							<br/>
-							<strong>Bairro:</strong> {{$aluno->endereco->bairro}}
-							<strong>Cidade:</strong> {{$aluno->endereco->cidade}}
-							<strong>Estado:</strong> {{$aluno->endereco->estado}}
-							<br><br>
+							<strong>Instituição(ões):</strong>
+							<br/>
 
-							<strong>Observações:</strong> {{$aluno->observacao}}
-							<br><br>
+							<?php
+								foreach ($aluno->instituicoes as $instituicao) {
+								    echo ($instituicao->nome."<br/>");
+								}
+							?>
+
+							@if($aluno->cid != null)
+								<br/>
+								<strong>CID:</strong> {{$aluno->cid}}
+								<strong>Descrição CID:</strong> {{$aluno->descricao_cid}}
+								<br/>
+							@endif
+
+							@if($aluno->observacao != null)
+								<strong>Observações:</strong> {{$aluno->observacao}}
+								<br/>
+							@endif
+
+							<br/>
 
 							@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
 								<a class="btn btn-primary" href={{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}>Gerenciar Permissões</a>

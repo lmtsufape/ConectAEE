@@ -23,3 +23,8 @@ function showResponsavel(val){
 }
 
 </script>
+
+<link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/select2-bootstrap.min.css') }}" rel="stylesheet">
+
+

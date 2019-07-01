@@ -10,6 +10,10 @@ class Aluno extends Model
         return $this->hasMany(Gerenciar::class);
     }
 
+    public function instituicoes(){
+        return $this->belongsToMany(Instituicao::class);
+    }
+
     public function objetivos(){
         return $this->hasMany(Objetivo::class);
     }
@@ -21,5 +25,4 @@ class Aluno extends Model
     public function endereco(){
         return $this->hasOne(Endereco::class,'id','endereco_id');
     }
-
 }
