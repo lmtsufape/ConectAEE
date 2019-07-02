@@ -151,14 +151,21 @@ class AlunoController extends Controller{
 
   public function requisitarPermissao($id_aluno){
     $aluno = Aluno::find($id_aluno);
+    $gerenciars = $aluno->gerenciars;
 
-    $notificacao = new Notificacao();
-    $notificacao->aluno_id = $aluno->id;
-    $notificacao->user_id = \Auth::user()->id;
-    $notificacao->lido = false;
-    $notificacao->save();
+    foreach ($gerenciars as $gerenciar) {
+      if ($gerenciar->isAdministrador) {
 
-    dd($notificacao);
+        $notificacao = new Notificacao();
+        $notificacao->aluno_id = $aluno->id;
+        $notificacao->remetente_id = \Auth::user()->id;
+        $notificacao->destinatario_id = $gerenciar->user_id;
+        $notificacao->lido = false;
+        $notificacao->save();
+
+      }
+    }
+
   }
 
   public function gerenciarPermissoes($id_aluno){

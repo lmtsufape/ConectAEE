@@ -34,7 +34,9 @@
     <div class="collapse navbar-collapse" >
         <ul class="nav navbar-nav">
             @if(Auth::check())
-                <li><a class="menu-principal" href="/">Início</a></li>
+                <li class="dropdown">
+                  <a class="menu-principal" href="/">Início</a>
+                </li>
             @endif
         </ul>
         <ul class="nav navbar-nav">
@@ -55,16 +57,33 @@
         </ul>
         <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
             @if(Auth::check())
+                @php
+                  $notificacoes = Auth::user()->notificacoes;
+                  $lidos = (array_column($notificacoes->toArray(), 'lido'));
+                @endphp
+
                 <li class="dropdown">
                     <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        Notificacões <span class="caret"></span>
+                        @if(array_search(true, $lidos) == null || array_search(false, $lidos) != null)
+                          <i class="material-icons">notifications</i>
+                        @else
+                          <i class="material-icons">notifications_none</i>
+                        @endif
                     </a>
 
-                    @php($notificacoes = Auth::user()->notificacoes)
                     <ul class="dropdown-menu" role="menu">
+                      @foreach($notificacoes as $notificacao)
                         <li>
-                            {{$notificacoes}}
+                          <a class="menu-principal border border-dark text-center bg-info" href="{{ route('aluno.listar') }}">
+                            Você tem um pedido de acesso de {{$notificacao->remetente->name}}
+                          </a>
                         </li>
+                      @endforeach
+                       <li>
+                         <a class="menu-principal border border-dark text-center bg-info" href="{{ route('aluno.listar') }}">
+                           Ver Todos
+                         </a>
+                       </li>
                     </ul>
                 </li>
                 <li class="dropdown">

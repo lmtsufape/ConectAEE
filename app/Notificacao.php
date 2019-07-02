@@ -6,7 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Notificacao extends Model
 {
-  public function user(){
-      return $this->belongsTo(User::class,'user_id');
+  public function destinatario(){
+      return $this->belongsTo(User::class,'destinatario_id','id');
+  }
+
+  public function remetente(){
+      return $this->belongsTo(User::class,'remetente_id','id');
+  }
+
+  public function aluno(){
+      return $this->belongsTo(Aluno::class,'aluno_id','id');
   }
 }
