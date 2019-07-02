@@ -24,16 +24,20 @@ Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/aluno/cadastrar', 'AlunoController@cadastrar')->name('aluno.cadastrar');
 Route::post('/aluno/criar', 'AlunoController@criar')->name('aluno.criar');
 Route::get('/aluno/listar', 'AlunoController@listar')->name('aluno.listar');
+Route::get('/aluno/buscar', 'AlunoController@buscar')->name('aluno.buscar');
+Route::post('/aluno/buscarCodigo', 'AlunoController@buscarCodigo')->name('aluno.buscarCodigo');
 Route::get('/aluno/{id_aluno}/gerenciar/', 'AlunoController@gerenciar')->name('aluno.gerenciar');
 
 //Instituição
 Route::get('/aluno/instituicao/cadastrar', 'InstituicaoController@cadastrar')->name('instituicao.cadastrar');
 Route::post('/aluno/instituicao/criar', 'InstituicaoController@criar')->name('instituicao.criar');
+
 //Permissões
 Route::get('/aluno/{id_aluno}/gerenciar/permissoes','AlunoController@gerenciarPermissoes')->name('aluno.permissoes');
 Route::get('/aluno/{id_aluno}/gerenciar/permissoes/cadastrar','AlunoController@cadastrarPermissao')->name('aluno.permissoes.cadastrar');
 Route::post('/aluno/gerenciar/permissoes/criar','AlunoController@criarPermissao')->name('aluno.permissoes.criar');
 Route::get('/aluno/{id_aluno}/gerenciar/permissoes/{id_permissao}/remover','AlunoController@removerPermissao')->name('aluno.permissoes.remover');
+Route::get('/aluno/{id_aluno}/gerenciar/permissoes/requisitar', 'AlunoController@requisitarPermissao')->name('aluno.permissoes.requisitar');
 
 //Rotas para objetivos
 Route::get('/aluno/{id_aluno}/objetivos/cadastrar','ObjetivoController@cadastrar')->name('objetivo.cadastrar');

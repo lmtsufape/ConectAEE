@@ -37,6 +37,22 @@
                 <li><a class="menu-principal" href="/">Início</a></li>
             @endif
         </ul>
+        <ul class="nav navbar-nav">
+            @if(Auth::check())
+              <li class="dropdown">
+                  <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                      Aluno <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                      <li>
+                          <a href="{{ route('aluno.buscar') }}">
+                              Buscar
+                          </a>
+                      </li>
+                  </ul>
+              </li>
+            @endif
+        </ul>
         <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
             @if(Auth::check())
                 <li class="dropdown">
@@ -55,7 +71,7 @@
                             </form>
                         </li>
                     </ul>
-                </li>    
+                </li>
             @else
                 <li><a class="menu-principal" href="{{ route('login') }}">Entrar</a></li>
                 <li><a class="menu-principal" href="{{ route('register') }}">Cadastrar</a></li>

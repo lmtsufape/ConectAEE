@@ -46,7 +46,7 @@
                               @endif
                             @endforeach
                           </select>
-                          
+
                           @if ($errors->has("instituicoes"))
                             <span class="help-block">
                               <strong>{{ $errors->first("instituicoes") }}</strong>
@@ -71,7 +71,7 @@
                       </center>
 
                     @endif
-                    
+
                     <font size="4" class="row">
                       Identificação:
                     </font>
@@ -318,28 +318,29 @@
                       <div id="div-responsavel" style="display: none">
                     @endif
 
-                    <font size="4" class="row">
-                      Cadastro de Responsável:
-                    </font>
-                                
-                    <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                      <label for="username" class="col-md-4 control-label">Nome de Usuário</label>
-                                
-                      <div class="col-md-6">
-                        @if (old('username') == null)
-                          <input name="username" type="text" class="form-control" value="{{old('username')}}">
-                        @else
-                          <input name="username" type="text" class="form-control">
-                        @endif
-                                        
-                        @if ($errors->has('username'))
-                          <span class="help-block">
-                            <strong>{{ $errors->first('username') }}</strong>
-                          </span>
-                        @endif
+                      <font size="4" class="row">
+                        Cadastro de Responsável:
+                      </font>
+
+                      <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                        <label for="username" class="col-md-4 control-label">Nome de Usuário</label>
+
+                        <div class="col-md-6">
+                          @if (old('username') == null)
+                            <input name="username" type="text" class="form-control" value="{{old('username')}}">
+                          @else
+                            <input name="username" type="text" class="form-control">
+                          @endif
+
+                          @if ($errors->has('username'))
+                            <span class="help-block">
+                              <strong>{{ $errors->first('username') }}</strong>
+                            </span>
+                          @endif
+                        </div>
                       </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
                             <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
