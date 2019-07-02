@@ -14,8 +14,12 @@
 
 					<div class="panel-body">
 						<div class="form-group">
+							<strong>Código:</strong> {{$aluno->codigo}}
+							<br/>
 							<strong>Nome:</strong> {{$aluno->nome}}
+							<br/>
 							<strong>Sexo:</strong> {{$aluno->sexo}}
+							<br/>
 							<strong>Data de Nascimento:</strong> {{$aluno->data_de_nascimento}}
 							<br/>
 							<strong>Endereço:</strong>
@@ -39,8 +43,8 @@
 							?>
 
 							@if($aluno->cid != null)
-								<br/>
 								<strong>CID:</strong> {{$aluno->cid}}
+								<br/>
 								<strong>Descrição CID:</strong> {{$aluno->descricao_cid}}
 								<br/>
 							@endif

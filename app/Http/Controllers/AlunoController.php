@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Instituicao;
+use App\Notificacao;
 use App\Aluno;
 use App\Gerenciar;
 use App\Perfil;
@@ -150,6 +151,14 @@ class AlunoController extends Controller{
 
   public function requisitarPermissao($id_aluno){
     $aluno = Aluno::find($id_aluno);
+
+    $notificacao = new Notificacao();
+    $notificacao->aluno_id = $aluno->id;
+    $notificacao->user_id = \Auth::user()->id;
+    $notificacao->lido = false;
+    $notificacao->save();
+
+    dd($notificacao);
   }
 
   public function gerenciarPermissoes($id_aluno){

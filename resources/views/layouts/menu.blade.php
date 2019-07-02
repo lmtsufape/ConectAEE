@@ -57,6 +57,18 @@
             @if(Auth::check())
                 <li class="dropdown">
                     <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Notificacões <span class="caret"></span>
+                    </a>
+
+                    @php($notificacoes = Auth::user()->notificacoes)
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            {{$notificacoes}}
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         {{\Auth::user()->name}} <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
