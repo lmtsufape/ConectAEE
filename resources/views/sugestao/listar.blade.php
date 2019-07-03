@@ -51,7 +51,11 @@
 
           <div class="panel-footer">
             <a class="btn btn-danger" href="{{ route("objetivo.listar" , ['id_aluno'=>$aluno->id]) }}">Voltar</a>
-            <a class="btn btn-success" href="{{ route("objetivo.sugestoes.cadastrar" , ['id_objetivo' => $objetivo->id, 'id_aluno'=>$aluno->id])}}">Novo</a>
+
+            @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
+              <a class="btn btn-success" href="{{ route("objetivo.sugestoes.cadastrar" , ['id_objetivo' => $objetivo->id, 'id_aluno'=>$aluno->id])}}">Novo</a>
+            @endif
+            
           </div>
         </div>
     </div>

@@ -12,6 +12,10 @@ class InstituicaoSeeder extends Seeder
      */
     public function run()
     {
-        factory(Instituicao::class, 2)->create();
+      for ($i=1; $i<=2 ; $i++) {
+        factory(Instituicao::class)->create([
+            'endereco_id' => $i,
+        ]);
+      }
     }
 }

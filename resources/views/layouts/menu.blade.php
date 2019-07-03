@@ -89,7 +89,7 @@
                           </li>
                         @endforeach
                          <li>
-                           <a class="text-center bg-info" href="{{ route('aluno.permissoes.conceder', ['id_aluno' => $notificacao->aluno->id, 'id_notificacao' => $notificacao->id]) }}">
+                           <a class="text-center bg-info" href="{{ route('notificacao.listar') }}">
                              Ver todas
                            </a>
                          </li>

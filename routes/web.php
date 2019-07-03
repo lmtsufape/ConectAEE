@@ -20,6 +20,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 
+//Rotas para usuario
+Route::get('/usuario/notificacao/listar', 'NotificacaoController@listar')->name('notificacao.listar');
+
 //Rotas para alunos
 Route::get('/aluno/cadastrar', 'AlunoController@cadastrar')->name('aluno.cadastrar');
 Route::post('/aluno/criar', 'AlunoController@criar')->name('aluno.criar');

@@ -215,7 +215,7 @@ class AlunoController extends Controller{
       }
     }
 
-    return redirect()->route("aluno.listar")->with('success','Seu pedido de acesso a '.$aluno->nome.' foi enviado. Aguarde aceitação.');
+    return redirect()->route("aluno.listar")->with('success','Seu pedido de acesso à '.$aluno->nome.' foi enviado. Aguarde aceitação.');
   }
 
   public function gerenciarPermissoes($id_aluno){

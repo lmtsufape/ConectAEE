@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PerfilSeeder::class);
         $this->call(EnderecoSeeder::class);
         $this->call(AlunoSeeder::class);
+        $this->call(InstituicaoSeeder::class);
+        $this->call(AlunoInstituicaoSeeder::class);
         $this->call(GerenciarSeeder::class);
         $this->call(ForumAlunoSeeder::class);
         $this->call(MensagemForumAlunoSeeder::class);
@@ -27,6 +29,5 @@ class DatabaseSeeder extends Seeder
         $this->call(ForumObjetivoSeeder::class);
         $this->call(MensagemForumObjetivoSeeder::class);
         $this->call(FeedbackSeeder::class);
-        // $this->call(InstituicaoSeeder::class);
     }
 }

@@ -7,7 +7,7 @@
         <div class="col-md-8 col-md-offset-2">
           <div class="panel panel-default">
             <div class="panel-heading">Alunos</div>
-              
+
               <div class="panel-body">
 
                 @if (\Session::has('success'))
@@ -24,8 +24,8 @@
                   </div>
                 @endif
 
-                <div id="tabela" class="table-responsive">
-                  <table class="table table-hover">
+                <div class="table-responsive">
+                  <table id="tabela_dados" class="table table-hover">
                     <thead>
                       <tr>
                           <th>Nome</th>
@@ -56,5 +56,23 @@
         </div>
       </div>
     </div>
+
+    <script type="text/javascript">
+      $(document).ready( function () {
+        $('#tabela_dados').DataTable( {
+          "language": {
+            "lengthMenu": "Mostrando _MENU_ registros por página",
+            "zeroRecords": "Nada encontrado",
+            "info": "Mostrando página _PAGE_ de _PAGES_",
+            "infoEmpty": "Nenhum registro disponível",
+            "search": "Pesquise:",
+            "previous": "Anterior",
+            "next": "Próximo",
+            "infoFiltered": "(filtrado de _MAX_ registros no total)"
+          }
+			   });
+       });
+
+	</script>
 
 @endsection
