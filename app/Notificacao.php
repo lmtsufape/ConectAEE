@@ -17,4 +17,8 @@ class Notificacao extends Model
   public function aluno(){
       return $this->belongsTo(Aluno::class,'aluno_id','id');
   }
+
+  public function perfil(){
+      return $this->belongsTo(Perfil::class,'perfil_id','id');
+  }
 }

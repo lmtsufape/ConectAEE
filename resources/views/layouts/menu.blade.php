@@ -64,7 +64,9 @@
 
                 <li class="dropdown">
                     <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        @if(array_search(true, $lidos) == null || array_search(false, $lidos) != null)
+                        @if($lidos == null)
+                          <i class="material-icons">notifications_none</i>
+                        @elseif(gettype(array_search(false, $lidos)) == 'integer')
                           <i class="material-icons">notifications</i>
                         @else
                           <i class="material-icons">notifications_none</i>
@@ -72,18 +74,32 @@
                     </a>
 
                     <ul class="dropdown-menu" role="menu">
-                      @foreach($notificacoes as $notificacao)
+                      @if(count($notificacoes) != 0)
+                        @foreach($notificacoes as $notificacao)
+                          <li>
+                            @if($notificacao->lido)
+                              <a class="text-center" href="{{ route('aluno.permissoes.conceder', ['id_aluno' => $notificacao->aluno->id, 'id_notificacao' => $notificacao->id]) }}">
+                                Você tem um pedido de acesso de {{$notificacao->remetente->name}}
+                              </a>
+                            @else
+                              <a class="text-center bg-info" href="{{ route('aluno.permissoes.conceder', ['id_aluno' => $notificacao->aluno->id, 'id_notificacao' => $notificacao->id]) }}">
+                                Você tem um pedido de acesso de {{$notificacao->remetente->name}}
+                              </a>
+                            @endif
+                          </li>
+                        @endforeach
+                         <li>
+                           <a class="text-center bg-info" href="{{ route('aluno.permissoes.conceder', ['id_aluno' => $notificacao->aluno->id, 'id_notificacao' => $notificacao->id]) }}">
+                             Ver todas
+                           </a>
+                         </li>
+                      @else
                         <li>
-                          <a class="menu-principal border border-dark text-center bg-info" href="{{ route('aluno.listar') }}">
-                            Você tem um pedido de acesso de {{$notificacao->remetente->name}}
+                          <a class="text-center bg-info">
+                            Sem notificações
                           </a>
                         </li>
-                      @endforeach
-                       <li>
-                         <a class="menu-principal border border-dark text-center bg-info" href="{{ route('aluno.listar') }}">
-                           Ver Todos
-                         </a>
-                       </li>
+                      @endif
                     </ul>
                 </li>
                 <li class="dropdown">

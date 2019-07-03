@@ -60,10 +60,23 @@ class AlunoController extends Controller{
   public function buscarCodigo(Request $request){
 
     $codigo = $request->codigo;
-
     $aluno = Aluno::where('codigo','=', $codigo)->first();
+    $botaoAtivo = false;
 
-    return view("aluno.buscar", ['aluno' => $aluno, 'codigo' => $codigo]);
+    if ($aluno != null) {
+      $gerenciars = $aluno->gerenciars;
+
+
+      foreach ($gerenciars as $gerenciar) {
+        if ($gerenciar->user->id == \Auth::user()->id && $gerenciar->isAdministrador) {
+          $botaoAtivo = true;
+        }
+      }
+    }
+
+    return view("aluno.buscar", ['aluno' => $aluno,
+                                 'codigo' => $codigo,
+                                 'botaoAtivo' => $botaoAtivo]);
 
   }
 
@@ -151,21 +164,58 @@ class AlunoController extends Controller{
 
   public function requisitarPermissao($id_aluno){
     $aluno = Aluno::find($id_aluno);
+
+    $perfis = Perfil::where('especializacao','=',NULL)->get();
+
+    return view('permissoes.requisitar',[
+      'aluno' => $aluno,
+      'perfis' => $perfis,
+    ]);
+  }
+
+  public function notificar(Request $request){
+
+    $rules = array(
+      'perfil' => 'required',
+      'especializacao' => 'required_if:perfil,==,Profissional Externo',
+    );
+    $messages = array(
+      'perfil.required' => 'Selecione um perfil.',
+      'especializacao.required_if' => 'Necessário inserir uma especialização.',
+    );
+
+    $validator = Validator::make($request->all(),$rules,$messages);
+
+    if($validator->fails()){
+      return redirect()->back()->withErrors($validator->errors())->withInput();
+    }
+
+    $aluno = Aluno::find($request->id_aluno);
     $gerenciars = $aluno->gerenciars;
+
+    $perfil = NULL;
+    if($request->perfil == 'Profissional Externo'){
+      $perfil = new Perfil();
+      $perfil->nome = 'Profissional Externo';
+      $perfil->especializacao = $request->especializacao;
+      $perfil->save();
+    }else{
+      $perfil = Perfil::where('nome','=',$request->perfil)->where('especializacao','=',NULL)->first();
+    }
 
     foreach ($gerenciars as $gerenciar) {
       if ($gerenciar->isAdministrador) {
-
         $notificacao = new Notificacao();
         $notificacao->aluno_id = $aluno->id;
         $notificacao->remetente_id = \Auth::user()->id;
         $notificacao->destinatario_id = $gerenciar->user_id;
+        $notificacao->perfil_id = $perfil->id;
         $notificacao->lido = false;
         $notificacao->save();
-
       }
     }
 
+    return redirect()->route("aluno.listar")->with('success','Seu pedido de acesso a '.$aluno->nome.' foi enviado. Aguarde aceitação.');
   }
 
   public function gerenciarPermissoes($id_aluno){
@@ -188,6 +238,19 @@ class AlunoController extends Controller{
     ]);
   }
 
+  public function concederPermissao($id_aluno, $id_notificacao){
+    $aluno = Aluno::find($id_aluno);
+    $notificacao = Notificacao::find($id_notificacao);
+
+    $notificacao->lido = true;
+    $notificacao->update();
+
+    return view('permissoes.conceder',[
+      'aluno' => $aluno,
+      'notificacao' => $notificacao,
+    ]);
+  }
+
   public function criarPermissao(Request $request){
     //Validação dos dados
     $rules = array(
@@ -206,10 +269,9 @@ class AlunoController extends Controller{
       return redirect()->back()->withErrors($validator->errors())->withInput();
     }
 
-
     //Se já existe a relação
     $user = User::where('username','=',$request->username)->first();
-    if((Gerenciar::where('user_id','=',$user->id)->where('aluno_id','=',$request->aluno))->first()){
+    if((Gerenciar::where('user_id','=',$user->id)->where('aluno_id','=',$request->id_aluno))->first()){
       $validator->errors()->add('username','O usuário já possui permissões de acesso ao aluno.');
       return redirect()->back()->withErrors($validator->errors())->withInput();
     }
@@ -221,7 +283,7 @@ class AlunoController extends Controller{
     //Criação do Gerencimento
     $gerenciar = new Gerenciar();
     $gerenciar->user_id = $user->id;
-    $gerenciar->aluno_id = (int) $request->aluno;
+    $gerenciar->aluno_id = (int) $request->id_aluno;
 
     $perfil = NULL;
     if($request->perfil == 'Profissional Externo'){
