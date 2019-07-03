@@ -61,14 +61,7 @@
       $(document).ready( function () {
         $('#tabela_dados').DataTable( {
           "language": {
-            "lengthMenu": "Mostrando _MENU_ registros por página",
-            "zeroRecords": "Nada encontrado",
-            "info": "Mostrando página _PAGE_ de _PAGES_",
-            "infoEmpty": "Nenhum registro disponível",
-            "search": "Pesquise:",
-            "previous": "Anterior",
-            "next": "Próximo",
-            "infoFiltered": "(filtrado de _MAX_ registros no total)"
+            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
           }
 			   });
        });
