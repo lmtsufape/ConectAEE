@@ -34,7 +34,9 @@
     <div class="collapse navbar-collapse" >
         <ul class="nav navbar-nav">
             @if(Auth::check())
-                <li><a class="menu-principal" href="/">Início</a></li>
+                <li class="dropdown">
+                  <a class="menu-principal" href="/">Início</a>
+                </li>
             @endif
         </ul>
         <ul class="nav navbar-nav">
@@ -55,6 +57,55 @@
         </ul>
         <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
             @if(Auth::check())
+                @php
+                  $notificacoes = Auth::user()->notificacoes;
+                  $lidos = (array_column($notificacoes->toArray(), 'lido'));
+                @endphp
+
+                <li class="dropdown">
+                    <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        @if($lidos == null)
+                          <i class="material-icons">notifications_none</i>
+                        @elseif(gettype(array_search(false, $lidos)) == 'integer')
+                          <i class="material-icons">notifications</i>
+                        @else
+                          <i class="material-icons">notifications_none</i>
+                        @endif
+                    </a>
+
+                    <ul class="dropdown-menu" role="menu">
+                      @if(count($notificacoes) != 0)
+                        <table class="table table-hover table-bordered">
+                          @php($i = 0)
+                          @foreach($notificacoes as $notificacao)
+                            <tr>
+                              @if($notificacao->lido)
+                                <td data-title="Notificacao">
+                              @else
+                                <td class="bg-info" data-title="Notificacao">
+                              @endif
+                                <a class="btn text-center" href="{{ route('aluno.permissoes.conceder', ['id_aluno' => $notificacao->aluno->id, 'id_notificacao' => $notificacao->id]) }}">
+                                  {{$notificacao->remetente->name}} pediu para acessar os dados de {{explode(" ", $notificacao->aluno->nome)[0]}}</br>
+                                </a>
+                              </td>
+                            </tr>
+                            @break(++$i == 3)
+                          @endforeach
+                        </table>
+                        <li>
+                          <a class="text-center" href="{{ route('notificacao.listar') }}">
+                             Ver todas
+                          </a>
+                        </li>
+                      @else
+                        <li>
+                          <a class="text-center bg-info">
+                            Sem notificações
+                          </a>
+                        </li>
+                      @endif
+                    </ul>
+                </li>
                 <li class="dropdown">
                     <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         {{\Auth::user()->name}} <span class="caret"></span>

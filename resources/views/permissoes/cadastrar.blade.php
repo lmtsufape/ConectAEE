@@ -23,7 +23,7 @@
                           <form class="form-horizontal" method="POST" action="{{ route("aluno.permissoes.criar") }}">
                               {{ csrf_field() }}
 
-                                <input type="text" name="aluno" value="{{$aluno->id}}" hidden>
+                              <input type="hidden" name="id_aluno" value="{{$aluno->id}}">
 
                               <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
                                   <label for="username" class="col-md-4 control-label">Nome de Usuário</label>

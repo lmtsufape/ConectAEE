@@ -20,6 +20,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 
+//Rotas para usuario
+Route::get('/usuario/notificacao/listar', 'NotificacaoController@listar')->name('notificacao.listar');
+
 //Rotas para alunos
 Route::get('/aluno/cadastrar', 'AlunoController@cadastrar')->name('aluno.cadastrar');
 Route::post('/aluno/criar', 'AlunoController@criar')->name('aluno.criar');
@@ -38,6 +41,8 @@ Route::get('/aluno/{id_aluno}/gerenciar/permissoes/cadastrar','AlunoController@c
 Route::post('/aluno/gerenciar/permissoes/criar','AlunoController@criarPermissao')->name('aluno.permissoes.criar');
 Route::get('/aluno/{id_aluno}/gerenciar/permissoes/{id_permissao}/remover','AlunoController@removerPermissao')->name('aluno.permissoes.remover');
 Route::get('/aluno/{id_aluno}/gerenciar/permissoes/requisitar', 'AlunoController@requisitarPermissao')->name('aluno.permissoes.requisitar');
+Route::get('/aluno/{id_aluno}/gerenciar/permissoes/notificacao/{id_notificacao}/conceder', 'AlunoController@concederPermissao')->name('aluno.permissoes.conceder');
+Route::post('/aluno/gerenciar/permissoes/notificar','AlunoController@notificar')->name('aluno.permissoes.notificar');
 
 //Rotas para objetivos
 Route::get('/aluno/{id_aluno}/objetivos/cadastrar','ObjetivoController@cadastrar')->name('objetivo.cadastrar');

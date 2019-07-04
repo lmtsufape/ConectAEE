@@ -12,10 +12,28 @@
 				<div class="panel panel-default">
 				  <div class="panel-heading">Gerenciamento de <strong>{{$aluno->nome}}</strong></div>
 
+					@php
+						$gerenciars = $aluno->gerenciars;
+					@endphp
+
 					<div class="panel-body">
 						<div class="form-group">
+							<?php
+								foreach($gerenciars as $gerenciar){
+									if($gerenciar->user->id == \Auth::user()->id && $gerenciar->isAdministrador){
+							?>
+										<strong>Código:</strong> {{$aluno->codigo}}
+										<br/>
+							<?php
+										break;
+									}
+								}
+							?>
+
 							<strong>Nome:</strong> {{$aluno->nome}}
+							<br/>
 							<strong>Sexo:</strong> {{$aluno->sexo}}
+							<br/>
 							<strong>Data de Nascimento:</strong> {{$aluno->data_de_nascimento}}
 							<br/>
 							<strong>Endereço:</strong>
@@ -39,8 +57,8 @@
 							?>
 
 							@if($aluno->cid != null)
-								<br/>
 								<strong>CID:</strong> {{$aluno->cid}}
+								<br/>
 								<strong>Descrição CID:</strong> {{$aluno->descricao_cid}}
 								<br/>
 							@endif

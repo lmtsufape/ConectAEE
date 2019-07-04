@@ -11,7 +11,7 @@ class Aluno extends Model
     }
 
     public function instituicoes(){
-        return $this->belongsToMany(Instituicao::class);
+        return $this->belongsToMany(Instituicao::class, 'aluno_instituicaos');
     }
 
     public function objetivos(){

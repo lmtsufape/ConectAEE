@@ -19,8 +19,8 @@
               <form class="form-horizontal" method="POST" action="{{ route("objetivo.sugestoes.criar") }}">
                   {{ csrf_field() }}
 
-                  <input id="id_aluno" type="hidden" class="form-control" name="id_aluno" value="{{ $aluno->id }}">
-                  <input id="id_objetivo" type="hidden" class="form-control" name="id_objetivo" value="{{ $objetivo->id }}">
+                  <input type="hidden" name="id_aluno" value="{{ $aluno->id }}">
+                  <input type="hidden" name="id_objetivo" value="{{ $objetivo->id }}">
 
                   <div class="form-group{{ $errors->has('titulo') ? ' has-error' : '' }}">
                       <label for="titulo" class="col-md-4 control-label">Título</label>

@@ -1,6 +1,6 @@
 <?php
 
-use App\Instituicao;
+use App\AlunoInstituicao;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -15,10 +15,9 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(Instituicao::class, function (Faker $faker) {
+$factory->define(AlunoInstituicao::class, function (Faker $faker) {
     return [
-        'nome' => $faker->company,
-        'telefone' => $faker->phoneNumber,
-        'email' => $faker->companyEmail,
+        'aluno_id' => 1,
+        'instituicao_id' => 1,
     ];
 });
