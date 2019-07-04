@@ -75,24 +75,28 @@
 
                     <ul class="dropdown-menu" role="menu">
                       @if(count($notificacoes) != 0)
-                        @foreach($notificacoes as $notificacao)
-                          <li>
-                            @if($notificacao->lido)
-                              <a class="text-center" href="{{ route('aluno.permissoes.conceder', ['id_aluno' => $notificacao->aluno->id, 'id_notificacao' => $notificacao->id]) }}">
-                                Você tem um pedido de acesso de {{$notificacao->remetente->name}}
-                              </a>
-                            @else
-                              <a class="text-center bg-info" href="{{ route('aluno.permissoes.conceder', ['id_aluno' => $notificacao->aluno->id, 'id_notificacao' => $notificacao->id]) }}">
-                                Você tem um pedido de acesso de {{$notificacao->remetente->name}}
-                              </a>
-                            @endif
-                          </li>
-                        @endforeach
-                         <li>
-                           <a class="text-center bg-info" href="{{ route('notificacao.listar') }}">
+                        <table class="table table-hover table-bordered">
+                          @php($i = 0)
+                          @foreach($notificacoes as $notificacao)
+                            <tr>
+                              @if($notificacao->lido)
+                                <td data-title="Notificacao">
+                              @else
+                                <td class="bg-info" data-title="Notificacao">
+                              @endif
+                                <a class="btn text-center" href="{{ route('aluno.permissoes.conceder', ['id_aluno' => $notificacao->aluno->id, 'id_notificacao' => $notificacao->id]) }}">
+                                  {{$notificacao->remetente->name}} pediu para acessar os dados de {{explode(" ", $notificacao->aluno->nome)[0]}}</br>
+                                </a>
+                              </td>
+                            </tr>
+                            @break(++$i == 3)
+                          @endforeach
+                        </table>
+                        <li>
+                          <a class="text-center" href="{{ route('notificacao.listar') }}">
                              Ver todas
-                           </a>
-                         </li>
+                          </a>
+                        </li>
                       @else
                         <li>
                           <a class="text-center bg-info">
