@@ -211,6 +211,7 @@ class AlunoController extends Controller{
         $notificacao->destinatario_id = $gerenciar->user_id;
         $notificacao->perfil_id = $perfil->id;
         $notificacao->lido = false;
+        $notificacao->tipo = 1;
         $notificacao->save();
       }
     }
@@ -241,9 +242,6 @@ class AlunoController extends Controller{
   public function concederPermissao($id_aluno, $id_notificacao){
     $aluno = Aluno::find($id_aluno);
     $notificacao = Notificacao::find($id_notificacao);
-
-    $notificacao->lido = true;
-    $notificacao->update();
 
     return view('permissoes.conceder',[
       'aluno' => $aluno,
@@ -300,6 +298,15 @@ class AlunoController extends Controller{
     }
     //dd($gerenciar);
     $gerenciar->save();
+
+    $notificacao = new Notificacao();
+    $notificacao->aluno_id = $gerenciar->aluno_id;
+    $notificacao->remetente_id = \Auth::user()->id;
+    $notificacao->destinatario_id = $gerenciar->user_id;
+    $notificacao->perfil_id = $gerenciar->perfil_id;
+    $notificacao->lido = false;
+    $notificacao->tipo = 2;
+    $notificacao->save();
 
     return redirect()->route(
       'aluno.permissoes',[
