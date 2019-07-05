@@ -84,9 +84,15 @@
                               @else
                                 <td class="bg-info" data-title="Notificacao">
                               @endif
-                                <a class="btn text-center" href="{{ route('aluno.permissoes.conceder', ['id_aluno' => $notificacao->aluno->id, 'id_notificacao' => $notificacao->id]) }}">
-                                  {{$notificacao->remetente->name}} pediu para acessar os dados de {{explode(" ", $notificacao->aluno->nome)[0]}}</br>
-                                </a>
+                                @if($notificacao->tipo == 1)
+                                  <a class="btn text-center" href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
+                                  </a>
+                                  {{$notificacao->remetente->name}} pediu para acessar os dados do(a) aluno(a) {{explode(" ", $notificacao->aluno->nome)[0]}}</br>
+                                @else
+                                  <a class="btn text-center" href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
+                                    {{$notificacao->remetente->name}} lhe concedeu acesso aos dados do(a) aluno(a) {{explode(" ", $notificacao->aluno->nome)[0]}}</br>
+                                  </a>
+                                @endif
                               </td>
                             </tr>
                             @break(++$i == 3)

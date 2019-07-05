@@ -22,6 +22,7 @@ Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 
 //Rotas para usuario
 Route::get('/usuario/notificacao/listar', 'NotificacaoController@listar')->name('notificacao.listar');
+Route::get('/usuario/notificacao/{id_notificacao}/ler', 'NotificacaoController@ler')->name('notificacao.ler');
 
 //Rotas para alunos
 Route::get('/aluno/cadastrar', 'AlunoController@cadastrar')->name('aluno.cadastrar');
