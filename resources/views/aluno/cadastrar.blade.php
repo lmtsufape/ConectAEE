@@ -182,46 +182,36 @@
                       </div>
                   </div>
 
+                  <div class="form-group{{ $errors->has('estado') ? ' has-error' : '' }}">
+                      <label for="estado" class="col-md-4 control-label">Estado <font color="red">*</font> </label>
+
+                      <div class="col-md-6">
+                        <select id="estado" class="form-control" name="estado" data-target="#cidade">
+                            <option value="">Estado</option>
+                        </select>
+
+                        @if ($errors->has('estado'))
+                          <span class="help-block">
+                              <strong>{{ $errors->first('estado') }}</strong>
+                          </span>
+                        @endif
+                      </div>
+                  </div>
+
                   <div class="form-group{{ $errors->has('cidade') ? ' has-error' : '' }}">
                       <label for="cidade" class="col-md-4 control-label">Cidade <font color="red">*</font> </label>
 
                       <div class="col-md-6">
 
-                          <input id="cidade" type="text" class="form-control" name="cidade" value="{{ old('cidade') }}">
+                          <select id="cidade" class="form-control" name="cidade">
+                              <option value=""> Cidade </option>
+                          </select>
 
                           @if ($errors->has('cidade'))
                               <span class="help-block">
                                   <strong>{{ $errors->first('cidade') }}</strong>
                               </span>
                           @endif
-                      </div>
-                  </div>
-
-                  <div class="form-group{{ $errors->has('estado') ? ' has-error' : '' }}">
-                      <label for="estado" class="col-md-4 control-label">Estado <font color="red">*</font> </label>
-
-                      <div class="col-md-3">
-                        <select id="estado" class="form-control" name="estado">
-
-                          @if (old('estado') == null)
-                            <option selected disabled hidden>Escolha o estado</option>
-                          @endif
-
-                          @foreach($estados as $estado)
-                            @if(old('estado') == $estado)
-                              <option value={{$estado}} selected> {{ $estado }} </option>
-                            @else
-                              <option value={{$estado}}> {{ $estado }} </option>
-                            @endif
-                          @endforeach
-
-                        </select>
-
-                        @if ($errors->has('estado'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('estado') }}</strong>
-                            </span>
-                        @endif
                       </div>
                   </div>
 
@@ -361,6 +351,92 @@
     $(document).ready(function() {
       $('.js-example-basic-multiple').select2();
     });
+</script>
+<script>
+  var estados = [];
+
+  function loadEstados(element) {
+    if (estados.length > 0) {
+      putEstados(element);
+      $(element).removeAttr('disabled');
+    } else {
+      $.ajax({
+        url: 'https://api.myjson.com/bins/enzld',
+        method: 'get',
+        dataType: 'json',
+        beforeSend: function() {
+          $(element).html('<option>Carregando...</option>');
+        }
+      }).done(function(response) {
+        estados = response.estados;
+        putEstados(element);
+        $(element).removeAttr('disabled');
+      });
+    }
+  }
+
+  function putEstados(element) {
+
+    var label = $(element).data('label');
+    label = label ? label : 'Estado';
+
+    var options = '<option value="">' + label + '</option>';
+    for (var i in estados) {
+      var estado = estados[i];
+      options += '<option value="' + estado.sigla + '">' + estado.nome + '</option>';
+    }
+
+    $(element).html(options);
+  }
+
+  function loadCidades(element, estado_sigla) {
+    if (estados.length > 0) {
+      putCidades(element, estado_sigla);
+      $(element).removeAttr('disabled');
+    } else {
+      $.ajax({
+        url: theme_url + '/assets/json/estados.json',
+        method: 'get',
+        dataType: 'json',
+        beforeSend: function() {
+          $(element).html('<option>Carregando...</option>');
+        }
+      }).done(function(response) {
+        estados = response.estados;
+        putCidades(element, estado_sigla);
+        $(element).removeAttr('disabled');
+      });
+    }
+  }
+
+  function putCidades(element, estado_sigla) {
+    var label = $(element).data('label');
+    label = label ? label : 'Cidade';
+
+    var options = '<option value="">' + label + '</option>';
+    for (var i in estados) {
+      var estado = estados[i];
+      if (estado.sigla != estado_sigla)
+        continue;
+      for (var j in estado.cidades) {
+        var cidade = estado.cidades[j];
+        options += '<option value="' + cidade + '">' + cidade + '</option>';
+      }
+    }
+    $(element).html(options);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    loadEstados('#estado');
+
+    $(document).on('change', '#estado', function(e) {
+      var target = $(this).data('target');
+      if (target) {
+        loadCidades(target, $(this).val());
+      }
+    });
+  }, false);
+
 </script>
 
 @endsection
