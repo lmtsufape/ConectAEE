@@ -20,9 +20,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 
-//Rotas para usuario
+//Rotas para notificacao
 Route::get('/usuario/notificacao/listar', 'NotificacaoController@listar')->name('notificacao.listar');
 Route::get('/usuario/notificacao/{id_notificacao}/ler', 'NotificacaoController@ler')->name('notificacao.ler');
+
+//Rotas para usuario
+Route::get('/usuario/completarCadastro', 'UsuarioController@completarCadastro')->name('usuario.completarCadastro');
+Route::post('/usuario/completar', 'UsuarioController@completar')->name('usuario.completar');
 
 //Rotas para alunos
 Route::get('/aluno/cadastrar', 'AlunoController@cadastrar')->name('aluno.cadastrar');
