@@ -9,22 +9,22 @@
                       <div class="panel-body">
                           <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                               {{ csrf_field() }}
-                              <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                                  <label for="username" class="col-md-4 control-label">Nome de Usuário</label>
+                              <div class="form-group{{ $errors->has('username') || $errors->has('email') ? ' has-error' : '' }}">
+                                  <label for="login" class="col-md-4 control-label">Nome de Usuário ou Email <font color="red">*</font> </label>
 
                                   <div class="col-md-6">
-                                      <input id="username" type="username" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+                                      <input id="login" type="text" class="form-control" name="login" value="{{ old('username') ?: old('email') }}" required autofocus>
 
-                                      @if ($errors->has('username'))
+                                      @if ($errors->has('username') || $errors->has('email'))
                                           <span class="help-block">
-                                              <strong>{{ $errors->first('username') }}</strong>
+                                              <strong>{{ $errors->first('username') ?: $errors->first('email') }}</strong>
                                           </span>
                                       @endif
                                   </div>
                               </div>
 
                               <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                  <label for="password" class="col-md-4 control-label">Senha</label>
+                                  <label for="password" class="col-md-4 control-label">Senha <font color="red">*</font> </label>
 
                                   <div class="col-md-6">
                                       <input id="password" type="password" class="form-control" name="password" required>
