@@ -149,6 +149,7 @@ class AlunoController extends Controller{
         $user = new User();
         $user->username = $request->username;
         $user->password = bcrypt($password);
+        $user->cadastrado = false;
         $user->save();
 
         $gerenciar = new Gerenciar();
@@ -159,7 +160,7 @@ class AlunoController extends Controller{
         $gerenciar->save();
       }
 
-      return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.' foi cadastrado.')->with('password', 'A senha do usuário é '.$password.'.');
+      return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.' foi cadastrado.')->with('password', 'A senha do usuário '.$request->username.' é '.$password.'.');
   }
 
   public function requisitarPermissao($id_aluno){
