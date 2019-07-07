@@ -10,16 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class InstituicaoController extends Controller
 {
   public function cadastrar(){
-      $estados = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA',
-                  'PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
-
-      return view("instituicao.cadastrar", ['estados' => $estados]);
-  }
-
-  public function inserir(){
-      $instituicoes = Instituicao::all();
-
-      return view("instituicao.inserir", ['instituicoes' => $instituicoes]);
+      return view("instituicao.cadastrar");
   }
 
   public function criar(Request $request){
@@ -31,8 +22,8 @@ class InstituicaoController extends Controller
           'logradouro' => ['required'],
           'numero' => ['required','numeric'],
           'bairro' => ['required'],
-          'cidade' => ['required'],
           'estado' => ['required'],
+          'cidade' => ['required'],
       ]);
 
       if($validator->fails()){

@@ -41,14 +41,10 @@ class AlunoController extends Controller{
   }
 
   public function cadastrar(){
-      $estados = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA',
-                  'PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
 
-      $tamanho = 1;
       $instituicoes = Instituicao::all();
 
-      return view("aluno.cadastrar", ['estados' => $estados,'tamanho' => $tamanho,
-                                      'instituicoes' => $instituicoes]);
+      return view("aluno.cadastrar", ['instituicoes' => $instituicoes]);
   }
 
   public function buscar(){
@@ -160,7 +156,11 @@ class AlunoController extends Controller{
         $gerenciar->save();
       }
 
-      return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.' foi cadastrado.')->with('password', 'A senha do usuário '.$request->username.' é '.$password.'.');
+      if($request->perfil == 2){
+        return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.' foi cadastrado.')->with('password', 'A senha do usuário '.$request->username.' é '.$password.'.');
+      }else{
+        return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.' foi cadastrado.');
+      }
   }
 
   public function requisitarPermissao($id_aluno){
