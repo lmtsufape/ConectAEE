@@ -234,9 +234,16 @@ class AlunoController extends Controller{
     $aluno = Aluno::find($id_aluno);
     $perfis = Perfil::where('especializacao','=',NULL)->get();
 
+    $especializacoes = Perfil::select('especializacao')
+                           ->where('especializacao', '!=', NULL)
+                           ->get()->toArray();
+
+    $especializacoes = array_column($especializacoes, 'especializacao');
+
     return view('permissoes.cadastrar',[
       'aluno' => $aluno,
       'perfis' => $perfis,
+      'especializacoes' => $especializacoes,
     ]);
   }
 
@@ -284,15 +291,19 @@ class AlunoController extends Controller{
     $gerenciar->user_id = $user->id;
     $gerenciar->aluno_id = (int) $request->id_aluno;
 
-    $perfil = NULL;
-    if($request->perfil == 'Profissional Externo'){
-      $perfil = new Perfil();
-      $perfil->nome = 'Profissional Externo';
-      $perfil->especializacao = $request->especializacao;
-      $perfil->save();
-    }else{
-      $perfil = Perfil::where('nome','=',$request->perfil)->where('especializacao','=',NULL)->first();
+    $perfil = Perfil::where('nome','=',$request->perfil)->where('especializacao','=',$request->especializacao)->first();
+
+    if($perfil == NULL ){
+      if($request->perfil == 'Profissional Externo'){
+        $perfil = new Perfil();
+        $perfil->nome = 'Profissional Externo';
+        $perfil->especializacao = $request->especializacao;
+        $perfil->save();
+      }else{
+        $perfil = Perfil::where('nome','=',$request->perfil)->where('especializacao','=',NULL)->first();
+      }
     }
+
     $gerenciar->perfil_id = $perfil->id;
     if($request->exists('isAdministrador')){
       $gerenciar->isAdministrador = $request->isAdministrador;

@@ -18,6 +18,8 @@ class CreatePerfilsTable extends Migration
             $table->string('nome');
             $table->string('especializacao')->nullable();
 
+            $table->unique(['nome','especializacao']);
+
             $table->timestamps();
         });
     }
