@@ -36,7 +36,7 @@ Route::middleware('autorizacao')->group(function() {
   Route::get('/aluno/listar', 'AlunoController@listar')->name('aluno.listar');
   Route::get('/aluno/buscar', 'AlunoController@buscar')->name('aluno.buscar');
   Route::post('/aluno/buscarCodigo', 'AlunoController@buscarCodigo')->name('aluno.buscarCodigo');
-  Route::get('/aluno/{id_aluno}/gerenciar/', 'AlunoController@gerenciar')->name('aluno.gerenciar');
+  Route::get('/aluno/{id_aluno}/gerenciar', 'AlunoController@gerenciar')->name('aluno.gerenciar');
 
   //Instituição
   Route::get('/aluno/instituicao/cadastrar', 'InstituicaoController@cadastrar')->name('instituicao.cadastrar');
