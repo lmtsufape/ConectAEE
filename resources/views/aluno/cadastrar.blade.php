@@ -15,7 +15,7 @@
           <div class="panel-heading">Novo Aluno</div>
 
           <div class="panel-body">
-              <form class="form-horizontal" method="POST" action="{{ route("aluno.criar") }}">
+              <form class="form-horizontal" method="POST" action="{{ route("aluno.criar") }}" enctype="multipart/form-data">
                   {{ csrf_field() }}
 
                   <font size="4" class="row">
@@ -88,6 +88,20 @@
                               </span>
                           @endif
                       </div>
+                  </div>
+
+                  <div class="form-group{{ $errors->has('imagem') ? ' has-error' : '' }}">
+      							<label for="imagem" class="col-md-4 control-label" >Foto de perfil:</label>
+
+                    <div class="col-md-6">
+        							<input id="imagem" type="file" class="form-control-file" name="imagem">
+
+                      @if ($errors->has('imagem'))
+                          <span class="help-block">
+                              <strong>{{ $errors->first('imagem') }}</strong>
+                          </span>
+                      @endif
+      							</div>
                   </div>
 
                   <div class="form-group{{ $errors->has('sexo') ? ' has-error' : '' }}">
