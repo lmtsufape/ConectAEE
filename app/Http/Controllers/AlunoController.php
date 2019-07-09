@@ -78,89 +78,96 @@ class AlunoController extends Controller{
 
   public function criar(Request $request){
 
-      $validator = Validator::make($request->all(), [
-          'perfil' => ['required'],
-          'instituicoes' => ['required'],
-          'nome' => ['required','min:2','max:191'],
-          'sexo' => ['required'],
-          'cid' => ['nullable','regex:/(^([a-zA-z])(\d)(\d)(\d)$)/u'],
-          'descricaoCid' => ['required_with:cid'],
-          'observacao' => ['nullable'],
-          'data_nascimento' => ['required','date','before:today','after:01/01/1900'],
-          'logradouro' => ['required'],
-          'numero' => ['required','numeric'],
-          'bairro' => ['required'],
-          'cidade' => ['required'],
-          'estado' => ['required'],
-          'username' => ['required_if:perfil,==,2','unique:users']
-      ],[
-        'username.required_if' => 'É necessário criar um usuário quando o cadastrante é um Professor AEE',
-      ]);
+    $validator = Validator::make($request->all(), [
+        'perfil' => ['required'],
+        'instituicoes' => ['required'],
+        'imagem' => 'image|mimes:jpeg,png,jpg,jpe|max:3000',
+        'nome' => ['required','min:2','max:191'],
+        'sexo' => ['required'],
+        'cid' => ['nullable','regex:/(^([a-zA-z])(\d)(\d)(\d)$)/u'],
+        'descricaoCid' => ['required_with:cid'],
+        'observacao' => ['nullable'],
+        'data_nascimento' => ['required','date','before:today','after:01/01/1900'],
+        'logradouro' => ['required'],
+        'numero' => ['required','numeric'],
+        'bairro' => ['required'],
+        'cidade' => ['required'],
+        'estado' => ['required'],
+        'username' => ['required_if:perfil,==,2','unique:users']
+    ],[
+      'username.required_if' => 'É necessário criar um usuário quando o cadastrante é um Professor AEE',
+    ]);
 
-      if($validator->fails()){
-          return redirect()->back()->withErrors($validator->errors())->withInput();
-      }
+    if($validator->fails()){
+        return redirect()->back()->withErrors($validator->errors())->withInput();
+    }
 
-      $endereco = new Endereco();
-      $endereco->numero = $request->numero;
-      $endereco->logradouro = $request->logradouro;
-      $endereco->bairro = $request->bairro;
-      $endereco->cidade = $request->cidade;
-      $endereco->estado = $request->estado;
-      $endereco->save();
+    $endereco = new Endereco();
+    $endereco->numero = $request->numero;
+    $endereco->logradouro = $request->logradouro;
+    $endereco->bairro = $request->bairro;
+    $endereco->cidade = $request->cidade;
+    $endereco->estado = $request->estado;
+    $endereco->save();
 
-      $aluno = new Aluno();
-      $aluno->nome = $request->nome;
-      $aluno->sexo = $request->sexo;
-      $aluno->cid = $request->cid;
-      $aluno->descricao_cid = $request->descricaoCid;
-      $aluno->observacao = $request->observacao;
-      $aluno->data_de_nascimento = $request->data_nascimento;
-      $aluno->endereco_id = $endereco->id;
+    $nome = uniqid(date('HisYmd'));
+    $extensao = $request->imagem->extension();
+    $nomeArquivo = "{$nome}.{$extensao}";
+    $request->imagem->move(public_path('avatars'), $nomeArquivo);
 
-      do{
-        $codigo = str_random(8);
-        $alunoCodigo = Aluno::where('codigo','=',$codigo)->first();
-      }while($alunoCodigo != NULL);
+    $aluno = new Aluno();
+    $aluno->imagem = "/avatars/".$nomeArquivo;
+    $aluno->nome = $request->nome;
+    $aluno->sexo = $request->sexo;
+    $aluno->cid = $request->cid;
+    $aluno->descricao_cid = $request->descricaoCid;
+    $aluno->observacao = $request->observacao;
+    $aluno->data_de_nascimento = $request->data_nascimento;
+    $aluno->endereco_id = $endereco->id;
 
-      $aluno->codigo = $codigo;
-      $aluno->save();
+    do{
+      $codigo = str_random(8);
+      $alunoCodigo = Aluno::where('codigo','=',$codigo)->first();
+    }while($alunoCodigo != NULL);
 
-      $aluno->instituicoes()->attach($request->instituicoes);
+    $aluno->codigo = $codigo;
+    $aluno->save();
 
-      $forum = new ForumAluno();
-      $forum->aluno_id = $aluno->id;
-      $forum->save();
+    $aluno->instituicoes()->attach($request->instituicoes);
+
+    $forum = new ForumAluno();
+    $forum->aluno_id = $aluno->id;
+    $forum->save();
+
+    $gerenciar = new Gerenciar();
+    $gerenciar->user_id = \Auth::user()->id;
+    $gerenciar->aluno_id = $aluno->id;
+    $gerenciar->perfil_id = $request->perfil;
+    $gerenciar->isAdministrador = True;
+    $gerenciar->save();
+
+    $password = str_random(6);
+
+    if($request->perfil == 2){
+      $user = new User();
+      $user->username = $request->username;
+      $user->password = bcrypt($password);
+      $user->cadastrado = false;
+      $user->save();
 
       $gerenciar = new Gerenciar();
-      $gerenciar->user_id = \Auth::user()->id;
+      $gerenciar->user_id = $user->id;
       $gerenciar->aluno_id = $aluno->id;
       $gerenciar->perfil_id = $request->perfil;
       $gerenciar->isAdministrador = True;
       $gerenciar->save();
+    }
 
-      $password = str_random(6);
-
-      if($request->perfil == 2){
-        $user = new User();
-        $user->username = $request->username;
-        $user->password = bcrypt($password);
-        $user->cadastrado = false;
-        $user->save();
-
-        $gerenciar = new Gerenciar();
-        $gerenciar->user_id = $user->id;
-        $gerenciar->aluno_id = $aluno->id;
-        $gerenciar->perfil_id = $request->perfil;
-        $gerenciar->isAdministrador = True;
-        $gerenciar->save();
-      }
-
-      if($request->perfil == 2){
-        return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.' foi cadastrado.')->with('password', 'A senha do usuário '.$request->username.' é '.$password.'.');
-      }else{
-        return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.' foi cadastrado.');
-      }
+    if($request->perfil == 2){
+      return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.' foi cadastrado.')->with('password', 'A senha do usuário '.$request->username.' é '.$password.'.');
+    }else{
+      return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.' foi cadastrado.');
+    }
   }
 
   public function requisitarPermissao($cod_aluno){

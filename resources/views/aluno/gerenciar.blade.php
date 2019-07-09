@@ -17,65 +17,76 @@
 					@endphp
 
 					<div class="panel-body">
-						<div class="form-group">
-							<?php
-								foreach($gerenciars as $gerenciar){
-									if($gerenciar->user->id == \Auth::user()->id && $gerenciar->isAdministrador){
-							?>
-										<strong>Código:</strong> {{$aluno->codigo}}
-										<br/>
-							<?php
-										break;
+						<div style="width: 100%; margin-left: 0%" class="row">
+							<div style="width: 50%; float: left" class="column col-md-8">
+
+								<?php
+									foreach($gerenciars as $gerenciar){
+										if($gerenciar->user->id == \Auth::user()->id && $gerenciar->isAdministrador){
+								?>
+											<strong>Código:</strong> {{$aluno->codigo}}
+											<br/>
+								<?php
+											break;
+										}
 									}
-								}
-							?>
+								?>
 
-							<strong>Nome:</strong> {{$aluno->nome}}
-							<br/>
-							<strong>Sexo:</strong> {{$aluno->sexo}}
-							<br/>
-							<strong>Data de Nascimento:</strong> {{$aluno->data_de_nascimento}}
-							<br/>
-							<strong>Endereço:</strong>
-
-							<?php
-								echo $aluno->endereco->logradouro, ", ",
-								$aluno->endereco->numero, ", ",
-								$aluno->endereco->bairro, ", ",
-								$aluno->endereco->cidade, " - ",
-								$aluno->endereco->estado;
-							?>
-
-							<br/>
-							<strong>Instituição(ões):</strong>
-							<br/>
-
-							<?php
-								foreach ($aluno->instituicoes as $instituicao) {
-								    echo ($instituicao->nome."<br/>");
-								}
-							?>
-
-							@if($aluno->cid != null)
-								<strong>CID:</strong> {{$aluno->cid}}
+								<strong>Nome:</strong> {{$aluno->nome}}
 								<br/>
-								<strong>Descrição CID:</strong> {{$aluno->descricao_cid}}
+								<strong>Sexo:</strong> {{$aluno->sexo}}
 								<br/>
-							@endif
-
-							@if($aluno->observacao != null)
-								<strong>Observações:</strong> {{$aluno->observacao}}
+								<strong>Data de Nascimento:</strong> {{$aluno->data_de_nascimento}}
 								<br/>
-							@endif
+								<strong>Endereço:</strong>
 
-							<br/>
+								<?php
+									echo $aluno->endereco->logradouro, ", ",
+									$aluno->endereco->numero, ", ",
+									$aluno->endereco->bairro, ", ",
+									$aluno->endereco->cidade, " - ",
+									$aluno->endereco->estado;
+								?>
 
-							@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
-								<a class="btn btn-primary" href={{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}>Gerenciar Permissões</a>
-							@endif
-              <a class="btn btn-primary" href={{route("objetivo.listar", ["id_aluno"=>$aluno->id]) }}>Objetivos</a>
+								<br/>
+								<strong>Instituição(ões):</strong>
+								<br/>
 
+								<?php
+									foreach ($aluno->instituicoes as $instituicao) {
+									    echo ($instituicao->nome."<br/>");
+									}
+								?>
+
+								@if($aluno->cid != null)
+									<strong>CID:</strong> {{$aluno->cid}}
+									<br/>
+									<strong>Descrição CID:</strong> {{$aluno->descricao_cid}}
+									<br/>
+								@endif
+
+								@if($aluno->observacao != null)
+									<strong>Observações:</strong> {{$aluno->observacao}}
+									<br/>
+								@endif
+							</div>
+
+							<div style="width: 50%; float: left" class="column col-md-8">
+
+								@if($aluno->imagem != null)
+									<img src="{{$aluno->imagem}}" height="256" width="256" >
+									<br/>
+								@endif
+
+							</div>
 						</div>
+
+						<br/>
+						@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
+						<a class="btn btn-primary" href={{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}>Gerenciar Permissões</a>
+						@endif
+						<a class="btn btn-primary" href={{route("objetivo.listar", ["id_aluno"=>$aluno->id]) }}>Objetivos</a>
+
 					</div>
 
 					<div class="panel-footer">
