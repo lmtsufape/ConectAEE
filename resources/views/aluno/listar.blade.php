@@ -18,11 +18,19 @@
                 {!! \Session::get('success') !!}
             </div>
           @endif
+
           @if (\Session::has('password'))
             <div class="alert alert-success">
                 <strong>Sucesso!</strong>
                 {!! \Session::get('password') !!}
             </div>
+          @endif
+          
+          @if (\Session::has('denied'))
+              <div class="alert alert-warning">
+                  <strong>Não permitido!</strong>
+                  {!! \Session::get('denied') !!}
+              </div>
           @endif
 
           <div id="tabela" class="table-responsive">

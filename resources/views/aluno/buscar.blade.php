@@ -53,7 +53,7 @@
                           <td data-title="Nome" >{{ $aluno->nome }}</td>
                           <td>
                             @if(!$botaoAtivo)
-                            <a class="btn btn-primary" href="{{ route("aluno.permissoes.requisitar", ["id_aluno" => $aluno->id]) }}">
+                            <a class="btn btn-primary" href="{{ route("aluno.permissoes.requisitar", ["cod_aluno" => $codigo]) }}">
                               Pedir permissão
                             </a>
                             @else

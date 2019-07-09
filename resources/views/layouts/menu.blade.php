@@ -90,8 +90,8 @@
                               @endif
                                 @if($notificacao->tipo == 1)
                                   <a class="btn text-center" href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
+                                    {{$notificacao->remetente->name}} pediu para acessar os dados do(a) aluno(a) {{explode(" ", $notificacao->aluno->nome)[0]}}</br>
                                   </a>
-                                  {{$notificacao->remetente->name}} pediu para acessar os dados do(a) aluno(a) {{explode(" ", $notificacao->aluno->nome)[0]}}</br>
                                 @else
                                   <a class="btn text-center" href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
                                     {{$notificacao->remetente->name}} lhe concedeu acesso aos dados do(a) aluno(a) {{explode(" ", $notificacao->aluno->nome)[0]}}</br>

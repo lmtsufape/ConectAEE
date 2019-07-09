@@ -53,10 +53,14 @@
             'id_aluno' => $sugestao->objetivo->aluno->id,
             'id_objetivo' => $sugestao->objetivo->id,
             'id_sugestao' => $sugestao->id,
-          ])}}">Voltar</a>
+            ])}}">
+              Voltar
+          </a>
           <a class="btn btn-success" href="{{route('objetivo.sugestoes.feedbacks.cadastrar',[
             $sugestao->objetivo->aluno->id,$sugestao->objetivo->id,$sugestao->id,
-          ])}}">Enviar novo feedback</a>
+            ])}}">
+              Enviar novo feedback
+          </a>
         </div>
 
       </div>
