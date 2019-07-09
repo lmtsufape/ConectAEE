@@ -163,8 +163,8 @@ class AlunoController extends Controller{
       }
   }
 
-  public function requisitarPermissao($id_aluno){
-    $aluno = Aluno::find($id_aluno);
+  public function requisitarPermissao($cod_aluno){
+    $aluno = Aluno::where('codigo','=',$cod_aluno)->first();
 
     $perfis = Perfil::where('especializacao','=',NULL)->get();
 

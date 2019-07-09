@@ -47,7 +47,7 @@ Route::middleware('autorizacao')->group(function() {
   Route::get('/aluno/{id_aluno}/gerenciar/permissoes/cadastrar','AlunoController@cadastrarPermissao')->name('aluno.permissoes.cadastrar');
   Route::post('/aluno/gerenciar/permissoes/criar','AlunoController@criarPermissao')->name('aluno.permissoes.criar');
   Route::get('/aluno/{id_aluno}/gerenciar/permissoes/{id_permissao}/remover','AlunoController@removerPermissao')->name('aluno.permissoes.remover');
-  Route::get('/aluno/{id_aluno}/gerenciar/permissoes/requisitar', 'AlunoController@requisitarPermissao')->name('aluno.permissoes.requisitar');
+  Route::get('/aluno/{cod_aluno}/gerenciar/permissoes/requisitar', 'AlunoController@requisitarPermissao')->name('aluno.permissoes.requisitar');
   Route::get('/aluno/{id_aluno}/gerenciar/permissoes/notificacao/{id_notificacao}/conceder', 'AlunoController@concederPermissao')->name('aluno.permissoes.conceder');
   Route::post('/aluno/gerenciar/permissoes/notificar','AlunoController@notificar')->name('aluno.permissoes.notificar');
 
@@ -67,14 +67,14 @@ Route::middleware('autorizacao')->group(function() {
   Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/atividades/{id_atividade}/desconcluir','AtividadeController@desconcluir')->name('objetivo.atividades.desconcluir');
 
   //Rotas para sugestão
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/sugestoes/listar','SugestaoController@listar')->name('objetivo.sugestoes.listar');
-  Route::post('/aluno/objetivos/sugestoes/criar', 'SugestaoController@criar')->name('objetivo.sugestoes.criar');
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/sugestoes/cadastrar','SugestaoController@cadastrar')->name('objetivo.sugestoes.cadastrar');
+  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/listar','SugestaoController@listar')->name('objetivo.sugestoes.listar');
+  Route::post('/aluno/objetivos/gerenciar/sugestoes/criar', 'SugestaoController@criar')->name('objetivo.sugestoes.criar');
+  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/cadastrar','SugestaoController@cadastrar')->name('objetivo.sugestoes.cadastrar');
 
   //
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/sugestoes/{id_sugestao}/feedbacks/listar','FeedbackController@listar')->name('objetivo.sugestoes.feedbacks.listar');
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/sugestoes/{id_sugestao}/feedbacks/cadastrar','FeedbackController@cadastrar')->name('objetivo.sugestoes.feedbacks.cadastrar');
-  Route::post('/aluno/objetivos/sugestoes/feedbacks/criar','FeedbackController@criar')->name('objetivo.sugestoes.feedbacks.criar');
+  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/{id_sugestao}/feedbacks/listar','FeedbackController@listar')->name('objetivo.sugestoes.feedbacks.listar');
+  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/{id_sugestao}/feedbacks/cadastrar','FeedbackController@cadastrar')->name('objetivo.sugestoes.feedbacks.cadastrar');
+  Route::post('/aluno/objetivos/gerenciar/sugestoes/feedbacks/criar','FeedbackController@criar')->name('objetivo.sugestoes.feedbacks.criar');
 
   //Rotas para foruns
   Route::post('/aluno/forum/mensagem/enviar','ForumController@enviarMensagemForumAluno')->name('aluno.forum.mensagem.enviar');
@@ -83,7 +83,7 @@ Route::middleware('autorizacao')->group(function() {
   Route::get('/aluno/{id_aluno}/objetivo/{id_objetivo}/forum','ForumController@abrirForumObjetivo')->name('objetivo.forum');
 
   //rotas para statuses
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/status/cadastrar','StatusController@cadastrar')->name('objetivo.status.cadastrar');
+  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/status/cadastrar','StatusController@cadastrar')->name('objetivo.status.cadastrar');
   Route::post('/aluno/objetivos/status/criar', 'StatusController@criar')->name('objetivo.status.criar');
 
 });
