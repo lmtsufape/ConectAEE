@@ -75,6 +75,25 @@
   background-color: DodgerBlue !important;
   color: #ffffff;
 }
+
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  line-height: 1;
+  margin:auto;
+  width: 100%; // Add this
+}
+
+.carousel-inner>.item active>img, .carousel-inner>.item active>a>img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  line-height: 1;
+  margin:auto;
+  width: 100%; // Add this
+}
+
 @media (max-width: 1000px) {
     #barra-logos{display: none;}
     .btn-toggle{display: block;}

@@ -62,7 +62,6 @@ class AlunoController extends Controller{
     if ($aluno != null) {
       $gerenciars = $aluno->gerenciars;
 
-
       foreach ($gerenciars as $gerenciar) {
         if ($gerenciar->user->id == \Auth::user()->id && $gerenciar->isAdministrador) {
           $botaoAtivo = true;
@@ -86,7 +85,7 @@ class AlunoController extends Controller{
         'sexo' => ['required'],
         'cid' => ['nullable','regex:/(^([a-zA-z])(\d)(\d)(\d)$)/u'],
         'descricaoCid' => ['required_with:cid'],
-        'observacao' => ['nullable'],
+        'observacao' => ['nullable','max:500'],
         'data_nascimento' => ['required','date','before:today','after:01/01/1900'],
         'logradouro' => ['required'],
         'numero' => ['required','numeric'],

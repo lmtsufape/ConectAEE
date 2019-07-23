@@ -25,4 +25,8 @@ class Aluno extends Model
     public function endereco(){
         return $this->hasOne(Endereco::class,'id','endereco_id');
     }
+
+    public function albuns(){
+        return $this->hasMany(Album::class);
+    }
 }

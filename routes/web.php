@@ -71,7 +71,7 @@ Route::middleware('autorizacao')->group(function() {
   Route::post('/aluno/objetivos/gerenciar/sugestoes/criar', 'SugestaoController@criar')->name('objetivo.sugestoes.criar');
   Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/cadastrar','SugestaoController@cadastrar')->name('objetivo.sugestoes.cadastrar');
 
-  //
+  //Rotas para feedback
   Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/{id_sugestao}/feedbacks/listar','FeedbackController@listar')->name('objetivo.sugestoes.feedbacks.listar');
   Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/{id_sugestao}/feedbacks/cadastrar','FeedbackController@cadastrar')->name('objetivo.sugestoes.feedbacks.cadastrar');
   Route::post('/aluno/objetivos/gerenciar/sugestoes/feedbacks/criar','FeedbackController@criar')->name('objetivo.sugestoes.feedbacks.criar');
@@ -85,5 +85,11 @@ Route::middleware('autorizacao')->group(function() {
   //rotas para statuses
   Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/status/cadastrar','StatusController@cadastrar')->name('objetivo.status.cadastrar');
   Route::post('/aluno/objetivos/status/criar', 'StatusController@criar')->name('objetivo.status.criar');
+
+  //Rotas para albuns
+  Route::get('/aluno/{id_aluno}/albuns/listar', 'AlbumController@listar')->name('album.listar');
+  Route::get('/aluno/{id_aluno}/albuns/{id_album}/ver', 'AlbumController@ver')->name('album.ver');
+  Route::get('/aluno/{id_aluno}/albuns/cadastrar', 'AlbumController@cadastrar')->name('album.cadastrar');
+  Route::post('/aluno/albuns/criar', 'AlbumController@criar')->name('album.criar');
 
 });
