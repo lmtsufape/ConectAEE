@@ -25,7 +25,7 @@
                 {!! \Session::get('password') !!}
             </div>
           @endif
-          
+
           @if (\Session::has('denied'))
               <div class="alert alert-warning">
                   <strong>Não permitido!</strong>
@@ -62,6 +62,7 @@
           <a class="btn btn-success" href="{{ route("aluno.cadastrar")}}">Novo</a>
         </div>
       </div>
+    </div>
   </div>
 </div>
 

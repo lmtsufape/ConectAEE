@@ -43,6 +43,7 @@ class AutorizacaoMiddleware
             'aluno/{id_aluno}/forum',
             'aluno/{id_aluno}/gerenciar',
             'aluno/{id_aluno}/objetivos/listar',
+            'aluno/{id_aluno}/galeria,'
         ];
 
         $rotas_regras_administrador = [

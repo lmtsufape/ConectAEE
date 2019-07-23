@@ -76,6 +76,16 @@ margin-bottom: 12px;
   display: block;
 }
 
+#tabela_albuns table,
+#tabela_albuns thead,
+#tabela_albuns tbody,
+#tabela_albuns tfoot,
+#tabela_albuns th,
+#tabela_albuns td,
+#tabela_albuns tr {
+  display: block;
+}
+
 /* Hide table headers (but not display: none;, for accessibility) */
 #tabela thead tr {
   position: absolute;
