@@ -3,7 +3,8 @@
 @section('path','Início')
 
 @section('navbar')
-<a href="{{route('aluno.listar')}}">Alunos</a> > Novo
+  <a href="{{route('instituicao.listar')}}">Instituições</a>
+  > Editar: <strong>{{$instituicao->nome}}</strong>
 @endsection
 
 @section('content')
@@ -11,13 +12,14 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <div class="panel panel-default">
-        <div class="panel-heading">Nova Instituição</div>
+        <div class="panel-heading">Editar Instituição</div>
 
         <div class="panel-body">
-            <form class="form-horizontal" method="POST" action="{{ route("instituicao.criar") }}">
+            <form class="form-horizontal" method="POST" action="{{ route("instituicao.atualizar") }}">
                 {{ csrf_field() }}
-                
-                <input type="hidden" name="rota" value="{{URL::previous()}}">
+
+                <input type="hidden" name="id_instituicao" value="{{ $instituicao->id }}">
+                <input type="hidden" name="id_endereco" value="{{ $endereco->id }}">
 
                 <font size="4" class="row" >
                   Instituição
@@ -28,7 +30,12 @@
                     </label>
 
                     <div class="col-md-6">
-                        <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}" autofocus>
+
+                        @if(old('nome',NULL) != NULL)
+                          <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}" autofocus>
+                        @else
+                          <input id="nome" type="text" class="form-control" name="nome" value="{{ $instituicao->nome }}" autofocus>
+                        @endif
 
                         @if ($errors->has('nome'))
                             <span class="help-block">
@@ -42,7 +49,12 @@
                     <label for="telefone" class="col-md-4 control-label">Telefone <font color="red">*</font> </label>
 
                     <div class="col-md-6">
-                        <input  type="digit" class="form-control" name="telefone" id="telefone" minlength="10" placeholder="DDD+Telefone" maxlength="11" value="{{ old('telefone') }}">
+
+                        @if(old('nome',NULL) != NULL)
+                          <input id="telefone" type="digit" class="form-control" name="telefone" minlength="10" placeholder="DDD+Telefone" maxlength="11" value="{{ old('telefone') }}">
+                        @else
+                          <input id="telefone" type="digit" class="form-control" name="telefone" minlength="10" placeholder="DDD+Telefone" maxlength="11" value="{{ $instituicao->telefone }}">
+                        @endif
 
                         @if ($errors->has('telefone'))
                             <span class="help-block">
@@ -56,13 +68,18 @@
                     <label for="email" class="col-md-4 control-label">E-Mail</label>
 
                     <div class="col-md-6">
-                        <input id="email" class="form-control" name="email" value="{{ old('email') }}">
 
-                        @if ($errors->has('email'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
-                        @endif
+                      @if(old('nome',NULL) != NULL)
+                        <input id="email" class="form-control" name="email" value="{{ old('email') }}">
+                      @else
+                        <input id="email" class="form-control" name="email" value="{{ $instituicao->email }}">
+                      @endif
+
+                      @if ($errors->has('email'))
+                          <span class="help-block">
+                              <strong>{{ $errors->first('email') }}</strong>
+                          </span>
+                      @endif
                     </div>
                 </div>
 
@@ -71,7 +88,11 @@
 
                     <div class="col-md-6">
 
-                        <input id="logradouro" type="text" class="form-control" name="logradouro" value="{{ old('logradouro') }}">
+                        @if(old('nome',NULL) != NULL)
+                          <input id="logradouro" type="text" class="form-control" name="logradouro" value="{{ old('logradouro') }}">
+                        @else
+                          <input id="logradouro" type="text" class="form-control" name="logradouro" value="{{ $endereco->logradouro }}">
+                        @endif
 
                         @if ($errors->has('logradouro'))
                             <span class="help-block">
@@ -86,7 +107,11 @@
 
                     <div class="col-md-6">
 
-                        <input id="numero" type="text" class="form-control" name="numero" value="{{ old('numero') }}">
+                        @if(old('nome',NULL) != NULL)
+                          <input id="numero" type="text" class="form-control" name="numero" value="{{ old('numero') }}">
+                        @else
+                          <input id="numero" type="text" class="form-control" name="numero" value="{{ $endereco->numero }}">
+                        @endif
 
                         @if ($errors->has('numero'))
                             <span class="help-block">
@@ -101,7 +126,11 @@
 
                     <div class="col-md-6">
 
-                        <input id="bairro" type="text" class="form-control" name="bairro" value="{{ old('bairro') }}">
+                        @if(old('nome',NULL) != NULL)
+                          <input id="bairro" type="text" class="form-control" name="bairro" value="{{ old('bairro') }}">
+                        @else
+                          <input id="bairro" type="text" class="form-control" name="bairro" value="{{ $endereco->bairro }}">
+                        @endif
 
                         @if ($errors->has('bairro'))
                             <span class="help-block">
@@ -148,7 +177,7 @@
                     <div class="col-md-6 col-md-offset-4">
                         <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
                         <button type="submit" class="btn btn-success">
-                            Cadastrar
+                          Atualizar
                         </button>
                     </div>
                 </div>

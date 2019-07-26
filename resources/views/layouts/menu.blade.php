@@ -32,7 +32,7 @@
         </button>
     </div>
     <div class="collapse navbar-collapse" >
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav" style="margin-left: 5%">
             @if(Auth::check() && Auth::user()->cadastrado)
                 <li class="dropdown">
                   <a class="menu-principal" href="/">Início</a>
@@ -43,7 +43,7 @@
                 </li>
             @endif
         </ul>
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav" >
             @if(Auth::check() && Auth::user()->cadastrado)
               <li class="dropdown">
                   <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -51,8 +51,25 @@
                   </a>
                   <ul class="dropdown-menu" role="menu">
                       <li>
-                          <a href="{{ route('aluno.buscar') }}">
-                              Buscar
+                        <a href="{{ route('aluno.listar') }}">
+                            Listar
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{ route('aluno.buscar') }}">
+                            Buscar por código
+                        </a>
+                      </li>
+                  </ul>
+              </li>
+              <li class="dropdown">
+                  <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                      Instituição <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                      <li>
+                          <a href="{{ route('instituicao.listar') }}">
+                              Listar
                           </a>
                       </li>
                   </ul>

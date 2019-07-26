@@ -42,9 +42,9 @@ class AlunoController extends Controller{
 
   public function cadastrar(){
 
-      $instituicoes = Instituicao::all();
+    $instituicoes = \Auth::user()->instituicoes;
 
-      return view("aluno.cadastrar", ['instituicoes' => $instituicoes]);
+    return view("aluno.cadastrar", ['instituicoes' => $instituicoes]);
   }
 
   public function buscar(){

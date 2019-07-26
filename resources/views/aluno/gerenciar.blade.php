@@ -2,13 +2,14 @@
 @section('title','Início')
 
 @section('navbar')
-<a href="{{route('aluno.listar')}}">Alunos</a> > Gerenciar: <strong>{{$aluno->nome}}</strong>
+<a href="{{route('aluno.listar')}}">Alunos</a>
+> Gerenciar: <strong>{{$aluno->nome}}</strong>
 @endsection
 
 @section('content')
 <div class="container">
 	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
+		<div class="col-md-10 col-md-offset-1">
 
 			<div class="panel panel-default">
 			  <div class="panel-heading">Gerenciamento de <strong>{{$aluno->nome}}</strong></div>
@@ -19,6 +20,12 @@
 					@endphp
 
 					<div style="width: 100%; margin-left: 0%" class="row">
+						<div style="width: 50%; float: left" class="column col-md-8">
+							@if($aluno->imagem != null)
+							<img src="{{$aluno->imagem}}" height="256" width="256" >
+							<br/>
+							@endif
+						</div>
 						<div style="width: 50%; float: left" class="column col-md-8">
 
 							<?php
@@ -49,7 +56,7 @@
 								$aluno->endereco->estado;
 							?>
 
-							<br/>
+							<hr>
 							<strong>Instituição(ões):</strong>
 							<br/>
 
@@ -58,6 +65,7 @@
 								    echo ($instituicao->nome."<br/>");
 								}
 							?>
+							<hr>
 
 							@if($aluno->cid != null)
 								<strong>CID:</strong> {{$aluno->cid}}
@@ -66,20 +74,14 @@
 								<br/>
 							@endif
 
+							<hr>
+
 							@if($aluno->observacao != null)
 								<strong>Observações:</strong> {{$aluno->observacao}}
 								<br/>
 							@endif
 						</div>
 
-						<div style="width: 50%; float: left" class="column col-md-8">
-
-							@if($aluno->imagem != null)
-								<img src="{{$aluno->imagem}}" height="256" width="256" >
-								<br/>
-							@endif
-
-						</div>
 					</div>
 
 					<br/>

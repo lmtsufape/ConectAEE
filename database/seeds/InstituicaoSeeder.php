@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Instituicao;
+use App\User;
 
 class InstituicaoSeeder extends Seeder
 {
@@ -12,10 +13,15 @@ class InstituicaoSeeder extends Seeder
      */
     public function run()
     {
-      for ($i=1; $i<=2 ; $i++) {
-        factory(Instituicao::class)->create([
+
+      $users = User::all();
+      foreach ($users as $user) {
+        for ($i=1; $i<=2 ; $i++) {
+          factory(Instituicao::class)->create([
             'endereco_id' => $i,
-        ]);
+            'user_id' => $user->id,
+          ]);
+        }
       }
     }
 }
