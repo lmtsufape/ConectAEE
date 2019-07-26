@@ -47,6 +47,10 @@ class User extends Authenticatable
         return $this->hasMany(Objetivo::class);
     }
 
+    public function instituicoes(){
+        return $this->hasMany(Instituicao::class);
+    }
+
     public function feedbacks(){
         return $this->hasMany(Feedback::class);
     }
