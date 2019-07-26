@@ -8,8 +8,8 @@
 @endsection
 @section('content')
 <div class="container">
-	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
+	<div class="row col-md-offset-1">
+		<div class="col-md-6">
 			<div class="panel panel-default">
 			  <div class="panel-heading">Objetivo: <strong>{{$objetivo->titulo}}</strong></div>
 
@@ -51,18 +51,21 @@
 					@endif
 			  </div>
 			</div>
-
+    </div>
+    <div class="col-md-4">
 		  <div class="panel panel-default">
 
-				<div class="panel-heading">Fórum do objetivo: {{$objetivo->titulo}} | <a class="btn btn-primary" href="{{route('objetivo.forum',['aluno' => $objetivo->aluno->id, 'objetivo' => $objetivo->id])."#forum"}}">Todas as Mensagens</a></div>
+				<div class="panel-heading">
+          Fórum do objetivo: {{$objetivo->titulo}}
+        </div>
 
         <div class="panel-body">
 					<form class="form-horizontal" method="POST" action="{{route('objetivo.forum.mensagem.enviar')}}">
 						@csrf
 						<input name="forum_id" type="text" value="{{$objetivo->forum->id}}" hidden>
 						<div style="margin: 1%" class="form-group">
-							<input name="mensagem" style="width:80%; display: inline" class="form-control" type="text">
-							<button style="width:18%" type="submit" class="btn btn-success">Enviar</button>
+							<input name="mensagem" style="width:75%; display: inline" class="form-control" type="text">
+							<button style="width:23%" type="submit" class="btn btn-success">Enviar</button>
 				  	</div>
 					</form>
 				</div>
@@ -92,7 +95,12 @@
 							@endif
 						@endforeach
 					</div>
-				</div>
+
+          <div class="text-center">
+            <a class="btn btn-primary" href="{{route('objetivo.forum',['aluno' => $objetivo->aluno->id, 'objetivo' => $objetivo->id])."#forum"}}">Todas as Mensagens</a></div>
+          </div>
+
+        </div>
 
 		  </div>
 		</div>

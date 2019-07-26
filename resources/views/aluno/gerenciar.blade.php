@@ -8,9 +8,8 @@
 
 @section('content')
 <div class="container">
-	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
-
+	<div class="row col-md-offset-1">
+		<div class="col-md-6">
 			<div class="panel panel-default">
 			  <div class="panel-heading">Gerenciamento de <strong>{{$aluno->nome}}</strong></div>
 
@@ -22,7 +21,7 @@
 					<div style="width: 100%; margin-left: 0%" class="row">
 						<div style="width: 50%; float: left" class="column col-md-8">
 							@if($aluno->imagem != null)
-							<img src="{{$aluno->imagem}}" height="256" width="256" >
+							<img src="{{$aluno->imagem}}" height="220" width="220" >
 							<br/>
 							@endif
 						</div>
@@ -99,18 +98,13 @@
 					<a class="btn btn-primary" href={{route("album.listar", ["id_aluno"=>$aluno->id]) }}>Álbuns</a>
 				</div>
 			</div>
+		</div>
 
+		<div class="col-md-4">
 			<div class="panel panel-default">
 				<div id="forum" class="panel-heading">
-					<div id="card-title">
-
-						<div id="card-title-left">
-							Fórum
-						</div>
-						<div id="card-title-right">
-							<a style="display: inline-block; text-align: center" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary">Todas as mensagens</a></strong>
-						</div>
-
+					<div class="card-title text-center">
+						Fórum
 					</div>
 				</div>
 
@@ -126,8 +120,8 @@
 					  <input name="forum_id" type="text" value={{$aluno->forum->id}} hidden>
 
             <div style="margin: 1%" class="form-group">
-              <input name="mensagem" style="width:80%; display: inline" class="form-control" type="text">
-              <button style="width:18%" type="submit" class="btn btn-success">Enviar</button>
+              <input name="mensagem" style="width:75%; display: inline" class="form-control" type="text">
+              <button style="width:23%" type="submit" class="btn btn-success">Enviar</button>
             </div>
 					</form>
 				</div>
@@ -157,9 +151,12 @@
 							@endif
 						@endforeach
 					</div>
+
+					<div class="text-center">
+						<a style="text-align: center" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary">Ver todas as mensagens</a>
+					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
 </div>
