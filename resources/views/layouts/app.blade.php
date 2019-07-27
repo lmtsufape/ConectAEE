@@ -1,25 +1,15 @@
 <body>
-    {{--
-        @include('layouts.header')
-        <div class="container">
-            <!--Menu de Navegação-->
-            @include('layouts.navigation')
-
-            @include('layouts.body')
-        </div>
-        <br>
-        @include('layouts.footer')
-
-        <!--Scripts-->
-        @include('layouts.scripts')
-        <script src="{{asset('js/app.js')}}"></script>
-    --}}
-
     @include('layouts.header')
 
-    @include('layouts.body')
+    <div id="page-container">
+      <div id="content-wrap">
+        @include('layouts.body')
+        <br><br><br>
+      </div>
 
-    @include('layouts.footer')
+      @include('layouts.footer')
+    </div>
+
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
