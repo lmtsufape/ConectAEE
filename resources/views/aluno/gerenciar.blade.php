@@ -19,69 +19,66 @@
 					@endphp
 
 					<div class="row-md-6">
+						<div class="text-center">
+							@if($aluno->imagem != null)
+								<img style="object-fit: cover;" src="{{$aluno->imagem}}" height="256" width="256" >
+								<br/>
+							@endif
+						</div>
 
-							<div class="text-center">
-								@if($aluno->imagem != null)
-									<img style="object-fit: cover;" src="{{$aluno->imagem}}" height="256" width="256" >
+						<hr>
+						<?php
+							foreach($gerenciars as $gerenciar){
+								if($gerenciar->user->id == \Auth::user()->id && $gerenciar->isAdministrador){
+						?>
+									<strong>Código:</strong> {{$aluno->codigo}}
 									<br/>
-								@endif
-							</div>
-
-							<hr>
-							<?php
-								foreach($gerenciars as $gerenciar){
-									if($gerenciar->user->id == \Auth::user()->id && $gerenciar->isAdministrador){
-							?>
-										<strong>Código:</strong> {{$aluno->codigo}}
-										<br/>
-							<?php
-										break;
-									}
+						<?php
+									break;
 								}
-							?>
+							}
+						?>
 
-							<strong>Nome:</strong> {{$aluno->nome}}
+						<strong>Nome:</strong> {{$aluno->nome}}
+						<br/>
+						<strong>Sexo:</strong> {{$aluno->sexo}}
+						<br/>
+						<strong>Data de Nascimento:</strong> {{$aluno->data_de_nascimento}}
+						<br/>
+						<strong>Endereço:</strong>
+
+						<?php
+							echo $aluno->endereco->logradouro, ", ",
+							$aluno->endereco->numero, ", ",
+							$aluno->endereco->bairro, ", ",
+							$aluno->endereco->cidade, " - ",
+							$aluno->endereco->estado;
+						?>
+
+						<hr>
+						<strong>Instituição(ões):</strong>
+						<br/>
+
+						<?php
+							foreach ($aluno->instituicoes as $instituicao) {
+							    echo ($instituicao->nome."<br/>");
+							}
+						?>
+						<hr>
+
+						@if($aluno->cid != null)
+							<strong>CID:</strong> {{$aluno->cid}}
 							<br/>
-							<strong>Sexo:</strong> {{$aluno->sexo}}
+							<strong>Descrição CID:</strong> {{$aluno->descricao_cid}}
 							<br/>
-							<strong>Data de Nascimento:</strong> {{$aluno->data_de_nascimento}}
+						@endif
+
+						<hr>
+
+						@if($aluno->observacao != null)
+							<strong>Observações:</strong> {{$aluno->observacao}}
 							<br/>
-							<strong>Endereço:</strong>
-
-							<?php
-								echo $aluno->endereco->logradouro, ", ",
-								$aluno->endereco->numero, ", ",
-								$aluno->endereco->bairro, ", ",
-								$aluno->endereco->cidade, " - ",
-								$aluno->endereco->estado;
-							?>
-
-							<hr>
-							<strong>Instituição(ões):</strong>
-							<br/>
-
-							<?php
-								foreach ($aluno->instituicoes as $instituicao) {
-								    echo ($instituicao->nome."<br/>");
-								}
-							?>
-							<hr>
-
-							@if($aluno->cid != null)
-								<strong>CID:</strong> {{$aluno->cid}}
-								<br/>
-								<strong>Descrição CID:</strong> {{$aluno->descricao_cid}}
-								<br/>
-							@endif
-
-							<hr>
-
-							@if($aluno->observacao != null)
-								<strong>Observações:</strong> {{$aluno->observacao}}
-								<br/>
-							@endif
-
-
+						@endif
 					</div>
 
 					<br/>

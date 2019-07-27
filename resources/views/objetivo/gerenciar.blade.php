@@ -10,10 +10,10 @@
 @section('content')
 <div class="container">
 	<div class="row col-md-offset-1">
-
     <div class="col-md-6">
 			<div class="panel panel-default">
-			  <div class="panel-heading">
+
+  			<div class="panel-heading">
           Objetivo: <strong>{{$objetivo->titulo}}</strong>
         </div>
 
@@ -41,13 +41,13 @@
 							| {{ $statusObjetivo->status->status }} {{ $statusObjetivo->data}}
 						@endforeach
 					</div>
-			  </div>
+				</div>
 
         <div class="panel-footer">
-          <a class="btn btn-danger" href="{{route('objetivo.listar',$aluno->id)}}">Voltar</a>
+	        <a class="btn btn-danger" href="{{route('objetivo.listar',$aluno->id)}}">Voltar</a>
 
-				  <a class="btn btn-primary" href={{ route("objetivo.atividades.listar", ["id_objetivo" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Atividades</a>
-				  <a class="btn btn-primary" href={{ route("objetivo.sugestoes.listar", ["id_objetivo" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Sugestões</a>
+					<a class="btn btn-primary" href={{ route("objetivo.atividades.listar", ["id_objetivo" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Atividades</a>
+					<a class="btn btn-primary" href={{ route("objetivo.sugestoes.listar", ["id_objetivo" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Sugestões</a>
 					<a class="btn btn-primary" href={{ route("objetivo.status.cadastrar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Status</a>
 
 					@if($objetivo->user->id == \Auth::user()->id && $objetivo->concluido == false)
@@ -55,16 +55,16 @@
 					@elseif($objetivo->user->id == \Auth::user()->id && $objetivo->concluido == true)
 						<a class="btn btn-danger" href={{ route("objetivo.desconcluir" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Desconcluir</a>
 					@endif
-			  </div>
+				</div>
 			</div>
     </div>
 
     <div class="col-md-4">
-		  <div class="panel panel-default">
+	  	<div class="panel panel-default">
 
 				<div class="panel-heading">
           Fórum do objetivo: {{$objetivo->titulo}}
-        </div>
+		    </div>
 
         <div class="panel-body">
 					<form class="form-horizontal" method="POST" action="{{route('objetivo.forum.mensagem.enviar')}}">
@@ -84,8 +84,10 @@
 								<div style="text-align: right; width: 80%; margin-left: 20%" id='user-message'>
 									<div class="panel panel-default">
 										<div class="panel-body" style="background-color: #bbffad">
-											{{$mensagem->texto}}<br>
-											{{$mensagem->created_at->format('d/m/y h:i')}}<br>
+                      <div class="hifen">
+                        {{$mensagem->texto}}<br>
+                        {{$mensagem->created_at->format('d/m/y h:i')}}<br>
+                      </div>
 										</div>
 									</div>
 								</div>
@@ -93,23 +95,24 @@
 								<div style="text-align: left; width: 80%" id='others-message'>
 									<div class="panel panel-default">
 										<div class="panel-body" style="background-color: #adbaff">
-											<strong>{{$mensagem->user->name}}:</strong><br>
-											{{$mensagem->texto}}<br>
-											{{$mensagem->created_at->format('d/m/y h:i')}}<br>
+                      <div class="hifen">
+                        <strong>{{$mensagem->user->name}}:</strong><br>
+                        {{$mensagem->texto}}<br>
+                        {{$mensagem->created_at->format('d/m/y h:i')}}<br>
+                      </div>
 										</div>
 									</div>
 								</div>
 							@endif
 						@endforeach
 					</div>
+				</div>
 
-          <div class="text-center">
-            <a class="btn btn-primary" href="{{route('objetivo.forum',['aluno' => $objetivo->aluno->id, 'objetivo' => $objetivo->id])."#forum"}}">Todas as Mensagens</a>
-          </div>
-        </div>
+				<div class="text-center">
+					<a class="btn btn-primary" href="{{route('objetivo.forum',['aluno' => $objetivo->aluno->id, 'objetivo' => $objetivo->id])."#forum"}}">Todas as Mensagens</a>
+			  </div>
       </div>
     </div>
-
 	</div>
 </div>
 @endsection
