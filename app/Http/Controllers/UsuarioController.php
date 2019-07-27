@@ -45,6 +45,78 @@ class UsuarioController extends Controller
     $user->update();
 
     return redirect()->route("aluno.listar")->with('success','Seu cadastro está completo!.');
+  }
 
+  public function editar(){
+    $usuario = \Auth::user();
+
+    return view("usuario.editar", ['usuario' => $usuario]);
+  }
+
+  public function editarSenha(){
+    return view('usuario.editarSenha');
+  }
+
+  public static function atualizar(Request $request){
+    $usuario = \Auth::user();
+
+    $validator = Validator::make($request->all(), [
+      'email' => 'nullable|string|email|max:255',
+      'username' => 'required|string|max:255',
+      'telefone' => 'required|numeric',
+      'name' => 'required|string|max:255',
+      'senha' => 'required'
+    ]);
+
+    $validator->sometimes('username', 'unique:users', function ($request) use ($usuario){
+      return $request->username != $usuario->username;
+    });
+
+    $validator->sometimes('email', 'unique:users', function ($request) use ($usuario){
+      return $request->email != $usuario->email;
+    });
+
+    if($validator->fails()){
+      return redirect()->back()->withErrors($validator->errors())->withInput();
+    }
+
+    if (!(Hash::check($request->senha, $usuario->password))){
+      return redirect()->back()->with('fail','Senha incorreta.');
+    }
+
+    $usuario->name = $request->name;
+    $usuario->username = $request->username;
+    $usuario->email = $request->email;
+    $usuario->telefone = $request->telefone;
+
+    $usuario->update();
+
+    return redirect()->route("aluno.listar")->with('success','Seus dados foram atualizados!');
+  }
+
+
+  public static function atualizarSenha(Request $request){
+    $usuario = \Auth::user();
+
+    if (!(Hash::check($request->senha_atual, $usuario->password))){
+      return redirect()->back()->with('fail','Senha atual incorreta.');
+    }
+
+    if ($request->nova_senha != $request->nova_senha_confirm){
+      return redirect()->back()->with('fail','Nova senha e confirmação são diferentes.');
+    }
+
+    $validator = Validator::make($request->all(), [
+      'nova_senha' => 'min:6|max:16'
+    ]);
+
+    if($validator->fails()){
+      return redirect()->back()->withErrors($validator->errors())->withInput();
+    }
+
+    $usuario->password = bcrypt($request->nova_senha);
+    $usuario->update();
+
+    return redirect()->route("aluno.listar")->with('success','Sua senha foi atualizada!');
   }
 }

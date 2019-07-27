@@ -29,6 +29,11 @@ Route::middleware('autorizacao')->group(function() {
   //Rotas para usuario
   Route::get('/usuario/completarCadastro', 'UsuarioController@completarCadastro')->name('usuario.completarCadastro');
   Route::post('/usuario/completar', 'UsuarioController@completar')->name('usuario.completar');
+  //novas
+  Route::get('/usuario/editar', 'UsuarioController@editar')->name('usuario.editar');
+  Route::post('/usuario/atualizar', 'UsuarioController@atualizar')->name('usuario.atualizar');
+  Route::get('/usuario/editarSenha', 'UsuarioController@editarSenha')->name('usuario.editarSenha');
+  Route::post('/usuario/atualizarSenha', 'UsuarioController@atualizarSenha')->name('usuario.atualizarSenha');
 
   //Rotas para alunos
   Route::get('/aluno/cadastrar', 'AlunoController@cadastrar')->name('aluno.cadastrar');
@@ -82,7 +87,7 @@ Route::middleware('autorizacao')->group(function() {
   Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/status/cadastrar','StatusController@cadastrar')->name('objetivo.status.cadastrar');
   Route::post('/aluno/objetivos/status/criar', 'StatusController@criar')->name('objetivo.status.criar');
 
-  //Rotas para albuns
+  //Rotas para albuns //novas
   Route::get('/aluno/{id_aluno}/albuns/listar', 'AlbumController@listar')->name('album.listar');
   Route::get('/aluno/{id_aluno}/albuns/{id_album}/ver', 'AlbumController@ver')->name('album.ver');
   Route::get('/aluno/{id_aluno}/albuns/cadastrar', 'AlbumController@cadastrar')->name('album.cadastrar');
@@ -91,6 +96,7 @@ Route::middleware('autorizacao')->group(function() {
   //Instituição
   Route::get('/instituicao/cadastrar', 'InstituicaoController@cadastrar')->name('instituicao.cadastrar');
   Route::post('/instituicao/criar', 'InstituicaoController@criar')->name('instituicao.criar');
+  //novas
   Route::get('/instituicao/listar', 'InstituicaoController@listar')->name('instituicao.listar');
   Route::get('/instituicao/{id_instituicao}/editar', 'InstituicaoController@editar')->name('instituicao.editar');
   Route::get('/instituicao/{id_instituicao}/excluir', 'InstituicaoController@excluir')->name('instituicao.excluir');

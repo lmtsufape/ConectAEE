@@ -47,7 +47,7 @@
             @if(Auth::check() && Auth::user()->cadastrado)
               <li class="dropdown">
                   <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                      Aluno <span class="caret"></span>
+                      Alunos <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu" role="menu">
                       <li>
@@ -64,7 +64,7 @@
               </li>
               <li class="dropdown">
                   <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                      Instituição <span class="caret"></span>
+                      Instituições <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu" role="menu">
                       <li>
@@ -138,6 +138,11 @@
                         {{\Auth::user()->name}} <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="{{ route('usuario.editar') }}">
+                                Meus Dados
+                            </a>
+                        </li>
                         <li>
                             <a href="{{ route('logout') }}"
                                 onclick="event.preventDefault();

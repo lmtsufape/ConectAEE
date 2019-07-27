@@ -8,8 +8,8 @@
 @endsection
 @section('content')
 <div class="container">
-	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
+	<div class="row col-md-offset-1">
+		<div class="col-md-6">
 			<div class="panel panel-default">
 			  <div class="panel-heading">Objetivo: <strong>{{$objetivo->titulo}}</strong></div>
 
@@ -40,29 +40,34 @@
 			  </div>
 
         <div class="panel-footer">
+          <a class="btn btn-danger" href="{{route('objetivo.listar',$aluno->id)}}">Voltar</a>
+
 				  <a class="btn btn-primary" href={{ route("objetivo.atividades.listar", ["id_objetivo" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Atividades</a>
 				  <a class="btn btn-primary" href={{ route("objetivo.sugestoes.listar", ["id_objetivo" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Sugestões</a>
 					<a class="btn btn-primary" href={{ route("objetivo.status.cadastrar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Status</a>
 
 					@if($objetivo->user->id == \Auth::user()->id && $objetivo->concluido == false)
-						<a class="btn btn-success" style = "margin-left: 350px; " href={{ route("objetivo.concluir" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Concluir</a>
+						<a class="btn btn-success" href={{ route("objetivo.concluir" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Concluir</a>
 					@elseif($objetivo->user->id == \Auth::user()->id && $objetivo->concluido == true)
-						<a class="btn btn-danger" style = "margin-left: 330px; " href={{ route("objetivo.desconcluir" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Desconcluir</a>
+						<a class="btn btn-danger" href={{ route("objetivo.desconcluir" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Desconcluir</a>
 					@endif
 			  </div>
 			</div>
-
+    </div>
+    <div class="col-md-4">
 		  <div class="panel panel-default">
 
-				<div class="panel-heading">Fórum do objetivo: {{$objetivo->titulo}} | <a class="btn btn-primary" href="{{route('objetivo.forum',['aluno' => $objetivo->aluno->id, 'objetivo' => $objetivo->id])."#forum"}}">Todas as Mensagens</a></div>
+				<div class="panel-heading">
+          Fórum do objetivo: {{$objetivo->titulo}}
+        </div>
 
         <div class="panel-body">
 					<form class="form-horizontal" method="POST" action="{{route('objetivo.forum.mensagem.enviar')}}">
 						@csrf
 						<input name="forum_id" type="text" value="{{$objetivo->forum->id}}" hidden>
 						<div style="margin: 1%" class="form-group">
-							<input name="mensagem" style="width:80%; display: inline" class="form-control" type="text">
-							<button style="width:18%" type="submit" class="btn btn-success">Enviar</button>
+							<input name="mensagem" style="width:75%; display: inline" class="form-control" type="text">
+							<button style="width:23%" type="submit" class="btn btn-success">Enviar</button>
 				  	</div>
 					</form>
 				</div>
@@ -92,7 +97,12 @@
 							@endif
 						@endforeach
 					</div>
-				</div>
+
+          <div class="text-center">
+            <a class="btn btn-primary" href="{{route('objetivo.forum',['aluno' => $objetivo->aluno->id, 'objetivo' => $objetivo->id])."#forum"}}">Todas as Mensagens</a></div>
+          </div>
+
+        </div>
 
 		  </div>
 		</div>
