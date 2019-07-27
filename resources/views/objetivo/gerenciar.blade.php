@@ -6,12 +6,16 @@
  > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
  > <strong>{{$objetivo->titulo}}</strong>
 @endsection
+
 @section('content')
 <div class="container">
 	<div class="row col-md-offset-1">
-		<div class="col-md-6">
+
+    <div class="col-md-6">
 			<div class="panel panel-default">
-			  <div class="panel-heading">Objetivo: <strong>{{$objetivo->titulo}}</strong></div>
+			  <div class="panel-heading">
+          Objetivo: <strong>{{$objetivo->titulo}}</strong>
+        </div>
 
         <div class="panel-body">
 					<div class="form-group">
@@ -54,6 +58,7 @@
 			  </div>
 			</div>
     </div>
+
     <div class="col-md-4">
 		  <div class="panel panel-default">
 
@@ -99,13 +104,12 @@
 					</div>
 
           <div class="text-center">
-            <a class="btn btn-primary" href="{{route('objetivo.forum',['aluno' => $objetivo->aluno->id, 'objetivo' => $objetivo->id])."#forum"}}">Todas as Mensagens</a></div>
+            <a class="btn btn-primary" href="{{route('objetivo.forum',['aluno' => $objetivo->aluno->id, 'objetivo' => $objetivo->id])."#forum"}}">Todas as Mensagens</a>
           </div>
-
         </div>
+      </div>
+    </div>
 
-		  </div>
-		</div>
 	</div>
 </div>
 @endsection
