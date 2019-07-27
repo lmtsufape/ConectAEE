@@ -9,7 +9,7 @@
 
 @section('content')
 <div class="container">
-	<div class="row flex col-md-offset-1">
+	<div id="painel" class="row flex col-md-offset-1">
     <div class="col-md-6">
 			<div class="panel panel-default">
 
@@ -43,7 +43,7 @@
 					</div>
 				</div>
 
-        <div class="panel-footer">
+        <div class="panel-footer" style="background-color: white;">
 	        <a class="btn btn-danger" href="{{route('objetivo.listar',$aluno->id)}}">Voltar</a>
 
 					<a class="btn btn-primary" href={{ route("objetivo.atividades.listar", ["id_objetivo" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Atividades</a>
@@ -116,4 +116,15 @@
     </div>
 	</div>
 </div>
+
+<script type="text/javascript">
+
+	var width = screen.width;
+
+	if (width <= 1000){
+		document.getElementById("painel").className = "row col-md-offset-1";
+	}
+
+</script>
+
 @endsection

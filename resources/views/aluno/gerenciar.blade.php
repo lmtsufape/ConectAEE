@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="container">
-	<div class="row flex col-md-offset-1">
+	<div id="painel" class="row flex col-md-offset-1">
 		<div class="col-md-6">
 			<div class="panel panel-default">
 			  <div class="panel-heading">Gerenciamento de <strong>{{$aluno->nome}}</strong></div>
@@ -85,7 +85,7 @@
 
 				</div>
 
-				<div class="panel-footer">
+				<div class="panel-footer" style="background-color: white;">
 					<a class="btn btn-danger" href="{{ route("aluno.listar")}}">Voltar</a>
 
 					@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
@@ -162,4 +162,15 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+
+	var width = screen.width;
+
+	if (width <= 1000){
+		document.getElementById("painel").className = "row col-md-offset-1";
+	}
+
+</script>
+
 @endsection
