@@ -16,7 +16,7 @@
         <div class="panel-body">
             <form class="form-horizontal" method="POST" action="{{ route("instituicao.criar") }}">
                 {{ csrf_field() }}
-                
+
                 <input type="hidden" name="rota" value="{{URL::previous()}}">
 
                 <font size="4" class="row" >
@@ -146,7 +146,6 @@
 
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
-                        <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
                         <button type="submit" class="btn btn-success">
                             Cadastrar
                         </button>
@@ -154,6 +153,11 @@
                 </div>
             </form>
         </div>
+
+        <div class="panel-footer">
+          <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
+        </div>
+
       </div>
     </div>
   </div>

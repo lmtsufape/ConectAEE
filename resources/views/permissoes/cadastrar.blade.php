@@ -11,16 +11,18 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <div class="panel panel-default">
+
         <div class="panel-heading">Novo Gerenciador</div>
-          @if (\Session::has('Fail'))
+
+        <div class="panel-body">
+            @if (\Session::has('Fail'))
             <br>
             <div class="alert alert-danger">
               <strong>Erro!</strong>
               {!! \Session::get('Fail') !!}
             </div>
-          @endif
-        </div>
-        <div class="panel-body">
+            @endif
+
             <form class="form-horizontal" autocomplete="off" method="POST" action="{{ route("aluno.permissoes.criar") }}">
                 {{ csrf_field() }}
 
@@ -96,13 +98,16 @@
 
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-4">
-                        <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
                         <button type="submit" class="btn btn-success">
                             Cadastrar
                         </button>
                     </div>
                 </div>
             </form>
+        </div>
+
+        <div class="panel-footer">
+          <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
         </div>
       </div>
     </div>

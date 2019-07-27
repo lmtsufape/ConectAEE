@@ -19,6 +19,7 @@
     <div class="col-md-10 col-md-offset-1">
       <div class="panel panel-default">
         <div class="panel-heading">Feedbacks de <strong>{{$sugestao->titulo}}</strong></div>
+
         <div class="panel-body">
             <form class="form-horizontal" method="POST" action="{{ route("objetivo.sugestoes.feedbacks.criar") }}">
                 {{ csrf_field() }}
@@ -44,11 +45,14 @@
 
                 <div class="form-group">
                   <div class="col-md-6 col-md-offset-4">
-                      <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
                       <input value="Enviar" type="submit" class="btn btn-success">
                    </div>
                 </div>
             </form>
+        </div>
+
+        <div class="panel-footer">
+          <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
         </div>
       </div>
     </div>

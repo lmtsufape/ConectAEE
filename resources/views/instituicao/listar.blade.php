@@ -25,11 +25,15 @@
             <table id="tabela_dados" class="table table-hover">
               <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Telefone</th>
-                    <th>Email</th>
-                    <th>Endereço</th>
-                    <th colspan="2">Ação</th>
+                  <th rowspan="2">Nome</th>
+                  <th rowspan="2">Telefone</th>
+                  <th rowspan="2">Email</th>
+                  <th rowspan="2">Endereço</th>
+                  <th colspan="2">Ações</th>
+                </tr>
+                <tr style="display:none">
+                    <th></th>
+                    <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -47,10 +51,10 @@
         								$instituicao->endereco->estado;
         							?>
                     </td>
-                    <td data-title="Ação">
+                    <td data-title="Ações">
                       <a class="btn btn-success" href="{{ route("instituicao.editar" , ['id_instituicao' => $instituicao->id]) }}">Editar</a>
                     </td>
-                    <td data-title="Ação">
+                    <td data-title="Açõess">
                       <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da instituicao {{$instituicao->nome}}?')" href="{{ route("instituicao.excluir" , ['id_instituicao' => $instituicao->id]) }}">
                         Excluir
                       </a>
