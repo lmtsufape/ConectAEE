@@ -32,7 +32,7 @@
           <div class="row" align="center">
             @foreach ($fotos as $foto)
             <button class="btn btn-info" type="button" onclick="show('{{$foto->id}}')" data-toggle="modal" data-target="#ModalCarousel">
-              <img src="{{$foto->imagem}}" style="width:200px; height: 200px;">
+              <img src="{{$foto->imagem}}" style="width:200px; height: 200px; object-fit: cover;">
             </button>
             &nbsp;
             @endforeach

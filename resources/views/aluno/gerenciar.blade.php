@@ -18,15 +18,16 @@
 						$gerenciars = $aluno->gerenciars;
 					@endphp
 
-					<div style="width: 100%; margin-left: 0%" class="row">
-						<div style="width: 50%; float: left" class="column col-md-8">
-							@if($aluno->imagem != null)
-							<img src="{{$aluno->imagem}}" height="220" width="220" >
-							<br/>
-							@endif
-						</div>
-						<div style="width: 50%; float: left" class="column col-md-8">
+					<div class="row-md-6">
 
+							<div class="text-center">
+								@if($aluno->imagem != null)
+									<img style="object-fit: cover;" src="{{$aluno->imagem}}" height="256" width="256" >
+									<br/>
+								@endif
+							</div>
+
+							<hr>
 							<?php
 								foreach($gerenciars as $gerenciar){
 									if($gerenciar->user->id == \Auth::user()->id && $gerenciar->isAdministrador){
@@ -79,7 +80,7 @@
 								<strong>Observações:</strong> {{$aluno->observacao}}
 								<br/>
 							@endif
-						</div>
+
 
 					</div>
 
