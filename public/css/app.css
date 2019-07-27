@@ -49,6 +49,15 @@
   padding-bottom: 2.3rem;    /* Footer height */
 }
 
+div.hifen {
+ -webkit-hyphens: auto;
+ -moz-hyphens: auto;
+ -ms-hyphens: auto;
+ hyphens: auto;
+ width:100%;
+ word-wrap: break-word;
+}
+
 .card-header {
     background-color: #1B2E4F;
     color: white;

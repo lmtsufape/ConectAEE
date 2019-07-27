@@ -40,8 +40,10 @@
 								<div style="text-align: right; width: 80%; margin-left: 20%" id='user-message'>
 									<div class="panel panel-default">
 										<div style="background-color: #bbffad" class="panel-body">
-											{{$mensagem->texto}}<br>
-											{{$mensagem->created_at->format('d/m/y h:i')}}<br>
+                      <div class="hifen">
+                        {{$mensagem->texto}}<br>
+                        {{$mensagem->created_at->format('d/m/y h:i')}}<br>
+                      </div>
 										</div>
 									</div>
 								</div>
@@ -49,9 +51,11 @@
 								<div style="text-align: left; width: 80%" id='others-message'>
 									<div class="panel panel-default">
 										<div style="background-color: #adbaff" class="panel-body">
-											<strong>{{$mensagem->user->name}}:</strong><br>
-											{{$mensagem->texto}}<br>
-											{{$mensagem->created_at->format('d/m/y h:i')}}<br>
+                      <div class="hifen">
+                        <strong>{{$mensagem->user->name}}:</strong><br>
+                        {{$mensagem->texto}}<br>
+                        {{$mensagem->created_at->format('d/m/y h:i')}}<br>
+                      </div>
 										</div>
 									</div>
 								</div>
