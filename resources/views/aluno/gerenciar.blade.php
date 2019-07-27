@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="container">
-	<div class="row col-md-offset-1">
+	<div class="row flex col-md-offset-1">
 		<div class="col-md-6">
 			<div class="panel panel-default">
 			  <div class="panel-heading">Gerenciamento de <strong>{{$aluno->nome}}</strong></div>
@@ -99,8 +99,8 @@
 		</div>
 
 		<div class="col-md-5">
-			<div class="panel panel-default">
-				<div id="forum" class="panel-heading">
+			<div class="panel panel-default" style="width:100%">
+				<div class="panel-heading" id="forum" >
 					<div class="card-title text-center">
 						Fórum
 					</div>
@@ -125,7 +125,7 @@
 				</div>
 
 				<div class="panel-footer">
-					<div class="form-group">
+
 						@foreach($mensagens as $mensagem)
 							@if($mensagem->user_id == \Auth::user()->id)
 								<div style="text-align: right; width: 80%; margin-left: 20%" id='user-message'>
@@ -152,11 +152,11 @@
 								</div>
 							@endif
 						@endforeach
-					</div>
 
-					<div class="text-center">
-						<a style="text-align: center" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary">Ver todas as mensagens</a>
-					</div>
+						<div class="text-center">
+							<a style="text-align: center" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary">Ver todas as mensagens</a>
+						</div>
+
 				</div>
 			</div>
 		</div>

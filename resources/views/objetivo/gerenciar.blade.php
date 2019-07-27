@@ -9,7 +9,7 @@
 
 @section('content')
 <div class="container">
-	<div class="row col-md-offset-1">
+	<div class="row flex col-md-offset-1">
     <div class="col-md-6">
 			<div class="panel panel-default">
 
@@ -60,7 +60,7 @@
     </div>
 
     <div class="col-md-5">
-	  	<div class="panel panel-default">
+	  	<div class="panel panel-default" style="width:100%">
 
 				<div class="panel-heading">
           Fórum do objetivo: {{$objetivo->titulo}}
@@ -106,11 +106,12 @@
 							@endif
 						@endforeach
 					</div>
+
+          <div class="text-center">
+            <a class="btn btn-primary" href="{{route('objetivo.forum',['aluno' => $objetivo->aluno->id, 'objetivo' => $objetivo->id])."#forum"}}">Todas as Mensagens</a>
+          </div>
 				</div>
 
-				<div class="text-center">
-					<a class="btn btn-primary" href="{{route('objetivo.forum',['aluno' => $objetivo->aluno->id, 'objetivo' => $objetivo->id])."#forum"}}">Todas as Mensagens</a>
-			  </div>
       </div>
     </div>
 	</div>

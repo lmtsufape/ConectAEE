@@ -58,6 +58,15 @@ div.hifen {
  word-wrap: break-word;
 }
 
+.flex, .flex > div[class*='col-'] {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex:1 0 auto;
+}
+
 .card-header {
     background-color: #1B2E4F;
     color: white;
