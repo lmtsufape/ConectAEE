@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="container">
-	<div class="row col-md-offset-1">
+	<div id="painel" class="row flex col-md-offset-1">
 		<div class="col-md-6">
 			<div class="panel panel-default">
 			  <div class="panel-heading">Gerenciamento de <strong>{{$aluno->nome}}</strong></div>
@@ -18,76 +18,74 @@
 						$gerenciars = $aluno->gerenciars;
 					@endphp
 
-					<div style="width: 100%; margin-left: 0%" class="row">
-						<div style="width: 50%; float: left" class="column col-md-8">
+					<div class="row-md-6">
+						<div class="text-center">
 							@if($aluno->imagem != null)
-							<img src="{{$aluno->imagem}}" height="220" width="220" >
-							<br/>
-							@endif
-						</div>
-						<div style="width: 50%; float: left" class="column col-md-8">
-
-							<?php
-								foreach($gerenciars as $gerenciar){
-									if($gerenciar->user->id == \Auth::user()->id && $gerenciar->isAdministrador){
-							?>
-										<strong>Código:</strong> {{$aluno->codigo}}
-										<br/>
-							<?php
-										break;
-									}
-								}
-							?>
-
-							<strong>Nome:</strong> {{$aluno->nome}}
-							<br/>
-							<strong>Sexo:</strong> {{$aluno->sexo}}
-							<br/>
-							<strong>Data de Nascimento:</strong> {{$aluno->data_de_nascimento}}
-							<br/>
-							<strong>Endereço:</strong>
-
-							<?php
-								echo $aluno->endereco->logradouro, ", ",
-								$aluno->endereco->numero, ", ",
-								$aluno->endereco->bairro, ", ",
-								$aluno->endereco->cidade, " - ",
-								$aluno->endereco->estado;
-							?>
-
-							<hr>
-							<strong>Instituição(ões):</strong>
-							<br/>
-
-							<?php
-								foreach ($aluno->instituicoes as $instituicao) {
-								    echo ($instituicao->nome."<br/>");
-								}
-							?>
-							<hr>
-
-							@if($aluno->cid != null)
-								<strong>CID:</strong> {{$aluno->cid}}
-								<br/>
-								<strong>Descrição CID:</strong> {{$aluno->descricao_cid}}
-								<br/>
-							@endif
-
-							<hr>
-
-							@if($aluno->observacao != null)
-								<strong>Observações:</strong> {{$aluno->observacao}}
+								<img style="object-fit: cover;" src="{{$aluno->imagem}}" height="256" width="256" >
 								<br/>
 							@endif
 						</div>
 
+						<hr>
+						<?php
+							foreach($gerenciars as $gerenciar){
+								if($gerenciar->user->id == \Auth::user()->id && $gerenciar->isAdministrador){
+						?>
+									<strong>Código:</strong> {{$aluno->codigo}}
+									<br/>
+						<?php
+									break;
+								}
+							}
+						?>
+
+						<strong>Nome:</strong> {{$aluno->nome}}
+						<br/>
+						<strong>Sexo:</strong> {{$aluno->sexo}}
+						<br/>
+						<strong>Data de Nascimento:</strong> {{$aluno->data_de_nascimento}}
+						<br/>
+						<strong>Endereço:</strong>
+
+						<?php
+							echo $aluno->endereco->logradouro, ", ",
+							$aluno->endereco->numero, ", ",
+							$aluno->endereco->bairro, ", ",
+							$aluno->endereco->cidade, " - ",
+							$aluno->endereco->estado;
+						?>
+
+						<hr>
+						<strong>Instituição(ões):</strong>
+						<br/>
+
+						<?php
+							foreach ($aluno->instituicoes as $instituicao) {
+							    echo ($instituicao->nome."<br/>");
+							}
+						?>
+						<hr>
+
+						@if($aluno->cid != null)
+							<strong>CID:</strong> {{$aluno->cid}}
+							<br/>
+							<strong>Descrição CID:</strong> {{$aluno->descricao_cid}}
+							<br/>
+						@endif
+
+						<hr>
+
+						@if($aluno->observacao != null)
+							<strong>Observações:</strong> {{$aluno->observacao}}
+							<br/>
+						@endif
 					</div>
 
 					<br/>
 
 				</div>
 
-				<div class="panel-footer">
+				<div class="panel-footer" style="background-color: white;">
 					<a class="btn btn-danger" href="{{ route("aluno.listar")}}">Voltar</a>
 
 					@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
@@ -100,9 +98,9 @@
 			</div>
 		</div>
 
-		<div class="col-md-4">
-			<div class="panel panel-default">
-				<div id="forum" class="panel-heading">
+		<div class="col-md-5">
+			<div class="panel panel-default" style="width:100%">
+				<div class="panel-heading" id="forum" >
 					<div class="card-title text-center">
 						Fórum
 					</div>
@@ -127,14 +125,16 @@
 				</div>
 
 				<div class="panel-footer">
-					<div class="form-group">
+
 						@foreach($mensagens as $mensagem)
 							@if($mensagem->user_id == \Auth::user()->id)
 								<div style="text-align: right; width: 80%; margin-left: 20%" id='user-message'>
 									<div class="panel panel-default">
 										<div style="background-color: #bbffad" class="panel-body">
-											{{$mensagem->texto}}<br>
-											{{$mensagem->created_at->format('d/m/y h:i')}}<br>
+											<div class="hifen">
+												{{$mensagem->texto}}<br>
+												{{$mensagem->created_at->format('d/m/y h:i')}}<br>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -142,22 +142,35 @@
 								<div style="text-align: left; width: 80%" id='others-message'>
 									<div class="panel panel-default">
 										<div style="background-color: #adbaff" class="panel-body">
-											<strong>{{$mensagem->user->name}}:</strong><br>
-											{{$mensagem->texto}}<br>
-											{{$mensagem->created_at->format('d/m/y h:i')}}<br>
+											<div class="hifen">
+												<strong>{{$mensagem->user->name}}:</strong><br>
+												{{$mensagem->texto}}<br>
+												{{$mensagem->created_at->format('d/m/y h:i')}}<br>
+											</div>
 										</div>
 									</div>
 								</div>
 							@endif
 						@endforeach
-					</div>
 
-					<div class="text-center">
-						<a style="text-align: center" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary">Ver todas as mensagens</a>
-					</div>
+						<div class="text-center">
+							<a style="text-align: center" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary">Ver todas as mensagens</a>
+						</div>
+
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+
+	var width = screen.width;
+
+	if (width <= 1000){
+		document.getElementById("painel").className = "row col-md-offset-1";
+	}
+
+</script>
+
 @endsection

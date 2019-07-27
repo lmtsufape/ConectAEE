@@ -32,6 +32,41 @@
     background-color: #1B2E4F;
 }
 
+#footer-brasil {
+   background: none repeat scroll 0% 0% #1B2E4F;
+   min-width: 100%;
+   position: absolute;
+   bottom: 0;
+   width: 100%;
+}
+
+#page-container {
+  position: relative;
+  min-height: 70vh;
+}
+
+#content-wrap {
+  padding-bottom: 2.3rem;    /* Footer height */
+}
+
+div.hifen {
+ -webkit-hyphens: auto;
+ -moz-hyphens: auto;
+ -ms-hyphens: auto;
+ hyphens: auto;
+ width:100%;
+ word-wrap: break-word;
+}
+
+.flex, .flex > div[class*='col-'] {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex:1 0 auto;
+}
+
 .card-header {
     background-color: #1B2E4F;
     color: white;

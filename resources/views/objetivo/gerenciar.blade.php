@@ -6,12 +6,16 @@
  > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
  > <strong>{{$objetivo->titulo}}</strong>
 @endsection
+
 @section('content')
 <div class="container">
-	<div class="row col-md-offset-1">
-		<div class="col-md-6">
+	<div id="painel" class="row flex col-md-offset-1">
+    <div class="col-md-6">
 			<div class="panel panel-default">
-			  <div class="panel-heading">Objetivo: <strong>{{$objetivo->titulo}}</strong></div>
+
+  			<div class="panel-heading">
+          Objetivo: <strong>{{$objetivo->titulo}}</strong>
+        </div>
 
         <div class="panel-body">
 					<div class="form-group">
@@ -37,13 +41,13 @@
 							| {{ $statusObjetivo->status->status }} {{ $statusObjetivo->data}}
 						@endforeach
 					</div>
-			  </div>
+				</div>
 
-        <div class="panel-footer">
-          <a class="btn btn-danger" href="{{route('objetivo.listar',$aluno->id)}}">Voltar</a>
+        <div class="panel-footer" style="background-color: white;">
+	        <a class="btn btn-danger" href="{{route('objetivo.listar',$aluno->id)}}">Voltar</a>
 
-				  <a class="btn btn-primary" href={{ route("objetivo.atividades.listar", ["id_objetivo" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Atividades</a>
-				  <a class="btn btn-primary" href={{ route("objetivo.sugestoes.listar", ["id_objetivo" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Sugestões</a>
+					<a class="btn btn-primary" href={{ route("objetivo.atividades.listar", ["id_objetivo" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Atividades</a>
+					<a class="btn btn-primary" href={{ route("objetivo.sugestoes.listar", ["id_objetivo" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Sugestões</a>
 					<a class="btn btn-primary" href={{ route("objetivo.status.cadastrar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Status</a>
 
 					@if($objetivo->user->id == \Auth::user()->id && $objetivo->concluido == false)
@@ -51,15 +55,16 @@
 					@elseif($objetivo->user->id == \Auth::user()->id && $objetivo->concluido == true)
 						<a class="btn btn-danger" href={{ route("objetivo.desconcluir" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Desconcluir</a>
 					@endif
-			  </div>
+				</div>
 			</div>
     </div>
-    <div class="col-md-4">
-		  <div class="panel panel-default">
+
+    <div class="col-md-5">
+	  	<div class="panel panel-default" style="width:100%">
 
 				<div class="panel-heading">
           Fórum do objetivo: {{$objetivo->titulo}}
-        </div>
+		    </div>
 
         <div class="panel-body">
 					<form class="form-horizontal" method="POST" action="{{route('objetivo.forum.mensagem.enviar')}}">
@@ -78,19 +83,23 @@
 							@if($mensagem->user_id == \Auth::user()->id)
 								<div style="text-align: right; width: 80%; margin-left: 20%" id='user-message'>
 									<div class="panel panel-default">
-										<div style="background-color: #bbffad" class="panel-body">
-											{{$mensagem->texto}}<br>
-											{{$mensagem->created_at->format('d/m/y h:i')}}<br>
+										<div class="panel-body" style="background-color: #bbffad">
+                      <div class="hifen">
+                        {{$mensagem->texto}}<br>
+                        {{$mensagem->created_at->format('d/m/y h:i')}}<br>
+                      </div>
 										</div>
 									</div>
 								</div>
 							@else
 								<div style="text-align: left; width: 80%" id='others-message'>
 									<div class="panel panel-default">
-										<div style="background-color: #adbaff" class="panel-body">
-											<strong>{{$mensagem->user->name}}:</strong><br>
-											{{$mensagem->texto}}<br>
-											{{$mensagem->created_at->format('d/m/y h:i')}}<br>
+										<div class="panel-body" style="background-color: #adbaff">
+                      <div class="hifen">
+                        <strong>{{$mensagem->user->name}}:</strong><br>
+                        {{$mensagem->texto}}<br>
+                        {{$mensagem->created_at->format('d/m/y h:i')}}<br>
+                      </div>
 										</div>
 									</div>
 								</div>
@@ -99,13 +108,23 @@
 					</div>
 
           <div class="text-center">
-            <a class="btn btn-primary" href="{{route('objetivo.forum',['aluno' => $objetivo->aluno->id, 'objetivo' => $objetivo->id])."#forum"}}">Todas as Mensagens</a></div>
+            <a class="btn btn-primary" href="{{route('objetivo.forum',['aluno' => $objetivo->aluno->id, 'objetivo' => $objetivo->id])."#forum"}}">Todas as Mensagens</a>
           </div>
+				</div>
 
-        </div>
-
-		  </div>
-		</div>
+      </div>
+    </div>
 	</div>
 </div>
+
+<script type="text/javascript">
+
+	var width = screen.width;
+
+	if (width <= 1000){
+		document.getElementById("painel").className = "row col-md-offset-1";
+	}
+
+</script>
+
 @endsection

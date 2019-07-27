@@ -52,7 +52,7 @@
                         <a href="{{route('album.ver', ['id_aluno'=>$aluno->id, 'id_album'=>$album->id])}}" style="text-decoration:none">
                           <div class="card text-center" style="width:200px">
                             <div class="card-body">
-                              <img class="card-img-top" src="{{$album->fotos[0]->imagem}}" style="width:200px; height:200px">
+                              <img class="card-img-top" src="{{$album->fotos[0]->imagem}}" style="width:200px; height:200px; object-fit: cover;">
                               <h2 class="card-title">{{$album->nome}}</h2>
                               <p class="card-text">{{$album->descricao}}</p>
                             </div>
