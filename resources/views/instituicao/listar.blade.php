@@ -25,16 +25,14 @@
             <table id="tabela_dados" class="table table-hover">
               <thead>
                 <tr>
-                  <th rowspan="2">Nome</th>
-                  <th rowspan="2">Telefone</th>
-                  <th rowspan="2">Email</th>
-                  <th rowspan="2">Endereço</th>
-                  <th colspan="2">Ações</th>
-                </tr>
-                <tr style="display:none">
-                  <th></th>
+                  <th >Nome</th>
+                  <th >Telefone</th>
+                  <th >Email</th>
+                  <th >Endereço</th>
+                  <th >Ações</th>
                   <th></th>
                 </tr>
+
               </thead>
               <tbody>
                 @foreach ($instituicoes as $instituicao)
@@ -52,7 +50,7 @@
                     ?>
                   </td>
                   <td data-title="Ações">
-                    <a class="btn btn-success" href="{{ route("instituicao.editar" , ['id_instituicao' => $instituicao->id]) }}">Editar</a>
+                    <a class="btn btn-primary" href="{{ route("instituicao.editar" , ['id_instituicao' => $instituicao->id]) }}">Editar</a>
                   </td>
                   <td data-title="Ações">
                     <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da instituicao {{$instituicao->nome}}?')" href="{{ route("instituicao.excluir" , ['id_instituicao' => $instituicao->id]) }}">
@@ -83,7 +81,8 @@ $(document).ready( function () {
       "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
     },
     "columnDefs": [
-      { "orderable": false, "targets": 4 }
+      { "orderable": false, "targets": 4 },
+      { "orderable": false, "targets": 5 }
     ]
   });
 

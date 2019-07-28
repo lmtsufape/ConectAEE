@@ -23,50 +23,50 @@
 
             @if(count($instituicoes) != 0)
 
-            <div class="form-group{{ $errors->has('instituicoes') ? ' has-error' : '' }}">
-              <label for="instituicoes" class="col-md-4 control-label">Instituição(ões) <font color="red">*</font> </label>
-              <div class="col-md-6">
+              <div class="form-group{{ $errors->has('instituicoes') ? ' has-error' : '' }}">
+                <label for="instituicoes" class="col-md-4 control-label">Instituição(ões) <font color="red">*</font> </label>
+                <div class="col-md-6">
 
-                <select class="form-control js-example-basic-multiple" name="instituicoes[]" multiple="multiple" autofocus>
-                  @foreach ($instituicoes as $instituicao)
-                  @if(old("instituicoes.0") != null )
-                  <?php
-                  for ($i=0; $i < count($instituicoes) ; $i++) {
-                    if (old("instituicoes.".$i) == $instituicao->id) {
-                      ?>
-                      <option value="{{$instituicao->id}}" selected> {{$instituicao->nome}}, {{ $instituicao->endereco->logradouro }}, {{ $instituicao->endereco->cidade }} - {{ $instituicao->endereco->estado }} </option>
-                      <?php
-                    }
-                  }
-                  ?>
-                  @else
-                  <option value="{{$instituicao->id}}">{{$instituicao->nome}}, {{ $instituicao->endereco->logradouro }}, {{ $instituicao->endereco->cidade }} - {{ $instituicao->endereco->estado }} </option>
+                  <select class="form-control js-example-basic-multiple" name="instituicoes[]" multiple="multiple" autofocus>
+                    @foreach ($instituicoes as $instituicao)
+                      @if(old("instituicoes.0") != null )
+                        <?php
+                        for ($i=0; $i < count($instituicoes) ; $i++) {
+                          if (old("instituicoes.".$i) == $instituicao->id) {
+                            ?>
+                            <option value="{{$instituicao->id}}" selected> {{$instituicao->nome}}, {{ $instituicao->endereco->logradouro }}, {{ $instituicao->endereco->cidade }} - {{ $instituicao->endereco->estado }} </option>
+                            <?php
+                          }
+                        }
+                        ?>
+                      @else
+                        <option value="{{$instituicao->id}}">{{$instituicao->nome}}, {{ $instituicao->endereco->logradouro }}, {{ $instituicao->endereco->cidade }} - {{ $instituicao->endereco->estado }} </option>
+                      @endif
+                    @endforeach
+                  </select>
+
+                  @if ($errors->has("instituicoes"))
+                    <span class="help-block">
+                      <strong>{{ $errors->first("instituicoes") }}</strong>
+                    </span>
                   @endif
-                  @endforeach
-                </select>
 
-                @if ($errors->has("instituicoes"))
-                <span class="help-block">
-                  <strong>{{ $errors->first("instituicoes") }}</strong>
-                </span>
-                @endif
-
+                </div>
               </div>
-            </div>
 
-            <div class="form-group">
-              <div class="col-md-6 col-md-offset-4">
-                Instituição não encontrada? &nbsp;
-                <a class="btn btn-info" href="{{ route("instituicao.cadastrar") }}">Cadastre</a>
+              <div class="form-group">
+                <div class="col-md-6 col-md-offset-4">
+                  Instituição não encontrada? &nbsp;
+                  <a class="btn btn-info" href="{{ route("instituicao.cadastrar") }}">Cadastre</a>
+                </div>
               </div>
-            </div>
 
             @else
 
-            <center>
-              <h3>Nenhuma instituicão cadastrada.</h3>
-              <a class="btn btn-info" href="{{ route("instituicao.cadastrar") }}">Cadastrar Instituição</a>
-            </center>
+              <center>
+                <h3>Nenhuma instituicão cadastrada.</h3>
+                <a class="btn btn-info" href="{{ route("instituicao.cadastrar") }}">Cadastrar Instituição</a>
+              </center>
 
             @endif
 
@@ -82,9 +82,9 @@
                 <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}" autofocus>
 
                 @if ($errors->has('nome'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('nome') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('nome') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -96,9 +96,9 @@
                 <input id="imagem" type="file" class="form-control-file" name="imagem">
 
                 @if ($errors->has('imagem'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('imagem') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('imagem') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -110,23 +110,25 @@
               <div class="col-md-6">
 
                 @if(old('sexo') == "M")
-                <input type="radio" id="sexo1" name="sexo" value="M" checked="checked">
+                  <input type="radio" id="sexo1" name="sexo" value="M" checked="checked">
                 @else
-                <input type="radio" id="sexo1" name="sexo" value="M">
+                  <input type="radio" id="sexo1" name="sexo" value="M">
                 @endif
+
                 <label class="custom-control-label" for="sexo1">Masculino</label>
 
                 @if(old('sexo') == "F")
-                <input type="radio" id="sexo2" name="sexo" value="F" checked="checked">
+                  <input type="radio" id="sexo2" name="sexo" value="F" checked="checked">
                 @else
-                <input type="radio" id="sexo2" name="sexo" value="F">
+                  <input type="radio" id="sexo2" name="sexo" value="F">
                 @endif
+
                 <label class="custom-control-label" for="sexo2">Feminino</label>
 
                 @if ($errors->has('sexo'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('sexo') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('sexo') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -138,9 +140,9 @@
                 <input id="data_nascimento" type="date" class="form-control" name="data_nascimento" value="{{ old('data_nascimento') }}">
 
                 @if ($errors->has('data_nascimento'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('data_nascimento') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('data_nascimento') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -157,9 +159,9 @@
                 <input id="logradouro" type="text" class="form-control" name="logradouro" value="{{ old('logradouro') }}">
 
                 @if ($errors->has('logradouro'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('logradouro') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('logradouro') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -167,15 +169,14 @@
             <div class="form-group{{ $errors->has('numero') ? ' has-error' : '' }}">
               <label for="numero" class="col-md-4 control-label">Número <font color="red">*</font> </label>
 
-
               <div class="col-md-6">
 
                 <input id="numero" type="text" class="form-control" name="numero" value="{{ old('numero') }}">
 
                 @if ($errors->has('numero'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('numero') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('numero') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -188,9 +189,9 @@
                 <input id="bairro" type="text" class="form-control" name="bairro" value="{{ old('bairro') }}">
 
                 @if ($errors->has('bairro'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('bairro') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('bairro') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -204,9 +205,9 @@
                 </select>
 
                 @if ($errors->has('estado'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('estado') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('estado') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -221,9 +222,9 @@
                 </select>
 
                 @if ($errors->has('cidade'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('cidade') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('cidade') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -240,9 +241,9 @@
                 <input id="cid" type="text" class="form-control" placeholder="X000" name="cid" value="{{ old('cid') }}">
 
                 @if ($errors->has('cid'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('cid') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('cid') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -255,9 +256,9 @@
                 <input id="descricaoCid" type="text" class="form-control" name="descricaoCid" value="{{ old('descricaoCid') }}">
 
                 @if ($errors->has('descricaoCid'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('descricaoCid') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('descricaoCid') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -273,9 +274,9 @@
                 <textarea id="observacao" rows = "5" cols = "50" class="form-control" name="observacao" >{{old('observacao')}}</textarea>
 
                 @if ($errors->has('observacao'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('observacao') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('observacao') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -290,26 +291,26 @@
               <div class="col-md-6">
                 <select id="perfil" class="form-control" name="perfil" onchange="showResponsavel(this)">
                   @if (old('perfil') == null)
-                  <option id="perfil" selected disabled hidden>Escolha seu perfil</option>
+                    <option id="perfil" selected disabled hidden>Escolha seu perfil</option>
                   @endif
 
                   @if(old('perfil') == "1")
-                  <option id="perfil" value="1" selected>Responsável</option>
+                    <option id="perfil" value="1" selected>Responsável</option>
                   @else
-                  <option id="perfil" value="1">Responsável</option>
+                    <option id="perfil" value="1">Responsável</option>
                   @endif
 
                   @if(old('perfil') == "2")
-                  <option id="perfil" value="2" selected>Professor AEE</option>
+                    <option id="perfil" value="2" selected>Professor AEE</option>
                   @else
-                  <option id="perfil" value=2>Professor AEE</option>
+                    <option id="perfil" value=2>Professor AEE</option>
                   @endif
                 </select>
 
                 @if ($errors->has('perfil'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('perfil') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('perfil') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -329,15 +330,15 @@
 
                   <div class="col-md-6">
                     @if (old('username') == null)
-                    <input name="username" type="text" class="form-control" value="{{old('username')}}">
+                      <input name="username" type="text" class="form-control" value="{{old('username')}}">
                     @else
-                    <input name="username" type="text" class="form-control">
+                      <input name="username" type="text" class="form-control">
                     @endif
 
                     @if ($errors->has('username'))
-                    <span class="help-block">
-                      <strong>{{ $errors->first('username') }}</strong>
-                    </span>
+                      <span class="help-block">
+                        <strong>{{ $errors->first('username') }}</strong>
+                      </span>
                     @endif
                   </div>
                 </div>

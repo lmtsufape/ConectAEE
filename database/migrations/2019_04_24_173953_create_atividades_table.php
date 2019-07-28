@@ -24,7 +24,9 @@ class CreateAtividadesTable extends Migration
 
       $table->integer('objetivo_id')->unsigned();
       $table->foreign('objetivo_id')->references('id')->on('objetivos')->onDelete('cascade');;
+
       $table->timestamps();
+      $table->softDeletes();
     });
   }
 
