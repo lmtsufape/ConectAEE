@@ -51,7 +51,7 @@ class AlbumController extends Controller
     ]);
 
     if($validator->fails()){
-        return redirect()->back()->withErrors($validator->errors())->withInput();
+      return redirect()->back()->withErrors($validator->errors())->withInput();
     }
 
     $album = new Album();

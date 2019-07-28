@@ -3,9 +3,9 @@
 @section('path','Início')
 
 @section('navbar')
- <a href="{{route('aluno.listar')}}">Alunos</a>
- > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
- > Álbuns
+<a href="{{route('aluno.listar')}}">Alunos</a>
+> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
+> Álbuns
 @endsection
 
 @section('content')
@@ -19,11 +19,11 @@
         <div class="panel-body">
 
           @if (\Session::has('success'))
-            <br>
-            <div class="alert alert-success">
-                <strong>Sucesso!</strong>
-                {!! \Session::get('success') !!}
-            </div>
+          <br>
+          <div class="alert alert-success">
+            <strong>Sucesso!</strong>
+            {!! \Session::get('success') !!}
+          </div>
           @endif
 
 
@@ -36,34 +36,34 @@
                 </tr>
               </thead>
               <tbody>
-                  @php
-                    $count = 1;
-                  @endphp
-                  @if($albuns != null)
-                    @foreach($albuns as $album)
-                      @php
-                        $count++;
-                      @endphp
+                @php
+                $count = 1;
+                @endphp
+                @if($albuns != null)
+                @foreach($albuns as $album)
+                @php
+                $count++;
+                @endphp
 
-                      @if($count % 2 == 0)
-                        <tr align="center">
-                      @endif
-                      <td>
-                        <a href="{{route('album.ver', ['id_aluno'=>$aluno->id, 'id_album'=>$album->id])}}" style="text-decoration:none">
-                          <div class="card text-center" style="width:200px">
-                            <div class="card-body">
-                              <img class="card-img-top" src="{{$album->fotos[0]->imagem}}" style="width:200px; height:200px; object-fit: cover;">
-                              <h2 class="card-title">{{$album->nome}}</h2>
-                              <p class="card-text">{{$album->descricao}}</p>
-                            </div>
-                          </div>
-                        </a>
-                      </td>
-                      @if($count % 2 != 0)
-                        </tr>
-                      @endif
-                    @endforeach
+                @if($count % 2 == 0)
+                <tr align="center">
                   @endif
+                  <td>
+                    <a href="{{route('album.ver', ['id_aluno'=>$aluno->id, 'id_album'=>$album->id])}}" style="text-decoration:none">
+                      <div class="card text-center" style="width:200px">
+                        <div class="card-body">
+                          <img class="card-img-top" src="{{$album->fotos[0]->imagem}}" style="width:200px; height:200px; object-fit: cover;">
+                          <h2 class="card-title">{{$album->nome}}</h2>
+                          <p class="card-text">{{$album->descricao}}</p>
+                        </div>
+                      </div>
+                    </a>
+                  </td>
+                  @if($count % 2 != 0)
+                </tr>
+                @endif
+                @endforeach
+                @endif
               </tbody>
             </table>
           </div>
@@ -79,16 +79,16 @@
 </div>
 
 <script type="text/javascript">
-  $(document).ready( function () {
-    $('#tabela_dados').DataTable( {
-      "language": {
-        "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
-      },
-			"columnDefs": [
-				{ "orderable": false, "targets": 1 }
-			]
-	   });
-   });
+$(document).ready( function () {
+  $('#tabela_dados').DataTable( {
+    "language": {
+      "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+    },
+    "columnDefs": [
+      { "orderable": false, "targets": 1 }
+    ]
+  });
+});
 </script>
 
 @endsection

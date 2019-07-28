@@ -6,31 +6,31 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateEnderecosTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('enderecos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('numero');
-            $table->string('logradouro');
-            $table->string('bairro');
-            $table->string('cidade');
-            $table->string('estado');
-            $table->timestamps();
-        });
-    }
+  /**
+  * Run the migrations.
+  *
+  * @return void
+  */
+  public function up()
+  {
+    Schema::create('enderecos', function (Blueprint $table) {
+      $table->bigIncrements('id');
+      $table->string('numero');
+      $table->string('logradouro');
+      $table->string('bairro');
+      $table->string('cidade');
+      $table->string('estado');
+      $table->timestamps();
+    });
+  }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('enderecos');
-    }
+  /**
+  * Reverse the migrations.
+  *
+  * @return void
+  */
+  public function down()
+  {
+    Schema::dropIfExists('enderecos');
+  }
 }

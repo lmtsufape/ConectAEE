@@ -6,33 +6,33 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateFotosTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('fotos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('imagem');
-            $table->date('data');
+  /**
+  * Run the migrations.
+  *
+  * @return void
+  */
+  public function up()
+  {
+    Schema::create('fotos', function (Blueprint $table) {
+      $table->bigIncrements('id');
+      $table->string('imagem');
+      $table->date('data');
 
-            $table->integer('album_id')->unsigned();
-            $table->foreign('album_id')->references('id')->on('albums')->onDelete('cascade');
+      $table->integer('album_id')->unsigned();
+      $table->foreign('album_id')->references('id')->on('albums')->onDelete('cascade');
 
-            $table->timestamps();
-            
-        });
-    }
+      $table->timestamps();
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('fotos');
-    }
+    });
+  }
+
+  /**
+  * Reverse the migrations.
+  *
+  * @return void
+  */
+  public function down()
+  {
+    Schema::dropIfExists('fotos');
+  }
 }

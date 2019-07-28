@@ -6,38 +6,38 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateAlunosTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('alunos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nome');
-            $table->char('sexo');
-            $table->date('data_de_nascimento');
-            $table->string('cid')->nullable();
-            $table->string('descricao_cid')->nullable();
-            $table->text('observacao')->nullable();
-            $table->string('codigo')->unique();
-            $table->string('imagem')->nullable();
+  /**
+  * Run the migrations.
+  *
+  * @return void
+  */
+  public function up()
+  {
+    Schema::create('alunos', function (Blueprint $table) {
+      $table->bigIncrements('id');
+      $table->string('nome');
+      $table->char('sexo');
+      $table->date('data_de_nascimento');
+      $table->string('cid')->nullable();
+      $table->string('descricao_cid')->nullable();
+      $table->text('observacao')->nullable();
+      $table->string('codigo')->unique();
+      $table->string('imagem')->nullable();
 
-            $table->integer('endereco_id');
-            $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('cascade');
+      $table->integer('endereco_id');
+      $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('cascade');
 
-            $table->timestamps();
-        });
-    }
+      $table->timestamps();
+    });
+  }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('alunos');
-    }
+  /**
+  * Reverse the migrations.
+  *
+  * @return void
+  */
+  public function down()
+  {
+    Schema::dropIfExists('alunos');
+  }
 }
