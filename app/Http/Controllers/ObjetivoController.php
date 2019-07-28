@@ -15,27 +15,31 @@ use Auth;
 class ObjetivoController extends Controller
 {
   public static function cadastrar($id_aluno){
-      $tipos = TipoObjetivo::all();
+    $tipos = TipoObjetivo::all();
 
-      $prioridades = ["Alta","Média","Baixa"];
-      $aluno = Aluno::find($id_aluno);
+    $prioridades = ["Alta","Média","Baixa"];
+    $aluno = Aluno::find($id_aluno);
 
-      return view("objetivo.cadastrar", ['aluno' => $aluno,
-                                         'tipos' => $tipos,
-                                         'prioridades' => $prioridades]);
+    return view("objetivo.cadastrar", [
+      'aluno' => $aluno,
+      'tipos' => $tipos,
+      'prioridades' => $prioridades
+    ]);
   }
 
   public static function editar($id_aluno, $id_objetivo){
-      $tipos = TipoObjetivo::all();
+    $tipos = TipoObjetivo::all();
 
-      $prioridades = ["Alta","Média","Baixa"];
-      $aluno = Aluno::find($id_aluno);
-      $objetivo = Objetivo::find($id_objetivo);
+    $prioridades = ["Alta","Média","Baixa"];
+    $aluno = Aluno::find($id_aluno);
+    $objetivo = Objetivo::find($id_objetivo);
 
-      return view("objetivo.editar", ['aluno' => $aluno,
-                                      'objetivo' => $objetivo,
-                                      'tipos' => $tipos,
-                                      'prioridades' => $prioridades]);
+    return view("objetivo.editar", [
+      'aluno' => $aluno,
+      'objetivo' => $objetivo,
+      'tipos' => $tipos,
+      'prioridades' => $prioridades
+    ]);
   }
 
   public static function excluir($id_aluno, $id_objetivo){
@@ -46,72 +50,76 @@ class ObjetivoController extends Controller
   }
 
   public static function criar(Request $request){
-      $validator = Validator::make($request->all(), [
-          'titulo' => ['required'],
-          'descricao' => ['required','min:2','max:500'],
-          'prioridade' => ['required'],
-          'tipo' => ['required'],
-      ]);
+    $validator = Validator::make($request->all(), [
+      'titulo' => ['required'],
+      'descricao' => ['required','min:2','max:500'],
+      'prioridade' => ['required'],
+      'tipo' => ['required'],
+    ]);
 
-      if($validator->fails()){
-          return redirect()->back()->withErrors($validator->errors())->withInput();
-      }
+    if($validator->fails()){
+      return redirect()->back()->withErrors($validator->errors())->withInput();
+    }
 
-      $objetivo = new Objetivo();
-      $objetivo->titulo = $request->titulo;
-      $objetivo->descricao = $request->descricao;
-      $objetivo->prioridade = $request->prioridade;
-      $objetivo->data = new DateTime();
-      $objetivo->aluno_id = $request->id_aluno;
-      $objetivo->user_id = Auth::user()->id;
-      $objetivo->tipo_objetivo_id = $request->tipo;
-      $objetivo->save();
+    $objetivo = new Objetivo();
+    $objetivo->titulo = $request->titulo;
+    $objetivo->descricao = $request->descricao;
+    $objetivo->prioridade = $request->prioridade;
+    $objetivo->data = new DateTime();
+    $objetivo->aluno_id = $request->id_aluno;
+    $objetivo->user_id = Auth::user()->id;
+    $objetivo->tipo_objetivo_id = $request->tipo;
+    $objetivo->save();
 
-      return redirect()->route("objetivo.listar", ["id_aluno" => $request->id_aluno])->with('success','Objetivo cadastrado.');
+    return redirect()->route("objetivo.listar", ["id_aluno" => $request->id_aluno])->with('success','Objetivo cadastrado.');
   }
 
   public static function atualizar(Request $request){
-      $validator = Validator::make($request->all(), [
-        'titulo' => ['required'],
-        'descricao' => ['required','min:2','max:500'],
-        'prioridade' => ['required'],
-        'tipo' => ['required'],
-      ]);
+    $validator = Validator::make($request->all(), [
+      'titulo' => ['required'],
+      'descricao' => ['required','min:2','max:500'],
+      'prioridade' => ['required'],
+      'tipo' => ['required'],
+    ]);
 
-      if($validator->fails()){
-          return redirect()->back()->withErrors($validator->errors())->withInput();
-      }
+    if($validator->fails()){
+      return redirect()->back()->withErrors($validator->errors())->withInput();
+    }
 
-      $objetivo = Objetivo::find($request->id_objetivo);
-      $objetivo->titulo = $request->titulo;
-      $objetivo->descricao = $request->descricao;
-      $objetivo->prioridade = $request->prioridade;
-      $objetivo->tipo_objetivo_id = $request->tipo;
-      $objetivo->update();
+    $objetivo = Objetivo::find($request->id_objetivo);
+    $objetivo->titulo = $request->titulo;
+    $objetivo->descricao = $request->descricao;
+    $objetivo->prioridade = $request->prioridade;
+    $objetivo->tipo_objetivo_id = $request->tipo;
+    $objetivo->update();
 
-      $aluno = Aluno::find($request->id_aluno);
+    $aluno = Aluno::find($request->id_aluno);
 
-      return redirect()->route("objetivo.gerenciar", [$aluno->id,$objetivo->id] )->with('success','O objetivo '.$objetivo->titulo.' foi atualizado.');;
+    return redirect()->route("objetivo.gerenciar", [$aluno->id,$objetivo->id] )->with('success','O objetivo '.$objetivo->titulo.' foi atualizado.');;
   }
 
   public static function listar($id_aluno){
 
-      $aluno = Aluno::find($id_aluno);
-      $objetivos = $aluno->objetivos;
+    $aluno = Aluno::find($id_aluno);
+    $objetivos = $aluno->objetivos;
 
-      return view("objetivo.listar", ['aluno' => $aluno,
-                                      'objetivos' => $objetivos]);
+    return view("objetivo.listar", [
+      'aluno' => $aluno,
+      'objetivos' => $objetivos
+    ]);
   }
 
   public static function gerenciar($id_aluno, $id_objetivo){
 
-      $aluno = Aluno::find($id_aluno);
-      $objetivo = Objetivo::find($id_objetivo);
-      $mensagens = MensagemForumObjetivo::where('forum_objetivo_id','=',$objetivo->forum->id)->orderBy('id','desc')->take(5)->get();
+    $aluno = Aluno::find($id_aluno);
+    $objetivo = Objetivo::find($id_objetivo);
+    $mensagens = MensagemForumObjetivo::where('forum_objetivo_id','=',$objetivo->forum->id)->orderBy('id','desc')->take(5)->get();
 
-      return view("objetivo.gerenciar",['aluno' => $aluno,
-                                        'objetivo' => $objetivo,
-                                        'mensagens'=>$mensagens]);
+    return view("objetivo.gerenciar",[
+      'aluno' => $aluno,
+      'objetivo' => $objetivo,
+      'mensagens'=>$mensagens
+    ]);
   }
 
   public function concluir($id_aluno, $id_objetivo){

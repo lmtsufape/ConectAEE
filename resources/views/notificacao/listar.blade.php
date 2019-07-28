@@ -18,41 +18,41 @@
               </thead>
               <tbody>
                 @foreach($notificacoes as $notificacao)
-                  <tr>
-                    @if($notificacao->lido)
-                      <td data-title="Notificacao">
+                <tr>
+                  @if($notificacao->lido)
+                  <td data-title="Notificacao">
                     @else
-                      <td class="bg-info" data-title="Notificacao">
-                    @endif
+                    <td class="bg-info" data-title="Notificacao">
+                      @endif
                       <a class="btn text-center" href="{{ route('aluno.permissoes.conceder', ['id_aluno' => $notificacao->aluno->id, 'id_notificacao' => $notificacao->id]) }}">
                         Você tem um pedido de acesso de {{$notificacao->remetente->name}} ao aluno {{$notificacao->aluno->nome}}
                       </a>
                     </td>
                   </tr>
-                @endforeach
-              </tbody>
-            </table>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
 
-        <div class="panel-footer">
-          <a class="btn btn-danger" href="{{ route("home") }}">Voltar</a>
-          <a class="btn btn-success" href="{{ route("aluno.cadastrar")}}">Novo</a>
-        </div>
+          <div class="panel-footer">
+            <a class="btn btn-danger" href="{{ route("home") }}">Voltar</a>
+            <a class="btn btn-success" href="{{ route("aluno.cadastrar")}}">Novo</a>
+          </div>
 
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<script type="text/javascript">
+  <script type="text/javascript">
   $(document).ready( function () {
     $('#tabela_dados').DataTable( {
       "language": {
         "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
       }
-	   });
-   });
+    });
+  });
 </script>
 
 

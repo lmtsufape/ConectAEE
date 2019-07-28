@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('layouts.principal');
+  return view('layouts.principal');
 });
 
 Auth::routes();

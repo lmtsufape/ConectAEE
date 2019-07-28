@@ -18,7 +18,7 @@ class InstituicaoController extends Controller
     $endereco = Endereco::find($instituicao->endereco->id);
 
     return view("instituicao.editar", ['instituicao' => $instituicao,
-                                       'endereco' => $endereco]);
+    'endereco' => $endereco]);
   }
 
   public static function listar(Request $request){
@@ -29,42 +29,42 @@ class InstituicaoController extends Controller
 
   public static function criar(Request $request){
 
-      $validator = Validator::make($request->all(), [
-          'nome' => ['required','min:2','max:191'],
-          'email' => ['nullable', 'string', 'email', 'max:255'],
-          'telefone' => ['required','numeric'],
-          'logradouro' => ['required'],
-          'numero' => ['required','numeric'],
-          'bairro' => ['required'],
-          'estado' => ['required'],
-          'cidade' => ['required'],
-      ]);
+    $validator = Validator::make($request->all(), [
+      'nome' => ['required','min:2','max:191'],
+      'email' => ['nullable', 'string', 'email', 'max:255'],
+      'telefone' => ['required','numeric'],
+      'logradouro' => ['required'],
+      'numero' => ['required','numeric'],
+      'bairro' => ['required'],
+      'estado' => ['required'],
+      'cidade' => ['required'],
+    ]);
 
-      if($validator->fails()){
-          return redirect()->back()->withErrors($validator->errors())->withInput();
-      }
+    if($validator->fails()){
+      return redirect()->back()->withErrors($validator->errors())->withInput();
+    }
 
-      $endereco = new Endereco();
-      $endereco->logradouro = $request->logradouro;
-      $endereco->numero = $request->numero;
-      $endereco->bairro = $request->bairro;
-      $endereco->cidade = $request->cidade;
-      $endereco->estado = $request->estado;
-      $endereco->save();
+    $endereco = new Endereco();
+    $endereco->logradouro = $request->logradouro;
+    $endereco->numero = $request->numero;
+    $endereco->bairro = $request->bairro;
+    $endereco->cidade = $request->cidade;
+    $endereco->estado = $request->estado;
+    $endereco->save();
 
-      $instituicao = new Instituicao();
-      $instituicao->nome = $request->nome;
-      $instituicao->telefone = $request->telefone;
-      $instituicao->email = $request->email;
-      $instituicao->endereco_id = $endereco->id;
-      $instituicao->user_id = \Auth::user()->id;
-      $instituicao->save();
+    $instituicao = new Instituicao();
+    $instituicao->nome = $request->nome;
+    $instituicao->telefone = $request->telefone;
+    $instituicao->email = $request->email;
+    $instituicao->endereco_id = $endereco->id;
+    $instituicao->user_id = \Auth::user()->id;
+    $instituicao->save();
 
-      if(preg_match('/aluno\/cadastrar/', $request->rota)){
-        return redirect()->route("aluno.cadastrar");
-      }else{
-        return redirect()->route("instituicao.listar");
-      }
+    if(preg_match('/aluno\/cadastrar/', $request->rota)){
+      return redirect()->route("aluno.cadastrar");
+    }else{
+      return redirect()->route("instituicao.listar");
+    }
   }
 
   public static function excluir($id_instituicao){
@@ -76,35 +76,35 @@ class InstituicaoController extends Controller
 
   public static function atualizar(Request $request){
 
-      $validator = Validator::make($request->all(), [
-          'nome' => ['required','min:2','max:191'],
-          'email' => ['nullable', 'string', 'email', 'max:255'],
-          'telefone' => ['required','numeric'],
-          'logradouro' => ['required'],
-          'numero' => ['required','numeric'],
-          'bairro' => ['required'],
-          'estado' => ['required'],
-          'cidade' => ['required'],
-      ]);
+    $validator = Validator::make($request->all(), [
+      'nome' => ['required','min:2','max:191'],
+      'email' => ['nullable', 'string', 'email', 'max:255'],
+      'telefone' => ['required','numeric'],
+      'logradouro' => ['required'],
+      'numero' => ['required','numeric'],
+      'bairro' => ['required'],
+      'estado' => ['required'],
+      'cidade' => ['required'],
+    ]);
 
-      if($validator->fails()){
-          return redirect()->back()->withErrors($validator->errors())->withInput();
-      }
+    if($validator->fails()){
+      return redirect()->back()->withErrors($validator->errors())->withInput();
+    }
 
-      $instituicao = Instituicao::find($request->id_instituicao);
-      $instituicao->nome = $request->nome;
-      $instituicao->telefone = $request->telefone;
-      $instituicao->email = $request->email;
-      $instituicao->update();
+    $instituicao = Instituicao::find($request->id_instituicao);
+    $instituicao->nome = $request->nome;
+    $instituicao->telefone = $request->telefone;
+    $instituicao->email = $request->email;
+    $instituicao->update();
 
-      $endereco = Endereco::find($request->id_endereco);
-      $endereco->logradouro = $request->logradouro;
-      $endereco->numero = $request->numero;
-      $endereco->bairro = $request->bairro;
-      $endereco->cidade = $request->cidade;
-      $endereco->estado = $request->estado;
-      $endereco->update();
+    $endereco = Endereco::find($request->id_endereco);
+    $endereco->logradouro = $request->logradouro;
+    $endereco->numero = $request->numero;
+    $endereco->bairro = $request->bairro;
+    $endereco->cidade = $request->cidade;
+    $endereco->estado = $request->estado;
+    $endereco->update();
 
-      return redirect()->route("instituicao.listar")->with('success','A instituição '.$instituicao->nome.' foi atualizada.');;
+    return redirect()->route("instituicao.listar")->with('success','A instituição '.$instituicao->nome.' foi atualizada.');;
   }
 }

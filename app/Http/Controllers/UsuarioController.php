@@ -20,11 +20,11 @@ class UsuarioController extends Controller
     $user = User::find($request->id_usuario);
 
     $validator = Validator::make($request->all(), [
-        'name' => ['required', 'string', 'max:255'],
-        'email' => ['nullable', 'email', 'unique:users'],
-        'username' => ['required', 'string', 'max:255'],
-        'telefone' => ['required','numeric'],
-        'password' => ['required', 'string', 'min:6', 'confirmed'],
+      'name' => ['required', 'string', 'max:255'],
+      'email' => ['nullable', 'email', 'unique:users'],
+      'username' => ['required', 'string', 'max:255'],
+      'telefone' => ['required','numeric'],
+      'password' => ['required', 'string', 'min:6', 'confirmed'],
     ]);
 
     $validator->sometimes('username', 'unique:users', function ($request) use ($user){
@@ -32,7 +32,7 @@ class UsuarioController extends Controller
     });
 
     if($validator->fails()){
-        return redirect()->back()->withErrors($validator->errors())->withInput();
+      return redirect()->back()->withErrors($validator->errors())->withInput();
     }
 
     $user->name = $request->name;

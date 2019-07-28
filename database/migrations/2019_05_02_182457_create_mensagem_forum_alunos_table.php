@@ -6,32 +6,32 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateMensagemForumAlunosTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('mensagem_forum_alunos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
-            $table->string('texto');
-            $table->integer('user_id');
-            $table->integer('forum_aluno_id');
+  /**
+  * Run the migrations.
+  *
+  * @return void
+  */
+  public function up()
+  {
+    Schema::create('mensagem_forum_alunos', function (Blueprint $table) {
+      $table->bigIncrements('id');
+      $table->timestamps();
+      $table->string('texto');
+      $table->integer('user_id');
+      $table->integer('forum_aluno_id');
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('forum_aluno_id')->references('id')->on('forum_alunos')->onDelete('cascade');
-        });
-    }
+      $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+      $table->foreign('forum_aluno_id')->references('id')->on('forum_alunos')->onDelete('cascade');
+    });
+  }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('mensagem_forum_alunos');
-    }
+  /**
+  * Reverse the migrations.
+  *
+  * @return void
+  */
+  public function down()
+  {
+    Schema::dropIfExists('mensagem_forum_alunos');
+  }
 }

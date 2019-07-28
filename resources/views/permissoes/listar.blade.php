@@ -2,8 +2,8 @@
 @section('title','Início')
 @section('navbar')
 <a href="{{route('aluno.listar')}}">Alunos</a>
- > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
- > Permissões
+> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
+> Permissões
 @endsection
 @section('content')
 
@@ -17,59 +17,59 @@
 
         <div class="panel-body">
           @if (\Session::has('Success'))
-            <br>
-            <div class="alert alert-success">
-                <strong>Sucesso!</strong>
-                {!! \Session::get('Success') !!}
-            </div>
+          <br>
+          <div class="alert alert-success">
+            <strong>Sucesso!</strong>
+            {!! \Session::get('Success') !!}
+          </div>
           @endif
           @if (\Session::has('Removed'))
-            <br>
-            <div class="alert alert-success">
-                <strong>Removido!</strong>
-                {!! \Session::get('Removed') !!}
-            </div>
+          <br>
+          <div class="alert alert-success">
+            <strong>Removido!</strong>
+            {!! \Session::get('Removed') !!}
+          </div>
           @endif
 
           <div id="tabela" class="table-responsive">
             <table class="table table-hover">
               <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Perfil</th>
-                    <th>Administrador</th>
-                    @if($atual->isAdministrador)
-                      <th>Remover</th>
-                    @endif
+                  <th>Nome</th>
+                  <th>Perfil</th>
+                  <th>Administrador</th>
+                  @if($atual->isAdministrador)
+                  <th>Remover</th>
+                  @endif
 
-                  </tr>
+                </tr>
               </thead>
               <tbody>
-                  @foreach ($gerenciars as $gerenciar)
-                    <tr>
-                      <td data-title="Nome">{{ $gerenciar->user->name }} </td>
-                      @if($gerenciar->perfil->especializacao == NULL)
-                        <td data-title="Perfil">{{ $gerenciar->perfil->nome }} </td>
-                      @else
-                        <td data-title="Perfil">{{ $gerenciar->perfil->especializacao }} </td>
-                      @endif
-                      <td data-title="Administrador">{{ ($gerenciar->isAdministrador) ? 'Sim' : 'Não' }}</td>
+                @foreach ($gerenciars as $gerenciar)
+                <tr>
+                  <td data-title="Nome">{{ $gerenciar->user->name }} </td>
+                  @if($gerenciar->perfil->especializacao == NULL)
+                  <td data-title="Perfil">{{ $gerenciar->perfil->nome }} </td>
+                  @else
+                  <td data-title="Perfil">{{ $gerenciar->perfil->especializacao }} </td>
+                  @endif
+                  <td data-title="Administrador">{{ ($gerenciar->isAdministrador) ? 'Sim' : 'Não' }}</td>
 
-                      @if($atual->isAdministrador)
-                        @if(!($gerenciar->user->id == Auth::user()->id))
-                          @if(!($gerenciar->isAdministrador))
-                            <td data-title="Excluir"><strong style="color: red">
-                              <a href='{{route('aluno.permissoes.remover',[$aluno->id,$gerenciar->id])}}' style="color: red" onclick="return confirm('Essa ação removerá as permissões de {{$gerenciar->user->name}}. Deseja prosseguir?')">X</a>
-                            </strong></td>
-                          @else
-                            <td>-</td>
-                          @endif
-                        @else
-                          <td>-</td>
-                        @endif
-                      @endif
-                    </tr>
-                  @endforeach
+                  @if($atual->isAdministrador)
+                  @if(!($gerenciar->user->id == Auth::user()->id))
+                  @if(!($gerenciar->isAdministrador))
+                  <td data-title="Excluir"><strong style="color: red">
+                    <a href='{{route('aluno.permissoes.remover',[$aluno->id,$gerenciar->id])}}' style="color: red" onclick="return confirm('Essa ação removerá as permissões de {{$gerenciar->user->name}}. Deseja prosseguir?')">X</a>
+                  </strong></td>
+                  @else
+                  <td>-</td>
+                  @endif
+                  @else
+                  <td>-</td>
+                  @endif
+                  @endif
+                </tr>
+                @endforeach
               </tbody>
             </table>
           </div>

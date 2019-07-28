@@ -47,13 +47,15 @@ class AlunoController extends Controller{
     return view("aluno.cadastrar", ['instituicoes' => $instituicoes]);
   }
 
-  public function buscar(){
+  public static function buscar(){
 
-    return view("aluno.buscar", ['codigo' => [],
-                                 'aluno' => []]);
+    return view("aluno.buscar", [
+      'codigo' => [],
+      'aluno' => []
+    ]);
   }
 
-  public function buscarCodigo(Request $request){
+  public static function buscarCodigo(Request $request){
 
     $codigo = $request->codigo;
     $aluno = Aluno::where('codigo','=', $codigo)->first();
@@ -69,36 +71,38 @@ class AlunoController extends Controller{
       }
     }
 
-    return view("aluno.buscar", ['aluno' => $aluno,
-                                 'codigo' => $codigo,
-                                 'botaoAtivo' => $botaoAtivo]);
+    return view("aluno.buscar", [
+      'aluno' => $aluno,
+      'codigo' => $codigo,
+      'botaoAtivo' => $botaoAtivo
+    ]);
 
   }
 
-  public function criar(Request $request){
+  public static function criar(Request $request){
 
     $validator = Validator::make($request->all(), [
-        'perfil' => ['required'],
-        'instituicoes' => ['required'],
-        'imagem' => 'image|mimes:jpeg,png,jpg,jpe|max:3000',
-        'nome' => ['required','min:2','max:191'],
-        'sexo' => ['required'],
-        'cid' => ['nullable','regex:/(^([a-zA-z])(\d)(\d)(\d)$)/u'],
-        'descricaoCid' => ['required_with:cid'],
-        'observacao' => ['nullable','max:500'],
-        'data_nascimento' => ['required','date','before:today','after:01/01/1900'],
-        'logradouro' => ['required'],
-        'numero' => ['required','numeric'],
-        'bairro' => ['required'],
-        'cidade' => ['required'],
-        'estado' => ['required'],
-        'username' => ['required_if:perfil,==,2','unique:users']
+      'perfil' => ['required'],
+      'instituicoes' => ['required'],
+      'imagem' => 'image|mimes:jpeg,png,jpg,jpe|max:3000',
+      'nome' => ['required','min:2','max:191'],
+      'sexo' => ['required'],
+      'cid' => ['nullable','regex:/(^([a-zA-z])(\d)(\d)(\d)$)/u'],
+      'descricaoCid' => ['required_with:cid'],
+      'observacao' => ['nullable','max:500'],
+      'data_nascimento' => ['required','date','before:today','after:01/01/1900'],
+      'logradouro' => ['required'],
+      'numero' => ['required','numeric'],
+      'bairro' => ['required'],
+      'cidade' => ['required'],
+      'estado' => ['required'],
+      'username' => ['required_if:perfil,==,2','unique:users']
     ],[
       'username.required_if' => 'É necessário criar um usuário quando o cadastrante é um Professor AEE',
     ]);
 
     if($validator->fails()){
-        return redirect()->back()->withErrors($validator->errors())->withInput();
+      return redirect()->back()->withErrors($validator->errors())->withInput();
     }
 
     $endereco = new Endereco();
@@ -169,7 +173,7 @@ class AlunoController extends Controller{
     }
   }
 
-  public function requisitarPermissao($cod_aluno){
+  public static function requisitarPermissao($cod_aluno){
     $aluno = Aluno::where('codigo','=',$cod_aluno)->first();
 
     $perfis = Perfil::where('especializacao','=',NULL)->get();
@@ -180,7 +184,7 @@ class AlunoController extends Controller{
     ]);
   }
 
-  public function notificar(Request $request){
+  public static function notificar(Request $request){
 
     $rules = array(
       'perfil' => 'required',
@@ -226,7 +230,7 @@ class AlunoController extends Controller{
     return redirect()->route("aluno.listar")->with('success','Seu pedido de acesso à '.$aluno->nome.' foi enviado. Aguarde aceitação.');
   }
 
-  public function gerenciarPermissoes($id_aluno){
+  public static function gerenciarPermissoes($id_aluno){
     $aluno = Aluno::find($id_aluno);
     $gerenciars = $aluno->gerenciars;
 
@@ -236,13 +240,13 @@ class AlunoController extends Controller{
     ]);
   }
 
-  public function cadastrarPermissao($id_aluno){
+  public static function cadastrarPermissao($id_aluno){
     $aluno = Aluno::find($id_aluno);
     $perfis = Perfil::where('especializacao','=',NULL)->get();
 
     $especializacoes = Perfil::select('especializacao')
-                           ->where('especializacao', '!=', NULL)
-                           ->get()->toArray();
+    ->where('especializacao', '!=', NULL)
+    ->get()->toArray();
 
     $especializacoes = array_column($especializacoes, 'especializacao');
 
@@ -253,7 +257,7 @@ class AlunoController extends Controller{
     ]);
   }
 
-  public function concederPermissao($id_aluno, $id_notificacao){
+  public static function concederPermissao($id_aluno, $id_notificacao){
     $aluno = Aluno::find($id_aluno);
     $notificacao = Notificacao::find($id_notificacao);
 
@@ -263,7 +267,7 @@ class AlunoController extends Controller{
     ]);
   }
 
-  public function criarPermissao(Request $request){
+  public static function criarPermissao(Request $request){
     //Validação dos dados
     $rules = array(
       'username' => 'required|exists:users,username',
@@ -287,10 +291,10 @@ class AlunoController extends Controller{
       $validator->errors()->add('username','O usuário já possui permissões de acesso ao aluno.');
       return redirect()->back()->withErrors($validator->errors())->withInput();
     }
-      // $gerenciar = Gerenciar::where('aluno_id','=',$request->aluno)->where('user_id','=',$user->id)->first();
-      // if($gerenciar != NULL){
-      //   return redirect()->back()->withInput()->with('Fail','O usuário '.$user->name.' já possui permissões.');
-      // }
+    // $gerenciar = Gerenciar::where('aluno_id','=',$request->aluno)->where('user_id','=',$user->id)->first();
+    // if($gerenciar != NULL){
+    //   return redirect()->back()->withInput()->with('Fail','O usuário '.$user->name.' já possui permissões.');
+    // }
 
     //Criação do Gerencimento
     $gerenciar = new Gerenciar();
@@ -326,10 +330,7 @@ class AlunoController extends Controller{
     $notificacao->tipo = 2;
     $notificacao->save();
 
-    return redirect()->route(
-      'aluno.permissoes',[
-        'id_aluno' => $gerenciar->aluno_id,
-      ])->with('Success','O usuário '.$user->name.' agora possui permissão.');
+    return redirect()->route('aluno.permissoes',['id_aluno' => $gerenciar->aluno_id])->with('Success','O usuário '.$user->name.' agora possui permissão.');
   }
 
   public function removerPermissao($id_aluno,$id_permissao){
@@ -338,17 +339,4 @@ class AlunoController extends Controller{
 
     return redirect()->back()->with('Removed','Permissões removidas com sucesso.');
   }
-
-  // public function buscar(Request $request){
-  //   $termo = $request->termo;
-  //
-  //   if(!is_null($termo)){
-  //     $aluno = Aluno::orWhere('name', 'ilike', '%'.$termo.'%')
-  //                             ->orWhere('estado', 'ilike', '%'.$termo.'%')
-  //                             ->orWhere('cidade', 'ilike', '%'.$termo.'%')
-  //                             ->orWhereHas('coordenador', function ($query) use ($termo) {
-  //                               $query->where('name', 'ilike', '%'.$termo.'%');
-  //                              })->get();
-  // }
-
 }
