@@ -40,7 +40,7 @@
                     <label for="descricao" class="col-md-4 control-label">Descrição</label>
 
                     <div class="col-md-6">
-                        <textarea id="descricao" rows = "5" cols = "50" class="form-control" name="descricao" value="{{ old('descricao') }}" autofocus></textarea>
+                        <textarea id="descricao" rows = "5" cols = "50" class="form-control" name="descricao">{{ old('descricao') }}</textarea>
 
                         @if ($errors->has('descricao'))
                             <span class="help-block">
@@ -55,7 +55,7 @@
                     <label for="status" class="col-md-4 control-label">Status</label>
 
                     <div class="col-md-6">
-                      <select id="status" class="form-control" name="status" autofocus>
+                      <select id="status" class="form-control" name="status">
 
                         @if (old('status') == null)
                             <option value="" selected disabled hidden>Escolha o status</option>
@@ -82,7 +82,7 @@
                     <label for="perfil" class="col-md-4 control-label">Prioridade</label>
 
                     <div class="col-md-6">
-                      <select id="prioridade" class="form-control" name="prioridade" autofocus>
+                      <select id="prioridade" class="form-control" name="prioridade">
                         @if (old('prioridade') == null)
                             <option value="" selected disabled hidden>Escolha a prioridade</option>
                         @endif

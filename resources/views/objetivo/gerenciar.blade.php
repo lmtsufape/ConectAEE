@@ -18,6 +18,15 @@
         </div>
 
         <div class="panel-body">
+
+          @if (\Session::has('success'))
+            <br>
+            <div class="alert alert-success">
+                <strong>Sucesso!</strong>
+                {!! \Session::get('success') !!}
+            </div>
+          @endif
+
 					<div class="form-group">
 						<strong>Título: </strong>{{$objetivo->titulo}}
 						|
@@ -49,6 +58,10 @@
 					<a class="btn btn-primary" href={{ route("objetivo.atividades.listar", ["id_objetivo" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Atividades</a>
 					<a class="btn btn-primary" href={{ route("objetivo.sugestoes.listar", ["id_objetivo" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Sugestões</a>
 					<a class="btn btn-primary" href={{ route("objetivo.status.cadastrar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Status</a>
+
+          @if($objetivo->user->id == \Auth::user()->id)
+            <a class="btn btn-primary" href={{ route("objetivo.editar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Editar</a>
+          @endif
 
 					@if($objetivo->user->id == \Auth::user()->id && $objetivo->concluido == false)
 						<a class="btn btn-success" href={{ route("objetivo.concluir" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Concluir</a>
