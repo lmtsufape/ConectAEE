@@ -79,6 +79,10 @@ Route::middleware('autorizacao')->group(function() {
   Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/listar','SugestaoController@listar')->name('objetivo.sugestoes.listar');
   Route::post('/aluno/objetivos/gerenciar/sugestoes/criar', 'SugestaoController@criar')->name('objetivo.sugestoes.criar');
   Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/cadastrar','SugestaoController@cadastrar')->name('objetivo.sugestoes.cadastrar');
+  //novas
+  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/{id_sugestao}/editar','SugestaoController@editar')->name('objetivo.sugestao.editar');
+  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/{id_sugestao}/excluir','SugestaoController@excluir')->name('objetivo.sugestao.excluir');
+  Route::post('/aluno/sugestoes/atualizar', 'SugestaoController@atualizar')->name('objetivo.sugestao.atualizar');
 
   //Rotas para feedback
   Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/{id_sugestao}/feedbacks/listar','FeedbackController@listar')->name('objetivo.sugestoes.feedbacks.listar');

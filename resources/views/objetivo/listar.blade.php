@@ -46,7 +46,7 @@
                   <td data-title="Concluído">Não</td>
                   @endif
                   <td data-title="Data">{{ $objetivo->data }}</td>
-                  <td>
+                  <td data-title="Ação">
                     <a class="btn btn-success" href="{{ route("objetivo.gerenciar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id])}}">Gerenciar</a>
                   </td>
                 </tr>

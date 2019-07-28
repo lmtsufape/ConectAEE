@@ -15,14 +15,20 @@ class CreateSugestaosTable extends Migration
   {
     Schema::create('sugestaos', function (Blueprint $table) {
       $table->bigIncrements('id');
-      $table->timestamps();
 
       $table->string('titulo');
       $table->text('descricao')->nullable();
       $table->dateTime('data');
-      $table->integer('objetivo_id')->unsigned();
 
+      $table->integer('objetivo_id')->unsigned();
       $table->foreign('objetivo_id')->references('id')->on('objetivos')->onDelete('cascade');
+
+      $table->integer('user_id')->unsigned();
+      $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+      $table->timestamps();
+      $table->softDeletes();
+
     });
   }
 

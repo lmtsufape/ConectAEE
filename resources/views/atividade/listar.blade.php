@@ -50,13 +50,13 @@
                     <td data-title="Data">{{ $atividade->data }}</td>
 
                     @if($objetivo->user->id == \Auth::user()->id)
-                      <td data-title="Ação">
+                      <td data-title="Ações">
                         <a class="btn btn-primary" href={{ route("objetivo.atividade.editar" , ['id_objetivo' => $objetivo->id, 'id_atividade' => $atividade->id, 'id_aluno' => $aluno->id]) }}>Editar</a>
                       </td>
-                      <td data-title="Ação">
+                      <td data-title="">
                         <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da atividade {{$atividade->titulo}}?')" href={{ route("objetivo.atividade.excluir" , ['id_objetivo' => $objetivo->id, 'id_atividade' => $atividade->id, 'id_aluno' => $aluno->id]) }}>Excluir</a>
                       </td>
-                      <td data-title="Ação">
+                      <td data-title="">
                         @if($atividade->objetivo->user->id == \Auth::user()->id && $atividade->concluido == false)
                           <a class="btn btn-success" href={{ route("objetivo.atividade.concluir" , ['id_objetivo' => $objetivo->id, 'id_atividade' => $atividade->id, 'id_aluno' => $aluno->id]) }}>Concluir</a>
                         @elseif($atividade->objetivo->user->id == \Auth::user()->id && $atividade->concluido == true)

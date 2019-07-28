@@ -57,6 +57,9 @@ class AutorizacaoMiddleware
         'aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar',
         'aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/listar',
         'aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/atividades/listar',
+      ];
+
+      $rotas_regras_acessar_nao_dono_objetivo_sugestao = [
         'aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/cadastrar',
       ];
 
@@ -146,6 +149,21 @@ class AutorizacaoMiddleware
         ->where('aluno_id','=',$aluno->id)->first();
 
         if($gerenciar == NULL || $objetivo->aluno->id != $aluno->id){
+          return redirect()->route("aluno.listar")->with('denied','Você não tem permissão para acessar esta página ou ela não existe.');
+        }
+
+      }else if(in_array($request->route()->uri,$rotas_regras_acessar_nao_dono_objetivo_sugestao)){
+
+        $aluno = Aluno::find($request->route('id_aluno'));
+        $objetivo = Objetivo::find($request->route('id_objetivo'));
+
+        if($aluno == NULL || $objetivo == NULL){
+          return redirect()->route("aluno.listar")->with('denied','Você não tem permissão para acessar esta página ou ela não existe.');
+        }
+
+        $gerenciar = Gerenciar::where('user_id','=',Auth::user()->id)->where('aluno_id','=',$aluno->id)->first();
+
+        if($gerenciar == NULL || $objetivo->aluno->id != $aluno->id || $objetivo->user->id == Auth::user()->id){
           return redirect()->route("aluno.listar")->with('denied','Você não tem permissão para acessar esta página ou ela não existe.');
         }
 

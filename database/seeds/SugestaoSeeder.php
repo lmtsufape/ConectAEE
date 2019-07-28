@@ -17,9 +17,10 @@ class SugestaoSeeder extends Seeder
         $objetivos = Objetivo::all();
 
         foreach($objetivos as $objetivo){
-          for ($i=0; $i<2 ; $i++) {
+          for ($i=1; $i<=2 ; $i++) {
             factory(Sugestao::class)->create([
                 'objetivo_id' => $objetivo->id,
+                'user_id' => $i
             ]);
           }
         }
