@@ -3,15 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Feedback;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Sugestao extends Model
 {
-    public function objetivo(){
-        return $this->belongsTo('App\Objetivo');
-    }
+  use softDeletes;
 
-    public function feedbacks(){
-        return $this->hasMany(Feedback::class);
-    }
+  public function objetivo(){
+    return $this->belongsTo('App\Objetivo');
+  }
+
+  public function user(){
+    return $this->belongsTo('App\User');
+  }
+
+  public function feedbacks(){
+    return $this->hasMany('App\Feedback');
+  }
 }

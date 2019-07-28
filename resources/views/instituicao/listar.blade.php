@@ -52,7 +52,7 @@
                   <td data-title="Ações">
                     <a class="btn btn-primary" href="{{ route("instituicao.editar" , ['id_instituicao' => $instituicao->id]) }}">Editar</a>
                   </td>
-                  <td data-title="Ações">
+                  <td data-title="">
                     <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da instituicao {{$instituicao->nome}}?')" href="{{ route("instituicao.excluir" , ['id_instituicao' => $instituicao->id]) }}">
                       Excluir
                     </a>

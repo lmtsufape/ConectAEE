@@ -15,14 +15,14 @@
 
 				<div class="panel-body">
 					@php
-					$gerenciars = $aluno->gerenciars;
+						$gerenciars = $aluno->gerenciars;
 					@endphp
 
 					<div class="row-md-6">
 						<div class="text-center">
 							@if($aluno->imagem != null)
-							<img style="object-fit: cover;" src="{{$aluno->imagem}}" height="256" width="256" >
-							<br/>
+								<img style="object-fit: cover;" src="{{$aluno->imagem}}" height="256" width="256" >
+								<br/>
 							@endif
 						</div>
 
@@ -48,11 +48,11 @@
 						<strong>Endereço:</strong>
 
 						<?php
-						echo $aluno->endereco->logradouro, ", ",
-						$aluno->endereco->numero, ", ",
-						$aluno->endereco->bairro, ", ",
-						$aluno->endereco->cidade, " - ",
-						$aluno->endereco->estado;
+							echo $aluno->endereco->logradouro, ", ",
+							$aluno->endereco->numero, ", ",
+							$aluno->endereco->bairro, ", ",
+							$aluno->endereco->cidade, " - ",
+							$aluno->endereco->estado;
 						?>
 
 						<hr>
@@ -60,24 +60,24 @@
 						<br/>
 
 						<?php
-						foreach ($aluno->instituicoes as $instituicao) {
-							echo ($instituicao->nome."<br/>");
-						}
+							foreach ($aluno->instituicoes as $instituicao) {
+								echo ($instituicao->nome."<br/>");
+							}
 						?>
 						<hr>
 
 						@if($aluno->cid != null)
-						<strong>CID:</strong> {{$aluno->cid}}
-						<br/>
-						<strong>Descrição CID:</strong> {{$aluno->descricao_cid}}
-						<br/>
+							<strong>CID:</strong> {{$aluno->cid}}
+							<br/>
+							<strong>Descrição CID:</strong> {{$aluno->descricao_cid}}
+							<br/>
 						@endif
 
 						<hr>
 
 						@if($aluno->observacao != null)
-						<strong>Observações:</strong> {{$aluno->observacao}}
-						<br/>
+							<strong>Observações:</strong> {{$aluno->observacao}}
+							<br/>
 						@endif
 					</div>
 
@@ -89,7 +89,7 @@
 					<a class="btn btn-danger" href="{{ route("aluno.listar")}}">Voltar</a>
 
 					@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
-					<a class="btn btn-primary" href={{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}>Gerenciar Permissões</a>
+						<a class="btn btn-primary" href={{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}>Gerenciar Permissões</a>
 					@endif
 
 					<a class="btn btn-primary" href={{route("objetivo.listar", ["id_aluno"=>$aluno->id]) }}>Objetivos</a>
@@ -124,7 +124,7 @@
 					</form>
 				</div>
 
-				<div class="panel-footer">
+				<div class="panel-footer" style="background-color: white;">
 
 					@foreach($mensagens as $mensagem)
 					@if($mensagem->user_id == \Auth::user()->id)

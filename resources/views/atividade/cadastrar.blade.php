@@ -78,7 +78,7 @@
             </div>
 
             <div class="form-group{{ $errors->has('prioridade') ? ' has-error' : '' }}">
-              <label for="perfil" class="col-md-4 control-label">Prioridade <font color="red">*</font> </label>
+              <label for="prioridade" class="col-md-4 control-label">Prioridade <font color="red">*</font> </label>
 
               <div class="col-md-6">
                 <select id="prioridade" class="form-control" name="prioridade">

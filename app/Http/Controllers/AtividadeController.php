@@ -91,7 +91,7 @@ class AtividadeController extends Controller
     $atividade->status = $request->status;
     $atividade->update();
 
-    return redirect()->route("objetivo.atividades.listar", ["id_aluno" => $request->id_aluno, "id_objetivo" => $request->id_objetivo])->with('success','A atividade '.$atividade->titulo.' foi atualizada.');;
+    return redirect()->route("objetivo.atividades.listar", ["id_aluno" => $request->id_aluno, "id_objetivo" => $request->id_objetivo])->with('success','A atividade '.$atividade->titulo.' foi atualizada.');
   }
 
   public static function listar($id_aluno, $id_objetivo){
