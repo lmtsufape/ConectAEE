@@ -34,30 +34,37 @@
                   <th>Status</th>
                   <th>Data</th>
                   @if($objetivo->user->id == \Auth::user()->id)
-                  <th>Ação</th>
+                    <th>Ações</th>
+                    <th></th>
+                    <th></th>
                   @endif
                 </tr>
               </thead>
               <tbody>
                 @foreach ($atividades as $atividade)
-                <tr>
-                  <td data-title="Título">{{ $atividade->titulo }}</td>
-                  <td data-title="Descrição">{{ $atividade->descricao }}</td>
-                  <td data-title="Prioridade">{{ $atividade->prioridade }}</td>
-                  <td data-title="Status">{{ $atividade->status }}</td>
-                  <td data-title="Data">{{ $atividade->data }}</td>
+                  <tr>
+                    <td data-title="Título">{{ $atividade->titulo }}</td>
+                    <td data-title="Descrição">{{ $atividade->descricao }}</td>
+                    <td data-title="Prioridade">{{ $atividade->prioridade }}</td>
+                    <td data-title="Status">{{ $atividade->status }}</td>
+                    <td data-title="Data">{{ $atividade->data }}</td>
 
-                  @if($objetivo->user->id == \Auth::user()->id)
-                  <td data-title="Ação">
-                    @if($atividade->objetivo->user->id == \Auth::user()->id && $atividade->concluido == false)
-                    <a class="btn btn-success" href={{ route("objetivo.atividades.concluir" , ['id_objetivo' => $objetivo->id, 'id_atividade' => $atividade->id, 'id_aluno' => $aluno->id]) }}>Concluir</a>
-                    @elseif($atividade->objetivo->user->id == \Auth::user()->id && $atividade->concluido == true)
-                    <a class="btn btn-danger" href={{ route("objetivo.atividades.desconcluir" , ['id_objetivo' => $objetivo->id, 'id_atividade' => $atividade->id, 'id_aluno' => $aluno->id]) }}>Desconcluir</a>
+                    @if($objetivo->user->id == \Auth::user()->id)
+                      <td data-title="Ação">
+                        <a class="btn btn-primary" href={{ route("objetivo.atividade.editar" , ['id_objetivo' => $objetivo->id, 'id_atividade' => $atividade->id, 'id_aluno' => $aluno->id]) }}>Editar</a>
+                      </td>
+                      <td data-title="Ação">
+                        <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da atividade {{$atividade->titulo}}?')" href={{ route("objetivo.atividade.excluir" , ['id_objetivo' => $objetivo->id, 'id_atividade' => $atividade->id, 'id_aluno' => $aluno->id]) }}>Excluir</a>
+                      </td>
+                      <td data-title="Ação">
+                        @if($atividade->objetivo->user->id == \Auth::user()->id && $atividade->concluido == false)
+                          <a class="btn btn-success" href={{ route("objetivo.atividade.concluir" , ['id_objetivo' => $objetivo->id, 'id_atividade' => $atividade->id, 'id_aluno' => $aluno->id]) }}>Concluir</a>
+                        @elseif($atividade->objetivo->user->id == \Auth::user()->id && $atividade->concluido == true)
+                          <a class="btn btn-danger" href={{ route("objetivo.atividade.desconcluir" , ['id_objetivo' => $objetivo->id, 'id_atividade' => $atividade->id, 'id_aluno' => $aluno->id]) }}>Desconcluir</a>
+                        @endif
+                      </td>
                     @endif
-                  </td>
-                  @endif
-
-                </tr>
+                  </tr>
                 @endforeach
               </tbody>
             </table>
@@ -68,7 +75,7 @@
           <a class="btn btn-danger" href="{{ route("objetivo.gerenciar" , ['id_aluno'=>$aluno->id, 'id_objetivo' => $objetivo->id]) }}">Voltar</a>
 
           @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->perfil_id != 1 && $objetivo->user->id == \Auth::user()->id)
-          <a class="btn btn-success" href="{{ route("objetivo.atividades.cadastrar" , ['id_objetivo' => $objetivo->id, 'id_aluno'=>$aluno->id])}}">Novo</a>
+            <a class="btn btn-success" href="{{ route("objetivo.atividades.cadastrar" , ['id_objetivo' => $objetivo->id, 'id_aluno'=>$aluno->id])}}">Novo</a>
           @endif
         </div>
       </div>
@@ -92,7 +99,9 @@ $(document).ready( function () {
         "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
       },
       "columnDefs": [
-        { "orderable": false, "targets": 5 }
+        { "orderable": false, "targets": 5 },
+        { "orderable": false, "targets": 6 },
+        { "orderable": false, "targets": 7 },
       ]
     });
   }
