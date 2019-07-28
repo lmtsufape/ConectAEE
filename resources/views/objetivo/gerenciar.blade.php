@@ -61,6 +61,7 @@
 
           @if($objetivo->user->id == \Auth::user()->id)
             <a class="btn btn-primary" href={{ route("objetivo.editar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Editar</a>
+            <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do objetivo {{$objetivo->titulo}}?')" href={{ route("objetivo.excluir" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Excluir</a>
           @endif
 
 					@if($objetivo->user->id == \Auth::user()->id && $objetivo->concluido == false)

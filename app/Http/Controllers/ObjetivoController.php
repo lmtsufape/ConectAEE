@@ -14,7 +14,7 @@ use Auth;
 
 class ObjetivoController extends Controller
 {
-  public function cadastrar($id_aluno){
+  public static function cadastrar($id_aluno){
       $tipos = TipoObjetivo::all();
 
       $prioridades = ["Alta","Média","Baixa"];
@@ -25,7 +25,7 @@ class ObjetivoController extends Controller
                                          'prioridades' => $prioridades]);
   }
 
-  public function editar($id_aluno, $id_objetivo){
+  public static function editar($id_aluno, $id_objetivo){
       $tipos = TipoObjetivo::all();
 
       $prioridades = ["Alta","Média","Baixa"];
@@ -38,7 +38,14 @@ class ObjetivoController extends Controller
                                       'prioridades' => $prioridades]);
   }
 
-  public function criar(Request $request){
+  public static function excluir($id_aluno, $id_objetivo){
+    $objetivo = Objetivo::find($id_objetivo);
+    $objetivo->delete();
+
+    return redirect()->route("objetivo.listar", ["id_aluno" => $id_aluno])->with('success','O objetivo '.$objetivo->titulo.' foi excluído.');;
+  }
+
+  public static function criar(Request $request){
       $validator = Validator::make($request->all(), [
           'titulo' => ['required'],
           'descricao' => ['required','min:2','max:500'],
@@ -63,7 +70,7 @@ class ObjetivoController extends Controller
       return redirect()->route("objetivo.listar", ["id_aluno" => $request->id_aluno])->with('success','Objetivo cadastrado.');
   }
 
-  public function atualizar(Request $request){
+  public static function atualizar(Request $request){
       $validator = Validator::make($request->all(), [
         'titulo' => ['required'],
         'descricao' => ['required','min:2','max:500'],
@@ -87,7 +94,7 @@ class ObjetivoController extends Controller
       return redirect()->route("objetivo.gerenciar", [$aluno->id,$objetivo->id] )->with('success','O objetivo '.$objetivo->titulo.' foi atualizado.');;
   }
 
-  public function listar($id_aluno){
+  public static function listar($id_aluno){
 
       $aluno = Aluno::find($id_aluno);
       $objetivos = $aluno->objetivos;
@@ -96,7 +103,7 @@ class ObjetivoController extends Controller
                                       'objetivos' => $objetivos]);
   }
 
-  public function gerenciar($id_aluno, $id_objetivo){
+  public static function gerenciar($id_aluno, $id_objetivo){
 
       $aluno = Aluno::find($id_aluno);
       $objetivo = Objetivo::find($id_objetivo);

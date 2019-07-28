@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Objetivo extends Model
 {
+  use SoftDeletes;
+  
   public function atividades()
   {
       return $this->hasMany('App\Atividade');

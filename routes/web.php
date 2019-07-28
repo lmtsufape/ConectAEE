@@ -61,6 +61,7 @@ Route::middleware('autorizacao')->group(function() {
   Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/desconcluir','ObjetivoController@desconcluir')->name('objetivo.desconcluir');
   //novas
   Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/editar','ObjetivoController@editar')->name('objetivo.editar');
+  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/excluir','ObjetivoController@excluir')->name('objetivo.excluir');
   Route::post('/aluno/objetivos/atualizar', 'ObjetivoController@atualizar')->name('objetivo.atualizar');
 
   //Rotas para atividade
