@@ -71,7 +71,7 @@ class InstituicaoController extends Controller
     $instituicao = Instituicao::find($id_instituicao);
     $instituicao->delete();
 
-    return redirect()->route("instituicao.listar");
+    return redirect()->route("instituicao.listar")->with('success','A instituição '.$instituicao->nome.' foi excluída.');;
   }
 
   public static function atualizar(Request $request){
@@ -105,6 +105,6 @@ class InstituicaoController extends Controller
       $endereco->estado = $request->estado;
       $endereco->update();
 
-      return redirect()->route("instituicao.listar")->with('success','A Instituição '.$instituicao->nome.' foi atualizada.');;
+      return redirect()->route("instituicao.listar")->with('success','A instituição '.$instituicao->nome.' foi atualizada.');;
   }
 }

@@ -37,13 +37,13 @@
                   <label for="descricao" class="col-md-4 control-label">Descrição</label>
 
                   <div class="col-md-6">
-                      <textarea id="descricao" rows = "5" cols = "50" class="form-control" name="descricao" value="{{ old('descricao') }}" autofocus></textarea>
+                    <textarea id="descricao" rows = "5" cols = "50" class="form-control" name="descricao">{{ old('descricao') }}</textarea>
 
-                      @if ($errors->has('descricao'))
-                          <span class="help-block">
-                              <strong>{{ $errors->first('descricao') }}</strong>
-                          </span>
-                      @endif
+                    @if ($errors->has('descricao'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('descricao') }}</strong>
+                        </span>
+                    @endif
                   </div>
               </div>
 
@@ -51,14 +51,14 @@
                   <label for="tipo" class="col-md-4 control-label">Tipo</label>
 
                   <div class="col-md-6">
-                    <select id="tipo" class="form-control" name="tipo" autofocus>
+                    <select id="tipo" class="form-control" name="tipo">
 
                       @if (old('tipo') == null)
                           <option value="" selected disabled hidden>Escolha o tipo</option>
                       @endif
 
                       @foreach($tipos as $tipo)
-                          @if(old('tipo') == $tipo)
+                          @if(old('tipo') == $tipo->id)
                               <option value={{$tipo->id}} selected>{{$tipo->tipo}}</option>
                           @else
                               <option value={{$tipo->id}}>{{$tipo->tipo}}</option>
@@ -78,7 +78,7 @@
                   <label for="perfil" class="col-md-4 control-label">Prioridade</label>
 
                   <div class="col-md-6">
-                    <select id="prioridade" class="form-control" name="prioridade" autofocus>
+                    <select id="prioridade" class="form-control" name="prioridade">
                       @if (old('prioridade') == null)
                           <option value="" selected disabled hidden>Escolha a prioridade</option>
                       @endif

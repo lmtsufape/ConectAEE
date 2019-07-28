@@ -50,7 +50,7 @@
 
                     <div class="col-md-6">
 
-                        @if(old('nome',NULL) != NULL)
+                        @if(old('telefone',NULL) != NULL)
                           <input id="telefone" type="digit" class="form-control" name="telefone" minlength="10" placeholder="DDD+Telefone" maxlength="11" value="{{ old('telefone') }}">
                         @else
                           <input id="telefone" type="digit" class="form-control" name="telefone" minlength="10" placeholder="DDD+Telefone" maxlength="11" value="{{ $instituicao->telefone }}">
@@ -69,7 +69,7 @@
 
                     <div class="col-md-6">
 
-                      @if(old('nome',NULL) != NULL)
+                      @if(old('email',NULL) != NULL)
                         <input id="email" class="form-control" name="email" value="{{ old('email') }}">
                       @else
                         <input id="email" class="form-control" name="email" value="{{ $instituicao->email }}">
@@ -88,7 +88,7 @@
 
                     <div class="col-md-6">
 
-                        @if(old('nome',NULL) != NULL)
+                        @if(old('logradouro',NULL) != NULL)
                           <input id="logradouro" type="text" class="form-control" name="logradouro" value="{{ old('logradouro') }}">
                         @else
                           <input id="logradouro" type="text" class="form-control" name="logradouro" value="{{ $endereco->logradouro }}">
@@ -107,7 +107,7 @@
 
                     <div class="col-md-6">
 
-                        @if(old('nome',NULL) != NULL)
+                        @if(old('numero',NULL) != NULL)
                           <input id="numero" type="text" class="form-control" name="numero" value="{{ old('numero') }}">
                         @else
                           <input id="numero" type="text" class="form-control" name="numero" value="{{ $endereco->numero }}">
@@ -126,7 +126,7 @@
 
                     <div class="col-md-6">
 
-                        @if(old('nome',NULL) != NULL)
+                        @if(old('bairro',NULL) != NULL)
                           <input id="bairro" type="text" class="form-control" name="bairro" value="{{ old('bairro') }}">
                         @else
                           <input id="bairro" type="text" class="form-control" name="bairro" value="{{ $endereco->bairro }}">

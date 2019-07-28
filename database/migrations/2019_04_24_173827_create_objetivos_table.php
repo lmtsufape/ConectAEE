@@ -20,7 +20,6 @@ class CreateObjetivosTable extends Migration
             $table->string('prioridade');
             $table->dateTime('data');
             $table->boolean('concluido')->default(false);
-            $table->timestamps();
 
             $table->integer('aluno_id')->unsigned();
             $table->foreign('aluno_id')->references('id')->on('alunos')->onDelete('cascade');
@@ -31,6 +30,8 @@ class CreateObjetivosTable extends Migration
             $table->integer('tipo_objetivo_id')->unsigned();
             $table->foreign('tipo_objetivo_id')->references('id')->on('tipo_objetivos')->onDelete('cascade');
 
+            $table->timestamps();
+            $table->softDeletes();
 
         });
     }
