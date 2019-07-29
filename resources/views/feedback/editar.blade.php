@@ -1,8 +1,5 @@
 @extends('layouts.principal')
 @section('title','Início')
-@php($aluno = $sugestao->objetivo->aluno)
-@php($objetivo = $sugestao->objetivo)
-
 @section('navbar')
 <a href="{{route('aluno.listar')}}">Alunos</a>
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
@@ -10,29 +7,34 @@
 > <a href="{{route('objetivo.gerenciar',[$aluno->id,$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
 > <a href="{{route('sugestoes.listar',[$aluno->id,$objetivo->id])}}">Sugestões</a>
 > <a href="{{route('feedbacks.listar',[$aluno->id,$objetivo->id,$sugestao->id])}}">Feedbacks</a>
-> Novo
+> Editar
 @endsection
-
 @section('content')
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <div class="panel panel-default">
-        <div class="panel-heading">Feedbacks de <strong>{{$sugestao->titulo}}</strong></div>
+        <div class="panel-heading">Editar Feedback</div>
 
         <div class="panel-body">
-          <form class="form-horizontal" method="POST" action="{{ route("feedbacks.criar") }}">
+          <form class="form-horizontal" method="POST" action="{{ route("feedback.atualizar") }}">
             {{ csrf_field() }}
 
-            <input id="id_aluno" type="hidden" class="form-control" name="id_aluno" value="{{ $aluno->id }}">
-            <input id="id_objetivo" type="hidden" class="form-control" name="id_objetivo" value="{{ $objetivo->id }}">
-            <input id="id_sugestao" type="hidden" class="form-control" name="id_sugestao" value="{{ $sugestao->id }}">
+            <input type="hidden" name="id_aluno" value="{{ $aluno->id }}">
+            <input type="hidden" name="id_objetivo" value="{{ $objetivo->id }}">
+            <input type="hidden" name="id_sugestao" value="{{ $sugestao->id }}">
+            <input type="hidden" name="id_feedback" value="{{ $feedback->id }}">
 
             <div class="form-group{{ $errors->has('feedback') ? ' has-error' : '' }}">
-              <label for="feedback" class="col-md-4 control-label">Feedback <font color="red">*</font> </label>
+              <label for="feedback" class="col-md-4 control-label">Feedback <font color="red">*</font></label>
 
               <div class="col-md-6">
-                <textarea name="feedback" class="form-control" placeholder="Informe seu feedback."></textarea>
+
+                @if(old('feedback',NULL) != NULL)
+                <textarea id="feedback" rows = "5" cols = "50" class="form-control" name="feedback">{{ old('feedback') }}</textarea>
+                @else
+                <textarea id="feedback" rows = "5" cols = "50" class="form-control" name="feedback">{{ $feedback->texto }}</textarea>
+                @endif
 
                 @if ($errors->has('feedback'))
                 <span class="help-block">
@@ -44,7 +46,9 @@
 
             <div class="form-group">
               <div class="col-md-6 col-md-offset-4">
-                <input value="Enviar" type="submit" class="btn btn-success">
+                <button type="submit" class="btn btn-success">
+                  Atualizar
+                </button>
               </div>
             </div>
           </form>

@@ -27,7 +27,7 @@
           </div>
           @endif
 
-          <div class="form-group">
+          <div class="col">
             <strong>Título: </strong>{{$objetivo->titulo}}
             |
             <strong>Autor: </strong>{{$objetivo->user->name}}
@@ -47,28 +47,35 @@
             <br>
             <strong>Histórico de Status: </strong>
             @foreach ($objetivo->statusObjetivo as $statusObjetivo)
-            | {{ $statusObjetivo->status->status }} {{ $statusObjetivo->data}}
+              | {{ $statusObjetivo->status->status }} {{ $statusObjetivo->data}}
             @endforeach
+
+            <br><br>
+            @if($objetivo->user->id == \Auth::user()->id)
+              <a class="btn btn-primary" href={{ route("objetivo.editar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Editar</a>
+              <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do objetivo {{$objetivo->titulo}}?')" href={{ route("objetivo.excluir" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Excluir</a>
+            @endif
           </div>
+
         </div>
 
         <div class="panel-footer" style="background-color: white;">
           <a class="btn btn-danger" href="{{route('objetivo.listar',$aluno->id)}}">Voltar</a>
 
-          <a class="btn btn-primary" href={{ route("objetivo.atividades.listar", ["id_objetivo" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Atividades</a>
-          <a class="btn btn-primary" href={{ route("objetivo.sugestoes.listar", ["id_objetivo" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Sugestões</a>
-          <a class="btn btn-primary" href={{ route("objetivo.status.cadastrar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Status</a>
+          <a class="btn btn-primary" href={{ route("atividades.listar", ["id_objetivo" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Atividades</a>
+          <a class="btn btn-primary" href={{ route("sugestoes.listar", ["id_objetivo" => $objetivo->id, "aluno_id" => $objetivo->aluno_id]) }}>Sugestões</a>
 
           @if($objetivo->user->id == \Auth::user()->id)
-            <a class="btn btn-primary" href={{ route("objetivo.editar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Editar</a>
-            <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do objetivo {{$objetivo->titulo}}?')" href={{ route("objetivo.excluir" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Excluir</a>
+            <a class="btn btn-primary" href={{ route("objetivo.status.cadastrar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Status</a>
+
+            @if($objetivo->concluido == false)
+              <a class="btn btn-success" href={{ route("objetivo.concluir" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Concluir</a>
+            @elseif($objetivo->concluido == true)
+              <a class="btn btn-danger" href={{ route("objetivo.desconcluir" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Desconcluir</a>
+            @endif
+
           @endif
 
-          @if($objetivo->user->id == \Auth::user()->id && $objetivo->concluido == false)
-            <a class="btn btn-success" href={{ route("objetivo.concluir" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Concluir</a>
-          @elseif($objetivo->user->id == \Auth::user()->id && $objetivo->concluido == true)
-            <a class="btn btn-danger" href={{ route("objetivo.desconcluir" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id]) }}>Desconcluir</a>
-          @endif
         </div>
       </div>
     </div>

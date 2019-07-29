@@ -7,19 +7,15 @@
         @if(!($url == ''))
           @if(!($url == '/aluno/listar'))
             <div style="margin-top: -30px" class="container">
-                <div class="row">
-                  <div class="col-md-10 col-md-offset-1">
-                    <div class="collapse navbar-collapse" >
-                      <ul class="nav navbar-nav">
-                        <br>
-                        <h4>
-                          @yield('navbar')
-                        </h4>
-                        <br>
-                      </ul>
-                    </div>
-                  </div>
+              <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                  <br>
+                  <h4>
+                    @yield('navbar')
+                  </h4>
+                  <br>
                 </div>
+              </div>
             </div>
           @endif
         @endif

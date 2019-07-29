@@ -33,9 +33,7 @@
                   <th>Data</th>
                   <th>Ações</th>
                   <th></th>
-                  @if($objetivo->user->id != \Auth::user()->id)
-                    <th></th>
-                  @endif
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -47,18 +45,24 @@
                   <td data-title="Data">{{ $sugestao->data }}</td>
 
                   <td data-title="Ações">
-                    <a class="btn btn-primary" href="{{ route("objetivo.sugestoes.feedbacks.listar" , ['id_sugestao' => $sugestao->id, 'id_aluno'=>$sugestao->objetivo->aluno->id, 'id_objetivo' => $sugestao->objetivo->id])}}">Ver feedbacks</a>
+                    <a class="btn btn-primary" href="{{ route("feedbacks.listar" , ['id_sugestao' => $sugestao->id, 'id_aluno'=>$sugestao->objetivo->aluno->id, 'id_objetivo' => $sugestao->objetivo->id])}}">Ver feedbacks</a>
                   </td>
 
-                  @if($objetivo->user->id != \Auth::user()->id)
+                  @if($sugestao->user->id == \Auth::user()->id)
                     <td data-title="">
-                      <a class="btn btn-primary" href={{ route("objetivo.sugestao.editar" , ['id_objetivo' => $objetivo->id, 'id_sugestao' => $sugestao->id, 'id_aluno' => $aluno->id]) }}>Editar</a>
+                      <a class="btn btn-primary" href={{ route("sugestao.editar" , ['id_objetivo' => $objetivo->id, 'id_sugestao' => $sugestao->id, 'id_aluno' => $aluno->id]) }}>Editar</a>
                     </td>
+                  @else
+                    <td></td>
                   @endif
 
-                  <td data-title="">
-                    <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da sugestao {{$sugestao->titulo}}?')" href={{ route("objetivo.sugestao.excluir" , ['id_objetivo' => $objetivo->id, 'id_sugestao' => $sugestao->id, 'id_aluno' => $aluno->id]) }}>Excluir</a>
-                  </td>
+                  @if($sugestao->user->id == \Auth::user()->id || $objetivo->user->id == \Auth::user()->id)
+                    <td data-title="">
+                      <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da sugestao {{$sugestao->titulo}}?')" href={{ route("sugestao.excluir" , ['id_objetivo' => $objetivo->id, 'id_sugestao' => $sugestao->id, 'id_aluno' => $aluno->id]) }}>Excluir</a>
+                    </td>
+                  @else
+                    <td></td>
+                  @endif
                 </tr>
                 @endforeach
               </tbody>
@@ -70,7 +74,7 @@
           <a class="btn btn-danger" href="{{ route("objetivo.listar" , ['id_aluno'=>$aluno->id]) }}">Voltar</a>
 
           @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first() != null && $objetivo->user->id != \Auth::user()->id)
-            <a class="btn btn-success" href="{{ route("objetivo.sugestoes.cadastrar" , ['id_objetivo' => $objetivo->id, 'id_aluno'=>$aluno->id])}}">Novo</a>
+            <a class="btn btn-success" href="{{ route("sugestoes.cadastrar" , ['id_objetivo' => $objetivo->id, 'id_aluno'=>$aluno->id])}}">Novo</a>
           @endif
         </div>
 

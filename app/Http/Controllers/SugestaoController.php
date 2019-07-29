@@ -37,7 +37,7 @@ class SugestaoController extends Controller
     $sugestao = Sugestao::find($id_sugestao);
     $sugestao->delete();
 
-    return redirect()->route("objetivo.sugestoes.listar", ["id_aluno" => $id_aluno, "id_objetivo" => $id_objetivo])->with('success','A sugestão '.$sugestao->titulo.' foi excluída.');;
+    return redirect()->route("sugestoes.listar", ["id_aluno" => $id_aluno, "id_objetivo" => $id_objetivo])->with('success','A sugestão '.$sugestao->titulo.' foi excluída.');;
   }
 
   public function criar(Request $request){
@@ -58,7 +58,7 @@ class SugestaoController extends Controller
     $sugestao->user_id = \Auth::user()->id;
     $sugestao->save();
 
-    return redirect()->route("objetivo.sugestoes.listar", ["id_aluno" => $request->id_aluno, "id_objetivo" => $request->id_objetivo])->with('success','Sugestão cadastrada.');
+    return redirect()->route("sugestoes.listar", ["id_aluno" => $request->id_aluno, "id_objetivo" => $request->id_objetivo])->with('success','Sugestão cadastrada.');
   }
 
   public static function atualizar(Request $request){
@@ -76,7 +76,7 @@ class SugestaoController extends Controller
     $sugestao->descricao = $request->descricao;
     $sugestao->update();
 
-    return redirect()->route("objetivo.sugestoes.listar", ["id_aluno" => $request->id_aluno, "id_objetivo" => $request->id_objetivo])->with('success','A sugestãoatividade '.$sugestao->titulo.' foi atualizada.');
+    return redirect()->route("sugestoes.listar", ["id_aluno" => $request->id_aluno, "id_objetivo" => $request->id_objetivo])->with('success','A sugestãoatividade '.$sugestao->titulo.' foi atualizada.');
   }
 
   public function listar($id_aluno, $id_objetivo){
