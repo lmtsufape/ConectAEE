@@ -45,7 +45,7 @@ class AtividadeController extends Controller
     $atividade = Atividade::find($id_atividade);
     $atividade->delete();
 
-    return redirect()->route("objetivo.atividades.listar", ["id_aluno" => $id_aluno, "id_objetivo" => $id_objetivo])->with('success','A atividade '.$atividade->titulo.' foi excluída.');;
+    return redirect()->route("atividades.listar", ["id_aluno" => $id_aluno, "id_objetivo" => $id_objetivo])->with('success','A atividade '.$atividade->titulo.' foi excluída.');;
   }
 
   public static function criar(Request $request){
@@ -69,7 +69,7 @@ class AtividadeController extends Controller
     $atividade->objetivo_id = $request->id_objetivo;
     $atividade->save();
 
-    return redirect()->route("objetivo.atividades.listar", ["id_aluno" => $request->id_aluno, "id_objetivo" => $request->id_objetivo])->with('success','Atividade cadastrada.');
+    return redirect()->route("atividades.listar", ["id_aluno" => $request->id_aluno, "id_objetivo" => $request->id_objetivo])->with('success','Atividade cadastrada.');
   }
 
   public static function atualizar(Request $request){
@@ -91,7 +91,7 @@ class AtividadeController extends Controller
     $atividade->status = $request->status;
     $atividade->update();
 
-    return redirect()->route("objetivo.atividades.listar", ["id_aluno" => $request->id_aluno, "id_objetivo" => $request->id_objetivo])->with('success','A atividade '.$atividade->titulo.' foi atualizada.');
+    return redirect()->route("atividades.listar", ["id_aluno" => $request->id_aluno, "id_objetivo" => $request->id_objetivo])->with('success','A atividade '.$atividade->titulo.' foi atualizada.');
   }
 
   public static function listar($id_aluno, $id_objetivo){
@@ -117,7 +117,7 @@ class AtividadeController extends Controller
     $atividade->concluido = True;
     $atividade->update();
 
-    return redirect()->route("objetivo.atividades.listar", [
+    return redirect()->route("atividades.listar", [
       'aluno' => $aluno,
       'objetivo' => $objetivo,
       'atividades' => $atividades
@@ -134,7 +134,7 @@ class AtividadeController extends Controller
     $atividade->concluido = False;
     $atividade->update();
 
-    return redirect()->route("objetivo.atividades.listar", [
+    return redirect()->route("atividades.listar", [
       'aluno' => $aluno,
       'objetivo' => $objetivo,
       'atividades' => $atividades

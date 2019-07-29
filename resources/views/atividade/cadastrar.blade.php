@@ -5,7 +5,7 @@
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
 > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
 > <a href="{{route('objetivo.gerenciar',[$aluno->id,$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
-> <a href="{{route('objetivo.atividades.listar',[$aluno->id,$objetivo->id])}}">Atividades</a>
+> <a href="{{route('atividades.listar',[$aluno->id,$objetivo->id])}}">Atividades</a>
 > Nova
 @endsection
 @section('content')
@@ -16,7 +16,7 @@
         <div class="panel-heading">Nova Atividade</div>
 
         <div class="panel-body">
-          <form class="form-horizontal" method="POST" action="{{ route("objetivo.atividades.criar") }}">
+          <form class="form-horizontal" method="POST" action="{{ route("atividades.criar") }}">
             {{ csrf_field() }}
 
             <input type="hidden" name="id_aluno" value="{{ $aluno->id }}">

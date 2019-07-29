@@ -7,7 +7,7 @@
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
 > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
 > <a href="{{route('objetivo.gerenciar',[$aluno->id,$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
-> <a href="{{route('objetivo.sugestoes.listar',[$aluno->id,$objetivo->id])}}">Sugestões</a>
+> <a href="{{route('sugestoes.listar',[$aluno->id,$objetivo->id])}}">Sugestões</a>
 > Feedbacks de <strong>{{$sugestao->titulo}}</strong>
 @endsection
 @section('content')
@@ -33,6 +33,8 @@
                   <th>Usuário</th>
                   <th>Feedback</th>
                   <th>Horário</th>
+                  <th>Ações</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -41,6 +43,23 @@
                   <td data-title="Usuário">{{ $feedback->user->name }}</td>
                   <td data-title="Feedback">{{ $feedback->texto }}</td>
                   <td data-title="Horário">{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$feedback->updated_at)->format('d-m-Y (H:i)') }}</td>
+
+                  @if($feedback->user->id == \Auth::user()->id)
+                    <td data-title="Ações">
+                      <a class="btn btn-primary" href={{ route("feedback.editar" , ['id_aluno' => $aluno->id, 'id_objetivo' => $objetivo->id, 'id_sugestao' => $sugestao->id, 'id_feedback' => $feedback->id]) }}>Editar</a>
+                    </td>
+                  @else
+                    <td></td>
+                  @endif
+
+                  @if($objetivo->user->id == \Auth::user()->id)
+                    <td data-title="">
+                      <a class="btn btn-danger" href={{ route("feedback.excluir" , ['id_aluno' => $aluno->id, 'id_objetivo' => $objetivo->id, 'id_sugestao' => $sugestao->id, 'id_feedback' => $feedback->id]) }}>Excluir</a>
+                    </td>
+                  @else
+                    <td></td>
+                  @endif
+
                 </tr>
                 @endforeach
               </tbody>
@@ -49,23 +68,16 @@
         </div>
 
         <div class="panel-footer">
-          <a class="btn btn-danger" href="{{route('objetivo.sugestoes.listar',[
-          'id_aluno' => $sugestao->objetivo->aluno->id,
-          'id_objetivo' => $sugestao->objetivo->id,
-          'id_sugestao' => $sugestao->id,
-          ])}}">
-          Voltar
-        </a>
-        <a class="btn btn-success" href="{{route('objetivo.sugestoes.feedbacks.cadastrar',[
-        $sugestao->objetivo->aluno->id,$sugestao->objetivo->id,$sugestao->id,
-        ])}}">
-        Enviar novo feedback
-      </a>
+          <a class="btn btn-danger" href="{{route('sugestoes.listar',['id_aluno' => $sugestao->objetivo->aluno->id, 'id_objetivo' => $sugestao->objetivo->id, 'id_sugestao' => $sugestao->id] )}}">
+            Voltar
+          </a>
+          <a class="btn btn-success" href="{{route('feedbacks.cadastrar',[$sugestao->objetivo->aluno->id,$sugestao->objetivo->id,$sugestao->id] )}}">
+            Enviar novo feedback
+          </a>
+        </div>
+      </div>
     </div>
-
   </div>
-</div>
-</div>
 </div>
 
 <script type="text/javascript">
@@ -73,7 +85,10 @@ $(document).ready( function () {
   $('#tabela_dados').DataTable( {
     "language": {
       "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
-    }
+    },
+    "columnDefs": [
+      { "orderable": false, "targets": 3 },
+    ]
   });
 });
 </script>
