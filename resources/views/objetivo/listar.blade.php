@@ -36,20 +36,20 @@
               </thead>
               <tbody>
                 @foreach ($objetivos as $objetivo)
-                <tr>
-                  <td data-title="Usuário">{{ $objetivo->user->name}}</td>
-                  <td data-title="Título">{{ $objetivo->titulo }}</td>
-                  <td data-title="Descrição">{{ $objetivo->descricao }}</td>
-                  @if($objetivo->concluido)
-                  <td data-title="Concluído">Sim</td>
-                  @else
-                  <td data-title="Concluído">Não</td>
-                  @endif
-                  <td data-title="Data">{{ $objetivo->data }}</td>
-                  <td data-title="Ação">
-                    <a class="btn btn-success" href="{{ route("objetivo.gerenciar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id])}}">Gerenciar</a>
-                  </td>
-                </tr>
+                  <tr>
+                    <td data-title="Usuário">{{ $objetivo->user->name}}</td>
+                    <td data-title="Título">{{ $objetivo->titulo }}</td>
+                    <td data-title="Descrição">{{ $objetivo->descricao }}</td>
+                    @if($objetivo->concluido)
+                      <td data-title="Concluído">Sim</td>
+                    @else
+                      <td data-title="Concluído">Não</td>
+                    @endif
+                    <td data-title="Data">{{ $objetivo->data }}</td>
+                    <td data-title="Ação">
+                      <a class="btn btn-success" href="{{ route("objetivo.gerenciar" , ['id_objetivo' => $objetivo->id, 'id_aluno' => $aluno->id])}}">Gerenciar</a>
+                    </td>
+                  </tr>
                 @endforeach
               </tbody>
             </table>
@@ -60,7 +60,7 @@
           <a class="btn btn-danger" href="{{route("aluno.gerenciar" , ['id_aluno'=>$aluno->id])}}">Voltar</a>
 
           @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->perfil_id != 1)
-          <a class="btn btn-success" href="{{ route("objetivo.cadastrar" , ['id_aluno'=>$aluno->id])}}">Novo</a>
+            <a class="btn btn-success" href="{{ route("objetivo.cadastrar" , ['id_aluno'=>$aluno->id])}}">Novo</a>
           @endif
 
         </div>
