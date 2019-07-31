@@ -14,6 +14,14 @@
 				<div class="panel-heading">Gerenciamento de <strong>{{$aluno->nome}}</strong></div>
 
 				<div class="panel-body">
+					@if (\Session::has('success'))
+            <br>
+            <div class="alert alert-success">
+              <strong>Sucesso!</strong>
+              {!! \Session::get('success') !!}
+            </div>
+          @endif
+
 					@php
 						$gerenciars = $aluno->gerenciars;
 					@endphp
@@ -82,6 +90,9 @@
 					</div>
 
 					<br/>
+
+					<a class="btn btn-primary" href={{route("aluno.editar", ["id_aluno"=>$aluno->id]) }}>Editar</a>
+					<a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do aluno {{$aluno->nome}}?')" href={{route("aluno.excluir", ["id_aluno"=>$aluno->id]) }}>Excluir</a>
 
 				</div>
 

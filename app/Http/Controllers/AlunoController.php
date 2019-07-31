@@ -41,10 +41,42 @@ class AlunoController extends Controller{
   }
 
   public function cadastrar(){
+    $instituicoes = \Auth::user()->instituicoes;
+    $perfis = [[1,'Responsável'], [2,'Professor AEE']];
 
+    return view("aluno.cadastrar", [
+      'instituicoes' => $instituicoes,
+      'perfis' => $perfis
+    ]);
+  }
+
+  public static function editar($id_aluno){
+
+    $aluno = Aluno::find($id_aluno);
+    $endereco = $aluno->endereco;
+    $perfis = [[1,'Responsável'], [2,'Professor AEE']];
     $instituicoes = \Auth::user()->instituicoes;
 
-    return view("aluno.cadastrar", ['instituicoes' => $instituicoes]);
+    return view("aluno.editar", [
+      'aluno' => $aluno,
+      'endereco' =>$endereco,
+      'instituicoes' => $instituicoes,
+      'perfis' => $perfis
+    ]);
+  }
+
+  public static function excluir($id_aluno){
+    $aluno = Aluno::find($id_aluno);
+
+    $gerenciars = Gerenciar::where('aluno_id','=',$aluno->id)->get();
+
+    foreach($gerenciars as $gerenciar){
+      $gerenciar->delete();
+    }
+
+    $aluno->delete();
+
+    return redirect()->route("aluno.listar")->with('success','O aluno '.$aluno->nome.' foi excluído.');;
   }
 
   public static function buscar(){
@@ -113,13 +145,16 @@ class AlunoController extends Controller{
     $endereco->estado = $request->estado;
     $endereco->save();
 
-    $nome = uniqid(date('HisYmd'));
-    $extensao = $request->imagem->extension();
-    $nomeArquivo = "{$nome}.{$extensao}";
-    $request->imagem->move(public_path('avatars'), $nomeArquivo);
-
     $aluno = new Aluno();
-    $aluno->imagem = "/avatars/".$nomeArquivo;
+
+    if ($request->imagem != null) {
+      $nome = uniqid(date('HisYmd'));
+      $extensao = $request->imagem->extension();
+      $nomeArquivo = "{$nome}.{$extensao}";
+      $request->imagem->move(public_path('avatars'), $nomeArquivo);
+      $aluno->imagem = "/avatars/".$nomeArquivo;
+    }
+
     $aluno->nome = $request->nome;
     $aluno->sexo = $request->sexo;
     $aluno->cid = $request->cid;
@@ -171,6 +206,63 @@ class AlunoController extends Controller{
     }else{
       return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.' foi cadastrado.');
     }
+  }
+
+  public static function atualizar(Request $request){
+
+    $validator = Validator::make($request->all(), [
+      'instituicoes' => ['required'],
+      'imagem' => 'image|mimes:jpeg,png,jpg,jpe|max:3000',
+      'nome' => ['required','min:2','max:191'],
+      'sexo' => ['required'],
+      'cid' => ['nullable','regex:/(^([a-zA-z])(\d)(\d)(\d)$)/u'],
+      'descricaoCid' => ['required_with:cid'],
+      'observacao' => ['nullable','max:500'],
+      'data_nascimento' => ['required','date','before:today','after:01/01/1900'],
+      'logradouro' => ['required'],
+      'numero' => ['required','numeric'],
+      'bairro' => ['required'],
+      'cidade' => ['required'],
+      'estado' => ['required'],
+    ]);
+
+    if($validator->fails()){
+      return redirect()->back()->withErrors($validator->errors())->withInput();
+    }
+
+    $endereco = Endereco::find($request->id_endereco);
+    $endereco->logradouro = $request->logradouro;
+    $endereco->numero = $request->numero;
+    $endereco->bairro = $request->bairro;
+    $endereco->cidade = $request->cidade;
+    $endereco->estado = $request->estado;
+    $endereco->update();
+
+    $aluno = Aluno::find($request->id_aluno);
+
+    if ($request->imagem != null) {
+      unlink(substr($aluno->imagem, 1));
+
+      $nome = uniqid(date('HisYmd'));
+      $extensao = $request->imagem->extension();
+      $nomeArquivo = "{$nome}.{$extensao}";
+      $request->imagem->move(public_path('avatars'), $nomeArquivo);
+      $aluno->imagem = "/avatars/".$nomeArquivo;
+    }
+
+    $aluno->nome = $request->nome;
+    $aluno->sexo = $request->sexo;
+    $aluno->cid = $request->cid;
+    $aluno->descricao_cid = $request->descricaoCid;
+    $aluno->observacao = $request->observacao;
+    $aluno->data_de_nascimento = $request->data_nascimento;
+    $aluno->endereco_id = $endereco->id;
+
+    $aluno->update();
+    $aluno->instituicoes()->detach();
+    $aluno->instituicoes()->attach($request->instituicoes);
+
+    return redirect()->route("aluno.gerenciar", ['id_aluno' => $request->id_aluno])->with('success','O Aluno '.$aluno->nome.' foi atualizado.');
   }
 
   public static function requisitarPermissao($cod_aluno){

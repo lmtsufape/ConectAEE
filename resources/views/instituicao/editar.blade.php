@@ -32,15 +32,15 @@
               <div class="col-md-6">
 
                 @if(old('nome',NULL) != NULL)
-                <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}" autofocus>
+                  <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}" autofocus>
                 @else
-                <input id="nome" type="text" class="form-control" name="nome" value="{{ $instituicao->nome }}" autofocus>
+                  <input id="nome" type="text" class="form-control" name="nome" value="{{ $instituicao->nome }}" autofocus>
                 @endif
 
                 @if ($errors->has('nome'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('nome') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('nome') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -51,15 +51,15 @@
               <div class="col-md-6">
 
                 @if(old('telefone',NULL) != NULL)
-                <input id="telefone" type="digit" class="form-control" name="telefone" minlength="10" placeholder="DDD+Telefone" maxlength="11" value="{{ old('telefone') }}">
+                  <input id="telefone" type="digit" class="form-control" name="telefone" minlength="10" placeholder="DDD+Telefone" maxlength="11" value="{{ old('telefone') }}">
                 @else
-                <input id="telefone" type="digit" class="form-control" name="telefone" minlength="10" placeholder="DDD+Telefone" maxlength="11" value="{{ $instituicao->telefone }}">
+                  <input id="telefone" type="digit" class="form-control" name="telefone" minlength="10" placeholder="DDD+Telefone" maxlength="11" value="{{ $instituicao->telefone }}">
                 @endif
 
                 @if ($errors->has('telefone'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('telefone') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('telefone') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -70,15 +70,15 @@
               <div class="col-md-6">
 
                 @if(old('email',NULL) != NULL)
-                <input id="email" class="form-control" name="email" value="{{ old('email') }}">
+                  <input id="email" class="form-control" name="email" value="{{ old('email') }}">
                 @else
-                <input id="email" class="form-control" name="email" value="{{ $instituicao->email }}">
+                  <input id="email" class="form-control" name="email" value="{{ $instituicao->email }}">
                 @endif
 
                 @if ($errors->has('email'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('email') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('email') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -89,15 +89,15 @@
               <div class="col-md-6">
 
                 @if(old('logradouro',NULL) != NULL)
-                <input id="logradouro" type="text" class="form-control" name="logradouro" value="{{ old('logradouro') }}">
+                  <input id="logradouro" type="text" class="form-control" name="logradouro" value="{{ old('logradouro') }}">
                 @else
-                <input id="logradouro" type="text" class="form-control" name="logradouro" value="{{ $endereco->logradouro }}">
+                  <input id="logradouro" type="text" class="form-control" name="logradouro" value="{{ $endereco->logradouro }}">
                 @endif
 
                 @if ($errors->has('logradouro'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('logradouro') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('logradouro') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -108,15 +108,15 @@
               <div class="col-md-6">
 
                 @if(old('numero',NULL) != NULL)
-                <input id="numero" type="text" class="form-control" name="numero" value="{{ old('numero') }}">
+                  <input id="numero" type="text" class="form-control" name="numero" value="{{ old('numero') }}">
                 @else
-                <input id="numero" type="text" class="form-control" name="numero" value="{{ $endereco->numero }}">
+                  <input id="numero" type="text" class="form-control" name="numero" value="{{ $endereco->numero }}">
                 @endif
 
                 @if ($errors->has('numero'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('numero') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('numero') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -127,15 +127,15 @@
               <div class="col-md-6">
 
                 @if(old('bairro',NULL) != NULL)
-                <input id="bairro" type="text" class="form-control" name="bairro" value="{{ old('bairro') }}">
+                  <input id="bairro" type="text" class="form-control" name="bairro" value="{{ old('bairro') }}">
                 @else
-                <input id="bairro" type="text" class="form-control" name="bairro" value="{{ $endereco->bairro }}">
+                  <input id="bairro" type="text" class="form-control" name="bairro" value="{{ $endereco->bairro }}">
                 @endif
 
                 @if ($errors->has('bairro'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('bairro') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('bairro') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -149,9 +149,9 @@
                 </select>
 
                 @if ($errors->has('estado'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('estado') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('estado') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -166,9 +166,9 @@
                 </select>
 
                 @if ($errors->has('cidade'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('cidade') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('cidade') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
