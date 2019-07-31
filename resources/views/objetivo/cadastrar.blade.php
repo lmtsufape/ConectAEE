@@ -54,22 +54,22 @@
                 <select id="tipo" class="form-control" name="tipo">
 
                   @if (old('tipo') == null)
-                  <option value="" selected disabled hidden>Escolha o tipo</option>
+                    <option value="" selected disabled hidden>Escolha o tipo</option>
                   @endif
 
                   @foreach($tipos as $tipo)
-                  @if(old('tipo') == $tipo->id)
-                  <option value={{$tipo->id}} selected>{{$tipo->tipo}}</option>
-                  @else
-                  <option value={{$tipo->id}}>{{$tipo->tipo}}</option>
-                  @endif
+                    @if(old('tipo') == $tipo->id)
+                      <option value={{$tipo->id}} selected>{{$tipo->tipo}}</option>
+                    @else
+                      <option value={{$tipo->id}}>{{$tipo->tipo}}</option>
+                    @endif
                   @endforeach
                 </select>
 
                 @if ($errors->has('tipo'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('tipo') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('tipo') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>

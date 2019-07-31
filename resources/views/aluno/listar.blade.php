@@ -12,18 +12,18 @@
         <div class="panel-body">
 
           @if (\Session::has('success'))
-          <br>
-          <div class="alert alert-success">
-            <strong>Sucesso!</strong>
-            {!! \Session::get('success') !!}
-          </div>
+            <br>
+            <div class="alert alert-success">
+              <strong>Sucesso!</strong>
+              {!! \Session::get('success') !!}
+            </div>
           @endif
 
           @if (\Session::has('password'))
-          <div class="alert alert-success">
-            <strong>Sucesso!</strong>
-            {!! \Session::get('password') !!}
-          </div>
+            <div class="alert alert-success">
+              <strong>Sucesso!</strong>
+              {!! \Session::get('password') !!}
+            </div>
           @endif
 
           @if (\Session::has('denied'))

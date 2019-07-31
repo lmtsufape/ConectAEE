@@ -16,7 +16,7 @@ class CreateAlunosTable extends Migration
     Schema::create('alunos', function (Blueprint $table) {
       $table->bigIncrements('id');
       $table->string('nome');
-      $table->char('sexo');
+      $table->char('sexo',1);
       $table->date('data_de_nascimento');
       $table->string('cid')->nullable();
       $table->string('descricao_cid')->nullable();
@@ -28,6 +28,7 @@ class CreateAlunosTable extends Migration
       $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('cascade');
 
       $table->timestamps();
+      $table->softDeletes();
     });
   }
 

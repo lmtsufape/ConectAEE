@@ -26,15 +26,15 @@
 
               <div class="col-md-6">
                 @if(old('titulo',NULL) != NULL)
-                <input id="titulo" type="text" class="form-control" name="titulo" value="{{ old('titulo') }}" autofocus>
+                  <input id="titulo" type="text" class="form-control" name="titulo" value="{{ old('titulo') }}" autofocus>
                 @else
-                <input id="titulo" type="text" class="form-control" name="titulo" value="{{ $objetivo->titulo }}" autofocus>
+                  <input id="titulo" type="text" class="form-control" name="titulo" value="{{ $objetivo->titulo }}" autofocus>
                 @endif
 
                 @if ($errors->has('titulo'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('titulo') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('titulo') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -45,15 +45,15 @@
               <div class="col-md-6">
 
                 @if(old('descricao',NULL) != NULL)
-                <textarea id="descricao" rows = "5" cols = "50" class="form-control" name="descricao">{{ old('descricao') }}</textarea>
+                  <textarea id="descricao" rows = "5" cols = "50" class="form-control" name="descricao">{{ old('descricao') }}</textarea>
                 @else
-                <textarea id="descricao" rows = "5" cols = "50" class="form-control" name="descricao">{{ $objetivo->descricao }}</textarea>
+                  <textarea id="descricao" rows = "5" cols = "50" class="form-control" name="descricao">{{ $objetivo->descricao }}</textarea>
                 @endif
 
                 @if ($errors->has('descricao'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('descricao') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('descricao') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -64,28 +64,28 @@
               <div class="col-md-6">
                 <select id="tipo" class="form-control" name="tipo" autofocus>
                   @if (old('tipo',NULL) != NULL)
-                  @foreach($tipos as $tipo)
-                  @if(old('tipo') == $tipo->id)
-                  <option value={{$tipo->id}} selected>{{$tipo->tipo}}</option>
+                    @foreach($tipos as $tipo)
+                      @if(old('tipo') == $tipo->id)
+                        <option value={{$tipo->id}} selected>{{$tipo->tipo}}</option>
+                      @else
+                        <option value={{$tipo->id}}>{{$tipo->tipo}}</option>
+                      @endif
+                    @endforeach
                   @else
-                  <option value={{$tipo->id}}>{{$tipo->tipo}}</option>
-                  @endif
-                  @endforeach
-                  @else
-                  @foreach($tipos as $tipo)
-                  @if($objetivo->tipoObjetivo->tipo == $tipo->tipo)
-                  <option value={{$tipo->id}} selected>{{$tipo->tipo}}</option>
-                  @else
-                  <option value={{$tipo->id}}>{{$tipo->tipo}}</option>
-                  @endif
-                  @endforeach
+                    @foreach($tipos as $tipo)
+                      @if($objetivo->tipoObjetivo->tipo == $tipo->tipo)
+                        <option value={{$tipo->id}} selected>{{$tipo->tipo}}</option>
+                      @else
+                        <option value={{$tipo->id}}>{{$tipo->tipo}}</option>
+                      @endif
+                    @endforeach
                   @endif
                 </select>
 
                 @if ($errors->has('tipo'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('tipo') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('tipo') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -96,30 +96,28 @@
               <div class="col-md-6">
                 <select id="prioridade" class="form-control" name="prioridade" autofocus>
                   @if (old('prioridade',NULL) != NULL)
-                  @foreach($prioridades as $prioridade)
-                  @if(old('prioridade') == $prioridade)
-                  <option value={{$prioridade}} selected>{{$prioridade}}</option>
+                    @foreach($prioridades as $prioridade)
+                      @if(old('prioridade') == $prioridade)
+                        <option value={{$prioridade}} selected>{{$prioridade}}</option>
+                      @else
+                        <option value={{$prioridade}}>{{$prioridade}}</option>
+                      @endif
+                    @endforeach
                   @else
-                  <option value={{$prioridade}}>{{$prioridade}}</option>
+                    @foreach($prioridades as $prioridade)
+                      @if($objetivo->prioridade == $prioridade)
+                        <option value={{$prioridade}} selected>{{$prioridade}}</option>
+                      @else
+                        <option value={{$prioridade}}>{{$prioridade}}</option>
+                      @endif
+                    @endforeach
                   @endif
-                  @endforeach
-                  @else
-                  @foreach($prioridades as $prioridade)
-                  @if($objetivo->prioridade == $prioridade)
-                  <option value={{$prioridade}} selected>{{$prioridade}}</option>
-                  @else
-                  <option value={{$prioridade}}>{{$prioridade}}</option>
-                  @endif
-                  @endforeach
-                  @endif
-
-
                 </select>
 
                 @if ($errors->has('prioridade'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('prioridade') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('prioridade') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>

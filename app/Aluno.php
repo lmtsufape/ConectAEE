@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Aluno extends Model
 {
+    use SoftDeletes;
+
     public function gerenciars(){
         return $this->hasMany(Gerenciar::class);
     }

@@ -42,6 +42,10 @@ Route::middleware('autorizacao')->group(function() {
   Route::get('/aluno/buscar', 'AlunoController@buscar')->name('aluno.buscar');
   Route::post('/aluno/buscarCodigo', 'AlunoController@buscarCodigo')->name('aluno.buscarCodigo');
   Route::get('/aluno/{id_aluno}/gerenciar', 'AlunoController@gerenciar')->name('aluno.gerenciar');
+  //novaa
+  Route::get('/aluno/{id_aluno}/editar', 'AlunoController@editar')->name('aluno.editar');
+  Route::get('/aluno/{id_aluno}/excluir', 'AlunoController@excluir')->name('aluno.excluir');
+  Route::post('/aluno/atualizar', 'AlunoController@atualizar')->name('aluno.atualizar');
 
   //Permissões
   Route::get('/aluno/{id_aluno}/gerenciar/permissoes','AlunoController@gerenciarPermissoes')->name('aluno.permissoes');
