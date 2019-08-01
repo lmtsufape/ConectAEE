@@ -1,7 +1,7 @@
 @extends('layouts.principal')
 @section('title','Início')
 @section('navbar')
-<a href="{{route('aluno.listar')}}">Alunos</a>
+<a href="{{route('aluno.listar')}}">Início</a>
 > Buscar
 @endsection
 @section('content')

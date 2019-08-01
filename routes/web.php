@@ -110,6 +110,7 @@ Route::middleware('autorizacao')->group(function() {
   //Rotas para albuns //novas
   Route::get('/aluno/{id_aluno}/albuns/listar', 'AlbumController@listar')->name('album.listar');
   Route::get('/aluno/{id_aluno}/albuns/{id_album}/ver', 'AlbumController@ver')->name('album.ver');
+  Route::get('/aluno/{id_aluno}/albuns/{id_album}/editar', 'AlbumController@editar')->name('album.editar');
   Route::get('/aluno/{id_aluno}/albuns/cadastrar', 'AlbumController@cadastrar')->name('album.cadastrar');
   Route::post('/aluno/albuns/criar', 'AlbumController@criar')->name('album.criar');
 

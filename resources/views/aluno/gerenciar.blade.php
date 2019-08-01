@@ -2,7 +2,7 @@
 @section('title','Início')
 
 @section('navbar')
-<a href="{{route('aluno.listar')}}">Alunos</a>
+<a href="{{route('aluno.listar')}}">Início</a>
 > Gerenciar: <strong>{{$aluno->nome}}</strong>
 @endsection
 

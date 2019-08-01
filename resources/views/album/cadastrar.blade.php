@@ -3,7 +3,7 @@
 @section('path','Início')
 
 @section('navbar')
-<a href="{{route('aluno.listar')}}">Alunos</a>
+<a href="{{route('aluno.listar')}}">Início</a>
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
 > <a href={{route("album.listar", ["id_aluno"=>$aluno->id]) }}>Álbuns</a>
 > Novo
@@ -54,17 +54,18 @@
 
             <div class="form-group{{ $errors->has('imagens.*') || $errors->has('imagens')? ' has-error' : '' }}">
               <label for="imagens" class="col-md-4 control-label" >
-                Fotos:
+                Fotos <font color="red">*</font>
               </label>
 
               <div class="col-md-6">
-                <input id="imagens" type="file" multiple class="form-control-file" name="imagens[]">
+
+                <input id="imagens" type="file" multiple class="filestyle" name="imagens[]" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn btn-primary">
 
                 @if ($errors->has('imagens') || $errors->has('imagens.*'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('imagens') }}</strong>
-                  <strong>{{ $errors->first('imagens.*') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('imagens') }}</strong>
+                    <strong>{{ $errors->first('imagens.*') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>

@@ -33,6 +33,18 @@ class AlbumController extends Controller
     ]);
   }
 
+  public static function editar($id_aluno, $id_album){
+    $aluno = Aluno::find($id_aluno);
+    $album = Album::find($id_album);
+    $fotos = $album->fotos;
+
+    return view("album.editar",[
+      'aluno' => $aluno,
+      'album' => $album,
+      'fotos' => $fotos,
+    ]);
+  }
+
   public static function cadastrar($id_aluno){
     $aluno = Aluno::find($id_aluno);
 
