@@ -1,5 +1,5 @@
 @extends('layouts.principal')
-@section('title','Início')
+@section('title','Editar álbum')
 @section('path','Início')
 
 @section('navbar')

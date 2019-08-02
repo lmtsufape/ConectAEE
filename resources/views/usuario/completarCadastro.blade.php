@@ -1,5 +1,5 @@
 @extends('layouts.principal')
-@section('title','Editar')
+@section('title','Completar registro')
 @section('content')
 <div class="container">
   <div class="row">

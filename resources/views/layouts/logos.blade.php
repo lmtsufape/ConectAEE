@@ -4,7 +4,7 @@
             @if(Auth::check() && (Auth::user()->username == 'adelino.lmts' || Auth::user()->username == 'alana.lmts' || Auth::user()->username == 'mateus.lmts' || Auth::user()->username == 'eberson.lmts'))
                 <a href="{{ route("home") }}"><img src="{{asset('images/pikachinho.png')}}" style = "margin-left: 8px; margin-top:5px " height="170px" align = "left" ></a>
             @else
-                <a href="{{ route("home") }}"><img src="{{asset('images/aee.jpeg')}}" style = "margin-left: 8px; margin-top:5px " height="170px" align = "left" ></a>
+                <a href="{{ route("home") }}"><img src="{{asset('images/aee.png')}}" style = "margin-left: 8px; margin-top:5px " height="170px" align = "left" ></a>
             @endif
 
             <a target="_blank" href="http://lmts.uag.ufrpe.br/"><img src="{{asset('images/lmts3.png')}}" style = "margin-left: 8px; margin-top:65px " height="80" align = "right" ></a>

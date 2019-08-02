@@ -7,7 +7,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!--<title>{{ config('app.name', 'Laravel') }}</title> -->
-  <title>@yield('titulo') | AEE</title>
+  <title>@yield('title') | AEE</title>
 
   <!-- Styles -->
   <link href="{{ asset('css/lmts.css') }}" rel="stylesheet">
