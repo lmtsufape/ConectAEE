@@ -1,7 +1,8 @@
 <body>
   @include('layouts.header')
 
-  <div id="page-container">
+  <!-- c1e9aa -->
+  <div id="page-container" style="background-color:#eaeff3">
     <div id="content-wrap">
       @include('layouts.body')
       <br><br><br>

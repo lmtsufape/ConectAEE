@@ -1,7 +1,7 @@
 @extends('layouts.principal')
 @section('title','Início')
 @section('navbar')
-<a href="{{route('aluno.listar')}}">Alunos</a>
+<a href="{{route('aluno.listar')}}">Início</a>
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
 > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
 > <a href="{{route('objetivo.gerenciar',[$aluno->id,$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
@@ -28,15 +28,15 @@
 
               <div class="col-md-6">
                 @if(old('titulo',NULL) != NULL)
-                <input id="titulo" type="text" class="form-control" name="titulo" value="{{ old('titulo') }}" autofocus>
+                  <input id="titulo" type="text" class="form-control" name="titulo" value="{{ old('titulo') }}" autofocus>
                 @else
-                <input id="titulo" type="text" class="form-control" name="titulo" value="{{ $atividade->titulo }}" autofocus>
+                  <input id="titulo" type="text" class="form-control" name="titulo" value="{{ $atividade->titulo }}" autofocus>
                 @endif
 
                 @if ($errors->has('titulo'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('titulo') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('titulo') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -47,15 +47,15 @@
               <div class="col-md-6">
 
                 @if(old('descricao',NULL) != NULL)
-                <textarea id="descricao" rows = "5" cols = "50" class="form-control" name="descricao">{{ old('descricao') }}</textarea>
+                  <textarea id="descricao" rows = "5" cols = "50" class="form-control" name="descricao">{{ old('descricao') }}</textarea>
                 @else
-                <textarea id="descricao" rows = "5" cols = "50" class="form-control" name="descricao">{{ $atividade->descricao }}</textarea>
+                  <textarea id="descricao" rows = "5" cols = "50" class="form-control" name="descricao">{{ $atividade->descricao }}</textarea>
                 @endif
 
                 @if ($errors->has('descricao'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('descricao') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('descricao') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>

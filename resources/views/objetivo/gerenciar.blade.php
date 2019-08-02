@@ -1,7 +1,7 @@
 @extends('layouts.principal')
 @section('title','Início')
 @section('navbar')
-<a href="{{route('aluno.listar')}}">Alunos</a>
+<a href="{{route('aluno.listar')}}">Início</a>
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
 > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
 > <strong>{{$objetivo->titulo}}</strong>
@@ -84,7 +84,7 @@
       <div class="panel panel-default" style="width:100%">
 
         <div class="panel-heading">
-          Fórum do objetivo: {{$objetivo->titulo}}
+          Fórum <a class="btn btn-primary" style="margin-left: 40%" href="{{route('objetivo.forum',['aluno' => $objetivo->aluno->id, 'objetivo' => $objetivo->id])."#forum"}}">Ver todas as mensagens</a>
         </div>
 
         <div class="panel-body">
@@ -127,12 +127,7 @@
               @endif
             @endforeach
           </div>
-
-          <div class="text-center">
-            <a class="btn btn-primary" href="{{route('objetivo.forum',['aluno' => $objetivo->aluno->id, 'objetivo' => $objetivo->id])."#forum"}}">Todas as Mensagens</a>
-          </div>
         </div>
-
       </div>
     </div>
   </div>

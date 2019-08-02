@@ -3,7 +3,7 @@
 @section('path','Início')
 
 @section('navbar')
-<a href="{{route('aluno.listar')}}">Alunos</a> > Novo
+<a href="{{route('aluno.listar')}}">Início</a> > Novo
 @endsection
 
 @section('content')
@@ -96,10 +96,10 @@
             </div>
 
             <div class="form-group{{ $errors->has('imagem') ? ' has-error' : '' }}">
-              <label for="imagem" class="col-md-4 control-label" >Foto de perfil:</label>
+              <label for="imagem" class="col-md-4 control-label" >Foto de perfil</label>
 
               <div class="col-md-6">
-                <input id="imagem" type="file" class="form-control-file" name="imagem">
+                <input id="imagem" type="file" class="filestyle" name="imagem" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn btn-primary">
 
                 @if ($errors->has('imagem'))
                   <span class="help-block">

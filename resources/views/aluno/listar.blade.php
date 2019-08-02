@@ -1,8 +1,12 @@
 @extends('layouts.principal')
 @section('title','Início')
 @section('path','Início')
-@section('content')
 
+@section('navbar')
+<a href="{{route('aluno.listar')}}">Início</a>
+@endsection
+
+@section('content')
 <div class="container">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
@@ -67,16 +71,16 @@
 </div>
 
 <script type="text/javascript">
-$(document).ready( function () {
-  $('#tabela_dados').DataTable( {
-    "language": {
-      "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
-    },
-    "columnDefs": [
-      { "orderable": false, "targets": 1 }
-    ]
+  $(document).ready( function () {
+    $('#tabela_dados').DataTable( {
+      "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+      },
+      "columnDefs": [
+        { "orderable": false, "targets": 1 }
+      ]
+    });
   });
-});
 </script>
 
 @endsection

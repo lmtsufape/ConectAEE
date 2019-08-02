@@ -1,8 +1,14 @@
 .panel-default > .panel-heading {
   color: #fff;
-  background-color: #1B2E4F;
+  background-color: #12583c;
   border-color: #d3e0e9;
 }
+
+.navbar-default .navbar-nav > .dropdown > a:focus, .navbar-default .navbar-nav > .dropdown > a:hover {
+  color: #fff;
+  background-color: #12583c;
+}
+
 /* Select2 Selects CSS - Start */
 .select2-container--bootstrap .select2-selection--single .select2-selection__placeholder  {
   color: #555;
@@ -28,11 +34,6 @@ font-size: 16px;
 padding: 12px 20px 12px 40px;
 border: 1px solid #ddd;
 margin-bottom: 12px;
-}
-
-.navbar-default .navbar-nav > .dropdown > a:focus, .navbar-default .navbar-nav > .dropdown > a:hover {
-  color: #fff;
-  background-color: #1B2E4F;
 }
 
 .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {

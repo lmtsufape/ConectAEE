@@ -1,8 +1,8 @@
-<div id="barra-logos" class-"container" style="background:#FFFFFF; margin-top: 1px; height: 200px; padding: 10px 0 10px 0">
+<div id="barra-logos" class-"container" style="background:#eaeff3; margin-top: 1px; height: 200px; padding: 10px 0 10px 0">
     <ul id="logos" style="list-style:none;">
         <li style="margin-right:140px; margin-left:110px; border-right:1px">
             @if(Auth::check() && (Auth::user()->username == 'adelino.lmts' || Auth::user()->username == 'alana.lmts' || Auth::user()->username == 'mateus.lmts' || Auth::user()->username == 'eberson.lmts'))
-                <a href="{{ route("home") }}"><img src="{{asset('images/pikachinho.jpeg')}}" style = "margin-left: 8px; margin-top:5px " height="170px" align = "left" ></a>
+                <a href="{{ route("home") }}"><img src="{{asset('images/pikachinho.png')}}" style = "margin-left: 8px; margin-top:5px " height="170px" align = "left" ></a>
             @else
                 <a href="{{ route("home") }}"><img src="{{asset('images/aee.jpeg')}}" style = "margin-left: 8px; margin-top:5px " height="170px" align = "left" ></a>
             @endif

@@ -2,7 +2,7 @@
 @section('title','Início')
 
 @section('navbar')
-<a href="{{route('aluno.listar')}}">Alunos</a>
+<a href="{{route('aluno.listar')}}">Início</a>
 > Gerenciar: <strong>{{$aluno->nome}}</strong>
 @endsection
 
@@ -91,8 +91,11 @@
 
 					<br/>
 
-					<a class="btn btn-primary" href={{route("aluno.editar", ["id_aluno"=>$aluno->id]) }}>Editar</a>
-					<a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do aluno {{$aluno->nome}}?')" href={{route("aluno.excluir", ["id_aluno"=>$aluno->id]) }}>Excluir</a>
+					@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador)
+						<a class="btn btn-primary" href={{route("aluno.editar", ["id_aluno"=>$aluno->id]) }}>Editar</a>
+						<a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do aluno {{$aluno->nome}}?')" href={{route("aluno.excluir", ["id_aluno"=>$aluno->id]) }}>Excluir</a>
+          @endif
+
 
 				</div>
 
@@ -112,9 +115,7 @@
 		<div class="col-md-5">
 			<div class="panel panel-default" style="width:100%">
 				<div class="panel-heading" id="forum" >
-					<div class="card-title text-center">
-						Fórum
-					</div>
+						Fórum <a style="margin-left: 40%" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary">Ver todas as mensagens</a>
 				</div>
 
 				<div class="panel-body">
@@ -138,36 +139,31 @@
 				<div class="panel-footer" style="background-color: white;">
 
 					@foreach($mensagens as $mensagem)
-					@if($mensagem->user_id == \Auth::user()->id)
-					<div style="text-align: right; width: 80%; margin-left: 20%" id='user-message'>
-						<div class="panel panel-default">
-							<div style="background-color: #bbffad" class="panel-body">
-								<div class="hifen">
-									{{$mensagem->texto}}<br>
-									{{$mensagem->created_at->format('d/m/y h:i')}}<br>
+						@if($mensagem->user_id == \Auth::user()->id)
+							<div style="text-align: right; width: 80%; margin-left: 20%" id='user-message'>
+								<div class="panel panel-default">
+									<div style="background-color: #bbffad" class="panel-body">
+										<div class="hifen">
+											{{$mensagem->texto}}<br>
+											{{$mensagem->created_at->format('d/m/y h:i')}}<br>
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-					@else
-					<div style="text-align: left; width: 80%" id='others-message'>
-						<div class="panel panel-default">
-							<div style="background-color: #adbaff" class="panel-body">
-								<div class="hifen">
-									<strong>{{$mensagem->user->name}}:</strong><br>
-									{{$mensagem->texto}}<br>
-									{{$mensagem->created_at->format('d/m/y h:i')}}<br>
+						@else
+							<div style="text-align: left; width: 80%" id='others-message'>
+								<div class="panel panel-default">
+									<div style="background-color: #adbaff" class="panel-body">
+										<div class="hifen">
+											<strong>{{$mensagem->user->name}}:</strong><br>
+											{{$mensagem->texto}}<br>
+											{{$mensagem->created_at->format('d/m/y h:i')}}<br>
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-					@endif
+						@endif
 					@endforeach
-
-					<div class="text-center">
-						<a style="text-align: center" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary">Ver todas as mensagens</a>
-					</div>
-
 				</div>
 			</div>
 		</div>

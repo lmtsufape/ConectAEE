@@ -63,7 +63,7 @@ class InstituicaoController extends Controller
     if(preg_match('/aluno\/cadastrar/', $request->rota)){
       return redirect()->route("aluno.cadastrar");
     }else{
-      return redirect()->route("instituicao.listar");
+      return redirect()->route("instituicao.listar")->with('success','A instituição '.$instituicao->nome.' foi cadastrada.');;
     }
   }
 

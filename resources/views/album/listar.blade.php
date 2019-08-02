@@ -3,7 +3,7 @@
 @section('path','Início')
 
 @section('navbar')
-<a href="{{route('aluno.listar')}}">Alunos</a>
+<a href="{{route('aluno.listar')}}">Início</a>
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
 > Álbuns
 @endsection
@@ -37,32 +37,33 @@
               </thead>
               <tbody>
                 @php
-                $count = 1;
-                @endphp
-                @if($albuns != null)
-                @foreach($albuns as $album)
-                @php
-                $count++;
+                  $count = 1;
                 @endphp
 
-                @if($count % 2 == 0)
-                <tr align="center">
-                  @endif
-                  <td>
-                    <a href="{{route('album.ver', ['id_aluno'=>$aluno->id, 'id_album'=>$album->id])}}" style="text-decoration:none">
-                      <div class="card text-center" style="width:200px">
-                        <div class="card-body">
-                          <img class="card-img-top" src="{{$album->fotos[0]->imagem}}" style="width:200px; height:200px; object-fit: cover;">
-                          <h2 class="card-title">{{$album->nome}}</h2>
-                          <p class="card-text">{{$album->descricao}}</p>
+                @if($albuns != null)
+                  @foreach($albuns as $album)
+                    @php
+                      $count++;
+                    @endphp
+
+                    @if($count % 2 == 0)
+                      <tr align="center">
+                    @endif
+                    <td>
+                      <a href="{{route('album.ver', ['id_aluno'=>$aluno->id, 'id_album'=>$album->id])}}" style="text-decoration:none">
+                        <div class="card text-center" style="width:200px">
+                          <div class="card-body">
+                            <img class="card-img-top" src="{{$album->fotos[0]->imagem}}" style="width:200px; height:200px; object-fit: cover;">
+                            <h2 class="card-title">{{$album->nome}}</h2>
+                            <p class="card-text">{{$album->descricao}}</p>
+                          </div>
                         </div>
-                      </div>
-                    </a>
-                  </td>
-                  @if($count % 2 != 0)
-                </tr>
-                @endif
-                @endforeach
+                      </a>
+                    </td>
+                    @if($count % 2 != 0)
+                      </tr>
+                    @endif
+                  @endforeach
                 @endif
               </tbody>
             </table>
