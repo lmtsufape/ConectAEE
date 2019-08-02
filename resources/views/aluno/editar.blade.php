@@ -1,5 +1,5 @@
 @extends('layouts.principal')
-@section('title','Início')
+@section('title','Editar aluno')
 @section('path','Início')
 
 @section('navbar')

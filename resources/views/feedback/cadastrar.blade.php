@@ -1,5 +1,5 @@
 @extends('layouts.principal')
-@section('title','Início')
+@section('title','Cadastrar feedback')
 @php($aluno = $sugestao->objetivo->aluno)
 @php($objetivo = $sugestao->objetivo)
 

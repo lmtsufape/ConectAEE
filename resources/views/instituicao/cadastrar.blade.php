@@ -1,5 +1,5 @@
 @extends('layouts.principal')
-@section('title','Início')
+@section('title','Cadastrar instituição')
 @section('path','Início')
 
 @section('navbar')
