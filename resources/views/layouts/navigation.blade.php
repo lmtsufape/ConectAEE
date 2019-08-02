@@ -1,4 +1,4 @@
-<div id="navigation" style="background-color:#f6e6cf">
+<div id="navigation" style="background-color:#eaeff3">
   @php($url = str_replace(URL::to('/'),'',URL::current()))
 
   <div style="margin-top: -30px" class="container">
