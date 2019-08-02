@@ -45,6 +45,36 @@ class AlbumController extends Controller
     ]);
   }
 
+  public static function excluirAlbum($id_aluno, $id_album){
+    $aluno = Aluno::find($id_aluno);
+    $album = Album::find($id_album);
+
+    foreach ($album->fotos as $foto) {
+      unlink(substr($foto->imagem, 1));
+    }
+
+    $album->delete();
+
+    return redirect()->route("album.listar", [
+      "id_aluno"=>$id_aluno
+    ])->with('success','O álbum '.$album->nome.' foi excluído.');
+  }
+
+  public static function excluirFoto($id_aluno, $id_album, $id_foto){
+    $aluno = Aluno::find($id_aluno);
+    $album = Album::find($id_album);
+    $foto = Foto::find($id_foto);
+
+    unlink(substr($foto->imagem, 1));
+
+    $foto->delete();
+
+    return redirect()->route("album.editar", [
+      'aluno' => $aluno,
+      'album' => $album,
+    ])->with('success','A imagem foi excluída.');
+  }
+
   public static function cadastrar($id_aluno){
     $aluno = Aluno::find($id_aluno);
 
@@ -53,7 +83,7 @@ class AlbumController extends Controller
     ]);
   }
 
-  public function criar(Request $request){
+  public static function criar(Request $request){
 
     $validator = Validator::make($request->all(), [
       'nome' => ['required','min:2','max:191'],
@@ -87,7 +117,48 @@ class AlbumController extends Controller
       $foto->save();
     }
 
-    return redirect()->route("album.listar", ["id_aluno"=>$request->id_aluno])->with('success','O álbum '.$album->nome.' foi criado.');
+    return redirect()->route("album.listar", [
+      "id_aluno"=>$request->id_aluno
+    ])->with('success','O álbum '.$album->nome.' foi criado.');
+
+  }
+
+  public static function atualizar(Request $request){
+
+    $validator = Validator::make($request->all(), [
+      'nome' => ['required','min:2','max:191'],
+      'descricao' => ['nullable','max:500'],
+      'imagens.*' => ['image','mimes:jpeg,png,jpg,jpe,gif','max:3000'],
+    ]);
+
+    if($validator->fails()){
+      return redirect()->back()->withErrors($validator->errors())->withInput();
+    }
+
+    $album = Album::find($request->id_album);
+    $album->nome = $request->nome;
+    $album->descricao = $request->descricao;
+    $album->update();
+
+    foreach ($request->imagens as $imagem) {
+      $nome = uniqid(date('HisYmd'));
+      $extensao = $imagem->extension();
+
+      $path = "albuns/".$request->id_aluno;
+      $nomeArquivo = "{$nome}.{$extensao}";
+      $imagem->move(public_path($path), $nomeArquivo);
+
+      $foto = new Foto();
+      $foto->imagem = "/".$path."/".$nomeArquivo;
+      $foto->data = date('d/m/Y');
+      $foto->album_id = $album->id;
+      $foto->save();
+    }
+
+    return redirect()->route("album.ver", [
+      "id_aluno"=>$request->id_aluno,
+      "id_album"=>$request->id_album
+    ])->with('success','O álbum '.$album->nome.' foi atualizado.');
 
   }
 

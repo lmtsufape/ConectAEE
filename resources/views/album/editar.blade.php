@@ -6,7 +6,7 @@
 <a href="{{route('aluno.listar')}}">Início</a>
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
 > <a href="{{route('album.listar', $aluno->id) }}"> Álbuns</strong></a>
-> <a href="{{route('album.ver' , ['id_aluno'=>$aluno->id, 'id_album'=>$album->id,]) }}">Fotos de: <strong>{{$album->nome}}</a>
+> <a href="{{route('album.ver' , ['id_aluno'=>$aluno->id, 'id_album'=>$album->id,]) }}">Fotos de: <strong>{{$album->nome}}</strong> </a>
 > Editar
 @endsection
 
@@ -17,13 +17,14 @@
     <div class="col-md-10 col-md-offset-1">
 
       <div class="panel panel-default">
-        <div class="panel-heading">Álbum: {{$album->nome}}</div>
+        <div class="panel-heading">Editar Álbum</div>
 
         <div class="panel-body">
-          <form class="form-horizontal" method="POST" action="{{ route("album.criar") }}" enctype="multipart/form-data">
+          <form class="form-horizontal" method="POST" action="{{ route("album.atualizar") }}" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             <input id="id_aluno" type="hidden" class="form-control" name="id_aluno" value="{{ $aluno->id }}">
+            <input id="id_album" type="hidden" class="form-control" name="id_album" value="{{ $album->id }}">
 
             <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
               <label for="nome" class="col-md-4 control-label"> Nome <font color="red">*</font> </label>
@@ -78,6 +79,15 @@
                 @endif
               </div>
             </div>
+
+            <div class="form-group">
+              <div class="col-md-6 col-md-offset-4">
+                <button type="submit" class="btn btn-success">
+                  Atualizar
+                </button>
+              </div>
+            </div>
+
           </form>
         </div>
       </div>
@@ -126,9 +136,11 @@
                           <button class="btn btn-info" type="button" onclick="show('{{$foto->id}}')" data-toggle="modal" data-target="#ModalCarousel">
                             <img src="{{$foto->imagem}}" style="width:128px; height: 128px; object-fit: cover;">
                           </button>
+                          &nbsp; &nbsp;
+                          <br><br>
+                          <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão desta imagem?')" href="{{route("album.foto.excluir" , ['id_aluno'=>$aluno->id, 'id_album'=>$album->id, 'id_foto'=>$foto->id]) }}">Excluir</a>
                           <br>
-                          <a class="btn btn-danger" href="#">Excluir<a/>
-                          &nbsp;
+                          &nbsp; &nbsp;
                         </td>
                       @endfor
                     @endif
@@ -145,9 +157,11 @@
                       <button class="btn btn-info" type="button" onclick="show('{{$foto->id}}')" data-toggle="modal" data-target="#ModalCarousel">
                         <img src="{{$foto->imagem}}" style="width:128px; height: 128px; object-fit: cover;">
                       </button>
+                      &nbsp; &nbsp;
+                      <br><br>
+                      <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão desta imagem?')" href="{{route("album.foto.excluir" , ['id_aluno'=>$aluno->id, 'id_album'=>$album->id, 'id_foto'=>$foto->id]) }}">Excluir</a>
                       <br>
-                      <a class="btn btn-danger" href="#">Excluir<a/>
-                      &nbsp;
+                      &nbsp; &nbsp;
                     </td>
                   @endif
                 @endfor
@@ -201,7 +215,6 @@
 
         <div class="panel-footer">
           <a class="btn btn-danger" href="{{route("album.ver" , ['id_aluno'=>$aluno->id, 'id_album'=>$album->id,]) }}">Voltar</a>
-          <a class="btn btn-primary" href="#">Atualizar</a>
         </div>
       </div>
     </div>

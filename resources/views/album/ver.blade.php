@@ -5,8 +5,8 @@
 @section('navbar')
 <a href="{{route('aluno.listar')}}">Início</a>
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
-> <a href="{{route('album.listar', $aluno->id) }}"> Álbuns</strong></a>
-> Fotos de <strong>{{$album->nome}}
+> <a href="{{route('album.listar', $aluno->id) }}"> Álbuns</a>
+> Fotos de <strong>{{$album->nome}}</strong>
 @endsection
 
 @section('content')
@@ -60,7 +60,9 @@
                           <button class="btn btn-info" type="button" onclick="show('{{$foto->id}}')" data-toggle="modal" data-target="#ModalCarousel">
                             <img src="{{$foto->imagem}}" style="width:200px; height: 200px; object-fit: cover;">
                           </button>
-                          &nbsp;
+                          &nbsp; &nbsp;
+                          <br>
+                          &nbsp; &nbsp;
                         </td>
                       @endfor
                     @endif
@@ -126,6 +128,7 @@
         <div class="panel-footer">
           <a class="btn btn-danger" href="{{route("album.listar" , ['id_aluno'=>$aluno->id])}}">Voltar</a>
           <a class="btn btn-primary" href="{{route("album.editar" , ['id_aluno'=>$aluno->id, 'id_album'=>$album->id,]) }}">Editar</a>
+          <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do album {{$album->nome}}?')" href="{{route("album.excluir" , ['id_aluno'=>$aluno->id, 'id_album'=>$album->id,]) }}">Excluir</a>
         </div>
       </div>
     </div>
