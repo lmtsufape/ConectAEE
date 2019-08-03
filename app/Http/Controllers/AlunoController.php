@@ -35,7 +35,7 @@ class AlunoController extends Controller{
       array_push($alunos,$gerenciar->aluno);
     }
 
-    return view("aluno.listar",[
+    return view("aluno.listarImagens",[
       'alunos' => $alunos
     ]);
   }
@@ -241,7 +241,9 @@ class AlunoController extends Controller{
     $aluno = Aluno::find($request->id_aluno);
 
     if ($request->imagem != null) {
-      unlink(substr($aluno->imagem, 1));
+      if ($aluno->imagem != null) {
+        unlink(substr($aluno->imagem, 1));
+      }
 
       $nome = uniqid(date('HisYmd'));
       $extensao = $request->imagem->extension();
