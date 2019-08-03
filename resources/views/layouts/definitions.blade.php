@@ -9,6 +9,7 @@
   <!--<title>{{ config('app.name', 'Laravel') }}</title> -->
   <title>@yield('title') | AEE</title>
 
+  <link rel="shortcut icon" type="image/png" href="{{ asset('images/aee.png') }}">
   <!-- Styles -->
   <link href="{{ asset('css/lmts.css') }}" rel="stylesheet">
   <link href="{{ asset('css/lmts-app.css') }}" rel="stylesheet">
