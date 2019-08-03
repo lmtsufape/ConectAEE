@@ -137,24 +137,24 @@ class AlbumController extends Controller
     $album->descricao = $request->descricao;
     $album->update();
 
-    foreach ($request->imagens as $imagem) {
-      $nome = uniqid(date('HisYmd'));
-      $extensao = $imagem->extension();
+    if ($request->imagens != null) {
+      foreach ($request->imagens as $imagem) {
+        $nome = uniqid(date('HisYmd'));
+        $extensao = $imagem->extension();
 
-      $path = "albuns/".$request->id_aluno;
-      $nomeArquivo = "{$nome}.{$extensao}";
-      $imagem->move(public_path($path), $nomeArquivo);
+        $path = "albuns/".$request->id_aluno;
+        $nomeArquivo = "{$nome}.{$extensao}";
+        $imagem->move(public_path($path), $nomeArquivo);
 
-      $foto = new Foto();
-      $foto->imagem = "/".$path."/".$nomeArquivo;
-      $foto->data = date('d/m/Y');
-      $foto->album_id = $album->id;
-      $foto->save();
+        $foto = new Foto();
+        $foto->imagem = "/".$path."/".$nomeArquivo;
+        $foto->data = date('d/m/Y');
+        $foto->album_id = $album->id;
+        $foto->save();
+      }
     }
 
-    return redirect()->route("album.ver", [
-      "id_album"=>$request->id_album
-    ])->with('success','O álbum '.$album->nome.' foi atualizado.');
+    return redirect()->route("album.ver", ["id_album"=>$request->id_album])->with('success','O álbum '.$album->nome.' foi atualizado.');
 
   }
 
