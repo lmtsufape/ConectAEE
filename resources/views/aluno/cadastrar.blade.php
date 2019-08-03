@@ -323,54 +323,55 @@
               <div id="div-responsavel" style="display: none">
             @endif
 
-                <font size="4" class="row">
-                  Cadastro de Responsável:
-                </font>
+            <font size="4" class="row">
+              Cadastro de Responsável:
+            </font>
 
-                <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                  <label for="username" class="col-md-4 control-label">Nome de Usuário</label>
+            <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+              <label for="username" class="col-md-4 control-label">Nome de Usuário</label>
 
-                  <div class="col-md-6">
-                    @if (old('username') == null)
-                      <input name="username" type="text" class="form-control" value="{{old('username')}}">
-                    @else
-                      <input name="username" type="text" class="form-control">
-                    @endif
+              <div class="col-md-6">
+                @if (old('username') == null)
+                  <input name="username" type="text" class="form-control" value="{{old('username')}}">
+                @else
+                  <input name="username" type="text" class="form-control">
+                @endif
 
-                    @if ($errors->has('username'))
-                      <span class="help-block">
-                        <strong>{{ $errors->first('username') }}</strong>
-                      </span>
-                    @endif
-                  </div>
-                </div>
+                @if ($errors->has('username'))
+                  <span class="help-block">
+                    <strong>{{ $errors->first('username') }}</strong>
+                  </span>
+                @endif
               </div>
+            </div>
+            </div>
 
-              <div class="form-group">
-                <div class="col-md-6 col-md-offset-4">
-                  <button type="submit" class="btn btn-success">
-                    Cadastrar
-                  </button>
-                </div>
+            <div class="form-group">
+              <div class="col-md-6 col-md-offset-4">
+                <button type="submit" class="btn btn-success">
+                  Cadastrar
+                </button>
               </div>
-            </form>
-          </div>
+            </div>
 
-          <div class="panel-footer">
-            <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
-          </div>
-
+          </form>
         </div>
+
+        <div class="panel-footer">
+          <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
+        </div>
+
       </div>
     </div>
   </div>
+</div>
 
-  <script src="{{ asset('js/jquery-3.3.1.min.js')}}"></script>
-  <script src="{{ asset('js/select2.min.js') }}"></script>
-  <script type="text/javascript">
-  $(document).ready(function() {
-    $('.js-example-basic-multiple').select2();
-  });
+<script src="{{ asset('js/jquery-3.3.1.min.js')}}"></script>
+<script src="{{ asset('js/select2.min.js') }}"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('.js-example-basic-multiple').select2();
+});
 </script>
 <script>
 var estados = [];
@@ -396,6 +397,7 @@ function loadEstados(element) {
 }
 
 function putEstados(element) {
+  var oldEstado = "{{old('estado')}}";
 
   var label = $(element).data('label');
   label = label ? label : 'Estado';
@@ -403,13 +405,27 @@ function putEstados(element) {
   var options = '<option value="">' + label + '</option>';
   for (var i in estados) {
     var estado = estados[i];
-    options += '<option value="' + estado.sigla + '">' + estado.nome + '</option>';
+
+    if(estado.sigla == oldEstado){
+      options += '<option selected value="' + estado.sigla + '">' + estado.nome + '</option>';
+    }else{
+      options += '<option value="' + estado.sigla + '">' + estado.nome + '</option>';
+    }
+  }
+
+  if(oldEstado != ""){
+    var target = $(element).data('target');
+
+    if (target) {
+      loadCidades(target, oldEstado);
+    }
   }
 
   $(element).html(options);
 }
 
 function loadCidades(element, estado_sigla) {
+
   if (estados.length > 0) {
     putCidades(element, estado_sigla);
     $(element).removeAttr('disabled');
@@ -418,20 +434,20 @@ function loadCidades(element, estado_sigla) {
       url: theme_url + '/assets/json/estados.json',
       method: 'get',
       dataType: 'json',
-      beforeSend: function() {
-        $(element).html('<option>Carregando...</option>');
-      }
     }).done(function(response) {
       estados = response.estados;
       putCidades(element, estado_sigla);
       $(element).removeAttr('disabled');
     });
+    document.write(estados.length);
   }
 }
 
 function putCidades(element, estado_sigla) {
   var label = $(element).data('label');
   label = label ? label : 'Cidade';
+
+  var oldCidade = "{{old('cidade')}}";
 
   var options = '<option value="">' + label + '</option>';
   for (var i in estados) {
@@ -440,7 +456,12 @@ function putCidades(element, estado_sigla) {
     continue;
     for (var j in estado.cidades) {
       var cidade = estado.cidades[j];
-      options += '<option value="' + cidade + '">' + cidade + '</option>';
+
+      if (cidade == oldCidade) {
+        options += '<option selected value="' + cidade + '">' + cidade + '</option>';
+      }else {
+        options += '<option value="' + cidade + '">' + cidade + '</option>';
+      }
     }
   }
   $(element).html(options);
@@ -455,6 +476,7 @@ document.addEventListener('DOMContentLoaded', function() {
       loadCidades(target, $(this).val());
     }
   });
+
 }, false);
 
 </script>

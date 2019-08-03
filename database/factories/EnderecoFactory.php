@@ -7,7 +7,9 @@ $factory->define(App\Endereco::class, function (Faker $faker) {
       'numero' => $faker->buildingNumber,
       'logradouro' => $faker->streetName,
       'bairro' => $faker->citySuffix,
-      'cidade' => $faker->city,
-      'estado' => $faker->stateAbbr,
+      'cidade' => 'Garanhuns',
+      'estado' => 'PE'
+      // 'cidade' => $faker->city,
+      // 'estado' => $faker->stateAbbr,
     ];
 });

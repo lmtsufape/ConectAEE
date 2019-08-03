@@ -187,6 +187,7 @@ function loadEstados(element) {
 }
 
 function putEstados(element) {
+  var oldEstado = "{{old('estado')}}";
 
   var label = $(element).data('label');
   label = label ? label : 'Estado';
@@ -194,7 +195,20 @@ function putEstados(element) {
   var options = '<option value="">' + label + '</option>';
   for (var i in estados) {
     var estado = estados[i];
-    options += '<option value="' + estado.sigla + '">' + estado.nome + '</option>';
+
+    if(estado.sigla == oldEstado){
+      options += '<option selected value="' + estado.sigla + '">' + estado.nome + '</option>';
+    }else{
+      options += '<option value="' + estado.sigla + '">' + estado.nome + '</option>';
+    }
+  }
+
+  if(oldEstado != ""){
+    var target = $(element).data('target');
+
+    if (target) {
+      loadCidades(target, oldEstado);
+    }
   }
 
   $(element).html(options);
@@ -224,6 +238,8 @@ function putCidades(element, estado_sigla) {
   var label = $(element).data('label');
   label = label ? label : 'Cidade';
 
+  var oldCidade = "{{old('cidade')}}";
+
   var options = '<option value="">' + label + '</option>';
   for (var i in estados) {
     var estado = estados[i];
@@ -231,7 +247,12 @@ function putCidades(element, estado_sigla) {
     continue;
     for (var j in estado.cidades) {
       var cidade = estado.cidades[j];
-      options += '<option value="' + cidade + '">' + cidade + '</option>';
+
+      if (cidade == oldCidade) {
+        options += '<option selected value="' + cidade + '">' + cidade + '</option>';
+      }else {
+        options += '<option value="' + cidade + '">' + cidade + '</option>';
+      }
     }
   }
   $(element).html(options);
