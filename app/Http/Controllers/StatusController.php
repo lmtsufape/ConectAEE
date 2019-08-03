@@ -12,11 +12,11 @@ use DateTime;
 
 class StatusController extends Controller
 {
-  public function cadastrar($id_aluno, $id_objetivo){
+  public function cadastrar($id_objetivo){
     $statuses = Status::all();
 
-    $aluno = Aluno::find($id_aluno);
     $objetivo = Objetivo::find($id_objetivo);
+    $aluno = $objetivo->aluno;
 
     return view("status.cadastrar", [
       'aluno' => $aluno,
@@ -42,6 +42,6 @@ class StatusController extends Controller
 
     $statusObjetivo->save();
 
-    return redirect()->route("objetivo.gerenciar", ["id_aluno" => $request->id_aluno, "id_objetivo" => $request->id_objetivo])->with('success','Status atualizado.');
+    return redirect()->route("objetivo.gerenciar", ["id_objetivo" => $request->id_objetivo])->with('success','Status atualizado.');
   }
 }

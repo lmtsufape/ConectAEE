@@ -11,11 +11,11 @@ use DateTime;
 
 class AtividadeController extends Controller
 {
-  public static function cadastrar($id_aluno, $id_objetivo){
+  public static function cadastrar($id_objetivo){
     $statuses = ["Não iniciada","Iniciada", "Em andamento", "Finalizada"];
     $prioridades = ["Alta","Média","Baixa"];
-    $aluno = Aluno::find($id_aluno);
     $objetivo = Objetivo::find($id_objetivo);
+    $aluno = $objetivo->aluno;
 
     return view("atividade.cadastrar", [
       'aluno' => $aluno,
@@ -25,10 +25,11 @@ class AtividadeController extends Controller
     ]);
   }
 
-  public static function editar($id_aluno, $id_objetivo, $id_atividade){
-    $aluno = Aluno::find($id_aluno);
-    $objetivo = Objetivo::find($id_objetivo);
+  public static function editar($id_atividade){
     $atividade = Atividade::find($id_atividade);
+    $objetivo = $atividade->objetivo;
+    $aluno = $atividade->objetivo->aluno;
+
     $statuses = ["Não iniciada","Iniciada", "Em andamento", "Finalizada"];
     $prioridades = ["Alta","Média","Baixa"];
 
@@ -41,11 +42,12 @@ class AtividadeController extends Controller
     ]);
   }
 
-  public static function excluir($id_aluno, $id_objetivo, $id_atividade){
+  public static function excluir($id_atividade){
     $atividade = Atividade::find($id_atividade);
+    $objetivo = $atividade->objetivo;
     $atividade->delete();
 
-    return redirect()->route("atividades.listar", ["id_aluno" => $id_aluno, "id_objetivo" => $id_objetivo])->with('success','A atividade '.$atividade->titulo.' foi excluída.');;
+    return redirect()->route("atividades.listar", ["id_objetivo" => $objetivo->id])->with('success','A atividade '.$atividade->titulo.' foi excluída.');;
   }
 
   public static function criar(Request $request){
@@ -69,7 +71,7 @@ class AtividadeController extends Controller
     $atividade->objetivo_id = $request->id_objetivo;
     $atividade->save();
 
-    return redirect()->route("atividades.listar", ["id_aluno" => $request->id_aluno, "id_objetivo" => $request->id_objetivo])->with('success','Atividade cadastrada.');
+    return redirect()->route("atividades.listar", ["id_objetivo" => $request->id_objetivo])->with('success','Atividade cadastrada.');
   }
 
   public static function atualizar(Request $request){
@@ -91,13 +93,13 @@ class AtividadeController extends Controller
     $atividade->status = $request->status;
     $atividade->update();
 
-    return redirect()->route("atividades.listar", ["id_aluno" => $request->id_aluno, "id_objetivo" => $request->id_objetivo])->with('success','A atividade '.$atividade->titulo.' foi atualizada.');
+    return redirect()->route("atividades.listar", ["id_objetivo" => $request->id_objetivo])->with('success','A atividade '.$atividade->titulo.' foi atualizada.');
   }
 
-  public static function listar($id_aluno, $id_objetivo){
+  public static function listar($id_objetivo){
 
-    $aluno = Aluno::find($id_aluno);
     $objetivo = Objetivo::find($id_objetivo);
+    $aluno = $objetivo->aluno;
     $atividades = $objetivo->atividades;
 
     return view("atividade.listar", [
@@ -107,38 +109,27 @@ class AtividadeController extends Controller
     ]);
   }
 
-  public static function concluir($id_aluno, $id_objetivo, $id_atividade){
+  public static function concluir($id_atividade){
 
-    $aluno = Aluno::find($id_aluno);
-    $objetivo = Objetivo::find($id_objetivo);
-    $atividades = $objetivo->atividades;
 
     $atividade = Atividade::find($id_atividade);
+    $objetivo = $atividade->objetivo;
     $atividade->concluido = True;
     $atividade->update();
 
-    return redirect()->route("atividades.listar", [
-      'aluno' => $aluno,
-      'objetivo' => $objetivo,
-      'atividades' => $atividades
-    ]);
+    return redirect()->route("atividades.listar", ["id_objetivo" => $objetivo->id]);
   }
 
-  public static function desconcluir($id_aluno, $id_objetivo, $id_atividade){
+  public static function desconcluir($id_atividade){
 
-    $aluno = Aluno::find($id_aluno);
-    $objetivo = Objetivo::find($id_objetivo);
-    $atividades = $objetivo->atividades;
 
     $atividade = Atividade::find($id_atividade);
+    $objetivo = $atividade->objetivo;
     $atividade->concluido = False;
     $atividade->update();
 
-    return redirect()->route("atividades.listar", [
-      'aluno' => $aluno,
-      'objetivo' => $objetivo,
-      'atividades' => $atividades
-    ]);
+
+    return redirect()->route("atividades.listar", ["id_objetivo" => $objetivo->id]);
 
   }
 

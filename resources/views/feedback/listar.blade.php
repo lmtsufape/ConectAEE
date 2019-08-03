@@ -6,8 +6,8 @@
 <a href="{{route('aluno.listar')}}">Início</a>
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
 > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
-> <a href="{{route('objetivo.gerenciar',[$aluno->id,$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
-> <a href="{{route('sugestoes.listar',[$aluno->id,$objetivo->id])}}">Sugestões</a>
+> <a href="{{route('objetivo.gerenciar',[$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
+> <a href="{{route('sugestoes.listar',[$objetivo->id])}}">Sugestões</a>
 > Feedbacks de <strong>{{$sugestao->titulo}}</strong>
 @endsection
 @section('content')
@@ -46,7 +46,7 @@
 
                   @if($feedback->user->id == \Auth::user()->id)
                     <td data-title="Ações">
-                      <a class="btn btn-primary" href={{ route("feedback.editar" , ['id_aluno' => $aluno->id, 'id_objetivo' => $objetivo->id, 'id_sugestao' => $sugestao->id, 'id_feedback' => $feedback->id]) }}>Editar</a>
+                      <a class="btn btn-primary" href={{ route("feedback.editar" , ['id_feedback' => $feedback->id]) }}>Editar</a>
                     </td>
                   @else
                     <td></td>
@@ -54,7 +54,7 @@
 
                   @if($objetivo->user->id == \Auth::user()->id)
                     <td data-title="">
-                      <a class="btn btn-danger" href={{ route("feedback.excluir" , ['id_aluno' => $aluno->id, 'id_objetivo' => $objetivo->id, 'id_sugestao' => $sugestao->id, 'id_feedback' => $feedback->id]) }}>Excluir</a>
+                      <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão deste feedback?')" href={{ route("feedback.excluir" , ['id_feedback' => $feedback->id]) }}>Excluir</a>
                     </td>
                   @else
                     <td></td>
@@ -68,10 +68,10 @@
         </div>
 
         <div class="panel-footer">
-          <a class="btn btn-danger" href="{{route('sugestoes.listar',['id_aluno' => $sugestao->objetivo->aluno->id, 'id_objetivo' => $sugestao->objetivo->id, 'id_sugestao' => $sugestao->id] )}}">
+          <a class="btn btn-danger" href="{{route('sugestoes.listar',['id_objetivo' => $sugestao->objetivo->id] )}}">
             Voltar
           </a>
-          <a class="btn btn-success" href="{{route('feedbacks.cadastrar',[$sugestao->objetivo->aluno->id,$sugestao->objetivo->id,$sugestao->id] )}}">
+          <a class="btn btn-success" href="{{route('feedbacks.cadastrar',['id_sugestao' => $sugestao->id] )}}">
             Enviar novo feedback
           </a>
         </div>

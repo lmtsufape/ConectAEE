@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Objetivo;
+use App\ForumObjetivo;
 use App\TipoObjetivo;
 use App\Aluno;
 use App\MensagemForumObjetivo;
@@ -27,12 +28,12 @@ class ObjetivoController extends Controller
     ]);
   }
 
-  public static function editar($id_aluno, $id_objetivo){
+  public static function editar($id_objetivo){
     $tipos = TipoObjetivo::all();
 
     $prioridades = ["Alta","Média","Baixa"];
-    $aluno = Aluno::find($id_aluno);
     $objetivo = Objetivo::find($id_objetivo);
+    $aluno = $objetivo->aluno;
 
     return view("objetivo.editar", [
       'aluno' => $aluno,
@@ -42,11 +43,11 @@ class ObjetivoController extends Controller
     ]);
   }
 
-  public static function excluir($id_aluno, $id_objetivo){
+  public static function excluir($id_objetivo){
     $objetivo = Objetivo::find($id_objetivo);
     $objetivo->delete();
 
-    return redirect()->route("objetivo.listar", ["id_aluno" => $id_aluno])->with('success','O objetivo '.$objetivo->titulo.' foi excluído.');;
+    return redirect()->route("objetivo.listar", ["id_aluno" => $objetivo->aluno->id])->with('success','O objetivo '.$objetivo->titulo.' foi excluído.');;
   }
 
   public static function criar(Request $request){
@@ -70,6 +71,10 @@ class ObjetivoController extends Controller
     $objetivo->user_id = Auth::user()->id;
     $objetivo->tipo_objetivo_id = $request->tipo;
     $objetivo->save();
+
+    $forum = new ForumObjetivo();
+    $forum->objetivo_id = $objetivo->id;
+    $forum->save();
 
     return redirect()->route("objetivo.listar", ["id_aluno" => $request->id_aluno])->with('success','Objetivo cadastrado.');
   }
@@ -95,7 +100,7 @@ class ObjetivoController extends Controller
 
     $aluno = Aluno::find($request->id_aluno);
 
-    return redirect()->route("objetivo.gerenciar", [$aluno->id,$objetivo->id] )->with('success','O objetivo '.$objetivo->titulo.' foi atualizado.');;
+    return redirect()->route('objetivo.gerenciar',[$objetivo->id] )->with('success','O objetivo '.$objetivo->titulo.' foi atualizado.');;
   }
 
   public static function listar($id_aluno){
@@ -109,10 +114,10 @@ class ObjetivoController extends Controller
     ]);
   }
 
-  public static function gerenciar($id_aluno, $id_objetivo){
+  public static function gerenciar($id_objetivo){
 
-    $aluno = Aluno::find($id_aluno);
     $objetivo = Objetivo::find($id_objetivo);
+    $aluno = $objetivo->aluno;
     $mensagens = MensagemForumObjetivo::where('forum_objetivo_id','=',$objetivo->forum->id)->orderBy('id','desc')->take(5)->get();
 
     return view("objetivo.gerenciar",[
@@ -122,25 +127,25 @@ class ObjetivoController extends Controller
     ]);
   }
 
-  public function concluir($id_aluno, $id_objetivo){
+  public function concluir($id_objetivo){
 
     $objetivo = Objetivo::find($id_objetivo);
 
     $objetivo->concluido = True;
     $objetivo->update();
 
-    return redirect()->route("objetivo.gerenciar", ["id_aluno" => $id_aluno, "id_objetivo" => $id_objetivo])->with('success','O objetivo foi concluído.');
+    return redirect()->route("objetivo.gerenciar", ["id_objetivo" => $id_objetivo])->with('success','O objetivo foi concluído.');
 
   }
 
-  public function desconcluir($id_aluno, $id_objetivo){
+  public function desconcluir($id_objetivo){
 
     $objetivo = Objetivo::find($id_objetivo);
 
     $objetivo->concluido = False;
     $objetivo->update();
 
-    return redirect()->route("objetivo.gerenciar", ["id_aluno" => $id_aluno, "id_objetivo" => $id_objetivo])->with('success','O objetivo foi concluído.');
+    return redirect()->route("objetivo.gerenciar", ["id_objetivo" => $id_objetivo])->with('success','O objetivo não foi concluído.');
 
   }
 

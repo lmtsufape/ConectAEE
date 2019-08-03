@@ -20,7 +20,7 @@
             <input id="id_aluno" type="hidden" class="form-control" name="id_aluno" value="{{ $aluno->id }}">
 
             <div class="form-group{{ $errors->has('titulo') ? ' has-error' : '' }}">
-              <label for="titulo" class="col-md-4 control-label">Título</label>
+              <label for="titulo" class="col-md-4 control-label">Título <font color="red">*</font> </label>
 
               <div class="col-md-6">
                 <input id="titulo" type="text" class="form-control" name="titulo" value="{{ old('titulo') }}" autofocus>
@@ -34,7 +34,7 @@
             </div>
 
             <div class="form-group{{ $errors->has('descricao') ? ' has-error' : '' }}">
-              <label for="descricao" class="col-md-4 control-label">Descrição</label>
+              <label for="descricao" class="col-md-4 control-label">Descrição <font color="red">*</font> </label>
 
               <div class="col-md-6">
                 <textarea id="descricao" rows = "5" cols = "50" class="form-control" name="descricao">{{ old('descricao') }}</textarea>
@@ -48,7 +48,7 @@
             </div>
 
             <div class="form-group{{ $errors->has('tipo') ? ' has-error' : '' }}">
-              <label for="tipo" class="col-md-4 control-label">Tipo</label>
+              <label for="tipo" class="col-md-4 control-label">Tipo <font color="red">*</font></label>
 
               <div class="col-md-6">
                 <select id="tipo" class="form-control" name="tipo">
@@ -75,7 +75,7 @@
             </div>
 
             <div class="form-group{{ $errors->has('prioridade') ? ' has-error' : '' }}">
-              <label for="prioridade" class="col-md-4 control-label">Prioridade</label>
+              <label for="prioridade" class="col-md-4 control-label">Prioridade <font color="red">*</font></label>
 
               <div class="col-md-6">
                 <select id="prioridade" class="form-control" name="prioridade">

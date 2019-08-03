@@ -22,11 +22,11 @@ class FeedbackController extends Controller
     ]);
   }
 
-  public static function editar($id_aluno, $id_objetivo, $id_sugestao, $id_feedback){
-    $aluno = Aluno::find($id_aluno);
-    $objetivo = Objetivo::find($id_objetivo);
-    $sugestao = Sugestao::find($id_sugestao);
+  public static function editar($id_feedback){
     $feedback = Feedback::find($id_feedback);
+    $sugestao = $feedback->sugestao;
+    $objetivo = $sugestao->objetivo;
+    $aluno = $objetivo->aluno;
 
     return view("feedback.editar", [
       'aluno' => $aluno,
@@ -36,18 +36,15 @@ class FeedbackController extends Controller
     ]);
   }
 
-  public static function excluir($id_aluno, $id_objetivo, $id_sugestao, $id_feedback){
+  public static function excluir($id_feedback){
     $feedback = Feedback::find($id_feedback);
+    $sugestao = $feedback->sugestao;
     $feedback->delete();
 
-    return redirect()->route("feedbacks.listar", [
-      "id_aluno" => $id_aluno,
-      "id_objetivo" => $id_objetivo,
-      "id_sugestao" => $id_sugestao
-    ])->with('success','O feedback foi excluído.');
+    return redirect()->route("feedbacks.listar", ["id_sugestao" => $sugestao->id])->with('success','O feedback foi excluído.');
   }
 
-  public function cadastrar($id_aluno, $id_objetivo, $id_sugestao){
+  public function cadastrar($id_sugestao){
     $sugestao = Sugestao::find($id_sugestao);
     $objetivo = $sugestao->objetivo;
     $aluno = $objetivo->aluno;
@@ -96,10 +93,6 @@ class FeedbackController extends Controller
     $feedback->texto = $request->feedback;
     $feedback->update();
 
-    return redirect()->route("feedbacks.listar", [
-      "id_aluno" => $request->id_aluno,
-      "id_objetivo" => $request->id_objetivo,
-      "id_sugestao" => $request->id_sugestao
-    ])->with('success','O feedback foi atualizado.');
+    return redirect()->route("feedbacks.listar", ["id_sugestao" => $request->id_sugestao])->with('success','O feedback foi atualizado.');
   }
 }
