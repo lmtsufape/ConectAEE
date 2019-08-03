@@ -4,7 +4,7 @@
 <a href="{{route('aluno.listar')}}">Início</a>
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
 > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
-> <a href="{{route('objetivo.gerenciar',[$aluno->id,$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
+> <a href="{{route('objetivo.gerenciar',[$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
 > Atividades
 @endsection
 @section('content')
@@ -51,16 +51,16 @@
 
                     @if($objetivo->user->id == \Auth::user()->id)
                       <td data-title="Ações">
-                        <a class="btn btn-primary" href={{ route("atividade.editar" , ['id_objetivo' => $objetivo->id, 'id_atividade' => $atividade->id, 'id_aluno' => $aluno->id]) }}>Editar</a>
+                        <a class="btn btn-primary" href={{ route("atividade.editar" , ['id_atividade' => $atividade->id]) }}>Editar</a>
                       </td>
                       <td data-title="">
-                        <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da atividade {{$atividade->titulo}}?')" href={{ route("atividade.excluir" , ['id_objetivo' => $objetivo->id, 'id_atividade' => $atividade->id, 'id_aluno' => $aluno->id]) }}>Excluir</a>
+                        <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da atividade {{$atividade->titulo}}?')" href={{ route("atividade.excluir" , ['id_atividade' => $atividade->id]) }}>Excluir</a>
                       </td>
                       <td data-title="">
                         @if($objetivo->user->id == \Auth::user()->id && $atividade->concluido == false)
-                          <a class="btn btn-success" href={{ route("atividade.concluir" , ['id_objetivo' => $objetivo->id, 'id_atividade' => $atividade->id, 'id_aluno' => $aluno->id]) }}>Concluir</a>
+                          <a class="btn btn-success" href={{ route("atividade.concluir" , ['id_atividade' => $atividade->id]) }}>Concluir</a>
                         @elseif($objetivo->user->id == \Auth::user()->id && $atividade->concluido == true)
-                          <a class="btn btn-danger" href={{ route("atividade.desconcluir" , ['id_objetivo' => $objetivo->id, 'id_atividade' => $atividade->id, 'id_aluno' => $aluno->id]) }}>Desconcluir</a>
+                          <a class="btn btn-danger" href={{ route("atividade.desconcluir" , ['id_atividade' => $atividade->id]) }}>Desconcluir</a>
                         @endif
                       </td>
                     @endif
@@ -72,10 +72,10 @@
         </div>
 
         <div class="panel-footer">
-          <a class="btn btn-danger" href="{{ route("objetivo.gerenciar" , ['id_aluno'=>$aluno->id, 'id_objetivo' => $objetivo->id]) }}">Voltar</a>
+          <a class="btn btn-danger" href="{{ route("objetivo.gerenciar" , ['id_objetivo' => $objetivo->id]) }}">Voltar</a>
 
           @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->perfil_id != 1 && $objetivo->user->id == \Auth::user()->id)
-            <a class="btn btn-success" href="{{ route("atividades.cadastrar" , ['id_objetivo' => $objetivo->id, 'id_aluno'=>$aluno->id])}}">Novo</a>
+            <a class="btn btn-success" href="{{ route("atividades.cadastrar" , ['id_objetivo' => $objetivo->id])}}">Novo</a>
           @endif
         </div>
       </div>

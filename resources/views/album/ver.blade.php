@@ -127,8 +127,8 @@
 
         <div class="panel-footer">
           <a class="btn btn-danger" href="{{route("album.listar" , ['id_aluno'=>$aluno->id])}}">Voltar</a>
-          <a class="btn btn-primary" href="{{route("album.editar" , ['id_aluno'=>$aluno->id, 'id_album'=>$album->id,]) }}">Editar</a>
-          <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do album {{$album->nome}}?')" href="{{route("album.excluir" , ['id_aluno'=>$aluno->id, 'id_album'=>$album->id,]) }}">Excluir</a>
+          <a class="btn btn-primary" href="{{route("album.editar" , ['id_album'=>$album->id,]) }}">Editar</a>
+          <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do album {{$album->nome}}?')" href="{{route("album.excluir" , ['id_album'=>$album->id]) }}">Excluir</a>
         </div>
       </div>
     </div>

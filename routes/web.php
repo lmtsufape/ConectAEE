@@ -60,41 +60,41 @@ Route::middleware('autorizacao')->group(function() {
   Route::get('/aluno/{id_aluno}/objetivos/cadastrar','ObjetivoController@cadastrar')->name('objetivo.cadastrar');
   Route::post('/aluno/objetivos/criar', 'ObjetivoController@criar')->name('objetivo.criar');
   Route::get('/aluno/{id_aluno}/objetivos/listar','ObjetivoController@listar')->name('objetivo.listar');
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar','ObjetivoController@gerenciar')->name('objetivo.gerenciar');
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/concluir','ObjetivoController@concluir')->name('objetivo.concluir');
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/desconcluir','ObjetivoController@desconcluir')->name('objetivo.desconcluir');
+  Route::get('/aluno/objetivos/{id_objetivo}/gerenciar','ObjetivoController@gerenciar')->name('objetivo.gerenciar');
+  Route::get('/aluno/objetivos/{id_objetivo}/gerenciar/concluir','ObjetivoController@concluir')->name('objetivo.concluir');
+  Route::get('/aluno/objetivos/{id_objetivo}/gerenciar/desconcluir','ObjetivoController@desconcluir')->name('objetivo.desconcluir');
   //novas
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/editar','ObjetivoController@editar')->name('objetivo.editar');
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/excluir','ObjetivoController@excluir')->name('objetivo.excluir');
+  Route::get('/aluno/objetivos/{id_objetivo}/gerenciar/editar','ObjetivoController@editar')->name('objetivo.editar');
+  Route::get('/aluno/objetivos/{id_objetivo}/gerenciar/excluir','ObjetivoController@excluir')->name('objetivo.excluir');
   Route::post('/aluno/objetivos/atualizar', 'ObjetivoController@atualizar')->name('objetivo.atualizar');
 
   //Rotas para atividade
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/atividades/listar','AtividadeController@listar')->name('atividades.listar');
+  Route::get('/aluno/objetivos/{id_objetivo}/gerenciar/atividades/listar','AtividadeController@listar')->name('atividades.listar');
   Route::post('/aluno/objetivos/gerenciar/atividades/criar', 'AtividadeController@criar')->name('atividades.criar');
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/atividades/cadastrar','AtividadeController@cadastrar')->name('atividades.cadastrar');
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/atividades/{id_atividade}/concluir','AtividadeController@concluir')->name('atividade.concluir');
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/atividades/{id_atividade}/desconcluir','AtividadeController@desconcluir')->name('atividade.desconcluir');
+  Route::get('/aluno/objetivos/{id_objetivo}/gerenciar/atividades/cadastrar','AtividadeController@cadastrar')->name('atividades.cadastrar');
+  Route::get('/aluno/objetivos/gerenciar/atividades/{id_atividade}/concluir','AtividadeController@concluir')->name('atividade.concluir');
+  Route::get('/aluno/objetivos/gerenciar/atividades/{id_atividade}/desconcluir','AtividadeController@desconcluir')->name('atividade.desconcluir');
   //novas
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/atividades/{id_atividade}/editar','AtividadeController@editar')->name('atividade.editar');
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/atividades/{id_atividade}/excluir','AtividadeController@excluir')->name('atividade.excluir');
+  Route::get('/aluno/objetivos/gerenciar/atividades/{id_atividade}/editar','AtividadeController@editar')->name('atividade.editar');
+  Route::get('/aluno/objetivos/gerenciar/atividades/{id_atividade}/excluir','AtividadeController@excluir')->name('atividade.excluir');
   Route::post('/aluno/atividades/atualizar', 'AtividadeController@atualizar')->name('atividade.atualizar');
 
   //Rotas para sugestão
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/listar','SugestaoController@listar')->name('sugestoes.listar');
+  Route::get('/aluno/objetivos/{id_objetivo}/gerenciar/sugestoes/listar','SugestaoController@listar')->name('sugestoes.listar');
   Route::post('/aluno/objetivos/gerenciar/sugestoes/criar', 'SugestaoController@criar')->name('sugestoes.criar');
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/cadastrar','SugestaoController@cadastrar')->name('sugestoes.cadastrar');
+  Route::get('/aluno/objetivos/{id_objetivo}/gerenciar/sugestoes/cadastrar','SugestaoController@cadastrar')->name('sugestoes.cadastrar');
   //novas
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/{id_sugestao}/editar','SugestaoController@editar')->name('sugestao.editar');
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/{id_sugestao}/excluir','SugestaoController@excluir')->name('sugestao.excluir');
+  Route::get('/aluno/objetivos/gerenciar/sugestoes/{id_sugestao}/editar','SugestaoController@editar')->name('sugestao.editar');
+  Route::get('/aluno/objetivos/gerenciar/sugestoes/{id_sugestao}/excluir','SugestaoController@excluir')->name('sugestao.excluir');
   Route::post('/aluno/sugestoes/atualizar', 'SugestaoController@atualizar')->name('objetivo.sugestao.atualizar');
 
   //Rotas para feedback
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/{id_sugestao}/feedbacks/listar','FeedbackController@listar')->name('feedbacks.listar');
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/{id_sugestao}/feedbacks/cadastrar','FeedbackController@cadastrar')->name('feedbacks.cadastrar');
+  Route::get('/aluno/objetivos/gerenciar/sugestoes/{id_sugestao}/feedbacks/listar','FeedbackController@listar')->name('feedbacks.listar');
+  Route::get('/aluno/objetivos/gerenciar/sugestoes/{id_sugestao}/feedbacks/cadastrar','FeedbackController@cadastrar')->name('feedbacks.cadastrar');
   Route::post('/aluno/objetivos/gerenciar/sugestoes/feedbacks/criar','FeedbackController@criar')->name('feedbacks.criar');
   //novas
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/{id_sugestao}/feedbacks/{id_feedback}/editar','FeedbackController@editar')->name('feedback.editar');
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/sugestoes/{id_sugestao}/feedbacks/{id_feedback}/excluir','FeedbackController@excluir')->name('feedback.excluir');
+  Route::get('/aluno/objetivos/gerenciar/sugestoes/feedbacks/{id_feedback}/editar','FeedbackController@editar')->name('feedback.editar');
+  Route::get('/aluno/objetivos/gerenciar/sugestoes/feedbacks/{id_feedback}/excluir','FeedbackController@excluir')->name('feedback.excluir');
   Route::post('/aluno/feedbacks/atualizar', 'FeedbackController@atualizar')->name('feedback.atualizar');
 
   //Rotas para foruns
@@ -104,15 +104,15 @@ Route::middleware('autorizacao')->group(function() {
   Route::get('/aluno/{id_aluno}/objetivo/{id_objetivo}/forum','ForumController@abrirForumObjetivo')->name('objetivo.forum');
 
   //rotas para statuses
-  Route::get('/aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/status/cadastrar','StatusController@cadastrar')->name('objetivo.status.cadastrar');
+  Route::get('/aluno/objetivos/{id_objetivo}/gerenciar/status/cadastrar','StatusController@cadastrar')->name('objetivo.status.cadastrar');
   Route::post('/aluno/objetivos/status/criar', 'StatusController@criar')->name('objetivo.status.criar');
 
   //Rotas para albuns //novas
   Route::get('/aluno/{id_aluno}/albuns/listar', 'AlbumController@listar')->name('album.listar');
-  Route::get('/aluno/{id_aluno}/albuns/{id_album}/ver', 'AlbumController@ver')->name('album.ver');
-  Route::get('/aluno/{id_aluno}/albuns/{id_album}/editar', 'AlbumController@editar')->name('album.editar');
-  Route::get('/aluno/{id_aluno}/albuns/{id_album}/excluir', 'AlbumController@excluirAlbum')->name('album.excluir');
-  Route::get('/aluno/{id_aluno}/albuns/{id_album}/foto/{id_foto}/excluir', 'AlbumController@excluirFoto')->name('album.foto.excluir');
+  Route::get('/aluno/albuns/{id_album}/ver', 'AlbumController@ver')->name('album.ver');
+  Route::get('/aluno/albuns/{id_album}/editar', 'AlbumController@editar')->name('album.editar');
+  Route::get('/aluno/albuns/{id_album}/excluir', 'AlbumController@excluirAlbum')->name('album.excluir');
+  Route::get('/aluno/albuns/foto/{id_foto}/excluir', 'AlbumController@excluirFoto')->name('album.foto.excluir');
   Route::get('/aluno/{id_aluno}/albuns/cadastrar', 'AlbumController@cadastrar')->name('album.cadastrar');
   Route::post('/aluno/albuns/criar', 'AlbumController@criar')->name('album.criar');
   Route::post('/aluno/albuns/atualizar', 'AlbumController@atualizar')->name('album.atualizar');

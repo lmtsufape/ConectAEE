@@ -21,10 +21,10 @@ class SugestaoController extends Controller
     ]);
   }
 
-  public static function editar($id_aluno, $id_objetivo, $id_sugestao){
-    $aluno = Aluno::find($id_aluno);
-    $objetivo = Objetivo::find($id_objetivo);
+  public static function editar($id_sugestao){
     $sugestao = Sugestao::find($id_sugestao);
+    $objetivo = $sugestao->objetivo;
+    $aluno = $sugestao->objetivo->aluno;
 
     return view("sugestao.editar", [
       'aluno' => $aluno,
@@ -33,11 +33,12 @@ class SugestaoController extends Controller
     ]);
   }
 
-  public static function excluir($id_aluno, $id_objetivo, $id_sugestao){
+  public static function excluir($id_sugestao){
     $sugestao = Sugestao::find($id_sugestao);
+    $objetivo = $sugestao->objetivo;
     $sugestao->delete();
 
-    return redirect()->route("sugestoes.listar", ["id_aluno" => $id_aluno, "id_objetivo" => $id_objetivo])->with('success','A sugestão '.$sugestao->titulo.' foi excluída.');;
+    return redirect()->route("sugestoes.listar", ["id_objetivo" => $objetivo->id])->with('success','A sugestão '.$sugestao->titulo.' foi excluída.');;
   }
 
   public function criar(Request $request){
@@ -58,7 +59,7 @@ class SugestaoController extends Controller
     $sugestao->user_id = \Auth::user()->id;
     $sugestao->save();
 
-    return redirect()->route("sugestoes.listar", ["id_aluno" => $request->id_aluno, "id_objetivo" => $request->id_objetivo])->with('success','Sugestão cadastrada.');
+    return redirect()->route("sugestoes.listar", ["id_objetivo" => $request->id_objetivo])->with('success','Sugestão cadastrada.');
   }
 
   public static function atualizar(Request $request){
@@ -76,13 +77,13 @@ class SugestaoController extends Controller
     $sugestao->descricao = $request->descricao;
     $sugestao->update();
 
-    return redirect()->route("sugestoes.listar", ["id_aluno" => $request->id_aluno, "id_objetivo" => $request->id_objetivo])->with('success','A sugestãoatividade '.$sugestao->titulo.' foi atualizada.');
+    return redirect()->route("sugestoes.listar", ["id_objetivo" => $request->id_objetivo])->with('success','A sugestãoatividade '.$sugestao->titulo.' foi atualizada.');
   }
 
-  public function listar($id_aluno, $id_objetivo){
+  public function listar($id_objetivo){
 
-    $aluno = Aluno::find($id_aluno);
     $objetivo = Objetivo::find($id_objetivo);
+    $aluno = $objetivo->aluno;
     $sugestoes = $objetivo->sugestoes;
 
     return view("sugestao.listar", [

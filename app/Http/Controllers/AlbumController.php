@@ -21,9 +21,9 @@ class AlbumController extends Controller
     ]);
   }
 
-  public static function ver($id_aluno, $id_album){
-    $aluno = Aluno::find($id_aluno);
+  public static function ver($id_album){
     $album = Album::find($id_album);
+    $aluno = $album->aluno;
     $fotos = $album->fotos;
 
     return view("album.ver",[
@@ -33,9 +33,9 @@ class AlbumController extends Controller
     ]);
   }
 
-  public static function editar($id_aluno, $id_album){
-    $aluno = Aluno::find($id_aluno);
+  public static function editar($id_album){
     $album = Album::find($id_album);
+    $aluno = $album->aluno;
     $fotos = $album->fotos;
 
     return view("album.editar",[
@@ -45,9 +45,9 @@ class AlbumController extends Controller
     ]);
   }
 
-  public static function excluirAlbum($id_aluno, $id_album){
-    $aluno = Aluno::find($id_aluno);
+  public static function excluirAlbum($id_album){
     $album = Album::find($id_album);
+    $aluno = $album->aluno;
 
     foreach ($album->fotos as $foto) {
       unlink(substr($foto->imagem, 1));
@@ -60,19 +60,16 @@ class AlbumController extends Controller
     ])->with('success','O álbum '.$album->nome.' foi excluído.');
   }
 
-  public static function excluirFoto($id_aluno, $id_album, $id_foto){
-    $aluno = Aluno::find($id_aluno);
-    $album = Album::find($id_album);
+  public static function excluirFoto($id_foto){
     $foto = Foto::find($id_foto);
+    $album = $foto->album;
+    $aluno = $album->aluno;
 
     unlink(substr($foto->imagem, 1));
 
     $foto->delete();
 
-    return redirect()->route("album.editar", [
-      'aluno' => $aluno,
-      'album' => $album,
-    ])->with('success','A imagem foi excluída.');
+    return redirect()->route("album.editar", ['id_album' => $album->id])->with('success','A imagem foi excluída.');
   }
 
   public static function cadastrar($id_aluno){
@@ -156,7 +153,6 @@ class AlbumController extends Controller
     }
 
     return redirect()->route("album.ver", [
-      "id_aluno"=>$request->id_aluno,
       "id_album"=>$request->id_album
     ])->with('success','O álbum '.$album->nome.' foi atualizado.');
 

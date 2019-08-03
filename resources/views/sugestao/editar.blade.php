@@ -4,8 +4,8 @@
 <a href="{{route('aluno.listar')}}">Início</a>
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
 > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
-> <a href="{{route('objetivo.gerenciar',[$aluno->id,$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
-> <a href="{{route('sugestoes.listar',[$aluno->id,$objetivo->id])}}">Sugestões</a>
+> <a href="{{route('objetivo.gerenciar',[$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
+> <a href="{{route('sugestoes.listar',[$objetivo->id])}}">Sugestões</a>
 > Editar: {{$sugestao->titulo}}
 @endsection
 @section('content')

@@ -6,7 +6,7 @@
 <a href="{{route('aluno.listar')}}">Início</a>
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
 > <a href="{{route('album.listar', $aluno->id) }}"> Álbuns</strong></a>
-> <a href="{{route('album.ver' , ['id_aluno'=>$aluno->id, 'id_album'=>$album->id,]) }}">Fotos de: <strong>{{$album->nome}}</strong> </a>
+> <a href="{{route('album.ver' , ['id_album'=>$album->id]) }}">Fotos de: <strong>{{$album->nome}}</strong> </a>
 > Editar
 @endsection
 
@@ -138,7 +138,7 @@
                           </button>
                           &nbsp; &nbsp;
                           <br><br>
-                          <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão desta imagem?')" href="{{route("album.foto.excluir" , ['id_aluno'=>$aluno->id, 'id_album'=>$album->id, 'id_foto'=>$foto->id]) }}">Excluir</a>
+                          <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão desta imagem?')" href="{{route("album.foto.excluir" , ['id_foto'=>$foto->id]) }}">Excluir</a>
                           <br>
                           &nbsp; &nbsp;
                         </td>
@@ -159,7 +159,7 @@
                       </button>
                       &nbsp; &nbsp;
                       <br><br>
-                      <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão desta imagem?')" href="{{route("album.foto.excluir" , ['id_aluno'=>$aluno->id, 'id_album'=>$album->id, 'id_foto'=>$foto->id]) }}">Excluir</a>
+                      <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão desta imagem?')" href="{{ route("album.foto.excluir" , ['id_foto'=>$foto->id]) }}">Excluir</a>
                       <br>
                       &nbsp; &nbsp;
                     </td>
@@ -214,7 +214,7 @@
         </div>
 
         <div class="panel-footer">
-          <a class="btn btn-danger" href="{{route("album.ver" , ['id_aluno'=>$aluno->id, 'id_album'=>$album->id,]) }}">Voltar</a>
+          <a class="btn btn-danger" href="{{route("album.ver" , ['id_album'=>$album->id]) }}">Voltar</a>
         </div>
       </div>
     </div>
