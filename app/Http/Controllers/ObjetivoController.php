@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Objetivo;
+use App\ForumObjetivo;
 use App\TipoObjetivo;
 use App\Aluno;
 use App\MensagemForumObjetivo;
@@ -70,6 +71,10 @@ class ObjetivoController extends Controller
     $objetivo->user_id = Auth::user()->id;
     $objetivo->tipo_objetivo_id = $request->tipo;
     $objetivo->save();
+
+    $forum = new ForumObjetivo();
+    $forum->objetivo_id = $objetivo->id;
+    $forum->save();
 
     return redirect()->route("objetivo.listar", ["id_aluno" => $request->id_aluno])->with('success','Objetivo cadastrado.');
   }
