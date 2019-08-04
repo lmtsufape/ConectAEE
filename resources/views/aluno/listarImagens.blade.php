@@ -31,13 +31,33 @@
           @endif
 
           @if (\Session::has('denied'))
-          <div class="alert alert-warning">
-            <strong>Não permitido!</strong>
-            {!! \Session::get('denied') !!}
-          </div>
+            <div class="alert alert-warning">
+              <strong>Não permitido!</strong>
+              {!! \Session::get('denied') !!}
+            </div>
           @endif
 
           <div class="row" align="center">
+            <form class="form-horizontal" method="POST" action="{{ route("aluno.buscarAluno") }}">
+
+              {{ csrf_field() }}
+
+              <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                  @if ($termo == null)
+                    <input style="width:74%" id="termo" type="text" name="termo" autofocus required placeholder="Pesquise aqui...">
+                  @else
+                    <input style="width:74%" id="termo" type="text" name="termo" autofocus required placeholder="Pesquise aqui..." value="{{$termo}}">
+                  @endif
+
+                  <button type="submit" class="btn btn-primary btn-md">
+                    Buscar
+                  </button>
+                </div>
+              </div>
+            </form>
+
+            <br>
 
             <table id="tabela_albuns" class="table-responsive">
               <thead>
@@ -66,19 +86,24 @@
                         @php($aluno = array_pop($tresAlunos))
                         <td class="text-center">
 
-                          @if($aluno->imagem != null)
-                            <a class="btn btn-primary" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
+                          <a class="btn btn-primary" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
+                            @if($aluno->imagem != null)
                               <img src="{{$aluno->imagem}}" style="width:150px; height: 150px; object-fit: cover;">
-                            </a>
-                          @else
-                            <a class="btn btn-primary" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
+                            @else
                               <img src="{{asset('images/avatar.png')}}" style="width:150px; height: 150px; object-fit: cover;">
-                            </a>
-                          @endif
+                            @endif
+                          </a>
 
                           &nbsp; &nbsp;
                           <br><br>
-                          {{$aluno->nome}}
+                          <?php
+                            $pieces = explode(" ", $aluno->nome);
+                            if(count($pieces) > 1){
+                              echo $pieces[0],' ',$pieces[1];
+                            }else{
+                              echo $pieces[0];
+                            }
+                          ?>
                           <br>
                           &nbsp; &nbsp;
                         </td>
@@ -92,19 +117,24 @@
                   @php($aluno = array_pop($tresAlunos))
                   @if($aluno != null)
                     <td class="text-center">
-                      @if($aluno->imagem != null)
-                        <a class="btn btn-primary" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
+                      <a class="btn btn-primary" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
+                        @if($aluno->imagem != null)
                           <img src="{{$aluno->imagem}}" style="width:150px; height: 150px; object-fit: cover;">
-                        </a>
-                      @else
-                        <a class="btn btn-primary" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
+                        @else
                           <img src="{{asset('images/avatar.png')}}" style="width:150px; height: 150px; object-fit: cover;">
-                        </a>
-                      @endif
+                        @endif
+                      </a>
 
                       &nbsp; &nbsp;
                       <br><br>
-                      {{$aluno->nome}}
+                      <?php
+                        $pieces = explode(" ", $aluno->nome);
+                        if(count($pieces) > 1){
+                          echo $pieces[0],' ',$pieces[1];
+                        }else{
+                          echo $pieces[0];
+                        }
+                      ?>
                       <br>
                       &nbsp; &nbsp;
                     </td>
@@ -112,6 +142,20 @@
                 @endfor
               </tbody>
             </table>
+          </div>
+
+          @if($termo != "" && count($alunos) == 0)
+            <div class="alert alert-danger">
+              <strong> Nenhum resultado encontrado!</strong>
+            </div>
+          @elseif(count($alunos) == 0)
+            <div class="alert alert-danger">
+              <strong> Nenhum aluno cadastrado.</strong>
+            </div>
+          @endif
+
+          <div class="text-center">
+            {{$alunos->links()}}
           </div>
         </div>
 

@@ -29,15 +29,36 @@ class AlunoController extends Controller{
 
   public static function listar(){
     $gerenciars = \Auth::user()->gerenciars;
-    $alunos = array();
+    $ids_alunos = array();
 
     foreach($gerenciars as $gerenciar){
-      array_push($alunos,$gerenciar->aluno);
+      array_push($ids_alunos,$gerenciar->aluno_id);
     }
 
+    $alunos = Aluno::whereIn('id', $ids_alunos)->paginate(12);
+
     return view("aluno.listarImagens",[
-      'alunos' => $alunos
+      'alunos' => $alunos,
+      'termo' => ""
     ]);
+  }
+
+  public static function buscarAluno(Request $request){
+
+    $gerenciars = \Auth::user()->gerenciars;
+    $ids_alunos = array();
+
+    foreach($gerenciars as $gerenciar){
+      array_push($ids_alunos,$gerenciar->aluno_id);
+    }
+
+    $alunos = Aluno::whereIn('id', $ids_alunos)->where('nome','ilike', '%'.$request->termo.'%')->paginate(12);
+
+    return view("aluno.listarImagens",[
+      'alunos' => $alunos,
+      'termo' => $request->termo
+    ]);
+
   }
 
   public function cadastrar(){
@@ -76,7 +97,7 @@ class AlunoController extends Controller{
 
     $aluno->delete();
 
-    return redirect()->route("aluno.listar")->with('success','O aluno '.$aluno->nome.' foi excluído.');;
+    return redirect()->route("aluno.listar")->with('success','O aluno '.$aluno->nome.' foi excluído.');
   }
 
   public static function buscar(){
