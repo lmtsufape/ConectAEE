@@ -94,11 +94,16 @@
 						<br/>
 
 						@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador)
-							<a class="btn btn-primary" href={{route("aluno.editar", ["id_aluno"=>$aluno->id]) }}>Editar</a>
-							<a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do aluno {{$aluno->nome}}?')" href={{route("aluno.excluir", ["id_aluno"=>$aluno->id]) }}>Excluir</a>
-	          @endif
-
-
+							<div class="row text-right">
+								<a class="btn btn-primary" href={{route("aluno.editar", ["id_aluno"=>$aluno->id]) }}>
+									<i class="material-icons">edit</i>
+								</a>
+								<a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do aluno {{$aluno->nome}}?')" href={{route("aluno.excluir", ["id_aluno"=>$aluno->id]) }}>
+									<i class="material-icons">delete</i>
+								</a>
+								&nbsp;&nbsp;
+							</div>
+						@endif
 					</div>
 
 					<div class="panel-footer" style="background-color: white;">
