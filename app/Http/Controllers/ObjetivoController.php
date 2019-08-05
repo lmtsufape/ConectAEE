@@ -9,6 +9,7 @@ use App\Objetivo;
 use App\ForumObjetivo;
 use App\TipoObjetivo;
 use App\Aluno;
+use App\RandomColor;
 use App\MensagemForumObjetivo;
 use DateTime;
 use Auth;
@@ -62,6 +63,8 @@ class ObjetivoController extends Controller
       return redirect()->back()->withErrors($validator->errors())->withInput();
     }
 
+    $objetivosUser = Objetivo::where('user_id','=',Auth::user()->id)->where('aluno_id','=',$request->id_aluno)->get();
+
     $objetivo = new Objetivo();
     $objetivo->titulo = $request->titulo;
     $objetivo->descricao = $request->descricao;
@@ -71,6 +74,25 @@ class ObjetivoController extends Controller
     $objetivo->user_id = Auth::user()->id;
     $objetivo->tipo_objetivo_id = $request->tipo;
     $objetivo->save();
+
+    $aluno = $objetivo->aluno;
+    $objetivosGroupByUser = $aluno->objetivos->groupBy('user_id');
+    $n_users = count($objetivosGroupByUser);
+
+    if(count($objetivosUser) == 0){
+      $cores = RandomColor::many($n_users, array('luminosity'=>'light'));
+      $count = 0;
+      foreach ($objetivosGroupByUser as $objs) {
+        foreach ($objs as $obj) {
+          $obj->cor = $cores[$count];
+          $obj->update();
+        }
+        $count++;
+      }
+    }else{
+      $objetivo->cor = $objetivosGroupByUser[Auth::user()->id][0]->cor;
+      $objetivo->update();
+    }
 
     $forum = new ForumObjetivo();
     $forum->objetivo_id = $objetivo->id;
@@ -106,11 +128,14 @@ class ObjetivoController extends Controller
   public static function listar($id_aluno){
 
     $aluno = Aluno::find($id_aluno);
-    $objetivos = $aluno->objetivos;
+    $objetivosGroupByUser = $aluno->objetivos->groupBy('user_id');
 
-    return view("objetivo.listar", [
+    $size = count(max($objetivosGroupByUser->toArray()));
+
+    return view("objetivo.listarImagens", [
       'aluno' => $aluno,
-      'objetivos' => $objetivos
+      'objetivosGroupByUser' => $objetivosGroupByUser,
+      'size' => $size,
     ]);
   }
 

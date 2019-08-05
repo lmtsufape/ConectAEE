@@ -43,11 +43,11 @@ class AutorizacaoMiddleware
         'aluno/{id_aluno}/forum',
         'aluno/{id_aluno}/gerenciar',
         'aluno/{id_aluno}/objetivos/listar',
-        'aluno/{id_aluno}/galeria,'
+        'aluno/{id_aluno}/galeria',
+        'aluno/{id_aluno}/objetivos/cadastrar',
       ];
 
       $rotas_regras_administrador = [
-        'aluno/{id_aluno}/objetivos/cadastrar',
         'aluno/{id_aluno}/gerenciar/permissoes',
         'aluno/{id_aluno}/gerenciar/permissoes/cadastrar',
       ];
@@ -129,8 +129,7 @@ class AutorizacaoMiddleware
           return redirect()->route("aluno.listar")->with('denied','Você não tem permissão para acessar esta página ou ela não existe.');
         }
 
-        $gerenciar = Gerenciar::where('user_id','=',Auth::user()->id)
-        ->where('aluno_id','=',$aluno->id)->first();
+        $gerenciar = Gerenciar::where('user_id','=',Auth::user()->id)->where('aluno_id','=',$aluno->id)->first();
 
         if($gerenciar == NULL || $gerenciar->isAdministrador == false){
           return redirect()->route("aluno.listar")->with('denied','Você não tem permissão para acessar esta página ou ela não existe.');
