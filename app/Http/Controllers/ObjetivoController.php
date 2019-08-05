@@ -9,7 +9,7 @@ use App\Objetivo;
 use App\ForumObjetivo;
 use App\TipoObjetivo;
 use App\Aluno;
-use App\RandomColor;
+use App\Cor;
 use App\MensagemForumObjetivo;
 use DateTime;
 use Auth;
@@ -79,18 +79,13 @@ class ObjetivoController extends Controller
     $objetivosGroupByUser = $aluno->objetivos->groupBy('user_id');
     $n_users = count($objetivosGroupByUser);
 
+    $cores = Cor::take($n_users)->get();
+
     if(count($objetivosUser) == 0){
-      $cores = RandomColor::many($n_users, array('luminosity'=>'light'));
-      $count = 0;
-      foreach ($objetivosGroupByUser as $objs) {
-        foreach ($objs as $obj) {
-          $obj->cor = $cores[$count];
-          $obj->update();
-        }
-        $count++;
-      }
+      $objetivo->cor_id = $cores[$n_users-1]->id;
+      $objetivo->update();
     }else{
-      $objetivo->cor = $objetivosGroupByUser[Auth::user()->id][0]->cor;
+      $objetivo->cor_id = $objetivosGroupByUser[Auth::user()->id][0]->cor->id;
       $objetivo->update();
     }
 

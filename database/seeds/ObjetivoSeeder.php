@@ -5,6 +5,7 @@ use App\Aluno;
 use App\Objetivo;
 use App\TipoObjetivo;
 use App\Gerenciar;
+use App\Cor;
 use App\RandomColor;
 
 class ObjetivoSeeder extends Seeder
@@ -18,7 +19,7 @@ class ObjetivoSeeder extends Seeder
     {
         $alunos = Aluno::all();
         $tiposObjetivos = TipoObjetivo::all()->toArray();
-        $cores = RandomColor::many(3, array('luminosity'=>'light'));
+        $cores = Cor::take(3)->get();
 
         foreach($alunos as $aluno){
             $gerenciars = Gerenciar::where('aluno_id','=',$aluno->id)->take(2)->get();
@@ -39,7 +40,7 @@ class ObjetivoSeeder extends Seeder
                         'aluno_id' => $aluno->id,
                         'user_id' => $gerenciar->user->id,
                         'tipo_objetivo_id' => $tiposObjetivos[0]['id'],
-                        'cor' => $cor
+                        'cor_id' => $cor->id
                     ]);
                 }
             }

@@ -41,7 +41,7 @@
 
                       @foreach ($objetivos as $objetivo)
                         <td data-title="Objetivos">
-                          <div style="background-color:{{$objetivo->cor}}">
+                          <div style="background-color:{{$objetivo->cor->hexadecimal}}">
                             <strong> {{ $objetivo->titulo }} </strong>
                           </div>
                         </td>
