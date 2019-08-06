@@ -50,7 +50,9 @@
 
                   @if($sugestao->user->id == \Auth::user()->id)
                     <td data-title="">
-                      <a class="btn btn-primary" href={{ route("sugestao.editar" , ['id_sugestao' => $sugestao->id]) }}>Editar</a>
+                      <a class="btn btn-primary" href={{ route("sugestao.editar" , ['id_sugestao' => $sugestao->id]) }}>
+                        <i class="material-icons">edit</i>
+                      </a>
                     </td>
                   @else
                     <td></td>
@@ -58,7 +60,9 @@
 
                   @if($sugestao->user->id == \Auth::user()->id || $objetivo->user->id == \Auth::user()->id)
                     <td data-title="">
-                      <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da sugestao {{$sugestao->titulo}}?')" href={{ route("sugestao.excluir" , ['id_sugestao' => $sugestao->id]) }}>Excluir</a>
+                      <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da sugestao {{$sugestao->titulo}}?')" href={{ route("sugestao.excluir" , ['id_sugestao' => $sugestao->id]) }}>
+                        <i class="material-icons">delete</i>
+                      </a>
                     </td>
                   @else
                     <td></td>

@@ -50,11 +50,13 @@
                     ?>
                   </td>
                   <td data-title="Ações">
-                    <a class="btn btn-primary" href="{{ route("instituicao.editar" , ['id_instituicao' => $instituicao->id]) }}">Editar</a>
+                    <a class="btn btn-primary" href="{{ route("instituicao.editar" , ['id_instituicao' => $instituicao->id]) }}">
+                      <i class="material-icons">edit</i>
+                    </a>
                   </td>
                   <td data-title="">
                     <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da instituicao {{$instituicao->nome}}?')" href="{{ route("instituicao.excluir" , ['id_instituicao' => $instituicao->id]) }}">
-                      Excluir
+                      <i class="material-icons">delete</i>
                     </a>
                   </td>
                 </tr>
@@ -65,8 +67,16 @@
         </div>
 
         <div class="panel-footer">
-          <a class="btn btn-danger" href="{{ route("home") }}">Voltar</a>
-          <a class="btn btn-success" href="{{ route("instituicao.cadastrar") }}">Novo</a>
+          <a class="btn btn-danger" href="{{ route("home") }}">
+            <i class="material-icons">keyboard_backspace</i>
+            <br>
+            Voltar
+          </a>
+          <a class="btn btn-success" href="{{ route("instituicao.cadastrar") }}">
+            <i class="material-icons">add</i>
+            <br>
+            Novo
+          </a>
         </div>
       </div>
     </div>

@@ -138,7 +138,9 @@
                           </button>
                           &nbsp; &nbsp;
                           <br><br>
-                          <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão desta imagem?')" href="{{route("album.foto.excluir" , ['id_foto'=>$foto->id]) }}">Excluir</a>
+                          <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão desta imagem?')" href="{{route("album.foto.excluir" , ['id_foto'=>$foto->id]) }}">
+                            <i class="material-icons">delete</i>
+                          </a>
                           <br>
                           &nbsp; &nbsp;
                         </td>
@@ -159,7 +161,9 @@
                       </button>
                       &nbsp; &nbsp;
                       <br><br>
-                      <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão desta imagem?')" href="{{ route("album.foto.excluir" , ['id_foto'=>$foto->id]) }}">Excluir</a>
+                      <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão desta imagem?')" href="{{ route("album.foto.excluir" , ['id_foto'=>$foto->id]) }}">
+                        <i class="material-icons">delete</i>
+                      </a>
                       <br>
                       &nbsp; &nbsp;
                     </td>

@@ -51,10 +51,14 @@
 
                     @if($objetivo->user->id == \Auth::user()->id)
                       <td data-title="Ações">
-                        <a class="btn btn-primary" href={{ route("atividade.editar" , ['id_atividade' => $atividade->id]) }}>Editar</a>
+                        <a class="btn btn-primary" href={{ route("atividade.editar" , ['id_atividade' => $atividade->id]) }}>
+                          <i class="material-icons">edit</i>
+                        </a>
                       </td>
                       <td data-title="">
-                        <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da atividade {{$atividade->titulo}}?')" href={{ route("atividade.excluir" , ['id_atividade' => $atividade->id]) }}>Excluir</a>
+                        <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da atividade {{$atividade->titulo}}?')" href={{ route("atividade.excluir" , ['id_atividade' => $atividade->id]) }}>
+                          <i class="material-icons">delete</i>
+                        </a>
                       </td>
                       <td data-title="">
                         @if($objetivo->user->id == \Auth::user()->id && $atividade->concluido == false)

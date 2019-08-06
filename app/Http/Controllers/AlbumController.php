@@ -55,9 +55,7 @@ class AlbumController extends Controller
 
     $album->delete();
 
-    return redirect()->route("album.listar", [
-      "id_aluno"=>$id_aluno
-    ])->with('success','O álbum '.$album->nome.' foi excluído.');
+    return redirect()->route("album.listar", ["aluno"=>$aluno])->with('success','O álbum '.$album->nome.' foi excluído.');
   }
 
   public static function excluirFoto($id_foto){

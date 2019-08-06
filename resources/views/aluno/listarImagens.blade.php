@@ -160,23 +160,19 @@
         </div>
 
         <div class="panel-footer">
-          <div class="row">
-            <div class="col-md-6">
-              <a class="btn btn-danger" href="{{ route("home") }}">
-                <i class="material-icons">home</i>
-                <br>
-                Início
-              </a>
+          <a class="btn btn-danger" href="{{ route("home") }}">
+            <i class="material-icons">home</i>
+            <br>
+            Início
+          </a>
 
-              <a class="btn btn-success" href="{{ route("aluno.cadastrar")}}">
-                <i class="material-icons">add</i>
-                <br>
-                Novo
-              </a>
-            </div>
-
-          </div>
+          <a class="btn btn-success" href="{{ route("aluno.cadastrar")}}">
+            <i class="material-icons">add</i>
+            <br>
+            Novo
+          </a>
         </div>
+
       </div>
     </div>
   </div>
