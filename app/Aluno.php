@@ -18,7 +18,7 @@ class Aluno extends Model
     }
 
     public function objetivos(){
-        return $this->hasMany(Objetivo::class);
+        return $this->hasMany(Objetivo::class)->orderBy('updated_at','desc');
     }
 
     public function forum(){

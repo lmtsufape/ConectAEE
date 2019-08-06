@@ -52,7 +52,7 @@ class AtividadeController extends Controller
 
   public static function criar(Request $request){
     $validator = Validator::make($request->all(), [
-      'titulo' => ['required'],
+      'titulo' => ['required','min:2','max:100'],
       'descricao' => ['max:500'],
       'prioridade' => ['required'],
       'status' => ['required'],
@@ -76,7 +76,7 @@ class AtividadeController extends Controller
 
   public static function atualizar(Request $request){
     $validator = Validator::make($request->all(), [
-      'titulo' => ['required'],
+      'titulo' => ['required','min:2','max:100'],
       'descricao' => ['max:500'],
       'prioridade' => ['required'],
       'status' => ['required'],

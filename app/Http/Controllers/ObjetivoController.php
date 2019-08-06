@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Objetivo;
+use App\Gerenciar;
 use App\ForumObjetivo;
 use App\TipoObjetivo;
 use App\Aluno;
@@ -26,6 +27,20 @@ class ObjetivoController extends Controller
       'aluno' => $aluno,
       'tipos' => $tipos,
       'prioridades' => $prioridades
+    ]);
+  }
+
+  public static function listar($id_aluno){
+
+    $aluno = Aluno::find($id_aluno);
+    $objetivosGroupByUser = $aluno->objetivos->groupBy('user_id');
+
+    $size = count(max($objetivosGroupByUser->toArray()));
+
+    return view("objetivo.listarImagens", [
+      'aluno' => $aluno,
+      'objetivosGroupByUser' => $objetivosGroupByUser,
+      'size' => $size,
     ]);
   }
 
@@ -53,7 +68,7 @@ class ObjetivoController extends Controller
 
   public static function criar(Request $request){
     $validator = Validator::make($request->all(), [
-      'titulo' => ['required'],
+      'titulo' => ['required','min:2','max:100'],
       'descricao' => ['required','min:2','max:500'],
       'prioridade' => ['required'],
       'tipo' => ['required'],
@@ -98,7 +113,7 @@ class ObjetivoController extends Controller
 
   public static function atualizar(Request $request){
     $validator = Validator::make($request->all(), [
-      'titulo' => ['required'],
+      'titulo' => ['required','min:2','max:100'],
       'descricao' => ['required','min:2','max:500'],
       'prioridade' => ['required'],
       'tipo' => ['required'],
@@ -118,20 +133,6 @@ class ObjetivoController extends Controller
     $aluno = Aluno::find($request->id_aluno);
 
     return redirect()->route('objetivo.gerenciar',[$objetivo->id] )->with('success','O objetivo '.$objetivo->titulo.' foi atualizado.');;
-  }
-
-  public static function listar($id_aluno){
-
-    $aluno = Aluno::find($id_aluno);
-    $objetivosGroupByUser = $aluno->objetivos->groupBy('user_id');
-
-    $size = count(max($objetivosGroupByUser->toArray()));
-
-    return view("objetivo.listarImagens", [
-      'aluno' => $aluno,
-      'objetivosGroupByUser' => $objetivosGroupByUser,
-      'size' => $size,
-    ]);
   }
 
   public static function gerenciar($id_objetivo){

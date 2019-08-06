@@ -35,7 +35,7 @@ class AlunoController extends Controller{
       array_push($ids_alunos,$gerenciar->aluno_id);
     }
 
-    $alunos = Aluno::whereIn('id', $ids_alunos)->paginate(12);
+    $alunos = Aluno::whereIn('id', $ids_alunos)->orderBy('nome','asc')->paginate(12);
 
     return view("aluno.listarImagens",[
       'alunos' => $alunos,

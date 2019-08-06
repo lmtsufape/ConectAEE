@@ -22,9 +22,10 @@ class ObjetivoSeeder extends Seeder
         $cores = Cor::take(3)->get();
 
         foreach($alunos as $aluno){
-            $gerenciars = Gerenciar::where('aluno_id','=',$aluno->id)->take(2)->get();
+            $gerenciars = Gerenciar::where('aluno_id','=',$aluno->id)->take(3)->get();
             for ($i=0; $i<2 ; $i++) {
                 foreach ($gerenciars as $gerenciar) {
+                  if ($gerenciar->perfil->nome != "Responsável") {
                     $cor = "";
 
                     if($gerenciar->user->id == 1){
@@ -42,6 +43,7 @@ class ObjetivoSeeder extends Seeder
                         'tipo_objetivo_id' => $tiposObjetivos[0]['id'],
                         'cor_id' => $cor->id
                     ]);
+                  }
                 }
             }
         }

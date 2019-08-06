@@ -107,14 +107,41 @@
 					</div>
 
 					<div class="panel-footer" style="background-color: white;">
-						<a class="btn btn-danger" href="{{ route("aluno.listar")}}">Voltar</a>
+						<div class="row" style="padding:2%">
+							<div class="col-md-3">
+								<a class="btn btn-danger" style="width:100%; height:6.6rem;" href="{{ route("aluno.listar")}}">
+									<i class="material-icons">keyboard_backspace</i>
+									<br>
+									Voltar
+								</a>
+							</div>
 
-						@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
-							<a class="btn btn-primary" href={{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}>Gerenciar Permissões</a>
-						@endif
+							<div class="col-md-3">
+								@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
+									<a class="btn btn-primary text-center" style="width:100%" href={{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}>
+										<i class="material-icons">lock</i>
+										<br>
+										Acesso
+									</a>
+								@endif
+							</div>
 
-						<a class="btn btn-primary" href={{route("objetivo.listar", ["id_aluno"=>$aluno->id]) }}>Objetivos</a>
-						<a class="btn btn-primary" href={{route("album.listar", ["id_aluno"=>$aluno->id]) }}>Álbuns</a>
+							<div class="col-md-3">
+								<a class="btn btn-primary" style="width:100%" href={{route("objetivo.listar", ["id_aluno"=>$aluno->id]) }}>
+									<i class="material-icons">track_changes</i>
+									<br>
+									Objetivos
+								</a>
+							</div>
+
+							<div class="col-md-3">
+								<a class="btn btn-primary" style="width:100%" href={{route("album.listar", ["id_aluno"=>$aluno->id]) }}>
+									<i class="large material-icons">wallpaper</i>
+									<br>
+									Álbuns
+								</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

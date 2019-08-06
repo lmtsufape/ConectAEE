@@ -53,10 +53,11 @@ class ForumController extends Controller
     //dd($request->all());
 
     $rules = array(
-      'mensagem' => 'required',
+      'mensagem' => 'required','max:255',
     );
     $messages = array(
       'mensagem.required' => 'O campo de mensagem não pode estar vazio.',
+      'mensagem.max' => 'Mensagem ultrapassa 255 caracteres.',
     );
     $validator = Validator::make($request->all(),$rules,$messages);
 
