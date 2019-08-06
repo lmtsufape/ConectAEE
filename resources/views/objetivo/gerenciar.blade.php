@@ -69,7 +69,11 @@
           </div>
 
           <div class="panel-footer" style="background-color: white;">
-            <a class="btn btn-danger" href="{{route('objetivo.listar',$aluno->id)}}">Voltar</a>
+            <a class="btn btn-danger" href="{{route('objetivo.listar',$aluno->id)}}">
+              <i class="material-icons">keyboard_backspace</i>
+              <br>
+              Voltar
+            </a>
 
             <a class="btn btn-primary" href={{ route("atividades.listar", ["id_objetivo" => $objetivo->id]) }}>Atividades</a>
             <a class="btn btn-primary" href={{ route("sugestoes.listar", ["id_objetivo" => $objetivo->id]) }}>Sugestões</a>

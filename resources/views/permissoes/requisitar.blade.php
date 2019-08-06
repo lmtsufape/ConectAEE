@@ -69,7 +69,11 @@
 
               <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
-                  <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
+                  <a class="btn btn-danger" href="{{URL::previous()}}">
+                    <i class="material-icons">keyboard_backspace</i>
+                    <br>
+                    Voltar
+                  </a>
                   <button type="submit" class="btn btn-success">
                     Requisitar
                   </button>

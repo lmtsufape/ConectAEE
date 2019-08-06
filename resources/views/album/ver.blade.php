@@ -126,7 +126,11 @@
         </div>
 
         <div class="panel-footer">
-          <a class="btn btn-danger" href="{{route("album.listar" , ['id_aluno'=>$aluno->id])}}">Voltar</a>
+          <a class="btn btn-danger" href="{{route("album.listar" , ['id_aluno'=>$aluno->id])}}">
+            <i class="material-icons">keyboard_backspace</i>
+            <br>
+            Voltar
+          </a>
           <a class="btn btn-primary" href="{{route("album.editar" , ['id_album'=>$album->id,]) }}">
             <i class="material-icons">edit</i>
           </a>

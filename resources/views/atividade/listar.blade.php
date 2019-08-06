@@ -76,10 +76,18 @@
         </div>
 
         <div class="panel-footer">
-          <a class="btn btn-danger" href="{{ route("objetivo.gerenciar" , ['id_objetivo' => $objetivo->id]) }}">Voltar</a>
+          <a class="btn btn-danger" href="{{ route("objetivo.gerenciar" , ['id_objetivo' => $objetivo->id]) }}">
+            <i class="material-icons">keyboard_backspace</i>
+            <br>
+            Voltar
+          </a>
 
           @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->perfil_id != 1 && $objetivo->user->id == \Auth::user()->id)
-            <a class="btn btn-success" href="{{ route("atividades.cadastrar" , ['id_objetivo' => $objetivo->id])}}">Novo</a>
+            <a class="btn btn-success" href="{{ route("atividades.cadastrar" , ['id_objetivo' => $objetivo->id])}}">
+              <i class="material-icons">add</i>
+              <br>
+              Novo
+            </a>
           @endif
         </div>
       </div>

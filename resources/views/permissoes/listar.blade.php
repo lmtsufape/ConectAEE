@@ -53,7 +53,7 @@
                     @else
                       <td data-title="Perfil">{{ $gerenciar->perfil->especializacao }} </td>
                     @endif
-                    
+
                     <td data-title="Administrador">{{ ($gerenciar->isAdministrador) ? 'Sim' : 'Não' }}</td>
 
                     @if($atual->isAdministrador)
@@ -77,7 +77,11 @@
         </div>
 
         <div class="panel-footer">
-          <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
+          <a class="btn btn-danger" href="{{URL::previous()}}">
+            <i class="material-icons">keyboard_backspace</i>
+            <br>
+            Voltar
+          </a>
           <a class="btn btn-success" href="{{ route("aluno.permissoes.cadastrar",['id_aluno' => $aluno->id])}}">Novo</a>
         </div>
 

@@ -218,7 +218,11 @@
         </div>
 
         <div class="panel-footer">
-          <a class="btn btn-danger" href="{{route("album.ver" , ['id_album'=>$album->id]) }}">Voltar</a>
+          <a class="btn btn-danger" href="{{route("album.ver" , ['id_album'=>$album->id]) }}">
+            <i class="material-icons">keyboard_backspace</i>
+            <br>
+            Voltar
+          </a>
         </div>
       </div>
     </div>
