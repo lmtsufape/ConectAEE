@@ -123,6 +123,18 @@
               </div>
             </div>
           </div>
+
+          <br>
+          
+          <div class="row text-right" style="padding:5%">
+            <a class="btn btn-primary" href="{{route("album.editar" , ['id_album'=>$album->id,]) }}">
+              <i class="material-icons">edit</i>
+            </a>
+            <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do album {{$album->nome}}?')" href="{{route("album.excluir" , ['id_album'=>$album->id]) }}">
+              <i class="material-icons">delete</i>
+            </a>
+          </div>
+
         </div>
 
         <div class="panel-footer">
@@ -131,12 +143,7 @@
             <br>
             Voltar
           </a>
-          <a class="btn btn-primary" href="{{route("album.editar" , ['id_album'=>$album->id,]) }}">
-            <i class="material-icons">edit</i>
-          </a>
-          <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do album {{$album->nome}}?')" href="{{route("album.excluir" , ['id_album'=>$album->id]) }}">
-            <i class="material-icons">delete</i>
-          </a>
+
         </div>
       </div>
     </div>
