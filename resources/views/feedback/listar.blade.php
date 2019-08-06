@@ -46,7 +46,9 @@
 
                   @if($feedback->user->id == \Auth::user()->id)
                     <td data-title="Ações">
-                      <a class="btn btn-primary" href={{ route("feedback.editar" , ['id_feedback' => $feedback->id]) }}>Editar</a>
+                      <a class="btn btn-primary" href={{ route("feedback.editar" , ['id_feedback' => $feedback->id]) }}>
+                        <i class="material-icons">edit</i>
+                      </a>
                     </td>
                   @else
                     <td></td>
@@ -54,7 +56,9 @@
 
                   @if($objetivo->user->id == \Auth::user()->id)
                     <td data-title="">
-                      <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão deste feedback?')" href={{ route("feedback.excluir" , ['id_feedback' => $feedback->id]) }}>Excluir</a>
+                      <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão deste feedback?')" href={{ route("feedback.excluir" , ['id_feedback' => $feedback->id]) }}>
+                        <i class="material-icons">delete</i>
+                      </a>
                     </td>
                   @else
                     <td></td>
@@ -69,10 +73,14 @@
 
         <div class="panel-footer">
           <a class="btn btn-danger" href="{{route('sugestoes.listar',['id_objetivo' => $sugestao->objetivo->id] )}}">
+            <i class="material-icons">keyboard_backspace</i>
+            <br>
             Voltar
           </a>
           <a class="btn btn-success" href="{{route('feedbacks.cadastrar',['id_sugestao' => $sugestao->id] )}}">
-            Enviar novo feedback
+            <i class="material-icons">add</i>
+            <br>
+            Novo
           </a>
         </div>
       </div>

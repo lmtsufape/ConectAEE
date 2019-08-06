@@ -28,22 +28,22 @@
                 <select id="status" class="form-control" name="status" autofocus>
 
                   @if (old('status') == null)
-                  <option value="" selected disabled hidden>Escolha o status</option>
+                    <option value="" selected disabled hidden>Escolha o status</option>
                   @endif
 
                   @foreach($statuses as $status)
-                  @if(old('status') == $status)
-                  <option value={{$status->id}} selected>{{$status->status}}</option>
-                  @else
-                  <option value={{$status->id}}>{{$status->status}}</option>
-                  @endif
+                    @if(old('status') == $status)
+                      <option value={{$status->id}} selected>{{$status->status}}</option>
+                    @else
+                      <option value={{$status->id}}>{{$status->status}}</option>
+                    @endif
                   @endforeach
                 </select>
 
                 @if ($errors->has('status'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('status') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('status') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -60,7 +60,11 @@
         </div>
 
         <div class="panel-footer">
-          <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
+          <a class="btn btn-danger" href="{{URL::previous()}}">
+            <i class="material-icons">keyboard_backspace</i>
+            <br>
+            Voltar
+          </a>
         </div>
       </div>
     </div>

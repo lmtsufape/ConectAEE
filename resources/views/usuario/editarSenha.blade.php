@@ -85,7 +85,11 @@ Alterar Senha
         </div>
 
         <div class="panel-footer">
-          <a class="btn btn-danger" href="{{URL::previous()}}">Voltar</a>
+          <a class="btn btn-danger" href="{{URL::previous()}}">
+            <i class="material-icons">keyboard_backspace</i>
+            <br>
+            Voltar
+          </a>
         </div>
       </div>
     </div>

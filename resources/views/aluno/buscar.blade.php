@@ -74,7 +74,11 @@
         </div>
 
         <div class="panel-footer">
-          <a class="btn btn-danger" href="{{ route("home") }}">Voltar</a>
+          <a class="btn btn-danger" href="{{ route("home") }}">
+            <i class="material-icons">keyboard_backspace</i>
+            <br>
+            Voltar
+          </a>
         </div>
       </div>
     </div>

@@ -71,8 +71,16 @@
         </div>
 
         <div class="panel-footer">
-          <a class="btn btn-danger" href="{{route("aluno.gerenciar" , ['id_aluno'=>$aluno->id])}}">Voltar</a>
-          <a class="btn btn-success" href="{{route("album.cadastrar" , ['id_aluno'=>$aluno->id])}}">Novo</a>
+          <a class="btn btn-danger" href="{{route("aluno.gerenciar" , ['id_aluno'=>$aluno->id])}}">
+            <i class="material-icons">keyboard_backspace</i>
+            <br>
+            Voltar
+          </a>
+          <a class="btn btn-success" href="{{route("album.cadastrar" , ['id_aluno'=>$aluno->id])}}">
+            <i class="material-icons">add</i>
+            <br>
+            Novo
+          </a>
         </div>
       </div>
     </div>
