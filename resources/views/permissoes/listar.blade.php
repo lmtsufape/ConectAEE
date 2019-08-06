@@ -82,7 +82,11 @@
             <br>
             Voltar
           </a>
-          <a class="btn btn-success" href="{{ route("aluno.permissoes.cadastrar",['id_aluno' => $aluno->id])}}">Novo</a>
+          <a class="btn btn-success" href="{{ route("aluno.permissoes.cadastrar",['id_aluno' => $aluno->id])}}">
+            <i class="material-icons">add</i>
+            <br>
+            Novo
+          </a>
         </div>
 
       </div>
