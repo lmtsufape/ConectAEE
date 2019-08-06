@@ -21,6 +21,9 @@ class CreateObjetivosTable extends Migration
       $table->dateTime('data');
       $table->boolean('concluido')->default(false);
 
+      $table->integer('cor_id')->unsigned()->nullable();
+      $table->foreign('cor_id')->references('id')->on('cors');
+
       $table->integer('aluno_id')->unsigned();
       $table->foreign('aluno_id')->references('id')->on('alunos')->onDelete('cascade');
 

@@ -39,36 +39,37 @@
                   <th>Perfil</th>
                   <th>Administrador</th>
                   @if($atual->isAdministrador)
-                  <th>Remover</th>
+                    <th>Remover</th>
                   @endif
-
                 </tr>
               </thead>
               <tbody>
                 @foreach ($gerenciars as $gerenciar)
-                <tr>
-                  <td data-title="Nome">{{ $gerenciar->user->name }} </td>
-                  @if($gerenciar->perfil->especializacao == NULL)
-                  <td data-title="Perfil">{{ $gerenciar->perfil->nome }} </td>
-                  @else
-                  <td data-title="Perfil">{{ $gerenciar->perfil->especializacao }} </td>
-                  @endif
-                  <td data-title="Administrador">{{ ($gerenciar->isAdministrador) ? 'Sim' : 'Não' }}</td>
+                  <tr>
+                    <td data-title="Nome">{{ $gerenciar->user->name }} </td>
 
-                  @if($atual->isAdministrador)
-                  @if(!($gerenciar->user->id == Auth::user()->id))
-                  @if(!($gerenciar->isAdministrador))
-                  <td data-title="Excluir"><strong style="color: red">
-                    <a href='{{route('aluno.permissoes.remover',[$aluno->id,$gerenciar->id])}}' style="color: red" onclick="return confirm('Essa ação removerá as permissões de {{$gerenciar->user->name}}. Deseja prosseguir?')">X</a>
-                  </strong></td>
-                  @else
-                  <td>-</td>
-                  @endif
-                  @else
-                  <td>-</td>
-                  @endif
-                  @endif
-                </tr>
+                    @if($gerenciar->perfil->especializacao == NULL)
+                      <td data-title="Perfil">{{ $gerenciar->perfil->nome }} </td>
+                    @else
+                      <td data-title="Perfil">{{ $gerenciar->perfil->especializacao }} </td>
+                    @endif
+                    
+                    <td data-title="Administrador">{{ ($gerenciar->isAdministrador) ? 'Sim' : 'Não' }}</td>
+
+                    @if($atual->isAdministrador)
+                      @if(!($gerenciar->user->id == Auth::user()->id))
+                        @if(!($gerenciar->isAdministrador))
+                          <td data-title="Excluir"><strong style="color: red">
+                            <a href='{{route('aluno.permissoes.remover',[$aluno->id,$gerenciar->id])}}' style="color: red" onclick="return confirm('Essa ação removerá as permissões de {{$gerenciar->user->name}}. Deseja prosseguir?')">X</a>
+                          </strong></td>
+                        @else
+                          <td>-</td>
+                        @endif
+                      @else
+                        <td>-</td>
+                      @endif
+                    @endif
+                  </tr>
                 @endforeach
               </tbody>
             </table>

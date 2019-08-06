@@ -10,10 +10,6 @@ class Gerenciar extends Model
         return $this->hasOne(Aluno::class,'id','aluno_id');
     }
 
-    public function alunos(){
-        return $this->hasMany(Aluno::class,'id','aluno_id');
-    }
-
     public function user(){
         return $this->hasOne(User::class,'id','user_id');
     }

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Objetivo extends Model
 {
   use SoftDeletes;
-  
+
   public function atividades()
   {
       return $this->hasMany('App\Atividade');
@@ -32,6 +32,11 @@ class Objetivo extends Model
   public function forum()
   {
     return $this->hasOne(ForumObjetivo::class);
+  }
+
+  public function cor()
+  {
+    return $this->hasOne(Cor::class, 'id', 'cor_id');
   }
 
   public function tipoObjetivo()

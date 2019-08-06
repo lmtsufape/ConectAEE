@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Objetivo;
+use App\Gerenciar;
 use App\ForumObjetivo;
 use App\TipoObjetivo;
 use App\Aluno;
+use App\Cor;
 use App\MensagemForumObjetivo;
 use DateTime;
 use Auth;
@@ -25,6 +27,20 @@ class ObjetivoController extends Controller
       'aluno' => $aluno,
       'tipos' => $tipos,
       'prioridades' => $prioridades
+    ]);
+  }
+
+  public static function listar($id_aluno){
+
+    $aluno = Aluno::find($id_aluno);
+    $objetivosGroupByUser = $aluno->objetivos->groupBy('user_id');
+
+    $size = count(max($objetivosGroupByUser->toArray()));
+
+    return view("objetivo.listarImagens", [
+      'aluno' => $aluno,
+      'objetivosGroupByUser' => $objetivosGroupByUser,
+      'size' => $size,
     ]);
   }
 
@@ -52,7 +68,7 @@ class ObjetivoController extends Controller
 
   public static function criar(Request $request){
     $validator = Validator::make($request->all(), [
-      'titulo' => ['required'],
+      'titulo' => ['required','min:2','max:100'],
       'descricao' => ['required','min:2','max:500'],
       'prioridade' => ['required'],
       'tipo' => ['required'],
@@ -61,6 +77,8 @@ class ObjetivoController extends Controller
     if($validator->fails()){
       return redirect()->back()->withErrors($validator->errors())->withInput();
     }
+
+    $objetivosUser = Objetivo::where('user_id','=',Auth::user()->id)->where('aluno_id','=',$request->id_aluno)->get();
 
     $objetivo = new Objetivo();
     $objetivo->titulo = $request->titulo;
@@ -72,6 +90,20 @@ class ObjetivoController extends Controller
     $objetivo->tipo_objetivo_id = $request->tipo;
     $objetivo->save();
 
+    $aluno = $objetivo->aluno;
+    $objetivosGroupByUser = $aluno->objetivos->groupBy('user_id');
+    $n_users = count($objetivosGroupByUser);
+
+    $cores = Cor::take($n_users)->get();
+
+    if(count($objetivosUser) == 0){
+      $objetivo->cor_id = $cores[$n_users-1]->id;
+      $objetivo->update();
+    }else{
+      $objetivo->cor_id = $objetivosGroupByUser[Auth::user()->id][0]->cor->id;
+      $objetivo->update();
+    }
+
     $forum = new ForumObjetivo();
     $forum->objetivo_id = $objetivo->id;
     $forum->save();
@@ -81,7 +113,7 @@ class ObjetivoController extends Controller
 
   public static function atualizar(Request $request){
     $validator = Validator::make($request->all(), [
-      'titulo' => ['required'],
+      'titulo' => ['required','min:2','max:100'],
       'descricao' => ['required','min:2','max:500'],
       'prioridade' => ['required'],
       'tipo' => ['required'],
@@ -101,17 +133,6 @@ class ObjetivoController extends Controller
     $aluno = Aluno::find($request->id_aluno);
 
     return redirect()->route('objetivo.gerenciar',[$objetivo->id] )->with('success','O objetivo '.$objetivo->titulo.' foi atualizado.');;
-  }
-
-  public static function listar($id_aluno){
-
-    $aluno = Aluno::find($id_aluno);
-    $objetivos = $aluno->objetivos;
-
-    return view("objetivo.listar", [
-      'aluno' => $aluno,
-      'objetivos' => $objetivos
-    ]);
   }
 
   public static function gerenciar($id_objetivo){

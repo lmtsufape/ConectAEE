@@ -54,8 +54,15 @@
 
               <br><br>
               @if($objetivo->user->id == \Auth::user()->id)
-                <a class="btn btn-primary" href={{ route("objetivo.editar" , ['id_objetivo' => $objetivo->id]) }}>Editar</a>
-                <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do objetivo {{$objetivo->titulo}}?')" href={{ route("objetivo.excluir" , ['id_objetivo' => $objetivo->id]) }}>Excluir</a>
+                <div class="row text-right">
+                  <a class="btn btn-primary" href={{ route("objetivo.editar" , ['id_objetivo' => $objetivo->id]) }}>
+  									<i class="material-icons">edit</i>
+  								</a>
+                  <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do objetivo {{$objetivo->titulo}}?')" href={{ route("objetivo.excluir" , ['id_objetivo' => $objetivo->id]) }}>
+  									<i class="material-icons">delete</i>
+  								</a>
+  								&nbsp;&nbsp;
+  							</div>
               @endif
             </div>
 

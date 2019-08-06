@@ -43,7 +43,7 @@ class SugestaoController extends Controller
 
   public function criar(Request $request){
     $validator = Validator::make($request->all(), [
-      'titulo' => ['required'],
+      'titulo' => ['required','min:2','max:100'],
       'descricao' => ['max:500'],
     ]);
 
@@ -64,7 +64,7 @@ class SugestaoController extends Controller
 
   public static function atualizar(Request $request){
     $validator = Validator::make($request->all(), [
-      'titulo' => ['required'],
+      'titulo' => ['required','min:2','max:100'],
       'descricao' => ['max:500'],
     ]);
 

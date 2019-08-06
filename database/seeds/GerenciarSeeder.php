@@ -16,9 +16,9 @@ class GerenciarSeeder extends Seeder
     {
         $alunos = Aluno::all();
         $users_count = count(User::all());
-        
+
         foreach ($alunos as $aluno) {
-            $array = range(1,4);
+            $array = range(2,4);
             shuffle($array);
 
             $array_users = range(2,count(User::all()));
@@ -32,7 +32,7 @@ class GerenciarSeeder extends Seeder
             ]);
             factory(Gerenciar::class)->create([
                 'aluno_id' => $aluno->id,
-                'perfil_id' => array_pop($array),
+                'perfil_id' => 1,
                 'user_id' => array_pop($array_users),
                 'isAdministrador' => True,
             ]);

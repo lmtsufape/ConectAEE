@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ForumAlunoSeeder::class);
         $this->call(MensagemForumAlunoSeeder::class);
         $this->call(TipoObjetivoSeeder::class);
+        $this->call(CorSeeder::class);
         $this->call(ObjetivoSeeder::class);
         $this->call(StatusSeeder::class);
         $this->call(StatusObjetivoSeeder::class);
