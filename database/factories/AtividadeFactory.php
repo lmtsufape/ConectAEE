@@ -19,8 +19,8 @@ $factory->define(Atividade::class, function (Faker $faker) {
         'titulo' => $faker->words($nb = 3, $asText = true),
         'descricao' => $faker->text($maxNbChars = 500),
         'prioridade' => $faker->randomElement($array = array ('Alta','Média','Baixa')),
-        'status' => $faker->randomElement($array = array ("Não iniciada","Iniciada", "Em andamento", "Finalizada")),
-        'data' => new DateTime(),
+        'status' => $faker->randomElement($array = array ("Não iniciada","Em andamento", "Finalizada")),
+        'data' => date('d.m.Y',strtotime("-2 days")),
         'objetivo_id' => 1,
     ];
 });

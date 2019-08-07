@@ -125,7 +125,7 @@
           </div>
 
           <br>
-          
+
           <div class="row text-right" style="padding:5%">
             <a class="btn btn-primary" href="{{route("album.editar" , ['id_album'=>$album->id,]) }}">
               <i class="material-icons">edit</i>

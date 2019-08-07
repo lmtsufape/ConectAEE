@@ -19,7 +19,7 @@ class CreateAtividadesTable extends Migration
       $table->text('descricao')->nullable();
       $table->string('prioridade');
       $table->string('status');
-      $table->dateTime('data');
+      $table->date('data');
       $table->boolean('concluido')->default(false);
 
       $table->integer('objetivo_id')->unsigned();

@@ -12,7 +12,7 @@ use DateTime;
 class AtividadeController extends Controller
 {
   public static function cadastrar($id_objetivo){
-    $statuses = ["Não iniciada","Iniciada", "Em andamento", "Finalizada"];
+    $statuses = ["Não iniciada", "Em andamento", "Finalizada"];
     $prioridades = ["Alta","Média","Baixa"];
     $objetivo = Objetivo::find($id_objetivo);
     $aluno = $objetivo->aluno;
@@ -30,7 +30,7 @@ class AtividadeController extends Controller
     $objetivo = $atividade->objetivo;
     $aluno = $atividade->objetivo->aluno;
 
-    $statuses = ["Não iniciada","Iniciada", "Em andamento", "Finalizada"];
+    $statuses = ["Não iniciada", "Em andamento", "Finalizada"];
     $prioridades = ["Alta","Média","Baixa"];
 
     return view("atividade.editar", [
@@ -131,6 +131,20 @@ class AtividadeController extends Controller
 
     return redirect()->route("atividades.listar", ["id_objetivo" => $objetivo->id]);
 
+  }
+
+  public static function corStatus($status){
+    switch ($status) {
+      case 'Não iniciada':
+        return '#e88d76';
+        break;
+      case 'Em andamento':
+        return '#f2ee74';
+        break;
+      case 'Finalizada':
+        return '#c0e876';
+        break;
+    }
   }
 
 }

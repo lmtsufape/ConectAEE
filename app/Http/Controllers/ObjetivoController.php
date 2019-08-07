@@ -35,9 +35,13 @@ class ObjetivoController extends Controller
     $aluno = Aluno::find($id_aluno);
     $objetivosGroupByUser = $aluno->objetivos->groupBy('user_id');
 
-    $size = count(max($objetivosGroupByUser->toArray()));
+    $size = 0;
 
-    return view("objetivo.listarImagens", [
+    if (count($objetivosGroupByUser) != 0) {
+      $size = count(max($objetivosGroupByUser->toArray()));
+    }
+
+    return view("objetivo.listarPainel", [
       'aluno' => $aluno,
       'objetivosGroupByUser' => $objetivosGroupByUser,
       'size' => $size,
@@ -100,7 +104,7 @@ class ObjetivoController extends Controller
       $objetivo->cor_id = $cores[$n_users-1]->id;
       $objetivo->update();
     }else{
-      $objetivo->cor_id = $objetivosGroupByUser[Auth::user()->id][0]->cor->id;
+      $objetivo->cor_id = $objetivosGroupByUser[Auth::user()->id][1]->cor->id;
       $objetivo->update();
     }
 
@@ -135,16 +139,50 @@ class ObjetivoController extends Controller
     return redirect()->route('objetivo.gerenciar',[$objetivo->id] )->with('success','O objetivo '.$objetivo->titulo.' foi atualizado.');;
   }
 
+  // public static function gerenciar($id_objetivo){
+  //
+  //   $objetivo = Objetivo::find($id_objetivo);
+  //   $aluno = $objetivo->aluno;
+  //   $mensagens = MensagemForumObjetivo::where('forum_objetivo_id','=',$objetivo->forum->id)->orderBy('id','desc')->take(5)->get();
+  //
+  //   return view("objetivo.gerenciar",[
+  //     'aluno' => $aluno,
+  //     'objetivo' => $objetivo,
+  //     'mensagens'=>$mensagens
+  //   ]);
+  // }
+
   public static function gerenciar($id_objetivo){
 
     $objetivo = Objetivo::find($id_objetivo);
     $aluno = $objetivo->aluno;
+
+    $atividadesGroupByData = $objetivo->atividades->groupBy('data');
+    $sugestoesGroupByData = $objetivo->sugestoes->groupBy('data');
     $mensagens = MensagemForumObjetivo::where('forum_objetivo_id','=',$objetivo->forum->id)->orderBy('id','desc')->take(5)->get();
 
-    return view("objetivo.gerenciar",[
+    $size1 = 0;
+    $size2 = 0;
+
+    if (count($atividadesGroupByData) != 0) {
+      $size1 = count(max($atividadesGroupByData->toArray()));
+    }
+
+    if (count($sugestoesGroupByData) != 0) {
+      $size2 = count(max($sugestoesGroupByData->toArray()));
+    }
+
+    $statuses = ["Não iniciada", "Em andamento", "Finalizada"];
+
+    return view("objetivo.gerenciarPainel",[
       'aluno' => $aluno,
       'objetivo' => $objetivo,
-      'mensagens'=>$mensagens
+      'atividadesGroupByData' => $atividadesGroupByData,
+      'sugestoesGroupByData' => $sugestoesGroupByData,
+      'mensagens'=> $mensagens,
+      'size1' => $size1,
+      'size2' => $size2,
+      'statuses' => $statuses,
     ]);
   }
 

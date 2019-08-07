@@ -36,6 +36,20 @@
 								@endif
 							</div>
 
+							<br>
+							
+							@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador)
+								<div class="row text-right">
+									<a class="btn btn-primary" href={{route("aluno.editar", ["id_aluno"=>$aluno->id]) }}>
+										<i class="material-icons">edit</i>
+									</a>
+									<a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do aluno {{$aluno->nome}}?')" href={{route("aluno.excluir", ["id_aluno"=>$aluno->id]) }}>
+										<i class="material-icons">delete</i>
+									</a>
+									&nbsp;&nbsp;
+								</div>
+							@endif
+
 							<hr>
 							<?php
 							foreach($gerenciars as $gerenciar){
@@ -93,17 +107,7 @@
 
 						<br/>
 
-						@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador)
-							<div class="row text-right">
-								<a class="btn btn-primary" href={{route("aluno.editar", ["id_aluno"=>$aluno->id]) }}>
-									<i class="material-icons">edit</i>
-								</a>
-								<a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do aluno {{$aluno->nome}}?')" href={{route("aluno.excluir", ["id_aluno"=>$aluno->id]) }}>
-									<i class="material-icons">delete</i>
-								</a>
-								&nbsp;&nbsp;
-							</div>
-						@endif
+
 					</div>
 
 					<div class="panel-footer" style="background-color: white;">
