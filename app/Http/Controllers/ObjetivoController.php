@@ -9,6 +9,7 @@ use App\Objetivo;
 use App\Gerenciar;
 use App\ForumObjetivo;
 use App\TipoObjetivo;
+use App\StatusObjetivo;
 use App\Aluno;
 use App\Cor;
 use App\MensagemForumObjetivo;
@@ -107,6 +108,12 @@ class ObjetivoController extends Controller
       $objetivo->cor_id = $objetivosGroupByUser[Auth::user()->id][1]->cor->id;
       $objetivo->update();
     }
+
+    $statusObjetivo = new StatusObjetivo();
+    $statusObjetivo->data = new DateTime();
+    $statusObjetivo->objetivo_id = $objetivo->id;
+    $statusObjetivo->status_id = 1;
+    $statusObjetivo->save();
 
     $forum = new ForumObjetivo();
     $forum->objetivo_id = $objetivo->id;

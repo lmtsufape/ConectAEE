@@ -15,7 +15,7 @@ class CreateStatusObjetivosTable extends Migration
   {
     Schema::create('status_objetivos', function (Blueprint $table) {
       $table->bigIncrements('id');
-      $table->dateTime('data');
+      $table->date('data');
 
       $table->integer('objetivo_id')->unsigned();
       $table->foreign('objetivo_id')->references('id')->on('objetivos')->onDelete('cascade');

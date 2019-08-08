@@ -29,7 +29,7 @@ class PerfilSeeder extends Seeder
 
         factory(Perfil::class)->create([
             'nome' => "Profissional Externo",
-            'especializacao' => NULL,
+            'especializacao' => 'Psicólogo',
         ]);
     }
 }

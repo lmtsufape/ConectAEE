@@ -10,7 +10,7 @@
 <div class="container">
 	<div class="row">
 
-		<div id="painel"class="flex col-md-offset-1">
+		<div id="painel" class="flex col-md-offset-1">
 			<div class="col-md-5">
 				<div class="panel panel-default">
 					<div class="panel-heading">Gerenciamento de <strong>{{$aluno->nome}}</strong></div>
@@ -37,7 +37,7 @@
 							</div>
 
 							<br>
-							
+
 							@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador)
 								<div class="row text-right">
 									<a class="btn btn-primary" href={{route("aluno.editar", ["id_aluno"=>$aluno->id]) }}>
@@ -105,9 +105,6 @@
 							@endif
 						</div>
 
-						<br/>
-
-
 					</div>
 
 					<div class="panel-footer" style="background-color: white;">
@@ -118,16 +115,6 @@
 									<br>
 									Voltar
 								</a>
-							</div>
-
-							<div class="col-md-3">
-								@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
-									<a class="btn btn-primary text-center" style="width:100%" href={{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}>
-										<i class="material-icons">lock</i>
-										<br>
-										Acesso
-									</a>
-								@endif
 							</div>
 
 							<div class="col-md-3">
@@ -144,6 +131,16 @@
 									<br>
 									Álbuns
 								</a>
+							</div>
+
+							<div class="col-md-3">
+								@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
+									<a class="btn btn-primary text-center" style="width:100%" href={{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}>
+										<i class="material-icons">lock</i>
+										<br>
+										Acesso
+									</a>
+								@endif
 							</div>
 						</div>
 					</div>

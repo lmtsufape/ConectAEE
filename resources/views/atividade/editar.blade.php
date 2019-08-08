@@ -5,7 +5,6 @@
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
 > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
 > <a href="{{route('objetivo.gerenciar',[$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
-> <a href="{{route('atividades.listar',[$objetivo->id])}}">Atividades</a>
 > Editar: {{$atividade->titulo}}
 @endsection
 @section('content')
@@ -66,19 +65,19 @@
               <div class="col-md-6">
                 <select id="status" class="form-control" name="status" autofocus>
                   @if (old('status',NULL) != NULL)
-                    @foreach($statuses as $status)
+                    @foreach($statuses as $key => $status)
                       @if(old('status') == $status)
-                        <option value={{$status}} selected>{{$status}}</option>
+                        <option value="{{$key}}" selected>{{$status}}</option>
                       @else
-                        <option value={{$status}}>{{$status}}</option>
+                        <option value="{{$key}}">{{$status}}</option>
                       @endif
                     @endforeach
                   @else
-                    @foreach($statuses as $status)
+                    @foreach($statuses as $key => $status)
                       @if($atividade->status == $status)
-                        <option value={{$status}} selected>{{$status}}</option>
+                        <option value="{{$key}}" selected>{{$status}}</option>
                       @else
-                        <option value={{$status}}>{{$status}}</option>
+                        <option value="{{$key}}">{{$status}}</option>
                       @endif
                     @endforeach
                   @endif

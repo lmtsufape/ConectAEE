@@ -104,6 +104,7 @@
                               echo $pieces[0];
                             }
                           ?>
+                          {{$aluno->id}}
                           <br>
                           &nbsp; &nbsp;
                         </td>
@@ -135,6 +136,8 @@
                           echo $pieces[0];
                         }
                       ?>
+                      {{$aluno->id}}
+                      
                       <br>
                       &nbsp; &nbsp;
                     </td>

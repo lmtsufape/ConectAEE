@@ -11,22 +11,73 @@
 <div class="container">
   <div class="row">
 
-    @if (\Session::has('success'))
-      <br>
-      <div class="alert alert-success">
-        <strong>Sucesso!</strong>
-        {!! \Session::get('success') !!}
-      </div>
-    @endif
+  </div>
+  <div class="row">
 
-    <div id="painel" class="flex">
-      <div class="col-md-8">
-        <div class="row" style="width:100%">
+    <div id="painel0">
+      <div class="panel panel-default">
+
+        <div class="panel-heading">
+          Objetivo: <strong>{{$objetivo->titulo}}</strong>
+        </div>
+
+        <div class="panel-body">
+          @if (\Session::has('success'))
+            <br>
+            <div class="alert alert-success">
+              <strong>Sucesso!</strong>
+              {!! \Session::get('success') !!}
+            </div>
+          @endif
+
+          <div class="col">
+            <strong>Autor: </strong>{{$objetivo->user->name}}
+            <br>
+            <strong>Prioridade: </strong>{{$objetivo->prioridade}}
+            <br>
+            <strong>Tipo: </strong>{{$objetivo->tipoObjetivo->tipo}}
+            <br>
+            <strong>Concluído: </strong>
+            @if($objetivo->concluido)
+              Sim
+            @else
+              Não
+            @endif
+            <br>
+            <strong>Descrição: </strong>{{$objetivo->descricao}}
+            <br>
+            <strong>Histórico de Status: </strong>
+            @foreach ($objetivo->statusObjetivo as $statusObjetivo)
+              | {{ $statusObjetivo->status->status }} {{ $statusObjetivo->data}}
+            @endforeach
+          </div>
+        </div>
+
+        <div class="panel-footer">
+          @if($objetivo->user->id == \Auth::user()->id)
+            <div class="row text-right">
+              <a class="btn btn-primary" href={{ route("objetivo.editar" , ['id_objetivo' => $objetivo->id]) }}>
+                <i class="material-icons">edit</i>
+              </a>
+              <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do objetivo {{$objetivo->titulo}}?')" href={{ route("objetivo.excluir" , ['id_objetivo' => $objetivo->id]) }}>
+                <i class="material-icons">delete</i>
+              </a>
+              &nbsp;&nbsp;
+            </div>
+          @endif
+        </div>
+
+      </div>
+    </div>
+
+    <div id="painel1" class="flex">
+      <div id="painel2" class="col-md-8">
+        <div id="painel3" class="row" style="width:100%">
 
           <div class="panel panel-default">
 
             <div class="panel-heading">
-              Atividades do objetivo: <strong>{{$objetivo->titulo}}</strong>
+              Atividades
             </div>
 
             <div class="panel-body">
@@ -62,7 +113,11 @@
                                 </div>
                               </div>
                               <div class="card-footer text-center">
-                                <a class="btn btn-success" href={{ route("atividades.listar", ["id_objetivo" => $objetivo->id]) }}>Ver</a>
+                                @if($atividade->objetivo->user->id == \Auth::user()->id)
+                                  <a class="btn btn-primary" href={{ route("atividade.ver", ["id_atividade" => $atividade->id]) }}>Gerenciar</a>
+                                @else
+                                  <a class="btn btn-success" href={{ route("atividade.ver", ["id_atividade" => $atividade->id]) }}>Ver</a>
+                                @endif
                               </div>
                             </div>
                           </td>
@@ -82,6 +137,7 @@
 
             <div class="panel-footer" style="background-color: white;">
               <div class="row">
+
                 <div class="col-md-6" style="max-width:50%">
                   <div class="output">
                     <h4>Legenda:</h4>
@@ -97,14 +153,15 @@
                     ?>
                   </div>
                 </div>
+
                 <div class="col-md-6" style="max-width:50%">
                   <div class="text-right">
                     @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->perfil_id != 1 && $objetivo->user->id == \Auth::user()->id)
-                    <a class="btn btn-success" href="{{ route("atividades.cadastrar" , ['id_objetivo' => $objetivo->id])}}">
-                      <i class="material-icons">add</i>
-                      <br>
-                      Novo
-                    </a>
+                      <a class="btn btn-success" href="{{ route("atividades.cadastrar" , ['id_objetivo' => $objetivo->id])}}">
+                        <i class="material-icons">add</i>
+                        <br>
+                        Novo
+                      </a>
                     @endif
                   </div>
                 </div>
@@ -116,7 +173,7 @@
           <div class="panel panel-default">
 
             <div class="panel-heading">
-              Sugestões do objetivo: <strong>{{$objetivo->titulo}}</strong>
+              Sugestões
             </div>
 
             <div class="panel-body">
@@ -166,17 +223,15 @@
                 </table>
               </div>
 
-              @if($objetivo->user->id == \Auth::user()->id)
-              <div class="row text-right">
-                <a class="btn btn-primary" href={{ route("objetivo.editar" , ['id_objetivo' => $objetivo->id]) }}>
-                  <i class="material-icons">edit</i>
-                </a>
-                <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do objetivo {{$objetivo->titulo}}?')" href={{ route("objetivo.excluir" , ['id_objetivo' => $objetivo->id]) }}>
-                  <i class="material-icons">delete</i>
-                </a>
-                &nbsp;&nbsp;
+              <div class="text-right">
+                @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first() != null && $objetivo->user->id != \Auth::user()->id)
+                  <a class="btn btn-success" href="{{ route("sugestoes.cadastrar" , ['id_objetivo' => $objetivo->id])}}">
+                    <i class="material-icons">add</i>
+                    <br>
+                    Novo
+                  </a>
+                @endif
               </div>
-              @endif
 
             </div>
 
@@ -188,7 +243,7 @@
 
       </div>
 
-      <div class="col-md-4">
+      <div id="painel4" class="col-md-4">
         <div class="panel panel-default" style="width:100%">
 
           <div class="panel-heading">
@@ -247,7 +302,10 @@
 var width = screen.width;
 
 if (width <= 1000){
-  document.getElementById("painel").className = "col-md-offset-1";
+  document.getElementById("painel0").className = "col-md-12";
+  document.getElementById("painel1").className = "col-md-offset-1";
+  document.getElementById("painel2").className = "col-md-12";
+  document.getElementById("painel3").className = "";
 }
 
 </script>

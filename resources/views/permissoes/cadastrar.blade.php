@@ -16,11 +16,11 @@
 
         <div class="panel-body">
           @if (\Session::has('Fail'))
-          <br>
-          <div class="alert alert-danger">
-            <strong>Erro!</strong>
-            {!! \Session::get('Fail') !!}
-          </div>
+            <br>
+            <div class="alert alert-danger">
+              <strong>Erro!</strong>
+              {!! \Session::get('Fail') !!}
+            </div>
           @endif
 
           <form class="form-horizontal" autocomplete="off" method="POST" action="{{ route("aluno.permissoes.criar") }}">
@@ -48,11 +48,11 @@
                 <select name="perfil" class="form-control" onchange="showEspecializacao(this)">
                   <option value="" selected disabled hidden>Escolha o Perfil</option>
                   @foreach($perfis as $perfil)
-                  @if($perfil->nome == old('perfil'))
-                  <option value="{{$perfil->nome}}" selected>{{$perfil->nome}}</option>
-                  @else
-                  <option value="{{$perfil->nome}}">{{$perfil->nome}}</option>
-                  @endif
+                    @if($perfil->nome == old('perfil'))
+                      <option value="{{$perfil->nome}}" selected>{{$perfil->nome}}</option>
+                    @else
+                      <option value="{{$perfil->nome}}">{{$perfil->nome}}</option>
+                    @endif
                   @endforeach
                 </select>
 
@@ -65,60 +65,60 @@
             </div>
 
             @if(old('perfil') == "Profissional Externo")
-            <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}">
-              @else
+              <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}">
+            @else
               <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}" style="display: none">
-                @endif
-                <label for="especializacao" class="col-md-4 control-label">Especialização</label>
+            @endif
+              <label for="especializacao" class="col-md-4 control-label">Especialização</label>
 
-                <div class="autocomplete col-md-6">
-                  <input id="especializacao" type="text" class="form-control" name="especializacao" value="{{ old('especializacao') }}" autofocus>
+              <div class="autocomplete col-md-6">
+                <input id="especializacao" type="text" class="form-control" name="especializacao" value="{{ old('especializacao') }}" autofocus>
 
-                  @if ($errors->has('especializacao'))
+                @if ($errors->has('especializacao'))
                   <span class="help-block">
                     <strong>{{ $errors->first('especializacao') }}</strong>
                   </span>
-                  @endif
-                </div>
+                @endif
               </div>
+            </div>
 
-              <div class="form-group{{ $errors->has('isAdministrador') ? ' has-error' : '' }}">
-                <label for="isAdministrador" class="col-md-4 control-label">Usuário é Administrador?</label>
+            <div class="form-group{{ $errors->has('isAdministrador') ? ' has-error' : '' }}">
+              <label for="isAdministrador" class="col-md-4 control-label">Usuário é Administrador?</label>
 
-                <div class="col-md-6">
-                  <input style="margin-top: 10px" id="isAdministrador" type="checkbox" name="isAdministrador" value="true">
+              <div class="col-md-6">
+                <input style="margin-top: 10px" id="isAdministrador" type="checkbox" name="isAdministrador" value="true">
 
-                  @if ($errors->has('isAdministrador'))
+                @if ($errors->has('isAdministrador'))
                   <span class="help-block">
                     <strong>{{ $errors->first('isAdministrador') }}</strong>
                   </span>
-                  @endif
-                </div>
+                @endif
               </div>
+            </div>
 
-              <div class="form-group">
-                <div class="col-md-6 col-md-offset-4">
-                  <button type="submit" class="btn btn-success">
-                    Cadastrar
-                  </button>
-                </div>
+            <div class="form-group">
+              <div class="col-md-6 col-md-offset-4">
+                <button type="submit" class="btn btn-success">
+                  Cadastrar
+                </button>
               </div>
-            </form>
-          </div>
+            </div>
+          </form>
+        </div>
 
-          <div class="panel-footer">
-            <a class="btn btn-danger" href="{{URL::previous()}}">
-              <i class="material-icons">keyboard_backspace</i>
-              <br>
-              Voltar
-            </a>
-          </div>
+        <div class="panel-footer">
+          <a class="btn btn-danger" href="{{URL::previous()}}">
+            <i class="material-icons">keyboard_backspace</i>
+            <br>
+            Voltar
+          </a>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <script>
+<script>
   function autocomplete(inp, arr) {
     /*the autocomplete function takes two arguments,
     the text field element and an array of possible autocompleted values:*/

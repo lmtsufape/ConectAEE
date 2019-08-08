@@ -17,18 +17,18 @@
 
         <div class="panel-body">
           @if (\Session::has('Success'))
-          <br>
-          <div class="alert alert-success">
-            <strong>Sucesso!</strong>
-            {!! \Session::get('Success') !!}
-          </div>
+            <br>
+            <div class="alert alert-success">
+              <strong>Sucesso!</strong>
+              {!! \Session::get('Success') !!}
+            </div>
           @endif
           @if (\Session::has('Removed'))
-          <br>
-          <div class="alert alert-success">
-            <strong>Removido!</strong>
-            {!! \Session::get('Removed') !!}
-          </div>
+            <br>
+            <div class="alert alert-success">
+              <strong>Removido!</strong>
+              {!! \Session::get('Removed') !!}
+            </div>
           @endif
 
           <div id="tabela" class="table-responsive">

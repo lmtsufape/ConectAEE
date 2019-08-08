@@ -73,11 +73,12 @@ Route::middleware('autorizacao')->group(function() {
   Route::get('/aluno/objetivos/{id_objetivo}/gerenciar/atividades/listar','AtividadeController@listar')->name('atividades.listar');
   Route::post('/aluno/objetivos/gerenciar/atividades/criar', 'AtividadeController@criar')->name('atividades.criar');
   Route::get('/aluno/objetivos/{id_objetivo}/gerenciar/atividades/cadastrar','AtividadeController@cadastrar')->name('atividades.cadastrar');
-  Route::get('/aluno/objetivos/gerenciar/atividades/{id_atividade}/concluir','AtividadeController@concluir')->name('atividade.concluir');
-  Route::get('/aluno/objetivos/gerenciar/atividades/{id_atividade}/desconcluir','AtividadeController@desconcluir')->name('atividade.desconcluir');
+  Route::get('/aluno/objetivos/gerenciar/atividade/{id_atividade}/concluir','AtividadeController@concluir')->name('atividade.concluir');
+  Route::get('/aluno/objetivos/gerenciar/atividade/{id_atividade}/desconcluir','AtividadeController@desconcluir')->name('atividade.desconcluir');
   //novas
-  Route::get('/aluno/objetivos/gerenciar/atividades/{id_atividade}/editar','AtividadeController@editar')->name('atividade.editar');
-  Route::get('/aluno/objetivos/gerenciar/atividades/{id_atividade}/excluir','AtividadeController@excluir')->name('atividade.excluir');
+  Route::get('/aluno/objetivos/gerenciar/atividade/{id_atividade}/ver','AtividadeController@ver')->name('atividade.ver');
+  Route::get('/aluno/objetivos/gerenciar/atividade/{id_atividade}/editar','AtividadeController@editar')->name('atividade.editar');
+  Route::get('/aluno/objetivos/gerenciar/atividade/{id_atividade}/excluir','AtividadeController@excluir')->name('atividade.excluir');
   Route::post('/aluno/atividades/atualizar', 'AtividadeController@atualizar')->name('atividade.atualizar');
 
   //Rotas para sugestão

@@ -60,7 +60,7 @@
                           <div class="card-body" style="height:76%; margin-left: 5%; margin-right: 5%; display: -webkit-flex; display: flex;-webkit-align-items: center;align-items: center;-webkit-justify-content: center;justify-content: center;">
                             <div class="hifen text-center" align="justify">
                               <font size="3">
-                                <strong> {{ $objetivo->titulo }} </strong>
+                                <strong> {{ ucfirst($objetivo->titulo) }} </strong>
                               </font>
                             </div>
                           </div>

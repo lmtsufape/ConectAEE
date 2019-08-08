@@ -3,7 +3,7 @@
 @section('path','Início')
 
 @section('navbar')
-<a href="{{route('aluno.listar')}}">Início</a> > Novo
+<a href="{{route('aluno.listar')}}">Início</a> > Novo Aluno
 @endsection
 
 @section('content')

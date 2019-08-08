@@ -40,9 +40,9 @@
                 <textarea id="descricao" rows = "5" cols = "50" class="form-control" name="descricao">{{ old('descricao') }}</textarea>
 
                 @if ($errors->has('descricao'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('descricao') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('descricao') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>

@@ -7,6 +7,7 @@
 > <a href="{{route('objetivo.gerenciar',[$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
 > Atividades
 @endsection
+
 @section('content')
 <div class="container">
   <div class="row">

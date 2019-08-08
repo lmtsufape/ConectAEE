@@ -17,7 +17,7 @@ class StatusSeeder extends Seeder
         ]);
 
         factory(Status::class)->create([
-            'status' => "iniciado",
+            'status' => "Iniciado",
         ]);
 
         factory(Status::class)->create([
@@ -25,7 +25,7 @@ class StatusSeeder extends Seeder
         ]);
 
         factory(Status::class)->create([
-            'status' => "Pausado",
+            'status' => "Em pausa",
         ]);
 
         factory(Status::class)->create([
