@@ -38,7 +38,21 @@ class SugestaoController extends Controller
     $objetivo = $sugestao->objetivo;
     $sugestao->delete();
 
-    return redirect()->route("sugestoes.listar", ["id_objetivo" => $objetivo->id])->with('success','A sugestão '.$sugestao->titulo.' foi excluída.');;
+    return redirect()->route("objetivo.gerenciar", ["id_objetivo" => $objetivo->id])->with('success','A sugestão '.$sugestao->titulo.' foi excluída.');;
+  }
+
+  public static function ver($id_sugestao){
+    $sugestao = Sugestao::find($id_sugestao);
+    $objetivo = $sugestao->objetivo;
+    $aluno = $sugestao->objetivo->aluno;
+    $feedbacks = $sugestao->feedbacks;
+
+    return view("sugestao.ver", [
+      'aluno' => $aluno,
+      'objetivo' => $objetivo,
+      'sugestao' => $sugestao,
+      'feedbacks' => $feedbacks,
+    ]);
   }
 
   public function criar(Request $request){
@@ -77,7 +91,7 @@ class SugestaoController extends Controller
     $sugestao->descricao = $request->descricao;
     $sugestao->update();
 
-    return redirect()->route("sugestoes.listar", ["id_objetivo" => $request->id_objetivo])->with('success','A sugestãoatividade '.$sugestao->titulo.' foi atualizada.');
+    return redirect()->route("sugestao.ver", ["id_sugestao" => $sugestao->id])->with('success','A sugestão '.$sugestao->titulo.' foi atualizada.');
   }
 
   public function listar($id_objetivo){

@@ -10,10 +10,6 @@
 @section('content')
 <div class="container">
   <div class="row">
-
-  </div>
-  <div class="row">
-
     <div id="painel0">
       <div class="panel panel-default">
 
@@ -30,27 +26,30 @@
             </div>
           @endif
 
-          <div class="col">
-            <strong>Autor: </strong>{{$objetivo->user->name}}
-            <br>
-            <strong>Prioridade: </strong>{{$objetivo->prioridade}}
-            <br>
-            <strong>Tipo: </strong>{{$objetivo->tipoObjetivo->tipo}}
-            <br>
-            <strong>Concluído: </strong>
-            @if($objetivo->concluido)
-              Sim
-            @else
-              Não
-            @endif
-            <br>
-            <strong>Descrição: </strong>{{$objetivo->descricao}}
-            <br>
-            <strong>Histórico de Status: </strong>
-            @foreach ($objetivo->statusObjetivo as $statusObjetivo)
-              | {{ $statusObjetivo->status->status }} {{ $statusObjetivo->data}}
-            @endforeach
+          <div class="row">
+            <div class="col-md-6">
+              <strong>Autor: </strong>{{$objetivo->user->name}}
+              <br><br>
+              <strong>Prioridade: </strong>{{$objetivo->prioridade}}
+              <br><br>
+              <strong>Tipo: </strong>{{$objetivo->tipoObjetivo->tipo}}
+              <br><br>
+              <strong>Concluído: </strong>
+              <?php
+                echo $objetivo->concluido ? "Sim" : "Não";
+              ?>
+              <br><br>
+              <strong>Histórico de Status: </strong>
+              @foreach ($objetivo->statusObjetivo as $statusObjetivo)
+                | {{ $statusObjetivo->status->status }} {{ $statusObjetivo->data}}
+              @endforeach
+            </div>
+
+            <div class="col-md-6" align="justify">
+              <strong>Descrição: </strong>{{$objetivo->descricao}}
+            </div>
           </div>
+
         </div>
 
         <div class="panel-footer">
@@ -81,7 +80,6 @@
             </div>
 
             <div class="panel-body">
-
               <div id="tabela" style="overflow:auto" class="table-responsive">
                 <table class="table">
                   <thead>
@@ -137,7 +135,6 @@
 
             <div class="panel-footer" style="background-color: white;">
               <div class="row">
-
                 <div class="col-md-6" style="max-width:50%">
                   <div class="output">
                     <h4>Legenda:</h4>
@@ -166,6 +163,7 @@
                   </div>
                 </div>
               </div>
+              <br>
             </div>
 
           </div>
@@ -206,7 +204,7 @@
                                 </div>
                               </div>
                               <div class="card-footer text-center">
-                                <a class="btn btn-success" href={{ route("sugestoes.listar", ["id_objetivo" => $objetivo->id]) }}>Ver</a>
+                                <a class="btn btn-success" href={{ route("sugestao.ver", ["id_sugestao" => $sugestao->id]) }}>Ver</a>
                               </div>
                             </div>
                           </td>
@@ -236,14 +234,13 @@
             </div>
 
             <div class="panel-footer" style="background-color: white;">
-              <br>
+              <br><br>
             </div>
           </div>
         </div>
-
       </div>
 
-      <div id="painel4" class="col-md-4">
+      <div id="forum" class="col-md-4">
         <div class="panel panel-default" style="width:100%">
 
           <div class="panel-heading">
@@ -259,9 +256,7 @@
                 <button style="width:23%" type="submit" class="btn btn-success">Enviar</button>
               </div>
             </form>
-          </div>
 
-          <div class="panel-footer" style="background-color: white;">
             <div class="form-group">
               @foreach($mensagens as $mensagem)
                 @if($mensagem->user_id == \Auth::user()->id)

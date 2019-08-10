@@ -137,7 +137,7 @@
                         }
                       ?>
                       {{$aluno->id}}
-                      
+
                       <br>
                       &nbsp; &nbsp;
                     </td>

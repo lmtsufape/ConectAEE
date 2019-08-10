@@ -5,7 +5,7 @@
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
 > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
 > <a href="{{route('objetivo.gerenciar',[$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
-> <strong>{{$atividade->titulo}}</strong>
+> <strong>Atividade: {{$atividade->titulo}}</strong>
 @endsection
 
 @section('content')
@@ -47,7 +47,7 @@
         </div>
 
         <div class="panel-footer">
-          <div class="row text-right">
+          <div class="row text-right" style="padding:1rem;">
             @if($objetivo->user->id == \Auth::user()->id)
 
               <a class="btn btn-primary" href={{ route("atividade.editar" , ['id_atividade' => $atividade->id]) }}>

@@ -5,7 +5,8 @@
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
 > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
 > <a href="{{route('objetivo.gerenciar',[$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
-> Editar: {{$atividade->titulo}}
+> <a href="{{route('atividade.ver',[$atividade->id])}}"><strong>Atividade: {{$atividade->titulo}}</strong></a>
+> Editar
 @endsection
 @section('content')
 <div class="container">
