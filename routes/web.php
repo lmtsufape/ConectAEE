@@ -125,6 +125,7 @@ Route::middleware('autorizacao')->group(function() {
   Route::post('/instituicao/criar', 'InstituicaoController@criar')->name('instituicao.criar');
   //novas
   Route::get('/instituicao/listar', 'InstituicaoController@listar')->name('instituicao.listar');
+  Route::get('/instituicao/{id_instituicao}/ver', 'InstituicaoController@ver')->name('instituicao.ver');
   Route::get('/instituicao/{id_instituicao}/editar', 'InstituicaoController@editar')->name('instituicao.editar');
   Route::get('/instituicao/{id_instituicao}/excluir', 'InstituicaoController@excluir')->name('instituicao.excluir');
   Route::post('/instituicao/atualizar', 'InstituicaoController@atualizar')->name('instituicao.atualizar');

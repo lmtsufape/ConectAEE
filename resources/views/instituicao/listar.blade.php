@@ -26,10 +26,8 @@
               <thead>
                 <tr>
                   <th >Nome</th>
-                  <th >Telefone</th>
-                  <th >Email</th>
-                  <th >Endereço</th>
                   <th >Ações</th>
+                  <th></th>
                   <th></th>
                 </tr>
 
@@ -38,16 +36,10 @@
                 @foreach ($instituicoes as $instituicao)
                 <tr>
                   <td data-title="Nome">{{ $instituicao->nome }}</td>
-                  <td data-title="Telefone">{{ $instituicao->telefone }}</td>
-                  <td data-title="Email">{{ $instituicao->email }}</td>
-                  <td data-title="Endereço">
-                    <?php
-                    echo $instituicao->endereco->logradouro, ", ",
-                    $instituicao->endereco->numero, ", ",
-                    $instituicao->endereco->bairro, ", ",
-                    $instituicao->endereco->cidade, " - ",
-                    $instituicao->endereco->estado;
-                    ?>
+                  <td data-title="Ações">
+                    <a class="btn btn-primary" href="{{ route("instituicao.ver" , ['id_instituicao' => $instituicao->id]) }}">
+                      <i class="material-icons">remove_red_eye</i>
+                    </a>
                   </td>
                   <td data-title="Ações">
                     <a class="btn btn-primary" href="{{ route("instituicao.editar" , ['id_instituicao' => $instituicao->id]) }}">
@@ -91,8 +83,9 @@ $(document).ready( function () {
       "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
     },
     "columnDefs": [
-      { "orderable": false, "targets": 4 },
-      { "orderable": false, "targets": 5 }
+      { "orderable": false, "targets": 1 },
+      { "orderable": false, "targets": 2 },
+      { "orderable": false, "targets": 3 }
     ]
   });
 

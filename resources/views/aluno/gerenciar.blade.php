@@ -84,13 +84,12 @@
 
 							<hr>
 							<strong>Instituição(ões):</strong>
-							<br/>
+							<br>
 
-							<?php
-								foreach ($aluno->instituicoes as $instituicao) {
-									echo ($instituicao->nome."<br/>");
-								}
-							?>
+							@foreach ($aluno->instituicoes as $instituicao) {
+								<a href="{{ route("instituicao.ver", ["id_instituiçao"=>$instituicao->id]) }}">{{$instituicao->nome}}</a>
+								<br>
+							@endforeach
 							<hr>
 
 							@if($aluno->cid != null)
