@@ -10,8 +10,8 @@
 <div class="container">
 	<div class="row">
 
-		<div id="painel" class="flex col-md-offset-1">
-			<div class="col-md-5">
+		<div id="painel" class="flex col-md-12">
+			<div class="col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">Gerenciamento de <strong>{{$aluno->nome}}</strong></div>
 
@@ -150,7 +150,7 @@
 				</div>
 			</div>
 
-			<div class="col-md-5">
+			<div class="col-md-6">
 				<div class="panel panel-default" style="width:100%">
 					<div class="panel-heading" id="forum" >
 							Fórum <a style="margin-left: 50%" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary btn-xs">Ver todas as mensagens</a>
