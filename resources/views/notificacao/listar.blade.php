@@ -41,7 +41,11 @@
               <br>
               Voltar
             </a>
-            <a class="btn btn-success" href="{{ route("aluno.cadastrar")}}">Novo</a>
+            <a class="btn btn-success" href="{{ route("aluno.cadastrar")}}">
+              <i class="material-icons">add</i>
+              <br>
+              Novo
+            </a>
           </div>
 
         </div>
