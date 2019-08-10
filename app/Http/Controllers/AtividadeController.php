@@ -12,7 +12,7 @@ use DateTime;
 class AtividadeController extends Controller
 {
   public static function cadastrar($id_objetivo){
-    $statuses = ["Não iniciada","Iniciada", "Em andamento", "Finalizada"];
+    $statuses = ["Não iniciada", "Em andamento", "Finalizada"];
     $prioridades = ["Alta","Média","Baixa"];
     $objetivo = Objetivo::find($id_objetivo);
     $aluno = $objetivo->aluno;
@@ -30,7 +30,7 @@ class AtividadeController extends Controller
     $objetivo = $atividade->objetivo;
     $aluno = $atividade->objetivo->aluno;
 
-    $statuses = ["Não iniciada","Iniciada", "Em andamento", "Finalizada"];
+    $statuses = ["Não iniciada", "Em andamento", "Finalizada"];
     $prioridades = ["Alta","Média","Baixa"];
 
     return view("atividade.editar", [
@@ -42,12 +42,24 @@ class AtividadeController extends Controller
     ]);
   }
 
+  public static function ver($id_atividade){
+    $atividade = Atividade::find($id_atividade);
+    $objetivo = $atividade->objetivo;
+    $aluno = $atividade->objetivo->aluno;
+
+    return view("atividade.ver", [
+      'aluno' => $aluno,
+      'objetivo' => $objetivo,
+      'atividade' => $atividade,
+    ]);
+  }
+
   public static function excluir($id_atividade){
     $atividade = Atividade::find($id_atividade);
     $objetivo = $atividade->objetivo;
     $atividade->delete();
 
-    return redirect()->route("atividades.listar", ["id_objetivo" => $objetivo->id])->with('success','A atividade '.$atividade->titulo.' foi excluída.');;
+    return redirect()->route("objetivo.gerenciar", ["id_objetivo" => $atividade->objetivo->id])->with('success','A atividade '.$atividade->titulo.' foi excluída.');;
   }
 
   public static function criar(Request $request){
@@ -62,16 +74,18 @@ class AtividadeController extends Controller
       return redirect()->back()->withErrors($validator->errors())->withInput();
     }
 
+    $statuses = ["Não iniciada", "Em andamento", "Finalizada"];
+
     $atividade = new Atividade();
     $atividade->titulo = $request->titulo;
     $atividade->descricao = $request->descricao;
     $atividade->prioridade = $request->prioridade;
-    $atividade->status = $request->status;
+    $atividade->status = $statuses[$request->status];
     $atividade->data = new DateTime();
     $atividade->objetivo_id = $request->id_objetivo;
     $atividade->save();
 
-    return redirect()->route("atividades.listar", ["id_objetivo" => $request->id_objetivo])->with('success','Atividade cadastrada.');
+    return redirect()->route("atividade.ver", ["id_atividade" => $atividade->id])->with('success','Atividade cadastrada.');
   }
 
   public static function atualizar(Request $request){
@@ -86,38 +100,39 @@ class AtividadeController extends Controller
       return redirect()->back()->withErrors($validator->errors())->withInput();
     }
 
+    $statuses = ["Não iniciada", "Em andamento", "Finalizada"];
+
     $atividade = Atividade::find($request->id_atividade);
     $atividade->titulo = $request->titulo;
     $atividade->descricao = $request->descricao;
     $atividade->prioridade = $request->prioridade;
-    $atividade->status = $request->status;
+    $atividade->status = $statuses[$request->status];
     $atividade->update();
 
-    return redirect()->route("atividades.listar", ["id_objetivo" => $request->id_objetivo])->with('success','A atividade '.$atividade->titulo.' foi atualizada.');
+    return redirect()->route("atividade.ver", ["id_atividade" => $atividade->id])->with('success','A atividade '.$atividade->titulo.' foi atualizada.');
   }
 
-  public static function listar($id_objetivo){
-
-    $objetivo = Objetivo::find($id_objetivo);
-    $aluno = $objetivo->aluno;
-    $atividades = $objetivo->atividades;
-
-    return view("atividade.listar", [
-      'aluno' => $aluno,
-      'objetivo' => $objetivo,
-      'atividades' => $atividades
-    ]);
-  }
+  // public static function listar($id_objetivo){
+  //
+  //   $objetivo = Objetivo::find($id_objetivo);
+  //   $aluno = $objetivo->aluno;
+  //   $atividades = $objetivo->atividades;
+  //
+  //   return view("atividade.listar", [
+  //     'aluno' => $aluno,
+  //     'objetivo' => $objetivo,
+  //     'atividades' => $atividades
+  //   ]);
+  // }
 
   public static function concluir($id_atividade){
-
 
     $atividade = Atividade::find($id_atividade);
     $objetivo = $atividade->objetivo;
     $atividade->concluido = True;
     $atividade->update();
 
-    return redirect()->route("atividades.listar", ["id_objetivo" => $objetivo->id]);
+    return redirect()->route("atividade.ver", ["id_atividadeo" => $atividade->id]);
   }
 
   public static function desconcluir($id_atividade){
@@ -128,9 +143,21 @@ class AtividadeController extends Controller
     $atividade->concluido = False;
     $atividade->update();
 
+    return redirect()->route("atividade.ver", ["id_atividadeo" => $atividade->id]);
+  }
 
-    return redirect()->route("atividades.listar", ["id_objetivo" => $objetivo->id]);
-
+  public static function corStatus($status){
+    switch ($status) {
+      case 'Não iniciada':
+        return '#e88d76';
+        break;
+      case 'Em andamento':
+        return '#f2ee74';
+        break;
+      case 'Finalizada':
+        return '#c0e876';
+        break;
+    }
   }
 
 }

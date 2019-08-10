@@ -9,7 +9,7 @@
 @section('content')
 <div class="container">
   <div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">Alunos</div>
 
@@ -43,7 +43,7 @@
               {{ csrf_field() }}
 
               <div class="row">
-                <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-12">
                   @if ($termo == null)
                     <input style="width:74%" id="termo" type="text" name="termo" autofocus required placeholder="Pesquise aqui...">
                   @else
@@ -104,6 +104,7 @@
                               echo $pieces[0];
                             }
                           ?>
+                          {{$aluno->id}}
                           <br>
                           &nbsp; &nbsp;
                         </td>
@@ -135,6 +136,8 @@
                           echo $pieces[0];
                         }
                       ?>
+                      {{$aluno->id}}
+
                       <br>
                       &nbsp; &nbsp;
                     </td>

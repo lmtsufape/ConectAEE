@@ -17,6 +17,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Feedback::class, function (Faker $faker) {
     return [
-        'texto' => $faker->words(3,true),
+        'texto' => $faker->text($maxNbChars = 300),
     ];
 });

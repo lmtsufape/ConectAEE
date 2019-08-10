@@ -9,18 +9,20 @@ use App\Aluno;
 use App\Objetivo;
 use App\Feedback;
 use \Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 
 class FeedbackController extends Controller
 {
-  public function listar($id_sugestao){
-    $sugestao = Sugestao::find($id_sugestao);
-    $feedbacks = $sugestao->feedbacks;
-
-    return view('feedback.listar',[
-      'sugestao' => $sugestao,
-      'feedbacks' => $feedbacks,
-    ]);
-  }
+  // public function listar($id_sugestao){
+  //   $sugestao = Sugestao::find($id_sugestao);
+  //   $feedbacks = $sugestao->feedbacks;
+  //
+  //   return view('feedback.listar',[
+  //     'sugestao' => $sugestao,
+  //     'feedbacks' => $feedbacks,
+  //   ]);
+  // }
 
   public static function editar($id_feedback){
     $feedback = Feedback::find($id_feedback);
@@ -41,20 +43,20 @@ class FeedbackController extends Controller
     $sugestao = $feedback->sugestao;
     $feedback->delete();
 
-    return redirect()->route("feedbacks.listar", ["id_sugestao" => $sugestao->id])->with('success','O feedback foi excluído.');
+    return Redirect::to(URL::previous() . "#feedbacks")->with('feedback','O feedback foi excluído.');
   }
 
-  public function cadastrar($id_sugestao){
-    $sugestao = Sugestao::find($id_sugestao);
-    $objetivo = $sugestao->objetivo;
-    $aluno = $objetivo->aluno;
-
-    return view('feedback.cadastrar',[
-      'aluno' => $aluno,
-      'objetivo' => $objetivo,
-      'sugestao' => $sugestao,
-    ]);
-  }
+  // public function cadastrar($id_sugestao){
+  //   $sugestao = Sugestao::find($id_sugestao);
+  //   $objetivo = $sugestao->objetivo;
+  //   $aluno = $objetivo->aluno;
+  //
+  //   return view('feedback.cadastrar',[
+  //     'aluno' => $aluno,
+  //     'objetivo' => $objetivo,
+  //     'sugestao' => $sugestao,
+  //   ]);
+  // }
 
   public function criar(Request $request){
     $validator = Validator::make($request->all(), [
@@ -65,19 +67,15 @@ class FeedbackController extends Controller
       return redirect()->back()->withErrors($validator->errors())->withInput();
     }
 
+    $sugestao = Sugestao::find($request->id_sugestao);
+
     $feedback = new Feedback();
     $feedback->texto = $request->feedback;
-    $feedback->sugestao_id = $request->id_sugestao;
+    $feedback->sugestao_id = $sugestao->id;
     $feedback->user_id = Auth::user()->id;
-
     $feedback->save();
 
-    return redirect()->route(
-      'feedbacks.listar',
-      [
-        $request->id_aluno, $request->id_objetivo, $request->id_sugestao,
-      ]
-    );
+    return Redirect::to(URL::previous() . "#feedbacks")->with('feedback','O feedback foi enviado.');
   }
 
   public static function atualizar(Request $request){
@@ -93,6 +91,6 @@ class FeedbackController extends Controller
     $feedback->texto = $request->feedback;
     $feedback->update();
 
-    return redirect()->route("feedbacks.listar", ["id_sugestao" => $request->id_sugestao])->with('success','O feedback foi atualizado.');
+    return Redirect::to(route("sugestao.ver", ["id_sugestao" => $feedback->sugestao->id]) . "#feedbacks")->with('feedback','O feedback foi atualizado.');
   }
 }

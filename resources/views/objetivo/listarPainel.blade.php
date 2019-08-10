@@ -8,7 +8,7 @@
 @section('content')
 <div class="container">
   <div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">Objetivos</div>
 
@@ -22,7 +22,7 @@
             </div>
           @endif
 
-          <div id="tabela" style="overflow:auto" class="table-responsive">
+          <div id="tabela" style="overflow-x:auto" class="table-responsive">
             <table class="table">
               <thead>
                 <tr>
@@ -58,9 +58,9 @@
                       <td data-title="Objetivos">
                         <div class="card" style="width: 19rem; height: 19rem; background-color:{{$objetivo->cor->hexadecimal}}">
                           <div class="card-body" style="height:76%; margin-left: 5%; margin-right: 5%; display: -webkit-flex; display: flex;-webkit-align-items: center;align-items: center;-webkit-justify-content: center;justify-content: center;">
-                            <div class="hifen">
+                            <div class="hifen text-center" align="justify">
                               <font size="3">
-                                <strong> {{ $objetivo->titulo }} </strong>
+                                <strong> {{ ucfirst($objetivo->titulo) }} </strong>
                               </font>
                             </div>
                           </div>

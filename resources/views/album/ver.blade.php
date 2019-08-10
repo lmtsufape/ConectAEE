@@ -13,7 +13,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">Álbum: {{$album->nome}}</div>
 
@@ -125,7 +125,7 @@
           </div>
 
           <br>
-          
+
           <div class="row text-right" style="padding:5%">
             <a class="btn btn-primary" href="{{route("album.editar" , ['id_album'=>$album->id,]) }}">
               <i class="material-icons">edit</i>

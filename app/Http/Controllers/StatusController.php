@@ -36,10 +36,8 @@ class StatusController extends Controller
 
     $statusObjetivo = new StatusObjetivo();
     $statusObjetivo->data = new DateTime();
-
     $statusObjetivo->objetivo_id = $request->id_objetivo;
     $statusObjetivo->status_id = $request->status;
-
     $statusObjetivo->save();
 
     return redirect()->route("objetivo.gerenciar", ["id_objetivo" => $request->id_objetivo])->with('success','Status atualizado.');

@@ -5,14 +5,13 @@
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
 > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
 > <a href="{{route('objetivo.gerenciar',[$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
-> <a href="{{route('sugestoes.listar',[$objetivo->id])}}">Sugestões</a>
-> <a href="{{route('feedbacks.listar',[$sugestao->id])}}">Feedbacks</a>
-> Editar
+> <a href="{{route('sugestao.ver',[$sugestao->id])}}"> <strong>Sugestão: {{$sugestao->titulo}}</strong></a>
+> Feedback
 @endsection
 @section('content')
 <div class="container">
   <div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">Editar Feedback</div>
 
@@ -20,10 +19,7 @@
           <form class="form-horizontal" method="POST" action="{{ route("feedback.atualizar") }}">
             {{ csrf_field() }}
 
-            <input type="hidden" name="id_aluno" value="{{ $aluno->id }}">
-            <input type="hidden" name="id_objetivo" value="{{ $objetivo->id }}">
-            <input type="hidden" name="id_sugestao" value="{{ $sugestao->id }}">
-            <input type="hidden" name="id_feedback" value="{{ $feedback->id }}">
+            <input type="hidden" name="id_feedback" value="{{$feedback->id}}">
 
             <div class="form-group{{ $errors->has('feedback') ? ' has-error' : '' }}">
               <label for="feedback" class="col-md-4 control-label">Feedback <font color="red">*</font></label>

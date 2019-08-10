@@ -17,10 +17,12 @@ class FeedbackSeeder extends Seeder
         foreach($sugestoes as $sugestao){
             $gerenciars = $sugestao->objetivo->aluno->gerenciars;
             foreach($gerenciars as $gerenciar){
-                factory(Feedback::class)->create([
+                if($gerenciar->user->id != $sugestao->user->id){
+                  factory(Feedback::class)->create([
                     'user_id' => $gerenciar->user->id,
                     'sugestao_id' => $sugestao->id,
-                ]);
+                  ]);
+                }
             }
         }
     }

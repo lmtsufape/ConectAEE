@@ -18,7 +18,7 @@ class CreateSugestaosTable extends Migration
 
       $table->string('titulo');
       $table->text('descricao')->nullable();
-      $table->dateTime('data');
+      $table->date('data');
 
       $table->integer('objetivo_id')->unsigned();
       $table->foreign('objetivo_id')->references('id')->on('objetivos')->onDelete('cascade');

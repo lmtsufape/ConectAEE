@@ -5,13 +5,12 @@
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
 > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
 > <a href="{{route('objetivo.gerenciar',[$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
-> <a href="{{route('atividades.listar',[$objetivo->id])}}">Atividades</a>
-> Nova
+> Nova Atividade
 @endsection
 @section('content')
 <div class="container">
   <div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">Nova Atividade</div>
 
@@ -60,11 +59,11 @@
                     <option value="" selected disabled hidden>Escolha o status</option>
                   @endif
 
-                  @foreach($statuses as $status)
-                    @if(old('status') == $status)
-                      <option value={{$status}} selected>{{$status}}</option>
+                  @foreach($statuses as $key => $status)
+                    @if(old('status') ==  $status)
+                      <option value={{$key}} selected>{{$status}}</option>
                     @else
-                      <option value={{$status}}>{{$status}}</option>
+                      <option value={{$key}}>{{$status}}</option>
                     @endif
                   @endforeach
                 </select>

@@ -5,13 +5,13 @@
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
 > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
 > <a href="{{route('objetivo.gerenciar',[$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
-> <a href="{{route('sugestoes.listar',[$objetivo->id])}}">Sugestões</a>
-> Editar: {{$sugestao->titulo}}
+> <a href="{{route('sugestao.ver',[$sugestao->id])}}"> <strong>Sugestão: {{$sugestao->titulo}}</strong></a>
+> Editar
 @endsection
 @section('content')
 <div class="container">
   <div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">Editar Sugestao</div>
 
@@ -19,8 +19,6 @@
           <form class="form-horizontal" method="POST" action="{{ route("objetivo.sugestao.atualizar") }}">
             {{ csrf_field() }}
 
-            <input type="hidden" name="id_aluno" value="{{ $aluno->id }}">
-            <input type="hidden" name="id_objetivo" value="{{ $objetivo->id }}">
             <input type="hidden" name="id_sugestao" value="{{ $sugestao->id }}">
 
             <div class="form-group{{ $errors->has('titulo') ? ' has-error' : '' }}">
@@ -28,15 +26,15 @@
 
               <div class="col-md-6">
                 @if(old('titulo',NULL) != NULL)
-                <input id="titulo" type="text" class="form-control" name="titulo" value="{{ old('titulo') }}" autofocus>
+                  <input id="titulo" type="text" class="form-control" name="titulo" value="{{ old('titulo') }}" autofocus>
                 @else
-                <input id="titulo" type="text" class="form-control" name="titulo" value="{{ $sugestao->titulo }}" autofocus>
+                  <input id="titulo" type="text" class="form-control" name="titulo" value="{{ $sugestao->titulo }}" autofocus>
                 @endif
 
                 @if ($errors->has('titulo'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('titulo') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('titulo') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>

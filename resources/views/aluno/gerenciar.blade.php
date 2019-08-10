@@ -10,8 +10,8 @@
 <div class="container">
 	<div class="row">
 
-		<div id="painel"class="flex col-md-offset-1">
-			<div class="col-md-5">
+		<div id="painel" class="flex col-md-12">
+			<div class="col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">Gerenciamento de <strong>{{$aluno->nome}}</strong></div>
 
@@ -31,10 +31,27 @@
 						<div class="row-md-6">
 							<div class="text-center">
 								@if($aluno->imagem != null)
-									<img style="object-fit: cover;" src="{{$aluno->imagem}}" height="256" width="256" >
+									<img src="{{$aluno->imagem}}" style="height:256px; width:256px; object-fit: cover;">
+									<br/>
+								@else
+									<img src="{{asset('images/avatar.png')}}" style="width:256px; height: 256px; object-fit: cover;">
 									<br/>
 								@endif
 							</div>
+
+							<br>
+
+							@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador)
+								<div class="row text-right">
+									<a class="btn btn-primary" href={{route("aluno.editar", ["id_aluno"=>$aluno->id]) }}>
+										<i class="material-icons">edit</i>
+									</a>
+									<a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do aluno {{$aluno->nome}}?')" href={{route("aluno.excluir", ["id_aluno"=>$aluno->id]) }}>
+										<i class="material-icons">delete</i>
+									</a>
+									&nbsp;&nbsp;
+								</div>
+							@endif
 
 							<hr>
 							<?php
@@ -67,13 +84,12 @@
 
 							<hr>
 							<strong>Instituição(ões):</strong>
-							<br/>
+							<br>
 
-							<?php
-								foreach ($aluno->instituicoes as $instituicao) {
-									echo ($instituicao->nome."<br/>");
-								}
-							?>
+							@foreach ($aluno->instituicoes as $instituicao) {
+								<a href="{{ route("instituicao.ver", ["id_instituiçao"=>$instituicao->id]) }}">{{$instituicao->nome}}</a>
+								<br>
+							@endforeach
 							<hr>
 
 							@if($aluno->cid != null)
@@ -91,19 +107,6 @@
 							@endif
 						</div>
 
-						<br/>
-
-						@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador)
-							<div class="row text-right">
-								<a class="btn btn-primary" href={{route("aluno.editar", ["id_aluno"=>$aluno->id]) }}>
-									<i class="material-icons">edit</i>
-								</a>
-								<a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do aluno {{$aluno->nome}}?')" href={{route("aluno.excluir", ["id_aluno"=>$aluno->id]) }}>
-									<i class="material-icons">delete</i>
-								</a>
-								&nbsp;&nbsp;
-							</div>
-						@endif
 					</div>
 
 					<div class="panel-footer" style="background-color: white;">
@@ -114,16 +117,6 @@
 									<br>
 									Voltar
 								</a>
-							</div>
-
-							<div class="col-md-3">
-								@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
-									<a class="btn btn-primary text-center" style="width:100%" href={{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}>
-										<i class="material-icons">lock</i>
-										<br>
-										Acesso
-									</a>
-								@endif
 							</div>
 
 							<div class="col-md-3">
@@ -141,12 +134,22 @@
 									Álbuns
 								</a>
 							</div>
+
+							<div class="col-md-3">
+								@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
+									<a class="btn btn-primary text-center" style="width:100%" href={{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}>
+										<i class="material-icons">lock</i>
+										<br>
+										Acesso
+									</a>
+								@endif
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-md-5">
+			<div class="col-md-6">
 				<div class="panel panel-default" style="width:100%">
 					<div class="panel-heading" id="forum" >
 							Fórum <a style="margin-left: 50%" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary btn-xs">Ver todas as mensagens</a>
