@@ -134,7 +134,7 @@
                         @php($foto = array_pop($tresFotos))
                         <td class="text-center">
                           <button class="btn btn-info" type="button" onclick="show('{{$foto->id}}')" data-toggle="modal" data-target="#ModalCarousel">
-                            <img src="{{$foto->imagem}}" style="width:128px; height: 128px; object-fit: cover;">
+                            <img src="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:128px; height: 128px; object-fit: cover;">
                           </button>
                           &nbsp; &nbsp;
                           <br><br>
@@ -157,7 +157,7 @@
                     @php($count += 1)
                     <td class="text-center">
                       <button class="btn btn-info" type="button" onclick="show('{{$foto->id}}')" data-toggle="modal" data-target="#ModalCarousel">
-                        <img src="{{$foto->imagem}}" style="width:128px; height: 128px; object-fit: cover;">
+                        <img src="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:128px; height: 128px; object-fit: cover;">
                       </button>
                       &nbsp; &nbsp;
                       <br><br>
@@ -196,7 +196,7 @@
                 <div class="carousel-inner" align="center">
                   @foreach ($fotos as $i => $foto)
                     <div id="{{$foto->id}}" class="item">
-                      <img src="{{$foto->imagem}}">
+                      <img src="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}">
                     </div>
                   @endforeach
                 </div>
