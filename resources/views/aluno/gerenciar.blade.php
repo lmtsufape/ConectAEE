@@ -31,7 +31,7 @@
 						<div class="row-md-6">
 							<div class="text-center">
 								@if($aluno->imagem != null)
-									<img src="{{$aluno->imagem}}" style="height:256px; width:256px; object-fit: cover;">
+									<img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="height:256px; width:256px; object-fit: cover;">
 									<br/>
 								@else
 									<img src="{{asset('images/avatar.png')}}" style="width:256px; height: 256px; object-fit: cover;">

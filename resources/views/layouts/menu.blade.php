@@ -11,7 +11,7 @@
     <ul class="nav navbar-nav" style="margin-left: 5%">
       @if(Auth::check() && Auth::user()->cadastrado)
       <li class="dropdown">
-        <a class="menu-principal" href="/">Início</a>
+        <a class="menu-principal" href="{{ route('home') }}">Início</a>
       </li>
       @elseif(Auth::check() && !Auth::user()->cadastrado)
       <li class="dropdown">

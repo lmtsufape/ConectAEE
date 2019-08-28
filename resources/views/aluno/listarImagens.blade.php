@@ -86,13 +86,15 @@
                         @php($aluno = array_pop($tresAlunos))
                         <td class="text-center">
 
-                          <a class="btn btn-primary" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
-                            @if($aluno->imagem != null)
-                              <img src="{{$aluno->imagem}}" style="width:150px; height: 150px; object-fit: cover;">
-                            @else
+                          @if($aluno->imagem != null)
+                            <a class="btn btn-primary" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
+                              <img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="width:150px; height: 150px; object-fit: cover;">
+                            </a>
+                          @else
+                            <a class="btn btn-primary" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
                               <img src="{{asset('images/avatar.png')}}" style="width:150px; height: 150px; object-fit: cover;">
-                            @endif
-                          </a>
+                            </a>
+                          @endif
 
                           &nbsp; &nbsp;
                           <br><br>
@@ -120,7 +122,7 @@
                     <td class="text-center">
                       <a class="btn btn-primary" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
                         @if($aluno->imagem != null)
-                          <img src="{{$aluno->imagem}}" style="width:150px; height: 150px; object-fit: cover;">
+                          <img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="width:150px; height: 150px; object-fit: cover;">
                         @else
                           <img src="{{asset('images/avatar.png')}}" style="width:150px; height: 150px; object-fit: cover;">
                         @endif
