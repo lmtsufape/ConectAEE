@@ -24,6 +24,5 @@ $factory->define(Aluno::class, function (Faker $faker) {
       'observacao' => $faker->text($maxNbChars = 300),
       'sexo' => $faker->randomElement($array = array ('M','F')),
       'data_de_nascimento' => $faker->date($format = 'd-m-Y',$max = 'now'),
-      'imagem' => "/images/avatar.png",
     ];
 });

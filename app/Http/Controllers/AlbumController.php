@@ -49,9 +49,9 @@ class AlbumController extends Controller
     $album = Album::find($id_album);
     $aluno = $album->aluno;
 
-    foreach ($album->fotos as $foto) {
-      unlink(substr($foto->imagem, 1));
-    }
+    // foreach ($album->fotos as $foto) {
+    //   unlink(substr($foto->imagem, 1));
+    // }
 
     $album->delete();
 
@@ -63,7 +63,7 @@ class AlbumController extends Controller
     $album = $foto->album;
     $aluno = $album->aluno;
 
-    unlink(substr($foto->imagem, 1));
+    // unlink(substr($foto->imagem, 1));
 
     $foto->delete();
 
@@ -101,12 +101,12 @@ class AlbumController extends Controller
       $nome = uniqid(date('HisYmd'));
       $extensao = $imagem->extension();
 
-      $path = "albuns/".$request->id_aluno;
+      $path = "public/albuns/".$request->id_aluno;
       $nomeArquivo = "{$nome}.{$extensao}";
-      $imagem->move(public_path($path), $nomeArquivo);
+      $imagem->storeAs($path, $nomeArquivo);
 
       $foto = new Foto();
-      $foto->imagem = "/".$path."/".$nomeArquivo;
+      $foto->imagem = $nomeArquivo;
       $foto->data = date('d/m/Y');
       $foto->album_id = $album->id;
       $foto->save();
@@ -140,12 +140,12 @@ class AlbumController extends Controller
         $nome = uniqid(date('HisYmd'));
         $extensao = $imagem->extension();
 
-        $path = "albuns/".$request->id_aluno;
+        $path = "public/albuns/".$request->id_aluno;
         $nomeArquivo = "{$nome}.{$extensao}";
-        $imagem->move(public_path($path), $nomeArquivo);
+        $imagem->storeAs($path, $nomeArquivo);
 
         $foto = new Foto();
-        $foto->imagem = "/".$path."/".$nomeArquivo;
+        $foto->imagem = $nomeArquivo;
         $foto->data = date('d/m/Y');
         $foto->album_id = $album->id;
         $foto->save();

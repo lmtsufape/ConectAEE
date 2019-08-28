@@ -11,6 +11,8 @@ use App\Perfil;
 use App\Endereco;
 use App\ForumAluno;
 use App\MensagemForumAluno;
+use File;
+use Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -168,12 +170,20 @@ class AlunoController extends Controller{
 
     $aluno = new Aluno();
 
+    // if ($request->imagem != null) {
+    //   $nome = uniqid(date('HisYmd'));
+    //   $extensao = $request->imagem->extension();
+    //   $nomeArquivo = "{$nome}.{$extensao}";
+    //   $request->imagem->move(public_path('avatars'), $nomeArquivo);
+    //   $aluno->imagem = "/avatars/".$nomeArquivo;
+    // }
+
     if ($request->imagem != null) {
       $nome = uniqid(date('HisYmd'));
       $extensao = $request->imagem->extension();
       $nomeArquivo = "{$nome}.{$extensao}";
-      $request->imagem->move(public_path('avatars'), $nomeArquivo);
-      $aluno->imagem = "/avatars/".$nomeArquivo;
+      $request->imagem->storeAs('public/avatars', $nomeArquivo);
+      $aluno->imagem = $nomeArquivo;
     }
 
     $aluno->nome = $request->nome;
@@ -262,15 +272,11 @@ class AlunoController extends Controller{
     $aluno = Aluno::find($request->id_aluno);
 
     if ($request->imagem != null) {
-      if ($aluno->imagem != null) {
-        unlink(substr($aluno->imagem, 1));
-      }
-
       $nome = uniqid(date('HisYmd'));
       $extensao = $request->imagem->extension();
       $nomeArquivo = "{$nome}.{$extensao}";
-      $request->imagem->move(public_path('avatars'), $nomeArquivo);
-      $aluno->imagem = "/avatars/".$nomeArquivo;
+      $request->imagem->storeAs('public/avatars', $nomeArquivo);
+      $aluno->imagem = $nomeArquivo;
     }
 
     $aluno->nome = $request->nome;
