@@ -122,7 +122,7 @@
               <div class="col-md-6">
 
                 @if($aluno->imagem != null)
-                  <img style="object-fit: cover;" src="{{$aluno->imagem}}" height="64" width="64" >
+                  <img style="object-fit: cover;" src="{{asset('storage/avatars/'.$aluno->imagem)}}" height="64" width="64" >
                 @endif
                 <br><br>
 
