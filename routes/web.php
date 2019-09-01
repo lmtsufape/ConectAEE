@@ -40,7 +40,7 @@ Route::middleware('autorizacao')->group(function() {
   Route::post('/aluno/criar', 'AlunoController@criar')->name('aluno.criar');
   Route::get('/aluno/listar', 'AlunoController@listar')->name('aluno.listar');
   Route::get('/aluno/buscar', 'AlunoController@buscar')->name('aluno.buscar');
-  Route::post('/aluno/buscarCodigo', 'AlunoController@buscarCodigo')->name('aluno.buscarCodigo');
+  Route::post('/aluno/buscarMatricula', 'AlunoController@buscarMatricula')->name('aluno.buscarMatricula');
   Route::post('/aluno/buscarAluno', 'AlunoController@buscarAluno')->name('aluno.buscarAluno');
   Route::get('/aluno/{id_aluno}/gerenciar', 'AlunoController@gerenciar')->name('aluno.gerenciar');
   //novaa
@@ -53,7 +53,7 @@ Route::middleware('autorizacao')->group(function() {
   Route::get('/aluno/{id_aluno}/gerenciar/permissoes/cadastrar','AlunoController@cadastrarPermissao')->name('aluno.permissoes.cadastrar');
   Route::post('/aluno/gerenciar/permissoes/criar','AlunoController@criarPermissao')->name('aluno.permissoes.criar');
   Route::get('/aluno/{id_aluno}/gerenciar/permissoes/{id_permissao}/remover','AlunoController@removerPermissao')->name('aluno.permissoes.remover');
-  Route::get('/aluno/{cod_aluno}/gerenciar/permissoes/requisitar', 'AlunoController@requisitarPermissao')->name('aluno.permissoes.requisitar');
+  Route::get('/aluno/{matricula}/gerenciar/permissoes/requisitar', 'AlunoController@requisitarPermissao')->name('aluno.permissoes.requisitar');
   Route::get('/aluno/{id_aluno}/gerenciar/permissoes/notificacao/{id_notificacao}/conceder', 'AlunoController@concederPermissao')->name('aluno.permissoes.conceder');
   Route::post('/aluno/gerenciar/permissoes/notificar','AlunoController@notificar')->name('aluno.permissoes.notificar');
 

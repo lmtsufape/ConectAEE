@@ -11,9 +11,9 @@ use DateTime;
 
 class SugestaoController extends Controller
 {
-  public function cadastrar($id_aluno, $id_objetivo){
-    $aluno = Aluno::find($id_aluno);
+  public function cadastrar($id_objetivo){
     $objetivo = Objetivo::find($id_objetivo);
+    $aluno = $objetivo->aluno;
 
     return view("sugestao.cadastrar", [
       'aluno' => $aluno,

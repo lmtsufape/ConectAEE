@@ -33,7 +33,7 @@
           </li>
           <li>
             <a href="{{ route('aluno.buscar') }}">
-              Buscar por código
+              Buscar por matrícula
             </a>
           </li>
         </ul>

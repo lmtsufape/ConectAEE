@@ -58,7 +58,7 @@
 							foreach($gerenciars as $gerenciar){
 								if($gerenciar->user->id == \Auth::user()->id && $gerenciar->isAdministrador){
 									?>
-									<strong>Código:</strong> {{$aluno->codigo}}
+									<strong>Matrícula:</strong> {{$aluno->matricula}}
 									<br/>
 									<?php
 									break;
@@ -86,7 +86,7 @@
 							<strong>Instituição(ões):</strong>
 							<br>
 
-							@foreach ($aluno->instituicoes as $instituicao) {
+							@foreach ($aluno->instituicoes as $instituicao)
 								<a href="{{ route("instituicao.ver", ["id_instituiçao"=>$instituicao->id]) }}">{{$instituicao->nome}}</a>
 								<br>
 							@endforeach

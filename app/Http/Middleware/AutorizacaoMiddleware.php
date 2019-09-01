@@ -70,8 +70,8 @@ class AutorizacaoMiddleware
         'aluno/{id_aluno}/objetivos/{id_objetivo}/gerenciar/atividades/cadastrar',
       ];
 
-      $rotas_regras_cod_aluno = [
-        'aluno/{cod_aluno}/gerenciar/permissoes/requisitar',
+      $rotas_regras_matricula = [
+        'aluno/{matricula}/gerenciar/permissoes/requisitar',
       ];
 
       $rotas_regras_administrador_remover = [
@@ -181,9 +181,9 @@ class AutorizacaoMiddleware
         if($gerenciar == NULL || $objetivo->aluno->id != $aluno->id || $objetivo->user->id != Auth::user()->id){
           return redirect()->route("aluno.listar")->with('denied','Você não tem permissão para acessar esta página ou ela não existe.');
         }
-      }else if(in_array($request->route()->uri,$rotas_regras_cod_aluno)){
+      }else if(in_array($request->route()->uri,$rotas_regras_matricula)){
 
-        $aluno = Aluno::where('codigo','=',$request->route('cod_aluno'))->first();
+        $aluno = Aluno::where('matricula','=',$request->route('matricula'))->first();
 
         if($aluno == NULL){
           return redirect()->route("aluno.listar")->with('denied','Você não tem permissão para acessar esta página ou ela não existe.');
