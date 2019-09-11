@@ -33,11 +33,11 @@
                 <select name="perfil" class="form-control" onchange="showEspecializacao(this)">
                   <option value="" selected disabled hidden>Escolha o Perfil</option>
                   @foreach($perfis as $perfil)
-                  @if($perfil->nome == old('perfil'))
-                  <option value="{{$perfil->nome}}" selected>{{$perfil->nome}}</option>
-                  @else
-                  <option value="{{$perfil->nome}}">{{$perfil->nome}}</option>
-                  @endif
+                    @if($perfil->nome == old('perfil'))
+                    <option value="{{$perfil->nome}}" selected>{{$perfil->nome}}</option>
+                    @else
+                    <option value="{{$perfil->nome}}">{{$perfil->nome}}</option>
+                    @endif
                   @endforeach
                 </select>
 

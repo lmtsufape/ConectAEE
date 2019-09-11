@@ -12,16 +12,16 @@
         <div class="panel-heading">Buscar alunos</div>
 
         <div class="panel-body">
-          <form class="form-horizontal" method="POST" action="{{ route("aluno.buscarCodigo") }}">
+          <form class="form-horizontal" method="POST" action="{{ route("aluno.buscarMatricula") }}">
 
             {{ csrf_field() }}
 
             <div class="row" align="center">
               <div class="col-md-12">
-                @if ($codigo == null)
-                  <input style="width:74%" id="codigo" type="text" name="codigo" autofocus required placeholder="Código do aluno">
+                @if ($matricula == null)
+                  <input style="width:74%" id="matricula" type="text" name="matricula" autofocus required placeholder="Matrícula do aluno">
                 @else
-                  <input style="width:74%" id="codigo" type="text" name="codigo" autofocus required placeholder="Código do aluno" value="{{$codigo}}">
+                  <input style="width:74%" id="matricula" type="text" name="matricula" autofocus required placeholder="Matrícula do aluno" value="{{$matricula}}">
                 @endif
 
                 <button type="submit" class="btn btn-primary btn-md">
@@ -54,7 +54,7 @@
                     <td data-title="Nome" >{{ $aluno->nome }}</td>
                     <td>
                       @if(!$botaoAtivo)
-                        <a class="btn btn-primary" href="{{ route("aluno.permissoes.requisitar", ["cod_aluno" => $codigo]) }}">
+                        <a class="btn btn-primary" href="{{ route("aluno.permissoes.requisitar", ["matricula" => $matricula]) }}">
                           Pedir permissão
                         </a>
                       @else
