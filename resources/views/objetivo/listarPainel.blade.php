@@ -61,10 +61,13 @@
                             <div class="hifen text-center" align="justify">
                               <font size="3">
                                 <strong> {{ ucfirst($objetivo->titulo) }} </strong>
+                                <br>
                               </font>
                             </div>
                           </div>
                           <div class="card-footer text-center">
+                            <strong> {{ $objetivo->data }} </strong>
+                            <br>
                             @if($objetivo->user->id == \Auth::user()->id)
                               <a href="{{ route("objetivo.gerenciar", ['id_objetivo'=>$objetivo->id]) }}" class="btn btn-primary">Gerenciar</a>
                             @else
