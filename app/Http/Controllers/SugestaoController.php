@@ -73,7 +73,7 @@ class SugestaoController extends Controller
     $sugestao->user_id = \Auth::user()->id;
     $sugestao->save();
 
-    return redirect()->route("sugestoes.listar", ["id_objetivo" => $request->id_objetivo])->with('success','Sugestão cadastrada.');
+    return redirect()->route("sugestao.ver", ["id_sugestao" => $sugestao->id])->with('success','Sugestão cadastrada.');
   }
 
   public static function atualizar(Request $request){
@@ -94,17 +94,17 @@ class SugestaoController extends Controller
     return redirect()->route("sugestao.ver", ["id_sugestao" => $sugestao->id])->with('success','A sugestão '.$sugestao->titulo.' foi atualizada.');
   }
 
-  public function listar($id_objetivo){
-
-    $objetivo = Objetivo::find($id_objetivo);
-    $aluno = $objetivo->aluno;
-    $sugestoes = $objetivo->sugestoes;
-
-    return view("sugestao.listar", [
-      'aluno' => $aluno,
-      'objetivo' => $objetivo,
-      'sugestoes' => $sugestoes
-    ]);
-  }
+  // public function listar($id_objetivo){
+  //
+  //   $objetivo = Objetivo::find($id_objetivo);
+  //   $aluno = $objetivo->aluno;
+  //   $sugestoes = $objetivo->sugestoes;
+  //
+  //   return view("sugestao.ver", [
+  //     'aluno' => $aluno,
+  //     'objetivo' => $objetivo,
+  //     'sugestoes' => $sugestoes
+  //   ]);
+  // }
 
 }

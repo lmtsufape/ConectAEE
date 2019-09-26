@@ -18,7 +18,7 @@ class CreateObjetivosTable extends Migration
       $table->string('titulo');
       $table->text('descricao');
       $table->string('prioridade');
-      $table->dateTime('data');
+      $table->date('data');
       $table->boolean('concluido')->default(false);
 
       $table->integer('cor_id')->unsigned()->nullable();

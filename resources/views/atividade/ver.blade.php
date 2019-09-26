@@ -50,18 +50,19 @@
           <div class="row text-right" style="padding:1rem;">
             @if($objetivo->user->id == \Auth::user()->id)
 
-              <a class="btn btn-primary" href={{ route("atividade.editar" , ['id_atividade' => $atividade->id]) }}>
-                <i class="material-icons">edit</i>
-              </a>
-
-              <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da atividade {{$atividade->titulo}}?')" href={{ route("atividade.excluir" , ['id_atividade' => $atividade->id]) }}>
-                <i class="material-icons">delete</i>
-              </a>
 
               @if($objetivo->user->id == \Auth::user()->id && $atividade->concluido == false)
-                <a class="btn btn-success" href={{ route("atividade.concluir" , ['id_atividade' => $atividade->id]) }}>Concluir</a>
+                <a class="btn btn-primary" href={{ route("atividade.editar" , ['id_atividade' => $atividade->id]) }}>
+                  <i class="material-icons">edit</i>
+                </a>
+
+                <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da atividade {{$atividade->titulo}}?')" href={{ route("atividade.excluir" , ['id_atividade' => $atividade->id]) }}>
+                  <i class="material-icons">delete</i>
+                </a>
+
+                <a class="btn btn-success" href={{ route("atividade.concluir" , ['id_atividade' => $atividade->id]) }}>Finalizar</a>
               @elseif($objetivo->user->id == \Auth::user()->id && $atividade->concluido == true)
-                <a class="btn btn-danger" href={{ route("atividade.desconcluir" , ['id_atividade' => $atividade->id]) }}>Desconcluir</a>
+                <a class="btn btn-danger" href={{ route("atividade.desconcluir" , ['id_atividade' => $atividade->id]) }}>Reabrir</a>
               @endif
 
             @endif

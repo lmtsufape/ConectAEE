@@ -78,10 +78,10 @@
 
                   <input hidden type="text" name="id_sugestao" value="{{$sugestao->id}}">
 
-                  <textarea style="width:90%" id="feedback" rows="3" class="form-control" name="feedback" placeholder="Envie seu feedback aqui"></textarea>
+                  <textarea style="width:90%" id="feedback" class="form-control" name="feedback" placeholder="Envie seu feedback aqui"></textarea>
 
                   <br>
-                  <button  type="submit" class="btn btn-primary">
+                  <button type="submit" class="btn btn-primary">
                     Enviar
                   </button>
                 </form>
@@ -94,7 +94,7 @@
                       <span class="">
                         <b>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$feedback->updated_at)->format('d-m-Y (H:i)') }} - {{$feedback->user->name}}:</b>
                       </span>
-                      {{$feedback->texto}}
+                      {!! $feedback->texto !!}
 
                       <div class="text-right">
                         @if($feedback->user->id == \Auth::user()->id)
@@ -125,4 +125,33 @@
     </div>
   </div>
 </div>
+
+<script>
+   $(document).ready(function() {
+     $('#feedback').summernote({
+      lang: 'pt-BR',
+      height: 100,
+      onImageUpload: function(files, editor, welEditable) {
+            sendFile(files[0],editor,welEditable);
+      }
+    });
+   });
+
+   function sendFile(file,editor,welEditable) {
+    data = new FormData();
+    data.append("file", file);
+    $.ajax({
+        data: data,
+        type: "POST",
+        url: "public/",
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(url) {
+            editor.insertImage(welEditable, url);
+        }
+    });
+  }
+
+ </script>
 @endsection
