@@ -26,6 +26,19 @@ class AlunoController extends Controller{
                                    // ->where('texto', 'not like', '%'.'<iframe'.'%')
                                    ->orderBy('id','desc')->take(5)->get();
 
+    foreach ($mensagens as $mensagem) {
+      $img = strpos($mensagem->texto, '<img');
+      $video = strpos($mensagem->texto, '<iframe');
+
+      if($img){
+        $mensagem->texto = str_replace('<img', '<img style="width:100%"', $mensagem->texto);
+      }
+
+      if($video){
+        $mensagem->texto = str_replace('<iframe', '<iframe style="width:100%"', $mensagem->texto);
+      }
+    }
+    
     return view("aluno.gerenciar",[
       'aluno' => $aluno,
       'mensagens' => $mensagens,

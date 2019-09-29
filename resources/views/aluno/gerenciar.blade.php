@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<div class="container" style="width:90%">
+<div class="container">
 	<div class="row">
 
 		<div id="painel" class="flex col-md-12">

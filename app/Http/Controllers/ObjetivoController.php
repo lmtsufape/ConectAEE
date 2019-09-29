@@ -168,6 +168,19 @@ class ObjetivoController extends Controller
     $sugestoesGroupByData = $objetivo->sugestoes->groupBy('data');
     $mensagens = MensagemForumObjetivo::where('forum_objetivo_id','=',$objetivo->forum->id)->orderBy('id','desc')->take(5)->get();
 
+    foreach ($mensagens as $mensagem) {
+      $img = strpos($mensagem->texto, '<img');
+      $video = strpos($mensagem->texto, '<iframe');
+
+      if($img){
+        $mensagem->texto = str_replace('<img', '<img style="width:100%"', $mensagem->texto);
+      }
+
+      if($video){
+        $mensagem->texto = str_replace('<iframe', '<iframe style="width:100%"', $mensagem->texto);
+      }
+    }
+    
     $size1 = 0;
     $size2 = 0;
 
