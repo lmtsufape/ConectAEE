@@ -60,7 +60,7 @@ class FeedbackController extends Controller
 
   public function criar(Request $request){
     $validator = Validator::make($request->all(), [
-      'feedback' => ['required','max:1000'],
+      'feedback' => ['required'],
     ]);
 
     if($validator->fails()){
@@ -80,15 +80,17 @@ class FeedbackController extends Controller
 
   public static function atualizar(Request $request){
     $validator = Validator::make($request->all(), [
-      'feedback' => ['required','max:1000'],
+      'feedbackEdit' => ['required'],
     ]);
+
+    // dd($request);
 
     if($validator->fails()){
       return redirect()->back()->withErrors($validator->errors())->withInput();
     }
 
     $feedback = Feedback::find($request->id_feedback);
-    $feedback->texto = $request->feedback;
+    $feedback->texto = $request->feedbackEdit;
     $feedback->update();
 
     return Redirect::to(route("sugestao.ver", ["id_sugestao" => $feedback->sugestao->id]) . "#feedbacks")->with('feedback','O feedback foi atualizado.');

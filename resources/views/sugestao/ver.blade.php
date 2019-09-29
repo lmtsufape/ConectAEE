@@ -72,41 +72,59 @@
                 <br><br>
               @endif
 
-              <div align="center">
-                <form class="form-horizontal" method="POST" action="{{ route("feedbacks.criar") }}">
-                  {{ csrf_field() }}
+              <form style="padding:50px;" class="form-horizontal" method="POST" action="{{ route("feedbacks.criar") }}">
+                {{ csrf_field() }}
 
-                  <input hidden type="text" name="id_sugestao" value="{{$sugestao->id}}">
+                <input hidden type="text" name="id_sugestao" value="{{$sugestao->id}}">
 
-                  <textarea style="width:90%" id="feedback" class="form-control" name="feedback" placeholder="Envie seu feedback aqui"></textarea>
-
-                  <br>
-                  <button type="submit" class="btn btn-primary">
-                    Enviar
-                  </button>
-                </form>
-
+                <textarea name="feedback" id="summer" type="text" class="form-control summernote"></textarea>
                 <br>
+                <button type="submit" class="btn btn-primary">
+                  Enviar
+                </button>
+              </form>
+
+              <br>
+
+              <div align="center">
 
                 <div class="card" style="width:90%;">
-                  @foreach($feedbacks as $feedback)
+                  @foreach($feedbacks as $key => $feedback)
                     <div class="card-body" align="justify" style="background-color:#eeeeee; padding:1rem;">
                       <span class="">
                         <b>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$feedback->updated_at)->format('d-m-Y (H:i)') }} - {{$feedback->user->name}}:</b>
                       </span>
-                      {!! $feedback->texto !!}
+                      <br><br>
+                      <form class="form-horizontal" method="POST" action="{{ route("feedback.atualizar") }}">
+                        {{ csrf_field() }}
 
-                      <div class="text-right">
-                        @if($feedback->user->id == \Auth::user()->id)
-                          <a class="btn btn-primary" href={{ route("feedback.editar" , ['id_feedback' => $feedback->id]) }}>
-                            <i class="material-icons">edit</i>
-                          </a>
+                        <input type="hidden" name="id_feedback" value="{{$feedback->id}}">
 
-                          <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão deste feedback?')" href={{ route("feedback.excluir" , ['id_feedback' => $feedback->id]) }}>
-                            <i class="material-icons">delete</i>
-                          </a>
-                        @endif
-                      </div>
+                        <textarea style="display:none" name="feedbackEdit" readonly type="text" class="form-control summernote {{$key}}">
+                          {!! $feedback->texto !!}
+                        </textarea>
+
+                        <div id="my{{$key}}" style="display:inline">
+                          {!! $feedback->texto !!}
+                        </div>
+
+                        <div class="text-right">
+                          @if($feedback->user->id == \Auth::user()->id)
+
+                            <button id={{$key}} class="btn btn-primary" type="submit" style="display:none">
+                              <i class="material-icons">save</i>
+                            </button>
+
+                            <a class="btn btn-primary" id="edit" onclick="edit('{{$key}}')">
+                              <i class="material-icons">edit</i>
+                            </a>
+
+                            <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão deste feedback?')" href={{ route("feedback.excluir" , ['id_feedback' => $feedback->id]) }}>
+                              <i class="material-icons">delete</i>
+                            </a>
+                          @endif
+                        </div>
+                      </form>
 
                     </div>
                     <br>
@@ -114,44 +132,34 @@
                   <br>
                 </div>
 
-
               </div>
             </div>
           </div>
         </div>
-
-
       </div>
     </div>
   </div>
 </div>
 
 <script>
-   $(document).ready(function() {
-     $('#feedback').summernote({
-      lang: 'pt-BR',
-      height: 100,
-      onImageUpload: function(files, editor, welEditable) {
-            sendFile(files[0],editor,welEditable);
-      }
-    });
-   });
 
-   function sendFile(file,editor,welEditable) {
-    data = new FormData();
-    data.append("file", file);
-    $.ajax({
-        data: data,
-        type: "POST",
-        url: "public/",
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function(url) {
-            editor.insertImage(welEditable, url);
-        }
-    });
-  }
+  $('#summer').summernote({
+    placeholder: 'Envie seu feedback aqui...',
+    lang: 'pt-BR',
+    tabsize: 2,
+    height: 100
+  });
 
- </script>
+  var edit = function(key) {
+    $('.'+key).summernote({
+      focus: true,
+    });
+
+    document.getElementById(key).style.display = "inline";
+    document.getElementById("my"+key).style.display = "none";
+
+  };
+
+</script>
+
 @endsection

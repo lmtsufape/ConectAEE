@@ -23,9 +23,3 @@ function showResponsavel(val){
 }
 
 </script>
-
-
-<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
-<link href="{{ asset('css/select2-bootstrap.min.css') }}" rel="stylesheet">
