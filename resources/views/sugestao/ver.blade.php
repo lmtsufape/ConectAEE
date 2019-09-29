@@ -77,8 +77,18 @@
 
                 <input hidden type="text" name="id_sugestao" value="{{$sugestao->id}}">
 
-                <textarea name="feedback" id="summer" type="text" class="form-control summernote"></textarea>
-                <br>
+                <div class="form-group{{ $errors->has('feedback') ? ' has-error' : '' }}">
+
+                  <textarea name="feedback" id="summer" type="text" class="form-control summernote"></textarea>
+
+                  @if ($errors->has('feedback'))
+                    <span class="help-block">
+                      <strong>{{ $errors->first('feedback') }}</strong>
+                    </span>
+                  @endif
+
+                </div>
+
                 <button type="submit" class="btn btn-primary">
                   Enviar
                 </button>

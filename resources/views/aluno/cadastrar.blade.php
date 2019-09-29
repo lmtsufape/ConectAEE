@@ -277,7 +277,9 @@
               <label for="observacao" class="col-md-4 control-label">Observações</label>
 
               <div class="col-md-6">
-                <textarea id="observacao" rows = "5" cols = "50" class="form-control" name="observacao" >{{old('observacao')}}</textarea>
+                <textarea name="observacao" style="width:75%; display: inline" id="summer" type="text" class="form-control summernote">
+                  {{old('observacao')}}
+                </textarea>
 
                 @if ($errors->has('observacao'))
                   <span class="help-block">
@@ -369,6 +371,14 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $('#summer').summernote({
+    lang: 'pt-BR',
+    tabsize: 2,
+    height: 100
+  });
+</script>
 
 <script src="{{ asset('js/jquery-3.3.1.min.js')}}"></script>
 <script src="{{ asset('js/select2.min.js') }}"></script>

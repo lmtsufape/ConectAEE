@@ -56,7 +56,7 @@ class User extends Authenticatable
     }
 
     public function notificacoes(){
-        return $this->hasMany(Notificacao::class, 'destinatario_id')->orderBy('created_at', 'desc');
+        return $this->hasMany(Notificacao::class, 'destinatario_id')->orderBy('created_at', 'desc')->take(5);
 ;
     }
 }

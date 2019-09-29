@@ -18,7 +18,7 @@ $factory->define(Sugestao::class, function (Faker $faker) {
     return [
         'titulo' => $faker->words($nb = 3, $asText = true),
         'descricao' => $faker->text($maxNbChars = 500),
-        'data' => new DateTime(),
+        'data' => date('d.m.Y',strtotime("-2 days")),
         'objetivo_id' => 1,
     ];
 });

@@ -17,9 +17,10 @@ class AtividadeSeeder extends Seeder
         $objetivos = Objetivo::all();
 
         foreach($objetivos as $objetivo){
-          for ($i=0; $i<2 ; $i++) {
+          for ($i=1; $i<=2 ; $i++) {
             factory(Atividade::class)->create([
                 'objetivo_id' => $objetivo->id,
+                'data' => date('d.m.Y',strtotime("-".$i." days")),
             ]);
           }
         }

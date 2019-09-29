@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Objetivo;
 use App\Aluno;
+use App\Notificacao;
 use App\Sugestao;
 use DateTime;
+use Auth;
 
 class SugestaoController extends Controller
 {
@@ -73,6 +75,8 @@ class SugestaoController extends Controller
     $sugestao->user_id = \Auth::user()->id;
     $sugestao->save();
 
+    SugestaoController::notificarSugestao($sugestao);
+
     return redirect()->route("sugestao.ver", ["id_sugestao" => $sugestao->id])->with('success','Sugestão cadastrada.');
   }
 
@@ -106,5 +110,27 @@ class SugestaoController extends Controller
   //     'sugestoes' => $sugestoes
   //   ]);
   // }
+
+  private static function notificarSugestao($sugestao){
+
+    $id_objetivo = $sugestao->objetivo->id;
+    $id_aluno =$sugestao->objetivo->aluno->id;
+
+    $aluno = Aluno::find($id_aluno);
+    $gerenciars = $aluno->gerenciars;
+
+    foreach ($gerenciars as $gerenciar) {
+      if ($gerenciar->user != Auth::user()) {
+        $notificacao = new Notificacao();
+        $notificacao->aluno_id = $aluno->id;
+        $notificacao->remetente_id = Auth::user()->id;
+        $notificacao->destinatario_id = $gerenciar->user_id;
+        $notificacao->objetivo_id = $id_objetivo;
+        $notificacao->lido = false;
+        $notificacao->tipo = 5; //sugestao
+        $notificacao->save();
+      }
+    }
+  }
 
 }

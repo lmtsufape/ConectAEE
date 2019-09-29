@@ -38,7 +38,7 @@ class AlunoController extends Controller{
         $mensagem->texto = str_replace('<iframe', '<iframe style="width:100%"', $mensagem->texto);
       }
     }
-    
+
     return view("aluno.gerenciar",[
       'aluno' => $aluno,
       'mensagens' => $mensagens,
@@ -321,7 +321,7 @@ class AlunoController extends Controller{
     ]);
   }
 
-  public static function notificar(Request $request){
+  public static function notificarPermissao(Request $request){
 
     $rules = array(
       'perfil' => 'required',

@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-<div class="container" style="width:90%">
+<div class="container">
   <div class="row">
     <div id="painel0">
       <div class="panel panel-default">
@@ -168,13 +168,13 @@
 
           </div>
 
-          <div class="panel panel-default">
+          <div class="panel panel-default" >
 
-            <div class="panel-heading">
+            <div class="panel-heading" style="position:relative">
               Sugestões
             </div>
 
-            <div class="panel-body">
+            <div class="panel-body" style="position:relative">
 
               <div id="tabela" style="overflow:auto" class="table-responsive">
                 <table class="table">
@@ -233,7 +233,7 @@
 
             </div>
 
-            <div class="panel-footer" style="background-color: white;">
+            <div class="panel-footer" style="background-color: white;position:relative">
               <br><br>
             </div>
           </div>

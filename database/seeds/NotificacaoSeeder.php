@@ -25,5 +25,11 @@ class NotificacaoSeeder extends Seeder
         'destinatario_id' => 1,
       ]);
 
+      factory(Notificacao::class)->create([
+        'aluno_id' => 3,
+        'remetente_id' => 3,
+        'destinatario_id' => 1,
+      ]);
+
     }
 }

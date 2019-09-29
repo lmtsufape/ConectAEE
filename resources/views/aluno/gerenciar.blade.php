@@ -102,7 +102,7 @@
 							<hr>
 
 							@if($aluno->observacao != null)
-								<strong>Observações:</strong> {{$aluno->observacao}}
+								<strong>Observações:</strong> {!! $aluno->observacao !!}
 								<br/>
 							@endif
 						</div>
