@@ -14,29 +14,6 @@ use Illuminate\Support\Facades\URL;
 
 class FeedbackController extends Controller
 {
-  // public function listar($id_sugestao){
-  //   $sugestao = Sugestao::find($id_sugestao);
-  //   $feedbacks = $sugestao->feedbacks;
-  //
-  //   return view('feedback.listar',[
-  //     'sugestao' => $sugestao,
-  //     'feedbacks' => $feedbacks,
-  //   ]);
-  // }
-
-  public static function editar($id_feedback){
-    $feedback = Feedback::find($id_feedback);
-    $sugestao = $feedback->sugestao;
-    $objetivo = $sugestao->objetivo;
-    $aluno = $objetivo->aluno;
-
-    return view("feedback.editar", [
-      'aluno' => $aluno,
-      'objetivo' => $objetivo,
-      'sugestao' => $sugestao,
-      'feedback' => $feedback,
-    ]);
-  }
 
   public static function excluir($id_feedback){
     $feedback = Feedback::find($id_feedback);
@@ -45,18 +22,6 @@ class FeedbackController extends Controller
 
     return Redirect::to(URL::previous() . "#feedbacks")->with('feedback','O feedback foi excluído.');
   }
-
-  // public function cadastrar($id_sugestao){
-  //   $sugestao = Sugestao::find($id_sugestao);
-  //   $objetivo = $sugestao->objetivo;
-  //   $aluno = $objetivo->aluno;
-  //
-  //   return view('feedback.cadastrar',[
-  //     'aluno' => $aluno,
-  //     'objetivo' => $objetivo,
-  //     'sugestao' => $sugestao,
-  //   ]);
-  // }
 
   public function criar(Request $request){
     $validator = Validator::make($request->all(), [
@@ -82,8 +47,6 @@ class FeedbackController extends Controller
     $validator = Validator::make($request->all(), [
       'feedbackEdit' => ['required'],
     ]);
-
-    // dd($request);
 
     if($validator->fails()){
       return redirect()->back()->withErrors($validator->errors())->withInput();

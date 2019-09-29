@@ -7,12 +7,12 @@
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container" style="width:90%">
 	<div class="row">
 
 		<div id="painel" class="flex col-md-12">
 			<div class="col-md-6">
-				<div class="panel panel-default">
+				<div class="panel panel-default" style="width:100%">
 					<div class="panel-heading">Gerenciamento de <strong>{{$aluno->nome}}</strong></div>
 
 					<div class="panel-body">
@@ -31,10 +31,10 @@
 						<div class="row-md-6">
 							<div class="text-center">
 								@if($aluno->imagem != null)
-									<img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="height:256px; width:256px; object-fit: cover;">
+									<img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="border-radius: 60%; height:256px; width:256px; object-fit: cover;">
 									<br/>
 								@else
-									<img src="{{asset('images/avatar.png')}}" style="width:256px; height: 256px; object-fit: cover;">
+									<img src="{{asset('images/avatar.png')}}" style="border-radius: 60%; width:256px; height: 256px; object-fit: cover;">
 									<br/>
 								@endif
 							</div>
@@ -167,9 +167,10 @@
 							<input name="forum_id" type="text" value={{$aluno->forum->id}} hidden>
 
 							<div style="margin: 1%" class="form-group">
-								<input name="mensagem" style="width:75%; display: inline" class="form-control" type="text">
-								<button style="width:23%" type="submit" class="btn btn-success">Enviar</button>
-							</div>
+	              <textarea name="mensagem" style="width:75%; display: inline" id="summer" type="text" class="form-control summernote"></textarea>
+	              <br>
+	              <button type="submit" class="btn btn-primary">Enviar</button>
+	            </div>
 						</form>
 					</div>
 
@@ -178,10 +179,11 @@
 						@foreach($mensagens as $mensagem)
 							@if($mensagem->user_id == \Auth::user()->id)
 								<div style="text-align: right; width: 80%; margin-left: 20%" id='user-message'>
+
 									<div class="panel panel-default">
-										<div style="background-color: #bbffad" class="panel-body">
+										<div style="background-color: #bbffad;" class="panel-body">
 											<div class="hifen">
-												{{$mensagem->texto}}<br>
+												{!! $mensagem->texto !!}<br>
 												{{$mensagem->created_at->format('d/m/y h:i')}}<br>
 											</div>
 										</div>
@@ -193,7 +195,7 @@
 										<div style="background-color: #adbaff" class="panel-body">
 											<div class="hifen">
 												<strong>{{$mensagem->user->name}}:</strong><br>
-												{{$mensagem->texto}}<br>
+												{!! $mensagem->texto !!}<br>
 												{{$mensagem->created_at->format('d/m/y h:i')}}<br>
 											</div>
 										</div>
@@ -211,11 +213,18 @@
 
 <script type="text/javascript">
 
-var width = screen.width;
+	var width = screen.width;
 
-if (width <= 1000){
-	document.getElementById("painel").className = "col-md-offset-1";
-}
+	if (width <= 1000){
+		document.getElementById("painel").className = "col-md-offset-1";
+	}
+
+  $('#summer').summernote({
+    placeholder: 'Escreva sua mensagem aqui...',
+    lang: 'pt-BR',
+    tabsize: 2,
+    height: 100
+  });
 
 </script>
 

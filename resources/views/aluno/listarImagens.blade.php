@@ -87,12 +87,12 @@
                         <td class="text-center">
 
                           @if($aluno->imagem != null)
-                            <a class="btn btn-primary" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
-                              <img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="width:150px; height: 150px; object-fit: cover;">
+                            <a class="btn btn-primary" style="border-radius: 60%;" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
+                              <img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="border-radius: 60%; width:200px; height: 200px; object-fit: cover;">
                             </a>
                           @else
-                            <a class="btn btn-primary" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
-                              <img src="{{asset('images/avatar.png')}}" style="width:150px; height: 150px; object-fit: cover;">
+                            <a class="btn btn-primary" style="border-radius: 60%;" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
+                              <img src="{{asset('images/avatar.png')}}" style="border-radius: 60%; width:200px; height: 200px; object-fit: cover;">
                             </a>
                           @endif
 
@@ -120,11 +120,11 @@
                   @php($aluno = array_pop($tresAlunos))
                   @if($aluno != null)
                     <td class="text-center">
-                      <a class="btn btn-primary" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
+                      <a class="btn btn-primary" style="border-radius: 60%;" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
                         @if($aluno->imagem != null)
-                          <img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="width:150px; height: 150px; object-fit: cover;">
+                          <img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="border-radius: 60%; width:200px; height: 200px; object-fit: cover;">
                         @else
-                          <img src="{{asset('images/avatar.png')}}" style="width:150px; height: 150px; object-fit: cover;">
+                          <img src="{{asset('images/avatar.png')}}" style="border-radius: 60%; width:200px; height: 200px; object-fit: cover;">
                         @endif
                       </a>
 

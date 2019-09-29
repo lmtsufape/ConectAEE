@@ -21,7 +21,10 @@ class AlunoController extends Controller{
   public static function gerenciar($id_aluno){
     $aluno = Aluno::find($id_aluno);
 
-    $mensagens = MensagemForumAluno::where('forum_aluno_id','=',$aluno->forum->id)->orderBy('id','desc')->take(5)->get();
+    $mensagens = MensagemForumAluno::where('forum_aluno_id','=',$aluno->forum->id)
+                                   // ->where('texto', 'not like', '%'.'<img'.'%')
+                                   // ->where('texto', 'not like', '%'.'<iframe'.'%')
+                                   ->orderBy('id','desc')->take(5)->get();
 
     return view("aluno.gerenciar",[
       'aluno' => $aluno,

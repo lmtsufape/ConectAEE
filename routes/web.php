@@ -92,11 +92,8 @@ Route::middleware('autorizacao')->group(function() {
   Route::post('/aluno/sugestao/atualizar', 'SugestaoController@atualizar')->name('objetivo.sugestao.atualizar');
 
   //Rotas para feedback
-  // Route::get('/aluno/objetivo/gerenciar/sugestao/{id_sugestao}/feedbacks/listar','FeedbackController@listar')->name('feedbacks.listar');
-  // Route::get('/aluno/objetivo/gerenciar/sugestao/{id_sugestao}/feedbacks/cadastrar','FeedbackController@cadastrar')->name('feedbacks.cadastrar');
   Route::post('/aluno/objetivo/gerenciar/sugestao/feedbacks/criar','FeedbackController@criar')->name('feedbacks.criar');
   //novas
-  Route::get('/aluno/objetivo/gerenciar/sugestao/feedback/{id_feedback}/editar','FeedbackController@editar')->name('feedback.editar');
   Route::get('/aluno/objetivo/gerenciar/sugestao/feedback/{id_feedback}/excluir','FeedbackController@excluir')->name('feedback.excluir');
   Route::post('/aluno/feedbacks/atualizar', 'FeedbackController@atualizar')->name('feedback.atualizar');
 

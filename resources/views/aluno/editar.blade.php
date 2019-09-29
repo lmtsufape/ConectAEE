@@ -484,4 +484,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </script>
 
+<script src="{{ asset('js/bootstrap-filestyle.min.js')}}"> </script>
+
 @endsection

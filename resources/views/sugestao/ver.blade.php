@@ -111,15 +111,15 @@
                         <div class="text-right">
                           @if($feedback->user->id == \Auth::user()->id)
 
-                            <button id={{$key}} class="btn btn-primary" type="submit" style="display:none">
+                            <button id={{$key}} data-toggle="tooltip" title="Salvar" class="btn btn-primary" type="submit" style="display:none">
                               <i class="material-icons">save</i>
                             </button>
 
-                            <a class="btn btn-primary" id="edit" onclick="edit('{{$key}}')">
+                            <a class="btn btn-primary" data-toggle="tooltip" title="Editar" id="edit" onclick="edit('{{$key}}')">
                               <i class="material-icons">edit</i>
                             </a>
 
-                            <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão deste feedback?')" href={{ route("feedback.excluir" , ['id_feedback' => $feedback->id]) }}>
+                            <a class="btn btn-danger" data-toggle="tooltip" title="Excluir" onclick="return confirm('\Confirmar exclusão deste feedback?')" href={{ route("feedback.excluir" , ['id_feedback' => $feedback->id]) }}>
                               <i class="material-icons">delete</i>
                             </a>
                           @endif

@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container" style="width:90%">
   <div class="row">
     <div id="painel0">
       <div class="panel panel-default">
@@ -251,10 +251,13 @@
             <form class="form-horizontal" method="POST" action="{{route('objetivo.forum.mensagem.enviar')}}">
               @csrf
               <input name="forum_id" type="text" value="{{$objetivo->forum->id}}" hidden>
+
               <div style="margin: 1%" class="form-group">
-                <input name="mensagem" style="width:75%; display: inline" class="form-control" type="text">
-                <button style="width:23%" type="submit" class="btn btn-success">Enviar</button>
+                <textarea name="mensagem" style="width:75%; display: inline" id="summer" type="text" class="form-control summernote"></textarea>
+                <br>
+                <button type="submit" class="btn btn-primary">Enviar</button>
               </div>
+              <br>
             </form>
 
             <div class="form-group">
@@ -264,7 +267,7 @@
                     <div class="panel panel-default">
                       <div class="panel-body" style="background-color: #bbffad">
                         <div class="hifen">
-                          {{$mensagem->texto}}<br>
+                          {!! $mensagem->texto !!}<br>
                           {{$mensagem->created_at->format('d/m/y h:i')}}<br>
                         </div>
                       </div>
@@ -276,7 +279,7 @@
                       <div class="panel-body" style="background-color: #adbaff">
                         <div class="hifen">
                           <strong>{{$mensagem->user->name}}:</strong><br>
-                          {{$mensagem->texto}}<br>
+                          {!! $mensagem->texto !!}<br>
                           {{$mensagem->created_at->format('d/m/y h:i')}}<br>
                         </div>
                       </div>
@@ -308,5 +311,14 @@ if (width <= 1000){
 <style>
   .output span { display:inline-block; width:20px; height:20px;  border-radius:50%; }
 </style>
+
+<script type="text/javascript">
+  $('#summer').summernote({
+    placeholder: 'Escreva sua mensagem aqui...',
+    lang: 'pt-BR',
+    tabsize: 2,
+    height: 100
+  });
+</script>
 
 @endsection
