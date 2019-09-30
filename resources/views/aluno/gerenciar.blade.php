@@ -68,7 +68,13 @@
 
 							<strong>Nome:</strong> {{$aluno->nome}}
 							<br/>
-							<strong>Sexo:</strong> {{$aluno->sexo}}
+
+							@if($aluno->sexo == 'M')
+								<strong>Sexo:</strong> Masculino
+							@else
+								<strong>Sexo:</strong> Feminino
+							@endif
+
 							<br/>
 							<strong>Data de Nascimento:</strong> {{$aluno->data_de_nascimento}}
 							<br/>

@@ -16,7 +16,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/lmts.css') }}" rel="stylesheet">
     <link href="{{ asset('css/lmts-app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/contrast.css') }}" rel="stylesheet">
     <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/select2-bootstrap.min.css') }}" rel="stylesheet">
@@ -24,6 +24,7 @@
 
     <!-- JavaScripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
     <!-- Scripts -->
     <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -72,13 +73,14 @@
           </ul>
       </div>
 
+
       <!-- barra de menu -->
       @include('layouts.menu')
 
       <div id="navigation" style="background-color:#eaeff3">
         @php($url = str_replace(URL::to('/'),'',URL::current()))
 
-        <div style="margin-top: -30px" class="container">
+        <div style="margin-top: -20px" class="container">
           <div class="row">
             <div class="col-md-12">
               <br>

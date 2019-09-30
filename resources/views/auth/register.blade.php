@@ -12,7 +12,7 @@
             {{ csrf_field() }}
 
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-              <label for="name" class="col-md-4 control-label">Nome*</label>
+              <label for="name" class="col-md-4 control-label">Nome <font color="red">*</font></label>
 
               <div class="col-md-6">
                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" autofocus>
@@ -26,7 +26,7 @@
             </div>
 
             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-              <label for="username" class="col-md-4 control-label">Nome de Usuário*</label>
+              <label for="username" class="col-md-4 control-label">Nome de Usuário <font color="red">*</font> </label>
 
               <div class="col-md-6">
                 <input id="username" type="username" class="form-control" name="username" value="{{ old('username') }}">
@@ -54,7 +54,7 @@
             </div>
 
             <div class="form-group{{ $errors->has('telefone') ? ' has-error' : '' }}">
-              <label for="telefone" class="col-md-4 control-label">Telefone</label>
+              <label for="telefone" class="col-md-4 control-label">Telefone <font color="red">*</font> </label>
 
               <div class="col-md-6">
                 <input  type="digit" name="telefone" id="telefone" minlength="10" placeholder="DDD+Telefone" class="form-control"  maxlength="11" value="{{ old('telefone') }}">
@@ -68,7 +68,7 @@
             </div>
 
             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-              <label for="password" class="col-md-4 control-label">Senha</label>
+              <label for="password" class="col-md-4 control-label">Senha <font color="red">*</font> </label>
 
               <div class="col-md-6">
                 <input id="password" type="password" class="form-control" name="password">
@@ -82,7 +82,7 @@
             </div>
 
             <div class="form-group">
-              <label for="password-confirm" class="col-md-4 control-label">Confirme a Senha</label>
+              <label for="password-confirm" class="col-md-4 control-label">Confirme a Senha <font color="red">*</font> </label>
 
               <div class="col-md-6">
                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
