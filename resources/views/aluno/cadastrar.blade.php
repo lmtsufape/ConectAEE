@@ -326,18 +326,15 @@
             @endif
 
             <font size="4" class="row">
-              Cadastro de Responsável:
+              Responsável:
             </font>
 
             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-              <label for="username" class="col-md-4 control-label">Nome de Usuário</label>
+              <label for="username" class="col-md-4 control-label">Nome de Usuário <font color="red">*</font> </label>
 
               <div class="col-md-6">
-                @if (old('username') == null)
-                  <input name="username" type="text" class="form-control" value="{{old('username')}}">
-                @else
-                  <input name="username" type="text" class="form-control">
-                @endif
+
+                <input id="username" autocomplete="off" name="username" type="text" class="form-control" value="{{old('username')}}">
 
                 @if ($errors->has('username'))
                   <span class="help-block">
@@ -346,6 +343,31 @@
                 @endif
               </div>
             </div>
+
+            <div class="form-group{{ $errors->has('cadastrado') ? ' has-error' : '' }}">
+              <label for="cadastrado" class="col-md-4 control-label">Usuário já cadastrado?</label>
+
+              <div class="col-md-6">
+
+                @if(old('cadastrado') == "true")
+                  <input type="radio" name="cadastrado" id="sim" value="true" checked>
+                @else
+                  <input type="radio" name="cadastrado" id="sim" value="true">
+                @endif
+
+                <label for="sim">Sim</label>
+
+                @if(old('cadastrado') == "false" || old('cadastrado') == null)
+                  <input type="radio" name="cadastrado" id="nao" value="false" checked>
+                @else
+                  <input type="radio" name="cadastrado" id="nao" value="false">
+                @endif
+
+                <label for="nao">Não</label>
+
+              </div>
+            </div>
+
             </div>
 
             <div class="form-group">

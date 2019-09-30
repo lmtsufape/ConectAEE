@@ -85,7 +85,7 @@ class AlunoController extends Controller{
 
     return view("aluno.cadastrar", [
       'instituicoes' => $instituicoes,
-      'perfis' => $perfis
+      'perfis' => $perfis,
     ]);
   }
 
@@ -151,7 +151,6 @@ class AlunoController extends Controller{
   }
 
   public static function criar(Request $request){
-
     $validator = Validator::make($request->all(), [
       'perfil' => ['required'],
       'instituicoes' => ['required'],
@@ -167,10 +166,18 @@ class AlunoController extends Controller{
       'bairro' => ['required'],
       'cidade' => ['required'],
       'estado' => ['required'],
-      'username' => ['required_if:perfil,==,2','unique:users']
+      'username' => ['required_if:perfil,==,2']
     ],[
       'username.required_if' => 'É necessário criar um usuário quando o cadastrante é um Professor AEE',
     ]);
+
+    $validator->sometimes('username', 'unique:users', function ($request) {
+      return $request->cadastrado == "false";
+    });
+
+    $validator->sometimes('username', 'exists:users', function ($request) {
+      return $request->cadastrado == "true";
+    });
 
     if($validator->fails()){
       return redirect()->back()->withErrors($validator->errors())->withInput();
@@ -233,22 +240,25 @@ class AlunoController extends Controller{
 
     $password = str_random(6);
 
-    if($request->perfil == 2){
-      $user = new User();
+    $user = new User();
+
+    if($request->perfil == 2 && $request->cadastrado == "false"){
       $user->username = $request->username;
       $user->password = bcrypt($password);
       $user->cadastrado = false;
       $user->save();
-
-      $gerenciar = new Gerenciar();
-      $gerenciar->user_id = $user->id;
-      $gerenciar->aluno_id = $aluno->id;
-      $gerenciar->perfil_id = $request->perfil;
-      $gerenciar->isAdministrador = True;
-      $gerenciar->save();
+    }else if($request->perfil == 2 && $request->cadastrado == "true"){
+      $user = User::where('username','=',$request->username)->first();
     }
 
-    if($request->perfil == 2){
+    $gerenciar = new Gerenciar();
+    $gerenciar->user_id = $user->id;
+    $gerenciar->aluno_id = $aluno->id;
+    $gerenciar->perfil_id = $request->perfil;
+    $gerenciar->isAdministrador = True;
+    $gerenciar->save();
+
+    if($request->perfil == 2 && $request->cadastrado == "false"){
       return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.' foi cadastrado.')->with('password', 'A senha do usuário '.$request->username.' é '.$password.'.');
     }else{
       return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.' foi cadastrado.');
