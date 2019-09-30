@@ -92,7 +92,7 @@
             <div class="hifen text-justify">
               <h3>
                 <strong>
-                  Saiba o que está acontecendo em outras salas de aula e mantenha o registro do seu cotidiano com aluno para os Familiares poderem acompanhar o progresso dele.
+                  Saiba o que está acontecendo em outras salas de aula e mantenha o registro do seu cotidiano com o aluno para os Familiares poderem acompanhar o progresso dele.
                 </strong>
               </h3>
             </div>
@@ -124,7 +124,7 @@
             <div class="hifen text-justify">
               <h3>
                 <strong>
-                  Verifique quais atividades estão sendo realizadas com o seu familiar, quais objetivos estão sendo alcançados e seja livre para tirar dúvidas no fórum.
+                  Verifique quais atividades estão sendo realizadas com o seu familiar, quais objetivos estão sendo alcançados e fique à vontade para tirar dúvidas no fórum.
                 </strong>
               </h3>
             </div>
