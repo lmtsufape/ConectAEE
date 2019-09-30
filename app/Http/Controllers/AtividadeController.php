@@ -10,6 +10,8 @@ use App\Notificacao;
 use App\Atividade;
 use DateTime;
 use Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 
 class AtividadeController extends Controller
 {
@@ -89,7 +91,7 @@ class AtividadeController extends Controller
 
     AtividadeController::notificarAtividade($atividade);
 
-    return redirect()->route("atividade.ver", ["id_atividade" => $atividade->id])->with('success','Atividade cadastrada.');
+    return Redirect::to(route("objetivo.gerenciar", ["id_objetivo" => $atividade->objetivo->id]) . "#atividades")->with('atividade','A atividade '.$atividade->titulo.' foi cadastrada.');;
   }
 
   public static function atualizar(Request $request){
@@ -113,7 +115,7 @@ class AtividadeController extends Controller
     $atividade->status = $statuses[$request->status];
     $atividade->update();
 
-    return redirect()->route("atividade.ver", ["id_atividade" => $atividade->id])->with('success','A atividade '.$atividade->titulo.' foi atualizada.');
+    return Redirect::to(route("objetivo.gerenciar", ["id_objetivo" => $atividade->objetivo->id]) . "#atividades")->with('atividade','A atividade '.$atividade->titulo.' foi atualizada.');;
   }
 
   // public static function listar($id_objetivo){
@@ -136,7 +138,8 @@ class AtividadeController extends Controller
     $atividade->concluido = True;
     $atividade->update();
 
-    return redirect()->route("atividade.ver", ["id_atividadeo" => $atividade->id]);
+    return Redirect::to(route("objetivo.gerenciar", ["id_objetivo" => $atividade->objetivo->id]) . "#atividades")->with('atividade','A atividade '.$atividade->titulo.' foi concluída.');;
+
   }
 
   public static function desconcluir($id_atividade){
@@ -147,7 +150,8 @@ class AtividadeController extends Controller
     $atividade->concluido = False;
     $atividade->update();
 
-    return redirect()->route("atividade.ver", ["id_atividadeo" => $atividade->id]);
+    return Redirect::to(route("objetivo.gerenciar", ["id_objetivo" => $atividade->objetivo->id]) . "#atividades")->with('atividade','A atividade '.$atividade->titulo.' foi reaberta.');;
+
   }
 
   public static function corStatus($status){

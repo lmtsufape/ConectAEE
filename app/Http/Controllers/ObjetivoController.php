@@ -227,7 +227,7 @@ class ObjetivoController extends Controller
     $objetivo->concluido = False;
     $objetivo->update();
 
-    return redirect()->route("objetivo.gerenciar", ["id_objetivo" => $id_objetivo])->with('success','O objetivo não foi concluído.');
+    return redirect()->route("objetivo.gerenciar", ["id_objetivo" => $id_objetivo])->with('success','O objetivo foi reaberto.');
 
   }
 

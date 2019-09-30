@@ -53,17 +53,27 @@
         </div>
 
         <div class="panel-footer">
-          @if($objetivo->user->id == \Auth::user()->id)
-            <div class="row text-right">
-              <a class="btn btn-primary" href={{ route("objetivo.editar" , ['id_objetivo' => $objetivo->id]) }}>
-                <i class="material-icons">edit</i>
+          <div class="row text-right" id="acoes" style="padding:1rem;">
+            @if($objetivo->user->id == \Auth::user()->id && $objetivo->concluido == false)
+                <a class="btn btn-primary" href={{ route("objetivo.editar" , ['id_objetivo' => $objetivo->id]) }}>
+                  Editar
+                  <i class="material-icons">edit</i>
+                </a>
+                <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do objetivo {{$objetivo->titulo}}?')" href={{ route("objetivo.excluir" , ['id_objetivo' => $objetivo->id]) }}>
+                  Excluir
+                  <i class="material-icons">delete</i>
+                </a>
+                <a class="btn btn-success" href={{ route("objetivo.concluir" , ['id_objetivo' => $objetivo->id]) }}>
+                  Finalizar
+                  <i class="material-icons">folder</i>
+                </a>
+            @elseif($objetivo->user->id == \Auth::user()->id && $objetivo->concluido == true)
+              <a class="btn btn-danger" href={{ route("objetivo.desconcluir" , ['id_objetivo' => $objetivo->id]) }}>
+                Reabrir
+                <i class="material-icons">folder_open</i>
               </a>
-              <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do objetivo {{$objetivo->titulo}}?')" href={{ route("objetivo.excluir" , ['id_objetivo' => $objetivo->id]) }}>
-                <i class="material-icons">delete</i>
-              </a>
-              &nbsp;&nbsp;
-            </div>
-          @endif
+            @endif
+          </div>
         </div>
 
       </div>
@@ -73,13 +83,22 @@
       <div id="painel2" class="col-md-8">
         <div id="painel3" class="row" style="width:100%">
 
-          <div class="panel panel-default">
+          <div id="atividades" class="panel panel-default">
 
             <div class="panel-heading">
               Atividades
             </div>
 
             <div class="panel-body">
+
+              @if (\Session::has('atividade'))
+                <br>
+                <div class="alert alert-success">
+                  <strong>Sucesso!</strong>
+                  {!! \Session::get('atividade') !!}
+                </div>
+              @endif
+
               <div id="tabela" style="overflow:auto" class="table-responsive">
                 <table class="table">
                   <thead>
@@ -168,13 +187,21 @@
 
           </div>
 
-          <div class="panel panel-default" >
+          <div id="sugestoes" class="panel panel-default" >
 
             <div class="panel-heading" style="position:relative">
               Sugestões
             </div>
 
             <div class="panel-body" style="position:relative">
+
+              @if (\Session::has('sugestao'))
+                <br>
+                <div class="alert alert-success">
+                  <strong>Sucesso!</strong>
+                  {!! \Session::get('sugestao') !!}
+                </div>
+              @endif
 
               <div id="tabela" style="overflow:auto" class="table-responsive">
                 <table class="table">
@@ -200,11 +227,17 @@
                                 <div class="hifen text-center" >
                                   <font size="3">
                                     <strong> {{ $sugestao->titulo }} </strong>
+                                    <br>
+                                    <strong> {{ $sugestao->user->name }} </strong>
                                   </font>
                                 </div>
                               </div>
                               <div class="card-footer text-center">
-                                <a class="btn btn-success" href={{ route("sugestao.ver", ["id_sugestao" => $sugestao->id]) }}>Ver</a>
+                                @if($sugestao->user->id == \Auth::user()->id)
+                                  <a class="btn btn-primary" href={{ route("sugestao.ver", ["id_sugestao" => $sugestao->id]) }}>Gerenciar</a>
+                                @else
+                                  <a class="btn btn-success" href={{ route("sugestao.ver", ["id_sugestao" => $sugestao->id]) }}>Ver</a>
+                                @endif
                               </div>
                             </div>
                           </td>
@@ -244,7 +277,7 @@
         <div class="panel panel-default" style="width:100%">
 
           <div class="panel-heading">
-            Fórum <a class="btn btn-primary btn-xs" style="margin-left: 40%" href="{{route('objetivo.forum',['aluno' => $objetivo->aluno->id, 'objetivo' => $objetivo->id])."#forum"}}">Ver todas as mensagens</a>
+            Discussão sobre este objetivo:
           </div>
 
           <div class="panel-body">
@@ -255,6 +288,14 @@
               <div style="margin: 1%" class="form-group">
                 <textarea name="mensagem" style="width:75%; display: inline" id="summer" type="text" class="form-control summernote"></textarea>
                 <br>
+
+                @if ($errors->has('mensagem'))
+									<div style="margin-left: 1%; margin-right: 1%" class="alert alert-danger">
+										<strong>Erro!</strong>
+										{{ $errors->first('mensagem') }}
+									</div>
+								@endif
+
                 <button type="submit" class="btn btn-primary">Enviar</button>
               </div>
               <br>
@@ -288,6 +329,10 @@
                 @endif
               @endforeach
             </div>
+          </div>
+
+          <div class="panel-footer" style="background-color: white;">
+            <a class="btn btn-primary" style="width:100%" href="{{route('objetivo.forum',['id_objetivo' => $objetivo->id])."#forum"}}">Ver todas as mensagens</a>
           </div>
         </div>
       </div>

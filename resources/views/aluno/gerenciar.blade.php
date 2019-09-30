@@ -158,16 +158,12 @@
 			<div class="col-md-6">
 				<div class="panel panel-default" style="width:100%">
 					<div class="panel-heading" id="forum" >
-							Fórum <a style="margin-left: 50%" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary btn-xs">Ver todas as mensagens</a>
+							Fórum
 					</div>
 
 					<div class="panel-body">
-						@if ($errors->has('texto'))
-						<div style="margin-left: 1%; margin-right: 1%" class="alert alert-danger">
-							<strong>Erro!</strong>
-							{{ $errors->first('texto') }}
-						</div>
-						@endif
+
+
 						<form class="form-horizontal" method="POST" action="{{route('aluno.forum.mensagem.enviar')}}">
 							@csrf
 							<input name="forum_id" type="text" value={{$aluno->forum->id}} hidden>
@@ -175,40 +171,51 @@
 							<div style="margin: 1%" class="form-group">
 	              <textarea name="mensagem" style="width:75%; display: inline" id="summer" type="text" class="form-control summernote"></textarea>
 	              <br>
+
+								@if ($errors->has('mensagem'))
+									<div style="margin-left: 1%; margin-right: 1%" class="alert alert-danger">
+										<strong>Erro!</strong>
+										{{ $errors->first('mensagem') }}
+									</div>
+								@endif
+
 	              <button type="submit" class="btn btn-primary">Enviar</button>
 	            </div>
 						</form>
+
+						<div class="form-group">
+							@foreach($mensagens as $mensagem)
+								@if($mensagem->user_id == \Auth::user()->id)
+									<div style="text-align: right; width: 80%; margin-left: 20%" id='user-message'>
+
+										<div class="panel panel-default">
+											<div style="background-color: #bbffad;" class="panel-body">
+												<div class="hifen">
+													{!! $mensagem->texto !!}<br>
+													{{$mensagem->created_at->format('d/m/y h:i')}}<br>
+												</div>
+											</div>
+										</div>
+									</div>
+								@else
+									<div style="text-align: left; width: 80%" id='others-message'>
+										<div class="panel panel-default">
+											<div style="background-color: #adbaff" class="panel-body">
+												<div class="hifen">
+													<strong>{{$mensagem->user->name}}:</strong><br>
+													{!! $mensagem->texto !!}<br>
+													{{$mensagem->created_at->format('d/m/y h:i')}}<br>
+												</div>
+											</div>
+										</div>
+									</div>
+								@endif
+							@endforeach
+						</div>
 					</div>
 
 					<div class="panel-footer" style="background-color: white;">
-
-						@foreach($mensagens as $mensagem)
-							@if($mensagem->user_id == \Auth::user()->id)
-								<div style="text-align: right; width: 80%; margin-left: 20%" id='user-message'>
-
-									<div class="panel panel-default">
-										<div style="background-color: #bbffad;" class="panel-body">
-											<div class="hifen">
-												{!! $mensagem->texto !!}<br>
-												{{$mensagem->created_at->format('d/m/y h:i')}}<br>
-											</div>
-										</div>
-									</div>
-								</div>
-							@else
-								<div style="text-align: left; width: 80%" id='others-message'>
-									<div class="panel panel-default">
-										<div style="background-color: #adbaff" class="panel-body">
-											<div class="hifen">
-												<strong>{{$mensagem->user->name}}:</strong><br>
-												{!! $mensagem->texto !!}<br>
-												{{$mensagem->created_at->format('d/m/y h:i')}}<br>
-											</div>
-										</div>
-									</div>
-								</div>
-							@endif
-						@endforeach
+           <a style="width:100%" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary">Ver todas as mensagens</a>
 					</div>
 				</div>
 			</div>

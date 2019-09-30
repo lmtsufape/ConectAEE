@@ -10,6 +10,8 @@ use App\Notificacao;
 use App\Sugestao;
 use DateTime;
 use Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 
 class SugestaoController extends Controller
 {
@@ -77,7 +79,8 @@ class SugestaoController extends Controller
 
     SugestaoController::notificarSugestao($sugestao);
 
-    return redirect()->route("sugestao.ver", ["id_sugestao" => $sugestao->id])->with('success','Sugestão cadastrada.');
+    return Redirect::to(route("objetivo.gerenciar", ["id_objetivo" => $sugestao->objetivo->id]) . "#sugestoes")->with('sugestao','Sugestão cadastrada.');;
+
   }
 
   public static function atualizar(Request $request){
@@ -95,7 +98,8 @@ class SugestaoController extends Controller
     $sugestao->descricao = $request->descricao;
     $sugestao->update();
 
-    return redirect()->route("sugestao.ver", ["id_sugestao" => $sugestao->id])->with('success','A sugestão '.$sugestao->titulo.' foi atualizada.');
+    return Redirect::to(route("objetivo.gerenciar", ["id_objetivo" => $sugestao->objetivo->id]) . "#sugestoes")->with('sugestao','Sugestão atualizada.');;
+
   }
 
   // public function listar($id_objetivo){

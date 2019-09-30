@@ -251,12 +251,14 @@ class AlunoController extends Controller{
       $user = User::where('username','=',$request->username)->first();
     }
 
-    $gerenciar = new Gerenciar();
-    $gerenciar->user_id = $user->id;
-    $gerenciar->aluno_id = $aluno->id;
-    $gerenciar->perfil_id = $request->perfil;
-    $gerenciar->isAdministrador = True;
-    $gerenciar->save();
+    if ($request->perfil == 2) {
+      $gerenciar = new Gerenciar();
+      $gerenciar->user_id = $user->id;
+      $gerenciar->aluno_id = $aluno->id;
+      $gerenciar->perfil_id = $request->perfil;
+      $gerenciar->isAdministrador = True;
+      $gerenciar->save();
+    }
 
     $notificacao = new Notificacao();
     $notificacao->aluno_id = $gerenciar->aluno_id;
