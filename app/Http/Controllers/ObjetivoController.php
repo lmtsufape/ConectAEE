@@ -11,6 +11,7 @@ use App\ForumObjetivo;
 use App\TipoObjetivo;
 use App\StatusObjetivo;
 use App\Aluno;
+use App\Notificacao;
 use App\Cor;
 use App\MensagemForumObjetivo;
 use DateTime;
@@ -119,6 +120,8 @@ class ObjetivoController extends Controller
     $forum->objetivo_id = $objetivo->id;
     $forum->save();
 
+    ObjetivoController::notificarObjetivo($request->id_aluno, $objetivo->id);
+
     return redirect()->route("objetivo.listar", ["id_aluno" => $request->id_aluno])->with('success','Objetivo cadastrado.');
   }
 
@@ -168,6 +171,19 @@ class ObjetivoController extends Controller
     $sugestoesGroupByData = $objetivo->sugestoes->groupBy('data');
     $mensagens = MensagemForumObjetivo::where('forum_objetivo_id','=',$objetivo->forum->id)->orderBy('id','desc')->take(5)->get();
 
+    foreach ($mensagens as $mensagem) {
+      $img = strpos($mensagem->texto, '<img');
+      $video = strpos($mensagem->texto, '<iframe');
+
+      if($img){
+        $mensagem->texto = str_replace('<img', '<img style="width:100%"', $mensagem->texto);
+      }
+
+      if($video){
+        $mensagem->texto = str_replace('<iframe', '<iframe style="width:100%"', $mensagem->texto);
+      }
+    }
+
     $size1 = 0;
     $size2 = 0;
 
@@ -211,9 +227,27 @@ class ObjetivoController extends Controller
     $objetivo->concluido = False;
     $objetivo->update();
 
-    return redirect()->route("objetivo.gerenciar", ["id_objetivo" => $id_objetivo])->with('success','O objetivo não foi concluído.');
+    return redirect()->route("objetivo.gerenciar", ["id_objetivo" => $id_objetivo])->with('success','O objetivo foi reaberto.');
 
   }
 
+  private static function notificarObjetivo($id_aluno, $id_objetivo){
+
+    $aluno = Aluno::find($id_aluno);
+    $gerenciars = $aluno->gerenciars;
+
+    foreach ($gerenciars as $gerenciar) {
+      if ($gerenciar->user != Auth::user()) {
+        $notificacao = new Notificacao();
+        $notificacao->aluno_id = $aluno->id;
+        $notificacao->remetente_id = Auth::user()->id;
+        $notificacao->destinatario_id = $gerenciar->user_id;
+        $notificacao->objetivo_id = $id_objetivo;
+        $notificacao->lido = false;
+        $notificacao->tipo = 3; //onjetivo
+        $notificacao->save();
+      }
+    }
+  }
 
 }

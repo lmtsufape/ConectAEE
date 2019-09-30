@@ -55,7 +55,7 @@ Route::middleware('autorizacao')->group(function() {
   Route::get('/aluno/{id_aluno}/gerenciar/permissoes/{id_permissao}/remover','AlunoController@removerPermissao')->name('aluno.permissoes.remover');
   Route::get('/aluno/{matricula}/gerenciar/permissoes/requisitar', 'AlunoController@requisitarPermissao')->name('aluno.permissoes.requisitar');
   Route::get('/aluno/{id_aluno}/gerenciar/permissoes/notificacao/{id_notificacao}/conceder', 'AlunoController@concederPermissao')->name('aluno.permissoes.conceder');
-  Route::post('/aluno/gerenciar/permissoes/notificar','AlunoController@notificar')->name('aluno.permissoes.notificar');
+  Route::post('/aluno/gerenciar/permissoes/notificar','AlunoController@notificarPermissao')->name('aluno.permissoes.notificar');
 
   //Rotas para objetivos
   Route::get('/aluno/{id_aluno}/objetivos/cadastrar','ObjetivoController@cadastrar')->name('objetivo.cadastrar');
@@ -92,11 +92,8 @@ Route::middleware('autorizacao')->group(function() {
   Route::post('/aluno/sugestao/atualizar', 'SugestaoController@atualizar')->name('objetivo.sugestao.atualizar');
 
   //Rotas para feedback
-  // Route::get('/aluno/objetivo/gerenciar/sugestao/{id_sugestao}/feedbacks/listar','FeedbackController@listar')->name('feedbacks.listar');
-  // Route::get('/aluno/objetivo/gerenciar/sugestao/{id_sugestao}/feedbacks/cadastrar','FeedbackController@cadastrar')->name('feedbacks.cadastrar');
   Route::post('/aluno/objetivo/gerenciar/sugestao/feedbacks/criar','FeedbackController@criar')->name('feedbacks.criar');
   //novas
-  Route::get('/aluno/objetivo/gerenciar/sugestao/feedback/{id_feedback}/editar','FeedbackController@editar')->name('feedback.editar');
   Route::get('/aluno/objetivo/gerenciar/sugestao/feedback/{id_feedback}/excluir','FeedbackController@excluir')->name('feedback.excluir');
   Route::post('/aluno/feedbacks/atualizar', 'FeedbackController@atualizar')->name('feedback.atualizar');
 
@@ -104,7 +101,7 @@ Route::middleware('autorizacao')->group(function() {
   Route::post('/aluno/forum/mensagem/enviar','ForumController@enviarMensagemForumAluno')->name('aluno.forum.mensagem.enviar');
   Route::get('/aluno/{id_aluno}/forum','ForumController@abrirForumAluno')->name('aluno.forum');
   Route::post('/aluno/objetivo/forum/mensagem/enviar','ForumController@enviarMensagemForumObjetivo')->name('objetivo.forum.mensagem.enviar');
-  Route::get('/aluno/{id_aluno}/objetivo/{id_objetivo}/forum','ForumController@abrirForumObjetivo')->name('objetivo.forum');
+  Route::get('/aluno/objetivo/{id_objetivo}/forum','ForumController@abrirForumObjetivo')->name('objetivo.forum');
 
   //rotas para statuses
   Route::get('/aluno/objetivos/{id_objetivo}/gerenciar/status/cadastrar','StatusController@cadastrar')->name('objetivo.status.cadastrar');

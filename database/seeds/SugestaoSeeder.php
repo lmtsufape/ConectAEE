@@ -20,6 +20,7 @@ class SugestaoSeeder extends Seeder
           for ($i=1; $i<=2 ; $i++) {
             factory(Sugestao::class)->create([
                 'objetivo_id' => $objetivo->id,
+                'data' => date('d.m.Y',strtotime("-".$i." days")),
                 'user_id' => $i
             ]);
           }

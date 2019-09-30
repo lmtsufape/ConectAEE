@@ -12,7 +12,7 @@
 
 		<div id="painel" class="flex col-md-12">
 			<div class="col-md-6">
-				<div class="panel panel-default">
+				<div class="panel panel-default" style="width:100%">
 					<div class="panel-heading">Gerenciamento de <strong>{{$aluno->nome}}</strong></div>
 
 					<div class="panel-body">
@@ -31,10 +31,10 @@
 						<div class="row-md-6">
 							<div class="text-center">
 								@if($aluno->imagem != null)
-									<img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="height:256px; width:256px; object-fit: cover;">
+									<img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="border-radius: 60%; height:256px; width:256px; object-fit: cover;">
 									<br/>
 								@else
-									<img src="{{asset('images/avatar.png')}}" style="width:256px; height: 256px; object-fit: cover;">
+									<img src="{{asset('images/avatar.png')}}" style="border-radius: 60%; width:256px; height: 256px; object-fit: cover;">
 									<br/>
 								@endif
 							</div>
@@ -68,7 +68,13 @@
 
 							<strong>Nome:</strong> {{$aluno->nome}}
 							<br/>
-							<strong>Sexo:</strong> {{$aluno->sexo}}
+
+							@if($aluno->sexo == 'M')
+								<strong>Sexo:</strong> Masculino
+							@else
+								<strong>Sexo:</strong> Feminino
+							@endif
+
 							<br/>
 							<strong>Data de Nascimento:</strong> {{$aluno->data_de_nascimento}}
 							<br/>
@@ -102,7 +108,7 @@
 							<hr>
 
 							@if($aluno->observacao != null)
-								<strong>Observações:</strong> {{$aluno->observacao}}
+								<strong>Observações:</strong> {!! $aluno->observacao !!}
 								<br/>
 							@endif
 						</div>
@@ -152,55 +158,64 @@
 			<div class="col-md-6">
 				<div class="panel panel-default" style="width:100%">
 					<div class="panel-heading" id="forum" >
-							Fórum <a style="margin-left: 50%" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary btn-xs">Ver todas as mensagens</a>
+							Fórum
 					</div>
 
 					<div class="panel-body">
-						@if ($errors->has('texto'))
-						<div style="margin-left: 1%; margin-right: 1%" class="alert alert-danger">
-							<strong>Erro!</strong>
-							{{ $errors->first('texto') }}
-						</div>
-						@endif
+
+
 						<form class="form-horizontal" method="POST" action="{{route('aluno.forum.mensagem.enviar')}}">
 							@csrf
 							<input name="forum_id" type="text" value={{$aluno->forum->id}} hidden>
 
 							<div style="margin: 1%" class="form-group">
-								<input name="mensagem" style="width:75%; display: inline" class="form-control" type="text">
-								<button style="width:23%" type="submit" class="btn btn-success">Enviar</button>
-							</div>
+	              <textarea name="mensagem" style="width:75%; display: inline" id="summer" type="text" class="form-control summernote"></textarea>
+	              <br>
+
+								@if ($errors->has('mensagem'))
+									<div style="margin-left: 1%; margin-right: 1%" class="alert alert-danger">
+										<strong>Erro!</strong>
+										{{ $errors->first('mensagem') }}
+									</div>
+								@endif
+
+	              <button type="submit" class="btn btn-primary">Enviar</button>
+	            </div>
 						</form>
+
+						<div class="form-group">
+							@foreach($mensagens as $mensagem)
+								@if($mensagem->user_id == \Auth::user()->id)
+									<div style="text-align: right; width: 80%; margin-left: 20%" id='user-message'>
+
+										<div class="panel panel-default">
+											<div style="background-color: #bbffad;" class="panel-body">
+												<div class="hifen">
+													{!! $mensagem->texto !!}<br>
+													{{$mensagem->created_at->format('d/m/y h:i')}}<br>
+												</div>
+											</div>
+										</div>
+									</div>
+								@else
+									<div style="text-align: left; width: 80%" id='others-message'>
+										<div class="panel panel-default">
+											<div style="background-color: #adbaff" class="panel-body">
+												<div class="hifen">
+													<strong>{{$mensagem->user->name}}:</strong><br>
+													{!! $mensagem->texto !!}<br>
+													{{$mensagem->created_at->format('d/m/y h:i')}}<br>
+												</div>
+											</div>
+										</div>
+									</div>
+								@endif
+							@endforeach
+						</div>
 					</div>
 
 					<div class="panel-footer" style="background-color: white;">
-
-						@foreach($mensagens as $mensagem)
-							@if($mensagem->user_id == \Auth::user()->id)
-								<div style="text-align: right; width: 80%; margin-left: 20%" id='user-message'>
-									<div class="panel panel-default">
-										<div style="background-color: #bbffad" class="panel-body">
-											<div class="hifen">
-												{{$mensagem->texto}}<br>
-												{{$mensagem->created_at->format('d/m/y h:i')}}<br>
-											</div>
-										</div>
-									</div>
-								</div>
-							@else
-								<div style="text-align: left; width: 80%" id='others-message'>
-									<div class="panel panel-default">
-										<div style="background-color: #adbaff" class="panel-body">
-											<div class="hifen">
-												<strong>{{$mensagem->user->name}}:</strong><br>
-												{{$mensagem->texto}}<br>
-												{{$mensagem->created_at->format('d/m/y h:i')}}<br>
-											</div>
-										</div>
-									</div>
-								</div>
-							@endif
-						@endforeach
+           <a style="width:100%" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary">Ver todas as mensagens</a>
 					</div>
 				</div>
 			</div>
@@ -211,11 +226,18 @@
 
 <script type="text/javascript">
 
-var width = screen.width;
+	var width = screen.width;
 
-if (width <= 1000){
-	document.getElementById("painel").className = "col-md-offset-1";
-}
+	if (width <= 1000){
+		document.getElementById("painel").className = "col-md-offset-1";
+	}
+
+  $('#summer').summernote({
+    placeholder: 'Escreva sua mensagem aqui...',
+    lang: 'pt-BR',
+    tabsize: 2,
+    height: 100
+  });
 
 </script>
 

@@ -195,6 +195,14 @@
   </div>
 </div>
 
+<script src="{{ asset('js/jquery-3.3.1.min.js')}}"></script>
+<script src="{{ asset('js/select2.min.js') }}"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('.js-example-basic-multiple').select2();
+});
+</script>
+
 <script>
 var estados = [];
 

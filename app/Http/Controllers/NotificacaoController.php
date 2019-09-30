@@ -21,13 +21,19 @@ class NotificacaoController extends Controller
     $notificacao->lido = true;
     $notificacao->update();
 
-    if ($notificacao->tipo == 1) {
-      return redirect()->route('aluno.permissoes.conceder',[
-        'id_aluno' => $notificacao->aluno->id,
-        'id_notificacao' => $notificacao->id
-      ]);
-    }else{
-      return redirect()->route('aluno.gerenciar',['id_aluno' => $notificacao->aluno->id]);
+    switch ($notificacao->tipo) {
+      case 1:
+        return redirect()->route('aluno.permissoes.conceder',[
+          'id_aluno' => $notificacao->aluno->id,
+          'id_notificacao' => $notificacao->id
+        ]);
+        break;
+      case 2:
+        return redirect()->route('aluno.gerenciar',['id_aluno' => $notificacao->aluno->id]);
+        break;
+      default:
+        return redirect()->route('objetivo.gerenciar',['id_objetivo' => $notificacao->objetivo->id]);
+        break;
     }
   }
 

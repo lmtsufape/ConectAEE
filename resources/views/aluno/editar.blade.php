@@ -331,9 +331,13 @@
               <div class="col-md-6">
 
                 @if(old('observacao',NULL) != NULL)
-                  <textarea id="observacao" rows = "5" cols = "50" class="form-control" name="observacao" >{{old('observacao')}}</textarea>
+                  <textarea name="observacao" style="width:75%; display: inline" id="summer" type="text" class="form-control summernote">
+                    {{old('observacao')}}
+                  </textarea>
                 @else
-                  <textarea id="observacao" rows = "5" cols = "50" class="form-control" name="observacao" >{{$aluno->observacao}}</textarea>
+                  <textarea name="observacao" style="width:75%; display: inline" id="summer" type="text" class="form-control summernote">
+                    {{$aluno->observacao}}
+                  </textarea>
                 @endif
 
                 @if ($errors->has('observacao'))
@@ -365,6 +369,14 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $('#summer').summernote({
+    lang: 'pt-BR',
+    tabsize: 2,
+    height: 100
+  });
+</script>
 
 <script src="{{ asset('js/jquery-3.3.1.min.js')}}"></script>
 <script src="{{ asset('js/select2.min.js') }}"></script>
@@ -483,5 +495,7 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 </script>
+
+<script src="{{ asset('js/bootstrap-filestyle.min.js')}}"> </script>
 
 @endsection

@@ -16,7 +16,7 @@ class CreateMensagemForumAlunosTable extends Migration
     Schema::create('mensagem_forum_alunos', function (Blueprint $table) {
       $table->bigIncrements('id');
       $table->timestamps();
-      $table->string('texto');
+      $table->text('texto');
       $table->integer('user_id');
       $table->integer('forum_aluno_id');
 

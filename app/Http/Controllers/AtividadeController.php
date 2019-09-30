@@ -6,8 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Objetivo;
 use App\Aluno;
+use App\Notificacao;
 use App\Atividade;
 use DateTime;
+use Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 
 class AtividadeController extends Controller
 {
@@ -85,7 +89,9 @@ class AtividadeController extends Controller
     $atividade->objetivo_id = $request->id_objetivo;
     $atividade->save();
 
-    return redirect()->route("atividade.ver", ["id_atividade" => $atividade->id])->with('success','Atividade cadastrada.');
+    AtividadeController::notificarAtividade($atividade);
+
+    return Redirect::to(route("objetivo.gerenciar", ["id_objetivo" => $atividade->objetivo->id]) . "#atividades")->with('atividade','A atividade '.$atividade->titulo.' foi cadastrada.');;
   }
 
   public static function atualizar(Request $request){
@@ -109,7 +115,7 @@ class AtividadeController extends Controller
     $atividade->status = $statuses[$request->status];
     $atividade->update();
 
-    return redirect()->route("atividade.ver", ["id_atividade" => $atividade->id])->with('success','A atividade '.$atividade->titulo.' foi atualizada.');
+    return Redirect::to(route("objetivo.gerenciar", ["id_objetivo" => $atividade->objetivo->id]) . "#atividades")->with('atividade','A atividade '.$atividade->titulo.' foi atualizada.');;
   }
 
   // public static function listar($id_objetivo){
@@ -132,7 +138,8 @@ class AtividadeController extends Controller
     $atividade->concluido = True;
     $atividade->update();
 
-    return redirect()->route("atividade.ver", ["id_atividadeo" => $atividade->id]);
+    return Redirect::to(route("objetivo.gerenciar", ["id_objetivo" => $atividade->objetivo->id]) . "#atividades")->with('atividade','A atividade '.$atividade->titulo.' foi concluída.');;
+
   }
 
   public static function desconcluir($id_atividade){
@@ -143,7 +150,8 @@ class AtividadeController extends Controller
     $atividade->concluido = False;
     $atividade->update();
 
-    return redirect()->route("atividade.ver", ["id_atividadeo" => $atividade->id]);
+    return Redirect::to(route("objetivo.gerenciar", ["id_objetivo" => $atividade->objetivo->id]) . "#atividades")->with('atividade','A atividade '.$atividade->titulo.' foi reaberta.');;
+
   }
 
   public static function corStatus($status){
@@ -157,6 +165,28 @@ class AtividadeController extends Controller
       case 'Finalizada':
         return '#c0e876';
         break;
+    }
+  }
+
+  private static function notificarAtividade($atividade){
+
+    $id_objetivo = $atividade->objetivo->id;
+    $id_aluno =$atividade->objetivo->aluno->id;
+
+    $aluno = Aluno::find($id_aluno);
+    $gerenciars = $aluno->gerenciars;
+
+    foreach ($gerenciars as $gerenciar) {
+      if ($gerenciar->user != Auth::user()) {
+        $notificacao = new Notificacao();
+        $notificacao->aluno_id = $aluno->id;
+        $notificacao->remetente_id = Auth::user()->id;
+        $notificacao->destinatario_id = $gerenciar->user_id;
+        $notificacao->objetivo_id = $id_objetivo;
+        $notificacao->lido = false;
+        $notificacao->tipo = 4; //atividade
+        $notificacao->save();
+      }
     }
   }
 

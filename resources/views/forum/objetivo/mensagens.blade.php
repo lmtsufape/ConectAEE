@@ -27,8 +27,9 @@
             <input name="forum_id" type="text" value={{$objetivo->forum->id}} hidden>
 
             <div style="margin: 1%" class="form-group">
-              <input name="mensagem" style="width:80%; display: inline" class="form-control" type="text">
-              <button style="width:18%" type="submit" class="btn btn-success">Enviar</button>
+              <textarea name="mensagem" style="width:75%; display: inline" id="summer" type="text" class="form-control summernote"></textarea>
+              <br>
+              <button type="submit" class="btn btn-primary">Enviar</button>
             </div>
           </form>
         </div>
@@ -41,7 +42,7 @@
               <div class="panel panel-default">
                 <div style="background-color: #bbffad" class="panel-body">
                   <div class="hifen">
-                    {{$mensagem->texto}}<br>
+                    {!! $mensagem->texto !!}<br>
                     {{$mensagem->created_at->format('d/m/y h:i')}}<br>
                   </div>
                 </div>
@@ -53,7 +54,7 @@
                 <div style="background-color: #adbaff" class="panel-body">
                   <div class="hifen">
                     <strong>{{$mensagem->user->name}}:</strong><br>
-                    {{$mensagem->texto}}<br>
+                    {!! $mensagem->texto !!}<br>
                     {{$mensagem->created_at->format('d/m/y h:i')}}<br>
                   </div>
                 </div>
@@ -67,5 +68,14 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $('#summer').summernote({
+    placeholder: 'Escreva sua mensagem aqui...',
+    lang: 'pt-BR',
+    tabsize: 2,
+    height: 100
+  });
+</script>
 
 @endsection

@@ -38,25 +38,26 @@
           @endif
 
           <div class="row" align="center">
-            <form class="form-horizontal" method="POST" action="{{ route("aluno.buscarAluno") }}">
+            @if(count($alunos) != 0)
+              <form class="form-horizontal" method="POST" action="{{ route("aluno.buscarAluno") }}">
 
-              {{ csrf_field() }}
+                {{ csrf_field() }}
 
-              <div class="row">
-                <div class="col-md-12">
-                  @if ($termo == null)
-                    <input style="width:74%" id="termo" type="text" name="termo" autofocus required placeholder="Pesquise aqui...">
-                  @else
-                    <input style="width:74%" id="termo" type="text" name="termo" autofocus required placeholder="Pesquise aqui..." value="{{$termo}}">
-                  @endif
+                <div class="row">
+                  <div class="col-md-12">
+                    @if ($termo == null)
+                      <input style="width:74%" id="termo" type="text" name="termo" autofocus required placeholder="Pesquise aqui...">
+                    @else
+                      <input style="width:74%" id="termo" type="text" name="termo" autofocus required placeholder="Pesquise aqui..." value="{{$termo}}">
+                    @endif
 
-                  <button type="submit" class="btn btn-primary btn-md">
-                    Buscar
-                  </button>
+                    <button type="submit" class="btn btn-primary btn-md">
+                      Buscar
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </form>
-
+              </form>
+            @endif
             <br>
 
             <table id="tabela_albuns" class="table-responsive">
@@ -87,12 +88,12 @@
                         <td class="text-center">
 
                           @if($aluno->imagem != null)
-                            <a class="btn btn-primary" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
-                              <img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="width:150px; height: 150px; object-fit: cover;">
+                            <a class="btn btn-primary" style="border-radius: 60%;" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
+                              <img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="border-radius: 60%; width:200px; height: 200px; object-fit: cover;">
                             </a>
                           @else
-                            <a class="btn btn-primary" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
-                              <img src="{{asset('images/avatar.png')}}" style="width:150px; height: 150px; object-fit: cover;">
+                            <a class="btn btn-primary" style="border-radius: 60%;" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
+                              <img src="{{asset('images/avatar.png')}}" style="border-radius: 60%; width:200px; height: 200px; object-fit: cover;">
                             </a>
                           @endif
 
@@ -120,11 +121,11 @@
                   @php($aluno = array_pop($tresAlunos))
                   @if($aluno != null)
                     <td class="text-center">
-                      <a class="btn btn-primary" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
+                      <a class="btn btn-primary" style="border-radius: 60%;" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
                         @if($aluno->imagem != null)
-                          <img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="width:150px; height: 150px; object-fit: cover;">
+                          <img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="border-radius: 60%; width:200px; height: 200px; object-fit: cover;">
                         @else
-                          <img src="{{asset('images/avatar.png')}}" style="width:150px; height: 150px; object-fit: cover;">
+                          <img src="{{asset('images/avatar.png')}}" style="border-radius: 60%; width:200px; height: 200px; object-fit: cover;">
                         @endif
                       </a>
 
@@ -154,7 +155,7 @@
               <strong> Nenhum resultado encontrado!</strong>
             </div>
           @elseif(count($alunos) == 0)
-            <div class="alert alert-danger">
+            <div class="alert alert-info">
               <strong> Nenhum aluno cadastrado.</strong>
             </div>
           @endif

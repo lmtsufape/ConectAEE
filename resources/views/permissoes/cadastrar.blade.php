@@ -72,7 +72,7 @@
               <label for="especializacao" class="col-md-4 control-label">Especialização</label>
 
               <div class="autocomplete col-md-6">
-                <input id="especializacao" type="text" class="form-control" name="especializacao" value="{{ old('especializacao') }}" autofocus>
+                <input id="especializacao" type="text" class="form-control" autocomplete="off" name="especializacao" value="{{ old('especializacao') }}">
 
                 @if ($errors->has('especializacao'))
                   <span class="help-block">

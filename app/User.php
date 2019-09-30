@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\ResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -56,7 +57,10 @@ class User extends Authenticatable
     }
 
     public function notificacoes(){
-        return $this->hasMany(Notificacao::class, 'destinatario_id')->orderBy('created_at', 'desc');
-;
+        return $this->hasMany(Notificacao::class, 'destinatario_id')->orderBy('created_at', 'desc')->take(5);
+    }
+
+    public function sendPasswordResetNotification($token){
+        $this->notify(new ResetPassword($token));
     }
 }

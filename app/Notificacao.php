@@ -21,4 +21,8 @@ class Notificacao extends Model
   public function perfil(){
       return $this->belongsTo(Perfil::class,'perfil_id','id');
   }
+
+  public function objetivo(){
+      return $this->belongsTo(Objetivo::class,'objetivo_id','id');
+  }
 }
