@@ -258,6 +258,15 @@ class AlunoController extends Controller{
     $gerenciar->isAdministrador = True;
     $gerenciar->save();
 
+    $notificacao = new Notificacao();
+    $notificacao->aluno_id = $gerenciar->aluno_id;
+    $notificacao->remetente_id = \Auth::user()->id;
+    $notificacao->destinatario_id = $gerenciar->user_id;
+    $notificacao->perfil_id = $gerenciar->perfil_id;
+    $notificacao->lido = false;
+    $notificacao->tipo = 2;
+    $notificacao->save();
+
     if($request->perfil == 2 && $request->cadastrado == "false"){
       return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.' foi cadastrado.')->with('password', 'A senha do usuário '.$request->username.' é '.$password.'.');
     }else{
