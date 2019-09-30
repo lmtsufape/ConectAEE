@@ -58,6 +58,10 @@ div.hifen {
  word-wrap: break-word;
 }
 
+.acessibilidade{
+  font-size: 18px;
+}
+
 .flex, .flex > div[class*='col-'] {
     display: -webkit-box;
     display: -moz-box;

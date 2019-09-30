@@ -13,10 +13,9 @@
         <li class="dropdown">
           <a class="menu-principal" href="{{ route('home') }}">Início</a>
         </li>
-        <li class="dropdown">
-          <a id="altocontraste" onclick="contraste()">Contraste</a>
-        </li>
-
+        <!-- <li class="dropdown">
+          <a class="menu-principal" href="#" id="altocontraste" onclick="contraste()">Contraste</a>
+        </li> -->
       @elseif(Auth::check() && !Auth::user()->cadastrado)
         <li class="dropdown">
           <a class="menu-principal" href="{{ route('usuario.completarCadastro') }}">Início</a>
@@ -169,9 +168,9 @@
           </ul>
         </li>
       @else
-        <li class="menu-principal">
+        <!-- <li class="menu-principal">
           <a id="altocontraste" onclick="contraste()">Contraste</a>
-        </li>
+        </li> -->
         <li><a class="menu-principal" href="{{ route('login') }}">Entrar</a></li>
         <li><a class="menu-principal" href="{{ route('register') }}">Cadastrar</a></li>
       @endif

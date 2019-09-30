@@ -39,7 +39,7 @@
 
   </head>
 
-  <body>
+  <body class="acessibilidade">
     <div>
       <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
         <ul id="menu-barra-temp" style="list-style:none;">
@@ -53,7 +53,7 @@
       </div>
 
       <!-- Barra de Logos -->
-      <div id="barra-logos" class-"container" style="background:#eaeff3; margin-top: 1px; height: 200px; padding: 10px 0 10px 0">
+      <div id="barra-logos" class-"container" style="background:#eaeff3; margin-top: 1px; height: 200px; padding: 10px 10px 10px 10px">
           <ul id="logos" style="list-style:none;">
               <li style="margin-right:140px; margin-left:110px; border-right:1px">
                   @if(Auth::check() && (Auth::user()->username == 'adelino.lmts' || Auth::user()->username == 'alana.lmts' || Auth::user()->username == 'mateus.lmts' || Auth::user()->username == 'eberson.lmts'))
@@ -73,6 +73,11 @@
           </ul>
       </div>
 
+      <div class="text-right" style="background:#eaeff3; padding: 15px;">
+        <button class="btn-info" id="altocontraste" onclick="contraste()">Contraste</button>
+        <!-- <button class="btn-info" onClick="fonte('a');">A+</button>
+        <button class="btn-info" onClick="fonte('d');">A-</button> -->
+      </div>
 
       <!-- barra de menu -->
       @include('layouts.menu')
