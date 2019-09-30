@@ -334,9 +334,16 @@ class AlunoController extends Controller{
 
     $perfis = Perfil::where('especializacao','=',NULL)->get();
 
+    $especializacoes = Perfil::select('especializacao')
+    ->where('especializacao', '!=', NULL)
+    ->get()->toArray();
+
+    $especializacoes = array_column($especializacoes, 'especializacao');
+
     return view('permissoes.requisitar',[
       'aluno' => $aluno,
       'perfis' => $perfis,
+      'especializacoes' => $especializacoes,
     ]);
   }
 
