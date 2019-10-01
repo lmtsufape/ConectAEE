@@ -36,9 +36,13 @@ class ObjetivoController extends Controller
 
     $aluno = Aluno::find($request->id_aluno);
 
-    $objetivos = Objetivo::orWhere('titulo','ilike', '%'.$request->termo.'%')
-                         ->orWhere('descricao','ilike','%'.$request->termo.'%')
-                         ->where('aluno_id','=',$request->id_aluno)->get();
+    $objetivos = Objetivo::where(function ($query) use ($request){
+                     $query->where('aluno_id','=',$request->id_aluno)
+                           ->where('titulo','ilike', '%'.$request->termo.'%');
+                 })->orWhere(function ($query) use ($request){
+                     $query->where('aluno_id','=',$request->id_aluno)
+                           ->where('descricao','ilike','%'.$request->termo.'%');
+                 })->get();
 
     $objetivosGroupByUser = $objetivos->groupBy('user_id');
 

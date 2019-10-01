@@ -22,10 +22,9 @@
             </div>
           @endif
 
-          @if(count($objetivosGroupByUser) != 0)
+          @if(count($objetivosGroupByUser) != 0 || ($termo != "" && count($objetivosGroupByUser) == 0))
             <div class="row" align="center">
-              <form class="form-horizontal" method="POST" action="{{ route("objetivo.buscar") }}">
-                {{ csrf_field() }}
+              <form class="form-horizontal" method="GET" action="{{ route("objetivo.buscar") }}">
 
                 <input hidden type="text" name="id_aluno" value="{{$aluno->id}}">
 
@@ -127,7 +126,7 @@
         </div>
 
         <div class="panel-footer">
-          <a class="btn btn-danger" href="{{route("aluno.gerenciar" , ['id_aluno'=>$aluno->id])}}">
+          <a class="btn btn-danger" href="{{URL::previous()}}">
             <i class="material-icons">keyboard_backspace</i>
             <br>
             Voltar
