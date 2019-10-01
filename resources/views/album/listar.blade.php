@@ -50,7 +50,7 @@
                       <tr align="center">
                     @endif
                     <td>
-                      <a href="{{route('album.ver', ['id_album'=>$album->id])}}" style="text-decoration:none">
+                      <button type="button" class="btn btn-info" onclick="window.location.href='{{route('album.ver', ['id_album'=>$album->id])}}'">
                         <div class="card text-center" style="width:200px">
                           <div class="card-body">
                             <img class="card-img-top" src="{{asset('storage/albuns/'.$aluno->id.'/'.$album->fotos[0]->imagem)}}" style="width:200px; height:200px; object-fit: cover;">
@@ -59,7 +59,7 @@
                             <p class="card-text">{{$album->descricao}}</p>
                           </div>
                         </div>
-                      </a>
+                      </button>
                     </td>
                     @if($count % 2 != 0)
                       </tr>

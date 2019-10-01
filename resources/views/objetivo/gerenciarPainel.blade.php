@@ -56,21 +56,25 @@
           <div class="row text-right" id="acoes" style="padding:1rem;">
             @if($objetivo->user->id == \Auth::user()->id && $objetivo->concluido == false)
                 <a class="btn btn-primary" href={{ route("objetivo.editar" , ['id_objetivo' => $objetivo->id]) }}>
-                  Editar
                   <i class="material-icons">edit</i>
+                  <br>
+                  Editar
                 </a>
                 <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do objetivo {{$objetivo->titulo}}?')" href={{ route("objetivo.excluir" , ['id_objetivo' => $objetivo->id]) }}>
-                  Excluir
                   <i class="material-icons">delete</i>
+                  <br>
+                  Excluir
                 </a>
                 <a class="btn btn-success" href={{ route("objetivo.concluir" , ['id_objetivo' => $objetivo->id]) }}>
-                  Finalizar
                   <i class="material-icons">folder</i>
+                  <br>
+                  Finalizar
                 </a>
             @elseif($objetivo->user->id == \Auth::user()->id && $objetivo->concluido == true)
               <a class="btn btn-danger" href={{ route("objetivo.desconcluir" , ['id_objetivo' => $objetivo->id]) }}>
-                Reabrir
                 <i class="material-icons">folder_open</i>
+                <br>
+                Reabrir
               </a>
             @endif
           </div>
@@ -154,7 +158,7 @@
 
             <div class="panel-footer" style="background-color: white;">
               <div class="row">
-                <div class="col-md-6" style="max-width:50%">
+                <div class="col-md-8" style="max-width:60%">
                   <div class="output">
                     <h4>Legenda:</h4>
 
@@ -170,7 +174,7 @@
                   </div>
                 </div>
 
-                <div class="col-md-6" style="max-width:50%">
+                <div class="col-md-4" style="max-width:40%">
                   <div class="text-right">
                     @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->perfil_id != 1 && $objetivo->user->id == \Auth::user()->id)
                       <a class="btn btn-success" href="{{ route("atividades.cadastrar" , ['id_objetivo' => $objetivo->id])}}">

@@ -62,19 +62,20 @@ Route::middleware('autorizacao')->group(function() {
   Route::post('/aluno/objetivos/criar', 'ObjetivoController@criar')->name('objetivo.criar');
   Route::get('/aluno/{id_aluno}/objetivos/listar','ObjetivoController@listar')->name('objetivo.listar');
   Route::get('/aluno/objetivo/{id_objetivo}/gerenciar','ObjetivoController@gerenciar')->name('objetivo.gerenciar');
-  Route::get('/aluno/objetivo/{id_objetivo}/gerenciar/concluir','ObjetivoController@concluir')->name('objetivo.concluir');
-  Route::get('/aluno/objetivo/{id_objetivo}/gerenciar/desconcluir','ObjetivoController@desconcluir')->name('objetivo.desconcluir');
+  Route::get('/aluno/objetivo/{id_objetivo}/gerenciar/finalizar','ObjetivoController@concluir')->name('objetivo.concluir');
+  Route::get('/aluno/objetivo/{id_objetivo}/gerenciar/reabrir','ObjetivoController@desconcluir')->name('objetivo.desconcluir');
   //novas
   Route::get('/aluno/objetivo/{id_objetivo}/gerenciar/editar','ObjetivoController@editar')->name('objetivo.editar');
   Route::get('/aluno/objetivo/{id_objetivo}/gerenciar/excluir','ObjetivoController@excluir')->name('objetivo.excluir');
   Route::post('/aluno/objetivo/atualizar', 'ObjetivoController@atualizar')->name('objetivo.atualizar');
+  Route::post('/aluno/objetivo/buscar', 'ObjetivoController@buscar')->name('objetivo.buscar');
 
   //Rotas para atividade
   Route::get('/aluno/objetivo/{id_objetivo}/gerenciar/atividades/listar','AtividadeController@listar')->name('atividades.listar');
   Route::post('/aluno/objetivos/gerenciar/atividades/criar', 'AtividadeController@criar')->name('atividades.criar');
   Route::get('/aluno/objetivo/{id_objetivo}/gerenciar/atividades/cadastrar','AtividadeController@cadastrar')->name('atividades.cadastrar');
-  Route::get('/aluno/objetivo/gerenciar/atividade/{id_atividade}/concluir','AtividadeController@concluir')->name('atividade.concluir');
-  Route::get('/aluno/objetivo/gerenciar/atividade/{id_atividade}/desconcluir','AtividadeController@desconcluir')->name('atividade.desconcluir');
+  Route::get('/aluno/objetivo/gerenciar/atividade/{id_atividade}/finalizar','AtividadeController@concluir')->name('atividade.concluir');
+  Route::get('/aluno/objetivo/gerenciar/atividade/{id_atividade}/reabrir','AtividadeController@desconcluir')->name('atividade.desconcluir');
   //novas
   Route::get('/aluno/objetivo/gerenciar/atividade/{id_atividade}/ver','AtividadeController@ver')->name('atividade.ver');
   Route::get('/aluno/objetivo/gerenciar/atividade/{id_atividade}/editar','AtividadeController@editar')->name('atividade.editar');

@@ -22,6 +22,30 @@
             </div>
           @endif
 
+          @if(count($objetivosGroupByUser) != 0)
+            <div class="row" align="center">
+              <form class="form-horizontal" method="POST" action="{{ route("objetivo.buscar") }}">
+                {{ csrf_field() }}
+
+                <input hidden type="text" name="id_aluno" value="{{$aluno->id}}">
+
+                <div class="row">
+                  <div class="col-md-12">
+                    @if ($termo == null)
+                      <input style="width:74%" id="termo" type="text" name="termo" autofocus required placeholder="Pesquise aqui por título ou descrição...">
+                    @else
+                      <input style="width:74%" id="termo" type="text" name="termo" autofocus required placeholder="Pesquise aqui por título ou descrição..." value="{{$termo}}">
+                    @endif
+
+                    <button type="submit" class="btn btn-primary btn-md">
+                      Buscar
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          @endif
+
           <div id="tabela" style="overflow-x:auto" class="table-responsive">
             <table class="table">
               <thead>
@@ -90,6 +114,16 @@
               </tbody>
             </table>
           </div>
+
+          @if($termo != "" && count($objetivosGroupByUser) == 0)
+            <div class="alert alert-danger">
+              <strong> Nenhum resultado encontrado!</strong>
+            </div>
+          @elseif(count($objetivosGroupByUser) == 0)
+            <div class="alert alert-info">
+              <strong> Nenhum objetivo cadastrado.</strong>
+            </div>
+          @endif
         </div>
 
         <div class="panel-footer">

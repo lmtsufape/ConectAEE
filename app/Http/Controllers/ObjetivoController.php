@@ -32,6 +32,31 @@ class ObjetivoController extends Controller
     ]);
   }
 
+  public static function buscar(Request $request){
+
+    $aluno = Aluno::find($request->id_aluno);
+
+    $objetivos = Objetivo::orWhere('titulo','ilike', '%'.$request->termo.'%')
+                         ->orWhere('descricao','ilike','%'.$request->termo.'%')
+                         ->where('aluno_id','=',$request->id_aluno)->get();
+
+    $objetivosGroupByUser = $objetivos->groupBy('user_id');
+
+    $size = 0;
+
+    if (count($objetivosGroupByUser) != 0) {
+      $size = count(max($objetivosGroupByUser->toArray()));
+    }
+
+    return view("objetivo.listarPainel", [
+      'aluno' => $aluno,
+      'objetivosGroupByUser' => $objetivosGroupByUser,
+      'size' => $size,
+      'termo' => $request->termo
+    ]);
+
+  }
+
   public static function listar($id_aluno){
 
     $aluno = Aluno::find($id_aluno);
@@ -47,6 +72,7 @@ class ObjetivoController extends Controller
       'aluno' => $aluno,
       'objetivosGroupByUser' => $objetivosGroupByUser,
       'size' => $size,
+      'termo' => ""
     ]);
   }
 
