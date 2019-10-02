@@ -13,6 +13,7 @@ use App\StatusObjetivo;
 use App\Aluno;
 use App\Notificacao;
 use App\Cor;
+use App\Status;
 use App\MensagemForumObjetivo;
 use DateTime;
 use Auth;
@@ -226,6 +227,7 @@ class ObjetivoController extends Controller
     }
 
     $statuses = ["Não iniciada", "Em andamento", "Finalizada"];
+    $statusesObjetivo = Status::all();
 
     return view("objetivo.gerenciarPainel",[
       'aluno' => $aluno,
@@ -236,6 +238,7 @@ class ObjetivoController extends Controller
       'size1' => $size1,
       'size2' => $size2,
       'statuses' => $statuses,
+      'statusesObjetivo' => $statusesObjetivo,
     ]);
   }
 
