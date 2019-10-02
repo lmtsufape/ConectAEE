@@ -47,7 +47,7 @@
               <label for="perfil" class="col-md-4 control-label">Perfil</label>
 
               <div class="col-md-6">
-                <select name="perfil" class="form-control" onchange="showEspecializacao(this)">
+                <select id="perfil" name="perfil" class="form-control" onchange="showEspecializacao(this)">
                   @if (old('tipo',NULL) != NULL)
                     @foreach($perfis as $perfil)
                       @if(old('perfil') == $perfil->nome)
@@ -141,6 +141,20 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  document.getElementById("perfil").onchange = function() {
+    var perfil = document.getElementById("perfil");
+
+    if (perfil.selectedIndex == 0) {
+      document.getElementById("isAdministrador").checked = true;
+      document.getElementById("isAdministrador").disabled = true;
+    }else{
+      document.getElementById("isAdministrador").checked = false;
+      document.getElementById("isAdministrador").disabled = false;
+    }
+  };
+</script>
 
 <script>
   function autocomplete(inp, arr) {

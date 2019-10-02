@@ -477,7 +477,7 @@ class AlunoController extends Controller{
     }
 
     $gerenciar->perfil_id = $perfil->id;
-    if($request->exists('isAdministrador')){
+    if($request->exists('isAdministrador') || $request->perfil == 'Responsável'){
       $gerenciar->isAdministrador = $request->isAdministrador;
     }
     //dd($gerenciar);
@@ -530,14 +530,14 @@ class AlunoController extends Controller{
 
     $gerenciar->perfil_id = $perfil->id;
 
-    if($request->exists('isAdministrador')){
-      $gerenciar->isAdministrador = $request->isAdministrador;
+    if($request->exists('isAdministrador') || $request->perfil == 'Responsável'){
+      $gerenciar->isAdministrador = true;
     }
 
     $gerenciar->update();
 
     $user = $gerenciar->user;
-    
+
     // $notificacao = new Notificacao();
     // $notificacao->aluno_id = $gerenciar->aluno_id;
     // $notificacao->remetente_id = \Auth::user()->id;
