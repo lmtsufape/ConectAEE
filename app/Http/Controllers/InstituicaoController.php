@@ -33,7 +33,7 @@ class InstituicaoController extends Controller
       'endereco' => $endereco]);
     }
 
-    public static function listar(Request $request){
+    public static function listar(){
       $instituicoes = \Auth::user()->instituicoes;
 
       return view("instituicao.listar", ['instituicoes' => $instituicoes]);

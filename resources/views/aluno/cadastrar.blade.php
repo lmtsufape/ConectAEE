@@ -277,7 +277,9 @@
               <label for="observacao" class="col-md-4 control-label">Observações</label>
 
               <div class="col-md-6">
-                <textarea id="observacao" rows = "5" cols = "50" class="form-control" name="observacao" >{{old('observacao')}}</textarea>
+                <textarea name="observacao" style="width:75%; display: inline" id="summer" type="text" class="form-control summernote">
+                  {{old('observacao')}}
+                </textarea>
 
                 @if ($errors->has('observacao'))
                   <span class="help-block">
@@ -324,18 +326,15 @@
             @endif
 
             <font size="4" class="row">
-              Cadastro de Responsável:
+              Responsável:
             </font>
 
             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-              <label for="username" class="col-md-4 control-label">Nome de Usuário</label>
+              <label for="username" class="col-md-4 control-label">Nome de Usuário <font color="red">*</font> </label>
 
               <div class="col-md-6">
-                @if (old('username') == null)
-                  <input name="username" type="text" class="form-control" value="{{old('username')}}">
-                @else
-                  <input name="username" type="text" class="form-control">
-                @endif
+
+                <input id="username" autocomplete="off" name="username" type="text" class="form-control" value="{{old('username')}}">
 
                 @if ($errors->has('username'))
                   <span class="help-block">
@@ -344,6 +343,31 @@
                 @endif
               </div>
             </div>
+
+            <div class="form-group{{ $errors->has('cadastrado') ? ' has-error' : '' }}">
+              <label for="cadastrado" class="col-md-4 control-label">Usuário já cadastrado?</label>
+
+              <div class="col-md-6">
+
+                @if(old('cadastrado') == "true")
+                  <input type="radio" name="cadastrado" id="sim" value="true" checked>
+                @else
+                  <input type="radio" name="cadastrado" id="sim" value="true">
+                @endif
+
+                <label for="sim">Sim</label>
+
+                @if(old('cadastrado') == "false" || old('cadastrado') == null)
+                  <input type="radio" name="cadastrado" id="nao" value="false" checked>
+                @else
+                  <input type="radio" name="cadastrado" id="nao" value="false">
+                @endif
+
+                <label for="nao">Não</label>
+
+              </div>
+            </div>
+
             </div>
 
             <div class="form-group">
@@ -370,6 +394,14 @@
   </div>
 </div>
 
+<script type="text/javascript">
+  $('#summer').summernote({
+    lang: 'pt-BR',
+    tabsize: 2,
+    height: 100
+  });
+</script>
+
 <script src="{{ asset('js/jquery-3.3.1.min.js')}}"></script>
 <script src="{{ asset('js/select2.min.js') }}"></script>
 <script type="text/javascript">
@@ -378,111 +410,113 @@ $(document).ready(function() {
 });
 </script>
 <script>
-var estados = [];
+  var estados = [];
 
-function loadEstados(element) {
-  if (estados.length > 0) {
-    putEstados(element);
-    $(element).removeAttr('disabled');
-  } else {
-    $.ajax({
-      url: 'https://api.myjson.com/bins/enzld',
-      method: 'get',
-      dataType: 'json',
-      beforeSend: function() {
-        $(element).html('<option>Carregando...</option>');
-      }
-    }).done(function(response) {
-      estados = response.estados;
+  function loadEstados(element) {
+    if (estados.length > 0) {
       putEstados(element);
       $(element).removeAttr('disabled');
-    });
-  }
-}
-
-function putEstados(element) {
-  var oldEstado = "{{old('estado')}}";
-
-  var label = $(element).data('label');
-  label = label ? label : 'Estado';
-
-  var options = '<option value="">' + label + '</option>';
-  for (var i in estados) {
-    var estado = estados[i];
-
-    if(estado.sigla == oldEstado){
-      options += '<option selected value="' + estado.sigla + '">' + estado.nome + '</option>';
-    }else{
-      options += '<option value="' + estado.sigla + '">' + estado.nome + '</option>';
+    } else {
+      $.ajax({
+        url: 'https://api.myjson.com/bins/enzld',
+        method: 'get',
+        dataType: 'json',
+        beforeSend: function() {
+          $(element).html('<option>Carregando...</option>');
+        }
+      }).done(function(response) {
+        estados = response.estados;
+        putEstados(element);
+        $(element).removeAttr('disabled');
+      });
     }
   }
 
-  if(oldEstado != ""){
-    var target = $(element).data('target');
+  function putEstados(element) {
+    var oldEstado = "{{old('estado')}}";
 
-    if (target) {
-      loadCidades(target, oldEstado);
-    }
-  }
+    var label = $(element).data('label');
+    label = label ? label : 'Estado';
 
-  $(element).html(options);
-}
+    var options = '<option value="">' + label + '</option>';
+    for (var i in estados) {
+      var estado = estados[i];
 
-function loadCidades(element, estado_sigla) {
-
-  if (estados.length > 0) {
-    putCidades(element, estado_sigla);
-    $(element).removeAttr('disabled');
-  } else {
-    $.ajax({
-      url: theme_url + '/assets/json/estados.json',
-      method: 'get',
-      dataType: 'json',
-    }).done(function(response) {
-      estados = response.estados;
-      putCidades(element, estado_sigla);
-      $(element).removeAttr('disabled');
-    });
-    document.write(estados.length);
-  }
-}
-
-function putCidades(element, estado_sigla) {
-  var label = $(element).data('label');
-  label = label ? label : 'Cidade';
-
-  var oldCidade = "{{old('cidade')}}";
-
-  var options = '<option value="">' + label + '</option>';
-  for (var i in estados) {
-    var estado = estados[i];
-    if (estado.sigla != estado_sigla)
-    continue;
-    for (var j in estado.cidades) {
-      var cidade = estado.cidades[j];
-
-      if (cidade == oldCidade) {
-        options += '<option selected value="' + cidade + '">' + cidade + '</option>';
-      }else {
-        options += '<option value="' + cidade + '">' + cidade + '</option>';
+      if(estado.sigla == oldEstado){
+        options += '<option selected value="' + estado.sigla + '">' + estado.nome + '</option>';
+      }else{
+        options += '<option value="' + estado.sigla + '">' + estado.nome + '</option>';
       }
     }
-  }
-  $(element).html(options);
-}
 
-document.addEventListener('DOMContentLoaded', function() {
-  loadEstados('#estado');
+    if(oldEstado != ""){
+      var target = $(element).data('target');
 
-  $(document).on('change', '#estado', function(e) {
-    var target = $(this).data('target');
-    if (target) {
-      loadCidades(target, $(this).val());
+      if (target) {
+        loadCidades(target, oldEstado);
+      }
     }
-  });
 
-}, false);
+    $(element).html(options);
+  }
+
+  function loadCidades(element, estado_sigla) {
+
+    if (estados.length > 0) {
+      putCidades(element, estado_sigla);
+      $(element).removeAttr('disabled');
+    } else {
+      $.ajax({
+        url: theme_url + '/assets/json/estados.json',
+        method: 'get',
+        dataType: 'json',
+      }).done(function(response) {
+        estados = response.estados;
+        putCidades(element, estado_sigla);
+        $(element).removeAttr('disabled');
+      });
+      document.write(estados.length);
+    }
+  }
+
+  function putCidades(element, estado_sigla) {
+    var label = $(element).data('label');
+    label = label ? label : 'Cidade';
+
+    var oldCidade = "{{old('cidade')}}";
+
+    var options = '<option value="">' + label + '</option>';
+    for (var i in estados) {
+      var estado = estados[i];
+      if (estado.sigla != estado_sigla)
+      continue;
+      for (var j in estado.cidades) {
+        var cidade = estado.cidades[j];
+
+        if (cidade == oldCidade) {
+          options += '<option selected value="' + cidade + '">' + cidade + '</option>';
+        }else {
+          options += '<option value="' + cidade + '">' + cidade + '</option>';
+        }
+      }
+    }
+    $(element).html(options);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    loadEstados('#estado');
+
+    $(document).on('change', '#estado', function(e) {
+      var target = $(this).data('target');
+      if (target) {
+        loadCidades(target, $(this).val());
+      }
+    });
+
+  }, false);
 
 </script>
+
+<script src="{{ asset('js/bootstrap-filestyle.min.js')}}"> </script>
 
 @endsection

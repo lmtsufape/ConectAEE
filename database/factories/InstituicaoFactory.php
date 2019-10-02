@@ -18,7 +18,7 @@ use Faker\Generator as Faker;
 $factory->define(Instituicao::class, function (Faker $faker) {
     return [
         'nome' => $faker->company,
-        'telefone' => $faker->phoneNumber,
+        'telefone' => "911111111",
         'email' => $faker->companyEmail,
     ];
 });

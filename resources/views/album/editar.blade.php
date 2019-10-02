@@ -231,7 +231,6 @@
 
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
 
-@endsection
 
 <script>
 
@@ -245,3 +244,7 @@ function show(id) {
   document.getElementById(id).className = "item active";
 }
 </script>
+
+<script src="{{ asset('js/bootstrap-filestyle.min.js')}}"> </script>
+
+@endsection

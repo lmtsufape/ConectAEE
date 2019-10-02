@@ -21,7 +21,23 @@ class AlunoController extends Controller{
   public static function gerenciar($id_aluno){
     $aluno = Aluno::find($id_aluno);
 
-    $mensagens = MensagemForumAluno::where('forum_aluno_id','=',$aluno->forum->id)->orderBy('id','desc')->take(5)->get();
+    $mensagens = MensagemForumAluno::where('forum_aluno_id','=',$aluno->forum->id)
+                                   // ->where('texto', 'not like', '%'.'<img'.'%')
+                                   // ->where('texto', 'not like', '%'.'<iframe'.'%')
+                                   ->orderBy('id','desc')->take(5)->get();
+
+    foreach ($mensagens as $mensagem) {
+      $img = strpos($mensagem->texto, '<img');
+      $video = strpos($mensagem->texto, '<iframe');
+
+      if($img){
+        $mensagem->texto = str_replace('<img', '<img style="width:100%"', $mensagem->texto);
+      }
+
+      if($video){
+        $mensagem->texto = str_replace('<iframe', '<iframe style="width:100%"', $mensagem->texto);
+      }
+    }
 
     return view("aluno.gerenciar",[
       'aluno' => $aluno,
@@ -69,7 +85,7 @@ class AlunoController extends Controller{
 
     return view("aluno.cadastrar", [
       'instituicoes' => $instituicoes,
-      'perfis' => $perfis
+      'perfis' => $perfis,
     ]);
   }
 
@@ -135,7 +151,6 @@ class AlunoController extends Controller{
   }
 
   public static function criar(Request $request){
-
     $validator = Validator::make($request->all(), [
       'perfil' => ['required'],
       'instituicoes' => ['required'],
@@ -151,10 +166,23 @@ class AlunoController extends Controller{
       'bairro' => ['required'],
       'cidade' => ['required'],
       'estado' => ['required'],
-      'username' => ['required_if:perfil,==,2','unique:users']
+      'username' => ['required_if:perfil,==,2']
     ],[
       'username.required_if' => 'É necessário criar um usuário quando o cadastrante é um Professor AEE',
     ]);
+
+    $validator->sometimes('username', 'unique:users', function ($request) {
+      return $request->cadastrado == "false";
+    });
+
+    $validator->sometimes('username', 'exists:users', function ($request) {
+      return $request->cadastrado == "true";
+    });
+
+    if(\Auth::user()->username == $request->username){
+      $validator->errors()->add('username','Você não pode colocar seu nome de usuário neste campo.');
+      return redirect()->back()->withErrors($validator->errors())->withInput();
+    }
 
     if($validator->fails()){
       return redirect()->back()->withErrors($validator->errors())->withInput();
@@ -169,14 +197,6 @@ class AlunoController extends Controller{
     $endereco->save();
 
     $aluno = new Aluno();
-
-    // if ($request->imagem != null) {
-    //   $nome = uniqid(date('HisYmd'));
-    //   $extensao = $request->imagem->extension();
-    //   $nomeArquivo = "{$nome}.{$extensao}";
-    //   $request->imagem->move(public_path('avatars'), $nomeArquivo);
-    //   $aluno->imagem = "/avatars/".$nomeArquivo;
-    // }
 
     if ($request->imagem != null) {
       $nome = uniqid(date('HisYmd'));
@@ -217,13 +237,18 @@ class AlunoController extends Controller{
 
     $password = str_random(6);
 
-    if($request->perfil == 2){
-      $user = new User();
+    $user = new User();
+
+    if($request->perfil == 2 && $request->cadastrado == "false"){
       $user->username = $request->username;
       $user->password = bcrypt($password);
       $user->cadastrado = false;
       $user->save();
+    }else if($request->perfil == 2 && $request->cadastrado == "true"){
+      $user = User::where('username','=',$request->username)->first();
+    }
 
+    if ($request->perfil == 2) {
       $gerenciar = new Gerenciar();
       $gerenciar->user_id = $user->id;
       $gerenciar->aluno_id = $aluno->id;
@@ -232,7 +257,16 @@ class AlunoController extends Controller{
       $gerenciar->save();
     }
 
-    if($request->perfil == 2){
+    $notificacao = new Notificacao();
+    $notificacao->aluno_id = $gerenciar->aluno_id;
+    $notificacao->remetente_id = \Auth::user()->id;
+    $notificacao->destinatario_id = $gerenciar->user_id;
+    $notificacao->perfil_id = $gerenciar->perfil_id;
+    $notificacao->lido = false;
+    $notificacao->tipo = 2;
+    $notificacao->save();
+
+    if($request->perfil == 2 && $request->cadastrado == "false"){
       return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.' foi cadastrado.')->with('password', 'A senha do usuário '.$request->username.' é '.$password.'.');
     }else{
       return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.' foi cadastrado.');
@@ -299,13 +333,20 @@ class AlunoController extends Controller{
 
     $perfis = Perfil::where('especializacao','=',NULL)->get();
 
+    $especializacoes = Perfil::select('especializacao')
+    ->where('especializacao', '!=', NULL)
+    ->get()->toArray();
+
+    $especializacoes = array_column($especializacoes, 'especializacao');
+
     return view('permissoes.requisitar',[
       'aluno' => $aluno,
       'perfis' => $perfis,
+      'especializacoes' => $especializacoes,
     ]);
   }
 
-  public static function notificar(Request $request){
+  public static function notificarPermissao(Request $request){
 
     $rules = array(
       'perfil' => 'required',
@@ -436,7 +477,7 @@ class AlunoController extends Controller{
     }
 
     $gerenciar->perfil_id = $perfil->id;
-    if($request->exists('isAdministrador')){
+    if($request->exists('isAdministrador') || $request->perfil == 'Responsável'){
       $gerenciar->isAdministrador = $request->isAdministrador;
     }
     //dd($gerenciar);
@@ -451,10 +492,88 @@ class AlunoController extends Controller{
     $notificacao->tipo = 2;
     $notificacao->save();
 
-    return redirect()->route('aluno.permissoes',['id_aluno' => $gerenciar->aluno_id])->with('Success','O usuário '.$user->name.' agora possui permissão.');
+    return redirect()->route('aluno.permissoes',['id_aluno' => $gerenciar->aluno_id])->with('Success','O usuário '.$user->name.' agora possui permissão de acesso ao aluno.');
   }
 
-  public function removerPermissao($id_aluno,$id_permissao){
+  public static function atualizarPermissao(Request $request){
+    //Validação dos dados
+    $rules = array(
+      'perfil' => 'required',
+      'especializacao' => 'required_if:perfil,==,Profissional Externo',
+    );
+    $messages = array(
+      'username.exists' => 'O usuário em questão não está cadastrado.',
+      'perfil.required' => 'Selecione um perfil.',
+      'especializacao.required_if' => 'Necessário inserir uma especialização.',
+    );
+
+    $validator = Validator::make($request->all(),$rules,$messages);
+    if($validator->fails()){
+      return redirect()->back()->withErrors($validator->errors())->withInput();
+    }
+
+    //Criação do Gerencimento
+    $gerenciar = Gerenciar::find($request->id_permissao);
+
+    $perfil = Perfil::where('nome','=',$request->perfil)->where('especializacao','=',$request->especializacao)->first();
+
+    if($perfil == NULL ){
+      if($request->perfil == 'Profissional Externo'){
+        $perfil = new Perfil();
+        $perfil->nome = 'Profissional Externo';
+        $perfil->especializacao = $request->especializacao;
+        $perfil->save();
+      }else{
+        $perfil = Perfil::where('nome','=',$request->perfil)->where('especializacao','=',NULL)->first();
+      }
+    }
+
+    $gerenciar->perfil_id = $perfil->id;
+
+    if($request->exists('isAdministrador') || $request->perfil == 'Responsável'){
+      $gerenciar->isAdministrador = true;
+    }
+
+    $gerenciar->update();
+
+    $user = $gerenciar->user;
+
+    // $notificacao = new Notificacao();
+    // $notificacao->aluno_id = $gerenciar->aluno_id;
+    // $notificacao->remetente_id = \Auth::user()->id;
+    // $notificacao->destinatario_id = $gerenciar->user_id;
+    // $notificacao->perfil_id = $gerenciar->perfil_id;
+    // $notificacao->lido = false;
+    // $notificacao->tipo = 2;
+    // $notificacao->save();
+
+    return redirect()->route('aluno.permissoes',['id_aluno' => $gerenciar->aluno_id])->with('Success','A permissão de acesso do usuário '.$user->name.' foi alterada.');
+  }
+
+
+  public function editarPermissao($id_aluno,$id_permissao){
+    $aluno = Aluno::find($id_aluno);
+    $perfis = Perfil::where('especializacao','=',NULL)->get();
+
+    $especializacoes = Perfil::select('especializacao')
+    ->where('especializacao', '!=', NULL)
+    ->get()->toArray();
+
+    $especializacoes = array_column($especializacoes, 'especializacao');
+
+    $gerenciar = Gerenciar::find($id_permissao);
+
+    return view('permissoes.editar',[
+      'aluno' => $aluno,
+      'perfis' => $perfis,
+      'gerenciar' => $gerenciar,
+      'especializacoes' => $especializacoes,
+    ]);
+
+    return redirect()->back()->with('Removed','Permissões removidas com sucesso.');
+  }
+
+  public function removerPermissao($id_permissao){
     $gerenciar = Gerenciar::find($id_permissao);
     $gerenciar->delete();
 

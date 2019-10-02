@@ -13,7 +13,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
-        <div class="panel-heading">Permissões de {{$aluno->nome}}</div>
+        <div class="panel-heading">Permissões de acesso à {{$aluno->nome}}</div>
 
         <div class="panel-body">
           @if (\Session::has('Success'))
@@ -36,11 +36,11 @@
               <thead>
                 <tr>
                   <th>Nome</th>
-                  <th>Perfil</th>
+                  <th>Perfil/Especialização</th>
                   <th>Administrador</th>
-                  @if($atual->isAdministrador)
-                    <th>Remover</th>
-                  @endif
+                  <th>Ações</th>
+                  <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -49,9 +49,9 @@
                     <td data-title="Nome">{{ $gerenciar->user->name }} </td>
 
                     @if($gerenciar->perfil->especializacao == NULL)
-                      <td data-title="Perfil">{{ $gerenciar->perfil->nome }} </td>
+                      <td data-title="Perfil/Especialização">{{ $gerenciar->perfil->nome }} </td>
                     @else
-                      <td data-title="Perfil">{{ $gerenciar->perfil->especializacao }} </td>
+                      <td data-title="Perfil/Especialização">{{ $gerenciar->perfil->especializacao }} </td>
                     @endif
 
                     <td data-title="Administrador">{{ ($gerenciar->isAdministrador) ? 'Sim' : 'Não' }}</td>
@@ -59,14 +59,23 @@
                     @if($atual->isAdministrador)
                       @if(!($gerenciar->user->id == Auth::user()->id))
                         @if(!($gerenciar->isAdministrador))
-                          <td data-title="Excluir"><strong style="color: red">
-                            <a href='{{route('aluno.permissoes.remover',[$aluno->id,$gerenciar->id])}}' style="color: red" onclick="return confirm('Essa ação removerá as permissões de {{$gerenciar->user->name}}. Deseja prosseguir?')">X</a>
-                          </strong></td>
+                          <td data-title="Ações">
+                            <a class="btn btn-primary" href='{{route('aluno.permissoes.editar',[$aluno->id, $gerenciar->id])}}'>
+                              <i class="material-icons">edit</i>
+                            </a>
+                          </td>
+                          <td data-title="">
+                            <a class="btn btn-danger" href='{{route('aluno.permissoes.remover',[$gerenciar->id])}}' onclick="return confirm('Essa ação removerá as permissões de {{$gerenciar->user->name}}. Deseja prosseguir?')">
+                              <i class="material-icons">delete</i>
+                            </a>
+                          </td>
                         @else
-                          <td>-</td>
+                          <td></td>
+                          <td></td>
                         @endif
                       @else
-                        <td>-</td>
+                        <td></td>
+                        <td></td>
                       @endif
                     @endif
                   </tr>

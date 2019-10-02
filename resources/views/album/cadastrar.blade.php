@@ -94,4 +94,6 @@
   </div>
 </div>
 
+<script src="{{ asset('js/bootstrap-filestyle.min.js')}}"> </script>
+
 @endsection

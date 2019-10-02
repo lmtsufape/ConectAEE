@@ -16,31 +16,27 @@ class UserSeeder extends Seeder
             'name' => "Mariel",
             'username' => "mariel",
             'email' => "mariel@gmail.com",
-            'telefone' => "(81) 91111-1111",
         ]);
 
         factory(User::class)->create([
             'name' => "Igor",
             'username' => "igor",
-            'telefone' => "(81) 91111-1111",
         ]);
 
         factory(User::class)->create([
             'name' => "Anderson",
             'username' => "anderson",
-            'telefone' => "(81) 91111-1111",
         ]);
 
         factory(User::class)->create([
             'name' => "Eberson",
             'username' => "eberson.lmts",
-            'telefone' => "(81) 91111-1111",
+            'email' => "eberson.santos1@gmail.com",
         ]);
 
         factory(User::class)->create([
             'name' => "Adelino",
             'username' => "adelino.lmts",
-            'telefone' => "(81) 91111-1111",
         ]);
 
         //factory(User::class, 45)->create();

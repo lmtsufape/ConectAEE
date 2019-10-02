@@ -6,8 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Objetivo;
 use App\Aluno;
+use App\Notificacao;
 use App\Sugestao;
 use DateTime;
+use Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 
 class SugestaoController extends Controller
 {
@@ -73,7 +77,10 @@ class SugestaoController extends Controller
     $sugestao->user_id = \Auth::user()->id;
     $sugestao->save();
 
-    return redirect()->route("sugestao.ver", ["id_sugestao" => $sugestao->id])->with('success','Sugestão cadastrada.');
+    SugestaoController::notificarSugestao($sugestao);
+
+    return Redirect::to(route("objetivo.gerenciar", ["id_objetivo" => $sugestao->objetivo->id]) . "#sugestoes")->with('sugestao','Sugestão cadastrada.');;
+
   }
 
   public static function atualizar(Request $request){
@@ -91,7 +98,8 @@ class SugestaoController extends Controller
     $sugestao->descricao = $request->descricao;
     $sugestao->update();
 
-    return redirect()->route("sugestao.ver", ["id_sugestao" => $sugestao->id])->with('success','A sugestão '.$sugestao->titulo.' foi atualizada.');
+    return Redirect::to(route("objetivo.gerenciar", ["id_objetivo" => $sugestao->objetivo->id]) . "#sugestoes")->with('sugestao','Sugestão atualizada.');;
+
   }
 
   // public function listar($id_objetivo){
@@ -106,5 +114,27 @@ class SugestaoController extends Controller
   //     'sugestoes' => $sugestoes
   //   ]);
   // }
+
+  private static function notificarSugestao($sugestao){
+
+    $id_objetivo = $sugestao->objetivo->id;
+    $id_aluno =$sugestao->objetivo->aluno->id;
+
+    $aluno = Aluno::find($id_aluno);
+    $gerenciars = $aluno->gerenciars;
+
+    foreach ($gerenciars as $gerenciar) {
+      if ($gerenciar->user != Auth::user()) {
+        $notificacao = new Notificacao();
+        $notificacao->aluno_id = $aluno->id;
+        $notificacao->remetente_id = Auth::user()->id;
+        $notificacao->destinatario_id = $gerenciar->user_id;
+        $notificacao->objetivo_id = $id_objetivo;
+        $notificacao->lido = false;
+        $notificacao->tipo = 5; //sugestao
+        $notificacao->save();
+      }
+    }
+  }
 
 }

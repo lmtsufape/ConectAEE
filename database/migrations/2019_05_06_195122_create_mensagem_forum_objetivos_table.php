@@ -17,7 +17,7 @@ class CreateMensagemForumObjetivosTable extends Migration
       $table->bigIncrements('id');
       $table->timestamps();
 
-      $table->string('texto');
+      $table->text('texto');
       $table->integer('user_id');
       $table->integer('forum_objetivo_id');
 

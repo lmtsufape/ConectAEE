@@ -90,24 +90,30 @@ Meus dados
 
               <div class="col-md-6">
                 @if(old('telefone',NULL) != NULL)
-                <input type="text" name="telefone" id="telefone" minlength="10" placeholder="DDD+Telefone" maxlength="11" class="form-control" value="{{ old('telefone') }}">
+                  <input type="text" name="telefone" id="telefone" minlength="10" placeholder="DDD+Telefone" maxlength="11" class="form-control" value="{{ old('telefone') }}">
                 @else
-                <input type="text" name="telefone" id="telefone" minlength="10" placeholder="DDD+Telefone" maxlength="11" class="form-control" value="{{ $usuario->telefone }}">
+                  <input type="text" name="telefone" id="telefone" minlength="10" placeholder="DDD+Telefone" maxlength="11" class="form-control" value="{{ $usuario->telefone }}">
                 @endif
 
                 @if ($errors->has('telefone'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('telefone') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('telefone') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group{{ $errors->has('senha') ? ' has-error' : '' }}">
               <label for="senha" class="col-md-4 control-label">Confirme sua senha</label>
 
               <div class="col-md-6">
                 <input type="password" name="senha" class="form-control">
+
+                @if ($errors->has('senha'))
+                  <span class="help-block">
+                    <strong>{{ $errors->first('senha') }}</strong>
+                  </span>
+                @endif
               </div>
             </div>
 

@@ -29,7 +29,27 @@ class PerfilSeeder extends Seeder
 
         factory(Perfil::class)->create([
             'nome' => "Profissional Externo",
-            'especializacao' => 'Psicólogo',
+            'especializacao' => NULL,
+        ]);
+
+        factory(Perfil::class)->create([
+            'nome' => "Profissional Externo",
+            'especializacao' => 'Psicologia',
+        ]);
+
+        factory(Perfil::class)->create([
+            'nome' => "Profissional Externo",
+            'especializacao' => 'Fisioterapia',
+        ]);
+
+        factory(Perfil::class)->create([
+            'nome' => "Profissional Externo",
+            'especializacao' => 'Terapia Ocupacional',
+        ]);
+
+        factory(Perfil::class)->create([
+            'nome' => "Profissional Externo",
+            'especializacao' => 'Fonoaudiologia',
         ]);
     }
 }
