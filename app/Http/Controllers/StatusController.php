@@ -4,28 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use App\Aluno;
 use App\Objetivo;
 use App\Status;
 use App\StatusObjetivo;
 use DateTime;
 
+
 class StatusController extends Controller
 {
-  public function cadastrar($id_objetivo){
-    $statuses = Status::all();
+  // public function cadastrar($id_objetivo){
+  //   $statuses = Status::all();
+  //
+  //   $objetivo = Objetivo::find($id_objetivo);
+  //   $aluno = $objetivo->aluno;
+  //
+  //   return view("status.cadastrar", [
+  //     'aluno' => $aluno,
+  //     'objetivo' => $objetivo,
+  //     'statuses' => $statuses
+  //   ]);
+  // }
 
-    $objetivo = Objetivo::find($id_objetivo);
-    $aluno = $objetivo->aluno;
-
-    return view("status.cadastrar", [
-      'aluno' => $aluno,
-      'objetivo' => $objetivo,
-      'statuses' => $statuses
-    ]);
-  }
-
-  public function criar(Request $request){
+  public function atualizar(Request $request){
     $validator = Validator::make($request->all(), [
       'status' => ['required'],
     ]);
@@ -40,6 +42,6 @@ class StatusController extends Controller
     $statusObjetivo->status_id = $request->status;
     $statusObjetivo->save();
 
-    return redirect()->route("objetivo.gerenciar", ["id_objetivo" => $request->id_objetivo])->with('success','Status atualizado.');
+    return Redirect::to(route("objetivo.gerenciar", ["id_objetivo" => $request->id_objetivo]) . "#painel0")->with('success','Status atualizado.');
   }
 }

@@ -108,8 +108,8 @@ Route::middleware('autorizacao')->group(function() {
   Route::get('/aluno/objetivo/{id_objetivo}/forum','ForumController@abrirForumObjetivo')->name('objetivo.forum');
 
   //rotas para statuses
-  Route::get('/aluno/objetivos/{id_objetivo}/gerenciar/status/cadastrar','StatusController@cadastrar')->name('objetivo.status.cadastrar');
-  Route::post('/aluno/objetivos/status/criar', 'StatusController@criar')->name('objetivo.status.criar');
+  // Route::get('/aluno/objetivo/{id_objetivo}/gerenciar/status/cadastrar','StatusController@cadastrar')->name('objetivo.status.cadastrar');
+  Route::post('/aluno/objetivo/status/atualizar', 'StatusController@atualizar')->name('objetivo.status.atualizar');
 
   //Rotas para albuns //novas
   Route::get('/aluno/{id_aluno}/albuns/listar', 'AlbumController@listar')->name('album.listar');

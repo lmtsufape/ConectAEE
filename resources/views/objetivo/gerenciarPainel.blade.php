@@ -39,10 +39,44 @@
                 echo $objetivo->concluido ? "Sim" : "Não";
               ?>
               <br><br>
-              <strong>Histórico de Status: </strong>
+              <strong>Histórico de Status: </strong> <br>
               @foreach ($objetivo->statusObjetivo as $statusObjetivo)
-                | {{ $statusObjetivo->status->status }} {{ $statusObjetivo->data}}
+                {{ $statusObjetivo->status->status }} {{ $statusObjetivo->data}} <br>
               @endforeach
+
+              <br>
+
+              <strong>Status</strong>
+
+              <form method="POST" action="{{ route("objetivo.status.atualizar") }}">
+                {{ csrf_field() }}
+
+                <input id="id_aluno" type="hidden" class="form-control" name="id_aluno" value="{{ $aluno->id }}">
+                <input id="id_objetivo" type="hidden" class="form-control" name="id_objetivo" value="{{ $objetivo->id }}">
+
+                <div class="col-md-12">
+
+                  <div class="col-md-8">
+                    <select id="status" class="form-control" name="status">
+                      @foreach($statusesObjetivo as $status)
+                        @if($statusObjetivo->status == $status)
+                          <option value={{$status->id}} selected>{{$status->status}}</option>
+                        @else
+                          <option value={{$status->id}}>{{$status->status}}</option>
+                        @endif
+                      @endforeach
+                    </select>
+                  </div>
+
+                  <div class="col-md-4">
+                    <button type="submit" class="btn btn-success">
+                      Atualizar
+                    </button>
+                  </div>
+                </div>
+
+
+              </form>
             </div>
 
             <div class="col-md-6" align="justify">
