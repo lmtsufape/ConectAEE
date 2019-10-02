@@ -12,9 +12,7 @@
         <div class="panel-heading">Buscar alunos</div>
 
         <div class="panel-body">
-          <form class="form-horizontal" method="POST" action="{{ route("aluno.buscarMatricula") }}">
-
-            {{ csrf_field() }}
+          <form class="form-horizontal" method="GET" action="{{ route("aluno.buscarMatricula") }}">
 
             <div class="row" align="center">
               <div class="col-md-12">

@@ -30,6 +30,11 @@
           </a>
           <ul class="dropdown-menu" role="menu">
             <li>
+              <a href="{{ route('aluno.cadastrar') }}">
+                Cadastrar
+              </a>
+            </li>
+            <li>
               <a href="{{ route('aluno.listar') }}">
                 Listar
               </a>
@@ -46,6 +51,11 @@
             Instituições <span class="caret"></span>
           </a>
           <ul class="dropdown-menu" role="menu">
+            <li>
+              <a href="{{ route('instituicao.cadastrar') }}">
+                Cadastrar
+              </a>
+            </li>
             <li>
               <a href="{{ route('instituicao.listar') }}">
                 Listar

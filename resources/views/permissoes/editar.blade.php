@@ -1,10 +1,10 @@
 @extends('layouts.principal')
-@section('title','Cadastrar permissão')
+@section('title','Editar permissão')
 @section('navbar')
 <a href="{{route('aluno.listar')}}">Início</a>
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
 > <a href="{{route('aluno.permissoes',$aluno->id)}}">Permissões</a>
-> Nova
+> Editar
 @endsection
 @section('content')
 <div class="container">
@@ -12,7 +12,7 @@
     <div class="col-md-12">
       <div class="panel panel-default">
 
-        <div class="panel-heading">Novo Gerenciador</div>
+        <div class="panel-heading">Editar Gerenciador</div>
 
         <div class="panel-body">
           @if (\Session::has('Fail'))
@@ -23,20 +23,22 @@
             </div>
           @endif
 
-          <form class="form-horizontal" autocomplete="off" method="POST" action="{{ route("aluno.permissoes.criar") }}">
+          <form class="form-horizontal" autocomplete="off" method="POST" action="{{ route("aluno.permissoes.atualizar") }}">
             {{ csrf_field() }}
 
-            <input type="hidden" name="id_aluno" value="{{$aluno->id}}">
+            <input type="hidden" name="id_permissao" value="{{$gerenciar->id}}">
 
             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
               <label for="username" class="col-md-4 control-label">Nome de Usuário</label>
 
               <div class="col-md-6">
-                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" autofocus>
+
+                <input id="username" type="text" class="form-control" name="username" value="{{ $gerenciar->user->username }}" disabled>
+
                 @if ($errors->has('username'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('username') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('username') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
@@ -46,25 +48,34 @@
 
               <div class="col-md-6">
                 <select id="perfil" name="perfil" class="form-control" onchange="showEspecializacao(this)">
-                  <option value="" selected disabled hidden>Escolha o Perfil</option>
-                  @foreach($perfis as $perfil)
-                    @if($perfil->nome == old('perfil'))
-                      <option value="{{$perfil->nome}}" selected>{{$perfil->nome}}</option>
-                    @else
-                      <option value="{{$perfil->nome}}">{{$perfil->nome}}</option>
-                    @endif
-                  @endforeach
+                  @if (old('tipo',NULL) != NULL)
+                    @foreach($perfis as $perfil)
+                      @if(old('perfil') == $perfil->nome)
+                        <option value="{{$perfil->nome}}" selected>{{$perfil->nome}}</option>
+                      @else
+                        <option value="{{$perfil->nome}}">{{$perfil->nome}}</option>
+                      @endif
+                    @endforeach
+                  @else
+                    @foreach($perfis as $perfil)
+                      @if($gerenciar->perfil->nome == $perfil->nome)
+                        <option value="{{$perfil->nome}}" selected>{{$perfil->nome}}</option>
+                      @else
+                        <option value="{{$perfil->nome}}">{{$perfil->nome}}</option>
+                      @endif
+                    @endforeach
+                  @endif
                 </select>
 
                 @if ($errors->has('perfil'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('perfil') }}</strong>
-                </span>
+                  <span class="help-block">
+                    <strong>{{ $errors->first('perfil') }}</strong>
+                  </span>
                 @endif
               </div>
             </div>
 
-            @if(old('perfil') == "Profissional Externo")
+            @if(old('perfil') == "Profissional Externo" || $gerenciar->perfil->nome == "Profissional Externo")
               <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}">
             @else
               <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}" style="display: none">
@@ -72,7 +83,11 @@
               <label for="especializacao" class="col-md-4 control-label">Especialização</label>
 
               <div class="autocomplete col-md-6">
-                <input id="especializacao" type="text" class="form-control" autocomplete="off" name="especializacao" value="{{ old('especializacao') }}">
+                @if(old('especializacao',NULL) != NULL)
+                  <input id="especializacao" type="text" class="form-control" autocomplete="off" name="especializacao" value="{{ old('especializacao') }}">
+                @else
+                  <input id="especializacao" type="text" class="form-control" autocomplete="off" name="especializacao" value="{{ $gerenciar->perfil->especializacao }}">
+                @endif
 
                 @if ($errors->has('especializacao'))
                   <span class="help-block">
@@ -86,7 +101,16 @@
               <label for="isAdministrador" class="col-md-4 control-label">Usuário é Administrador?</label>
 
               <div class="col-md-6">
-                <input style="margin-top: 10px" id="isAdministrador" type="checkbox" name="isAdministrador" value="true">
+                @if(old('isAdministrador',NULL) != NULL)
+                  <input style="margin-top: 10px" id="isAdministrador" type="checkbox" name="isAdministrador" value="true">
+                @else
+                  @if($gerenciar->isAdministrador)
+                    <input style="margin-top: 10px" id="isAdministrador" type="checkbox" name="isAdministrador" value="true" checked>
+                  @else
+                    <input style="margin-top: 10px" id="isAdministrador" type="checkbox" name="isAdministrador" value="true">
+                  @endif
+
+                @endif
 
                 @if ($errors->has('isAdministrador'))
                   <span class="help-block">
@@ -122,7 +146,7 @@
   document.getElementById("perfil").onchange = function() {
     var perfil = document.getElementById("perfil");
 
-    if (perfil.selectedIndex == 1) {
+    if (perfil.selectedIndex == 0) {
       document.getElementById("isAdministrador").checked = true;
       document.getElementById("isAdministrador").disabled = true;
     }else{
@@ -130,7 +154,6 @@
       document.getElementById("isAdministrador").disabled = false;
     }
   };
-
 </script>
 
 <script>

@@ -39,9 +39,7 @@
 
           <div class="row" align="center">
             @if(count($alunos) != 0)
-              <form class="form-horizontal" method="POST" action="{{ route("aluno.buscarAluno") }}">
-
-                {{ csrf_field() }}
+              <form class="form-horizontal" method="GET" action="{{ route("aluno.buscarAluno") }}">
 
                 <div class="row">
                   <div class="col-md-12">

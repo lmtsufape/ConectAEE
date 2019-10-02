@@ -136,6 +136,7 @@ class AtividadeController extends Controller
     $atividade = Atividade::find($id_atividade);
     $objetivo = $atividade->objetivo;
     $atividade->concluido = True;
+    $atividade->status = "Finalizada";
     $atividade->update();
 
     return Redirect::to(route("objetivo.gerenciar", ["id_objetivo" => $atividade->objetivo->id]) . "#atividades")->with('atividade','A atividade '.$atividade->titulo.' foi concluída.');;
@@ -148,6 +149,7 @@ class AtividadeController extends Controller
     $atividade = Atividade::find($id_atividade);
     $objetivo = $atividade->objetivo;
     $atividade->concluido = False;
+    $atividade->status = "Em andamento";
     $atividade->update();
 
     return Redirect::to(route("objetivo.gerenciar", ["id_objetivo" => $atividade->objetivo->id]) . "#atividades")->with('atividade','A atividade '.$atividade->titulo.' foi reaberta.');;

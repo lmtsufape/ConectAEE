@@ -14,19 +14,19 @@
         <div class="panel-body">
 
           @if (\Session::has('success'))
-          <br>
-          <div class="alert alert-success">
-            <strong>Sucesso!</strong>
-            {!! \Session::get('success') !!}
-          </div>
+            <br>
+            <div class="alert alert-success">
+              <strong>Sucesso!</strong>
+              {!! \Session::get('success') !!}
+            </div>
           @endif
 
           <div id="tabela" class="table-responsive">
             <table id="tabela_dados" class="table table-hover">
               <thead>
                 <tr>
-                  <th >Nome</th>
-                  <th >Ações</th>
+                  <th>Nome</th>
+                  <th>Ações</th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -34,24 +34,24 @@
               </thead>
               <tbody>
                 @foreach ($instituicoes as $instituicao)
-                <tr>
-                  <td data-title="Nome">{{ $instituicao->nome }}</td>
-                  <td data-title="Ações">
-                    <a class="btn btn-primary" href="{{ route("instituicao.ver" , ['id_instituicao' => $instituicao->id]) }}">
-                      <i class="material-icons">remove_red_eye</i>
-                    </a>
-                  </td>
-                  <td data-title="Ações">
-                    <a class="btn btn-primary" href="{{ route("instituicao.editar" , ['id_instituicao' => $instituicao->id]) }}">
-                      <i class="material-icons">edit</i>
-                    </a>
-                  </td>
-                  <td data-title="">
-                    <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da instituicao {{$instituicao->nome}}?')" href="{{ route("instituicao.excluir" , ['id_instituicao' => $instituicao->id]) }}">
-                      <i class="material-icons">delete</i>
-                    </a>
-                  </td>
-                </tr>
+                  <tr>
+                    <td data-title="Nome">{{ $instituicao->nome }}</td>
+                    <td data-title="Ações">
+                      <a class="btn btn-primary" href="{{ route("instituicao.ver" , ['id_instituicao' => $instituicao->id]) }}">
+                        <i class="material-icons">remove_red_eye</i>
+                      </a>
+                    </td>
+                    <td data-title="Ações">
+                      <a class="btn btn-primary" href="{{ route("instituicao.editar" , ['id_instituicao' => $instituicao->id]) }}">
+                        <i class="material-icons">edit</i>
+                      </a>
+                    </td>
+                    <td data-title="">
+                      <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da instituicao {{$instituicao->nome}}?')" href="{{ route("instituicao.excluir" , ['id_instituicao' => $instituicao->id]) }}">
+                        <i class="material-icons">delete</i>
+                      </a>
+                    </td>
+                  </tr>
                 @endforeach
               </tbody>
             </table>
