@@ -336,7 +336,9 @@
           </div>
 
           <div class="panel-footer" style="background-color: white;">
-            <a class="btn btn-primary" style="width:100%" href="{{route('objetivo.forum',['id_objetivo' => $objetivo->id])."#forum"}}">Ver todas as mensagens</a>
+            @if(count($mensagens) > 5)
+              <a class="btn btn-primary" style="width:100%" href="{{route('objetivo.forum',['id_objetivo' => $objetivo->id])."#forum"}}">Ver todas as mensagens</a>
+            @endif
           </div>
         </div>
       </div>

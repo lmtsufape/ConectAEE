@@ -179,6 +179,11 @@ class AlunoController extends Controller{
       return $request->cadastrado == "true";
     });
 
+    if(\Auth::user()->username == $request->username){
+      $validator->errors()->add('username','Você não pode colocar seu nome de usuário neste campo.');
+      return redirect()->back()->withErrors($validator->errors())->withInput();
+    }
+
     if($validator->fails()){
       return redirect()->back()->withErrors($validator->errors())->withInput();
     }
@@ -192,14 +197,6 @@ class AlunoController extends Controller{
     $endereco->save();
 
     $aluno = new Aluno();
-
-    // if ($request->imagem != null) {
-    //   $nome = uniqid(date('HisYmd'));
-    //   $extensao = $request->imagem->extension();
-    //   $nomeArquivo = "{$nome}.{$extensao}";
-    //   $request->imagem->move(public_path('avatars'), $nomeArquivo);
-    //   $aluno->imagem = "/avatars/".$nomeArquivo;
-    // }
 
     if ($request->imagem != null) {
       $nome = uniqid(date('HisYmd'));
@@ -495,10 +492,88 @@ class AlunoController extends Controller{
     $notificacao->tipo = 2;
     $notificacao->save();
 
-    return redirect()->route('aluno.permissoes',['id_aluno' => $gerenciar->aluno_id])->with('Success','O usuário '.$user->name.' agora possui permissão.');
+    return redirect()->route('aluno.permissoes',['id_aluno' => $gerenciar->aluno_id])->with('Success','O usuário '.$user->name.' agora possui permissão de acesso ao aluno.');
   }
 
-  public function removerPermissao($id_aluno,$id_permissao){
+  public static function atualizarPermissao(Request $request){
+    //Validação dos dados
+    $rules = array(
+      'perfil' => 'required',
+      'especializacao' => 'required_if:perfil,==,Profissional Externo',
+    );
+    $messages = array(
+      'username.exists' => 'O usuário em questão não está cadastrado.',
+      'perfil.required' => 'Selecione um perfil.',
+      'especializacao.required_if' => 'Necessário inserir uma especialização.',
+    );
+
+    $validator = Validator::make($request->all(),$rules,$messages);
+    if($validator->fails()){
+      return redirect()->back()->withErrors($validator->errors())->withInput();
+    }
+
+    //Criação do Gerencimento
+    $gerenciar = Gerenciar::find($request->id_permissao);
+
+    $perfil = Perfil::where('nome','=',$request->perfil)->where('especializacao','=',$request->especializacao)->first();
+
+    if($perfil == NULL ){
+      if($request->perfil == 'Profissional Externo'){
+        $perfil = new Perfil();
+        $perfil->nome = 'Profissional Externo';
+        $perfil->especializacao = $request->especializacao;
+        $perfil->save();
+      }else{
+        $perfil = Perfil::where('nome','=',$request->perfil)->where('especializacao','=',NULL)->first();
+      }
+    }
+
+    $gerenciar->perfil_id = $perfil->id;
+
+    if($request->exists('isAdministrador')){
+      $gerenciar->isAdministrador = $request->isAdministrador;
+    }
+
+    $gerenciar->update();
+
+    $user = $gerenciar->user;
+    
+    // $notificacao = new Notificacao();
+    // $notificacao->aluno_id = $gerenciar->aluno_id;
+    // $notificacao->remetente_id = \Auth::user()->id;
+    // $notificacao->destinatario_id = $gerenciar->user_id;
+    // $notificacao->perfil_id = $gerenciar->perfil_id;
+    // $notificacao->lido = false;
+    // $notificacao->tipo = 2;
+    // $notificacao->save();
+
+    return redirect()->route('aluno.permissoes',['id_aluno' => $gerenciar->aluno_id])->with('Success','A permissão de acesso do usuário '.$user->name.' foi alterada.');
+  }
+
+
+  public function editarPermissao($id_aluno,$id_permissao){
+    $aluno = Aluno::find($id_aluno);
+    $perfis = Perfil::where('especializacao','=',NULL)->get();
+
+    $especializacoes = Perfil::select('especializacao')
+    ->where('especializacao', '!=', NULL)
+    ->get()->toArray();
+
+    $especializacoes = array_column($especializacoes, 'especializacao');
+
+    $gerenciar = Gerenciar::find($id_permissao);
+
+    return view('permissoes.editar',[
+      'aluno' => $aluno,
+      'perfis' => $perfis,
+      'gerenciar' => $gerenciar,
+      'especializacoes' => $especializacoes,
+    ]);
+
+    return redirect()->back()->with('Removed','Permissões removidas com sucesso.');
+  }
+
+  public function removerPermissao($id_permissao){
     $gerenciar = Gerenciar::find($id_permissao);
     $gerenciar->delete();
 
