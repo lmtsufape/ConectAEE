@@ -11,7 +11,53 @@
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
-        <div class="panel-heading">Alunos</div>
+
+        <div class="panel-heading">
+          <div class="row col-md-12">
+            <div class="col-md-8">
+              <div style="width: 100%; margin-left: 0%;" class="row col-md-8">
+                <div style="width: 50%; float: left;" class="column col-md-6">
+                  <h2>
+                    Alunos
+                  </h2>
+                </div>
+                <div style="width:50%; float:right;" class="column col-md-6">
+                  <a class="btn btn-primary" style="float:right; margin-top:20px;" href="{{ route("aluno.cadastrar")}}">
+                    Cadastrar
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              @if(count($alunos) != 0 || $termo != null)
+                <form class="form-horizontal" method="GET" action="{{ route("aluno.buscarAluno") }}">
+
+                  <div id="divBusca" style="margin-top:20px;">
+
+                  <i class="material-icons">search</i>
+
+                  @if ($termo == null)
+                    <input id="termo" type="text" autocomplete="off" name="termo" autofocus placeholder="Pesquise aqui...">
+                  @else
+                    <input id="termo" type="text" autocomplete="off" name="termo" autofocus placeholder="Pesquise aqui..." value="{{$termo}}">
+                  @endif
+
+                  <button id="btnBusca" type="submit">
+                    Buscar
+                  </button>
+                  </div>
+                </form>
+              @endif
+            </div>
+
+          </div>
+
+          <br><br>
+
+          <hr style="border-top: 1px solid black;">
+
+        </div>
 
         <div class="panel-body">
 
@@ -38,29 +84,11 @@
           @endif
 
           <div class="row" align="center">
-            @if(count($alunos) != 0)
-              <form class="form-horizontal" method="GET" action="{{ route("aluno.buscarAluno") }}">
-
-                <div class="row">
-                  <div class="col-md-12">
-                    @if ($termo == null)
-                      <input style="width:74%" id="termo" type="text" name="termo" autofocus required placeholder="Pesquise aqui...">
-                    @else
-                      <input style="width:74%" id="termo" type="text" name="termo" autofocus required placeholder="Pesquise aqui..." value="{{$termo}}">
-                    @endif
-
-                    <button type="submit" class="btn btn-primary btn-md">
-                      Buscar
-                    </button>
-                  </div>
-                </div>
-              </form>
-            @endif
-            <br>
-
             <table id="tabela_albuns" class="table-responsive">
               <thead>
                 <tr>
+                  <th></th>
+                  <th></th>
                   <th></th>
                   <th></th>
                   <th></th>
@@ -69,7 +97,7 @@
               <tbody>
                 @php
                   $colunas = 0;
-                  $size = 4;
+                  $size = 6;
                   $tresAlunos = array();
                 @endphp
 
@@ -86,12 +114,12 @@
                         <td class="text-center">
 
                           @if($aluno->imagem != null)
-                            <a class="btn btn-primary" style="border-radius: 60%;" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
-                              <img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="border-radius: 60%; width:200px; height: 200px; object-fit: cover;">
+                            <a style="border-radius: 60%;" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
+                              <img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="border-radius: 60%; width:150px; height: 150px; object-fit: cover;">
                             </a>
                           @else
-                            <a class="btn btn-primary" style="border-radius: 60%;" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
-                              <img src="{{asset('images/avatar.png')}}" style="border-radius: 60%; width:200px; height: 200px; object-fit: cover;">
+                            <a style="border-radius: 60%;" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
+                              <img src="{{asset('images/avatar.png')}}" style="border-radius: 60%; width:150px; height: 150px; object-fit: cover;">
                             </a>
                           @endif
 
@@ -119,11 +147,11 @@
                   @php($aluno = array_pop($tresAlunos))
                   @if($aluno != null)
                     <td class="text-center">
-                      <a class="btn btn-primary" style="border-radius: 60%;" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
+                      <a style="border-radius: 60%;" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
                         @if($aluno->imagem != null)
-                          <img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="border-radius: 60%; width:200px; height: 200px; object-fit: cover;">
+                          <img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="border-radius: 60%; width:150px; height:150px; object-fit: cover;">
                         @else
-                          <img src="{{asset('images/avatar.png')}}" style="border-radius: 60%; width:200px; height: 200px; object-fit: cover;">
+                          <img src="{{asset('images/avatar.png')}}" style="border-radius: 60%; width:150px; height:150px; object-fit: cover;">
                         @endif
                       </a>
 
@@ -163,7 +191,7 @@
           </div>
         </div>
 
-        <div class="panel-footer">
+        <!-- <div class="panel-footer">
           <a class="btn btn-danger" href="{{ route("home") }}">
             <i class="material-icons">home</i>
             <br>
@@ -175,7 +203,7 @@
             <br>
             Novo
           </a>
-        </div>
+        </div> -->
 
       </div>
     </div>

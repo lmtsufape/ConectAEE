@@ -327,6 +327,14 @@ background-color: #3097D1;
   width: 12rem;
 }
 
+.btn-primary:visited{
+  background-color: #12583C;
+  border-color: #d3e0e9;
+  color: white;
+  border-radius: 15px;
+  width: 12rem;
+}
+
 .btn-primary:disabled{
   background-color: #12583C;
   border-color: #d3e0e9;
@@ -382,6 +390,10 @@ a:visited {
     color: #12583C;
 }
 
+a:visited {
+    color: #12583C;
+}
+
 /* mouse over */
 a:hover {
     color: #12583C;
@@ -398,4 +410,37 @@ a:active {
   box-shadow: 25px 25px 15px rgba(40, 40, 40, 0.77);
   -webkit-box-shadow: 25px 25px 15px rgba(40, 40, 40, 0.77);
   -moz-box-shadow: 25px 25px 15px rgba(40, 40, 40, 0.77);
+}
+
+#divBusca{
+  border:solid 2px #12583C;
+  border-radius:10px;
+  width:300px;
+  height:32px;
+}
+
+#termo{
+  float:left;
+  background-color:transparent;
+  padding-left:5px;
+  font-size:18px;
+  border:none;
+  height:30px;
+  width:202px;
+  box-shadow: 0 0 0 0;
+  outline: 0;
+}
+
+#btnBusca{
+  border:none;
+  float:left;
+  height:32px;
+  border-radius:0 7px 7px 0;
+  width:70px;
+  color: white;
+  background:#12583C;
+}
+
+#divBusca i{
+  float:left;
 }
