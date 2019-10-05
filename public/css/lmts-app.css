@@ -42,11 +42,11 @@
 
 #page-container {
   position: relative;
-  min-height: 70vh;
+  min-height: 90vh;
 }
 
 #content-wrap {
-  padding-bottom: 2.3rem;    /* Footer height */
+  padding-bottom: 2.5rem;    /* Footer height */
 }
 
 div.hifen {
@@ -133,15 +133,14 @@ div.hifen {
   width: 100%; // Add this
 }
 
-@media (max-width: 1000px) {
-    #barra-logos{display: none;}
-    .btn-toggle{display: block;}
+.panel-default > .panel-heading {
+  color: #454040;
+  border: #12583C;
 }
 
-.panel-default > .panel-heading {
-  color: #fff;
-  background-color: #12583c;
-  border-color: #d3e0e9;
+.panel-default{
+  border: none;
+  border-radius:20px;
 }
 
 .navbar-default .navbar-nav > .dropdown > a:focus, .navbar-default .navbar-nav > .dropdown > a:hover {
@@ -318,4 +317,85 @@ display: block;
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
 background-color: #3097D1;
+}
+
+.btn-primary{
+  background-color: #12583C;
+  border-color: #d3e0e9;
+  color: white;
+  border-radius: 15px;
+  width: 12rem;
+}
+
+.btn-primary:disabled{
+  background-color: #12583C;
+  border-color: #d3e0e9;
+  color: white;
+  border-radius: 15px
+}
+
+.btn-primary:hover{
+  background-color: #12583C;
+  border-color: #d3e0e9;
+  border-radius: 15px
+  color: white;
+}
+
+.btn-secondary{
+  background-color: #ffffff;
+  border-color: #12583C;
+  color: #12583C;
+  border-radius: 15px;
+  width: 139px;
+}
+
+.btn-secondary:disabled{
+  background-color: #ffffff;
+  border-color: #12583C;
+  color: #12583C;
+  border-radius: 15px
+}
+
+.btn-secondary:hover{
+  background-color: #ffffff;
+  border-color: #12583C;
+  border-radius: 15px
+  color: #12583C;
+}
+
+.texto{
+  padding: 50px;
+  color: white;
+}
+
+h1{
+  font-size: 45px;
+};
+
+/* link que ainda não foi visitado */
+a:link {
+   color: #12583C;
+}
+
+/* link que foi visitado */
+a:visited {
+    color: #12583C;
+}
+
+/* mouse over */
+a:hover {
+    color: #12583C;
+}
+
+/* link selecionado */
+a:active {
+    color: #12583C;
+}
+
+.sombra{
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  box-shadow: 25px 25px 15px rgba(40, 40, 40, 0.77);
+  -webkit-box-shadow: 25px 25px 15px rgba(40, 40, 40, 0.77);
+  -moz-box-shadow: 25px 25px 15px rgba(40, 40, 40, 0.77);
 }

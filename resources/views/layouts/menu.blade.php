@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" style="background-color: #12583c; border-color: #d3e0e9" role="navigation">
+<nav class="navbar-default" style="background-color: #12583c; border-color: #d3e0e9" role="navigation">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
       <span class="sr-only">Toggle navigation</span>
@@ -7,8 +7,8 @@
       <span class="icon-bar"></span>
     </button>
   </div>
-  <div class="collapse navbar-collapse" >
-    <ul class="nav navbar-nav" style="margin-left: 5%">
+  <div class="collapse navbar-collapse" style="margin-left:5%">
+    <ul class="nav navbar-nav" >
       @if(Auth::check() && Auth::user()->cadastrado)
         <li class="dropdown">
           <a class="menu-principal" href="{{ route('home') }}">Início</a>
@@ -65,7 +65,7 @@
         </li>
       @endif
     </ul>
-    <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
+    <ul class="nav navbar-nav navbar-right" style="margin-right:5%">
       @if(Auth::check() && Auth::user()->cadastrado)
         @php
           $notificacoes = Auth::user()->notificacoes;
@@ -178,12 +178,9 @@
           </ul>
         </li>
       @else
-        <!-- <li class="menu-principal">
-          <a id="altocontraste" onclick="contraste()">Contraste</a>
-        </li> -->
         <li><a class="menu-principal" href="{{ route('login') }}">Entrar</a></li>
         <li><a class="menu-principal" href="{{ route('register') }}">Cadastrar</a></li>
       @endif
-  </ul>
-</div>
+    </ul>
+  </div>
 </nav>
