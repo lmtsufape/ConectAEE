@@ -102,7 +102,8 @@
     <div id="page-container" style="background-color:#FFFFFF">
       <div id="content-wrap">
         @yield('content')
-        <br><br><br>
+        <br>
+        <!-- <br><br><br> -->
       </div>
 
       <div id="footer-brasil"></div>

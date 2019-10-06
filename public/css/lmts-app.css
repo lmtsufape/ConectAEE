@@ -371,6 +371,36 @@ background-color: #3097D1;
   color: #12583C;
 }
 
+.btn-danger{
+  background-color: red;
+  border-color: #d3e0e9;
+  color: white;
+  border-radius: 15px;
+  width: 12rem;
+}
+
+.btn-danger:visited{
+  background-color: red;
+  border-color: #d3e0e9;
+  color: white;
+  border-radius: 15px;
+  width: 12rem;
+}
+
+.btn-danger:disabled{
+  background-color: red;
+  border-color: #d3e0e9;
+  color: white;
+  border-radius: 15px
+}
+
+.btn-danger:hover{
+  background-color: red;
+  border-color: #d3e0e9;
+  border-radius: 15px
+  color: white;
+}
+
 .texto{
   padding: 50px;
   color: white;
@@ -386,10 +416,6 @@ a:link {
 }
 
 /* link que foi visitado */
-a:visited {
-    color: #12583C;
-}
-
 a:visited {
     color: #12583C;
 }
@@ -443,4 +469,42 @@ a:active {
 
 #divBusca i{
   float:left;
+}
+
+.cartao{
+  margin: 30px;
+  width: 256px;
+  height: 256px;
+  float: left;
+  border:solid;
+  border-radius: 20px;
+  background-color: #12583C;
+}
+
+a:link div.cartao{
+  color: white;
+}
+
+a:active div.cartao{
+  color: white;
+}
+
+a:visited div.cartao{
+  color: white;
+}
+
+a:hover div.cartao{
+  color: white;
+}
+
+#btn-mensagem{
+  position:relative;
+  bottom:0;
+  font-size: 14px;
+  float:right;
+  height: 50px;
+  width: 300px;
+  background-color: #12583C;
+  color: white;
+  border: solid;
 }

@@ -4,10 +4,22 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class Aluno extends Model
 {
     use SoftDeletes;
+
+    public function getDataDeNascimentoAttribute( $value ) {
+      return (new Carbon($value))->format('d/m/Y');
+    }
+
+    public function getData(){
+      $ano= substr($this->data_de_nascimento, 6);
+      $mes= substr($this->data_de_nascimento, 3,-5);
+      $dia= substr($this->data_de_nascimento, 0,-8);
+      return $ano."-".$mes."-".$dia;
+    }
 
     public function gerenciars(){
         return $this->hasMany(Gerenciar::class);

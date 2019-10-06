@@ -133,7 +133,6 @@
                               echo $pieces[0];
                             }
                           ?>
-                          {{$aluno->id}}
                           <br>
                           &nbsp; &nbsp;
                         </td>
