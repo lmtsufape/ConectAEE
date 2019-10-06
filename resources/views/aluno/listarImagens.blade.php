@@ -2,10 +2,6 @@
 @section('title','Listar alunos')
 @section('path','Início')
 
-@section('navbar')
-<a href="{{route('aluno.listar')}}">Início</a>
-@endsection
-
 @section('content')
 <div class="container">
   <div class="row">
@@ -13,15 +9,17 @@
       <div class="panel panel-default">
 
         <div class="panel-heading">
-          <div class="row col-md-12">
+          <div class="row">
             <div class="col-md-8">
-              <div style="width: 100%; margin-left: 0%;" class="row col-md-8">
-                <div style="width: 50%; float: left;" class="column col-md-6">
+              <div style="width: 100%; margin-left: 0%;" class="row">
+                <div style="width: 50%; float: left; margin-left:-20px;" class="col-md-6">
                   <h2>
-                    Alunos
+                    <strong>
+                      Alunos
+                    </strong>
                   </h2>
                 </div>
-                <div style="width:50%; float:right;" class="column col-md-6">
+                <div style="width:50%; float:right; margin-right:-25px;" class="col-md-6">
                   <a class="btn btn-primary" style="float:right; margin-top:20px;" href="{{ route("aluno.cadastrar")}}">
                     Cadastrar
                   </a>
@@ -29,7 +27,7 @@
               </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="row col-md-4">
               @if(count($alunos) != 0 || $termo != null)
                 <form class="form-horizontal" method="GET" action="{{ route("aluno.buscarAluno") }}">
 
@@ -52,8 +50,6 @@
             </div>
 
           </div>
-
-          <br><br>
 
           <hr style="border-top: 1px solid black;">
 
@@ -164,7 +160,6 @@
                           echo $pieces[0];
                         }
                       ?>
-                      {{$aluno->id}}
 
                       <br>
                       &nbsp; &nbsp;

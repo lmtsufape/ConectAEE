@@ -226,6 +226,29 @@ margin-bottom: 12px;
   display: block;
 }
 
+#tabela_objetivos table,
+#tabela_objetivos thead,
+#tabela_objetivos tbody,
+#tabela_objetivos tfoot,
+#tabela_objetivos th,
+#tabela_objetivos td,
+#tabela_objetivos tr {
+  display: block;
+}
+
+#tabela_objetivos td {
+  /* Behave  like a "row" */
+  border: none;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  white-space: normal;
+  text-align:left;
+}
+
+#tabela_objetivos thead tr {
+  display:none;
+}
+
 /* Hide table headers (but not display: none;, for accessibility) */
 #tabela thead tr {
   position: absolute;
@@ -442,7 +465,7 @@ a:active {
   border:solid 2px #12583C;
   border-radius:10px;
   width:300px;
-  height:32px;
+  height:37px;
 }
 
 #termo{
@@ -460,7 +483,7 @@ a:active {
 #btnBusca{
   border:none;
   float:left;
-  height:32px;
+  height:35px;
   border-radius:0 7px 7px 0;
   width:70px;
   color: white;
@@ -495,16 +518,4 @@ a:visited div.cartao{
 
 a:hover div.cartao{
   color: white;
-}
-
-#btn-mensagem{
-  position:relative;
-  bottom:0;
-  font-size: 14px;
-  float:right;
-  height: 50px;
-  width: 300px;
-  background-color: #12583C;
-  color: white;
-  border: solid;
 }

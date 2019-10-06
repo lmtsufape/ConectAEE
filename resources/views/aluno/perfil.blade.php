@@ -3,7 +3,7 @@
 
 @section('navbar')
 <a href="{{route('aluno.listar')}}">Início</a>
-> Gerenciar: <strong>{{$aluno->nome}}</strong>
+> Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong>
 @endsection
 
 @section('content')
@@ -11,12 +11,10 @@
 	<div class="row">
 
 		<div class="col-md-12">
-			<br><br>
 			<div class="panel panel-default" style="width:100%">
 
 				<div class="panel-body">
 					@if (\Session::has('success'))
-	          <br>
 	          <div class="alert alert-success">
 	            <strong>Sucesso!</strong>
 	            {!! \Session::get('success') !!}
@@ -31,7 +29,6 @@
 						<div class="col-md-12">
 							<div class="col-md-2">
 								<div class="text-center">
-									<br>
 									@if($aluno->imagem != null)
 										<img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="border-radius: 60%; height:150px; width:150px; object-fit: cover;">
 										<br/>
@@ -63,7 +60,6 @@
 							</div>
 
 							<div class="col-md-5">
-								<br>
 								<strong>Nome:</strong> {{$aluno->nome}}
 
 								<br>
@@ -101,7 +97,6 @@
 							</div>
 
 							<div class="col-md-5">
-								<br>
 
 								@if($aluno->cid != null)
 									<strong>CID:</strong> {{$aluno->cid}}
@@ -179,6 +174,14 @@
 						@endif
 					</div>
 				</div>
+
+				<!-- <div class="panel-footer" style="background-color:white">
+          <a class="btn btn-danger" href="{{URL::previous()}}">
+            <i class="material-icons">keyboard_backspace</i>
+            <br>
+            Voltar
+          </a>
+        </div> -->
 		</div>
 	</div>
 

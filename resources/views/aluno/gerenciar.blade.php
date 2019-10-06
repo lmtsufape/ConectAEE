@@ -3,7 +3,7 @@
 
 @section('navbar')
 <a href="{{route('aluno.listar')}}">Início</a>
-> Gerenciar: <strong>{{$aluno->nome}}</strong>
+> Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong>
 @endsection
 
 @section('content')

@@ -9,7 +9,9 @@
   <div class="panel panel-default col-md-4 col-md-offset-4 sombra">
     <div class="panel-heading text-center">
       <h2>
-        Cadastrar
+        <strong>
+          Cadastrar
+        </strong>
       </h2>
     </div>
 

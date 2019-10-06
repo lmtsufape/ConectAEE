@@ -10,7 +10,56 @@
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
-        <div class="panel-heading">Objetivos</div>
+
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-8">
+              <div style="width: 100%; margin-left: 0%;" class="row">
+                <div style="width: 50%; float: left; margin-left:-20px;" class="col-md-6">
+                  <h2>
+                    <strong>
+                      Objetivos
+                    </strong>
+                  </h2>
+                </div>
+                <div style="width:50%; float:right; margin-right:-25px;" class="col-md-6">
+                  @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->perfil_id != 1)
+                    <a class="btn btn-primary" style="float:right; margin-top:20px;" href="{{ route("objetivo.cadastrar" , ['id_aluno'=>$aluno->id])}}">
+                      Cadastrar
+                    </a>
+                  @endif
+                </div>
+              </div>
+            </div>
+
+            <div class="row col-md-4">
+              @if(count($objetivosGroupByUser) != 0 || ($termo != "" && count($objetivosGroupByUser) == 0))
+                <form class="form-horizontal" method="GET" action="{{ route("objetivo.buscar") }}">
+                  <input hidden type="text" name="id_aluno" value="{{$aluno->id}}">
+
+                  <div id="divBusca" style="margin-top:20px;">
+
+                  <i class="material-icons">search</i>
+
+                  @if ($termo == null)
+                    <input id="termo" type="text" autocomplete="off" name="termo" autofocus placeholder="Título ou descrição">
+                  @else
+                    <input id="termo" type="text" autocomplete="off" name="termo" autofocus placeholder="Título ou descrição" value="{{$termo}}">
+                  @endif
+
+                  <button id="btnBusca" type="submit">
+                    Buscar
+                  </button>
+                  </div>
+                </form>
+              @endif
+            </div>
+
+          </div>
+
+          <hr style="border-top: 1px solid black;">
+
+        </div>
 
         <div class="panel-body">
 
@@ -22,36 +71,13 @@
             </div>
           @endif
 
-          @if(count($objetivosGroupByUser) != 0 || ($termo != "" && count($objetivosGroupByUser) == 0))
-            <div class="row" align="center">
-              <form class="form-horizontal" method="GET" action="{{ route("objetivo.buscar") }}">
-
-                <input hidden type="text" name="id_aluno" value="{{$aluno->id}}">
-
-                <div class="row">
-                  <div class="col-md-12">
-                    @if ($termo == null)
-                      <input style="width:74%" id="termo" type="text" name="termo" autofocus required placeholder="Pesquise aqui por título ou descrição...">
-                    @else
-                      <input style="width:74%" id="termo" type="text" name="termo" autofocus required placeholder="Pesquise aqui por título ou descrição..." value="{{$termo}}">
-                    @endif
-
-                    <button type="submit" class="btn btn-primary btn-md">
-                      Buscar
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          @endif
-
-          <div id="tabela" style="overflow-x:auto" class="table-responsive">
-            <table class="table">
+          <div id="tabela_objetivos" class="table-responsive">
+            <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Perfil</th>
-                  <th>Usuário</th>
-                  <th colspan="{{ $size }}">Objetivos</th>
+                  <th><strong>Usuário</strong></th>
+                  <th><strong>Perfil</strong></th>
+                  <th><strong>Objetivos</strong></th>
                 </tr>
               </thead>
               <tbody>
@@ -72,14 +98,14 @@
                   ?>
 
                   <tr>
+                    <td style="vertical-align:middle;" data-title="Usuario">{{ $objetivos[0]->user->name}}</td>
                     <td style="vertical-align:middle" data-title="Perfil">{{ $perfil }}</td>
-                    <td style="vertical-align:middle" data-title="Usuario">{{ $objetivos[0]->user->name}}</td>
 
                     @php($temp = 0)
 
-                    @foreach ($objetivos as $objetivo)
-                      <td data-title="Objetivos">
-                        <div class="card" style="width: 19rem; height: 19rem; background-color:{{$objetivo->cor->hexadecimal}}">
+                    <td data-title="Objetivos" class="row col-md-12" style="margin-left:0px">
+                      @foreach ($objetivos as $objetivo)
+                        <div class="card cartao" style="width: 15rem; height: 15rem; background-color:{{$objetivo->cor->hexadecimal}}">
                           <div class="card-body" style="height:76%; margin-left: 5%; margin-right: 5%; display: -webkit-flex; display: flex;-webkit-align-items: center;align-items: center;-webkit-justify-content: center;justify-content: center;">
                             <div class="hifen text-center" align="justify">
                               <font size="3">
@@ -94,20 +120,16 @@
                             @if($objetivo->user->id == \Auth::user()->id)
                               <a href="{{ route("objetivo.gerenciar", ['id_objetivo'=>$objetivo->id]) }}" class="btn btn-primary">Gerenciar</a>
                             @else
-                              <a href="{{ route("objetivo.gerenciar", ['id_objetivo'=>$objetivo->id]) }}" class="btn btn-success">Ver</a>
+                              <a href="{{ route("objetivo.gerenciar", ['id_objetivo'=>$objetivo->id]) }}" class="btn btn-primary">Ver</a>
                             @endif
                           </div>
                         </div>
-                      </td>
-                      @php($temp += 1)
-                    @endforeach
+                        @php($temp += 1)
+                      @endforeach
+                    </td>
 
                     @php($user += 1)
 
-                    @while($temp < $size)
-                      <td></td>
-                      @php($temp += 1)
-                    @endwhile
                   </tr>
                 @endforeach
               </tbody>
@@ -125,22 +147,14 @@
           @endif
         </div>
 
-        <div class="panel-footer">
+        <!-- <div class="panel-footer" style="background-color:white">
           <a class="btn btn-danger" href="{{URL::previous()}}">
             <i class="material-icons">keyboard_backspace</i>
             <br>
             Voltar
           </a>
+        </div> -->
 
-          @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->perfil_id != 1)
-            <a class="btn btn-success" href="{{ route("objetivo.cadastrar" , ['id_aluno'=>$aluno->id])}}">
-              <i class="material-icons">add</i>
-              <br>
-              Novo
-            </a>
-          @endif
-
-        </div>
       </div>
     </div>
   </div>

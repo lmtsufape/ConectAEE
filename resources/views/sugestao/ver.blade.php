@@ -2,7 +2,7 @@
 @section('title','Gerenciar atividade')
 @section('navbar')
 <a href="{{route('aluno.listar')}}">Início</a>
-> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
+> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
 > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
 > <a href="{{route('objetivo.gerenciar',[$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
 > <strong>Sugestão: {{$sugestao->titulo}}</strong>

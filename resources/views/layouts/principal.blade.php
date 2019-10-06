@@ -82,22 +82,22 @@
       <!-- barra de menu -->
       @include('layouts.menu')
 
-      <!-- <div id="navigation" style="background-color:#ffffff">
+      <div id="navigation" style="background-color:#ffffff">
         @php($url = str_replace(URL::to('/'),'',URL::current()))
 
-        <div style="margin-top: -20px" class="container">
+        <div class="container">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" style="margin-left:0px">
               <br>
-              <h4>
+              <h3>
                 @yield('navbar')
-              </h4>
+              </h3>
               <br>
             </div>
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <div id="page-container" style="background-color:#FFFFFF">
       <div id="content-wrap">

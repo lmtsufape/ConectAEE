@@ -24,7 +24,9 @@
     <div class="panel panel-default" style="padding:20px;" >
       <div class="panel-heading text-center">
         <h2>
-          Entrar
+          <strong>
+            Entrar
+          </strong>
         </h2>
       </div>
 
