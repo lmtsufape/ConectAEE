@@ -56,7 +56,7 @@
         @endif
 
         <div class="row col-md-12">
-          <div class="row col-md-12" style="margin-left:0px;">
+          <div class="row col-md-12" style="margin-left:0px; margin-top:-20px;">
             <h3>
               <strong>Objetivo: </strong>{{$objetivo->titulo}}
             </h3>
@@ -118,7 +118,6 @@
           <div class="row col-md-12" style="margin-left:0px;" align="justify">
             <br>
             <strong>Descrição: </strong>{{$objetivo->descricao}}
-            <hr style="border-top: 1px solid black;">
           </div>
         </div>
 
@@ -142,6 +141,8 @@
                   @endif
                 </div>
               </div>
+
+              <hr style="border-top: 1px solid black;">
             </div>
 
             <div class="panel-body">
@@ -153,39 +154,45 @@
                 </div>
               @endif
 
-              <div id="tabela" class="table-responsive">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>Status</th>
-                      <th>Atividade</th>
-                      <th>Data</th>
-                      <th>Ação</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($atividades as $atividade)
+              @if(count($atividades) != 0)
+                <div id="tabela" class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
                       <tr>
-                        <td data-title="Status" class="output">
-                          @php($cor = \App\Http\Controllers\AtividadeController::corStatus($atividade->status))
-                          <span style="background:{{$cor}}"></span>
-                        </td>
-                        <td data-title="Atividades">
-                          {{ $atividade->titulo }}
-                        </td>
-                        <td data-title="Data">{{ $atividade->data }}</td>
-                        <td data-title="Ação">
-                          @if($atividade->objetivo->user->id == \Auth::user()->id)
-                            <a class="btn btn-primary" href={{ route("atividade.ver", ["id_atividade" => $atividade->id]) }}>Gerenciar</a>
-                          @else
-                            <a class="btn btn-primary" href={{ route("atividade.ver", ["id_atividade" => $atividade->id]) }}>Ver</a>
-                          @endif
-                        </td>
+                        <th>Status</th>
+                        <th>Atividade</th>
+                        <th>Data</th>
+                        <th>Ação</th>
                       </tr>
-                      @endforeach
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody>
+                      @foreach ($atividades as $atividade)
+                        <tr>
+                          <td data-title="Status" class="output">
+                            @php($cor = \App\Http\Controllers\AtividadeController::corStatus($atividade->status))
+                            <span style="background:{{$cor}}"></span>
+                          </td>
+                          <td data-title="Atividades">
+                            {{ $atividade->titulo }}
+                          </td>
+                          <td data-title="Data">{{ $atividade->data }}</td>
+                          <td data-title="Ação">
+                            @if($atividade->objetivo->user->id == \Auth::user()->id)
+                              <a class="btn btn-primary" href={{ route("atividade.ver", ["id_atividade" => $atividade->id]) }}>Gerenciar</a>
+                            @else
+                              <a class="btn btn-primary" href={{ route("atividade.ver", ["id_atividade" => $atividade->id]) }}>Ver</a>
+                            @endif
+                          </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                  </table>
+                </div>
+              @else
+                <div class="alert alert-info">
+                  <strong>Não há nenhuma atividade cadastrada.</strong>
+                </div>
+              @endif
             </div>
 
             <div class="panel-footer" style="background-color: white;">
@@ -212,8 +219,6 @@
               <br>
             </div>
           </div>
-
-          <hr style="border-top: 1px solid black;">
         </div>
 
         <div class="row col-md-12">
@@ -221,7 +226,6 @@
 
             <div class="panel-heading">
               <div class="row">
-
                 <div class="col-md-6">
                   <h3>
                     <strong>Sugestões</strong>
@@ -236,6 +240,8 @@
                   @endif
                 </div>
               </div>
+
+              <hr style="border-top: 1px solid black;">
             </div>
 
             <div class="panel-body">
@@ -247,6 +253,7 @@
                 </div>
               @endif
 
+              @if(count($sugestoes) != 0)
               <div id="tabela" class="table-responsive">
                 <table class="table table-striped">
                   <thead>
@@ -279,6 +286,11 @@
                   </tbody>
                 </table>
               </div>
+              @else
+                <div class="alert alert-info">
+                  <strong>Não há nenhuma atividade cadastrada.</strong>
+                </div>
+              @endif
             </div>
           </div>
         </div>

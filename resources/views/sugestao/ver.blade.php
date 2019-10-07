@@ -15,7 +15,31 @@
       <div class="panel panel-default">
 
         <div class="panel-heading">
-          Sugestão: <strong>{{$sugestao->titulo}}</strong>
+          <div class="row">
+
+            <div class="col-md-6">
+              <h2>
+                <strong>
+                  Gerenciar sugestão
+                </strong>
+              </h2>
+            </div>
+
+            <div class="col-md-6 text-right" style="margin-top:20px">
+              @if($sugestao->user->id == \Auth::user()->id)
+                <a class="btn btn-primary" href={{ route("sugestao.editar" , ['id_sugestao' => $sugestao->id]) }}>
+                  Editar
+                </a>
+
+                <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da sugestao {{$sugestao->titulo}}?')" href={{ route("sugestao.excluir" , ['id_sugestao' => $sugestao->id]) }}>
+                  Excluir
+                </a>
+              @endif
+            </div>
+
+          </div>
+
+          <hr style="border-top: 1px solid black;">
         </div>
 
         <div class="panel-body">
@@ -28,57 +52,42 @@
             </div>
           @endif
 
-          <div class="row">
-            <div class="col-md-6">
-              <strong>Título: </strong> {{$sugestao->titulo}}
-              <br><br>
-              <strong>Data: </strong> {{$sugestao->data}}
-              <br><br>
-              <strong>Autor: </strong> {{$sugestao->user->name}}
-            </div>
+          <div class="row col-md-12" style="margin-left:0px; margin-top:-20px;">
+            <h3>
+              <strong>Sugestão: </strong>{{$sugestao->titulo}}
+            </h3>
+            <hr style="border-top: 1px solid black;">
 
-            <div class="col-md-6" align="justify">
-              <strong>Descrição: </strong>{{$sugestao->descricao}}
-            </div>
+            <strong>Data: </strong> {{$sugestao->data}}
+            <br>
+            <strong>Autor: </strong> {{$sugestao->user->name}}
+            <br>
+            <strong>Descrição: </strong>{{$sugestao->descricao}}
           </div>
 
-          <br><br>
-          <div class="row text-right" style="padding:1rem;">
-            @if($sugestao->user->id == \Auth::user()->id)
-              <a class="btn btn-primary" href={{ route("sugestao.editar" , ['id_sugestao' => $sugestao->id]) }}>
-                <i class="material-icons">edit</i>
-              </a>
-
-              <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da sugestao {{$sugestao->titulo}}?')" href={{ route("sugestao.excluir" , ['id_sugestao' => $sugestao->id]) }}>
-                <i class="material-icons">delete</i>
-              </a>
+          <div class="row col-md-12" style="margin-left:0px;">
+            @if (\Session::has('feedback'))
+              <br><br>
+              <div class="alert alert-success">
+                <strong>Sucesso!</strong>
+                {!! \Session::get('feedback') !!}
+              </div>
             @endif
-          </div>
 
-          <div class="row">
+            <h3>
+              <strong>Comentários:</strong>
+            </h3>
 
             <div class="col-md-12">
-              <font id="feedbacks" size="4" style="padding:1.5rem; color: #12583c;">
-                Feedback(s):
-              </font>
 
-              @if (\Session::has('feedback'))
-                <br><br>
-                <div class="alert alert-success">
-                  <strong>Sucesso!</strong>
-                  {!! \Session::get('feedback') !!}
-                </div>
-              @else
-                <br><br>
-              @endif
+              <hr style="border-top: 1px solid black;">
 
-              <form style="padding:50px;" class="form-horizontal" method="POST" action="{{ route("feedbacks.criar") }}">
+              <form class="form-horizontal" method="POST" action="{{ route("feedbacks.criar") }}">
                 {{ csrf_field() }}
 
                 <input hidden type="text" name="id_sugestao" value="{{$sugestao->id}}">
 
                 <div class="form-group{{ $errors->has('feedback') ? ' has-error' : '' }}">
-
                   <textarea name="feedback" id="summer" type="text" class="form-control summernote"></textarea>
 
                   @if ($errors->has('feedback'))
@@ -86,7 +95,6 @@
                       <strong>{{ $errors->first('feedback') }}</strong>
                     </span>
                   @endif
-
                 </div>
 
                 <button type="submit" class="btn btn-primary">
@@ -97,8 +105,7 @@
               <br>
 
               <div align="center">
-
-                <div class="card" style="width:90%;">
+                <div class="card">
                   @foreach($feedbacks as $key => $feedback)
                     <div class="card-body" align="justify" style="background-color:#eeeeee; padding:1rem;">
                       <span class="">
@@ -141,9 +148,9 @@
                   @endforeach
                   <br>
                 </div>
-
               </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -157,7 +164,7 @@
     placeholder: 'Envie seu feedback aqui...',
     lang: 'pt-BR',
     tabsize: 2,
-    height: 100
+    height: 100,
   });
 
   var edit = function(key) {

@@ -94,11 +94,11 @@
                     @endif
 
                     @foreach($prioridades as $prioridade)
-                    @if(old('prioridade') == $prioridade)
-                    <option value={{$prioridade}} selected>{{$prioridade}}</option>
-                    @else
-                    <option value={{$prioridade}}>{{$prioridade}}</option>
-                    @endif
+                      @if(old('prioridade') == $prioridade)
+                        <option value={{$prioridade}} selected>{{$prioridade}}</option>
+                      @else
+                        <option value={{$prioridade}}>{{$prioridade}}</option>
+                      @endif
                     @endforeach
                   </select>
 
