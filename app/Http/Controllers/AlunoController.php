@@ -55,7 +55,7 @@ class AlunoController extends Controller{
 
     $alunos = Aluno::whereIn('id', $ids_alunos)->paginate(18);
 
-    return view("aluno.listarImagens",[
+    return view("aluno.listar",[
       'alunos' => $alunos,
       'termo' => ""
     ]);
@@ -72,7 +72,7 @@ class AlunoController extends Controller{
 
     $alunos = Aluno::whereIn('id', $ids_alunos)->where('nome','ilike', '%'.$request->termo.'%')->paginate(12);
 
-    return view("aluno.listarImagens",[
+    return view("aluno.listar",[
       'alunos' => $alunos,
       'termo' => $request->termo
     ]);

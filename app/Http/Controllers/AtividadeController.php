@@ -159,13 +159,13 @@ class AtividadeController extends Controller
   public static function corStatus($status){
     switch ($status) {
       case 'Não iniciada':
-        return '#e88d76';
+        return '#661414';
         break;
       case 'Em andamento':
-        return '#f2ee74';
+        return '#DDA600';
         break;
       case 'Finalizada':
-        return '#c0e876';
+        return '#12583C';
         break;
     }
   }

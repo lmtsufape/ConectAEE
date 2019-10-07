@@ -76,11 +76,14 @@
         <li class="dropdown">
           <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
             @if($lidos == null)
+              Notificacoes
               <i class="material-icons">notifications_none</i>
             @elseif(gettype(array_search(false, $lidos)) == 'integer')
+              Notificacoes
               <i class="material-icons">notifications</i>
               <span class="badge badge-pill" style="position: absolute; top:-3px; right:-0px; background:red">{{$qtd_naolidos}}</span>
             @else
+              Notificacoes
               <i class="material-icons">notifications_none</i>
             @endif
           </a>

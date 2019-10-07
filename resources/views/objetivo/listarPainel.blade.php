@@ -2,7 +2,7 @@
 @section('title','Listar objetivos')
 @section('navbar')
 <a href="{{route('aluno.listar')}}">Início</a>
-> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
+> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
 > Objetivos
 @endsection
 @section('content')
@@ -105,7 +105,7 @@
 
                     <td data-title="Objetivos" class="row col-md-12" style="margin-left:0px">
                       @foreach ($objetivos as $objetivo)
-                        <div class="card cartao" style="width: 15rem; height: 15rem; background-color:{{$objetivo->cor->hexadecimal}}">
+                        <div class="card cartao" style="width: 16rem; height: 16rem; background-color:{{$objetivo->cor->hexadecimal}}">
                           <div class="card-body" style="height:76%; margin-left: 5%; margin-right: 5%; display: -webkit-flex; display: flex;-webkit-align-items: center;align-items: center;-webkit-justify-content: center;justify-content: center;">
                             <div class="hifen text-center" align="justify">
                               <font size="3">

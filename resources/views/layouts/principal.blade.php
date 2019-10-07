@@ -87,12 +87,11 @@
 
         <div class="container">
           <div class="row">
-            <div class="col-md-12" style="margin-left:0px">
+            <div class="col-md-12">
               <br>
               <h3>
-                @yield('navbar')
+                &nbsp;@yield('navbar')
               </h3>
-              <br>
             </div>
           </div>
         </div>

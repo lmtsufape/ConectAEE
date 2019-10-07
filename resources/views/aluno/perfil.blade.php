@@ -86,9 +86,9 @@
 								<strong>Data de Nascimento:</strong> {{$aluno->data_de_nascimento}}
 								<br/>
 								<strong>Endereço:</strong>
-
+								<br>
 								<?php
-									echo $aluno->endereco->logradouro, ", ",
+									echo $aluno->endereco->logradouro, ", n<code>&deg;</code>",
 									$aluno->endereco->numero, ", ",
 									$aluno->endereco->bairro, ", ",
 									$aluno->endereco->cidade, " - ",
