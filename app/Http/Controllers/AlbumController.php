@@ -13,7 +13,9 @@ class AlbumController extends Controller
 {
   public static function listar($id_aluno){
     $aluno = Aluno::find($id_aluno);
-    $albuns = $aluno->albuns;
+    // $albuns = $aluno->albuns;
+
+    $albuns = Album::where('aluno_id', $aluno->id)->paginate(18);
 
     return view("album.listar",[
       'aluno' => $aluno,
@@ -67,7 +69,12 @@ class AlbumController extends Controller
 
     $foto->delete();
 
-    return redirect()->route("album.editar", ['id_album' => $album->id])->with('success','A imagem foi excluída.');
+    if (count($album->fotos) == 0) {
+      $album->delete();
+      return redirect()->route("album.listar", ["aluno"=>$aluno])->with('success','O álbum '.$album->nome.' foi excluído.');
+    }else{
+      return redirect()->route("album.editar", ['id_album' => $album->id])->with('success','A imagem foi excluída.');
+    }
   }
 
   public static function cadastrar($id_aluno){

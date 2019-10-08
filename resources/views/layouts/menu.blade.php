@@ -30,13 +30,13 @@
           </a>
           <ul class="dropdown-menu" role="menu">
             <li>
-              <a href="{{ route('aluno.cadastrar') }}">
-                Cadastrar
+              <a href="{{ route('aluno.listar') }}">
+                Listar
               </a>
             </li>
             <li>
-              <a href="{{ route('aluno.listar') }}">
-                Listar
+              <a href="{{ route('aluno.cadastrar') }}">
+                Cadastrar
               </a>
             </li>
             <li>
@@ -52,13 +52,13 @@
           </a>
           <ul class="dropdown-menu" role="menu">
             <li>
-              <a href="{{ route('instituicao.cadastrar') }}">
-                Cadastrar
+              <a href="{{ route('instituicao.listar') }}">
+                Listar
               </a>
             </li>
             <li>
-              <a href="{{ route('instituicao.listar') }}">
-                Listar
+              <a href="{{ route('instituicao.cadastrar') }}">
+                Cadastrar
               </a>
             </li>
           </ul>
@@ -151,7 +151,7 @@
           <ul class="dropdown-menu" role="menu">
             <li>
               <a href="{{ route('usuario.editar') }}">
-                Meus Dados
+                Meu Perfil
               </a>
             </li>
             <li>

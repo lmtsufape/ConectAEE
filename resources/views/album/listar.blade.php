@@ -14,75 +14,130 @@
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
-        <div class="panel-heading">Álbuns</div>
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-12">
+              <div style="width: 100%; margin-left: 0%;" class="row">
+                <div style="width: 50%; float: left; margin-left:-20px;" class="col-md-6">
+                  <h3>
+                    <strong>Álbuns</strong>
+                  </h3>
+                </div>
+                <div style="width:50%; float:right; margin-right:-25px;margin-top:20px" class="col-md-6 text-right">
+                  <a class="btn btn-primary" href="{{route("album.cadastrar" , ['id_aluno'=>$aluno->id])}}">
+                    Novo
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr style="border-top: 1px solid black;">
+        </div>
 
         <div class="panel-body">
 
           @if (\Session::has('success'))
-          <br>
-          <div class="alert alert-success">
-            <strong>Sucesso!</strong>
-            {!! \Session::get('success') !!}
-          </div>
+            <br>
+            <div class="alert alert-success">
+              <strong>Sucesso!</strong>
+              {!! \Session::get('success') !!}
+            </div>
           @endif
 
+          <div class="row" align="center">
 
-          <div id="tabela_albuns" class="table-responsive">
-            <table class="table">
+            <table id="tabela_albuns" class="table-responsive">
               <thead>
                 <tr>
+                  <th></th>
+                  <th></th>
+                  <th></th>
                   <th></th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
                 @php
-                  $count = 1;
+                  $colunas = 0;
+                  $size = 6;
+                  $tresAlbuns = array();
                 @endphp
 
-                @if($albuns != null)
-                  @foreach($albuns as $album)
+                @foreach($albuns as $album)
+                  <tr>
                     @php
-                      $count++;
+                      $colunas += 1;
+                      array_push($tresAlbuns, $album);
                     @endphp
 
-                    @if($count % 2 == 0)
-                      <tr align="center">
-                    @endif
-                    <td>
-                      <button type="button" class="btn btn-info" onclick="window.location.href='{{route('album.ver', ['id_album'=>$album->id])}}'">
-                        <div class="card text-center" style="width:200px">
-                          <div class="card-body">
-                            <img class="card-img-top" src="{{asset('storage/albuns/'.$aluno->id.'/'.$album->fotos[0]->imagem)}}" style="width:200px; height:200px; object-fit: cover;">
+                    @if($colunas % $size == 0)
+                      @for($i = 1; $i <= $size; $i++ )
+                        @php($album = array_pop($tresAlbuns))
+                        <td class="text-center">
+                          <a href="{{route('album.ver', ['id_album'=>$album->id])}}">
+                            <img style="border-radius: 60%; width:160px; height: 160px; object-fit: cover;" src="{{asset('storage/albuns/'.$aluno->id.'/'.$album->fotos[0]->imagem)}}">
+                          </a>
+                          &nbsp;&nbsp;
+                          <br><br>
 
-                            <h2 class="card-title">{{$album->nome}}</h2>
-                            <p class="card-text">{{$album->descricao}}</p>
-                          </div>
-                        </div>
-                      </button>
-                    </td>
-                    @if($count % 2 != 0)
-                      </tr>
+                          <strong>
+                            <?php
+                              echo ucfirst($album->nome);
+                            ?>
+                          </strong>
+                        </td>
+                      @endfor
                     @endif
-                  @endforeach
-                @endif
+                  </tr>
+                @endforeach
+
+                @for($i = 1; $i <= $size; $i++ )
+
+                  @php($album = array_pop($tresAlbuns))
+
+                  @if($album != null)
+                    <td class="text-center">
+                      <a href="{{route('album.ver', ['id_album'=>$album->id])}}">
+                        <img style="border-radius: 60%; width:160px; height: 160px; object-fit: cover;" src="{{asset('storage/albuns/'.$aluno->id.'/'.$album->fotos[0]->imagem)}}">
+                      </a>
+                      &nbsp; &nbsp;
+                      <br><br>
+
+                      <strong>
+                        <?php
+                          echo ucfirst($album->nome);
+                        ?>
+                      </strong>
+                    </td>
+                  @endif
+                @endfor
+
               </tbody>
             </table>
+
           </div>
+
+          @if(count($albuns) == 0)
+            <div class="alert alert-info">
+              <strong> Nenhum álbum cadastrado.</strong>
+            </div>
+          @endif
+
+          <div class="text-center">
+            {{$albuns->links()}}
+          </div>
+
         </div>
 
-        <div class="panel-footer">
+        <!-- <div class="panel-footer">
           <a class="btn btn-danger" href="{{route("aluno.gerenciar" , ['id_aluno'=>$aluno->id])}}">
             <i class="material-icons">keyboard_backspace</i>
             <br>
             Voltar
           </a>
-          <a class="btn btn-success" href="{{route("album.cadastrar" , ['id_aluno'=>$aluno->id])}}">
-            <i class="material-icons">add</i>
-            <br>
-            Novo
-          </a>
-        </div>
+        </div> -->
+
       </div>
     </div>
   </div>

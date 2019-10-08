@@ -48,11 +48,9 @@
                 </form>
               @endif
             </div>
-
           </div>
 
           <hr style="border-top: 1px solid black;">
-
         </div>
 
         <div class="panel-body">
@@ -123,11 +121,11 @@
                           <br><br>
                           <?php
                             $pieces = explode(" ", $aluno->nome);
-                            if(count($pieces) > 1){
-                              echo $pieces[0],' ',$pieces[1];
-                            }else{
+                            // if(count($pieces) > 1){
+                              // echo $pieces[0],' ',$pieces[1];
+                            // }else{
                               echo $pieces[0];
-                            }
+                            // }
                           ?>
                           <br>
                           &nbsp; &nbsp;
@@ -154,11 +152,11 @@
                       <br><br>
                       <?php
                         $pieces = explode(" ", $aluno->nome);
-                        if(count($pieces) > 1){
-                          echo $pieces[0],' ',$pieces[1];
-                        }else{
+                        // if(count($pieces) > 1){
+                          // echo $pieces[0],' ',$pieces[1];
+                        // }else{
                           echo $pieces[0];
-                        }
+                        // }
                       ?>
 
                       <br>
