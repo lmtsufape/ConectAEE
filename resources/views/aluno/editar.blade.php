@@ -4,7 +4,7 @@
 
 @section('navbar')
 <a href="{{route('aluno.listar')}}">Início</a>
-> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
+> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
 > Editar
 @endsection
 
@@ -174,7 +174,7 @@
                 @if(old('data_nascimento',NULL) != NULL)
                   <input id="data_nascimento" type="date" class="form-control" name="data_nascimento" value="{{ old('data_nascimento') }}">
                 @else
-                  <input id="data_nascimento" type="date" class="form-control" name="data_nascimento" value="{{ $aluno->data_de_nascimento }}">
+                  <input id="data_nascimento" type="date" class="form-control" name="data_nascimento" value="{{ $aluno->getData() }}">
                 @endif
 
                 @if ($errors->has('data_nascimento'))

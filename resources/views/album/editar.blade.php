@@ -4,7 +4,7 @@
 
 @section('navbar')
 <a href="{{route('aluno.listar')}}">Início</a>
-> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
+> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
 > <a href="{{route('album.listar', $aluno->id) }}"> Álbuns</strong></a>
 > <a href="{{route('album.ver' , ['id_album'=>$album->id]) }}">Fotos de: <strong>{{$album->nome}}</strong> </a>
 > Editar
@@ -15,222 +15,182 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
+      <div class="row">
+        <div class="panel-heading col-md-12">
+          <h2>
+            <strong>
+              Editar Álbum
+            </strong>
+          </h2>
 
-      <div class="panel panel-default">
-        <div class="panel-heading">Editar Álbum</div>
-
-        <div class="panel-body">
-          <form class="form-horizontal" method="POST" action="{{ route("album.atualizar") }}" enctype="multipart/form-data">
-            {{ csrf_field() }}
-
-            <input id="id_aluno" type="hidden" class="form-control" name="id_aluno" value="{{ $aluno->id }}">
-            <input id="id_album" type="hidden" class="form-control" name="id_album" value="{{ $album->id }}">
-
-            <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
-              <label for="nome" class="col-md-4 control-label"> Nome <font color="red">*</font> </label>
-
-              <div class="col-md-6">
-                @if(old('nome',NULL) != NULL)
-                  <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}" autofocus>
-                @else
-                  <input id="nome" type="text" class="form-control" name="nome" value="{{ $album->nome }}">
-                @endif
-
-                @if ($errors->has('nome'))
-                  <span class="help-block">
-                    <strong>{{ $errors->first('nome') }}</strong>
-                  </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="form-group{{ $errors->has('descricao') ? ' has-error' : '' }}">
-              <label for="descricao" class="col-md-4 control-label">Descrição</label>
-
-              <div class="col-md-6">
-                @if(old('descricao',NULL) != NULL)
-                  <textarea id="descricao" rows = "5" cols = "50" class="form-control" name="descricao">{{ old('descricao') }}</textarea>
-                @else
-                  <textarea id="descricao" rows = "5" cols = "50" class="form-control" name="descricao">{{ $album->descricao }}</textarea>
-                @endif
-
-                @if ($errors->has('descricao'))
-                  <span class="help-block">
-                    <strong>{{ $errors->first('descricao') }}</strong>
-                  </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="form-group{{ $errors->has('imagens.*') || $errors->has('imagens')? ' has-error' : '' }}">
-              <label for="imagens" class="col-md-4 control-label" >
-                Adicionar mais fotos
-              </label>
-
-              <div class="col-md-6">
-
-                <input id="imagens" type="file" multiple class="filestyle" name="imagens[]" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn btn-primary">
-
-                @if ($errors->has('imagens') || $errors->has('imagens.*'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('imagens') }}</strong>
-                  <strong>{{ $errors->first('imagens.*') }}</strong>
-                </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-md-6 col-md-offset-4">
-                <button type="submit" class="btn btn-success">
-                  Atualizar
-                </button>
-              </div>
-            </div>
-
-          </form>
+          <hr style="border-top: 1px solid black;">
         </div>
-      </div>
 
-      <div class="panel panel-default">
+        <div class="col-md-6">
+          <div class="panel panel-default">
 
-        <div class="panel-body">
+            <div class="panel-body panel-body-cadastro">
+              <form method="POST" action="{{ route("album.atualizar") }}" enctype="multipart/form-data">
+                {{ csrf_field() }}
 
-          @if (\Session::has('success'))
-            <br>
-            <div class="alert alert-success">
-              <strong>Sucesso!</strong>
-              {!! \Session::get('success') !!}
+                <input id="id_aluno" type="hidden" class="form-control" name="id_aluno" value="{{ $aluno->id }}">
+                <input id="id_album" type="hidden" class="form-control" name="id_album" value="{{ $album->id }}">
+
+                <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
+                  <label for="nome" class="col-md-12 control-label"> Nome <font color="red">*</font> </label>
+
+                  <div class="col-md-12">
+                    @if(old('nome',NULL) != NULL)
+                      <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}" autofocus>
+                    @else
+                      <input id="nome" type="text" class="form-control" name="nome" value="{{ $album->nome }}">
+                    @endif
+
+                    @if ($errors->has('nome'))
+                      <span class="help-block">
+                        <strong>{{ $errors->first('nome') }}</strong>
+                      </span>
+                    @endif
+                  </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('descricao') ? ' has-error' : '' }}">
+                  <label for="descricao" class="col-md-12 control-label">Descrição</label>
+
+                  <div class="col-md-12">
+                    @if(old('descricao',NULL) != NULL)
+                      <textarea id="descricao" rows = "5" cols = "50" class="form-control" name="descricao">{{ old('descricao') }}</textarea>
+                    @else
+                      <textarea id="descricao" rows = "5" cols = "50" class="form-control" name="descricao">{{ $album->descricao }}</textarea>
+                    @endif
+
+                    @if ($errors->has('descricao'))
+                      <span class="help-block">
+                        <strong>{{ $errors->first('descricao') }}</strong>
+                      </span>
+                    @endif
+                  </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('imagens.*') || $errors->has('imagens')? ' has-error' : '' }}">
+                  <label for="imagens" class="col-md-12 control-label" >
+                    Adicionar mais fotos
+                  </label>
+
+                  <div class="col-md-12">
+
+                    <input id="imagens" type="file" multiple class="filestyle" name="imagens[]" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn btn-primary">
+
+                    @if ($errors->has('imagens') || $errors->has('imagens.*'))
+                    <span class="help-block">
+                      <strong>{{ $errors->first('imagens') }}</strong>
+                      <strong>{{ $errors->first('imagens.*') }}</strong>
+                    </span>
+                    @endif
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="row col-md-12 text-center">
+                    <br>
+                    <button type="submit" class="btn btn-primary">
+                      Atualizar
+                    </button>
+                  </div>
+                </div>
+
+              </form>
             </div>
-          @endif
+          </div>
+        </div>
 
-          <div class="row" align="center">
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-body">
 
-            <table id="tabela_albuns">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                @php
-                  $colunas = 0;
-                  $size = 3;
-                  $tresFotos = array();
-                @endphp
+              @if (\Session::has('success'))
+                <br>
+                <div class="alert alert-success">
+                  <strong>Sucesso!</strong>
+                  {!! \Session::get('success') !!}
+                </div>
+              @endif
 
-                @foreach ($fotos as $foto)
-                  <tr>
+              <div class="row" align="center">
+
+                <table id="tabela_albuns">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
                     @php
-                      $colunas += 1;
-                      array_push($tresFotos, $foto);
+                      $colunas = 0;
+                      $size = 3;
+                      $tresFotos = array();
                     @endphp
 
-                    @if($colunas % $size == 0)
-                      @for($i = 1; $i <= $size; $i++ )
-                        @php($foto = array_pop($tresFotos))
+                    @foreach ($fotos as $foto)
+                      <tr>
+                        @php
+                          $colunas += 1;
+                          array_push($tresFotos, $foto);
+                        @endphp
+
+                        @if($colunas % $size == 0)
+                          @for($i = 1; $i <= $size; $i++ )
+                            @php($foto = array_pop($tresFotos))
+                            <td class="text-center">
+                              <a href="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:auto; height:auto;" class="btn btn-primary" data-lightbox="fotos">
+                                <img src="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:128px; height: 128px; object-fit: cover;">
+                              </a>
+                              &nbsp; &nbsp;
+                              <br><br>
+                              <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão desta imagem?')" href="{{route("album.foto.excluir" , ['id_foto'=>$foto->id]) }}">
+                                <i class="material-icons">delete</i>
+                              </a>
+                              <br>
+                              &nbsp; &nbsp;
+                            </td>
+                          @endfor
+                        @endif
+                      </tr>
+                    @endforeach
+
+                    @php($count = 0)
+                    @for($i = 1; $i <= $size; $i++ )
+                      @php($foto = array_pop($tresFotos))
+
+                      @if($foto != null)
+                        @php($count += 1)
                         <td class="text-center">
-                          <button class="btn btn-info" type="button" onclick="show('{{$foto->id}}')" data-toggle="modal" data-target="#ModalCarousel">
+                          <a href="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:auto; height:auto;" class="btn btn-primary" data-lightbox="fotos">
                             <img src="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:128px; height: 128px; object-fit: cover;">
-                          </button>
+                          </a>
                           &nbsp; &nbsp;
                           <br><br>
-                          <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão desta imagem?')" href="{{route("album.foto.excluir" , ['id_foto'=>$foto->id]) }}">
+                          <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão desta imagem?')" href="{{ route("album.foto.excluir" , ['id_foto'=>$foto->id]) }}">
                             <i class="material-icons">delete</i>
                           </a>
                           <br>
                           &nbsp; &nbsp;
                         </td>
-                      @endfor
-                    @endif
-                  </tr>
-                @endforeach
-
-                @php($count = 0)
-                @for($i = 1; $i <= $size; $i++ )
-                  @php($foto = array_pop($tresFotos))
-
-                  @if($foto != null)
-                    @php($count += 1)
-                    <td class="text-center">
-                      <button class="btn btn-info" type="button" onclick="show('{{$foto->id}}')" data-toggle="modal" data-target="#ModalCarousel">
-                        <img src="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:128px; height: 128px; object-fit: cover;">
-                      </button>
-                      &nbsp; &nbsp;
-                      <br><br>
-                      <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão desta imagem?')" href="{{ route("album.foto.excluir" , ['id_foto'=>$foto->id]) }}">
-                        <i class="material-icons">delete</i>
-                      </a>
-                      <br>
-                      &nbsp; &nbsp;
-                    </td>
-                  @endif
-                @endfor
-              </tbody>
-            </table>
-
-          </div>
-
-          <!-- Modal -->
-          <div class="modal fade" id="ModalCarousel" tabindex="-1" role="dialog" aria-labelledby="ModalCarouselLabel">
-            <div class="modal-dialog"  role="document">
-              <div class="modal-content">
-
-              <!--The main div for carousel-->
-              <div id="carousel-modal-demo" class="carousel slide" data-ride="carousel" data-interval="false">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                  @foreach ($fotos as $i => $foto)
-                    @if($i == 0)
-                      <li data-target="#carousel-modal-demo" data-slide-to="{{$i}}" class="active"></li>
-                    @else
-                      <li data-target="#carousel-modal-demo" data-slide-to="{{$i}}"></li>
-                    @endif
-                  @endforeach
-                </ol>
-
-                <!-- Sliding images starting here -->
-                <div class="carousel-inner" align="center">
-                  @foreach ($fotos as $i => $foto)
-                    <div id="{{$foto->id}}" class="item">
-                      <img src="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}">
-                    </div>
-                  @endforeach
-                </div>
-
-                <!-- Next / Previous controls here -->
-                <a class="left carousel-control" href="#carousel-modal-demo" data-slide="prev">
-                  <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-                <a class="right carousel-control" href="#carousel-modal-demo" data-slide="next">
-                  <span class="glyphicon glyphicon-chevron-right"></span>
-                </a>
-
-              </div>
-
-
+                      @endif
+                    @endfor
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="panel-footer">
-          <a class="btn btn-danger" href="{{route("album.ver" , ['id_album'=>$album->id]) }}">
-            <i class="material-icons">keyboard_backspace</i>
-            <br>
-            Voltar
-          </a>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
-
 
 <script>
 

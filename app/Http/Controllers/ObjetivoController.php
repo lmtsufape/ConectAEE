@@ -106,7 +106,7 @@ class ObjetivoController extends Controller
   public static function criar(Request $request){
     $validator = Validator::make($request->all(), [
       'titulo' => ['required','min:2','max:100'],
-      'descricao' => ['required','min:2','max:500'],
+      'descricao' => ['required'],
       'prioridade' => ['required'],
       'tipo' => ['required'],
     ]);
@@ -159,7 +159,7 @@ class ObjetivoController extends Controller
   public static function atualizar(Request $request){
     $validator = Validator::make($request->all(), [
       'titulo' => ['required','min:2','max:100'],
-      'descricao' => ['required','min:2','max:500'],
+      'descricao' => ['required'],
       'prioridade' => ['required'],
       'tipo' => ['required'],
     ]);
@@ -196,10 +196,12 @@ class ObjetivoController extends Controller
   public static function gerenciar($id_objetivo){
 
     $objetivo = Objetivo::find($id_objetivo);
+    $atividades = $objetivo->atividades;
+    $sugestoes = $objetivo->sugestoes;
     $aluno = $objetivo->aluno;
 
-    $atividadesGroupByData = $objetivo->atividades->groupBy('data');
-    $sugestoesGroupByData = $objetivo->sugestoes->groupBy('data');
+    // $atividadesGroupByData = $objetivo->atividades->groupBy('data');
+    // $sugestoesGroupByData = $objetivo->sugestoes->groupBy('data');
     $mensagens = MensagemForumObjetivo::where('forum_objetivo_id','=',$objetivo->forum->id)->orderBy('id','desc')->take(5)->get();
 
     foreach ($mensagens as $mensagem) {
@@ -215,16 +217,16 @@ class ObjetivoController extends Controller
       }
     }
 
-    $size1 = 0;
-    $size2 = 0;
-
-    if (count($atividadesGroupByData) != 0) {
-      $size1 = count(max($atividadesGroupByData->toArray()));
-    }
-
-    if (count($sugestoesGroupByData) != 0) {
-      $size2 = count(max($sugestoesGroupByData->toArray()));
-    }
+    // $size1 = 0;
+    // $size2 = 0;
+    //
+    // if (count($atividadesGroupByData) != 0) {
+    //   $size1 = count(max($atividadesGroupByData->toArray()));
+    // }
+    //
+    // if (count($sugestoesGroupByData) != 0) {
+    //   $size2 = count(max($sugestoesGroupByData->toArray()));
+    // }
 
     $statuses = ["Não iniciada", "Em andamento", "Finalizada"];
     $statusesObjetivo = Status::all();
@@ -232,11 +234,13 @@ class ObjetivoController extends Controller
     return view("objetivo.gerenciarPainel",[
       'aluno' => $aluno,
       'objetivo' => $objetivo,
-      'atividadesGroupByData' => $atividadesGroupByData,
-      'sugestoesGroupByData' => $sugestoesGroupByData,
+      'atividades' => $atividades,
+      'sugestoes' => $sugestoes,
+      // 'atividadesGroupByData' => $atividadesGroupByData,
+      // 'sugestoesGroupByData' => $sugestoesGroupByData,
       'mensagens'=> $mensagens,
-      'size1' => $size1,
-      'size2' => $size2,
+      // 'size1' => $size1,
+      // 'size2' => $size2,
       'statuses' => $statuses,
       'statusesObjetivo' => $statusesObjetivo,
     ]);

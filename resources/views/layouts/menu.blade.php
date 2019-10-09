@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" style="background-color: #12583c; border-color: #d3e0e9" role="navigation">
+<nav class="navbar-default" style="background-color: #12583c; border-color: #d3e0e9" role="navigation">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
       <span class="sr-only">Toggle navigation</span>
@@ -7,8 +7,8 @@
       <span class="icon-bar"></span>
     </button>
   </div>
-  <div class="collapse navbar-collapse" >
-    <ul class="nav navbar-nav" style="margin-left: 5%">
+  <div class="collapse navbar-collapse" style="margin-left:5%">
+    <ul class="nav navbar-nav" >
       @if(Auth::check() && Auth::user()->cadastrado)
         <li class="dropdown">
           <a class="menu-principal" href="{{ route('home') }}">Início</a>
@@ -30,13 +30,13 @@
           </a>
           <ul class="dropdown-menu" role="menu">
             <li>
-              <a href="{{ route('aluno.cadastrar') }}">
-                Cadastrar
+              <a href="{{ route('aluno.listar') }}">
+                Listar
               </a>
             </li>
             <li>
-              <a href="{{ route('aluno.listar') }}">
-                Listar
+              <a href="{{ route('aluno.cadastrar') }}">
+                Cadastrar
               </a>
             </li>
             <li>
@@ -52,20 +52,20 @@
           </a>
           <ul class="dropdown-menu" role="menu">
             <li>
-              <a href="{{ route('instituicao.cadastrar') }}">
-                Cadastrar
+              <a href="{{ route('instituicao.listar') }}">
+                Listar
               </a>
             </li>
             <li>
-              <a href="{{ route('instituicao.listar') }}">
-                Listar
+              <a href="{{ route('instituicao.cadastrar') }}">
+                Cadastrar
               </a>
             </li>
           </ul>
         </li>
       @endif
     </ul>
-    <ul class="nav navbar-nav navbar-right" style="margin-right: 5%">
+    <ul class="nav navbar-nav navbar-right" style="margin-right:5%">
       @if(Auth::check() && Auth::user()->cadastrado)
         @php
           $notificacoes = Auth::user()->notificacoes;
@@ -76,12 +76,15 @@
         <li class="dropdown">
           <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
             @if($lidos == null)
-              <i class="material-icons">notifications_none</i>
+              Notificacões
+              <!-- <i class="material-icons">notifications_none</i> -->
             @elseif(gettype(array_search(false, $lidos)) == 'integer')
-              <i class="material-icons">notifications</i>
-              <span class="badge badge-pill" style="position: absolute; top:-3px; right:-0px; background:red">{{$qtd_naolidos}}</span>
+              Notificacões
+              <!-- <i class="material-icons">notifications</i> -->
+              <span class="badge badge-pill" style="position: absolute; top:0px; right:-5px; background:red">{{$qtd_naolidos}}</span>
             @else
-              <i class="material-icons">notifications_none</i>
+              Notificacões
+              <!-- <i class="material-icons">notifications_none</i> -->
             @endif
           </a>
 
@@ -148,7 +151,7 @@
           <ul class="dropdown-menu" role="menu">
             <li>
               <a href="{{ route('usuario.editar') }}">
-                Meus Dados
+                Meu Perfil
               </a>
             </li>
             <li>
@@ -178,12 +181,9 @@
           </ul>
         </li>
       @else
-        <!-- <li class="menu-principal">
-          <a id="altocontraste" onclick="contraste()">Contraste</a>
-        </li> -->
         <li><a class="menu-principal" href="{{ route('login') }}">Entrar</a></li>
         <li><a class="menu-principal" href="{{ route('register') }}">Cadastrar</a></li>
       @endif
-  </ul>
-</div>
+    </ul>
+  </div>
 </nav>

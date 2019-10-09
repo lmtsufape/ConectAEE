@@ -2,7 +2,7 @@
 @section('title','Fórum')
 @section('navbar')
 <a href="{{route('aluno.listar')}}">Início</a>
-> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Gerenciar: <strong>{{$aluno->nome}}</strong></a>
+> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
 > Fórum
 @endsection
 @section('content')
@@ -11,7 +11,11 @@
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
-        <div class="panel-heading" id="forum">Fórum de <strong>{{$aluno->nome}}</strong></div>
+        <div class="panel-heading" id="forum">
+          <h3>
+            Fórum - <strong>{{$aluno->nome}}</strong>
+          </h3>
+        </div>
 
         <div class="panel-body">
           @if ($errors->has('texto'))
@@ -27,12 +31,12 @@
             <div style="margin: 1%" class="form-group">
               <textarea name="mensagem" style="width:75%; display: inline" id="summer" type="text" class="form-control summernote"></textarea>
               <br>
-              <button type="submit" class="btn btn-primary">Enviar</button>
+              <button type="submit" class="btn btn-primary" style="width:100%">Enviar</button>
             </div>
           </form>
         </div>
 
-        <div class="panel-footer">
+        <div class="panel-footer" style="background-color: white;">
           <div class="form-group">
             @foreach($mensagens as $mensagem)
               @if($mensagem->user_id == \Auth::user()->id)

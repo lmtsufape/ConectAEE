@@ -13,7 +13,7 @@ class CorSeeder extends Seeder
      */
     public function run()
     {
-      $cores = RandomColor::many(100, array('luminosity'=>'light'));
+      $cores = RandomColor::many(100, array('luminosity'=>'bright'));
 
       for ($i=0; $i < 100; $i++) {
         factory(Cor::class)->create([
