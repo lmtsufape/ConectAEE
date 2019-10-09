@@ -51,6 +51,19 @@ class SugestaoController extends Controller
     $aluno = $sugestao->objetivo->aluno;
     $feedbacks = $sugestao->feedbacks;
 
+    foreach ($feedbacks as $feedback) {
+      $img = strpos($feedback->texto, '<img');
+      $video = strpos($feedback->texto, '<iframe');
+
+      if($img){
+        $feedback->texto = str_replace('<img', '<img style="width:100%"', $feedback->texto);
+      }
+
+      if($video){
+        $feedback->texto = str_replace('<iframe', '<iframe style="width:100%"', $feedback->texto);
+      }
+    }
+
     return view("sugestao.ver", [
       'aluno' => $aluno,
       'objetivo' => $objetivo,

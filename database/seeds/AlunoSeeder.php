@@ -15,7 +15,7 @@ class AlunoSeeder extends Seeder
     public function run()
     {
 
-        for ($i=1; $i<=10 ; $i++) {
+        for ($i=1; $i<=19 ; $i++) {
           factory(Aluno::class)->create([
               'endereco_id' => $i,
           ]);

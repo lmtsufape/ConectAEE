@@ -3,7 +3,7 @@
 
 @section('navbar')
 <a href="{{route('aluno.listar')}}">Início</a>
-> Gerenciar: <strong>{{$aluno->nome}}</strong>
+> Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong>
 @endsection
 
 @section('content')
@@ -162,7 +162,6 @@
 					</div>
 
 					<div class="panel-body">
-
 
 						<form class="form-horizontal" method="POST" action="{{route('aluno.forum.mensagem.enviar')}}">
 							@csrf

@@ -86,7 +86,6 @@ Route::middleware('autorizacao')->group(function() {
   // Route::get('/aluno/atividade/buscar', 'AtividadeController@buscar')->name('atividade.buscar');
 
   //Rotas para sugestão
-  Route::get('/aluno/objetivo/{id_objetivo}/gerenciar/sugestoes/listar','SugestaoController@listar')->name('sugestoes.listar');
   Route::post('/aluno/objetivo/gerenciar/sugestoes/criar', 'SugestaoController@criar')->name('sugestoes.criar');
   Route::get('/aluno/objetivo/{id_objetivo}/gerenciar/sugestoes/cadastrar','SugestaoController@cadastrar')->name('sugestoes.cadastrar');
   //novas
@@ -108,7 +107,6 @@ Route::middleware('autorizacao')->group(function() {
   Route::get('/aluno/objetivo/{id_objetivo}/forum','ForumController@abrirForumObjetivo')->name('objetivo.forum');
 
   //rotas para statuses
-  // Route::get('/aluno/objetivo/{id_objetivo}/gerenciar/status/cadastrar','StatusController@cadastrar')->name('objetivo.status.cadastrar');
   Route::post('/aluno/objetivo/status/atualizar', 'StatusController@atualizar')->name('objetivo.status.atualizar');
 
   //Rotas para albuns //novas
@@ -130,5 +128,6 @@ Route::middleware('autorizacao')->group(function() {
   Route::get('/instituicao/{id_instituicao}/editar', 'InstituicaoController@editar')->name('instituicao.editar');
   Route::get('/instituicao/{id_instituicao}/excluir', 'InstituicaoController@excluir')->name('instituicao.excluir');
   Route::post('/instituicao/atualizar', 'InstituicaoController@atualizar')->name('instituicao.atualizar');
+  Route::get('/instituicao/buscar', 'InstituicaoController@buscar')->name('instituicao.buscar');
 
 });

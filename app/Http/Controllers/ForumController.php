@@ -35,7 +35,7 @@ class ForumController extends Controller
     $mensagem->forum_aluno_id = $request->forum_id;
     $mensagem->save();
 
-    return Redirect::to(URL::previous() . "#forum");
+    return Redirect::to(URL::previous() . "#forum")->with('display',true);
   }
 
   public function abrirForumAluno($id_aluno){

@@ -24,7 +24,8 @@ class AlunoController extends Controller{
     $mensagens = MensagemForumAluno::where('forum_aluno_id','=',$aluno->forum->id)
                                    // ->where('texto', 'not like', '%'.'<img'.'%')
                                    // ->where('texto', 'not like', '%'.'<iframe'.'%')
-                                   ->orderBy('id','desc')->take(5)->get();
+                                   // ->orderBy('id','desc')->take(5)->get();
+                                   ->orderBy('id','desc')->get();
 
     foreach ($mensagens as $mensagem) {
       $img = strpos($mensagem->texto, '<img');
@@ -39,7 +40,7 @@ class AlunoController extends Controller{
       }
     }
 
-    return view("aluno.gerenciar",[
+    return view("aluno.perfil",[
       'aluno' => $aluno,
       'mensagens' => $mensagens,
     ]);
@@ -53,9 +54,9 @@ class AlunoController extends Controller{
       array_push($ids_alunos,$gerenciar->aluno_id);
     }
 
-    $alunos = Aluno::whereIn('id', $ids_alunos)->paginate(12);
+    $alunos = Aluno::whereIn('id', $ids_alunos)->paginate(18);
 
-    return view("aluno.listarImagens",[
+    return view("aluno.listar",[
       'alunos' => $alunos,
       'termo' => ""
     ]);
@@ -72,7 +73,7 @@ class AlunoController extends Controller{
 
     $alunos = Aluno::whereIn('id', $ids_alunos)->where('nome','ilike', '%'.$request->termo.'%')->paginate(12);
 
-    return view("aluno.listarImagens",[
+    return view("aluno.listar",[
       'alunos' => $alunos,
       'termo' => $request->termo
     ]);
@@ -159,7 +160,7 @@ class AlunoController extends Controller{
       'sexo' => ['required'],
       'cid' => ['nullable','regex:/(^([a-zA-z])(\d)(\d)(\d)$)/u'],
       'descricaoCid' => ['required_with:cid'],
-      'observacao' => ['nullable','max:500'],
+      'observacao' => ['nullable'],
       'data_nascimento' => ['required','date','before:today','after:01/01/1900'],
       'logradouro' => ['required'],
       'numero' => ['required','numeric'],
@@ -282,7 +283,7 @@ class AlunoController extends Controller{
       'sexo' => ['required'],
       'cid' => ['nullable','regex:/(^([a-zA-z])(\d)(\d)(\d)$)/u'],
       'descricaoCid' => ['required_with:cid'],
-      'observacao' => ['nullable','max:500'],
+      'observacao' => ['nullable'],
       'data_nascimento' => ['required','date','before:today','after:01/01/1900'],
       'logradouro' => ['required'],
       'numero' => ['required','numeric'],
