@@ -17,78 +17,82 @@
       <div class="panel panel-default">
         <div class="panel-heading">Novo Aluno</div>
 
-        <div class="panel-body">
-          <form class="form-horizontal" method="POST" action="{{ route("album.criar") }}" enctype="multipart/form-data">
-            {{ csrf_field() }}
+        <div class="panel-body panel-body-cadastro">
+          <div class="col-md-8 col-md-offset-2">
+            <form method="POST" action="{{ route("album.criar") }}" enctype="multipart/form-data">
+              {{ csrf_field() }}
 
-            <input id="id_aluno" type="hidden" class="form-control" name="id_aluno" value="{{ $aluno->id }}">
+              <input id="id_aluno" type="hidden" class="form-control" name="id_aluno" value="{{ $aluno->id }}">
 
-            <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
-              <label for="nome" class="col-md-4 control-label"> Nome <font color="red">*</font>
-              </label>
+              <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
+                <label for="nome" class="col-md-12 control-label"> Nome <font color="red">*</font>
+                </label>
 
-              <div class="col-md-6">
-                <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}" autofocus>
+                <div class="col-md-12">
+                  <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}" autofocus>
 
-                @if ($errors->has('nome'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('nome') }}</strong>
-                </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="form-group{{ $errors->has('descricao') ? ' has-error' : '' }}">
-              <label for="descricao" class="col-md-4 control-label">Descrição</label>
-
-              <div class="col-md-6">
-                <textarea id="descricao" rows = "5" cols = "50" class="form-control" name="descricao" >{{old('descricao')}}</textarea>
-
-                @if ($errors->has('descricao'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('descricao') }}</strong>
-                </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="form-group{{ $errors->has('imagens.*') || $errors->has('imagens')? ' has-error' : '' }}">
-              <label for="imagens" class="col-md-4 control-label" >
-                Fotos <font color="red">*</font>
-              </label>
-
-              <div class="col-md-6">
-
-                <input id="imagens" type="file" multiple class="filestyle" name="imagens[]" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn btn-primary">
-
-                @if ($errors->has('imagens') || $errors->has('imagens.*'))
+                  @if ($errors->has('nome'))
                   <span class="help-block">
-                    <strong>{{ $errors->first('imagens') }}</strong>
-                    <strong>{{ $errors->first('imagens.*') }}</strong>
+                    <strong>{{ $errors->first('nome') }}</strong>
                   </span>
-                @endif
+                  @endif
+                </div>
               </div>
-            </div>
 
-            <!-- <i class="material-icons tiny" style="font-size:100px">add_box</i> -->
+              <div class="form-group{{ $errors->has('descricao') ? ' has-error' : '' }}">
+                <label for="descricao" class="col-md-12 control-label">Descrição</label>
 
-            <div class="form-group">
-              <div class="col-md-6 col-md-offset-4">
-                <button type="submit" class="btn btn-success">
-                  Cadastrar
-                </button>
+                <div class="col-md-12">
+                  <textarea id="descricao" rows = "5" cols = "50" class="form-control" name="descricao" >{{old('descricao')}}</textarea>
+
+                  @if ($errors->has('descricao'))
+                  <span class="help-block">
+                    <strong>{{ $errors->first('descricao') }}</strong>
+                  </span>
+                  @endif
+                </div>
               </div>
-            </div>
-          </form>
+
+              <div class="form-group{{ $errors->has('imagens.*') || $errors->has('imagens')? ' has-error' : '' }}">
+                <label for="imagens" class="col-md-12 control-label" >
+                  Fotos <font color="red">*</font>
+                </label>
+
+                <div class="col-md-12">
+
+                  <input id="imagens" type="file" multiple class="filestyle" name="imagens[]" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn btn-primary">
+
+                  @if ($errors->has('imagens') || $errors->has('imagens.*'))
+                    <span class="help-block">
+                      <strong>{{ $errors->first('imagens') }}</strong>
+                      <strong>{{ $errors->first('imagens.*') }}</strong>
+                    </span>
+                  @endif
+                </div>
+              </div>
+
+              <!-- <i class="material-icons tiny" style="font-size:100px">add_box</i> -->
+
+              <div class="form-group">
+                <div class="row col-md-12 text-center">
+                  <br>
+                  <button type="submit" class="btn btn-primary">
+                    Cadastrar
+                  </button>
+                </div>
+              </div>
+
+            </form>
+          </div>
         </div>
 
-        <div class="panel-footer">
+        <!-- <div class="panel-footer">
           <a class="btn btn-danger" href="{{URL::previous()}}">
             <i class="material-icons">keyboard_backspace</i>
             <br>
             Voltar
           </a>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

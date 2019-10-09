@@ -56,6 +56,10 @@ class User extends Authenticatable
         return $this->hasMany(Feedback::class);
     }
 
+    public function albuns(){
+        return $this->hasMany(Album::class);
+    }
+
     public function notificacoes(){
         return $this->hasMany(Notificacao::class, 'destinatario_id')->orderBy('created_at', 'desc')->take(5);
     }

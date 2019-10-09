@@ -13,4 +13,8 @@ class Album extends Model
   public function aluno(){
      return $this->belongsTo('App\Aluno');
   }
+
+  public function user(){
+     return $this->belongsTo('App\User');
+  }
 }

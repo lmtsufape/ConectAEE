@@ -18,6 +18,7 @@
     <link href="{{ asset('css/lmts-app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/contrast.css') }}" rel="stylesheet">
     <link href="{{ asset('css/forum.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/lightbox.min.css') }}" rel="stylesheet">
     <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/select2-bootstrap.min.css') }}" rel="stylesheet">
@@ -25,6 +26,7 @@
 
     <!-- JavaScripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/lightbox-plus-jquery.min.js') }}"></script>
 
     <!-- Scripts -->
     <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>

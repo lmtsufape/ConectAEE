@@ -91,7 +91,7 @@ class AtividadeController extends Controller
 
     AtividadeController::notificarAtividade($atividade);
 
-    return Redirect::to(route("objetivo.gerenciar", ["id_objetivo" => $atividade->objetivo->id]) . "#atividades")->with('atividade','A atividade '.$atividade->titulo.' foi cadastrada.');;
+    return Redirect::to(route("objetivo.gerenciar", ["id_objetivo" => $atividade->objetivo->id]) . "#atividades")->with('atividade','A atividade '.$atividade->titulo.' foi cadastrada.');
   }
 
   public static function atualizar(Request $request){

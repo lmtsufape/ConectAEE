@@ -163,7 +163,6 @@
 
 					<div class="panel-body">
 
-
 						<form class="form-horizontal" method="POST" action="{{route('aluno.forum.mensagem.enviar')}}">
 							@csrf
 							<input name="forum_id" type="text" value={{$aluno->forum->id}} hidden>

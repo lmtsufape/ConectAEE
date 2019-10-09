@@ -8,6 +8,7 @@ use App\Aluno;
 use App\Album;
 use App\Foto;
 use DateTime;
+use Auth;
 
 class AlbumController extends Controller
 {
@@ -102,6 +103,7 @@ class AlbumController extends Controller
     $album->nome = $request->nome;
     $album->descricao = $request->descricao;
     $album->aluno_id = $request->id_aluno;
+    $album->user_id = Auth::user()->id;
     $album->save();
 
     foreach ($request->imagens as $imagem) {
