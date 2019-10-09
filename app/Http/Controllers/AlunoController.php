@@ -24,7 +24,8 @@ class AlunoController extends Controller{
     $mensagens = MensagemForumAluno::where('forum_aluno_id','=',$aluno->forum->id)
                                    // ->where('texto', 'not like', '%'.'<img'.'%')
                                    // ->where('texto', 'not like', '%'.'<iframe'.'%')
-                                   ->orderBy('id','desc')->take(5)->get();
+                                   // ->orderBy('id','desc')->take(5)->get();
+                                   ->orderBy('id','desc')->get();
 
     foreach ($mensagens as $mensagem) {
       $img = strpos($mensagem->texto, '<img');

@@ -183,11 +183,89 @@
           </a>
         </div> -->
 		</div>
+
+		<button class="open-button" style="border-radius:15px;" onclick="openForm()">Fórum</button>
+
+	</div>
+
+	@if (\Session::has('display'))
+		<div class="chat-popup" id="myForm" style="display:block; background-color:white;">
+	@else
+		<div class="chat-popup" id="myForm" style="display:none;background-color:white; ">
+	@endif
+		<div class="panel" style="max-height:700px; max-width: 450px; overflow:auto;">
+
+			<div class="panel-heading" id="forum" >
+				<h3>
+					Fórum
+				</h3>
+			</div>
+
+			<div class="panel-body">
+
+				<form class="form-horizontal" method="POST" action="{{route('aluno.forum.mensagem.enviar')}}">
+					@csrf
+					<input name="forum_id" type="text" value={{$aluno->forum->id}} hidden>
+
+					<div style="margin: 1%" class="form-group">
+						<textarea name="mensagem" style="width:75%; display: inline" id="summer" type="text" class="form-control summernote"></textarea>
+						<br>
+
+						@if ($errors->has('mensagem'))
+							<div style="margin-left: 1%; margin-right: 1%" class="alert alert-danger">
+								<strong>Erro!</strong>
+								{{ $errors->first('mensagem') }}
+							</div>
+						@endif
+
+						<button type="submit" class="btn btn-primary">Enviar</button>
+
+					</div>
+				</form>
+
+				<div class="form-group">
+					@foreach($mensagens as $mensagem)
+						@if($mensagem->user_id == \Auth::user()->id)
+							<div style="text-align: right; width: 80%; margin-left: 20%" id='user-message'>
+								<div class="panel panel-default">
+									<div style="background-color: #bbffad;" class="panel-body">
+										<div class="hifen">
+											{!! $mensagem->texto !!}<br>
+											{{$mensagem->created_at->format('d/m/y h:i')}}<br>
+										</div>
+									</div>
+								</div>
+							</div>
+						@else
+							<div style="text-align: left; width: 80%" id='others-message'>
+								<div class="panel panel-default">
+									<div style="background-color: #adbaff" class="panel-body">
+										<div class="hifen">
+											<strong>{{$mensagem->user->name}}:</strong><br>
+											{!! $mensagem->texto !!}<br>
+											{{$mensagem->created_at->format('d/m/y h:i')}}<br>
+										</div>
+									</div>
+								</div>
+							</div>
+						@endif
+					@endforeach
+				</div>
+			</div>
+
+			<div class="panel-footer" style="background-color: white;">
+				<a style="width:100%" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary">Ver página completa</a>
+
+				<button type="button" class="btn btn-danger" onclick="closeForm()">Fechar</button>
+			</div>
+
+		</div>
 	</div>
 
   <!-- <a id="btn-mensagem" href="javascript:register_popup('mensagens', 'Mensagens');">
 		Mensagens
   </a> -->
+
 
   </div>
 </div>
@@ -211,6 +289,16 @@
     height: 100
   });
 
+</script>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
 </script>
 
 @endsection
