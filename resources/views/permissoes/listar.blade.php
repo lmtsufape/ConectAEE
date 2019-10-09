@@ -13,7 +13,26 @@
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
-        <div class="panel-heading">Permissões de acesso à {{$aluno->nome}}</div>
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-12">
+              <div style="width: 100%; margin-left: 0%;" class="row">
+                <div style="width: 50%; float: left; margin-left:-20px;" class="col-md-6">
+                  <h3>
+                    <strong>Acesso</strong>
+                  </h3>
+                </div>
+                <div style="width:50%; float:right; margin-right:-25px;margin-top:20px" class="col-md-6 text-right">
+                  <a class="btn btn-primary" href="{{ route("aluno.permissoes.cadastrar",['id_aluno' => $aluno->id])}}">
+                    Cadastrar
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr style="border-top: 1px solid black;">
+        </div>
 
         <div class="panel-body">
           @if (\Session::has('Success'))
@@ -36,7 +55,7 @@
               <thead>
                 <tr>
                   <th>Nome</th>
-                  <th>Perfil/Especialização</th>
+                  <th>Perfil</th>
                   <th>Administrador</th>
                   <th>Ações</th>
                   <th></th>
@@ -61,12 +80,12 @@
                         @if(!($gerenciar->isAdministrador))
                           <td data-title="Ações">
                             <a class="btn btn-primary" href='{{route('aluno.permissoes.editar',[$aluno->id, $gerenciar->id])}}'>
-                              <i class="material-icons">edit</i>
+                              Editar
                             </a>
                           </td>
                           <td data-title="">
                             <a class="btn btn-danger" href='{{route('aluno.permissoes.remover',[$gerenciar->id])}}' onclick="return confirm('Essa ação removerá as permissões de {{$gerenciar->user->name}}. Deseja prosseguir?')">
-                              <i class="material-icons">delete</i>
+                              Excluir
                             </a>
                           </td>
                         @else
@@ -85,18 +104,13 @@
           </div>
         </div>
 
-        <div class="panel-footer">
+        <!-- <div class="panel-footer">
           <a class="btn btn-danger" href="{{URL::previous()}}">
             <i class="material-icons">keyboard_backspace</i>
             <br>
             Voltar
           </a>
-          <a class="btn btn-success" href="{{ route("aluno.permissoes.cadastrar",['id_aluno' => $aluno->id])}}">
-            <i class="material-icons">add</i>
-            <br>
-            Novo
-          </a>
-        </div>
+        </div> -->
 
       </div>
     </div>

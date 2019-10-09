@@ -395,7 +395,7 @@ background-color: #3097D1;
 }
 
 .btn-danger{
-  background-color: red;
+  background-color: #581212;
   border-color: #d3e0e9;
   color: white;
   border-radius: 15px;
@@ -403,7 +403,7 @@ background-color: #3097D1;
 }
 
 .btn-danger:visited{
-  background-color: red;
+  background-color: #581212;
   border-color: #d3e0e9;
   color: white;
   border-radius: 15px;
@@ -411,14 +411,14 @@ background-color: #3097D1;
 }
 
 .btn-danger:disabled{
-  background-color: red;
+  background-color: #581212;
   border-color: #d3e0e9;
   color: white;
   border-radius: 15px
 }
 
 .btn-danger:hover{
-  background-color: red;
+  background-color: #581212;
   border-color: #d3e0e9;
   border-radius: 15px
   color: white;

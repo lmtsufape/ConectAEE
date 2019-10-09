@@ -11,7 +11,7 @@
 	<div class="row">
 
 		<div class="col-md-12">
-			<div class="panel panel-default" style="width:100%">
+			<div id="perfil" class="panel panel-default" style="width:100%">
 
 				<div class="panel-body">
 					@if (\Session::has('success'))
@@ -254,7 +254,7 @@
 			</div>
 
 			<div class="panel-footer" style="background-color: white;">
-				<a style="width:100%" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary">Ver página completa</a>
+				<a style="width:100%" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary">Ver em tela cheia</a>
 
 				<button type="button" class="btn btn-danger" onclick="closeForm()">Fechar</button>
 			</div>

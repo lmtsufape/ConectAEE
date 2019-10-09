@@ -14,6 +14,33 @@ class InstituicaoController extends Controller
     return view("instituicao.cadastrar");
   }
 
+  public static function buscar(Request $request){
+
+    $instituicoes = Instituicao::where(function ($query) use ($request){
+                                     $query->where('user_id','=',\Auth::user()->id);
+                                 })->where(function ($query) use ($request){
+                                     $query->orwhere('nome','ilike', '%'.$request->termo.'%')
+                                           ->orWhereHas('endereco', function ($query) use ($request) {
+                                              $query->where('logradouro', 'ilike', '%'.$request->termo.'%');
+                                           })
+                                           ->orWhereHas('endereco', function ($query) use ($request) {
+                                              $query->where('cidade', 'ilike', '%'.$request->termo.'%');
+                                           })
+                                           ->orWhereHas('endereco', function ($query) use ($request) {
+                                              $query->where('bairro', 'ilike', '%'.$request->termo.'%');
+                                           })
+                                           ->orWhereHas('endereco', function ($query) use ($request) {
+                                              $query->where('estado', 'ilike', '%'.$request->termo.'%');
+                                           });
+                                  })->get();
+
+    return view("instituicao.listar",[
+      'instituicoes' => $instituicoes,
+      'termo' => $request->termo
+    ]);
+
+  }
+
   public static function ver($id_instituicao){
     $instituicao = Instituicao::find($id_instituicao);
     $endereco = Endereco::find($instituicao->endereco->id);
@@ -36,7 +63,10 @@ class InstituicaoController extends Controller
     public static function listar(){
       $instituicoes = \Auth::user()->instituicoes;
 
-      return view("instituicao.listar", ['instituicoes' => $instituicoes]);
+      return view("instituicao.listar", [
+        'instituicoes' => $instituicoes,
+        'termo' => "",
+      ]);
     }
 
     public static function criar(Request $request){

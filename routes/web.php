@@ -128,5 +128,6 @@ Route::middleware('autorizacao')->group(function() {
   Route::get('/instituicao/{id_instituicao}/editar', 'InstituicaoController@editar')->name('instituicao.editar');
   Route::get('/instituicao/{id_instituicao}/excluir', 'InstituicaoController@excluir')->name('instituicao.excluir');
   Route::post('/instituicao/atualizar', 'InstituicaoController@atualizar')->name('instituicao.atualizar');
+  Route::get('/instituicao/buscar', 'InstituicaoController@buscar')->name('instituicao.buscar');
 
 });

@@ -80,9 +80,13 @@
 
           <div class="col-md-6">
             <strong>Histórico de Status: </strong> <br>
-            @foreach ($objetivo->statusObjetivo as $statusObjetivo)
-              {{ $statusObjetivo->status->status }} {{ $statusObjetivo->data}} <br>
-            @endforeach
+            <ul>
+              @foreach ($objetivo->statusObjetivo as $statusObjetivo)
+                <li>
+                  {{ $statusObjetivo->status->status }} - {{ $statusObjetivo->data}} <br>
+                </li>
+              @endforeach
+            </ul>
 
             <strong>Status atual:</strong>
 

@@ -15,7 +15,15 @@
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
-        <div class="panel-heading">Novo Aluno</div>
+        <div class="panel-heading">
+          <h2>
+            <strong>
+              Novo Álbum
+            </strong>
+          </h2>
+
+          <hr style="border-top: 1px solid black;">
+        </div>
 
         <div class="panel-body panel-body-cadastro">
           <div class="col-md-8 col-md-offset-2">
