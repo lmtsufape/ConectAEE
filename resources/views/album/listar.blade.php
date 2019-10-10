@@ -38,7 +38,6 @@
         <div class="panel-body">
 
           @if (\Session::has('success'))
-            <br>
             <div class="alert alert-success">
               <strong>Sucesso!</strong>
               {!! \Session::get('success') !!}

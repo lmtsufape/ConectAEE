@@ -163,10 +163,10 @@
                   <table class="table table-striped">
                     <thead>
                       <tr>
-                        <th>Status</th>
-                        <th>Atividade</th>
-                        <th>Data</th>
-                        <th>Ação</th>
+                        <th style="width:25%">Status</th>
+                        <th style="width:25%">Atividade</th>
+                        <th style="width:25%">Data</th>
+                        <th style="width:25%">Ação</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -262,10 +262,10 @@
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th>Sugestão</th>
-                      <th>Autor</th>
-                      <th>Data</th>
-                      <th>Ação</th>
+                      <th style="width:25%">Sugestão</th>
+                      <th style="width:25%">Autor</th>
+                      <th style="width:25%">Data</th>
+                      <th style="width:25%">Ação</th>
                     </tr>
                   </thead>
                   <tbody>
