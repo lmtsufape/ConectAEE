@@ -12,6 +12,36 @@
 		<div class="col-md-12">
 			<div id="perfil" class="panel panel-default" style="width:100%">
 
+				<div class="panel-heading">
+	        <div class="row">
+
+	          <div class="col-md-6">
+	            <h2>
+	              <strong>
+	                {{$aluno->nome}}
+	              </strong>
+	            </h2>
+	          </div>
+
+	          <div class="col-md-6 text-right" style="margin-top:20px">
+							@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
+								<a class="btn btn-primary" data-toggle="tooltip" title="Editar aluno" href={{route("aluno.editar", ["id_aluno"=>$aluno->id]) }}>
+									Editar
+								</a>
+								<a data-toggle="tooltip" title="Acesso ao aluno" class="btn btn-primary" href="{{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}">
+									Acesso
+								</a>
+								<a class="btn btn-danger" data-toggle="tooltip" title="Excluir aluno" onclick="return confirm('\Confirmar exclusão do aluno {{$aluno->nome}}?')" href={{route("aluno.excluir", ["id_aluno"=>$aluno->id]) }}>
+									Excluir
+								</a>
+							@endif
+	          </div>
+
+	        </div>
+
+	        <hr style="border-top: 1px solid black;">
+	      </div>
+
 				<div class="panel-body">
 					@if (\Session::has('success'))
 	          <div class="alert alert-success">
@@ -38,31 +68,9 @@
 								</div>
 
 								<br>
-
-								@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador)
-									<div class="row">
-										<div style="width: 100%; margin-left: 0%" class="row">
-			                <div style="width: 50%; float:left;" class="col-md-6 text-center">
-												<a class="btn btn-primary" style="width:80%" href={{route("aluno.editar", ["id_aluno"=>$aluno->id]) }}>
-													<i class="material-icons">edit</i>
-												</a>
-			                </div>
-			                <div style="width: 50%; float:right;" class="col-md-6 text-center">
-												<a class="btn btn-danger" style="width:80%" onclick="return confirm('\Confirmar exclusão do aluno {{$aluno->nome}}?')" href={{route("aluno.excluir", ["id_aluno"=>$aluno->id]) }}>
-													<i class="material-icons">delete</i>
-												</a>
-			                </div>
-										</div>
-		              </div>
-								@endif
-
 							</div>
 
 							<div class="col-md-5">
-								<strong>Nome:</strong> {{$aluno->nome}}
-
-								<br>
-
 								<?php
 								foreach($gerenciars as $gerenciar){
 									if($gerenciar->user->id == \Auth::user()->id && $gerenciar->isAdministrador){
@@ -96,7 +104,6 @@
 							</div>
 
 							<div class="col-md-5">
-
 								@if($aluno->cid != null)
 									<strong>CID:</strong> {{$aluno->cid}}
 									<br/>
@@ -116,12 +123,10 @@
 									@endforeach
 								</ul>
 
-								<br>
 							</div>
 						</div>
 
 						<div class="col-md-12">
-
 							<div class="col-md-10 col-md-offset-2">
 								@if($aluno->observacao != null)
 									<strong>Observações:</strong> {!! $aluno->observacao !!}
@@ -133,8 +138,8 @@
 
 					<hr style="border-top: 1px solid black;">
 
-					<div class="row">
-						<a href="{{route("objetivo.listar", ["id_aluno"=>$aluno->id]) }}">
+					<div class="row col-md-8 col-md-offset-2">
+						<a href="{{route("objetivo.listar", ["id_aluno"=>$aluno->id]) }}" data-toggle="tooltip" title="Ver objetivos">
 							<div class="card cartao text-center " style="border-radius: 20px">
 								<div class="card-body d-flex justify-content-center">
 									<h2 style="margin-top:80px;">
@@ -146,7 +151,7 @@
 							</div>
 						</a>
 
-						<a href="{{route("album.listar", ["id_aluno"=>$aluno->id]) }}">
+						<a href="{{route("album.listar", ["id_aluno"=>$aluno->id]) }}" data-toggle="tooltip" title="Ver álbuns">
 							<div class="card cartao text-center " style="border-radius: 20px">
 								<div class="card-body d-flex justify-content-center">
 									<h2 style="margin-top:80px;">
@@ -158,7 +163,7 @@
 							</div>
 						</a>
 
-						@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
+						<!-- @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
 							<a href="{{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}">
 								<div class="card cartao text-center " style="border-radius: 20px">
 									<div class="card-body d-flex justify-content-center">
@@ -170,7 +175,7 @@
 									</div>
 								</div>
 							</a>
-						@endif
+						@endif -->
 					</div>
 				</div>
 
@@ -183,7 +188,7 @@
         </div> -->
 		</div>
 
-		<button class="open-button" style="border-radius:15px;" onclick="openForm()">Fórum</button>
+		<button class="open-button" data-toggle="tooltip" title="Ver fórum" style="border-radius:15px;" onclick="openForm()">Fórum</button>
 	</div>
 
 	@if (\Session::has('display'))
