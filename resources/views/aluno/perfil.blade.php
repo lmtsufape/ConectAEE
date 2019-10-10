@@ -9,7 +9,6 @@
 @section('content')
 <div class="container">
 	<div class="row">
-
 		<div class="col-md-12">
 			<div id="perfil" class="panel panel-default" style="width:100%">
 
@@ -185,7 +184,6 @@
 		</div>
 
 		<button class="open-button" style="border-radius:15px;" onclick="openForm()">Fórum</button>
-
 	</div>
 
 	@if (\Session::has('display'))
@@ -193,14 +191,25 @@
 	@else
 		<div class="chat-popup" id="myForm" style="display:none;background-color:white; ">
 	@endif
-		<div class="panel" style="max-height:700px; max-width: 450px; overflow:auto;">
+		<div class="panel-heading" id="forum" style="display:absolute;">
+			<div class="row">
+				<div class="col-md-6">
+					<h3>
+						<a target="_blank" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}">
+							Fórum <i class="material-icons">open_in_new</i>
+						</a>
+					</h3>
+				</div>
 
-			<div class="panel-heading" id="forum" >
-				<h3>
-					Fórum
-				</h3>
+				<div class="col-md-6">
+					<button type="button" style="float:right; width:50px; height:44px; background-color:red; color:white; margin-top:10px;" class="btn" onclick="closeForm()">
+						<i class="material-icons">close</i>
+					</button>
+				</div>
 			</div>
+		</div>
 
+		<div class="panel" style="max-height:700px; max-width: 450px; overflow:auto; background-color: #e5ddd5">
 			<div class="panel-body">
 
 				<form class="form-horizontal" method="POST" action="{{route('aluno.forum.mensagem.enviar')}}">
@@ -228,7 +237,7 @@
 						@if($mensagem->user_id == \Auth::user()->id)
 							<div style="text-align: right; width: 80%; margin-left: 20%" id='user-message'>
 								<div class="panel panel-default">
-									<div style="background-color: #bbffad;" class="panel-body">
+									<div style="background-color: #dbf6c5; color: #262626" class="panel-body">
 										<div class="hifen">
 											{!! $mensagem->texto !!}<br>
 											{{$mensagem->created_at->format('d/m/y h:i')}}<br>
@@ -239,7 +248,7 @@
 						@else
 							<div style="text-align: left; width: 80%" id='others-message'>
 								<div class="panel panel-default">
-									<div style="background-color: #adbaff" class="panel-body">
+									<div style="background-color: white; color: #262626" class="panel-body">
 										<div class="hifen">
 											<strong>{{$mensagem->user->name}}:</strong><br>
 											{!! $mensagem->texto !!}<br>
@@ -252,27 +261,9 @@
 					@endforeach
 				</div>
 			</div>
-
-			<div class="panel-footer" style="background-color: white;">
-				<a style="width:100%" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary">Ver em tela cheia</a>
-
-				<button type="button" class="btn btn-danger" onclick="closeForm()">Fechar</button>
-			</div>
-
 		</div>
 	</div>
-
-  <!-- <a id="btn-mensagem" href="javascript:register_popup('mensagens', 'Mensagens');">
-		Mensagens
-  </a> -->
-
-
-  </div>
 </div>
-
-<!-- <link href="{{ asset('css/mensagens.css') }}" rel="stylesheet"> -->
-
-<!-- <script src="{{ asset('js/mensagens.js') }}"></script> -->
 
 <script type="text/javascript">
 
