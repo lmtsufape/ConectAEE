@@ -85,20 +85,26 @@
       <!-- barra de menu -->
       @include('layouts.menu')
 
-      <div id="navigation" style="background-color:#ffffff">
-        @php($url = str_replace(URL::to('/'),'',URL::current()))
+      @php($url = str_replace(URL::to('/'),'',URL::current()))
 
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <br>
-              <h3>
-                &nbsp;@yield('navbar')
-              </h3>
+      @if($url != "/aluno/listar")
+        <div id="navigation" style="background-color:#ffffff">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <br>
+                <h3>
+                  &nbsp;
+                  <a href="{{URL::previous()}}" data-toggle="tooltip" title="Voltar" style="margin-left:5px; margin-right:5px; width:40px; padding:5px;" class="btn btn-danger">
+                    <i class=" material-icons">arrow_back</i>
+                  </a>
+                  @yield('navbar')
+                </h3>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      @endif
     </div>
 
     <div id="page-container" style="background-color:#FFFFFF">
