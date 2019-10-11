@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Notificacao;
+use Auth;
 
 class NotificacaoController extends Controller
 {
 
   public function listar(){
-    $notificacoes = \Auth::user()->notificacoes;
+    $notificacoes = Notificacao::where('destinatario_id','=',Auth::user()->id)->paginate(20);
 
     return view("notificacao.listar",[
       'notificacoes' => $notificacoes

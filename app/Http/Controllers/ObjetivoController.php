@@ -53,7 +53,7 @@ class ObjetivoController extends Controller
       $size = count(max($objetivosGroupByUser->toArray()));
     }
 
-    return view("objetivo.listarPainel", [
+    return view("objetivo.listar", [
       'aluno' => $aluno,
       'objetivosGroupByUser' => $objetivosGroupByUser,
       'size' => $size,
@@ -73,7 +73,7 @@ class ObjetivoController extends Controller
       $size = count(max($objetivosGroupByUser->toArray()));
     }
 
-    return view("objetivo.listarPainel", [
+    return view("objetivo.listar", [
       'aluno' => $aluno,
       'objetivosGroupByUser' => $objetivosGroupByUser,
       'size' => $size,
@@ -180,19 +180,6 @@ class ObjetivoController extends Controller
     return redirect()->route('objetivo.gerenciar',[$objetivo->id] )->with('success','O objetivo '.$objetivo->titulo.' foi atualizado.');;
   }
 
-  // public static function gerenciar($id_objetivo){
-  //
-  //   $objetivo = Objetivo::find($id_objetivo);
-  //   $aluno = $objetivo->aluno;
-  //   $mensagens = MensagemForumObjetivo::where('forum_objetivo_id','=',$objetivo->forum->id)->orderBy('id','desc')->take(5)->get();
-  //
-  //   return view("objetivo.gerenciar",[
-  //     'aluno' => $aluno,
-  //     'objetivo' => $objetivo,
-  //     'mensagens'=>$mensagens
-  //   ]);
-  // }
-
   public static function gerenciar($id_objetivo){
 
     $objetivo = Objetivo::find($id_objetivo);
@@ -231,7 +218,7 @@ class ObjetivoController extends Controller
     $statuses = ["Não iniciada", "Em andamento", "Finalizada"];
     $statusesObjetivo = Status::all();
 
-    return view("objetivo.gerenciarPainel",[
+    return view("objetivo.gerenciar",[
       'aluno' => $aluno,
       'objetivo' => $objetivo,
       'atividades' => $atividades,

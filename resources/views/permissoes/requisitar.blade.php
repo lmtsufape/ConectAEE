@@ -3,83 +3,94 @@
 @section('navbar')
 <a href="{{route('aluno.listar')}}">Início</a>
 > <a href="{{route('aluno.buscar')}}">Buscar</a>
-> Requisitar permissão: <strong>{{$aluno->nome}}</strong></a>
+> Requisitar acesso
 @endsection
 @section('content')
 <div class="container">
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
-        <div class="panel-heading">Requisitar permissão: <strong>{{$aluno->nome}}</strong></div>
+        <div class="panel-heading">
+          <h2>
+            <strong>
+              Requisitar acesso à {{$aluno->nome}}
+            </strong>
+          </h2>
 
-        <div class="panel-body">
-          <form class="form-horizontal" method="POST" action="{{ route("aluno.permissoes.notificar") }}">
-            {{ csrf_field() }}
+          <hr style="border-top: 1px solid black;">
+        </div>
 
-            <input type="hidden" name="id_aluno" value="{{ $aluno->id }}">
+        <div class="panel-body panel-body-cadastro">
+          <div class="col-md-8 col-md-offset-2">
+            <form method="POST" action="{{ route("aluno.permissoes.notificar") }}">
+              {{ csrf_field() }}
 
-            <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-              <label for="username" class="col-md-4 control-label">Nome de Usuário</label>
+              <input type="hidden" name="id_aluno" value="{{ $aluno->id }}">
 
-              <div class="col-md-6">
-                <input id="username" readonly type="text" class="form-control" name="username" value="{{ \Auth::user()->username }}" autofocus>
+              <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                <label for="username" class="col-md-12 control-label">Nome de Usuário</label>
+
+                <div class="col-md-12">
+                  <input id="username" readonly type="text" class="form-control" name="username" value="{{ \Auth::user()->username }}" autofocus>
+                </div>
               </div>
-            </div>
 
-            <div class="form-group{{ $errors->has('perfil') ? ' has-error' : '' }}">
-              <label for="perfil" class="col-md-4 control-label">Perfil</label>
+              <div class="form-group{{ $errors->has('perfil') ? ' has-error' : '' }}">
+                <label for="perfil" class="col-md-12 control-label">Perfil <font color="red">*</font> </label>
 
-              <div class="col-md-6">
-                <select name="perfil" class="form-control" onchange="showEspecializacao(this)">
-                  <option value="" selected disabled hidden>Escolha o Perfil</option>
-                  @foreach($perfis as $perfil)
-                    @if($perfil->nome == old('perfil'))
-                    <option value="{{$perfil->nome}}" selected>{{$perfil->nome}}</option>
-                    @else
-                    <option value="{{$perfil->nome}}">{{$perfil->nome}}</option>
-                    @endif
-                  @endforeach
-                </select>
+                <div class="col-md-12">
+                  <select name="perfil" class="form-control" onchange="showEspecializacao(this)">
+                    <option value="" selected disabled hidden>Escolha o Perfil</option>
+                    @foreach($perfis as $perfil)
+                      @if($perfil->nome == old('perfil'))
+                        <option value="{{$perfil->nome}}" selected>{{$perfil->nome}}</option>
+                      @else
+                        <option value="{{$perfil->nome}}">{{$perfil->nome}}</option>
+                      @endif
+                    @endforeach
+                  </select>
 
-                @if ($errors->has('perfil'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('perfil') }}</strong>
-                </span>
-                @endif
+                  @if ($errors->has('perfil'))
+                    <span class="help-block">
+                      <strong>{{ $errors->first('perfil') }}</strong>
+                    </span>
+                  @endif
+                </div>
               </div>
-            </div>
 
-            @if(old('perfil') == "Profissional Externo")
-              <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}">
-            @else
-              <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}" style="display: none">
-            @endif
-              <label for="especializacao" class="col-md-4 control-label">Especialização</label>
+              @if(old('perfil') == "Profissional Externo")
+                <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}">
+              @else
+                <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}" style="display: none">
+              @endif
+                <label for="especializacao" class="col-md-12 control-label">Especialização <font color="red">*</font></label>
 
-              <div class="col-md-6">
-                <input id="especializacao" type="text" class="form-control" name="especializacao" value="{{ old('especializacao') }}" autofocus>
+                <div class="col-md-12">
+                  <input id="especializacao" type="text" class="form-control" name="especializacao" value="{{ old('especializacao') }}" autofocus>
 
-                @if ($errors->has('especializacao'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('especializacao') }}</strong>
-                </span>
-                @endif
+                  @if ($errors->has('especializacao'))
+                    <span class="help-block">
+                      <strong>{{ $errors->first('especializacao') }}</strong>
+                    </span>
+                  @endif
+                </div>
               </div>
-            </div>
 
-            <div class="form-group">
-              <div class="col-md-6 col-md-offset-4">
-                <a class="btn btn-danger" href="{{URL::previous()}}">
-                  <i class="material-icons">keyboard_backspace</i>
+              <div class="form-group">
+                <div class="row col-md-12 text-center">
                   <br>
-                  Voltar
-                </a>
-                <button type="submit" class="btn btn-success">
-                  Requisitar
-                </button>
+                  <button type="submit" class="btn btn-primary">
+                    Requisitar
+                  </button>
+                </div>
               </div>
-            </div>
-          </form>
+              <!-- <a class="btn btn-danger" href="{{URL::previous()}}">
+                <i class="material-icons">keyboard_backspace</i>
+                <br>
+                Voltar
+              </a> -->
+            </form>
+          </div>
         </div>
       </div>
     </div>

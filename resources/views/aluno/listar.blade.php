@@ -56,7 +56,6 @@
         <div class="panel-body">
 
           @if (\Session::has('success'))
-            <br>
             <div class="alert alert-success">
               <strong>Sucesso!</strong>
               {!! \Session::get('success') !!}
@@ -108,11 +107,11 @@
                         <td class="text-center">
 
                           @if($aluno->imagem != null)
-                            <a style="border-radius: 60%;" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
+                            <a style="border-radius: 60%;" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}#perfil">
                               <img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="border-radius: 60%; width:150px; height: 150px; object-fit: cover;">
                             </a>
                           @else
-                            <a style="border-radius: 60%;" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
+                            <a style="border-radius: 60%;" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}#perfil">
                               <img src="{{asset('images/avatar.png')}}" style="border-radius: 60%; width:150px; height: 150px; object-fit: cover;">
                             </a>
                           @endif
@@ -140,7 +139,7 @@
                   @php($aluno = array_pop($tresAlunos))
                   @if($aluno != null)
                     <td class="text-center">
-                      <a style="border-radius: 60%;" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}">
+                      <a style="border-radius: 60%;" href="{{ route("aluno.gerenciar",['id_aluno'=>$aluno->id]) }}#perfil">
                         @if($aluno->imagem != null)
                           <img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="border-radius: 60%; width:150px; height:150px; object-fit: cover;">
                         @else

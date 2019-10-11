@@ -18,7 +18,7 @@
     <link href="{{ asset('css/lmts-app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/contrast.css') }}" rel="stylesheet">
     <link href="{{ asset('css/forum.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/lightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/lightbox.css') }}" rel="stylesheet">
     <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/select2-bootstrap.min.css') }}" rel="stylesheet">
@@ -85,20 +85,26 @@
       <!-- barra de menu -->
       @include('layouts.menu')
 
-      <div id="navigation" style="background-color:#ffffff">
-        @php($url = str_replace(URL::to('/'),'',URL::current()))
+      @php($url = str_replace(URL::to('/'),'',URL::current()))
 
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <br>
-              <h3>
-                &nbsp;@yield('navbar')
-              </h3>
+      @if($url != "/aluno/listar" && $url != "/usuario/completarCadastro")
+        <div id="navigation" style="background-color:#ffffff">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <br>
+                <h3>
+                  &nbsp;
+                  <a href="{{URL::previous()}}" data-toggle="tooltip" title="Voltar" style="margin-left:5px; margin-right:5px; width:40px; padding:5px;" class="btn btn-danger">
+                    <i class=" material-icons">arrow_back</i>
+                  </a>
+                  @yield('navbar')
+                </h3>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      @endif
     </div>
 
     <div id="page-container" style="background-color:#FFFFFF">

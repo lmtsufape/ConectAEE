@@ -9,7 +9,15 @@
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
-        <div class="panel-heading">Buscar alunos</div>
+        <div class="panel-heading">
+          <h2>
+            <strong>
+              Buscar Aluno
+            </strong>
+          </h2>
+
+          <hr style="border-top: 1px solid black;">
+        </div>
 
         <div class="panel-body">
           <form class="form-horizontal" method="GET" action="{{ route("aluno.buscarMatricula") }}">
@@ -52,11 +60,11 @@
                     <td data-title="Nome" >{{ $aluno->nome }}</td>
                     <td>
                       @if(!$botaoAtivo)
-                        <a class="btn btn-primary" href="{{ route("aluno.permissoes.requisitar", ["matricula" => $matricula]) }}">
+                        <a class="btn btn-primary" style="width:auto;" href="{{ route("aluno.permissoes.requisitar", ["matricula" => $matricula]) }}">
                           Pedir permissão
                         </a>
                       @else
-                        <a class="btn btn-success" href="{{ route("aluno.gerenciar", ["id_aluno" => $aluno->id]) }}">
+                        <a class="btn btn-primary" href="{{ route("aluno.gerenciar", ["id_aluno" => $aluno->id]) }}">
                           Gerenciar
                         </a>
                       @endif
@@ -71,13 +79,13 @@
 
         </div>
 
-        <div class="panel-footer">
+        <!-- <div class="panel-footer">
           <a class="btn btn-danger" href="{{ route("home") }}">
             <i class="material-icons">keyboard_backspace</i>
             <br>
             Voltar
           </a>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
