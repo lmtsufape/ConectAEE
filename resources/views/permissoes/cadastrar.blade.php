@@ -12,107 +12,117 @@
     <div class="col-md-12">
       <div class="panel panel-default">
 
-        <div class="panel-heading">Novo Gerenciador</div>
+        <div class="panel-heading">
+          <h2>
+            <strong>
+              Novo Acesso
+            </strong>
+          </h2>
 
-        <div class="panel-body">
+          <hr style="border-top: 1px solid black;">
+        </div>
+
+        <div class="panel-body panel-body-cadastro">
           @if (\Session::has('Fail'))
-            <br>
             <div class="alert alert-danger">
               <strong>Erro!</strong>
               {!! \Session::get('Fail') !!}
             </div>
           @endif
 
-          <form class="form-horizontal" autocomplete="off" method="POST" action="{{ route("aluno.permissoes.criar") }}">
-            {{ csrf_field() }}
+          <div class="col-md-8 col-md-offset-2">
+            <form autocomplete="off" method="POST" action="{{ route("aluno.permissoes.criar") }}">
+              {{ csrf_field() }}
 
-            <input type="hidden" name="id_aluno" value="{{$aluno->id}}">
+              <input type="hidden" name="id_aluno" value="{{$aluno->id}}">
 
-            <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-              <label for="username" class="col-md-4 control-label">Nome de Usuário</label>
+              <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                <label for="username" class="col-md-12 control-label">Nome de Usuário</label>
 
-              <div class="col-md-6">
-                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" autofocus>
-                @if ($errors->has('username'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('username') }}</strong>
-                </span>
-                @endif
+                <div class="col-md-12">
+                  <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" autofocus>
+                  @if ($errors->has('username'))
+                    <span class="help-block">
+                      <strong>{{ $errors->first('username') }}</strong>
+                    </span>
+                  @endif
+                </div>
               </div>
-            </div>
 
-            <div class="form-group{{ $errors->has('perfil') ? ' has-error' : '' }}">
-              <label for="perfil" class="col-md-4 control-label">Perfil</label>
+              <div class="form-group{{ $errors->has('perfil') ? ' has-error' : '' }}">
+                <label for="perfil" class="col-md-12 control-label">Perfil</label>
 
-              <div class="col-md-6">
-                <select id="perfil" name="perfil" class="form-control" onchange="showEspecializacao(this)">
-                  <option value="" selected disabled hidden>Escolha o Perfil</option>
-                  @foreach($perfis as $perfil)
-                    @if($perfil->nome == old('perfil'))
-                      <option value="{{$perfil->nome}}" selected>{{$perfil->nome}}</option>
-                    @else
-                      <option value="{{$perfil->nome}}">{{$perfil->nome}}</option>
-                    @endif
-                  @endforeach
-                </select>
+                <div class="col-md-12">
+                  <select id="perfil" name="perfil" class="form-control" onchange="showEspecializacao(this)">
+                    <option value="" selected disabled hidden>Escolha o Perfil</option>
+                    @foreach($perfis as $perfil)
+                      @if($perfil->nome == old('perfil'))
+                        <option value="{{$perfil->nome}}" selected>{{$perfil->nome}}</option>
+                      @else
+                        <option value="{{$perfil->nome}}">{{$perfil->nome}}</option>
+                      @endif
+                    @endforeach
+                  </select>
 
-                @if ($errors->has('perfil'))
-                <span class="help-block">
-                  <strong>{{ $errors->first('perfil') }}</strong>
-                </span>
-                @endif
-              </div>
-            </div>
-
-            @if(old('perfil') == "Profissional Externo")
-              <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}">
-            @else
-              <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}" style="display: none">
-            @endif
-              <label for="especializacao" class="col-md-4 control-label">Especialização</label>
-
-              <div class="autocomplete col-md-6">
-                <input id="especializacao" type="text" class="form-control" autocomplete="off" name="especializacao" value="{{ old('especializacao') }}">
-
-                @if ($errors->has('especializacao'))
+                  @if ($errors->has('perfil'))
                   <span class="help-block">
-                    <strong>{{ $errors->first('especializacao') }}</strong>
+                    <strong>{{ $errors->first('perfil') }}</strong>
                   </span>
-                @endif
+                  @endif
+                </div>
               </div>
-            </div>
 
-            <div class="form-group{{ $errors->has('isAdministrador') ? ' has-error' : '' }}">
-              <label for="isAdministrador" class="col-md-4 control-label">Usuário é Administrador?</label>
+              @if(old('perfil') == "Profissional Externo")
+                <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}"z>
+              @else
+                <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}" style="display: none">
+              @endif
+                <label for="especializacao" class="col-md-12 control-label">Especialização</label>
 
-              <div class="col-md-6">
-                <input style="margin-top: 10px" id="isAdministrador" type="checkbox" name="isAdministrador" value="true">
+                <div class="autocomplete col-md-12">
+                  <input id="especializacao" type="text" class="form-control" autocomplete="off" name="especializacao" value="{{ old('especializacao') }}">
 
-                @if ($errors->has('isAdministrador'))
-                  <span class="help-block">
-                    <strong>{{ $errors->first('isAdministrador') }}</strong>
-                  </span>
-                @endif
+                  @if ($errors->has('especializacao'))
+                    <span class="help-block">
+                      <strong>{{ $errors->first('especializacao') }}</strong>
+                    </span>
+                  @endif
+                </div>
               </div>
-            </div>
 
-            <div class="form-group">
-              <div class="col-md-6 col-md-offset-4">
-                <button type="submit" class="btn btn-success">
-                  Cadastrar
-                </button>
+              <div class="form-group{{ $errors->has('isAdministrador') ? ' has-error' : '' }}">
+
+                <div class="col-md-12">
+                  <input style="margin-top: 10px" id="isAdministrador" type="checkbox" name="isAdministrador" value="true">
+                  <label for="isAdministrador">Usuário administrador</label>
+
+                  @if ($errors->has('isAdministrador'))
+                    <span class="help-block">
+                      <strong>{{ $errors->first('isAdministrador') }}</strong>
+                    </span>
+                  @endif
+                </div>
               </div>
-            </div>
-          </form>
+
+              <div class="form-group">
+                <div class="row col-md-12 text-center">
+                  <br>
+                  <button type="submit" class="btn btn-primary">
+                    Cadastrar
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
 
-        <div class="panel-footer">
+        <!-- <div class="panel-footer">
           <a class="btn btn-danger" href="{{URL::previous()}}">
             <i class="material-icons">keyboard_backspace</i>
             <br>
             Voltar
           </a>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -121,16 +131,26 @@
 <script type="text/javascript">
   document.getElementById("perfil").onchange = function() {
     var perfil = document.getElementById("perfil");
+    var adm = document.getElementById("isAdministrador");
 
     if (perfil.selectedIndex == 1) {
-      document.getElementById("isAdministrador").checked = true;
-      document.getElementById("isAdministrador").disabled = true;
+      adm.checked = true;
+      adm.readonly = true;
+      document.getElementById("div-especializacao").style.display = "none";
+
+      adm.onchange = function() {
+        adm.checked=true;
+      };
+    }else if(perfil.selectedIndex == 4){
+      adm.checked = false;
+      adm.readonly = false;
+      document.getElementById("div-especializacao").style.display = "block";
     }else{
-      document.getElementById("isAdministrador").checked = false;
-      document.getElementById("isAdministrador").disabled = false;
+      adm.checked = false;
+      adm.readonly = false;
+      document.getElementById("div-especializacao").style.display = "none";
     }
   };
-
 </script>
 
 <script>

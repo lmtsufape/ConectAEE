@@ -54,10 +54,10 @@
             <table class="table table-hover">
               <thead>
                 <tr>
-                  <th>Nome</th>
-                  <th>Perfil</th>
-                  <th>Administrador</th>
-                  <th>Ações</th>
+                  <th style="width:25%">Nome</th>
+                  <th style="width:25%">Perfil</th>
+                  <th style="width:25%">Administrador</th>
+                  <th style="width:25%">Ações</th>
                   <th></th>
                   <th></th>
                 </tr>

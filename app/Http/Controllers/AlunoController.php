@@ -253,7 +253,7 @@ class AlunoController extends Controller{
       $gerenciar = new Gerenciar();
       $gerenciar->user_id = $user->id;
       $gerenciar->aluno_id = $aluno->id;
-      $gerenciar->perfil_id = $request->perfil;
+      $gerenciar->perfil_id = 1;  //responsavel
       $gerenciar->isAdministrador = True;
       $gerenciar->save();
     }
@@ -351,7 +351,7 @@ class AlunoController extends Controller{
 
     $rules = array(
       'perfil' => 'required',
-      'especializacao' => 'required_if:perfil,==,Profissional Externo',
+      'especializacao' => 'required_if:perfil,Profissional Externo',
     );
     $messages = array(
       'perfil.required' => 'Selecione um perfil.',
@@ -367,14 +367,17 @@ class AlunoController extends Controller{
     $aluno = Aluno::find($request->id_aluno);
     $gerenciars = $aluno->gerenciars;
 
-    $perfil = NULL;
-    if($request->perfil == 'Profissional Externo'){
-      $perfil = new Perfil();
-      $perfil->nome = 'Profissional Externo';
-      $perfil->especializacao = $request->especializacao;
-      $perfil->save();
-    }else{
-      $perfil = Perfil::where('nome','=',$request->perfil)->where('especializacao','=',NULL)->first();
+    $perfil = Perfil::where('nome','=',$request->perfil)->where('especializacao','=',$request->especializacao)->first();
+
+    if($perfil == NULL ){
+      if($request->perfil == 'Profissional Externo'){
+        $perfil = new Perfil();
+        $perfil->nome = 'Profissional Externo';
+        $perfil->especializacao = $request->especializacao;
+        $perfil->save();
+      }else{
+        $perfil = Perfil::where('nome','=',$request->perfil)->where('especializacao','=',NULL)->first();
+      }
     }
 
     foreach ($gerenciars as $gerenciar) {
@@ -435,7 +438,7 @@ class AlunoController extends Controller{
     $rules = array(
       'username' => 'required|exists:users,username',
       'perfil' => 'required',
-      'especializacao' => 'required_if:perfil,==,Profissional Externo',
+      'especializacao' => 'required_if:perfil,Profissional Externo',
     );
     $messages = array(
       'username.required' => 'Necessário inserir um nome de usuário.',
@@ -500,7 +503,7 @@ class AlunoController extends Controller{
     //Validação dos dados
     $rules = array(
       'perfil' => 'required',
-      'especializacao' => 'required_if:perfil,==,Profissional Externo',
+      'especializacao' => 'required_if:perfil,Profissional Externo',
     );
     $messages = array(
       'username.exists' => 'O usuário em questão não está cadastrado.',

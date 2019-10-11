@@ -12,131 +12,140 @@
     <div class="col-md-12">
       <div class="panel panel-default">
 
-        <div class="panel-heading">Editar Gerenciador</div>
+        <div class="panel-heading">
+          <h2>
+            <strong>
+              Editar Acesso
+            </strong>
+          </h2>
 
-        <div class="panel-body">
+          <hr style="border-top: 1px solid black;">
+        </div>
+
+        <div class="panel-body panel-body-cadastro">
           @if (\Session::has('Fail'))
-            <br>
             <div class="alert alert-danger">
               <strong>Erro!</strong>
               {!! \Session::get('Fail') !!}
             </div>
           @endif
 
-          <form class="form-horizontal" autocomplete="off" method="POST" action="{{ route("aluno.permissoes.atualizar") }}">
-            {{ csrf_field() }}
+          <div class="col-md-8 col-md-offset-2">
+            <form autocomplete="off" method="POST" action="{{ route("aluno.permissoes.atualizar") }}">
+              {{ csrf_field() }}
 
-            <input type="hidden" name="id_permissao" value="{{$gerenciar->id}}">
+              <input type="hidden" name="id_permissao" value="{{$gerenciar->id}}">
 
-            <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-              <label for="username" class="col-md-4 control-label">Nome de Usuário</label>
+              <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                <label for="username" class="col-md-12 control-label">Nome de Usuário</label>
 
-              <div class="col-md-6">
+                <div class="col-md-12">
 
-                <input id="username" type="text" class="form-control" name="username" value="{{ $gerenciar->user->username }}" disabled>
+                  <input id="username" type="text" class="form-control" name="username" value="{{ $gerenciar->user->username }}" disabled>
 
-                @if ($errors->has('username'))
-                  <span class="help-block">
-                    <strong>{{ $errors->first('username') }}</strong>
-                  </span>
-                @endif
-              </div>
-            </div>
-
-            <div class="form-group{{ $errors->has('perfil') ? ' has-error' : '' }}">
-              <label for="perfil" class="col-md-4 control-label">Perfil</label>
-
-              <div class="col-md-6">
-                <select id="perfil" name="perfil" class="form-control" onchange="showEspecializacao(this)">
-                  @if (old('tipo',NULL) != NULL)
-                    @foreach($perfis as $perfil)
-                      @if(old('perfil') == $perfil->nome)
-                        <option value="{{$perfil->nome}}" selected>{{$perfil->nome}}</option>
-                      @else
-                        <option value="{{$perfil->nome}}">{{$perfil->nome}}</option>
-                      @endif
-                    @endforeach
-                  @else
-                    @foreach($perfis as $perfil)
-                      @if($gerenciar->perfil->nome == $perfil->nome)
-                        <option value="{{$perfil->nome}}" selected>{{$perfil->nome}}</option>
-                      @else
-                        <option value="{{$perfil->nome}}">{{$perfil->nome}}</option>
-                      @endif
-                    @endforeach
+                  @if ($errors->has('username'))
+                    <span class="help-block">
+                      <strong>{{ $errors->first('username') }}</strong>
+                    </span>
                   @endif
-                </select>
-
-                @if ($errors->has('perfil'))
-                  <span class="help-block">
-                    <strong>{{ $errors->first('perfil') }}</strong>
-                  </span>
-                @endif
+                </div>
               </div>
-            </div>
 
-            @if(old('perfil') == "Profissional Externo" || $gerenciar->perfil->nome == "Profissional Externo")
-              <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}">
-            @else
-              <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}" style="display: none">
-            @endif
-              <label for="especializacao" class="col-md-4 control-label">Especialização</label>
+              <div class="form-group{{ $errors->has('perfil') ? ' has-error' : '' }}">
+                <label for="perfil" class="col-md-12 control-label">Perfil</label>
 
-              <div class="autocomplete col-md-6">
-                @if(old('especializacao',NULL) != NULL)
-                  <input id="especializacao" type="text" class="form-control" autocomplete="off" name="especializacao" value="{{ old('especializacao') }}">
-                @else
-                  <input id="especializacao" type="text" class="form-control" autocomplete="off" name="especializacao" value="{{ $gerenciar->perfil->especializacao }}">
-                @endif
+                <div class="col-md-12">
+                  <select id="perfil" name="perfil" class="form-control" onchange="showEspecializacao(this)">
+                    @if (old('tipo',NULL) != NULL)
+                      @foreach($perfis as $perfil)
+                        @if(old('perfil') == $perfil->nome)
+                          <option value="{{$perfil->nome}}" selected>{{$perfil->nome}}</option>
+                        @else
+                          <option value="{{$perfil->nome}}">{{$perfil->nome}}</option>
+                        @endif
+                      @endforeach
+                    @else
+                      @foreach($perfis as $perfil)
+                        @if($gerenciar->perfil->nome == $perfil->nome)
+                          <option value="{{$perfil->nome}}" selected>{{$perfil->nome}}</option>
+                        @else
+                          <option value="{{$perfil->nome}}">{{$perfil->nome}}</option>
+                        @endif
+                      @endforeach
+                    @endif
+                  </select>
 
-                @if ($errors->has('especializacao'))
-                  <span class="help-block">
-                    <strong>{{ $errors->first('especializacao') }}</strong>
-                  </span>
-                @endif
+                  @if ($errors->has('perfil'))
+                    <span class="help-block">
+                      <strong>{{ $errors->first('perfil') }}</strong>
+                    </span>
+                  @endif
+                </div>
               </div>
-            </div>
 
-            <div class="form-group{{ $errors->has('isAdministrador') ? ' has-error' : '' }}">
-              <label for="isAdministrador" class="col-md-4 control-label">Usuário é Administrador?</label>
+              @if(old('perfil') == "Profissional Externo" || $gerenciar->perfil->nome == "Profissional Externo")
+                <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}" style="display: block">
+              @else
+                <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}" style="display: none">
+              @endif
+                <label for="especializacao" class="col-md-12 control-label">Especialização</label>
 
-              <div class="col-md-6">
-                @if(old('isAdministrador',NULL) != NULL)
-                  <input style="margin-top: 10px" id="isAdministrador" type="checkbox" name="isAdministrador" value="true">
-                @else
-                  @if($gerenciar->isAdministrador)
-                    <input style="margin-top: 10px" id="isAdministrador" type="checkbox" name="isAdministrador" value="true" checked>
+                <div class="autocomplete col-md-12">
+                  @if(old('especializacao',NULL) != NULL)
+                    <input id="especializacao" type="text" class="form-control" autocomplete="off" name="especializacao" value="{{ old('especializacao') }}">
                   @else
+                    <input id="especializacao" type="text" class="form-control" autocomplete="off" name="especializacao" value="{{ $gerenciar->perfil->especializacao }}">
+                  @endif
+
+                  @if ($errors->has('especializacao'))
+                    <span class="help-block">
+                      <strong>{{ $errors->first('especializacao') }}</strong>
+                    </span>
+                  @endif
+                </div>
+              </div>
+
+              <div class="form-group{{ $errors->has('isAdministrador') ? ' has-error' : '' }}">
+
+                <div class="col-md-12">
+                  @if(old('isAdministrador',NULL) != NULL)
                     <input style="margin-top: 10px" id="isAdministrador" type="checkbox" name="isAdministrador" value="true">
+                  @else
+                    @if($gerenciar->isAdministrador)
+                      <input style="margin-top: 10px" id="isAdministrador" type="checkbox" name="isAdministrador" value="true" checked>
+                    @else
+                      <input style="margin-top: 10px" id="isAdministrador" type="checkbox" name="isAdministrador" value="true">
+                    @endif
                   @endif
+                  <label for="isAdministrador">Usuário administrador</label>
 
-                @endif
-
-                @if ($errors->has('isAdministrador'))
-                  <span class="help-block">
-                    <strong>{{ $errors->first('isAdministrador') }}</strong>
-                  </span>
-                @endif
+                  @if ($errors->has('isAdministrador'))
+                    <span class="help-block">
+                      <strong>{{ $errors->first('isAdministrador') }}</strong>
+                    </span>
+                  @endif
+                </div>
               </div>
-            </div>
 
-            <div class="form-group">
-              <div class="col-md-6 col-md-offset-4">
-                <button type="submit" class="btn btn-success">
-                  Cadastrar
-                </button>
+              <div class="form-group">
+                <div class="row col-md-12 text-center">
+                  <br>
+                  <button type="submit" class="btn btn-primary">
+                    Atualizar
+                  </button>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
 
-        <div class="panel-footer">
+        <!-- <div class="panel-footer">
           <a class="btn btn-danger" href="{{URL::previous()}}">
             <i class="material-icons">keyboard_backspace</i>
             <br>
             Voltar
           </a>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -147,11 +156,24 @@
     var perfil = document.getElementById("perfil");
 
     if (perfil.selectedIndex == 0) {
-      document.getElementById("isAdministrador").checked = true;
-      document.getElementById("isAdministrador").disabled = true;
+      var adm = document.getElementById("isAdministrador");
+      adm.checked = true;
+      adm.readonly = true;
+      document.getElementById("div-especializacao").style.display = "none";
+
+      adm.onchange = function() {
+        adm.checked=true;
+      };
+    }else if(perfil.selectedIndex == 3){
+      var adm = document.getElementById("isAdministrador");
+      adm.checked = false;
+      adm.readonly = false;
+      document.getElementById("div-especializacao").style.display = "block";
     }else{
-      document.getElementById("isAdministrador").checked = false;
-      document.getElementById("isAdministrador").disabled = false;
+      var adm = document.getElementById("isAdministrador");
+      adm.checked = false;
+      adm.readonly = false;
+      document.getElementById("div-especializacao").style.display = "none";
     }
   };
 </script>
