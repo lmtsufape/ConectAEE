@@ -9,9 +9,38 @@
 @section('content')
 <div class="container">
 	<div class="row">
-
 		<div class="col-md-12">
 			<div id="perfil" class="panel panel-default" style="width:100%">
+
+				<div class="panel-heading">
+	        <div class="row">
+
+	          <div class="col-md-6">
+	            <h2>
+	              <strong>
+	                {{$aluno->nome}}
+	              </strong>
+	            </h2>
+	          </div>
+
+	          <div class="col-md-6 text-right" style="margin-top:20px">
+							@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
+								<a class="btn btn-primary" data-toggle="tooltip" title="Editar aluno" href={{route("aluno.editar", ["id_aluno"=>$aluno->id]) }}>
+									Editar
+								</a>
+								<a data-toggle="tooltip" title="Acesso ao aluno" class="btn btn-primary" href="{{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}">
+									Acesso
+								</a>
+								<a class="btn btn-danger" data-toggle="tooltip" title="Excluir aluno" onclick="return confirm('\Confirmar exclusão do aluno {{$aluno->nome}}?')" href={{route("aluno.excluir", ["id_aluno"=>$aluno->id]) }}>
+									Excluir
+								</a>
+							@endif
+	          </div>
+
+	        </div>
+
+	        <hr style="border-top: 1px solid black;">
+	      </div>
 
 				<div class="panel-body">
 					@if (\Session::has('success'))
@@ -39,31 +68,9 @@
 								</div>
 
 								<br>
-
-								@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador)
-									<div class="row">
-										<div style="width: 100%; margin-left: 0%" class="row">
-			                <div style="width: 50%; float:left;" class="col-md-6 text-center">
-												<a class="btn btn-primary" style="width:80%" href={{route("aluno.editar", ["id_aluno"=>$aluno->id]) }}>
-													<i class="material-icons">edit</i>
-												</a>
-			                </div>
-			                <div style="width: 50%; float:right;" class="col-md-6 text-center">
-												<a class="btn btn-danger" style="width:80%" onclick="return confirm('\Confirmar exclusão do aluno {{$aluno->nome}}?')" href={{route("aluno.excluir", ["id_aluno"=>$aluno->id]) }}>
-													<i class="material-icons">delete</i>
-												</a>
-			                </div>
-										</div>
-		              </div>
-								@endif
-
 							</div>
 
 							<div class="col-md-5">
-								<strong>Nome:</strong> {{$aluno->nome}}
-
-								<br>
-
 								<?php
 								foreach($gerenciars as $gerenciar){
 									if($gerenciar->user->id == \Auth::user()->id && $gerenciar->isAdministrador){
@@ -97,7 +104,6 @@
 							</div>
 
 							<div class="col-md-5">
-
 								@if($aluno->cid != null)
 									<strong>CID:</strong> {{$aluno->cid}}
 									<br/>
@@ -117,12 +123,10 @@
 									@endforeach
 								</ul>
 
-								<br>
 							</div>
 						</div>
 
 						<div class="col-md-12">
-
 							<div class="col-md-10 col-md-offset-2">
 								@if($aluno->observacao != null)
 									<strong>Observações:</strong> {!! $aluno->observacao !!}
@@ -134,8 +138,8 @@
 
 					<hr style="border-top: 1px solid black;">
 
-					<div class="row">
-						<a href="{{route("objetivo.listar", ["id_aluno"=>$aluno->id]) }}">
+					<div class="row col-md-8 col-md-offset-2">
+						<a href="{{route("objetivo.listar", ["id_aluno"=>$aluno->id]) }}" data-toggle="tooltip" title="Ver objetivos">
 							<div class="card cartao text-center " style="border-radius: 20px">
 								<div class="card-body d-flex justify-content-center">
 									<h2 style="margin-top:80px;">
@@ -147,7 +151,7 @@
 							</div>
 						</a>
 
-						<a href="{{route("album.listar", ["id_aluno"=>$aluno->id]) }}">
+						<a href="{{route("album.listar", ["id_aluno"=>$aluno->id]) }}" data-toggle="tooltip" title="Ver álbuns">
 							<div class="card cartao text-center " style="border-radius: 20px">
 								<div class="card-body d-flex justify-content-center">
 									<h2 style="margin-top:80px;">
@@ -159,7 +163,7 @@
 							</div>
 						</a>
 
-						@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
+						<!-- @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
 							<a href="{{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}">
 								<div class="card cartao text-center " style="border-radius: 20px">
 									<div class="card-body d-flex justify-content-center">
@@ -171,7 +175,7 @@
 									</div>
 								</div>
 							</a>
-						@endif
+						@endif -->
 					</div>
 				</div>
 
@@ -184,8 +188,7 @@
         </div> -->
 		</div>
 
-		<button class="open-button" style="border-radius:15px;" onclick="openForm()">Fórum</button>
-
+		<button class="open-button" data-toggle="tooltip" title="Ver fórum" style="border-radius:15px;" onclick="openForm()">Fórum</button>
 	</div>
 
 	@if (\Session::has('display'))
@@ -193,14 +196,25 @@
 	@else
 		<div class="chat-popup" id="myForm" style="display:none;background-color:white; ">
 	@endif
-		<div class="panel" style="max-height:700px; max-width: 450px; overflow:auto;">
+		<div class="panel-heading" id="forum" style="display:absolute;">
+			<div class="row">
+				<div class="col-md-6">
+					<h3>
+						<a target="_blank" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}">
+							Fórum <i class="material-icons">open_in_new</i>
+						</a>
+					</h3>
+				</div>
 
-			<div class="panel-heading" id="forum" >
-				<h3>
-					Fórum
-				</h3>
+				<div class="col-md-6">
+					<button type="button" style="float:right; width:50px; height:44px; background-color:red; color:white; margin-top:10px;" class="btn" onclick="closeForm()">
+						<i class="material-icons">close</i>
+					</button>
+				</div>
 			</div>
+		</div>
 
+		<div class="panel" style="max-height:700px; max-width: 450px; overflow:auto; background-color: #e5ddd5">
 			<div class="panel-body">
 
 				<form class="form-horizontal" method="POST" action="{{route('aluno.forum.mensagem.enviar')}}">
@@ -228,7 +242,7 @@
 						@if($mensagem->user_id == \Auth::user()->id)
 							<div style="text-align: right; width: 80%; margin-left: 20%" id='user-message'>
 								<div class="panel panel-default">
-									<div style="background-color: #bbffad;" class="panel-body">
+									<div style="background-color: #dbf6c5; color: #262626" class="panel-body">
 										<div class="hifen">
 											{!! $mensagem->texto !!}<br>
 											{{$mensagem->created_at->format('d/m/y h:i')}}<br>
@@ -239,7 +253,7 @@
 						@else
 							<div style="text-align: left; width: 80%" id='others-message'>
 								<div class="panel panel-default">
-									<div style="background-color: #adbaff" class="panel-body">
+									<div style="background-color: white; color: #262626" class="panel-body">
 										<div class="hifen">
 											<strong>{{$mensagem->user->name}}:</strong><br>
 											{!! $mensagem->texto !!}<br>
@@ -252,27 +266,9 @@
 					@endforeach
 				</div>
 			</div>
-
-			<div class="panel-footer" style="background-color: white;">
-				<a style="width:100%" href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}" class="btn btn-primary">Ver em tela cheia</a>
-
-				<button type="button" class="btn btn-danger" onclick="closeForm()">Fechar</button>
-			</div>
-
 		</div>
 	</div>
-
-  <!-- <a id="btn-mensagem" href="javascript:register_popup('mensagens', 'Mensagens');">
-		Mensagens
-  </a> -->
-
-
-  </div>
 </div>
-
-<!-- <link href="{{ asset('css/mensagens.css') }}" rel="stylesheet"> -->
-
-<!-- <script src="{{ asset('js/mensagens.js') }}"></script> -->
 
 <script type="text/javascript">
 

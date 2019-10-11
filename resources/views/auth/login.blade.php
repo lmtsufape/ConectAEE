@@ -4,23 +4,25 @@
 
 <div class="row" style="background-color:#12583C; padding:10px;">
   <br>
-  <div class="col-md-7">
+  <div class="col-md-8">
     <div class="panel panel-default" style="width:100%;background-color:#12583C;">
 
-      <div class="panel-body col-md-9 texto">
+      <div class="panel-body col-md-12 texto">
         <h1> <strong>ConectAEE</strong> </h1>
         <hr>
         <p class="text-justify">
-          Um sistema pensado para que a educação inclusiva seja uma realidade nas escolas e
-          instituições de ensino do Brasil. Lorem ipsum dolor sit amet, consectetur adipiscing
-          elit. Duis congue, orci a varius vestibulum, lacus erat lacinia dolor, fermentum fermentum lorem diam at lacus.
+          Sendo um sistema pensado para que a educação inclusiva seja uma realidade nas escolas e
+          instituições de ensino do Brasil, o ConectAAE dá suporte ao acompanhamento de alunos
+          que necessitam de Atendimento Educacional Especializado (AEE), permitindo uma maior
+          integração entre escola, família e profissionais da Saúde, uma vez que a troca de informações
+          entre cada um desses indivíduos é indispensável.
         </p>
       </div>
 
     </div>
   </div>
 
-  <div class="col-md-3 col-md-offset-1">
+  <div class="col-md-3">
     <div class="panel panel-default" style="padding:20px;" >
       <div class="panel-heading text-center">
         <h2>

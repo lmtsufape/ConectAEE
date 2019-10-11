@@ -99,8 +99,8 @@
                       @for($i = 1; $i <= $size; $i++ )
                         @php($foto = array_pop($tresFotos))
                         <td>
-                          <a href="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:auto; height:auto;" class="btn btn-primary" data-lightbox="fotos">
-                            <img src="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:200px; height: 200px; object-fit: cover;">
+                          <a href="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:auto; height:auto;" data-lightbox="fotos">
+                            <img src="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:200px; border:solid; height: 200px; object-fit: cover;">
                           </a>
                           &nbsp; &nbsp;
                           <br>
@@ -116,8 +116,8 @@
                   @php($foto = array_pop($tresFotos))
                   @if($foto != null)
                     <td>
-                      <a href="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:auto; height:auto;" class="btn btn-primary" data-lightbox="fotos">
-                        <img src="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:200px; height: 200px; object-fit: cover;">
+                      <a href="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:auto; height:auto;" data-lightbox="fotos">
+                        <img src="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:200px; border:solid; height:200px; object-fit: cover;">
                       </a>
                       &nbsp; &nbsp;
                       <br>

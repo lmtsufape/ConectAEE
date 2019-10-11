@@ -17,7 +17,7 @@
           </h3>
         </div>
 
-        <div class="panel-body">
+        <div class="panel-body" style="background-color: #e5ddd5">
           @if ($errors->has('texto'))
           <div style="margin-left: 1%; margin-right: 1%" class="alert alert-danger">
             <strong>Erro!</strong>
@@ -36,13 +36,13 @@
           </form>
         </div>
 
-        <div class="panel-footer" style="background-color: white;">
+        <div class="panel-footer" style="background-color: #e5ddd5;">
           <div class="form-group">
             @foreach($mensagens as $mensagem)
               @if($mensagem->user_id == \Auth::user()->id)
                 <div style="text-align: right; width: 80%; margin-left: 20%" id='user-message'>
                   <div class="panel panel-default">
-                    <div style="background-color: #bbffad" class="panel-body">
+                    <div style="background-color: #dbf6c5; color: #262626" class="panel-body">
                       <div class="hifen">
                         {!! $mensagem->texto !!}<br>
                         {{$mensagem->created_at->format('d/m/y h:i')}}<br>
@@ -53,7 +53,7 @@
               @else
                 <div style="text-align: left; width: 80%" id='others-message'>
                   <div class="panel panel-default">
-                    <div style="background-color: #adbaff" class="panel-body">
+                    <div style="background-color: white; color: #262626" class="panel-body">
                       <div class="hifen">
                         <strong>{{$mensagem->user->name}}:</strong><br>
                         {!! $mensagem->texto !!}<br>

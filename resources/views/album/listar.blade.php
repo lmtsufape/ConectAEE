@@ -38,7 +38,6 @@
         <div class="panel-body">
 
           @if (\Session::has('success'))
-            <br>
             <div class="alert alert-success">
               <strong>Sucesso!</strong>
               {!! \Session::get('success') !!}
@@ -76,7 +75,7 @@
                         @php($album = array_pop($tresAlbuns))
                         <td class="text-center">
                           <a href="{{route('album.ver', ['id_album'=>$album->id])}}">
-                            <img style="border-radius: 60%; width:160px; height: 160px; object-fit: cover;" src="{{asset('storage/albuns/'.$aluno->id.'/'.$album->fotos[0]->imagem)}}">
+                            <img style="width:160px; border:solid; height: 160px; object-fit: cover;" src="{{asset('storage/albuns/'.$aluno->id.'/'.$album->fotos[0]->imagem)}}">
                           </a>
                           &nbsp;&nbsp;
                           <br><br>
@@ -99,7 +98,7 @@
                   @if($album != null)
                     <td class="text-center">
                       <a href="{{route('album.ver', ['id_album'=>$album->id])}}">
-                        <img style="border-radius: 60%; width:160px; height: 160px; object-fit: cover;" src="{{asset('storage/albuns/'.$aluno->id.'/'.$album->fotos[0]->imagem)}}">
+                        <img style="border:solid; width:160px; height: 160px; object-fit: cover;" src="{{asset('storage/albuns/'.$aluno->id.'/'.$album->fotos[0]->imagem)}}">
                       </a>
                       &nbsp; &nbsp;
                       <br><br>

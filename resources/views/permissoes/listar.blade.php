@@ -3,7 +3,7 @@
 @section('navbar')
 <a href="{{route('aluno.listar')}}">Início</a>
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
-> Permissões
+> Acessos
 @endsection
 @section('content')
 
@@ -51,13 +51,14 @@
           @endif
 
           <div id="tabela" class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Nome</th>
-                  <th>Perfil</th>
-                  <th>Administrador</th>
-                  <th>Ações</th>
+                  <th style="width:22.5%">Nome</th>
+                  <th style="width:22.5%">Contato</th>
+                  <th style="width:22.5%">Perfil</th>
+                  <th style="width:22.5%">Administrador</th>
+                  <th style="width:10%">Ações</th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -66,6 +67,13 @@
                 @foreach ($gerenciars as $gerenciar)
                   <tr>
                     <td data-title="Nome">{{ $gerenciar->user->name }} </td>
+
+                    <td data-title="Contato">
+                      @if($gerenciar->user->email != null)
+                        <strong>Email:</strong> {{ $gerenciar->user->email }}
+                      @endif
+                      <strong>Telefone:</strong> {{ $gerenciar->user->telefone }}
+                    </td>
 
                     @if($gerenciar->perfil->especializacao == NULL)
                       <td data-title="Perfil/Especialização">{{ $gerenciar->perfil->nome }} </td>

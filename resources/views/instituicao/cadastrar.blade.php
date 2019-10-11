@@ -143,9 +143,9 @@
                         <input id="bairro" type="text" class="form-control" name="bairro" value="{{ old('bairro') }}">
 
                         @if ($errors->has('bairro'))
-                        <span class="help-block">
-                          <strong>{{ $errors->first('bairro') }}</strong>
-                        </span>
+                          <span class="help-block">
+                            <strong>{{ $errors->first('bairro') }}</strong>
+                          </span>
                         @endif
                       </div>
                     </div>
