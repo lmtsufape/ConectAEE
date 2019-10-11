@@ -236,7 +236,8 @@ class AlunoController extends Controller{
     $gerenciar->isAdministrador = True;
     $gerenciar->save();
 
-    $password = str_random(6);
+    // $password = str_random(6);
+    $password = '12345678';
 
     $user = new User();
 
@@ -268,7 +269,7 @@ class AlunoController extends Controller{
     $notificacao->save();
 
     if($request->perfil == 2 && $request->cadastrado == "false"){
-      return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.' foi cadastrado.')->with('password', 'A senha do usuário '.$request->username.' é '.$password.'.');
+      return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.' foi cadastrado.')->with('password', 'A senha provisória do usuário '.$request->username.' é '.$password.'.');
     }else{
       return redirect()->route("aluno.listar")->with('success','O Aluno '.$aluno->nome.' foi cadastrado.');
     }

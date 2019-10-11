@@ -1,12 +1,25 @@
 @extends('layouts.principal')
 @section('title','Notificações')
 @section('path','Início')
+
+@section('navbar')
+<a href="{{route('notificacao.listar')}}">Notificações</a> > Listar
+@endsection
+
 @section('content')
 <div class="container">
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
-        <div class="panel-heading">Suas notificações</div>
+        <div class="panel-heading">
+          <h2>
+            <strong>
+              Suas notificações
+            </strong>
+          </h2>
+
+          <hr style="border-top: 1px solid black;">
+        </div>
 
         <div class="panel-body">
           <div id="tabela" class="table-responsive">
@@ -35,18 +48,15 @@
             </div>
           </div>
 
-          <div class="panel-footer">
-            <a class="btn btn-danger" href="{{ route("home") }}">
-              <i class="material-icons">keyboard_backspace</i>
-              <br>
-              Voltar
-            </a>
-            <a class="btn btn-success" href="{{ route("aluno.cadastrar")}}">
-              <i class="material-icons">add</i>
-              <br>
-              Novo
-            </a>
+          <div class="text-center">
+            {{$notificacoes->links()}}
           </div>
+
+          <!-- <a class="btn btn-danger" href="{{ route("home") }}">
+            <i class="material-icons">keyboard_backspace</i>
+            <br>
+            Voltar
+          </a> -->
 
         </div>
       </div>

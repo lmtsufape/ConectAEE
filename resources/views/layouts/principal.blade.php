@@ -87,7 +87,7 @@
 
       @php($url = str_replace(URL::to('/'),'',URL::current()))
 
-      @if($url != "/aluno/listar")
+      @if($url != "/aluno/listar" && $url != "/usuario/completarCadastro")
         <div id="navigation" style="background-color:#ffffff">
           <div class="container">
             <div class="row">
