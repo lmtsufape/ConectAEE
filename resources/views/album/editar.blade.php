@@ -190,10 +190,6 @@
                                 &nbsp; &nbsp;
                                 <br>
                                 <input type="checkbox" class="form-control" name="fotos[]" value="{{$foto->id}}">
-
-                                <!-- <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão desta imagem?')" href="{{route("album.foto.excluir" , ['id_foto'=>$foto->id]) }}">
-                                  <i class="material-icons">delete</i>
-                                </a> -->
                                 &nbsp; &nbsp;
                               </td>
                             @endfor
@@ -218,10 +214,6 @@
 
                             <!-- <input id="fotos" type="checkbox" class="form-check-input" name="fotos[]" value="{{$foto->id}}"> -->
                             <!-- <label class="form-check-label" for="fotos">Excluir</label> -->
-
-                            <!-- <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão desta imagem?')" href="{{ route("album.foto.excluir" , ['id_foto'=>$foto->id]) }}">
-                              <i class="material-icons">delete</i>
-                            </a> -->
 
                             &nbsp; &nbsp;
                           </td>
