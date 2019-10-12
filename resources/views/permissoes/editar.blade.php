@@ -105,26 +105,18 @@
                 </div>
               </div>
 
-              <div class="form-group{{ $errors->has('isAdministrador') ? ' has-error' : '' }}">
-
-                <div class="col-md-12">
-                  @if(old('isAdministrador',NULL) != NULL)
-                    <input style="margin-top: 10px" id="isAdministrador" type="checkbox" name="isAdministrador" value="true">
+              <div class="form-check col-md-12">
+                @if(old('isAdministrador',NULL) != NULL)
+                  <input id="isAdministrador" type="checkbox" class="form-check-input" name="isAdministrador" value="true">
+                @else
+                  @if($gerenciar->isAdministrador)
+                    <input id="isAdministrador" type="checkbox" class="form-check-input" name="isAdministrador" value="true" checked>
                   @else
-                    @if($gerenciar->isAdministrador)
-                      <input style="margin-top: 10px" id="isAdministrador" type="checkbox" name="isAdministrador" value="true" checked>
-                    @else
-                      <input style="margin-top: 10px" id="isAdministrador" type="checkbox" name="isAdministrador" value="true">
-                    @endif
+                    <input id="isAdministrador" type="checkbox" class="form-check-input" name="isAdministrador" value="true">
                   @endif
-                  <label for="isAdministrador">Usuário administrador</label>
+                @endif
 
-                  @if ($errors->has('isAdministrador'))
-                    <span class="help-block">
-                      <strong>{{ $errors->first('isAdministrador') }}</strong>
-                    </span>
-                  @endif
-                </div>
+                <label class="form-check-label" for="isAdministrador">Usuário administrador</label>
               </div>
 
               <div class="form-group">

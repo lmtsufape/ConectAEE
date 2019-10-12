@@ -105,27 +105,25 @@
 
                     <td data-title="Objetivos" class="row col-md-12" style="margin-left:0px">
                       @foreach ($objetivos as $objetivo)
-                        <div class="card cartao" style="width: 16rem; height: 16rem; background-color:{{$objetivo->cor->hexadecimal}}">
-                          <div class="card-body" style="height:76%; margin-left: 5%; margin-right: 5%; display: -webkit-flex; display: flex;-webkit-align-items: center;align-items: center;-webkit-justify-content: center;justify-content: center;">
-                            <div class="hifen text-center" align="justify">
+                        <a href="{{ route("objetivo.gerenciar", ['id_objetivo'=>$objetivo->id]) }}">
+                          <!-- $objetivo->cor->hexadecimal -->
+                          <div class="card cartao" style="width: 16rem; height: 16rem; background-color:#12583C">
+                            <div class="card-body" style="height:76%; margin-left: 5%; margin-right: 5%; display: -webkit-flex; display: flex;-webkit-align-items: center;align-items: center;-webkit-justify-content: center;justify-content: center;">
+                              <div class="hifen text-center" align="justify">
+                                <font size="3" color="white">
+                                  <strong> {{ ucfirst($objetivo->titulo) }} </strong>
+                                  <br>
+                                </font>
+                              </div>
+                            </div>
+                            <div class="card-footer text-center">
                               <font size="3" color="white">
-                                <strong> {{ ucfirst($objetivo->titulo) }} </strong>
+                                <strong> {{ $objetivo->data }} </strong>
                                 <br>
                               </font>
                             </div>
                           </div>
-                          <div class="card-footer text-center">
-                            <font size="3" color="white">
-                              <strong> {{ $objetivo->data }} </strong>
-                              <br>
-                            </font>
-                            @if($objetivo->user->id == \Auth::user()->id)
-                              <a href="{{ route("objetivo.gerenciar", ['id_objetivo'=>$objetivo->id]) }}" class="btn btn-primary">Gerenciar</a>
-                            @else
-                              <a href="{{ route("objetivo.gerenciar", ['id_objetivo'=>$objetivo->id]) }}" class="btn btn-primary">Ver</a>
-                            @endif
-                          </div>
-                        </div>
+                        </a>
                         @php($temp += 1)
                       @endforeach
                     </td>
