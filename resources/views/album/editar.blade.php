@@ -28,6 +28,15 @@
 
         <div class="col-md-6">
           <div class="panel panel-default">
+            <div class="panel-heading" style="margin-top:11px;">
+              <h3>
+                <strong>
+                  Dados do Álbum
+                </strong>
+              </h3>
+
+              <hr style="border-top: 1px solid black;">
+            </div>
 
             <div class="panel-body panel-body-cadastro">
               <form method="POST" action="{{ route("album.atualizar") }}" enctype="multipart/form-data">
@@ -106,85 +115,123 @@
 
         <div class="col-md-6">
           <div class="panel panel-default">
-            <div class="panel-body">
+            <form method="POST" action="{{ route("album.fotos.excluir") }}">
+              {{ csrf_field() }}
 
-              @if (\Session::has('success'))
-                <br>
-                <div class="alert alert-success">
-                  <strong>Sucesso!</strong>
-                  {!! \Session::get('success') !!}
+              <div class="panel-heading">
+                <div class="row">
+
+                  <div class="col-md-4">
+                    <h3>
+                      <strong>
+                        Excluir Fotos
+                      </strong>
+                    </h3>
+                  </div>
+
+                  <div class="row col-md-8" style="margin:13px 0px 0px 0px;">
+                    <div class="col-md-8" style="margin-top:1px; padding:0px; float:left">
+                      <input id="selectAll" type="checkbox" class="form-check-input" value="">
+                      <label class="form-check-label" for="selectAll">Selecionar todas</label>
+                    </div>
+                    <div class="col-md-4" style="margin-top:8px; padding:0px; float:right">
+                      <button type="submit" onclick="return confirm('\Confirmar exclusão da(s) imagem(ns) selecionadas?')" class="btn btn-danger">
+                        Excluir
+                      </button>
+                    </div>
+                  </div>
+
                 </div>
-              @endif
 
-              <div class="row" align="center">
 
-                <table id="tabela_albuns">
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @php
-                      $colunas = 0;
-                      $size = 3;
-                      $tresFotos = array();
-                    @endphp
-
-                    @foreach ($fotos as $foto)
-                      <tr>
-                        @php
-                          $colunas += 1;
-                          array_push($tresFotos, $foto);
-                        @endphp
-
-                        @if($colunas % $size == 0)
-                          @for($i = 1; $i <= $size; $i++ )
-                            @php($foto = array_pop($tresFotos))
-                            <td class="text-center">
-                              <a href="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:auto; height:auto;" data-lightbox="fotos">
-                                <img src="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:128px; height: 128px; object-fit: cover; border:solid;">
-                              </a>
-                              &nbsp; &nbsp;
-                              <br><br>
-                              <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão desta imagem?')" href="{{route("album.foto.excluir" , ['id_foto'=>$foto->id]) }}">
-                                <i class="material-icons">delete</i>
-                              </a>
-                              <br>
-                              &nbsp; &nbsp;
-                            </td>
-                          @endfor
-                        @endif
-                      </tr>
-                    @endforeach
-
-                    @php($count = 0)
-                    @for($i = 1; $i <= $size; $i++ )
-                      @php($foto = array_pop($tresFotos))
-
-                      @if($foto != null)
-                        @php($count += 1)
-                        <td class="text-center">
-                          <a href="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:auto; height:auto;" data-lightbox="fotos">
-                            <img src="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:128px; height: 128px; border:solid; object-fit: cover;">
-                          </a>
-                          &nbsp; &nbsp;
-                          <br><br>
-                          <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão desta imagem?')" href="{{ route("album.foto.excluir" , ['id_foto'=>$foto->id]) }}">
-                            <i class="material-icons">delete</i>
-                          </a>
-                          <br>
-                          &nbsp; &nbsp;
-                        </td>
-                      @endif
-                    @endfor
-                  </tbody>
-                </table>
+                <hr style="border-top: 1px solid black;">
               </div>
-            </div>
+
+              <div class="panel-body">
+
+                @if (\Session::has('success'))
+                  <div class="alert alert-success">
+                    <strong>Sucesso!</strong>
+                    {!! \Session::get('success') !!}
+                  </div>
+                @endif
+
+                <div class="row" align="center">
+                  <table id="tabela_albuns">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @php
+                        $colunas = 0;
+                        $size = 4;
+                        $tresFotos = array();
+                      @endphp
+
+                      @foreach ($fotos as $foto)
+                        <tr>
+                          @php
+                            $colunas += 1;
+                            array_push($tresFotos, $foto);
+                          @endphp
+
+                          @if($colunas % $size == 0)
+                            @for($i = 1; $i <= $size; $i++ )
+                              @php($foto = array_pop($tresFotos))
+                              <td class="text-center">
+                                <a href="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:auto; height:auto;" data-lightbox="fotos">
+                                  <img src="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:128px; height: 128px; object-fit: cover; border:solid;">
+                                </a>
+                                &nbsp; &nbsp;
+                                <br>
+                                <input type="checkbox" class="form-control" name="fotos[]" value="{{$foto->id}}">
+
+                                <!-- <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão desta imagem?')" href="{{route("album.foto.excluir" , ['id_foto'=>$foto->id]) }}">
+                                  <i class="material-icons">delete</i>
+                                </a> -->
+                                &nbsp; &nbsp;
+                              </td>
+                            @endfor
+                          @endif
+                        </tr>
+                      @endforeach
+
+                      @php($count = 0)
+
+                      @for($i = 1; $i <= $size; $i++ )
+                        @php($foto = array_pop($tresFotos))
+
+                        @if($foto != null)
+                          @php($count += 1)
+                          <td class="text-center">
+                            <a href="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:auto; height:auto;" data-lightbox="fotos">
+                              <img src="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}" style="width:128px; height: 128px; border:solid; object-fit: cover;">
+                            </a>
+                            &nbsp; &nbsp;
+                            <br>
+                            <input type="checkbox" class="form-control" name="fotos[]" value="{{$foto->id}}">
+
+                            <!-- <input id="fotos" type="checkbox" class="form-check-input" name="fotos[]" value="{{$foto->id}}"> -->
+                            <!-- <label class="form-check-label" for="fotos">Excluir</label> -->
+
+                            <!-- <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão desta imagem?')" href="{{ route("album.foto.excluir" , ['id_foto'=>$foto->id]) }}">
+                              <i class="material-icons">delete</i>
+                            </a> -->
+
+                            &nbsp; &nbsp;
+                          </td>
+                        @endif
+                      @endfor
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -207,4 +254,20 @@ function show(id) {
 
 <script src="{{ asset('js/bootstrap-filestyle.min.js')}}"> </script>
 
+<script type="text/javascript">
+  var checkedAll = false;
+  var checkBoxs;
+
+  document.getElementById("selectAll").addEventListener("click", function(){
+    checkBoxs = document.querySelectorAll('input[type="checkbox"]:not([id=selectAll])');
+    //"Hack": http://toddmotto.com/ditch-the-array-foreach-call-nodelist-hack/
+    [].forEach.call(checkBoxs, function(checkbox) {
+      //Verificamos se é a hora de dar checked a todos ou tirar;
+      checkbox.checked = checkedAll ? false : true;
+    });
+    //Invertemos ao final da execução, caso a última tenha sido true para checar todos, tornamos ele false para o próximo clique;
+    checkedAll = checkedAll ? false : true;
+    //getLinhas();
+  });
+</script>
 @endsection

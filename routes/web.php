@@ -114,7 +114,7 @@ Route::middleware('autorizacao')->group(function() {
   Route::get('/aluno/albuns/{id_album}/ver', 'AlbumController@ver')->name('album.ver');
   Route::get('/aluno/albuns/{id_album}/editar', 'AlbumController@editar')->name('album.editar');
   Route::get('/aluno/albuns/{id_album}/excluir', 'AlbumController@excluirAlbum')->name('album.excluir');
-  Route::get('/aluno/albuns/foto/{id_foto}/excluir', 'AlbumController@excluirFoto')->name('album.foto.excluir');
+  Route::post('/aluno/albuns/fotos/excluir', 'AlbumController@excluirFotos')->name('album.fotos.excluir');
   Route::get('/aluno/{id_aluno}/albuns/cadastrar', 'AlbumController@cadastrar')->name('album.cadastrar');
   Route::post('/aluno/albuns/criar', 'AlbumController@criar')->name('album.criar');
   Route::post('/aluno/albuns/atualizar', 'AlbumController@atualizar')->name('album.atualizar');
