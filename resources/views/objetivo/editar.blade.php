@@ -22,7 +22,7 @@
           <hr style="border-top: 1px solid black;">
         </div>
 
-        <div class="panel-body">
+        <div class="panel-body panel-body-cadastro">
           <div class="col-md-8 col-md-offset-2">
             <form method="POST" action="{{ route("objetivo.atualizar") }}">
               {{ csrf_field() }}
