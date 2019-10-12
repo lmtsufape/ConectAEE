@@ -61,14 +61,17 @@ class AlbumController extends Controller
     return redirect()->route("album.listar", ["aluno"=>$aluno])->with('success','O álbum '.$album->nome.' foi excluído.');
   }
 
-  public static function excluirFoto($id_foto){
-    $foto = Foto::find($id_foto);
-    $album = $foto->album;
-    $aluno = $album->aluno;
+  public static function excluirFotos(Request $request){
 
-    // unlink(substr($foto->imagem, 1));
+    foreach ($request->fotos as $id_foto) {
+      $foto = Foto::find($id_foto);
+      $album = $foto->album;
+      $aluno = $album->aluno;
 
-    $foto->delete();
+      // unlink(substr($foto->imagem, 1));
+
+      $foto->delete();
+    }
 
     if (count($album->fotos) == 0) {
       $album->delete();

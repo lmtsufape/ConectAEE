@@ -89,18 +89,9 @@
                   </div>
                 </div>
 
-                <div class="form-group{{ $errors->has('isAdministrador') ? ' has-error' : '' }}">
-
-                  <div class="col-md-12">
-                    <input style="margin-top: 10px" id="isAdministrador" type="checkbox" name="isAdministrador" value="true">
-                    <label for="isAdministrador">Usuário administrador</label>
-
-                    @if ($errors->has('isAdministrador'))
-                    <span class="help-block">
-                      <strong>{{ $errors->first('isAdministrador') }}</strong>
-                    </span>
-                    @endif
-                  </div>
+                <div class="form-check col-md-12">
+                  <input id="isAdministrador" type="checkbox" class="form-check-input" name="isAdministrador" value="true">
+                  <label class="form-check-label" for="isAdministrador">Usuário administrador</label>
                 </div>
 
                 <div class="form-group">
