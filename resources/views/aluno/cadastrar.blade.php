@@ -82,7 +82,7 @@
 
                 <h3>
                   <strong>
-                    Identificação:
+                    Identificação
                   </strong>
                 </h3>
 
@@ -140,25 +140,25 @@
 
                         <div class="col-md-12">
                           @if(old('sexo') == "M")
-                          <input type="radio" id="sexo1" name="sexo" value="M" checked="checked">
+                            <input type="radio" id="sexo1" name="sexo" value="M" checked="checked">
                           @else
-                          <input type="radio" id="sexo1" name="sexo" value="M">
+                            <input type="radio" id="sexo1" name="sexo" value="M">
                           @endif
 
                           <label class="custom-control-label" for="sexo1">Masculino</label>
 
                           @if(old('sexo') == "F")
-                          <input type="radio" id="sexo2" name="sexo" value="F" checked="checked">
+                            <input type="radio" id="sexo2" name="sexo" value="F" checked="checked">
                           @else
-                          <input type="radio" id="sexo2" name="sexo" value="F">
+                            <input type="radio" id="sexo2" name="sexo" value="F">
                           @endif
 
                           <label class="custom-control-label" for="sexo2">Feminino</label>
 
                           @if ($errors->has('sexo'))
-                          <span class="help-block">
-                            <strong>{{ $errors->first('sexo') }}</strong>
-                          </span>
+                            <span class="help-block">
+                              <strong>{{ $errors->first('sexo') }}</strong>
+                            </span>
                           @endif
                         </div>
                       </div>
@@ -304,7 +304,7 @@
 
                 <h3>
                   <strong>
-                    Outras Observacões:
+                    Outras Observacões
                   </strong>
                 </h3>
 
