@@ -16,13 +16,17 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(Aluno::class, function (Faker $faker) {
-    return [
-      'nome' => $faker->name,
-      'cid' => 'H910',
-      'cpf' => $faker->cpf,
-      'descricao_cid' => 'Perda de audição ototóxica',
-      'observacao' => $faker->text($maxNbChars = 300),
-      'sexo' => $faker->randomElement($array = array ('M','F')),
-      'data_de_nascimento' => $faker->date($format = 'd-m-Y',$max = 'now'),
-    ];
+  $str     = $faker->name();
+  $order   = array("Sr. ", "Sra. ", "Dr. ", "Dra. ", "Srta. ");
+  $replace = '';
+
+  return [
+    'nome' => str_replace($order, $replace, $str),
+    'cid' => 'H910',
+    'cpf' => $faker->cpf,
+    'descricao_cid' => 'Perda de audição ototóxica',
+    'observacao' => $faker->text($maxNbChars = 300),
+    'sexo' => $faker->randomElement($array = array ('M','F')),
+    'data_de_nascimento' => $faker->date($format = 'd-m-Y',$max = 'now'),
+  ];
 });

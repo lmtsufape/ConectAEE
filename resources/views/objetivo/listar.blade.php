@@ -22,7 +22,7 @@
                     </strong>
                   </h2>
                 </div>
-                <div style="width:50%; float:right; margin-right:-25px;" class="col-md-6">
+                <div style="width:50%; float:right; margin-right:-15px;" class="col-md-6">
                   @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->perfil_id != 1)
                     <a class="btn btn-primary" style="float:right; margin-top:20px;" href="{{ route("objetivo.cadastrar" , ['id_aluno'=>$aluno->id])}}">
                       Cadastrar

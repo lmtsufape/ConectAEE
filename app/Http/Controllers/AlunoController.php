@@ -54,7 +54,7 @@ class AlunoController extends Controller{
       array_push($ids_alunos,$gerenciar->aluno_id);
     }
 
-    $alunos = Aluno::whereIn('id', $ids_alunos)->paginate(18);
+    $alunos = Aluno::whereIn('id', $ids_alunos)->orderBy('nome','asc')->paginate(18);
 
     return view("aluno.listar",[
       'alunos' => $alunos,

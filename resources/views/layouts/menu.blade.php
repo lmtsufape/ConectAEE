@@ -43,10 +43,10 @@
           </ul> -->
         </li>
         <li class="dropdown">
-          <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-            Instituições <span class="caret"></span>
+          <a href="{{ route('instituicao.listar') }}">
+            Instituições
           </a>
-          <ul class="dropdown-menu" role="menu">
+          <!-- <ul class="dropdown-menu" role="menu">
             <li>
               <a href="{{ route('instituicao.listar') }}">
                 Listar
@@ -57,7 +57,7 @@
                 Cadastrar
               </a>
             </li>
-          </ul>
+          </ul> -->
         </li>
       @endif
     </ul>
@@ -70,6 +70,11 @@
         @endphp
 
         <li class="dropdown">
+          <a onclick="contraste()" id="altocontraste" data-toggle="tooltip" title="Contraste">
+            <img class="on-contrast-force-white" src="{{asset('images/contraste.png')}}" style="height:25px">
+          </a>
+        </li>
+        <li class="dropdown">
           <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
             @if($lidos == null)
               Notificacões
@@ -77,7 +82,7 @@
             @elseif(gettype(array_search(false, $lidos)) == 'integer')
               Notificacões
               <!-- <i class="material-icons">notifications</i> -->
-              <span class="badge badge-pill" style="position: absolute; top:0px; right:-5px; background:red">{{$qtd_naolidos}}</span>
+              <span class="badge badge-pill" style="position: absolute; top:2px; right:1px; background:red">{{$qtd_naolidos}}</span>
             @else
               Notificacões
               <!-- <i class="material-icons">notifications_none</i> -->
@@ -177,6 +182,11 @@
           </ul>
         </li>
       @else
+        <li class="dropdown">
+          <a onclick="contraste()" id="altocontraste" data-toggle="tooltip" title="Contraste">
+            <img class="on-contrast-force-white" src="{{asset('images/contraste.png')}}" style="height:25px">
+          </a>
+        </li>
         <li><a class="menu-principal" href="{{ route('login') }}">Entrar</a></li>
         <li><a class="menu-principal" href="{{ route('register') }}">Cadastrar</a></li>
       @endif

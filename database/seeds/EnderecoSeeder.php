@@ -12,6 +12,6 @@ class EnderecoSeeder extends Seeder
      */
     public function run()
     {
-        factory(Endereco::class, 19)->create();
+        factory(Endereco::class, 30)->create();
     }
 }

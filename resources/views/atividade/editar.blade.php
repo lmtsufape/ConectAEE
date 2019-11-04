@@ -5,8 +5,7 @@
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
 > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
 > <a href="{{route('objetivo.gerenciar',[$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
-> <a href="{{route('atividade.ver',[$atividade->id])}}"><strong>Atividade: {{$atividade->titulo}}</strong></a>
-> Editar
+> Editar Atividade
 @endsection
 @section('content')
 <div class="container">
