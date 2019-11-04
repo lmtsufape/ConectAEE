@@ -118,19 +118,6 @@ class AtividadeController extends Controller
     return Redirect::to(route("objetivo.gerenciar", ["id_objetivo" => $atividade->objetivo->id]) . "#atividades")->with('atividade','A atividade '.$atividade->titulo.' foi atualizada.');;
   }
 
-  // public static function listar($id_objetivo){
-  //
-  //   $objetivo = Objetivo::find($id_objetivo);
-  //   $aluno = $objetivo->aluno;
-  //   $atividades = $objetivo->atividades;
-  //
-  //   return view("atividade.listar", [
-  //     'aluno' => $aluno,
-  //     'objetivo' => $objetivo,
-  //     'atividades' => $atividades
-  //   ]);
-  // }
-
   public static function concluir($id_atividade){
 
     $atividade = Atividade::find($id_atividade);

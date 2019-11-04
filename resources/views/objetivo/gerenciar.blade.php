@@ -232,20 +232,27 @@
                               </div>
 
                               <div class="modal-footer">
-                                @if($atividade->objetivo->user->id == \Auth::user()->id)
-                                  <a class="btn btn-primary" href={{ route("atividade.editar" , ['id_atividade' => $atividade->id]) }}>
-                                    Editar
-                                  </a>
+                                @if($objetivo->user->id == \Auth::user()->id)
+                                  @if($atividade->concluido == false)
 
-                                  <a class="btn btn-primary" href={{ route("atividade.concluir" , ['id_atividade' => $atividade->id]) }}>
-                                    Finalizar
-                                  </a>
+                                    <a class="btn btn-primary" href={{ route("atividade.editar" , ['id_atividade' => $atividade->id]) }}>
+                                      Editar
+                                    </a>
 
-                                  <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da atividade {{$atividade->titulo}}?')" href={{ route("atividade.excluir" , ['id_atividade' => $atividade->id]) }}>
-                                    Excluir
-                                  </a>
+                                    <a class="btn btn-primary" href={{ route("atividade.concluir" , ['id_atividade' => $atividade->id]) }}>
+                                      Finalizar
+                                    </a>
 
-                                  <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button> -->
+                                    <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da atividade {{$atividade->titulo}}?')" href={{ route("atividade.excluir" , ['id_atividade' => $atividade->id]) }}>
+                                      Excluir
+                                    </a>
+
+                                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button> -->
+                                  @elseif($atividade->concluido == true)
+                                    <a class="btn btn-primary" href={{ route("atividade.desconcluir" , ['id_atividade' => $atividade->id]) }}>
+                                      Reabrir
+                                    </a>
+                                  @endif
                                 @endif
                               </div>
                             </div>
