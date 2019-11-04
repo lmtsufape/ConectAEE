@@ -58,7 +58,7 @@
         <div class="panel-body">
           @if($aluno != null)
 
-          <div class="alert alert-info">
+          <div class="alert alert-info text-center">
             <strong>
               O aluno {{ $aluno->nome }} já está cadastrado no sistema.
               @if(!$botaoAtivo)
@@ -67,7 +67,7 @@
                 </a>
               @else
                 <a class="btn btn-primary" href="{{ route("aluno.gerenciar", ["id_aluno" => $aluno->id]) }}">
-                  Gerenciar
+                  Ver Perfil
                 </a>
               @endif
             </strong>
