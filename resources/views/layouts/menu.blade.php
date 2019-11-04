@@ -25,18 +25,14 @@
     <ul class="nav navbar-nav" >
       @if(Auth::check() && Auth::user()->cadastrado)
         <li class="dropdown">
-          <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-            Alunos <span class="caret"></span>
+          <a href="{{ route('aluno.listar') }}">
+            Alunos
+            <!-- <span class="caret"></span> -->
           </a>
-          <ul class="dropdown-menu" role="menu">
+          <!-- <ul class="dropdown-menu" role="menu">
             <li>
               <a href="{{ route('aluno.listar') }}">
                 Listar
-              </a>
-            </li>
-            <li>
-              <a href="{{ route('aluno.cadastrar') }}">
-                Cadastrar
               </a>
             </li>
             <li>
@@ -44,7 +40,7 @@
                 Buscar por matrícula
               </a>
             </li>
-          </ul>
+          </ul> -->
         </li>
         <li class="dropdown">
           <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

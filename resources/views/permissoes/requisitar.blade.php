@@ -2,7 +2,7 @@
 @section('title','Requisitar permissão')
 @section('navbar')
 <a href="{{route('aluno.listar')}}">Início</a>
-> <a href="{{route('aluno.buscar')}}">Buscar</a>
+> <a href="{{route('aluno.buscar')}}">Novo Aluno</a>
 > Requisitar acesso
 @endsection
 @section('content')

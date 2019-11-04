@@ -20,8 +20,8 @@
                   </h2>
                 </div>
                 <div style="width:50%; float:right; margin-right:-25px;" class="col-md-6">
-                  <a class="btn btn-primary" style="float:right; margin-top:20px;" href="{{ route("aluno.cadastrar")}}">
-                    Cadastrar
+                  <a class="btn btn-primary" style="float:right; margin-top:20px;" href="{{ route("aluno.buscar")}}">
+                    Novo Aluno
                   </a>
                 </div>
               </div>
@@ -181,21 +181,6 @@
             {{$alunos->links()}}
           </div>
         </div>
-
-        <!-- <div class="panel-footer">
-          <a class="btn btn-danger" href="{{ route("home") }}">
-            <i class="material-icons">home</i>
-            <br>
-            Início
-          </a>
-
-          <a class="btn btn-success" href="{{ route("aluno.cadastrar")}}">
-            <i class="material-icons">add</i>
-            <br>
-            Novo
-          </a>
-        </div> -->
-
       </div>
     </div>
   </div>
