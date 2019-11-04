@@ -75,7 +75,7 @@
 								foreach($gerenciars as $gerenciar){
 									if($gerenciar->user->id == \Auth::user()->id && $gerenciar->isAdministrador){
 										?>
-										<strong>Matrícula:</strong> {{$aluno->matricula}}
+										<strong>CPF:</strong> {{$aluno->cpf}}
 										<br/>
 										<?php
 										break;

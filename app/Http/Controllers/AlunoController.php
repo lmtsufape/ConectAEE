@@ -80,7 +80,7 @@ class AlunoController extends Controller{
 
   }
 
-  public function cadastrar(){
+  public static function cadastrar(){
     $instituicoes = \Auth::user()->instituicoes;
     $perfis = [[1,'Responsável'], [2,'Professor AEE']];
 
@@ -121,19 +121,25 @@ class AlunoController extends Controller{
 
   public static function buscar(){
 
-    return view("aluno.buscar", [
-      'matricula' => [],
+    return view("aluno.buscarCPF", [
+      'cpf' => [],
       'aluno' => []
     ]);
   }
 
-  public static function buscarMatricula(Request $request){
+  public function buscarCPF(Request $request){
 
-    $matricula = $request->matricula;
-    $aluno = Aluno::where('matricula','=', $matricula)->first();
+    $this->validate($request, [
+      'cpf' => 'required|cpf|formato_cpf',
+    ]);
+
+    $cpf = $request->cpf;
+    $aluno = Aluno::where('cpf','=', $cpf)->first();
     $botaoAtivo = false;
 
-    if ($aluno != null) {
+    if($aluno == null){
+      return redirect()->route("aluno.cadastrar")->with('cpf', $cpf);
+    }else{
       $gerenciars = $aluno->gerenciars;
 
       foreach ($gerenciars as $gerenciar) {
@@ -143,9 +149,9 @@ class AlunoController extends Controller{
       }
     }
 
-    return view("aluno.buscar", [
+    return view("aluno.buscarCPF", [
       'aluno' => $aluno,
-      'matricula' => $matricula,
+      'cpf' => $cpf,
       'botaoAtivo' => $botaoAtivo
     ]);
 
@@ -214,14 +220,14 @@ class AlunoController extends Controller{
     $aluno->observacao = $request->observacao;
     $aluno->data_de_nascimento = $request->data_nascimento;
     $aluno->endereco_id = $endereco->id;
-
-    do{
-      $matricula = str_random(8);
-      $alunoMatricula = Aluno::where('matricula','=',$matricula)->first();
-    }while($alunoMatricula != NULL);
-
-    $aluno->matricula = $matricula;
+    $aluno->cpf = $request->cpf;
     $aluno->save();
+
+    // do{
+    //   $matricula = str_random(8);
+    //   $alunoCPF = Aluno::where('matricula','=',$matricula)->first();
+    // }while($alunoCPF != NULL);
+
 
     $aluno->instituicoes()->attach($request->instituicoes);
 
@@ -330,8 +336,8 @@ class AlunoController extends Controller{
     return redirect()->route("aluno.gerenciar", ['id_aluno' => $request->id_aluno])->with('success','O Aluno '.$aluno->nome.' foi atualizado.');
   }
 
-  public static function requisitarPermissao($matricula){
-    $aluno = Aluno::where('matricula','=',$matricula)->first();
+  public static function requisitarPermissao($cpf){
+    $aluno = Aluno::where('cpf','=',$cpf)->first();
 
     $perfis = Perfil::where('especializacao','=',NULL)->get();
 

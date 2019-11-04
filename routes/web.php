@@ -36,11 +36,11 @@ Route::middleware('autorizacao')->group(function() {
   Route::post('/usuario/atualizarSenha', 'UsuarioController@atualizarSenha')->name('usuario.atualizarSenha');
 
   //Rotas para alunos
-  Route::get('/aluno/cadastrar', 'AlunoController@cadastrar')->name('aluno.cadastrar');
+  Route::get('/aluno/cadastrar/', 'AlunoController@cadastrar')->name('aluno.cadastrar');
   Route::post('/aluno/criar', 'AlunoController@criar')->name('aluno.criar');
   Route::get('/aluno/listar', 'AlunoController@listar')->name('aluno.listar');
   Route::get('/aluno/buscar', 'AlunoController@buscar')->name('aluno.buscar');
-  Route::get('/aluno/buscarMatricula', 'AlunoController@buscarMatricula')->name('aluno.buscarMatricula');
+  Route::get('/aluno/buscarCPF', 'AlunoController@buscarCPF')->name('aluno.buscarCPF');
   Route::get('/aluno/buscarAluno', 'AlunoController@buscarAluno')->name('aluno.buscarAluno');
   Route::get('/aluno/{id_aluno}/gerenciar', 'AlunoController@gerenciar')->name('aluno.gerenciar');
   //novaa
@@ -53,7 +53,7 @@ Route::middleware('autorizacao')->group(function() {
   Route::get('/aluno/{id_aluno}/gerenciar/permissoes/cadastrar','AlunoController@cadastrarPermissao')->name('aluno.permissoes.cadastrar');
   Route::post('/aluno/gerenciar/permissoes/criar','AlunoController@criarPermissao')->name('aluno.permissoes.criar');
   Route::get('/aluno/gerenciar/permissoes/{id_permissao}/remover','AlunoController@removerPermissao')->name('aluno.permissoes.remover');
-  Route::get('/aluno/{matricula}/gerenciar/permissoes/requisitar', 'AlunoController@requisitarPermissao')->name('aluno.permissoes.requisitar');
+  Route::get('/aluno/{cpf}/gerenciar/permissoes/requisitar', 'AlunoController@requisitarPermissao')->name('aluno.permissoes.requisitar');
   Route::get('/aluno/{id_aluno}/gerenciar/permissoes/notificacao/{id_notificacao}/conceder', 'AlunoController@concederPermissao')->name('aluno.permissoes.conceder');
   Route::post('/aluno/gerenciar/permissoes/notificar','AlunoController@notificarPermissao')->name('aluno.permissoes.notificar');
   Route::get('/aluno/{id_aluno}/gerenciar/permissoes/{id_permissao}/editar','AlunoController@editarPermissao')->name('aluno.permissoes.editar');

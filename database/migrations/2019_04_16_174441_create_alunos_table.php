@@ -21,7 +21,7 @@ class CreateAlunosTable extends Migration
       $table->string('cid')->nullable();
       $table->string('descricao_cid')->nullable();
       $table->text('observacao')->nullable();
-      $table->string('matricula')->unique();
+      $table->string('cpf')->unique();
       $table->string('imagem')->nullable();
 
       $table->integer('endereco_id');

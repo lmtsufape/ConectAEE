@@ -19,7 +19,7 @@ $factory->define(Aluno::class, function (Faker $faker) {
     return [
       'nome' => $faker->name,
       'cid' => 'H910',
-      'matricula' => str_random(8),
+      'cpf' => $faker->cpf,
       'descricao_cid' => 'Perda de audição ototóxica',
       'observacao' => $faker->text($maxNbChars = 300),
       'sexo' => $faker->randomElement($array = array ('M','F')),
