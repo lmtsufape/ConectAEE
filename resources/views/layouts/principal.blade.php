@@ -95,9 +95,6 @@
                 <br>
                 <h3>
                   &nbsp;
-                  <a href="{{URL::previous()}}" data-toggle="tooltip" title="Voltar" style="margin-left:5px; margin-right:5px; width:40px; padding:5px;" class="btn btn-danger">
-                    <i class=" material-icons">arrow_back</i>
-                  </a>
                   @yield('navbar')
                 </h3>
               </div>
