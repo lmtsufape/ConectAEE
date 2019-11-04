@@ -82,7 +82,6 @@ Route::middleware('autorizacao')->group(function() {
   Route::get('/aluno/objetivo/gerenciar/atividade/{id_atividade}/editar','AtividadeController@editar')->name('atividade.editar');
   Route::get('/aluno/objetivo/gerenciar/atividade/{id_atividade}/excluir','AtividadeController@excluir')->name('atividade.excluir');
   Route::post('/aluno/atividade/atualizar', 'AtividadeController@atualizar')->name('atividade.atualizar');
-  // Route::get('/aluno/atividade/buscar', 'AtividadeController@buscar')->name('atividade.buscar');
 
   //Rotas para sugestão
   Route::post('/aluno/objetivo/gerenciar/sugestoes/criar', 'SugestaoController@criar')->name('sugestoes.criar');
