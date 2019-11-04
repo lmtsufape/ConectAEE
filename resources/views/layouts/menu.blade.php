@@ -70,6 +70,11 @@
         @endphp
 
         <li class="dropdown">
+          <a onclick="contraste()" id="altocontraste" data-toggle="tooltip" title="Contraste">
+            <img class="on-contrast-force-white" src="{{asset('images/contraste.png')}}" style="height:25px">
+          </a>
+        </li>
+        <li class="dropdown">
           <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
             @if($lidos == null)
               Notificacões
@@ -177,6 +182,11 @@
           </ul>
         </li>
       @else
+        <li class="dropdown">
+          <a onclick="contraste()" id="altocontraste" data-toggle="tooltip" title="Contraste">
+            <img class="on-contrast-force-white" src="{{asset('images/contraste.png')}}" style="height:25px">
+          </a>
+        </li>
         <li><a class="menu-principal" href="{{ route('login') }}">Entrar</a></li>
         <li><a class="menu-principal" href="{{ route('register') }}">Cadastrar</a></li>
       @endif

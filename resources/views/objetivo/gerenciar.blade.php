@@ -164,13 +164,13 @@
                     <thead>
                       <tr>
                         <th style="width:25%;cursor:pointer;" onclick="sortTable(0, 'table1')">
-                          STATUS <img src="{{asset('images/sort.png')}}" style="height:15px">
+                          STATUS <img class="on-contrast-force-white" src="{{asset('images/sort.png')}}" style="height:15px">
                         </th>
                         <th style="width:25%;cursor:pointer;" onclick="sortTable(1, 'table1')">
-                          TÍTULO <img src="{{asset('images/sort.png')}}" style="height:15px">
+                          TÍTULO <img class="on-contrast-force-white" src="{{asset('images/sort.png')}}" style="height:15px">
                         </th>
                         <th style="width:25%;cursor:pointer;" onclick="sortTable(2, 'table1')">
-                          DATA <img src="{{asset('images/sort.png')}}" style="height:15px">
+                          DATA <img class="on-contrast-force-white" src="{{asset('images/sort.png')}}" style="height:15px">
                         </th>
                         <th style="width:25%">Ação</th>
                       </tr>
@@ -245,13 +245,13 @@
                     <thead>
                       <tr>
                         <th style="width:25%;cursor:pointer;" onclick="sortTable(0, 'table2')">
-                          TÍTULO <img src="{{asset('images/sort.png')}}" style="height:15px">
+                          TÍTULO <img class="on-contrast-force-white" src="{{asset('images/sort.png')}}" style="height:15px">
                         </th>
                         <th style="width:25%;cursor:pointer;" onclick="sortTable(1, 'table2')">
-                          AUTOR <img src="{{asset('images/sort.png')}}" style="height:15px">
+                          AUTOR <img class="on-contrast-force-white" src="{{asset('images/sort.png')}}" style="height:15px">
                         </th>
                         <th style="width:25%;cursor:pointer;" onclick="sortTable(2, 'table2')">
-                          DATA <img src="{{asset('images/sort.png')}}" style="height:15px">
+                          DATA <img class="on-contrast-force-white" src="{{asset('images/sort.png')}}" style="height:15px">
                         </th>
                         <th style="width:25%">Ação</th>
                       </tr>
