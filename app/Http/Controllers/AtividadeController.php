@@ -46,18 +46,6 @@ class AtividadeController extends Controller
     ]);
   }
 
-  public static function ver($id_atividade){
-    $atividade = Atividade::find($id_atividade);
-    $objetivo = $atividade->objetivo;
-    $aluno = $atividade->objetivo->aluno;
-
-    return view("atividade.ver", [
-      'aluno' => $aluno,
-      'objetivo' => $objetivo,
-      'atividade' => $atividade,
-    ]);
-  }
-
   public static function excluir($id_atividade){
     $atividade = Atividade::find($id_atividade);
     $objetivo = $atividade->objetivo;
@@ -117,19 +105,6 @@ class AtividadeController extends Controller
 
     return Redirect::to(route("objetivo.gerenciar", ["id_objetivo" => $atividade->objetivo->id]) . "#atividades")->with('atividade','A atividade '.$atividade->titulo.' foi atualizada.');;
   }
-
-  // public static function listar($id_objetivo){
-  //
-  //   $objetivo = Objetivo::find($id_objetivo);
-  //   $aluno = $objetivo->aluno;
-  //   $atividades = $objetivo->atividades;
-  //
-  //   return view("atividade.listar", [
-  //     'aluno' => $aluno,
-  //     'objetivo' => $objetivo,
-  //     'atividades' => $atividades
-  //   ]);
-  // }
 
   public static function concluir($id_atividade){
 

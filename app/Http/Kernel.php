@@ -60,8 +60,22 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'autorizacao' => \App\Http\Middleware\AutorizacaoMiddleware::class,
-
+        'checkNotificacao' => \App\Http\Middleware\CheckNotificacao::class,
+        'checkCadastrado' => \App\Http\Middleware\CheckCadastrado::class,
+        'checkNaoCadastrado' => \App\Http\Middleware\CheckNaoCadastrado::class,
+        'checkGerenciaAluno' => \App\Http\Middleware\CheckGerenciaAluno::class,
+        'checkAlunoAdministrador' => \App\Http\Middleware\CheckAlunoAdministrador::class,
+        'checkNaoResponsavel' => \App\Http\Middleware\CheckNaoResponsavel::class,
+        'checkObjetivo' => \App\Http\Middleware\CheckObjetivo::class,
+        'checkObjetivoCriador' => \App\Http\Middleware\CheckObjetivoCriador::class,
+        'checkAtividadeCriador' => \App\Http\Middleware\CheckAtividadeCriador::class,
+        'checkObjetivoNaoCriador' => \App\Http\Middleware\CheckObjetivoNaoCriador::class,
+        'checkSugestao' => \App\Http\Middleware\CheckSugestao::class,
+        'checkSugestaoCriador' => \App\Http\Middleware\CheckSugestaoCriador::class,
+        'checkFeedbackCriador' => \App\Http\Middleware\CheckFeedbackCriador::class,
+        'checkAlbum' => \App\Http\Middleware\CheckAlbum::class,
+        'checkAlbumCriador' => \App\Http\Middleware\CheckAlbumCriador::class,
+        'checkInstituicaoCriador' => \App\Http\Middleware\CheckInstituicaoCriador::class,
     ];
 
     /**

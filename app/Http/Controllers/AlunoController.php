@@ -54,7 +54,7 @@ class AlunoController extends Controller{
       array_push($ids_alunos,$gerenciar->aluno_id);
     }
 
-    $alunos = Aluno::whereIn('id', $ids_alunos)->paginate(18);
+    $alunos = Aluno::whereIn('id', $ids_alunos)->orderBy('nome','asc')->paginate(18);
 
     return view("aluno.listar",[
       'alunos' => $alunos,
@@ -80,7 +80,7 @@ class AlunoController extends Controller{
 
   }
 
-  public function cadastrar(){
+  public static function cadastrar(){
     $instituicoes = \Auth::user()->instituicoes;
     $perfis = [[1,'Responsável'], [2,'Professor AEE']];
 
@@ -121,19 +121,25 @@ class AlunoController extends Controller{
 
   public static function buscar(){
 
-    return view("aluno.buscar", [
-      'matricula' => [],
+    return view("aluno.buscarCPF", [
+      'cpf' => [],
       'aluno' => []
     ]);
   }
 
-  public static function buscarMatricula(Request $request){
+  public function buscarCPF(Request $request){
 
-    $matricula = $request->matricula;
-    $aluno = Aluno::where('matricula','=', $matricula)->first();
+    $this->validate($request, [
+      'cpf' => 'required|cpf|formato_cpf',
+    ]);
+
+    $cpf = $request->cpf;
+    $aluno = Aluno::where('cpf','=', $cpf)->first();
     $botaoAtivo = false;
 
-    if ($aluno != null) {
+    if($aluno == null){
+      return redirect()->route("aluno.cadastrar")->with('cpf', $cpf);
+    }else{
       $gerenciars = $aluno->gerenciars;
 
       foreach ($gerenciars as $gerenciar) {
@@ -143,9 +149,9 @@ class AlunoController extends Controller{
       }
     }
 
-    return view("aluno.buscar", [
+    return view("aluno.buscarCPF", [
       'aluno' => $aluno,
-      'matricula' => $matricula,
+      'cpf' => $cpf,
       'botaoAtivo' => $botaoAtivo
     ]);
 
@@ -214,14 +220,14 @@ class AlunoController extends Controller{
     $aluno->observacao = $request->observacao;
     $aluno->data_de_nascimento = $request->data_nascimento;
     $aluno->endereco_id = $endereco->id;
-
-    do{
-      $matricula = str_random(8);
-      $alunoMatricula = Aluno::where('matricula','=',$matricula)->first();
-    }while($alunoMatricula != NULL);
-
-    $aluno->matricula = $matricula;
+    $aluno->cpf = $request->cpf;
     $aluno->save();
+
+    // do{
+    //   $matricula = str_random(8);
+    //   $alunoCPF = Aluno::where('matricula','=',$matricula)->first();
+    // }while($alunoCPF != NULL);
+
 
     $aluno->instituicoes()->attach($request->instituicoes);
 
@@ -330,8 +336,8 @@ class AlunoController extends Controller{
     return redirect()->route("aluno.gerenciar", ['id_aluno' => $request->id_aluno])->with('success','O Aluno '.$aluno->nome.' foi atualizado.');
   }
 
-  public static function requisitarPermissao($matricula){
-    $aluno = Aluno::where('matricula','=',$matricula)->first();
+  public static function requisitarPermissao($cpf){
+    $aluno = Aluno::where('cpf','=',$cpf)->first();
 
     $perfis = Perfil::where('especializacao','=',NULL)->get();
 
@@ -424,9 +430,9 @@ class AlunoController extends Controller{
     ]);
   }
 
-  public static function concederPermissao($id_aluno, $id_notificacao){
-    $aluno = Aluno::find($id_aluno);
+  public static function concederPermissao($id_notificacao){
     $notificacao = Notificacao::find($id_notificacao);
+    $aluno = $notificacao->aluno;
 
     return view('permissoes.conceder',[
       'aluno' => $aluno,
@@ -556,8 +562,7 @@ class AlunoController extends Controller{
   }
 
 
-  public function editarPermissao($id_aluno,$id_permissao){
-    $aluno = Aluno::find($id_aluno);
+  public function editarPermissao($id_permissao){
     $perfis = Perfil::where('especializacao','=',NULL)->get();
 
     $especializacoes = Perfil::select('especializacao')
@@ -567,6 +572,7 @@ class AlunoController extends Controller{
     $especializacoes = array_column($especializacoes, 'especializacao');
 
     $gerenciar = Gerenciar::find($id_permissao);
+    $aluno = $gerenciar->aluno;
 
     return view('permissoes.editar',[
       'aluno' => $aluno,
@@ -575,7 +581,7 @@ class AlunoController extends Controller{
       'especializacoes' => $especializacoes,
     ]);
 
-    return redirect()->back()->with('Removed','Permissões removidas com sucesso.');
+    // return redirect()->back()->with('Removed','Permissões removidas com sucesso.');
   }
 
   public function removerPermissao($id_permissao){

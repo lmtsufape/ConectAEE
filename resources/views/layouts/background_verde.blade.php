@@ -52,35 +52,32 @@
       </div>
 
       <!-- Barra de Logos -->
-      <div id="barra-logos" class-"container" style="background:#ffffff; margin-top: 1px; height: 130px; padding: 10px 10px 10px 10px">
+      <div id="barra-logos" class-"container" style="background:#ffffff; margin-top: 1px; height: 200px; padding: 10px 10px 10px 10px">
           <ul id="logos" style="list-style:none;">
               <li style="margin-right:140px; margin-left:110px; border-right:1px">
-                  <div class="col-md-8">
-
                   @if(Auth::check() && (Auth::user()->username == 'adelino.lmts' || Auth::user()->username == 'alana.lmts' || Auth::user()->username == 'mateus.lmts' || Auth::user()->username == 'eberson.lmts'))
-                      <a href="{{ route("home") }}"><img src="{{asset('images/pikachinho.png')}}" style = "margin-left: 8px; margin-top:5px " height="100px" align = "left" ></a>
+                      <a href="{{ route("home") }}"><img src="{{asset('images/pikachinho.png')}}" style = "margin-left: 8px; margin-top:5px " height="170px" align = "left" ></a>
                   @else
-                      <a href="{{ route("home") }}"><img src="{{asset('images/aee.png')}}" style = "margin-left: 8px; margin-top:5px " height="110px" align = "left" ></a>
+                      <a href="{{ route("home") }}"><img src="{{asset('images/aee.png')}}" style = "margin-left: 8px; margin-top:5px " height="170px" align = "left" ></a>
                   @endif
-                </div>
 
-                <div class="col-md-4">
-                  <a target="_blank" href="http://lmts.uag.ufrpe.br/"><img src="{{asset('images/lmts3.png')}}" style="margin-left:8px; margin-top:40px" height="80" align = "right" ></a>
+                  <a target="_blank" href="http://lmts.uag.ufrpe.br/">
+                    <img class="on-contrast-force-white" src="{{asset('images/lmts3.png')}}" style = "margin-left: 8px; margin-top:65px " height="80" align = "right" >
+                  </a>
 
-                  <img src="{{asset('images/separador.png')}}" style="margin-left:15px; margin-top:40px" height="70" align = "right" >
+                  <img class="on-contrast-force-white" src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 65px" height="70" align = "right">
 
-                  <a target="_blank" href="http://ww3.uag.ufrpe.br/"><img src="{{asset('images/uag.png')}}" style="margin-left: 10px; margin-top: 40px" height="80" width="70" align = "right" ></a>
+                  <a target="_blank" href="http://ww3.uag.ufrpe.br/">
+                    <img class="on-contrast-force-white" src="{{asset('images/uag.png')}}" style = "margin-left: 10px; margin-top: 65px" height="80" width="70" align = "right" >
+                  </a>
 
-                  <img src="{{asset('images/separador.png')}}" style="margin-left:15px; margin-top:40px" height="70" align = "right" >
+                  <img class="on-contrast-force-white" src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 65px" height="70" align = "right" >
 
-                  <a target="_blank" href="http://www.ufrpe.br/"><img src="{{asset('images/ufrpe.png')}}" style="margin-left: 15px; margin-right: -10px; margin-top: 40px " height="80" width="70" align = "right"></a>
-                </div>
+                  <a target="_blank" href="http://www.ufrpe.br/">
+                    <img class="on-contrast-force-white" src="{{asset('images/ufrpe.png')}}" style = "margin-left: 15px; margin-right: -10px; margin-top: 65px " height="80" width="70" align = "right">
+                  </a>
               </li>
           </ul>
-      </div>
-
-      <div style="background-color:#ffffff;padding:10px;">
-        <button class="btn-primary" id="altocontraste" onclick="contraste()" style="margin-left:20px; top:50%">Contraste</button>
       </div>
 
         <!-- <a class="btn-primary" id="altocontraste" onclick="contraste()">Contraste</a> -->

@@ -25,7 +25,6 @@ class NotificacaoController extends Controller
     switch ($notificacao->tipo) {
       case 1:
         return redirect()->route('aluno.permissoes.conceder',[
-          'id_aluno' => $notificacao->aluno->id,
           'id_notificacao' => $notificacao->id
         ]);
         break;

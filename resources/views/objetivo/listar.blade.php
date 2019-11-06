@@ -18,14 +18,14 @@
                 <div style="width: 50%; float: left; margin-left:-20px;" class="col-md-6">
                   <h2>
                     <strong>
-                      Objetivos
+                      Objetivos para {{ explode(" ", $aluno->nome)[0]}}
                     </strong>
                   </h2>
                 </div>
-                <div style="width:50%; float:right; margin-right:-25px;" class="col-md-6">
+                <div style="width:50%; float:right; margin-right:-15px;" class="col-md-6">
                   @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->perfil_id != 1)
                     <a class="btn btn-primary" style="float:right; margin-top:20px;" href="{{ route("objetivo.cadastrar" , ['id_aluno'=>$aluno->id])}}">
-                      Cadastrar
+                      Novo Objetivo
                     </a>
                   @endif
                 </div>
@@ -34,8 +34,7 @@
 
             <div class="row col-md-4">
               @if(count($objetivosGroupByUser) != 0 || ($termo != "" && count($objetivosGroupByUser) == 0))
-                <form class="form-horizontal" method="GET" action="{{ route("objetivo.buscar") }}">
-                  <input hidden type="text" name="id_aluno" value="{{$aluno->id}}">
+                <form class="form-horizontal" method="GET" action="{{ route("objetivo.buscar", ['id-aluno' => $aluno->id]) }}">
 
                   <div id="divBusca" style="margin-top:20px;">
 
