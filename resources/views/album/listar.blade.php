@@ -25,7 +25,7 @@
                 </div>
                 <div style="width:50%; float:right; margin-right:-25px;margin-top:20px" class="col-md-6 text-right">
                   <a class="btn btn-primary" href="{{route("album.cadastrar" , ['id_aluno'=>$aluno->id])}}">
-                    Novo
+                    Novo Álbum
                   </a>
                 </div>
               </div>
