@@ -46,18 +46,6 @@ class AtividadeController extends Controller
     ]);
   }
 
-  public static function ver($id_atividade){
-    $atividade = Atividade::find($id_atividade);
-    $objetivo = $atividade->objetivo;
-    $aluno = $atividade->objetivo->aluno;
-
-    return view("atividade.ver", [
-      'aluno' => $aluno,
-      'objetivo' => $objetivo,
-      'atividade' => $atividade,
-    ]);
-  }
-
   public static function excluir($id_atividade){
     $atividade = Atividade::find($id_atividade);
     $objetivo = $atividade->objetivo;

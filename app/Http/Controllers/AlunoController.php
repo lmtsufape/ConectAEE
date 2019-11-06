@@ -430,9 +430,9 @@ class AlunoController extends Controller{
     ]);
   }
 
-  public static function concederPermissao($id_aluno, $id_notificacao){
-    $aluno = Aluno::find($id_aluno);
+  public static function concederPermissao($id_notificacao){
     $notificacao = Notificacao::find($id_notificacao);
+    $aluno = $notificacao->aluno;
 
     return view('permissoes.conceder',[
       'aluno' => $aluno,
@@ -562,8 +562,7 @@ class AlunoController extends Controller{
   }
 
 
-  public function editarPermissao($id_aluno,$id_permissao){
-    $aluno = Aluno::find($id_aluno);
+  public function editarPermissao($id_permissao){
     $perfis = Perfil::where('especializacao','=',NULL)->get();
 
     $especializacoes = Perfil::select('especializacao')
@@ -573,6 +572,7 @@ class AlunoController extends Controller{
     $especializacoes = array_column($especializacoes, 'especializacao');
 
     $gerenciar = Gerenciar::find($id_permissao);
+    $aluno = $gerenciar->aluno;
 
     return view('permissoes.editar',[
       'aluno' => $aluno,
@@ -581,7 +581,7 @@ class AlunoController extends Controller{
       'especializacoes' => $especializacoes,
     ]);
 
-    return redirect()->back()->with('Removed','Permissões removidas com sucesso.');
+    // return redirect()->back()->with('Removed','Permissões removidas com sucesso.');
   }
 
   public function removerPermissao($id_permissao){

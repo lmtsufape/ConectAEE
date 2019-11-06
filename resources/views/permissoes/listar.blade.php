@@ -24,7 +24,7 @@
                 </div>
                 <div style="width:50%; float:right; margin-right:-25px;margin-top:20px" class="col-md-6 text-right">
                   <a class="btn btn-primary" href="{{ route("aluno.permissoes.cadastrar",['id_aluno' => $aluno->id])}}">
-                    Cadastrar
+                    Nova Permissão
                   </a>
                 </div>
               </div>
@@ -87,7 +87,7 @@
                       @if(!($gerenciar->user->id == Auth::user()->id))
                         @if(!($gerenciar->isAdministrador))
                           <td data-title="Ações">
-                            <a class="btn btn-primary" href='{{route('aluno.permissoes.editar',[$aluno->id, $gerenciar->id])}}'>
+                            <a class="btn btn-primary" href='{{route('aluno.permissoes.editar',[$gerenciar->id])}}'>
                               Editar
                             </a>
                           </td>

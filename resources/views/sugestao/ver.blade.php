@@ -1,5 +1,5 @@
 @extends('layouts.principal')
-@section('title','Gerenciar atividade')
+@section('title','Ver sugestão')
 @section('navbar')
 <a href="{{route('aluno.listar')}}">Início</a>
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
@@ -62,7 +62,9 @@
             <br>
             <strong>Autor: </strong> {{$sugestao->user->name}}
             <br>
-            <strong>Descrição: </strong>{{$sugestao->descricao}}
+            <div class="text-justify">
+              <strong>Descrição: </strong>{{$sugestao->descricao}}
+            </div>
           </div>
 
           <div class="row col-md-12" style="margin-left:0px;">
@@ -109,7 +111,7 @@
                   @foreach($feedbacks as $key => $feedback)
                     <div class="card-body" align="justify" style="background-color:#eeeeee; padding:1rem;">
                       <span class="">
-                        <b>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$feedback->updated_at)->format('d-m-Y (H:i)') }} - {{$feedback->user->name}}:</b>
+                        <b>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$feedback->updated_at)->format('d-m-Y (H:i)') }} - {{$feedback->user->name}} {{$feedback->id}}:</b>
                       </span>
                       <br><br>
                       <form class="form-horizontal" method="POST" action="{{ route("feedback.atualizar") }}">

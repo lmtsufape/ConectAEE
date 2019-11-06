@@ -2,7 +2,7 @@
 @section('title','Ver instituição')
 @section('navbar')
 <a href="{{route('instituicao.listar')}}">Instituições</a>
-> Visualizar
+> Ver
 @endsection
 
 @section('content')
