@@ -39,8 +39,8 @@ Route::get('/aluno/buscar', 'AlunoController@buscar')->name('aluno.buscar')->mid
 Route::get('/aluno/buscarCPF', 'AlunoController@buscarCPF')->name('aluno.buscarCPF')->middleware('checkCadastrado');
 Route::get('/aluno/buscarAluno', 'AlunoController@buscarAluno')->name('aluno.buscarAluno')->middleware('checkCadastrado');
 Route::get('/aluno/{id_aluno}/gerenciar', 'AlunoController@gerenciar')->name('aluno.gerenciar')->middleware('checkGerenciaAluno');
-Route::get('/aluno/{id_aluno}/editar', 'AlunoController@editar')->name('aluno.editar')->middleware('checkAlunoAdministrador');
-Route::get('/aluno/{id_aluno}/excluir', 'AlunoController@excluir')->name('aluno.excluir')->middleware('checkAlunoAdministrador');
+Route::get('/aluno/{id_aluno}/editar', 'AlunoController@editar')->name('aluno.editar')->middleware('checkGerenciaAlunoAdministrador');
+Route::get('/aluno/{id_aluno}/excluir', 'AlunoController@excluir')->name('aluno.excluir')->middleware('checkGerenciaAlunoAdministrador');
 Route::post('/aluno/criar', 'AlunoController@criar')->name('aluno.criar');
 Route::post('/aluno/atualizar', 'AlunoController@atualizar')->name('aluno.atualizar');
 
@@ -48,8 +48,8 @@ Route::post('/aluno/atualizar', 'AlunoController@atualizar')->name('aluno.atuali
 Route::get('/aluno/{id_aluno}/gerenciar/permissoes/listar','AlunoController@gerenciarPermissoes')->name('aluno.permissoes')->middleware('checkGerenciaAlunoAdministrador');
 Route::get('/aluno/{id_aluno}/gerenciar/permissoes/cadastrar','AlunoController@cadastrarPermissao')->name('aluno.permissoes.cadastrar')->middleware('checkGerenciaAlunoAdministrador');
 Route::get('/aluno/{cpf}/gerenciar/permissoes/requisitar', 'AlunoController@requisitarPermissao')->name('aluno.permissoes.requisitar')->middleware('checkCadastrado');
-Route::get('/aluno/gerenciar/permissoes/{id_permissao}/editar','AlunoController@editarPermissao')->name('aluno.permissoes.editar')->middleware('checkGerenciaAlunoAdministrador');
-Route::get('/aluno/gerenciar/permissoes/{id_permissao}/remover','AlunoController@removerPermissao')->name('aluno.permissoes.remover')->middleware('checkGerenciaAlunoAdministrador');
+Route::get('/aluno/gerenciar/permissoes/{id_permissao}/editar','AlunoController@editarPermissao')->name('aluno.permissoes.editar')->middleware('checkGerenciaAdministrador');
+Route::get('/aluno/gerenciar/permissoes/{id_permissao}/remover','AlunoController@removerPermissao')->name('aluno.permissoes.remover')->middleware('checkGerenciaAdministrador');
 Route::get('/aluno/gerenciar/permissoes/notificacao/{id_notificacao}/conceder', 'AlunoController@concederPermissao')->name('aluno.permissoes.conceder')->middleware('checkNotificacao');
 Route::post('/aluno/gerenciar/permissoes/criar','AlunoController@criarPermissao')->name('aluno.permissoes.criar');
 Route::post('/aluno/gerenciar/permissoes/notificar','AlunoController@notificarPermissao')->name('aluno.permissoes.notificar');
