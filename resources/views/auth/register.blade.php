@@ -99,6 +99,9 @@
 
         <div class="form-group">
           <div class="col-md-12 text-center" style="padding-top:20px;">
+            <a class="btn btn-secondary" href="{{ route('login') }}">
+              Voltar
+            </a>
             <button id="submit"  type="submit" class="btn btn-primary">
               Cadastrar
             </button>

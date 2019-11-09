@@ -427,6 +427,9 @@
                 <div class="form-group">
                   <div class="row col-md-12 text-center">
                     <br>
+                    <a class="btn btn-secondary" href="{{route('aluno.listar')}}">
+                      Voltar
+                    </a>
                     <button type="submit" class="btn btn-primary">
                       Cadastrar
                     </button>
@@ -445,14 +448,6 @@
             </form>
           </div>
         </div>
-
-        <!-- <div class="panel-footer">
-          <a class="btn btn-danger" href="{{URL::previous()}}">
-            <i class="material-icons">keyboard_backspace</i>
-            <br>
-            Voltar
-          </a>
-        </div> -->
 
       </div>
     </div>

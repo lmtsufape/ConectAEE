@@ -12,7 +12,15 @@ Alterar Senha
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
-        <div class="panel-heading">Alterar Senha</div>
+        <div class="panel-heading">
+          <h2>
+            <strong>
+              Alterar Senha
+            </strong>
+          </h2>
+
+          <hr style="border-top: 1px solid black;">
+        </div>
 
         <div class="panel-body">
           @if (\Session::has('success'))
@@ -76,6 +84,9 @@ Alterar Senha
               <div class="form-group">
                 <div class="row col-md-12 text-center">
                   <br>
+                  <a class="btn btn-secondary" href="{{ route("usuario.editar") }}">
+                    Voltar
+                  </a>
                   <button type="submit" class="btn btn-primary">
                     Atualizar
                   </button>
@@ -84,14 +95,6 @@ Alterar Senha
             </form>
           </div>
         </div>
-
-        <!-- <div class="panel-footer">
-          <a class="btn btn-danger" href="{{URL::previous()}}">
-            <i class="material-icons">keyboard_backspace</i>
-            <br>
-            Voltar
-          </a>
-        </div> -->
       </div>
     </div>
   </div>

@@ -146,13 +146,13 @@
           @endif
         </div>
 
-        <!-- <div class="panel-footer" style="background-color:white">
-          <a class="btn btn-danger" href="{{URL::previous()}}">
-            <i class="material-icons">keyboard_backspace</i>
-            <br>
-            Voltar
-          </a>
-        </div> -->
+        <div class="panel-footer" style="background-color:white">
+          <div class="text-center">
+            <a class="btn btn-secondary" href="{{route('aluno.gerenciar',$aluno->id)}}#perfil">
+              Voltar
+            </a>
+          </div>
+        </div>
 
       </div>
     </div>

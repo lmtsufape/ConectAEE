@@ -1,9 +1,9 @@
 @extends('layouts.principal')
-@section('title','Listar permissões')
+@section('title','Listar autorizações')
 @section('navbar')
 <a href="{{route('aluno.listar')}}">Início</a>
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
-> Acessos
+> Autorizações
 @endsection
 @section('content')
 
@@ -19,12 +19,12 @@
               <div style="width: 100%; margin-left: 0%;" class="row">
                 <div style="width: 50%; float: left; margin-left:-20px;" class="col-md-6">
                   <h3>
-                    <strong>Acesso</strong>
+                    <strong>Autorizações</strong>
                   </h3>
                 </div>
                 <div style="width:50%; float:right; margin-right:-25px;margin-top:20px" class="col-md-6 text-right">
-                  <a class="btn btn-primary" href="{{ route("aluno.permissoes.cadastrar",['id_aluno' => $aluno->id])}}">
-                    Nova Permissão
+                  <a class="btn btn-primary" style="width:14rem" href="{{ route("aluno.permissoes.cadastrar",['id_aluno' => $aluno->id])}}">
+                    Nova Autorização
                   </a>
                 </div>
               </div>
@@ -112,13 +112,13 @@
           </div>
         </div>
 
-        <!-- <div class="panel-footer">
-          <a class="btn btn-danger" href="{{URL::previous()}}">
-            <i class="material-icons">keyboard_backspace</i>
-            <br>
-            Voltar
-          </a>
-        </div> -->
+        <div class="panel-footer" style="background-color:white">
+          <div class="text-center">
+            <a class="btn btn-secondary" href="{{route('aluno.gerenciar',$aluno->id)}}#perfil">
+              Voltar
+            </a>
+          </div>
+        </div>
 
       </div>
     </div>

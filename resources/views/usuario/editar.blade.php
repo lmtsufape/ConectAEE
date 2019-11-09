@@ -111,7 +111,7 @@ Meus dados
               </div>
 
               <div class="form-group{{ $errors->has('senha') ? ' has-error' : '' }}">
-                <label for="senha" class="col-md-12 control-label">Confirme sua senha</label>
+                <label for="senha" class="col-md-12 control-label">Confirme sua senha <font color="red">*</font></label>
 
                 <div class="col-md-12">
                   <input type="password" name="senha" class="form-control">

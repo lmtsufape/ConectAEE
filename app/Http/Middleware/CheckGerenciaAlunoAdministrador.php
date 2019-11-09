@@ -7,7 +7,7 @@ use Auth;
 use App\Aluno;
 use App\Gerenciar;
 
-class CheckAlunoAdministrador
+class CheckGerenciaAlunoAdministrador
 {
     /**
      * Handle an incoming request.
@@ -25,7 +25,6 @@ class CheckAlunoAdministrador
       }
 
       $aluno = Aluno::find($request->route('id_aluno'));
-
       if($aluno == NULL){
         return redirect("/")->with('denied','Você não tem permissão para acessar esta página ou ela não existe.');
       }
