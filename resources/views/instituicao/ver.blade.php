@@ -1,8 +1,9 @@
 @extends('layouts.principal')
 @section('title','Ver instituição')
 @section('navbar')
-<a href="{{route('instituicao.listar')}}">Instituições</a>
-> Ver
+<a href="{{route('aluno.listar')}}">Início</a>
+> <a href="{{route('instituicao.listar')}}">Instituições</a>
+> Ver Instituição
 @endsection
 
 @section('content')
@@ -62,13 +63,13 @@
           </div>
         </div>
 
-        <!-- <div class="panel-footer">
-          <a class="btn btn-danger" href="{{URL::previous()}}">
-            <i class="material-icons">keyboard_backspace</i>
-            <br>
-            Voltar
-          </a>
-        </div> -->
+        <div class="panel-footer" style="background-color:white">
+          <div class="text-center">
+            <a class="btn btn-secondary" href="{{route('instituicao.listar')}}">
+              Voltar
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
