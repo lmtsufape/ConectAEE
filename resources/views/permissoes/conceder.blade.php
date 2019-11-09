@@ -3,7 +3,7 @@
 @section('navbar')
 <a href="{{route('aluno.listar')}}">Início</a>
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
-> <a href="{{route('aluno.permissoes',$aluno->id)}}">Acesso</a>
+> <a href="{{route('aluno.permissoes',$aluno->id)}}">Autorizações</a>
 > Notificação
 @endsection
 @section('content')
@@ -14,7 +14,7 @@
         <div class="panel-heading">
           <h2>
             <strong>
-              Novo Acesso
+              Nova Autorização
             </strong>
           </h2>
 
@@ -97,6 +97,9 @@
                 <div class="form-group">
                   <div class="row col-md-12 text-center">
                     <br>
+                    <a class="btn btn-secondary" href="{{route('aluno.permissoes',$aluno->id)}}">
+                      Voltar
+                    </a>
                     <button type="submit" class="btn btn-primary">
                       Conceder
                     </button>

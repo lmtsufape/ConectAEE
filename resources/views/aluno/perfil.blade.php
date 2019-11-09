@@ -28,8 +28,8 @@
 								<a class="btn btn-primary" data-toggle="tooltip" title="Editar aluno" href={{route("aluno.editar", ["id_aluno"=>$aluno->id]) }}>
 									Editar
 								</a>
-								<a data-toggle="tooltip" title="Acesso ao aluno" class="btn btn-primary" href="{{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}">
-									Acesso
+								<a data-toggle="tooltip" title="Autorizar acesso ao aluno" class="btn btn-primary" href="{{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}">
+									Autorização
 								</a>
 								<a class="btn btn-danger" data-toggle="tooltip" title="Excluir aluno" onclick="return confirm('\Confirmar exclusão do aluno {{$aluno->nome}}?')" href={{route("aluno.excluir", ["id_aluno"=>$aluno->id]) }}>
 									Excluir
