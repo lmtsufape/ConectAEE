@@ -222,6 +222,8 @@
                                     <br><br>
                                     <strong>Status: </strong>{{$atividade->status}}
                                     <br><br>
+                                    <strong>Concluído: </strong>{{$atividade->concluido ? "Sim" : "Não"}}
+                                    <br><br>
                                     <strong>Data: </strong> {{$atividade->data}}
                                   </div>
 
