@@ -1,7 +1,8 @@
 @extends('layouts.principal')
 @section('title','Listar Instituições')
 @section('navbar')
-<a href="{{route('instituicao.listar')}}">Instituições</a>
+<a href="{{route('aluno.listar')}}">Início</a>
+> <a href="{{route('instituicao.listar')}}">Instituições</a>
 > Listar
 @endsection
 @section('content')
@@ -101,13 +102,13 @@
           </div>
         </div>
 
-        <!-- <div class="panel-footer">
-          <a class="btn btn-danger" href="{{ route("home") }}">
-            <i class="material-icons">keyboard_backspace</i>
-            <br>
-            Voltar
-          </a>
-        </div> -->
+        <div class="panel-footer" style="background-color:white">
+          <div class="text-center">
+            <a class="btn btn-secondary" href="{{route('aluno.listar')}}">
+              Voltar
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

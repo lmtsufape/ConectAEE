@@ -79,16 +79,14 @@
               <div class="form-group">
                 <div class="row col-md-12 text-center">
                   <br>
+                  <a class="btn btn-secondary" href="{{route('aluno.buscar')}}">
+                    Voltar
+                  </a>
                   <button type="submit" class="btn btn-primary">
                     Requisitar
                   </button>
                 </div>
               </div>
-              <!-- <a class="btn btn-danger" href="{{URL::previous()}}">
-                <i class="material-icons">keyboard_backspace</i>
-                <br>
-                Voltar
-              </a> -->
             </form>
           </div>
         </div>

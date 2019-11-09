@@ -3,7 +3,7 @@
 @section('navbar')
 <a href="{{route('aluno.listar')}}">Início</a>
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
-> <a href="{{route('aluno.permissoes',$aluno->id)}}">Acesso</a>
+> <a href="{{route('aluno.permissoes',$aluno->id)}}">Autorizações</a>
 > Editar
 @endsection
 @section('content')
@@ -15,7 +15,7 @@
         <div class="panel-heading">
           <h2>
             <strong>
-              Editar Acesso
+              Editar Autorização
             </strong>
           </h2>
 
@@ -122,6 +122,9 @@
               <div class="form-group">
                 <div class="row col-md-12 text-center">
                   <br>
+                  <a class="btn btn-secondary" href="{{route('aluno.permissoes',$aluno->id)}}">
+                    Voltar
+                  </a>
                   <button type="submit" class="btn btn-primary">
                     Atualizar
                   </button>
@@ -130,14 +133,6 @@
             </form>
           </div>
         </div>
-
-        <!-- <div class="panel-footer">
-          <a class="btn btn-danger" href="{{URL::previous()}}">
-            <i class="material-icons">keyboard_backspace</i>
-            <br>
-            Voltar
-          </a>
-        </div> -->
       </div>
     </div>
   </div>

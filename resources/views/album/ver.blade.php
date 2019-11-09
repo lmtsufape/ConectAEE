@@ -132,13 +132,14 @@
 
         </div>
 
-        <!-- <div class="panel-footer">
-          <a class="btn btn-danger" href="{{route("album.listar" , ['id_aluno'=>$aluno->id])}}">
-            <i class="material-icons">keyboard_backspace</i>
-            <br>
-            Voltar
-          </a>
-        </div> -->
+        <div class="panel-footer" style="background-color:white">
+          <div class="text-center">
+            <a class="btn btn-secondary" href="{{route('album.listar', $aluno->id) }}">
+              Voltar
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

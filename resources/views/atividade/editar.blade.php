@@ -135,6 +135,9 @@
               <div class="form-group">
                 <div class="row col-md-12 text-center">
                   <br>
+                  <a class="btn btn-secondary" href="{{route('objetivo.gerenciar',[$objetivo->id])}}">
+                    Voltar
+                  </a>
                   <button type="submit" class="btn btn-primary">
                     Atualizar
                   </button>

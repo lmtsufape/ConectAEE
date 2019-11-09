@@ -222,6 +222,8 @@
                                     <br><br>
                                     <strong>Status: </strong>{{$atividade->status}}
                                     <br><br>
+                                    <strong>Concluído: </strong>{{$atividade->concluido ? "Sim" : "Não"}}
+                                    <br><br>
                                     <strong>Data: </strong> {{$atividade->data}}
                                   </div>
 
@@ -351,6 +353,15 @@
           </div>
         </div>
       </div>
+
+      <div class="panel-footer" style="background-color:white">
+        <div class="text-center">
+          <a class="btn btn-secondary" href="{{route('objetivo.listar',$aluno->id)}}">
+            Voltar
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 
