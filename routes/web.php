@@ -39,8 +39,8 @@ Route::get('/aluno/buscar', 'AlunoController@buscar')->name('aluno.buscar')->mid
 Route::get('/aluno/buscarCPF', 'AlunoController@buscarCPF')->name('aluno.buscarCPF')->middleware('checkCadastrado');
 Route::get('/aluno/buscarAluno', 'AlunoController@buscarAluno')->name('aluno.buscarAluno')->middleware('checkCadastrado');
 Route::get('/aluno/{id_aluno}/gerenciar', 'AlunoController@gerenciar')->name('aluno.gerenciar')->middleware('checkGerenciaAluno');
-Route::get('/aluno/{id_aluno}/editar', 'AlunoController@editar')->name('aluno.editar')->middleware('checkGerenciaAlunoAdministrador');
-Route::get('/aluno/{id_aluno}/excluir', 'AlunoController@excluir')->name('aluno.excluir')->middleware('checkGerenciaAlunoAdministrador');
+Route::get('/aluno/{id_aluno}/editar', 'AlunoController@editar')->name('aluno.editar')->middleware('checkAlunoAdministrador');
+Route::get('/aluno/{id_aluno}/excluir', 'AlunoController@excluir')->name('aluno.excluir')->middleware('checkAlunoAdministrador');
 Route::post('/aluno/criar', 'AlunoController@criar')->name('aluno.criar');
 Route::post('/aluno/atualizar', 'AlunoController@atualizar')->name('aluno.atualizar');
 
