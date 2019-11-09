@@ -59,6 +59,14 @@
           </a> -->
 
         </div>
+
+        <div class="panel-footer" style="background-color:white">
+          <div class="text-center">
+            <a class="btn btn-secondary" href="{{route('aluno.listar')}}">
+              Voltar
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
