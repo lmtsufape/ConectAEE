@@ -127,7 +127,7 @@
 						</div>
 
 						<div class="col-md-12">
-							<div class="col-md-10 col-md-offset-2">
+							<div class="col-md-10 col-md-offset-2 text-justify">
 								@if($aluno->observacao != null)
 									<strong>Observações:</strong> {!! $aluno->observacao !!}
 									<br/>

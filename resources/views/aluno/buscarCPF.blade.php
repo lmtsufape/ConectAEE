@@ -45,6 +45,9 @@
               <div class="form-group">
                 <div class="row col-md-12 text-center">
                   <br>
+                  <a class="btn btn-secondary" href="{{route('aluno.listar')}}">
+                    Voltar
+                  </a>
                   <button type="submit" class="btn btn-primary">
                     Enviar
                   </button>

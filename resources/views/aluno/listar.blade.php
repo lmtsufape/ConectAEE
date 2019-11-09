@@ -142,6 +142,14 @@
             <div class="alert alert-danger">
               <strong> Nenhum aluno encontrado!</strong>
             </div>
+
+            <div class="panel-footer" style="background-color:white">
+              <div class="text-center">
+                <a class="btn btn-secondary" href="{{route('aluno.listar')}}">
+                  Voltar
+                </a>
+              </div>
+            </div>
           @elseif($qtd_alunos == 0)
             <div class="alert alert-info">
               <strong> Nenhum aluno cadastrado.</strong>
