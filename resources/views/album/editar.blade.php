@@ -102,6 +102,9 @@
                 <div class="form-group">
                   <div class="row col-md-12 text-center">
                     <br>
+                    <a class="btn btn-secondary" href="{{route('album.ver' , ['id_album'=>$album->id]) }}">
+                      Voltar
+                    </a>
                     <button type="submit" class="btn btn-primary">
                       Atualizar
                     </button>
@@ -132,7 +135,7 @@
                   <div class="row col-md-8" style="margin:13px 0px 0px 0px;">
                     <div class="col-md-8" style="margin-top:1px; padding:0px; float:left">
                       <input id="selectAll" type="checkbox" class="form-check-input" value="">
-                      <label class="form-check-label" for="selectAll">Selecionar todas</label>
+                      <label class="form-check-label" for="selectAll">Marcar todas</label>
                     </div>
                     <div class="col-md-4" style="margin-top:8px; padding:0px; float:right">
                       <button type="submit" onclick="return confirm('\Confirmar exclusão da(s) imagem(ns) selecionadas?')" class="btn btn-danger">
@@ -142,7 +145,6 @@
                   </div>
 
                 </div>
-
 
                 <hr style="border-top: 1px solid black;">
               </div>

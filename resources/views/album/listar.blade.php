@@ -129,13 +129,13 @@
 
         </div>
 
-        <!-- <div class="panel-footer">
-          <a class="btn btn-danger" href="{{route("aluno.gerenciar" , ['id_aluno'=>$aluno->id])}}">
-            <i class="material-icons">keyboard_backspace</i>
-            <br>
-            Voltar
-          </a>
-        </div> -->
+        <div class="panel-footer" style="background-color:white">
+          <div class="text-center">
+            <a class="btn btn-secondary" href="{{route('aluno.gerenciar',$aluno->id)}}#perfil">
+              Voltar
+            </a>
+          </div>
+        </div>
 
       </div>
     </div>
