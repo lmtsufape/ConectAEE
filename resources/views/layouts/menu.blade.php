@@ -94,38 +94,40 @@
               <table class="table table-hover table-bordered">
                 @php($i = 0)
                 @foreach($notificacoes as $notificacao)
-                  <tr>
-                    @if($notificacao->lido)
-                      <td data-title="Notificacao">
-                    @else
-                      <td class="bg-info" data-title="Notificacao">
-                    @endif
+                  @if($notificacao->aluno != null)
+                    <tr>
+                      @if($notificacao->lido)
+                        <td data-title="Notificacao">
+                      @else
+                        <td class="bg-info" data-title="Notificacao">
+                      @endif
 
-                    @if($notificacao->tipo == 1)
-                      <a class="btn text-center" href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
-                        {{$notificacao->remetente->name}} pediu para acessar os dados do(a) aluno(a) {{explode(" ", $notificacao->aluno->nome)[0]}}</br>
-                      </a>
-                    @elseif($notificacao->tipo == 2)
-                      <a class="btn text-center" href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
-                        {{$notificacao->remetente->name}} lhe concedeu acesso aos dados do(a) aluno(a) {{explode(" ", $notificacao->aluno->nome)[0]}}</br>
-                      </a>
-                    @elseif($notificacao->tipo == 3)
-                      <a class="btn text-center" href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
-                        {{$notificacao->remetente->name}} criou um novo objetivo para o(a) aluno(a) {{explode(" ", $notificacao->aluno->nome)[0]}}</br>
-                      </a>
-                    @elseif($notificacao->tipo == 4)
-                      <a class="btn text-center" href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
-                        {{$notificacao->remetente->name}} criou uma nova atividade para o(a) aluno(a) {{explode(" ", $notificacao->aluno->nome)[0]}}</br>
-                      </a>
-                    @elseif($notificacao->tipo == 5)
-                      <a class="btn text-center" href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
-                        {{$notificacao->remetente->name}} criou uma nova sugestão de atividade para o(a) aluno(a) {{explode(" ", $notificacao->aluno->nome)[0]}}</br>
-                      </a>
-                    @endif
+                      @if($notificacao->tipo == 1)
+                        <a class="btn text-center" href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
+                          {{$notificacao->remetente->name}} pediu para acessar os dados do(a) aluno(a) {{explode(" ", $notificacao->aluno->nome)[0]}}</br>
+                        </a>
+                      @elseif($notificacao->tipo == 2)
+                        <a class="btn text-center" href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
+                          {{$notificacao->remetente->name}} lhe concedeu acesso aos dados do(a) aluno(a) {{explode(" ", $notificacao->aluno->nome)[0]}}</br>
+                        </a>
+                      @elseif($notificacao->tipo == 3)
+                        <a class="btn text-center" href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
+                          {{$notificacao->remetente->name}} criou um novo objetivo para o(a) aluno(a) {{explode(" ", $notificacao->aluno->nome)[0]}}</br>
+                        </a>
+                      @elseif($notificacao->tipo == 4)
+                        <a class="btn text-center" href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
+                          {{$notificacao->remetente->name}} criou uma nova atividade para o(a) aluno(a) {{explode(" ", $notificacao->aluno->nome)[0]}}</br>
+                        </a>
+                      @elseif($notificacao->tipo == 5)
+                        <a class="btn text-center" href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
+                          {{$notificacao->remetente->name}} criou uma nova sugestão de atividade para o(a) aluno(a) {{explode(" ", $notificacao->aluno->nome)[0]}}</br>
+                        </a>
+                      @endif
 
-                    </td>
-                  </tr>
-                  @break(++$i == 5)
+                      </td>
+                    </tr>
+                    @break(++$i == 5)
+                  @endif
                 @endforeach
               </table>
 

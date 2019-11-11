@@ -31,26 +31,28 @@
               </thead>
               <tbody>
                 @foreach($notificacoes as $notificacao)
-                <tr>
-                  @if($notificacao->lido)
-                  <td data-title="Notificacao">
-                    @else
-                    <td class="bg-info" data-title="Notificacao">
+                  @if($notificacao->aluno != null)
+                    <tr>
+                      @if($notificacao->lido)
+                        <td data-title="Notificacao">
+                      @else
+                        <td class="bg-info" data-title="Notificacao">
                       @endif
-                      <a class="btn text-center" href="{{ route('aluno.permissoes.conceder', ['id_aluno' => $notificacao->aluno->id, 'id_notificacao' => $notificacao->id]) }}">
-                        Você tem um pedido de acesso de {{$notificacao->remetente->name}} ao aluno {{$notificacao->aluno->nome}}
-                      </a>
-                    </td>
-                  </tr>
-                  @endforeach
-                </tbody>
-              </table>
-            </div>
+                          <a class="btn text-center" href="{{ route('aluno.permissoes.conceder', ['id_aluno' => $notificacao->aluno->id, 'id_notificacao' => $notificacao->id]) }}">
+                            Você tem um pedido de acesso de {{$notificacao->remetente->name}} ao aluno {{$notificacao->aluno->nome}}
+                          </a>
+                        </td>
+                    </tr>
+                  @endif
+                @endforeach
+              </tbody>
+            </table>
           </div>
+        </div>
 
-          <div class="text-center">
-            {{$notificacoes->links()}}
-          </div>
+        <div class="text-center">
+          {{$notificacoes->links()}}
+        </div>
 
           <!-- <a class="btn btn-danger" href="{{ route("home") }}">
             <i class="material-icons">keyboard_backspace</i>
@@ -58,27 +60,27 @@
             Voltar
           </a> -->
 
-        </div>
+      </div>
 
-        <div class="panel-footer" style="background-color:white">
-          <div class="text-center">
-            <a class="btn btn-secondary" href="{{route('aluno.listar')}}">
-              Voltar
-            </a>
-          </div>
+      <div class="panel-footer" style="background-color:white">
+        <div class="text-center">
+          <a class="btn btn-secondary" href="{{route('aluno.listar')}}">
+            Voltar
+          </a>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <script type="text/javascript">
-  $(document).ready( function () {
-    $('#tabela_dados').DataTable( {
-      "language": {
-        "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
-      }
-    });
+<script type="text/javascript">
+$(document).ready( function () {
+  $('#tabela_dados').DataTable( {
+    "language": {
+      "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+    }
   });
+});
 </script>
 
 
