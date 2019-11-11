@@ -174,7 +174,7 @@ class AlunoController extends Controller{
       'nome' => ['required','min:2','max:191'],
       'sexo' => ['required'],
       'cpf'=> ['unique:alunos'],
-      'cid' => ['nullable','regex:/(^([a-zA-z])(\d)(\d)(\d)$)/u'],
+      'cid' => ['nullable'], //,'regex:/(^([a-zA-z])(\d)(\d)(\d)$)/u'],
       'descricaoCid' => ['required_with:cid'],
       'observacao' => ['nullable'],
       'data_nascimento' => ['required','date','before:today','after:01/01/1900'],
