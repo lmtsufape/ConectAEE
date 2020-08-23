@@ -47,7 +47,9 @@
             <hr style="border-top: 1px solid black;">
 
             <div class="col-md-6" style="padding:0px">
-              <strong>Logradouro: </strong>{{$instituicao->endereco->logradouro}}
+              <strong>Cep: </strong>{{$instituicao->endereco->cep}}
+              <br>
+              <strong>Rua: </strong>{{$instituicao->endereco->rua}}
               <br>
               <strong>Bairro: </strong>{{$instituicao->endereco->bairro}}
               <br>

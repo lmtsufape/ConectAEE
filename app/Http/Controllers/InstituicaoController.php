@@ -21,7 +21,10 @@ class InstituicaoController extends Controller
                                  })->where(function ($query) use ($request){
                                      $query->orwhere('nome','ilike', '%'.$request->termo.'%')
                                            ->orWhereHas('endereco', function ($query) use ($request) {
-                                              $query->where('logradouro', 'ilike', '%'.$request->termo.'%');
+                                              $query->where('cep', 'ilike', '%'.$request->termo.'%');
+                                           })
+                                           ->orWhereHas('endereco', function ($query) use ($request) {
+                                              $query->where('rua', 'ilike', '%'.$request->termo.'%');
                                            })
                                            ->orWhereHas('endereco', function ($query) use ($request) {
                                               $query->where('cidade', 'ilike', '%'.$request->termo.'%');
@@ -75,7 +78,8 @@ class InstituicaoController extends Controller
         'nome' => ['required','min:2','max:191'],
         'email' => ['nullable', 'string', 'email', 'max:255'],
         'telefone' => ['required','numeric'],
-        'logradouro' => ['required'],
+        'cep' => ['required'],
+        'rua' => ['required'],
         'numero' => ['required','numeric'],
         'bairro' => ['required'],
         'estado' => ['required'],
@@ -87,7 +91,8 @@ class InstituicaoController extends Controller
       }
 
       $endereco = new Endereco();
-      $endereco->logradouro = $request->logradouro;
+      $endereco->cep = $request->cep;
+      $endereco->rua = $request->rua;
       $endereco->numero = $request->numero;
       $endereco->bairro = $request->bairro;
       $endereco->cidade = $request->cidade;
@@ -122,7 +127,8 @@ class InstituicaoController extends Controller
         'nome' => ['required','min:2','max:191'],
         'email' => ['nullable', 'string', 'email', 'max:255'],
         'telefone' => ['required','numeric'],
-        'logradouro' => ['required'],
+        'cep' => ['required'],
+        'rua' => ['required'],
         'numero' => ['required','numeric'],
         'bairro' => ['required'],
         'estado' => ['required'],
@@ -140,7 +146,8 @@ class InstituicaoController extends Controller
       $instituicao->update();
 
       $endereco = Endereco::find($request->id_endereco);
-      $endereco->logradouro = $request->logradouro;
+      $endereco->cep = $request->cep;
+      $endereco->rua = $request->rua;
       $endereco->numero = $request->numero;
       $endereco->bairro = $request->bairro;
       $endereco->cidade = $request->cidade;

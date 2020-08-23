@@ -178,7 +178,8 @@ class AlunoController extends Controller{
       'descricaoCid' => ['required_with:cid'],
       'observacao' => ['nullable'],
       'data_nascimento' => ['required','date','before:today','after:01/01/1900'],
-      'logradouro' => ['required'],
+      'cep' => ['required'],
+      'rua' => ['required'],
       'numero' => ['required','numeric'],
       'bairro' => ['required'],
       'cidade' => ['required'],
@@ -206,8 +207,9 @@ class AlunoController extends Controller{
     }
 
     $endereco = new Endereco();
+    $endereco->cep = $request->cep;
     $endereco->numero = $request->numero;
-    $endereco->logradouro = $request->logradouro;
+    $endereco->rua = $request->rua;
     $endereco->bairro = $request->bairro;
     $endereco->cidade = $request->cidade;
     $endereco->estado = $request->estado;
@@ -302,7 +304,8 @@ class AlunoController extends Controller{
       'descricaoCid' => ['required_with:cid'],
       'observacao' => ['nullable'],
       'data_nascimento' => ['required','date','before:today','after:01/01/1900'],
-      'logradouro' => ['required'],
+      'cep' => ['required'],
+      'rua' => ['required'],
       'numero' => ['required','numeric'],
       'bairro' => ['required'],
       'cidade' => ['required'],
@@ -314,7 +317,8 @@ class AlunoController extends Controller{
     }
 
     $endereco = Endereco::find($request->id_endereco);
-    $endereco->logradouro = $request->logradouro;
+    $endereco->cep = $request->cep;
+    $endereco->rua = $request->rua;
     $endereco->numero = $request->numero;
     $endereco->bairro = $request->bairro;
     $endereco->cidade = $request->cidade;
