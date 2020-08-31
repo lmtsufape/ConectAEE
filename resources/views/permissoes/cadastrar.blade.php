@@ -44,14 +44,8 @@
                 <label for="username" class="col-md-12 control-label">Nome de Usuário</label>
 
                 <div class="col-md-12">
-                  <input id="username" onkeyup="buscar()" list="browsers" type="text" class="form-control" name="username" value="{{ old('username') }}" autofocus>
+                  <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" autofocus>
                
-                    <ul id="listaUsuarios">
-                      @foreach($usuarios as $usuario)
-                        <li style="display: none" onclick="copiarUsuario(this)">{{$usuario->name}}</li>
-                      @endforeach
-                    </ul>
-             
                   @if ($errors->has('username'))
                     <span class="help-block">
                       <strong>{{ $errors->first('username') }}</strong>
@@ -64,7 +58,7 @@
                 <label for="perfil" class="col-md-12 control-label">Perfil</label>
 
                 <div class="col-md-12">
-                  <select id="perfil" name="perfil" class="form-control" onchange="showEspecializacao(this)">
+                  <select id="perfil" name="perfil" class="form-control">
                     <option value="" selected disabled hidden>Escolha o Perfil</option>
                     @foreach($perfis as $perfil)
                       @if($perfil->nome == old('perfil'))
@@ -84,7 +78,7 @@
               </div>
 
               @if(old('perfil') == "Profissional Externo")
-                <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}"z>
+                <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}">
               @else
                 <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}" style="display: none">
               @endif
@@ -248,45 +242,12 @@
     });
   }
 
-  var myarray = [<?php echo '"'.implode('","', $especializacoes).'"' ?>];
+  var especialializacoes = [<?php echo '"'.implode('","', $especializacoes).'"' ?>];
+  var usuarios = [<?php echo '"'.implode('","', $usuarios).'"' ?>];
 
   /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-  autocomplete(document.getElementById("especializacao"), myarray);
-</script>
-
-<script>
-function buscar() {
-  var input, filter, ul, li, a, i, txtValue;
-
-  input = document.getElementById('username');
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("listaUsuarios");
-  li = ul.getElementsByTagName('li');
-
-  for (i = 0; i < li.length; i++) {
-    txtValue = li[i].textContent || li[i].innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-}
-
-function copiarUsuario(li){
-  input = document.getElementById('username');
-  input.value = li.innerText;
-  esconderBusca();
-}
-
-function esconderBusca(opcao){
-  ul = document.getElementById("listaUsuarios");
-  li = ul.getElementsByTagName('li');
-  for (i = 0; i < li.length; i++) {
-    li[i].style.display = "none";
-  }
-}
-
+  autocomplete(document.getElementById("especializacao"), especialializacoes);
+  autocomplete(document.getElementById("username"), usuarios);
 </script>
 
 @endsection

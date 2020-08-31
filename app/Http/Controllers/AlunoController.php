@@ -440,13 +440,13 @@ class AlunoController extends Controller{
 
   public static function cadastrarPermissao($id_aluno){
     $aluno = Aluno::find($id_aluno);
-    $perfis = Perfil::where('especializacao','=',NULL)->orderBy('nome')->get();
-    $usuarios = User::all();
+    $perfis = Perfil::where('especializacao','=',NULL)->get();
+    $usuarios = User::all()->toArray();
+    $usuarios = array_column($usuarios, 'name');
 
     $especializacoes = Perfil::select('especializacao')
     ->where('especializacao', '!=', NULL)
     ->get()->toArray();
-
     $especializacoes = array_column($especializacoes, 'especializacao');
 
     return view('permissoes.cadastrar',[
@@ -470,13 +470,13 @@ class AlunoController extends Controller{
   public static function criarPermissao(Request $request){
     //Validação dos dados
     $rules = array(
-      'username' => 'required|exists:users,username',
+      'username' => 'required|exists:users,name',
       'perfil' => 'required',
       'especializacao' => 'required_if:perfil,Profissional Externo',
     );
     $messages = array(
       'username.required' => 'Necessário inserir um nome de usuário.',
-      'username.exists' => 'O usuário em questão não está cadastrado.',
+      'name.exists' => 'O usuário em questão não está cadastrado.',
       'perfil.required' => 'Selecione um perfil.',
       'especializacao.required_if' => 'Necessário inserir uma especialização.',
     );
@@ -484,17 +484,13 @@ class AlunoController extends Controller{
     if($validator->fails()){
       return redirect()->back()->withErrors($validator->errors())->withInput();
     }
-
     //Se já existe a relação
-    $user = User::where('username','=',$request->username)->first();
+    $user = User::where('name','=',$request->username)->first();
+    
     if((Gerenciar::where('user_id','=',$user->id)->where('aluno_id','=',$request->id_aluno))->first()){
       $validator->errors()->add('username','O usuário já possui permissões de acesso ao aluno.');
       return redirect()->back()->withErrors($validator->errors())->withInput();
     }
-    // $gerenciar = Gerenciar::where('aluno_id','=',$request->aluno)->where('user_id','=',$user->id)->first();
-    // if($gerenciar != NULL){
-    //   return redirect()->back()->withInput()->with('Fail','O usuário '.$user->name.' já possui permissões.');
-    // }
 
     //Criação do Gerencimento
     $gerenciar = new Gerenciar();
@@ -518,7 +514,7 @@ class AlunoController extends Controller{
     if($request->exists('isAdministrador') || $request->perfil == 'Responsável'){
       $gerenciar->isAdministrador = $request->isAdministrador;
     }
-    //dd($gerenciar);
+    
     $gerenciar->save();
 
     $notificacao = new Notificacao();
