@@ -111,9 +111,11 @@
                 </div>
 
                 <div class="col-md-6 text-center">
-                  <button type="submit" class="btn btn-primary">
-                    Atualizar
-                  </button>
+                  @if($objetivo->user_id == Auth::user()->id)
+                    <button type="submit" class="btn btn-primary">
+                      Atualizar
+                    </button>
+                  @endif
                 </div>
               </div>
             </form>
