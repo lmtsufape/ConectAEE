@@ -85,39 +85,40 @@
                 @foreach ($objetivosGroupByUser as $user_id => $objetivos)
 
                   <?php
+                  //dd( $objetivos);
                     $perfil = "";
 
                     $gerenciar = App\Gerenciar::where('user_id','=',$user_id)->where('aluno_id','=',$aluno->id)->first();
 
-                    if($gerenciar->perfil->especializacao == NULL){
+                    if(isset($gerenciar->perfil) && $gerenciar->perfil->especializacao == NULL){
                       $perfil = $gerenciar->perfil->nome;
-                    }else{
+                    }else if(isset($gerenciar->perfil)){
                       $perfil = $gerenciar->perfil->especializacao;
                     }
                   ?>
 
                   <tr>
-                    <td style="vertical-align:middle;" data-title="Usuario">{{ $objetivos[0]->user->name}}</td>
+                    <td style="vertical-align:middle;" data-title="Usuario">{{ $objetivos[0]['user']['name']}}</td>
                     <td style="vertical-align:middle" data-title="Perfil">{{ $perfil }}</td>
 
                     @php($temp = 0)
 
                     <td data-title="Objetivos" class="row col-md-12" style="margin-left:0px">
                       @foreach ($objetivos as $objetivo)
-                        <a href="{{ route("objetivo.gerenciar", ['id_objetivo'=>$objetivo->id]) }}">
+                        <a href="{{ route("objetivo.gerenciar", ['id_objetivo'=>$objetivo['id']]) }}">
                           <!-- $objetivo->cor->hexadecimal -->
                           <div class="card cartao" style="width: 16rem; height: 16rem; background-color:#12583C">
                             <div class="card-body" style="height:76%; margin-left: 5%; margin-right: 5%; display: -webkit-flex; display: flex;-webkit-align-items: center;align-items: center;-webkit-justify-content: center;justify-content: center;">
                               <div class="hifen text-center" align="justify">
                                 <font size="3" color="white">
-                                  <strong> {{ ucfirst($objetivo->titulo) }} </strong>
+                                  <strong> {{ ucfirst($objetivo['titulo']) }} </strong>
                                   <br>
                                 </font>
                               </div>
                             </div>
                             <div class="card-footer text-center">
                               <font size="3" color="white">
-                                <strong> {{ $objetivo->data }} </strong>
+                                <strong> {{ $objetivo['data'] }} </strong>
                                 <br>
                               </font>
                             </div>

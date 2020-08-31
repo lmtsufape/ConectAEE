@@ -420,7 +420,18 @@ class AlunoController extends Controller{
   public static function gerenciarPermissoes($id_aluno){
     $aluno = Aluno::find($id_aluno);
     $gerenciars = $aluno->gerenciars;
-
+    
+    $names = [];
+    foreach($gerenciars as $g){
+      $names[$g->user->name] = $g->id;
+    }
+   
+    ksort($names);
+    $order = array_values($names);
+    $gerenciars = $gerenciars->sortBy(function($model) use ($order){
+        return array_search($model->getKey(), $order);
+    });
+    
     return view('permissoes.listar',[
       'aluno' => $aluno,
       'gerenciars' => $gerenciars,
@@ -429,7 +440,8 @@ class AlunoController extends Controller{
 
   public static function cadastrarPermissao($id_aluno){
     $aluno = Aluno::find($id_aluno);
-    $perfis = Perfil::where('especializacao','=',NULL)->get();
+    $perfis = Perfil::where('especializacao','=',NULL)->orderBy('nome')->get();
+    $usuarios = User::all();
 
     $especializacoes = Perfil::select('especializacao')
     ->where('especializacao', '!=', NULL)
@@ -441,6 +453,7 @@ class AlunoController extends Controller{
       'aluno' => $aluno,
       'perfis' => $perfis,
       'especializacoes' => $especializacoes,
+      'usuarios' => $usuarios,
     ]);
   }
 
