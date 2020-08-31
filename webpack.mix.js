@@ -12,4 +12,10 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+   .styles('resources/css/buscausuario.css', 'public/css/buscausuario.css')
+   .styles('resources/css/contrast.css', 'public/css/contrast.css')
+   .styles('resources/css/forum.css', 'public/css/forum.css')
+   .styles('resources/css/lightbox.css','public/css/lightbox.css')
+   .styles('resources/css/lmts.css','public/css/lmts.css')
+   .styles('resources/css/lmts-app.css','public/css/lmts-app.css')
+   .styles('resources/css/mensagens.css','public/css/mensagens.css');

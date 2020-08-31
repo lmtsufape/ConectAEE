@@ -6,6 +6,10 @@
 > <a href="{{route('aluno.permissoes',$aluno->id)}}">Autorizações</a>
 > Nova
 @endsection
+@section('style')
+  <link href="{{ asset('css/buscausuario.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 <div class="container">
   <div class="row">
@@ -40,7 +44,14 @@
                 <label for="username" class="col-md-12 control-label">Nome de Usuário</label>
 
                 <div class="col-md-12">
-                  <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" autofocus>
+                  <input id="username" onkeyup="buscar()" list="browsers" type="text" class="form-control" name="username" value="{{ old('username') }}" autofocus>
+               
+                    <ul id="listaUsuarios">
+                      @foreach($usuarios as $usuario)
+                        <li style="display: none" onclick="copiarUsuario(this)">{{$usuario->name}}</li>
+                      @endforeach
+                    </ul>
+             
                   @if ($errors->has('username'))
                     <span class="help-block">
                       <strong>{{ $errors->first('username') }}</strong>
@@ -242,4 +253,40 @@
   /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
   autocomplete(document.getElementById("especializacao"), myarray);
 </script>
+
+<script>
+function buscar() {
+  var input, filter, ul, li, a, i, txtValue;
+
+  input = document.getElementById('username');
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("listaUsuarios");
+  li = ul.getElementsByTagName('li');
+
+  for (i = 0; i < li.length; i++) {
+    txtValue = li[i].textContent || li[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+
+function copiarUsuario(li){
+  input = document.getElementById('username');
+  input.value = li.innerText;
+  esconderBusca();
+}
+
+function esconderBusca(opcao){
+  ul = document.getElementById("listaUsuarios");
+  li = ul.getElementsByTagName('li');
+  for (i = 0; i < li.length; i++) {
+    li[i].style.display = "none";
+  }
+}
+
+</script>
+
 @endsection
