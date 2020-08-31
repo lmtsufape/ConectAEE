@@ -224,7 +224,7 @@
 			</div>
 		</div>
 
-		<div class="panel" style="max-height:700px; max-width: 450px; overflow:auto; background-color: #e5ddd5">
+		<div class="panel" style="max-height:400px; max-width: 450px; overflow:auto; background-color: #e5ddd5">
 			<div class="panel-body">
 
 				<form class="form-horizontal" method="POST" action="{{route('aluno.forum.mensagem.enviar')}}">
