@@ -95,13 +95,23 @@
 								<strong>Endereço:</strong>
 								<br>
 								<?php
-									echo $aluno->endereco->logradouro, ", n<code>&deg;</code>",
-									$aluno->endereco->numero, ", ",
-									$aluno->endereco->bairro, ", ",
-									$aluno->endereco->cidade, " - ",
-									$aluno->endereco->estado;
+									// echo "CEP: ", $aluno->endereco->cep, ", ",
+									// $aluno->endereco->rua, ", nº ",
+									// $aluno->endereco->numero, ", ",
+									// $aluno->endereco->bairro, ", ",
+									// $aluno->endereco->cidade, " - ",
+									// $aluno->endereco->estado;
 								?>
-							</div>
+								<strong>Cep: </strong>{{$aluno->endereco->cep}}
+								<br>
+								<strong>Rua: </strong>{{$aluno->endereco->rua}}
+								<br>
+								<strong>Bairro: </strong>{{$aluno->endereco->bairro}}
+								<br>
+								<strong>Cidade: </strong>{{$aluno->endereco->cidade}}
+								<br>
+								<strong>Estado: </strong>{{$aluno->endereco->estado}}
+								</div>
 
 							<div class="col-md-5">
 								@if($aluno->cid != null)
@@ -214,7 +224,7 @@
 			</div>
 		</div>
 
-		<div class="panel" style="max-height:700px; max-width: 450px; overflow:auto; background-color: #e5ddd5">
+		<div class="panel" style="max-height:400px; max-width: 450px; overflow:auto; background-color: #e5ddd5">
 			<div class="panel-body">
 
 				<form class="form-horizontal" method="POST" action="{{route('aluno.forum.mensagem.enviar')}}">

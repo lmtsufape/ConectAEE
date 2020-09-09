@@ -47,16 +47,23 @@ class ObjetivoController extends Controller
 
     $objetivosGroupByUser = $objetivos->groupBy('user_id');
 
-    $size = 0;
-
-    if (count($objetivosGroupByUser) != 0) {
-      $size = count(max($objetivosGroupByUser->toArray()));
+    $names = [];
+    foreach($objetivosGroupByUser as $g){
+      $names[$g[0]->user->name] = $g[0]->user_id;
+    }
+  
+    ksort($names);
+    $order = array_values($names);
+  
+    $objetivosGroupByUser = $objetivosGroupByUser->toArray();
+    $objetivosSorted=array();
+    foreach($order as $key){
+     $objetivosSorted[$key]=$objetivosGroupByUser[$key];
     }
 
     return view("objetivo.listar", [
       'aluno' => $aluno,
-      'objetivosGroupByUser' => $objetivosGroupByUser,
-      'size' => $size,
+      'objetivosGroupByUser' => $objetivosSorted,
       'termo' => $request->termo
     ]);
 
@@ -66,17 +73,24 @@ class ObjetivoController extends Controller
 
     $aluno = Aluno::find($id_aluno);
     $objetivosGroupByUser = $aluno->objetivos->groupBy('user_id');
-
-    $size = 0;
-
-    if (count($objetivosGroupByUser) != 0) {
-      $size = count(max($objetivosGroupByUser->toArray()));
+  
+    $names = [];
+    foreach($objetivosGroupByUser as $g){
+      $names[$g[0]->user->name] = $g[0]->user_id;
+    }
+  
+    ksort($names);
+    $order = array_values($names);
+  
+    $objetivosGroupByUser = $objetivosGroupByUser->toArray();
+    $objetivosSorted=array();
+    foreach($order as $key){
+     $objetivosSorted[$key]=$objetivosGroupByUser[$key];
     }
 
     return view("objetivo.listar", [
       'aluno' => $aluno,
-      'objetivosGroupByUser' => $objetivosGroupByUser,
-      'size' => $size,
+      'objetivosGroupByUser' => $objetivosSorted,
       'termo' => ""
     ]);
   }

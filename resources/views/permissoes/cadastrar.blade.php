@@ -6,6 +6,10 @@
 > <a href="{{route('aluno.permissoes',$aluno->id)}}">Autorizações</a>
 > Nova
 @endsection
+@section('style')
+  <link href="{{ asset('css/buscausuario.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 <div class="container">
   <div class="row">
@@ -41,6 +45,7 @@
 
                 <div class="col-md-12">
                   <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" autofocus>
+               
                   @if ($errors->has('username'))
                     <span class="help-block">
                       <strong>{{ $errors->first('username') }}</strong>
@@ -53,7 +58,7 @@
                 <label for="perfil" class="col-md-12 control-label">Perfil</label>
 
                 <div class="col-md-12">
-                  <select id="perfil" name="perfil" class="form-control" onchange="showEspecializacao(this)">
+                  <select id="perfil" name="perfil" class="form-control">
                     <option value="" selected disabled hidden>Escolha o Perfil</option>
                     @foreach($perfis as $perfil)
                       @if($perfil->nome == old('perfil'))
@@ -73,7 +78,7 @@
               </div>
 
               @if(old('perfil') == "Profissional Externo")
-                <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}"z>
+                <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}">
               @else
                 <div id="div-especializacao" class="form-group{{ $errors->has('especializacao') ? ' has-error' : '' }}" style="display: none">
               @endif
@@ -237,9 +242,12 @@
     });
   }
 
-  var myarray = [<?php echo '"'.implode('","', $especializacoes).'"' ?>];
+  var especialializacoes = [<?php echo '"'.implode('","', $especializacoes).'"' ?>];
+  var usuarios = [<?php echo '"'.implode('","', $usuarios).'"' ?>];
 
   /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-  autocomplete(document.getElementById("especializacao"), myarray);
+  autocomplete(document.getElementById("especializacao"), especialializacoes);
+  autocomplete(document.getElementById("username"), usuarios);
 </script>
+
 @endsection

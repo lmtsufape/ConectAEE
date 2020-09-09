@@ -178,7 +178,8 @@ class AlunoController extends Controller{
       'descricaoCid' => ['required_with:cid'],
       'observacao' => ['nullable'],
       'data_nascimento' => ['required','date','before:today','after:01/01/1900'],
-      'logradouro' => ['required'],
+      'cep' => ['required'],
+      'rua' => ['required'],
       'numero' => ['required','numeric'],
       'bairro' => ['required'],
       'cidade' => ['required'],
@@ -206,8 +207,9 @@ class AlunoController extends Controller{
     }
 
     $endereco = new Endereco();
+    $endereco->cep = $request->cep;
     $endereco->numero = $request->numero;
-    $endereco->logradouro = $request->logradouro;
+    $endereco->rua = $request->rua;
     $endereco->bairro = $request->bairro;
     $endereco->cidade = $request->cidade;
     $endereco->estado = $request->estado;
@@ -302,7 +304,8 @@ class AlunoController extends Controller{
       'descricaoCid' => ['required_with:cid'],
       'observacao' => ['nullable'],
       'data_nascimento' => ['required','date','before:today','after:01/01/1900'],
-      'logradouro' => ['required'],
+      'cep' => ['required'],
+      'rua' => ['required'],
       'numero' => ['required','numeric'],
       'bairro' => ['required'],
       'cidade' => ['required'],
@@ -314,7 +317,8 @@ class AlunoController extends Controller{
     }
 
     $endereco = Endereco::find($request->id_endereco);
-    $endereco->logradouro = $request->logradouro;
+    $endereco->cep = $request->cep;
+    $endereco->rua = $request->rua;
     $endereco->numero = $request->numero;
     $endereco->bairro = $request->bairro;
     $endereco->cidade = $request->cidade;
@@ -416,7 +420,18 @@ class AlunoController extends Controller{
   public static function gerenciarPermissoes($id_aluno){
     $aluno = Aluno::find($id_aluno);
     $gerenciars = $aluno->gerenciars;
-
+    
+    $names = [];
+    foreach($gerenciars as $g){
+      $names[$g->user->name] = $g->id;
+    }
+   
+    ksort($names);
+    $order = array_values($names);
+    $gerenciars = $gerenciars->sortBy(function($model) use ($order){
+        return array_search($model->getKey(), $order);
+    });
+    
     return view('permissoes.listar',[
       'aluno' => $aluno,
       'gerenciars' => $gerenciars,
@@ -426,17 +441,19 @@ class AlunoController extends Controller{
   public static function cadastrarPermissao($id_aluno){
     $aluno = Aluno::find($id_aluno);
     $perfis = Perfil::where('especializacao','=',NULL)->get();
+    $usuarios = User::all()->toArray();
+    $usuarios = array_column($usuarios, 'name');
 
     $especializacoes = Perfil::select('especializacao')
     ->where('especializacao', '!=', NULL)
     ->get()->toArray();
-
     $especializacoes = array_column($especializacoes, 'especializacao');
 
     return view('permissoes.cadastrar',[
       'aluno' => $aluno,
       'perfis' => $perfis,
       'especializacoes' => $especializacoes,
+      'usuarios' => $usuarios,
     ]);
   }
 
@@ -453,13 +470,13 @@ class AlunoController extends Controller{
   public static function criarPermissao(Request $request){
     //Validação dos dados
     $rules = array(
-      'username' => 'required|exists:users,username',
+      'username' => 'required|exists:users,name',
       'perfil' => 'required',
       'especializacao' => 'required_if:perfil,Profissional Externo',
     );
     $messages = array(
       'username.required' => 'Necessário inserir um nome de usuário.',
-      'username.exists' => 'O usuário em questão não está cadastrado.',
+      'name.exists' => 'O usuário em questão não está cadastrado.',
       'perfil.required' => 'Selecione um perfil.',
       'especializacao.required_if' => 'Necessário inserir uma especialização.',
     );
@@ -467,17 +484,13 @@ class AlunoController extends Controller{
     if($validator->fails()){
       return redirect()->back()->withErrors($validator->errors())->withInput();
     }
-
     //Se já existe a relação
-    $user = User::where('username','=',$request->username)->first();
+    $user = User::where('name','=',$request->username)->first();
+    
     if((Gerenciar::where('user_id','=',$user->id)->where('aluno_id','=',$request->id_aluno))->first()){
       $validator->errors()->add('username','O usuário já possui permissões de acesso ao aluno.');
       return redirect()->back()->withErrors($validator->errors())->withInput();
     }
-    // $gerenciar = Gerenciar::where('aluno_id','=',$request->aluno)->where('user_id','=',$user->id)->first();
-    // if($gerenciar != NULL){
-    //   return redirect()->back()->withInput()->with('Fail','O usuário '.$user->name.' já possui permissões.');
-    // }
 
     //Criação do Gerencimento
     $gerenciar = new Gerenciar();
@@ -501,7 +514,7 @@ class AlunoController extends Controller{
     if($request->exists('isAdministrador') || $request->perfil == 'Responsável'){
       $gerenciar->isAdministrador = $request->isAdministrador;
     }
-    //dd($gerenciar);
+    
     $gerenciar->save();
 
     $notificacao = new Notificacao();
