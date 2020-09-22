@@ -6,6 +6,7 @@ use App\User;
 use App\Instituicao;
 use App\Notificacao;
 use App\Aluno;
+use App\Cid10;
 use App\Gerenciar;
 use App\Perfil;
 use App\Endereco;
@@ -84,7 +85,14 @@ class AlunoController extends Controller{
   public static function cadastrar(){
     $instituicoes = \Auth::user()->instituicoes;
     $perfis = [[1,'Responsável'], [2,'Professor AEE']];
+    $cids = Cid10::all()->toArray();
+    $cidsCodigo = array_column($cids, 'codigo');
+    $cidsNome = array_column($cids, 'nome');
 
+    for($i=0;$i<count($cidsCodigo);$i++){
+      $cidsCodigo[$i] = $cidsCodigo[$i] . " - " . $cidsNome[$i];
+    }
+    
     if (count($instituicoes) == 0) {
       return redirect()->route("instituicao.cadastrar")->with('info','O cadastro de alunos, requer que uma instituicão esteja cadastrada.');
     }
@@ -92,6 +100,7 @@ class AlunoController extends Controller{
     return view("aluno.cadastrar", [
       'instituicoes' => $instituicoes,
       'perfis' => $perfis,
+      'cids' => $cidsCodigo,
     ]);
   }
 
