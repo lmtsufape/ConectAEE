@@ -600,7 +600,8 @@ $(document).ready(function() {
       /*for each item in the array...*/
       for (i = 0; i < arr.length; i++) {
         /*check if the item starts with the same letters as the text field value:*/
-        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase() ||
+            arr[i].split(' - ')[1].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
           /*create a DIV element for each matching element:*/
           b = document.createElement("DIV");
           /*make the matching letters bold:*/
@@ -678,7 +679,7 @@ $(document).ready(function() {
   }
 
   var cids = [<?php echo '"'.implode('","', $cids).'"' ?>];
-console.log(cids);
+
   /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
   autocomplete(document.getElementById("cid"), cids);
 </script>
