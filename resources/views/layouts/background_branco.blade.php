@@ -52,39 +52,29 @@
       </div>
 
       <!-- Barra de Logos -->
-      <div id="barra-logos" class-"container" style="background:#ffffff; margin-top: 1px; height: 200px; padding: 10px 10px 10px 10px">
+      <div id="barra-logos" class="container" style="background:#ffffff; margin-top: 1px; height: 80px; padding: 10px 10px 10px 10px">
           <ul id="logos" style="list-style:none;">
               <li style="margin-right:140px; margin-left:110px; border-right:1px">
                   @if(Auth::check() && (Auth::user()->username == 'adelino.lmts' || Auth::user()->username == 'alana.lmts' || Auth::user()->username == 'mateus.lmts' || Auth::user()->username == 'eberson.lmts'))
-                      <a href="{{ route("home") }}"><img src="{{asset('images/pikachinho.png')}}" style = "margin-left: 8px; margin-top:5px " height="170px" align = "left" ></a>
+                      <a href="{{ route("home") }}"><img src="{{asset('images/pikachinho.png')}}" style = "margin-left: 8px; margin-top:5px " height="60px" align = "left" ></a>
                   @else
-                      <a href="{{ route("home") }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="170px" align = "left" ></a>
+                      <a href="{{ route("home") }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="50px" align="left" ></a>
                   @endif
 
-                  <a target="_blank" href="http://lmts.uag.ufrpe.br/">
-                    <img class="on-contrast-force-white" src="{{asset('images/lmts3.png')}}" style = "margin-left: 8px; margin-top:65px " height="80" align = "right" >
+                  <a onclick="" id="altocontraste" data-toggle="tooltip" title="reduzir fonte">
+                    <img class="on-contrast-force-white" src="{{asset('images/reduce-font-size.png')}}" style = "margin-left: 30px; margin-top:20px " height="30" align = "right">
                   </a>
 
-                  <img class="on-contrast-force-white" src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 65px" height="70" align = "right">
-
-                  <a target="_blank" href="http://ww3.uag.ufrpe.br/">
-                    <img class="on-contrast-force-white" src="{{asset('images/uag.png')}}" style = "margin-left: 10px; margin-top: 65px" height="80" width="70" align = "right" >
+                  <a onclick="" id="altocontraste" data-toggle="tooltip" title="aumentar fonte">
+                    <img class="on-contrast-force-white" src="{{asset('images/increase-font-size.png')}}" style = "margin-left: 30px; margin-top:20px " height="30" align = "right">
                   </a>
 
-                  <img class="on-contrast-force-white" src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 65px" height="70" align = "right" >
-
-                  <a target="_blank" href="http://www.ufrpe.br/">
-                    <img class="on-contrast-force-white" src="{{asset('images/ufrpe.png')}}" style = "margin-left: 15px; margin-right: -10px; margin-top: 65px " height="80" width="70" align = "right">
+                  <a onclick="contraste()" id="altocontraste" data-toggle="tooltip" title="Contraste">
+                    <img class="on-contrast-force-white" src="{{asset('images/contrasteBlack.png')}}" style = "margin-left: 30px; margin-top:20px " height="30" align = "right">
                   </a>
+
               </li>
           </ul>
-      </div>
-
-      <div style="background-color:#12583C;padding-left:35px;">
-        &nbsp;&nbsp;
-        <a onclick="contraste()" id="altocontraste" data-toggle="tooltip" title="Contraste">
-          <img class="on-contrast-force-white" src="{{asset('images/contraste.png')}}" style="height:25px">
-        </a>
       </div>
 
         <!-- <a class="btn-primary" id="altocontraste" onclick="contraste()">Contraste</a> -->

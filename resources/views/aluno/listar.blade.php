@@ -33,7 +33,7 @@
 
                   <div id="divBusca" style="margin-top:20px;">
 
-                  <i class="material-icons">search</i>
+                  <i class="material-icons" style="margin-top:5px;">search</i>
 
                   @if ($termo == null)
                     <input id="termo" type="text" autocomplete="off" name="termo" autofocus placeholder="Pesquise aqui...">
@@ -119,11 +119,11 @@
                           <br><br>
                           <?php
                             $pieces = explode(" ", $aluno->nome);
-                            // if(count($pieces) > 1){
-                              // echo $pieces[0],' ',$pieces[1];
-                            // }else{
+                            if(count($pieces) > 1){
+                              echo $pieces[0],' ',$pieces[1];
+                            }else{
                               echo $pieces[0];
-                            // }
+                            }
                           ?>
                           <br>
                           &nbsp; &nbsp;
