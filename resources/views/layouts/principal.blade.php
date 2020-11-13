@@ -58,37 +58,16 @@
 
       <!-- Barra de Logos -->
       <div id="barra-logos" class="container" style="background:#ffffff; margin-top: 1px; height: 80px; padding: 10px 10px 10px 10px">
-          <ul id="logos" style="list-style:none;">
-              <li style="margin-right:140px; margin-left:110px; border-right:1px">
-                  @if(Auth::check() && (Auth::user()->username == 'adelino.lmts' || Auth::user()->username == 'alana.lmts' || Auth::user()->username == 'mateus.lmts' || Auth::user()->username == 'eberson.lmts'))
-                      <a href="{{ route("home") }}"><img src="{{asset('images/pikachinho.png')}}" style = "margin-left: 8px; margin-top:5px " height="60px" align = "left" ></a>
-                  @else
-                      <a href="{{ route("home") }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="50px" align = "left" ></a>
-                  @endif
 
-
-                  <a onclick="" id="altocontraste" data-toggle="tooltip" title="reduzir fonte">
-                    <img class="on-contrast-force-white" src="{{asset('images/reduce-font-size.png')}}" style = "margin-left: 30px; margin-top:20px " height="30" align = "right">
-                  </a>
-
-                  <a onclick="" id="altocontraste" data-toggle="tooltip" title="aumentar fonte">
-                    <img class="on-contrast-force-white" src="{{asset('images/increase-font-size.png')}}" style = "margin-left: 30px; margin-top:20px " height="30" align = "right">
-                  </a>
-
-                  <a onclick="contraste()" id="altocontraste" data-toggle="tooltip" title="Contraste">
-                    <img class="on-contrast-force-white" src="{{asset('images/contrasteBlack.png')}}" style = "margin-left: 30px; margin-top:20px " height="30" align = "right">
-                  </a>
-              </li>
-          </ul>
+      @include('layouts.menu')
       </div>
 
       <!-- barra de menu -->
-      @include('layouts.menu')
 
       @php($url = str_replace(URL::to('/'),'',URL::current()))
 
       @if($url != "/aluno/listar" && $url != "/usuario/completarCadastro")
-        <div id="navigation" style="background-color:#ffffff">
+        <div id="navigation" style="background-color:#12583C">
           <div class="container">
             <div class="row">
               <div class="col-md-12">
@@ -104,7 +83,7 @@
       @endif
     </div>
 
-    <div id="page-container" style="background-color:#FFFFFF">
+    <div id="page-container" style="background-color:#12583C">
       <div id="content-wrap">
         @yield('content')
         <br>
