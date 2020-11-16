@@ -1,45 +1,63 @@
 @extends('layouts.principal')
 @section('title','Perfil de aluno')
-
-@section('navbar')
+<!-- 
 <a href="{{route('aluno.listar')}}">Início</a>
 > Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong>
-@endsection
+@section('navbar')
+@endsection -->
 
 @section('content')
 <div class="container">
 	<div class="row">
-		<div class="col-md-12">
-			<div id="perfil" class="panel panel-default" style="width:100%">
+		<div class="col-md-12" style="margin-top: -20px;">
+			<div id="perfil" class="panel panel-default" style="width:100%; padding: 10px 20px;">
 
 				<div class="panel-heading">
 	        <div class="row">
 
 	          <div class="col-md-6">
 	            <h2>
-	              <strong>
+	              <strong style="color: #12583C">
 	                {{$aluno->nome}}
 	              </strong>
 	            </h2>
 	          </div>
 
 	          <div class="col-md-6 text-right" style="margin-top:20px">
+							<a class="btn btn-primary" style="height: 50px; font-weight: bold; font-size: 20px; background: #0398fc; justify: center" href="{{route('objetivo.listar', ['id_aluno'=>$aluno->id]) }}">
+								Objetivos
+							</a>
 							@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
-								<a class="btn btn-primary" data-toggle="tooltip" title="Editar aluno" href={{route("aluno.editar", ["id_aluno"=>$aluno->id]) }}>
-									Editar
-								</a>
-								<a data-toggle="tooltip" title="Autorizar acesso ao aluno" class="btn btn-primary" href="{{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}">
-									Autorização
-								</a>
-								<a class="btn btn-danger" data-toggle="tooltip" title="Excluir aluno" onclick="return confirm('\Confirmar exclusão do aluno {{$aluno->nome}}?')" href={{route("aluno.excluir", ["id_aluno"=>$aluno->id]) }}>
-									Excluir
-								</a>
+								<li class="dropdown">
+									<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height: 50px; font-weight: bold; font-size: 20px; background: gray">
+										Ações
+										<span class="caret" style="border-left: 11px solid transparent; border-right: 11px solid transparent; border-top: 11px solid;"></span>
+									</button>
+
+									<ul class="dropdown-menu" role="menu" style="background-color: rgba(255, 255, 255, 0); border-width: 0px">
+										<li>
+											<a class="btn btn-primary" data-toggle="tooltip" title="Editar aluno" href="{{route('aluno.editar', ['id_aluno'=>$aluno->id]) }}" style="width: 100%; height: 30px; background: #999; font-size: 16px; border-radius: 5px; color: white; margin-bottom: 5px">
+												Editar
+											</a>
+										</li>
+										<li>
+											<a class="btn btn-primary" data-toggle="tooltip" title="Autorizar acesso ao aluno" href="{{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}" style="width: 100%; height: 30px; background: #1c5; font-size: 16px; border-radius: 5px; color: white;  margin-bottom: 5px">
+												Autorização
+											</a>
+										</li>
+										<li>
+											<a class="btn btn-danger" data-toggle="tooltip" title="Excluir aluno" onclick="return confirm('\Confirmar exclusão do aluno {{$aluno->nome}}?')" href="{{route('aluno.excluir', ['id_aluno'=>$aluno->id]) }}" style="width: 100%; height: 30px; background: #f44; font-size: 16px; border-radius: 5px; color: white">
+												Excluir
+											</a>
+										</li>
+									</ul>
+								</li>
 							@endif
 	          </div>
 
 	        </div>
 
-	        <hr style="border-top: 1px solid black;">
+	        <hr style="border-top: 1px solid #AAA;">
 	      </div>
 
 				<div class="panel-body">
@@ -54,15 +72,16 @@
 						$gerenciars = $aluno->gerenciars;
 					@endphp
 
-					<div class="row">
+					<!-- Informações do Aluno -->
+					<div class="row" style="margin-top: -30px">
 						<div class="col-md-12">
-							<div class="col-md-2">
+							<div class="col-md-3">
 								<div class="text-center">
 									@if($aluno->imagem != null)
-										<img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="border-radius: 60%; height:150px; width:150px; object-fit: cover;">
+										<img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="border-radius: 60%; height:200px; width:200px; object-fit: cover;">
 										<br/>
 									@else
-										<img src="{{asset('images/avatar.png')}}" style="border-radius: 60%; width:150px; height: 150px; object-fit: cover;">
+										<img src="{{asset('images/avatar.png')}}" style="border-radius: 60%; width:200px; height: 200px; object-fit: cover;">
 										<br/>
 									@endif
 								</div>
@@ -70,65 +89,58 @@
 								<br>
 							</div>
 
-							<div class="col-md-5">
-								<?php
-								foreach($gerenciars as $gerenciar){
-									if($gerenciar->user->id == \Auth::user()->id && $gerenciar->isAdministrador){
-										?>
-										<strong>CPF:</strong> {{$aluno->cpf}}
-										<br/>
-										<?php
-										break;
+							<div class="col-md-6">
+								<h4 style="color: #12583C">
+									<?php
+									foreach($gerenciars as $gerenciar){
+										if($gerenciar->user->id == \Auth::user()->id && $gerenciar->isAdministrador){
+											?>
+											<strong>CPF:</strong> {{$aluno->cpf}}
+											<br/>
+											<?php
+											break;
+										}
 									}
-								}
-								?>
+									?>
 
-								@if($aluno->sexo == 'M')
-									<strong>Sexo:</strong> Masculino
-								@else
-									<strong>Sexo:</strong> Feminino
-								@endif
-
-								<br/>
-								<strong>Data de Nascimento:</strong> {{$aluno->data_de_nascimento}}
-								<br/>
-								<strong>Endereço:</strong>
-								<br>
-								<?php
-									// echo "CEP: ", $aluno->endereco->cep, ", ",
-									// $aluno->endereco->rua, ", nº ",
-									// $aluno->endereco->numero, ", ",
-									// $aluno->endereco->bairro, ", ",
-									// $aluno->endereco->cidade, " - ",
-									// $aluno->endereco->estado;
-								?>
-								<strong>Cep: </strong>{{$aluno->endereco->cep}}
-								<br>
-								<strong>Rua: </strong>{{$aluno->endereco->rua}}
-								<br>
-								<strong>Bairro: </strong>{{$aluno->endereco->bairro}}
-								<br>
-								<strong>Cidade: </strong>{{$aluno->endereco->cidade}}
-								<br>
-								<strong>Estado: </strong>{{$aluno->endereco->estado}}
-								</div>
-
-							<div class="col-md-5">
-								@if($aluno->cid != null)
-									<strong>CID:</strong> {{$aluno->cid}}
+									@if($aluno->sexo == 'M')
+										<strong>Sexo:</strong> Masculino
+									@else
+										<strong>Sexo:</strong> Feminino
+									@endif
 									<br/>
-									<strong>Descrição CID:</strong> {{$aluno->descricao_cid}}
-									<br/>
-								@endif
+									<strong>Data de Nascimento:</strong> {{$aluno->data_de_nascimento}}
+								</h4>
 
-								<br>
-								<strong>Instituições:</strong>
+								<h4 style="color: #12583C">
+									<strong>Endereço:</strong>
+									<?php
+										echo $aluno->endereco->rua, ", nº ",
+										$aluno->endereco->numero, ", ",
+										$aluno->endereco->bairro, ", ",
+										$aluno->endereco->cidade, " - ",
+										$aluno->endereco->estado;
+									?>
+								</h4>	
+								
+								<h4 style="color: #b38a1d">
+									@if($aluno->cid != null)
+										<strong style="color: #12583C">CID:</strong> {{$aluno->cid}}
+										<br/>
+										<strong style="color: #12583C">Descrição CID:</strong> {{$aluno->descricao_cid}}
+										<br/>
+									@endif
+								</h4>
+							</div>
+
+							<div class="col-md-3">
+								<strong style="color: #12583C">Instituições:</strong>
 								<br>
 
 								<ul>
 									@foreach ($aluno->instituicoes as $instituicao)
 										<li>
-											<a href="{{ route("instituicao.ver", ["id_instituiçao"=>$instituicao->id]) }}">{{$instituicao->nome}}</a>
+											<a href="{{ route('instituicao.ver', ['id_instituiçao'=>$instituicao->id]) }}">{{$instituicao->nome}}</a>
 										</li>
 									@endforeach
 								</ul>
@@ -137,25 +149,33 @@
 						</div>
 
 						<div class="col-md-12">
-							<div class="col-md-10 col-md-offset-2 text-justify">
+							<div class="col-md-9 col-md-offset-3 text-justify">
 								@if($aluno->observacao != null)
+									<h4 style="color: #12583C">
 									<strong>Observações:</strong> {!! $aluno->observacao !!}
+									</h4>
 									<br/>
 								@endif
 							</div>
 						</div>
 					</div>
 
-					<hr style="border-top: 1px solid black;">
+					<hr style="border-top: 1px solid #AAA;">
 
-					<div class="row col-md-8 col-md-offset-2">
-						<a href="{{route("objetivo.listar", ["id_aluno"=>$aluno->id]) }}" data-toggle="tooltip" title="Ver objetivos">
+					<h2>
+						<strong style="color: #12583C">
+							Álbuns
+						</strong>
+					</h2>
+
+					<div class="row col-md-8 col-md-offset-2" style="opacity: 0.7">
+						<a href="{{route('album.cadastrar' , ['id_aluno'=>$aluno->id])}}" data-toggle="tooltip" title="Ver objetivos">
 							<div class="card cartao text-center " style="border-radius: 20px">
 								<div class="card-body d-flex justify-content-center">
 									<h2 style="margin-top:80px;">
-										<img src="{{asset('images/objetivo.png')}}" style="width:44px; height:44px;">
+										<img src="{{asset('images/album.png')}}" style="width:44px; height:44px;">
 										<br>
-										Objetivos
+										Novo Álbum
 									</h2>
 								</div>
 							</div>
