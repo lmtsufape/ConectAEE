@@ -123,14 +123,14 @@
 									?>
 								</h4>	
 								
+								@if($aluno->cid != null)
 								<h4 style="color: #b38a1d">
-									@if($aluno->cid != null)
 										<strong style="color: #12583C">CID:</strong> {{$aluno->cid}}
 										<br/>
 										<strong style="color: #12583C">Descrição CID:</strong> {{$aluno->descricao_cid}}
 										<br/>
-									@endif
 								</h4>
+								@endif
 							</div>
 
 							<div class="col-md-3">
@@ -168,45 +168,39 @@
 						</strong>
 					</h2>
 
-					<div class="row col-md-8 col-md-offset-2" style="opacity: 0.7">
-						<a href="{{route('album.cadastrar' , ['id_aluno'=>$aluno->id])}}" data-toggle="tooltip" title="Ver objetivos">
-							<div class="card cartao text-center " style="border-radius: 20px">
-								<div class="card-body d-flex justify-content-center">
-									<h2 style="margin-top:80px;">
-										<img src="{{asset('images/album.png')}}" style="width:44px; height:44px;">
-										<br>
-										Novo Álbum
-									</h2>
+          <div class="row" align="center">
+            <div class="container col-md-12">
+              <div class="card-body" style="margin-left: -35px">
+								<div class="col-md-3 mt-3" style="opacity: 0.7;">
+									<a href="{{route('album.cadastrar' , ['id_aluno'=>$aluno->id])}}" data-toggle="tooltip" title="Ver objetivos">
+										<div class="card cartao text-center " style="border-radius: 20px;  width: 240px; height: 240px">
+											<div class="card-body d-flex justify-content-center">
+												<h2 style="margin-top:80px;">
+													<img src="{{asset('images/album.png')}}" style="width:44px; height:44px;">
+													<br>
+													Novo Álbum
+												</h2>
+											</div>
+										</div>
+									</a>
 								</div>
-							</div>
-						</a>
+                <?php
+                foreach ($albuns as $album) {?>
+                  <div class="col-md-3 mt-3">
+										<div class="card cartao text-center" style="border-radius: 20px; background: #FFF; width: 240px; height: 240px">
+											<div class="card-body d-flex justify-content-center" style="border-radius: 23px; background: #EEE; height: 100%">
+												<a href="{{route('album.ver', ['id_album'=>$album->id])}}">
+													<img style="width:100%; object-fit: cover;" src="{{asset('storage/albuns/'.$aluno->id.'/'.$album->fotos[0]->imagem)}}">
+												</a>
+												&nbsp; &nbsp;
+											</div>
+										</div>
+                  </div>
+                <?php }?>
+              </div>
+            </div>
+          </div>
 
-						<a href="{{route("album.listar", ["id_aluno"=>$aluno->id]) }}" data-toggle="tooltip" title="Ver álbuns">
-							<div class="card cartao text-center " style="border-radius: 20px">
-								<div class="card-body d-flex justify-content-center">
-									<h2 style="margin-top:80px;">
-										<img src="{{asset('images/album.png')}}" style="width:44px; height:44px;">
-										<br>
-										Álbuns
-									</h2>
-								</div>
-							</div>
-						</a>
-
-						<!-- @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
-							<a href="{{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}">
-								<div class="card cartao text-center " style="border-radius: 20px">
-									<div class="card-body d-flex justify-content-center">
-										<h2 style="margin-top:80px;">
-											<img src="{{asset('images/acesso.png')}}" style="width:44px; height:44px;">
-											<br>
-											Acesso
-										</h2>
-									</div>
-								</div>
-							</a>
-						@endif -->
-					</div>
 				</div>
 
 				<!-- <div class="panel-footer" style="background-color:white">

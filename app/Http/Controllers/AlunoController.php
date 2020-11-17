@@ -11,6 +11,7 @@ use App\Perfil;
 use App\Endereco;
 use App\ForumAluno;
 use App\MensagemForumAluno;
+use App\Album;
 use File;
 use Image;
 use Auth;
@@ -41,9 +42,12 @@ class AlunoController extends Controller{
       }
     }
 
+    $albuns = Album::where('aluno_id', $aluno->id)->paginate(16);
+
     return view("aluno.perfil",[
       'aluno' => $aluno,
       'mensagens' => $mensagens,
+      'albuns' => $albuns,
     ]);
   }
 
