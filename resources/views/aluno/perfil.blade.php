@@ -13,14 +13,16 @@
 			<div id="perfil" class="panel panel-default" style="width:100%; padding: 10px 20px;">
 
 				<div class="panel-heading">
-	        <div class="row">
-
+	        <div class="row" style="margin-bottom: -20px">
 	          <div class="col-md-6">
 	            <h2>
 	              <strong style="color: #12583C">
 	                {{$aluno->nome}}
 	              </strong>
 	            </h2>
+							<div style="font-size: 14px">
+								<a href="{{route('aluno.listar')}}">Início</a>> Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong>
+							</div>
 	          </div>
 
 	          <div class="col-md-6 text-right" style="margin-top:20px">

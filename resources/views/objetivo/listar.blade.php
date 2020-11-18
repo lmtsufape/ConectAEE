@@ -12,7 +12,7 @@
       <div class="panel panel-default" style="padding: 10px 20px;">
 
         <div class="panel-heading">
-          <div class="row">
+          <div class="row" style="margin-bottom: -20px">
             <div class="col-md-12">
               <div style="width: 100%; margin-left: 0%;" class="row">
                 <div style="float: left;" class="col-md-6">
@@ -21,6 +21,9 @@
                       Objetivos para {{ explode(" ", $aluno->nome)[0]}}
                     </strong>
                   </h2>
+                  <div style="font-size: 14px">
+                    <a href="{{route('aluno.listar')}}">Início</a>> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>> Objetivos
+                  </div>
                 </div>
 
                 <div style="float:right;" class="col-md-2">

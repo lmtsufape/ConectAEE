@@ -14,7 +14,7 @@
     <div class="panel panel-default" style="margin-top: -20px; padding: 10px 20px;">
 
       <div class="panel-heading">
-        <div class="row">
+        <div class="row" style="margin-bottom: -20px">
 
           <div class="col-md-6">
             <h2>
@@ -22,6 +22,12 @@
                 Gerenciar objetivo
               </strong>
             </h2>
+            <div style="font-size: 14px">
+              <a href="{{route('aluno.listar')}}">Início</a>
+              > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
+              > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
+              > <strong>{{$objetivo->titulo}}</strong>
+            </div>
           </div>
 
           <div class="col-md-6 text-right" style="margin-top:20px">
