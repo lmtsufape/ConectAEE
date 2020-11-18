@@ -1,25 +1,25 @@
 @extends('layouts.principal')
 @section('title','Gerenciar objetivo')
-@section('navbar')
-<a href="{{route('aluno.listar')}}">Início</a>
+<!-- <a href="{{route('aluno.listar')}}">Início</a>
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
 > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
 > <strong>{{$objetivo->titulo}}</strong>
-@endsection
+@section('navbar')
+@endsection -->
 
 @section('content')
-<div class="container">
+<div class="container" style="color: #12583C">
   <div class="row">
 
-    <div class="panel panel-default">
+    <div class="panel panel-default" style="margin-top: -20px; padding: 10px 20px;">
 
       <div class="panel-heading">
         <div class="row">
 
           <div class="col-md-6">
             <h2>
-              <strong>
-                Gerenciar Objetivo
+              <strong style="color: #12583C">
+                Gerenciar objetivo
               </strong>
             </h2>
           </div>
@@ -40,11 +40,16 @@
                 Reabrir
               </a>
             @endif
+            @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first() != null && $objetivo->user->id != \Auth::user()->id)
+              <a class="btn btn-primary" style="float:right; margin-left: -50px; background-color: #0398fc; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC" href="{{ route("sugestoes.cadastrar" , ['id_objetivo' => $objetivo->id])}}">
+                Nova Sugestão
+              </a>
+            @endif
           </div>
 
         </div>
 
-        <hr style="border-top: 1px solid black;">
+        <hr style="border-top: 1px solid #AAA;">
       </div>
 
       <div class="panel-body">
@@ -55,15 +60,12 @@
           </div>
         @endif
 
-        <div class="row col-md-12">
-          <div class="row col-md-12" style="margin-left:0px; margin-top:-20px;">
-            <h3>
-              <strong>Objetivo: </strong>{{$objetivo->titulo}}
-            </h3>
-            <hr style="border-top: 1px solid black;">
-          </div>
+        <div class="row col-md-12" style="margin-top:-20px;">
 
-          <div class="col-md-6">
+          <div class="col-md-8">
+            <p>
+              <strong>Objetivo: </strong>{{$objetivo->titulo}}
+            </p>
             <strong>Autor: </strong>{{$objetivo->user->name}}
             <br>
             <strong>Prioridade: </strong>{{$objetivo->prioridade}}
@@ -72,13 +74,16 @@
             <br>
             <strong>Concluído: </strong>
             <?php
-              echo $objetivo->concluido ? "Sim" : "Não";
+              echo $objetivo->statusObjetivo[sizeof($objetivo->statusObjetivo) - 1]->status->status == "Concluído" ? "Sim" : "Não";
             ?>
+            <br>
+            <br>
+            <strong>Descrição: </strong>{{$objetivo->descricao}}
             <br>
 
           </div>
 
-          <div class="col-md-6">
+          <div class="col-md-4">
             <strong>Histórico de Status: </strong> <br>
             <ul>
               @foreach ($objetivo->statusObjetivo as $statusObjetivo)
@@ -90,16 +95,17 @@
 
             <strong>Status atual:</strong>
 
-            <form method="POST" action="{{ route("objetivo.status.atualizar") }}">
+            <form method="POST" action="{{ route('objetivo.status.atualizar') }}">
               {{ csrf_field() }}
 
               <input id="id_aluno" type="hidden" class="form-control" name="id_aluno" value="{{ $aluno->id }}">
               <input id="id_objetivo" type="hidden" class="form-control" name="id_objetivo" value="{{ $objetivo->id }}">
 
-              <div class="col-md-12">
+              <div>
 
-                <div class="col-md-6 text-center">
-                  <select id="status" class="form-control" name="status" style="margin-bottom:10px">
+                <div class="col-md-12">
+                  @if($objetivo->user_id == Auth::user()->id)
+                  <select id="status" class="form-control" name="status" style="margin-bottom:15px">
                     @foreach($statusesObjetivo as $status)
                       @if($statusObjetivo->status == $status)
                         <option value={{$status->id}} selected>{{$status->status}}</option>
@@ -108,11 +114,14 @@
                       @endif
                     @endforeach
                   </select>
+                  @else
+                  {{$objetivo->statusObjetivo[sizeof($objetivo->statusObjetivo) - 1]->status->status}}
+                  @endif
                 </div>
 
-                <div class="col-md-6 text-center">
+                <div class="col-md-12 text-center">
                   @if($objetivo->user_id == Auth::user()->id)
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin: 10px 0px; background-color: #6f5; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #6f5; box-shadow: 4px 4px 4px #CCC">
                       Atualizar
                     </button>
                   @endif
@@ -120,14 +129,10 @@
               </div>
             </form>
           </div>
-
-          <div class="row col-md-12" style="margin-left:0px;" align="justify">
-            <br>
-            <strong>Descrição: </strong>{{$objetivo->descricao}}
-          </div>
         </div>
 
         <div class="row col-md-12">
+          <hr style="border-top: 1px solid #AAA;">
           <div id="atividades">
 
             <div class="panel-heading">
@@ -141,14 +146,13 @@
 
                 <div class="col-md-6 text-right" style="margin-top:20px">
                   @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->perfil_id != 1 && $objetivo->user->id == \Auth::user()->id)
-                    <a class="btn btn-primary" href="{{ route("atividades.cadastrar" , ['id_objetivo' => $objetivo->id])}}">
+                    <a class="btn btn-primary" style="float:right; margin-left: -50px; background-color: #0398fc; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC" href="{{ route('atividades.cadastrar' , ['id_objetivo' => $objetivo->id])}}">
                       Nova Atividade
                     </a>
                   @endif
                 </div>
               </div>
 
-              <hr style="border-top: 1px solid black;">
             </div>
 
             <div class="panel-body">
@@ -182,7 +186,7 @@
                         <tr>
                           <td data-title="Status" class="output">
                             @php($cor = \App\Http\Controllers\AtividadeController::corStatus($atividade->status))
-                            <span style="background:{{$cor}}"></span>
+                              <span style="background:{{$cor}}"></span>
                             {{$atividade->status}}
                           </td>
                           <td data-title="Atividades">
@@ -191,16 +195,16 @@
                           <td data-title="Data">{{ $atividade->data }}</td>
                           <td data-title="Ações">
                             @if($atividade->objetivo->user->id == \Auth::user()->id)
-                              <a class="btn btn-primary" data-toggle="modal" data-target="#modalAtividade{{$atividade->id}}">Gerenciar</a>
+                              <a class="btn btn-primary" data-toggle="modal" data-target="#modalAtividade{{$atividade->id}}" style="background: #ccac1d; height: 40px; font-size: 17px">Gerenciar</a>
                             @else
-                              <a class="btn btn-primary" data-toggle="modal" data-target="#modalAtividade{{$atividade->id}}">Ver</a>
+                              <a class="btn btn-primary" data-toggle="modal" data-target="#modalAtividade{{$atividade->id}}" style="background: #ccac1d; height: 40px; font-size: 17px">Ver</a>
                             @endif
                           </td>
                         </tr>
 
                         <!-- Modal -->
                         <div class="modal fade" id="modalAtividade{{$atividade->id}}" role="dialog">
-                          <div class="modal-dialog modal-lg" style="background-color:white">
+                          <div class="modal-dialog modal-lg panel-default" style="background-color:white; padding: 10px 20px;">
 
                             <!-- Modal content-->
                               <div class="modal-header">
@@ -219,13 +223,13 @@
                                 <div class="row">
                                   <div class="col-md-6">
                                     <strong>Título: </strong>{{$atividade->titulo}}
-                                    <br><br>
+                                    <br>
                                     <strong>Prioridade: </strong>{{$atividade->prioridade}}
-                                    <br><br>
+                                    <br>
                                     <strong>Status: </strong>{{$atividade->status}}
-                                    <br><br>
+                                    <br>
                                     <strong>Concluído: </strong>{{$atividade->concluido ? "Sim" : "Não"}}
-                                    <br><br>
+                                    <br>
                                     <strong>Data: </strong> {{$atividade->data}}
                                   </div>
 
@@ -277,6 +281,7 @@
         </div>
 
         <div class="row col-md-12">
+          <hr style="border-top: 1px solid #AAA;">
           <div id="sugestoes">
             <div class="panel-heading">
               <div class="row">
@@ -288,14 +293,12 @@
 
                 <div class="col-md-6 text-right" style="margin-top:20px">
                   @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first() != null && $objetivo->user->id != \Auth::user()->id)
-                    <a class="btn btn-primary" href="{{ route("sugestoes.cadastrar" , ['id_objetivo' => $objetivo->id])}}">
+                    <a class="btn btn-primary" style="float:right; margin-left: -50px; background-color: #0398fc; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC" href="{{ route('sugestoes.cadastrar' , ['id_objetivo' => $objetivo->id])}}">
                       Nova Sugestão
                     </a>
                   @endif
                 </div>
               </div>
-
-              <hr style="border-top: 1px solid black;">
             </div>
 
             <div class="panel-body">
@@ -336,9 +339,9 @@
                           <td data-title="Data">{{ $sugestao->data }}</td>
                           <td data-title="Ação">
                             @if($sugestao->user->id == \Auth::user()->id)
-                              <a class="btn btn-primary" href={{ route("sugestao.ver", ["id_sugestao" => $sugestao->id]) }}>Gerenciar</a>
+                              <a class="btn btn-primary" href="{{ route('sugestao.ver', ['id_sugestao' => $sugestao->id]) }}" style="background: #ccac1d; height: 40px; font-size: 17px">Gerenciar</a>
                             @else
-                              <a class="btn btn-primary" href={{ route("sugestao.ver", ["id_sugestao" => $sugestao->id]) }}>Ver</a>
+                              <a class="btn btn-primary" href="{{ route('sugestao.ver', ['id_sugestao' => $sugestao->id]) }}" style="background: #ccac1d; height: 40px; font-size: 17px">Ver</a>
                             @endif
                           </td>
                         </tr>
