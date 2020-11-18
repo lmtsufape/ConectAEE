@@ -1,62 +1,61 @@
 @extends('layouts.principal')
 @section('title','Listar objetivos')
-@section('navbar')
-<a href="{{route('aluno.listar')}}">Início</a>
+<!-- <a href="{{route('aluno.listar')}}">Início</a>
 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
 > Objetivos
-@endsection
+@section('navbar')
+@endsection -->
 @section('content')
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <div class="panel panel-default">
+    <div class="col-md-12" style="margin-top: -20px">
+      <div class="panel panel-default" style="padding: 10px 20px;">
 
         <div class="panel-heading">
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
               <div style="width: 100%; margin-left: 0%;" class="row">
-                <div style="width: 50%; float: left; margin-left:-20px;" class="col-md-6">
+                <div style="float: left;" class="col-md-6">
                   <h2>
-                    <strong>
+                    <strong style="color: #12583C">
                       Objetivos para {{ explode(" ", $aluno->nome)[0]}}
                     </strong>
                   </h2>
                 </div>
-                <div style="width:50%; float:right; margin-right:-15px;" class="col-md-6">
+
+                <div style="float:right;" class="col-md-2">
                   @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->perfil_id != 1)
-                    <a class="btn btn-primary" style="float:right; margin-top:20px;" href="{{ route("objetivo.cadastrar" , ['id_aluno'=>$aluno->id])}}">
+                    <a style="float:right; margin-top:20px; margin-left: -50px; background-color: #0398fc; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC" href="{{ route('objetivo.cadastrar' , ['id_aluno'=>$aluno->id])}}">
                       Novo Objetivo
                     </a>
                   @endif
                 </div>
+                <div class="row col-md-4" style="float:right;">
+                  @if(count($objetivosGroupByUser) != 0 || ($termo != "" && count($objetivosGroupByUser) == 0))
+                    <form class="form-horizontal" method="GET" action="{{ route('objetivo.buscar', ['id-aluno' => $aluno->id]) }}">
+
+                      <div id="divBusca" style="margin-top:20px;">
+
+                      <i class="material-icons" style="margin-top:5px;">search</i>
+
+                      @if ($termo == null)
+                        <input id="termo" type="text" autocomplete="off" name="termo" autofocus placeholder="Título ou descrição">
+                      @else
+                        <input id="termo" type="text" autocomplete="off" name="termo" autofocus placeholder="Título ou descrição" value="{{$termo}}">
+                      @endif
+
+                      <button id="btnBusca" type="submit">
+                        Buscar
+                      </button>
+                      </div>
+                    </form>
+                  @endif
+                </div>
               </div>
             </div>
-
-            <div class="row col-md-4">
-              @if(count($objetivosGroupByUser) != 0 || ($termo != "" && count($objetivosGroupByUser) == 0))
-                <form class="form-horizontal" method="GET" action="{{ route("objetivo.buscar", ['id-aluno' => $aluno->id]) }}">
-
-                  <div id="divBusca" style="margin-top:20px;">
-
-                  <i class="material-icons">search</i>
-
-                  @if ($termo == null)
-                    <input id="termo" type="text" autocomplete="off" name="termo" autofocus placeholder="Título ou descrição">
-                  @else
-                    <input id="termo" type="text" autocomplete="off" name="termo" autofocus placeholder="Título ou descrição" value="{{$termo}}">
-                  @endif
-
-                  <button id="btnBusca" type="submit">
-                    Buscar
-                  </button>
-                  </div>
-                </form>
-              @endif
-            </div>
-
           </div>
 
-          <hr style="border-top: 1px solid black;">
+          <hr style="border-top: 1px solid #AAA;">
 
         </div>
 
@@ -71,9 +70,9 @@
           @endif
 
           <div id="tabela_objetivos" class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-bordered">
               <thead>
-                <tr>
+                <tr style="color: #12583C; font-size: 20px">
                   <th><strong>Usuário</strong></th>
                   <th><strong>Perfil</strong></th>
                   <th><strong>Objetivos</strong></th>
@@ -98,17 +97,17 @@
                   ?>
 
                   <tr>
-                    <td style="vertical-align:middle;" data-title="Usuario">{{ $objetivos[0]['user']['name']}}</td>
-                    <td style="vertical-align:middle" data-title="Perfil">{{ $perfil }}</td>
+                    <td style="vertical-align:middle; color: #12583C" data-title="Usuario"><strong>{{ $objetivos[0]['user']['name']}}</strong></td>
+                    <td style="vertical-align:middle; color: #12583C" data-title="Perfil"><strong>{{ $perfil }}</strong></td>
 
                     @php($temp = 0)
 
-                    <td data-title="Objetivos" class="row col-md-12" style="margin-left:0px">
+                    <td data-title="Objetivos" class="row col-md-8" style="margin-left:0px">
                       @foreach ($objetivos as $objetivo)
-                        <a href="{{ route("objetivo.gerenciar", ['id_objetivo'=>$objetivo['id']]) }}">
+                        <a href="{{ route('objetivo.gerenciar', ['id_objetivo'=>$objetivo['id']]) }}">
                           <!-- $objetivo->cor->hexadecimal -->
-                          <div class="card cartao" style="width: 16rem; height: 16rem; background-color:#12583C">
-                            <div class="card-body" style="height:76%; margin-left: 5%; margin-right: 5%; display: -webkit-flex; display: flex;-webkit-align-items: center;align-items: center;-webkit-justify-content: center;justify-content: center;">
+                          <div class="card cartao" style="width: 20rem; height: 9rem; background-color:#12333C;  margin: 1% -5% 1% 5%;">
+                            <div class="card-body" style="height:76%; margin-left: 5%; margin-right: 5%;margin-bottom: -5%; display: -webkit-flex; display: flex;-webkit-align-items: center;align-items: center;-webkit-justify-content: center;justify-content: center;">
                               <div class="hifen text-center" align="justify">
                                 <font size="3" color="white">
                                   <strong> {{ ucfirst($objetivo['titulo']) }} </strong>
@@ -116,11 +115,13 @@
                                 </font>
                               </div>
                             </div>
-                            <div class="card-footer text-center">
-                              <font size="3" color="white">
-                                <strong> {{ $objetivo['data'] }} </strong>
-                                <br>
-                              </font>
+                            <div style="margin-left: 5%; margin-right: 5%; display: -webkit-flex; display: flex;-webkit-align-items: center;align-items: center;-webkit-justify-content: center;justify-content: center;">
+                              <div class="card-footer text-left">
+                                <font size="3" color="white">
+                                  {{ $objetivo['data'] }}
+                                  <br>
+                                </font>
+                              </div>
                             </div>
                           </div>
                         </a>
