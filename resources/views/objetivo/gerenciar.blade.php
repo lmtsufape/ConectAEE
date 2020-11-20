@@ -11,18 +11,18 @@
 <div class="container" style="color: #12583C">
   <div class="row">
 
-    <div class="panel panel-default" style="margin-top: -20px; padding: 10px 20px;">
+    <div class="panel panel-default" style="margin-top: -20px; padding: 10px 20px;" id="login-card">
 
-      <div class="panel-heading">
-        <div class="row" style="margin-bottom: -20px">
+      <div class="panel-heading" id="login-card">
+        <div class="row" style="margin-bottom: -20px" id="login-card">
 
-          <div class="col-md-6">
+          <div class="col-md-6" id="login-card">
             <h2>
               <strong style="color: #12583C">
                 Gerenciar objetivo
               </strong>
             </h2>
-            <div style="font-size: 14px">
+            <div style="font-size: 14px" id="login-card">
               <a href="{{route('aluno.listar')}}">Início</a>
               > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
               > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
@@ -30,7 +30,7 @@
             </div>
           </div>
 
-          <div class="col-md-6 text-right" style="margin-top:20px">
+          <div class="col-md-6 text-right" style="margin-top:20px" id="login-card">
             @if($objetivo->user->id == \Auth::user()->id && $objetivo->concluido == false)
               <a class="btn btn-primary" href={{ route("objetivo.editar" , ['id_objetivo' => $objetivo->id]) }}>
                 Editar
@@ -47,7 +47,7 @@
               </a>
             @endif
             @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first() != null && $objetivo->user->id != \Auth::user()->id)
-              <a class="btn btn-primary" style="float:right; margin-left: -50px; background-color: #0398fc; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC" href="{{ route("sugestoes.cadastrar" , ['id_objetivo' => $objetivo->id])}}">
+              <a class="btn btn-primary" style="float:right; margin-left: -50px; background-color: #0398fc; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC" href="{{ route('sugestoes.cadastrar' , ['id_objetivo' => $objetivo->id])}}" id="signup">
                 Nova Sugestão
               </a>
             @endif
@@ -58,17 +58,17 @@
         <hr style="border-top: 1px solid #AAA;">
       </div>
 
-      <div class="panel-body">
+      <div class="panel-body" id="login-card">
         @if (\Session::has('success'))
-          <div class="alert alert-success">
+          <div class="alert alert-success" id="login-card">
             <strong>Sucesso!</strong>
             {!! \Session::get('success') !!}
           </div>
         @endif
 
-        <div class="row col-md-12" style="margin-top:-20px;">
+        <div class="row col-md-12" style="margin-top:-20px;" id="login-card">
 
-          <div class="col-md-8">
+          <div class="col-md-8" id="login-card">
             <p>
               <strong>Objetivo: </strong>{{$objetivo->titulo}}
             </p>
@@ -89,7 +89,7 @@
 
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-4" id="login-card">
             <strong>Histórico de Status: </strong> <br>
             <ul>
               @foreach ($objetivo->statusObjetivo as $statusObjetivo)
@@ -109,7 +109,7 @@
 
               <div>
 
-                <div class="col-md-12">
+                <div class="col-md-12" id="login-card">
                   @if($objetivo->user_id == Auth::user()->id)
                   <select id="status" class="form-control" name="status" style="margin-bottom:15px">
                     @foreach($statusesObjetivo as $status)
@@ -125,7 +125,7 @@
                   @endif
                 </div>
 
-                <div class="col-md-12 text-center">
+                <div class="col-md-12 text-center" id="login-card">
                   @if($objetivo->user_id == Auth::user()->id)
                     <button type="submit" class="btn btn-primary" style="width: 100%; margin: 10px 0px; background-color: #6f5; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #6f5; box-shadow: 4px 4px 4px #CCC">
                       Atualizar
@@ -137,22 +137,22 @@
           </div>
         </div>
 
-        <div class="row col-md-12">
+        <div class="row col-md-12" id="login-card">
           <hr style="border-top: 1px solid #AAA;">
-          <div id="atividades">
+          <div id="atividades" id="login-card">
 
-            <div class="panel-heading">
-              <div class="row">
+            <div class="panel-heading" id="login-card">
+              <div class="row" id="login-card">
 
-                <div class="col-md-6">
+                <div class="col-md-6" id="login-card">
                   <h3>
                     <strong>Atividades</strong>
                   </h3>
                 </div>
 
-                <div class="col-md-6 text-right" style="margin-top:20px">
+                <div class="col-md-6 text-right" style="margin-top:20px" id="login-card">
                   @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->perfil_id != 1 && $objetivo->user->id == \Auth::user()->id)
-                    <a class="btn btn-primary" style="float:right; margin-left: -50px; background-color: #0398fc; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC" href="{{ route('atividades.cadastrar' , ['id_objetivo' => $objetivo->id])}}">
+                    <a class="btn btn-primary" style="float:right; margin-left: -50px; background-color: #0398fc; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC" href="{{ route('atividades.cadastrar' , ['id_objetivo' => $objetivo->id])}}" id="signup">
                       Nova Atividade
                     </a>
                   @endif
@@ -161,18 +161,18 @@
 
             </div>
 
-            <div class="panel-body">
+            <div class="panel-body" id="login-card">
 
               @if (\Session::has('atividade'))
-                <div class="alert alert-success">
+                <div class="alert alert-success" id="login-card">
                   <strong>Sucesso!</strong>
                   {!! \Session::get('atividade') !!}
                 </div>
               @endif
 
               @if(count($atividades) != 0)
-                <div id="tabela" class="table-responsive">
-                  <table class="table table-striped" id="table1">
+                <div id="tabela" class="table-responsive" id="login-card">
+                  <table class="table table-bordered" id="table1">
                     <thead>
                       <tr>
                         <th style="width:20%;cursor:pointer;" onclick="sortTable(0, 'table1')">
@@ -210,10 +210,10 @@
 
                         <!-- Modal -->
                         <div class="modal fade" id="modalAtividade{{$atividade->id}}" role="dialog">
-                          <div class="modal-dialog modal-lg panel-default" style="background-color:white; padding: 10px 20px;">
+                          <div class="modal-dialog modal-lg panel-default" style="background-color:white; padding: 10px 20px;" id="login-card">
 
                             <!-- Modal content-->
-                              <div class="modal-header">
+                              <div class="modal-header" id="login-card">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                                 <h2>
@@ -225,9 +225,9 @@
                                 <hr style="border-top: 1px solid black;">
                               </div>
 
-                              <div class="modal-body">
-                                <div class="row">
-                                  <div class="col-md-6">
+                              <div class="modal-body" id="login-card">
+                                <div class="row" id="login-card">
+                                  <div class="col-md-6" id="login-card">
                                     <strong>Título: </strong>{{$atividade->titulo}}
                                     <br>
                                     <strong>Prioridade: </strong>{{$atividade->prioridade}}
@@ -239,13 +239,13 @@
                                     <strong>Data: </strong> {{$atividade->data}}
                                   </div>
 
-                                  <div class="col-md-6" align="justify">
+                                  <div class="col-md-6" align="justify" id="login-card">
                                     <strong>Descrição: </strong>{{$atividade->descricao}}
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="modal-footer">
+                              <div class="modal-footer" id="login-card">
                                 @if($objetivo->user->id == \Auth::user()->id)
                                   @if($atividade->concluido == false)
 
@@ -278,7 +278,7 @@
                   </table>
                 </div>
               @else
-                <div class="alert alert-info">
+                <div class="alert alert-info" id="login-card">
                   <strong>Não há nenhuma atividade cadastrada.</strong>
                 </div>
               @endif
@@ -286,20 +286,20 @@
           </div>
         </div>
 
-        <div class="row col-md-12">
+        <div class="row col-md-12" id="login-card">
           <hr style="border-top: 1px solid #AAA;">
-          <div id="sugestoes">
-            <div class="panel-heading">
-              <div class="row">
-                <div class="col-md-6">
+          <div id="sugestoes" id="login-card">
+            <div class="panel-heading" id="login-card">
+              <div class="row" id="login-card">
+                <div class="col-md-6" id="login-card">
                   <h3>
                     <strong>Sugestões</strong>
                   </h3>
                 </div>
 
-                <div class="col-md-6 text-right" style="margin-top:20px">
+                <div class="col-md-6 text-right" style="margin-top:20px" id="login-card">
                   @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first() != null && $objetivo->user->id != \Auth::user()->id)
-                    <a class="btn btn-primary" style="float:right; margin-left: -50px; background-color: #0398fc; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC" href="{{ route('sugestoes.cadastrar' , ['id_objetivo' => $objetivo->id])}}">
+                    <a class="btn btn-primary" style="float:right; margin-left: -50px; background-color: #0398fc; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC" href="{{ route('sugestoes.cadastrar' , ['id_objetivo' => $objetivo->id])}}" id="signup">
                       Nova Sugestão
                     </a>
                   @endif
@@ -307,18 +307,18 @@
               </div>
             </div>
 
-            <div class="panel-body">
+            <div class="panel-body" id="login-card">
 
               @if (\Session::has('sugestao'))
-                <div class="alert alert-success">
+                <div class="alert alert-success" id="login-card">
                   <strong>Sucesso!</strong>
                   {!! \Session::get('sugestao') !!}
                 </div>
               @endif
 
               @if(count($sugestoes) != 0)
-                <div id="tabela" class="table-responsive">
-                  <table class="table table-striped" id="table2">
+                <div id="tabela" class="table-responsive" id="login-card">
+                  <table class="table table-bordered" id="table2">
                     <thead>
                       <tr>
                         <th style="width:20%;cursor:pointer;" onclick="sortTable(0, 'table2')">
@@ -356,7 +356,7 @@
                   </table>
                 </div>
               @else
-                <div class="alert alert-info">
+                <div class="alert alert-info" id="login-card">
                   <strong>Não há nenhuma atividade cadastrada.</strong>
                 </div>
               @endif
@@ -365,9 +365,9 @@
         </div>
       </div>
 
-      <div class="panel-footer" style="background-color:white">
-        <div class="text-center">
-          <a class="btn btn-secondary" href="{{route('objetivo.listar',$aluno->id)}}">
+      <div class="panel-footer" style="background-color:white" id="login-card">
+        <div class="text-center" id="login-card">
+          <a class="btn btn-secondary" href="{{route('objetivo.listar',$aluno->id)}}" id="menu-a">
             Voltar
           </a>
         </div>

@@ -10,22 +10,22 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12" style="margin-top: -20px;">
-			<div id="perfil" class="panel panel-default" style="width:100%; padding: 10px 20px;">
+			<div  id="login-card" class="panel panel-default" style="width:100%; padding: 10px 20px;">
 
-				<div class="panel-heading">
-	        <div class="row" style="margin-bottom: -20px">
-	          <div class="col-md-6">
+				<div class="panel-heading" id="login-card">
+	        <div class="row" style="margin-bottom: -20px" id="login-card">
+	          <div class="col-md-6" id="login-card">
 	            <h2>
 	              <strong style="color: #12583C">
 	                {{$aluno->nome}}
 	              </strong>
 	            </h2>
-							<div style="font-size: 14px">
-								<a href="{{route('aluno.listar')}}">Início</a>> Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong>
+							<div style="font-size: 14px" id="login-card">
+								<a href="{{route('aluno.listar')}}">Início</a> > Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong>
 							</div>
 	          </div>
 
-	          <div class="col-md-6 text-right" style="margin-top:20px">
+	          <div class="col-md-6 text-right" style="margin-top:20px" id="login-card">
 							<a class="btn btn-primary" style="height: 50px; font-weight: bold; font-size: 20px; background: #0398fc; justify: center" href="{{route('objetivo.listar', ['id_aluno'=>$aluno->id]) }}">
 								Objetivos
 							</a>
@@ -62,9 +62,9 @@
 	        <hr style="border-top: 1px solid #AAA;">
 	      </div>
 
-				<div class="panel-body">
+				<div class="panel-body" id="login-card">
 					@if (\Session::has('success'))
-	          <div class="alert alert-success">
+	          <div class="alert alert-success" id="login-card">
 	            <strong>Sucesso!</strong>
 	            {!! \Session::get('success') !!}
 	          </div>
@@ -76,9 +76,9 @@
 
 					<!-- Informações do Aluno -->
 					<div class="row" style="margin-top: -30px">
-						<div class="col-md-12">
-							<div class="col-md-3">
-								<div class="text-center">
+						<div class="col-md-12" id="login-card">
+							<div class="col-md-3" id="login-card">
+								<div class="text-center" id="login-card">
 									@if($aluno->imagem != null)
 										<img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="border-radius: 60%; height:200px; width:200px; object-fit: cover;">
 										<br/>
@@ -91,7 +91,7 @@
 								<br>
 							</div>
 
-							<div class="col-md-6">
+							<div class="col-md-6" id="login-card">
 								<h4 style="color: #12583C">
 									<?php
 									foreach($gerenciars as $gerenciar){
@@ -135,14 +135,14 @@
 								@endif
 							</div>
 
-							<div class="col-md-3">
+							<div class="col-md-3" id="login-card">
 								<strong style="color: #12583C">Instituições:</strong>
 								<br>
 
 								<ul>
 									@foreach ($aluno->instituicoes as $instituicao)
 										<li>
-											<a href="{{ route('instituicao.ver', ['id_instituiçao'=>$instituicao->id]) }}">{{$instituicao->nome}}</a>
+											<a href="{{ route('instituicao.ver', ['id_instituiçao'=>$instituicao->id]) }}" style="color: #3097D1">{{$instituicao->nome}}</a>
 										</li>
 									@endforeach
 								</ul>
@@ -150,8 +150,8 @@
 							</div>
 						</div>
 
-						<div class="col-md-12">
-							<div class="col-md-9 col-md-offset-3 text-justify">
+						<div class="col-md-12" id="login-card">
+							<div class="col-md-9 col-md-offset-3 text-justify" id="login-card">
 								@if($aluno->observacao != null)
 									<h4 style="color: #12583C">
 									<strong>Observações:</strong> {!! $aluno->observacao !!}
@@ -170,12 +170,12 @@
 						</strong>
 					</h2>
 
-          <div class="row" align="center">
-            <div class="container col-md-12">
+          <div class="row" align="center" id="login-card">
+            <div class="container col-md-12" id="login-card">
               <div class="card-body" style="margin-left: -35px">
-								<div class="col-md-3 mt-3" style="opacity: 0.7;">
+								<div class="col-md-3 mt-3" style="opacity: 0.7;" id="login-card">
 									<a href="{{route('album.cadastrar' , ['id_aluno'=>$aluno->id])}}" data-toggle="tooltip" title="Ver objetivos">
-										<div class="card cartao text-center " style="border-radius: 20px;  width: 240px; height: 240px">
+										<div class="card cartao text-center " style="border-radius: 20px;  width: 230px; height: 230px">
 											<div class="card-body d-flex justify-content-center">
 												<h2 style="margin-top:80px;">
 													<img src="{{asset('images/album.png')}}" style="width:44px; height:44px;">
@@ -188,8 +188,8 @@
 								</div>
                 <?php
                 foreach ($albuns as $album) {?>
-                  <div class="col-md-3 mt-3">
-										<div class="card cartao text-center" style="border-radius: 20px; background: #FFF; width: 240px; height: 240px">
+                  <div class="col-md-3 mt-3" id="login-card">
+										<div class="card cartao text-center" style="border-radius: 20px; background: #FFF; width: 230px; height: 230px" id="login-card">
 											<div class="card-body d-flex justify-content-center" style="border-radius: 23px; background: #EEE; height: 100%">
 												<a href="{{route('album.ver', ['id_album'=>$album->id])}}">
 													<img style="width:100%; object-fit: cover;" src="{{asset('storage/albuns/'.$aluno->id.'/'.$album->fotos[0]->imagem)}}">

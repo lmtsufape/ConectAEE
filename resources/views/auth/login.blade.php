@@ -1,5 +1,5 @@
 @extends('layouts.background_branco')
-@section('title','Entrar')
+@section('title','ConectAEE')
 @section('content')
 
 <div class="row" style="background-color:#12583C; padding:20px;">
@@ -22,8 +22,8 @@
   </div>
 
   <div class="col-md-4">
-    <div class="panel panel-default" style="padding-top:10px; box-shadow: 4px 4px 4px 4px #12443C" >
-      <div class="text-center" style="height:15px;">
+    <div class="panel panel-default" id="login-card-container" style="padding-top:10px; box-shadow: 4px 4px 4px 4px #12443C" >
+      <div class="text-center" style="height:15px;" id="login-card">
         <h2>
           <strong style="color: #12583C">
             Entrar
@@ -31,14 +31,14 @@
         </h2>
       </div>
 
-      <div class="panel-body">
-        <form method="POST" action="{{ route('login') }}">
+      <div class="panel-body" id="login-card">
+        <form method="POST" action="{{ route('login') }}" >
           {{ csrf_field() }}
 
-          <div class="form-group{{ $errors->has('username') || $errors->has('email') ? ' has-error' : '' }}">
+          <div class="form-group{{ $errors->has('username') || $errors->has('email') ? ' has-error' : '' }}" id="login-card" >
             <label for="login" class="col-md-12 control-label text-left">E-mail</label>
 
-            <div class="col-md-12">
+            <div class="col-md-12" id="login-card">
               <input id="login" type="text" class="form-control" name="login" value="{{ old('username') ?: old('email') }}" placeholder="exemplo@email.com" autofocus>
 
               @if ($errors->has('username') || $errors->has('email'))
@@ -49,10 +49,10 @@
             </div>
           </div>
 
-          <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+          <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}" id="login-card" >
             <label for="password" class="col-md-12 control-label">Senha</label>
 
-            <div class="col-md-12">
+            <div class="col-md-12" id="login-card">
               <input id="password" type="password" class="form-control" name="password" placeholder="********">
 
               @if ($errors->has('password'))
@@ -63,9 +63,9 @@
             </div>
           </div>
 
-          <div class="form-group">
-            <div class="col-md-12">
-              <div class="checkbox">
+          <div class="form-group" id="login-card">
+            <div class="col-md-12" id="login-card">
+              <div class="checkbox" id="login-card">
                 <label style="font-size:13px;">
                   <input type="checkbox" name="remember" value="{{ old('remember') ? 'checked' : '' }}">
                   Lembrar e-mail e senha
@@ -75,22 +75,17 @@
                   Entrar
                 </button>
                 <p style="font-size: 13px; margin-bottom: -15px">
-                  <a style="font-size: 13px; font-weight: bold; color: #0398fc" href="{{ route('password.request') }}">
+                  <a style="font-size: 13px; font-weight: bold; color: #0398fc" href="{{ route('password.request') }}" id="login-card">
                     Clique aqui
                   </a>
                   se você esqueceu sua senha.
                 </p>
                 <hr style="border-top: 1px solid #CCC">
                 <p style="font-size: 13px; margin-top: -15px">Clique em Cadastre-se para criar uma conta.</p>
-                <a href="{{ route('register') }}" style="width: 100%; margin: 10px 0px; background-color: #0398fc; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC" class="btn btn-primary">
+                <a href="{{ route('register') }}" style="width: 100%; margin: 10px 0px; background-color: #0398fc; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC" class="btn btn-primary" id="signup">
                   Cadastre-se
                 </a>
               </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-md-10 col-md-offset-1">
             </div>
           </div>
         </form>
@@ -100,8 +95,8 @@
 
 </div>
 
-<div class="row" style="padding:20px; background-color:#FFFFFF;">
-  <div class="col-md-10 col-md-offset-1">
+<div class="row" style="padding:8%; background-color:#FFFFFF;" id="login-bottom">
+  <div class="col-md-10 col-md-offset-1" id="login-bottom">
 
     <div class="col-md-4" style="border: 1px solid; border-radius: 20px; box-shadow: 2px 2px 2px #999; height: 100%">
       <div class="panel panel-default" style="width:100%">

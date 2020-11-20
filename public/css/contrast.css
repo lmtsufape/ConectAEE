@@ -3,8 +3,6 @@
 .contrast,
 .contrast nav,
 .contrast div,
-.contrast li,
-.contrast a,
 .contrast tr,
 .contrast ol,
 .contrast header,
@@ -13,8 +11,46 @@
 .contrast main,
 .contrast aside,
 .contrast article {
-    background: black !important;
+    background: #373f3c !important;
     color: white !important;
+}
+
+.contrast #barra-logos {
+    background: #404845 !important;
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.contrast #login-card {
+    background: #464848 !important; 
+}
+
+.contrast #barra-menu {
+    background: #404845 !important;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+.contrast #login-card-container {
+    background: #464848 !important; 
+    box-shadow: 4px 4px 4px #373f3c !important;
+}
+
+.contrast button {
+    box-shadow: 4px 4px 4px #373f3c !important;
+}
+
+.contrast #signup {
+    box-shadow: 4px 4px 4px #373f3c !important;
+}
+
+.contrast #login-bottom {
+    background: #2d2d2d !important;
+}
+
+.contrast .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+  color: #000;
+  background-color: #aaa;
 }
 
 .contrast h1,
@@ -31,20 +67,19 @@
 .contrast q,
 .contrast i,
 .contrast b,
-.contrast u,
+.contrast a,
 .contrast span {
     color: white !important;
 }
 
-.contrast a{
-    color: yellow !important;
+.contrast #menu-a {
+    color: black !important;
 }
 
-.contrast button,
 .contrast input[type=button],
 .contrast input[type=reset],
 .contrast input[type=submit] {
-    background: black !important;
+    background: #2d2d2d !important;
     color: yellow !important;
     border: none !important;
 }
@@ -62,7 +97,7 @@
 .contrast input[type=datetime-local],
 .contrast textarea,
 .contrast input[type=number] {
-    background: black !important;
+    background: #2d2d2d !important;
     border: 1px solid white !important;
     color: white !important;
 }

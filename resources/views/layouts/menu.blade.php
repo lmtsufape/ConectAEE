@@ -1,4 +1,4 @@
-<nav class="navbar-default" style="background-color: #fff; border-color: #d3e0e9; margin-top: 10px" role="navigation">
+<nav class="navbar-default" style="background: #fff; border-color: #d3e0e9; margin-top: 10px" role="navigation" id="barra-menu">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
       <span class="sr-only">Toggle navigation</span>
@@ -7,10 +7,10 @@
       <span class="icon-bar"></span>
     </button>
   </div>
-  <div class="collapse navbar-collapse">
+  <div class="collapse navbar-collapse" id="barra-menu">
     <!-- logo -->
     <ul class="nav navbar-nav navbar-left">
-      <a href="{{ route('home') }}"><img src="{{asset('images/logo.png')}}" height="50px"></a>
+      <a class="on-contrast-force-white" href="{{ route('home') }}"><img src="{{asset('images/logo.png')}}" height="50px"></a>
     </ul>
 
     <!-- botões -->
@@ -47,12 +47,12 @@
           </a>
           <ul class="dropdown-menu" role="menu">
             <li>
-              <a href="{{ route('aluno.listar') }}">
+              <a href="{{ route('aluno.listar') }}" id="menu-a">
                 Listar
               </a>
             </li>
             <li>
-              <a href="{{ route('aluno.buscar') }}">
+              <a href="{{ route('aluno.buscar') }}" id="menu-a">
                 Cadastrar
               </a>
             </li>
@@ -65,12 +65,12 @@
           </a>
           <ul class="dropdown-menu" role="menu">
             <li>
-              <a href="{{ route('instituicao.listar') }}">
+              <a href="{{ route('instituicao.listar') }}" id="menu-a">
                 Listar
               </a>
             </li>
             <li>
-              <a href="{{ route('instituicao.cadastrar') }}">
+              <a href="{{ route('instituicao.cadastrar') }}" id="menu-a">
                 Cadastrar
               </a>
             </li>
@@ -85,6 +85,7 @@
               <!-- <i class="material-icons">notifications_none</i> -->
             @elseif(gettype(array_search(false, $lidos)) == 'integer')
               Notificacões
+              <span class="caret"></span>
               <!-- <i class="material-icons">notifications</i> -->
               <span class="badge badge-pill" style="position: absolute; top:2px; right:1px; background:red">{{$qtd_naolidos}}</span>
             @else
@@ -136,7 +137,7 @@
               </table>
 
               <li>
-                <a class="text-center" href="{{ route('notificacao.listar') }}">
+                <a class="text-center" href="{{ route('notificacao.listar') }}"  id="menu-a">
                   Ver todas
                 </a>
               </li>
@@ -153,16 +154,16 @@
 
         <li class="dropdown">
           <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color: black">
-            Olá, <strong>{{\Auth::user()->name}}</strong> <span class="caret"></span>
+            Olá, <strong style="color: gray !important">{{\Auth::user()->name}}</strong> <span class="caret"></span>
           </a>
           <ul class="dropdown-menu" role="menu">
             <li>
-              <a href="{{ route('usuario.editar') }}">
+              <a href="{{ route('usuario.editar') }}" id="menu-a">
                 Meu Perfil
               </a>
             </li>
             <li>
-              <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" id="menu-a">
                 Sair
               </a>
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
