@@ -3,10 +3,6 @@
 @section('path','Início')
 
 @section('navbar')
-<a href="{{route('aluno.listar')}}">Início</a>
-> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
-> <a href="{{route('album.listar', $aluno->id) }}"> Álbuns</a>
-> Fotos do Álbum: <strong>{{$album->nome}}</strong>
 @endsection
 
 @section('content')
@@ -14,12 +10,19 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default">
+      <div class="panel panel-default" style="margin-top: -20px; padding: 10px 20px;" id="login-card">
 
-        <div class="panel-heading">
-          <div class="row">
+        <div class="panel-heading" id="login-card">
+          <div class="row" id="login-card">
 
-            <div class="col-md-6">
+            <div class="col-md-6" id="login-card">
+
+              <div style="font-size: 14px" id="login-card">
+                <a href="{{route('aluno.listar')}}">Início</a>
+                > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
+                > <a href="{{route('album.listar', $aluno->id) }}"> Álbuns</a>
+                > Fotos do Álbum: <strong>{{$album->nome}}</strong>
+              </div>
               <h3>
                 <strong>
                   Álbum:
@@ -44,7 +47,7 @@
               @endif
             </div>
 
-            <div class="col-md-6 text-right" style="margin-top:20px">
+            <div class="col-md-6 text-right" style="margin-top:20px" id="login-card">
               @if($album->user->id == \Auth::user()->id)
                 <a class="btn btn-primary" href="{{route("album.editar" , ['id_album'=>$album->id,]) }}">
                   <!-- <i class="material-icons">edit</i> -->
@@ -62,16 +65,16 @@
 
         </div>
 
-        <div class="panel-body">
+        <div class="panel-body" id="login-card">
 
           @if (\Session::has('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success" id="login-card">
               <strong>Sucesso!</strong>
               {!! \Session::get('success') !!}
             </div>
           @endif
 
-          <div class="row" align="center">
+          <div class="row" align="center" id="login-card">
 
             <table id="tabela_albuns">
               <thead>
@@ -132,9 +135,9 @@
 
         </div>
 
-        <div class="panel-footer" style="background-color:white">
-          <div class="text-center">
-            <a class="btn btn-secondary" href="{{route('album.listar', $aluno->id) }}">
+        <div class="panel-footer" style="background-color:white" id="login-card">
+          <div class="text-center" id="login-card">
+            <a class="btn btn-secondary" href="{{route('album.listar', $aluno->id) }}" id="menu-a">
               Voltar
             </a>
           </div>
