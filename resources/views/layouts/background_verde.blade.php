@@ -82,8 +82,6 @@
         <!-- <button class="btn-info" onClick="fonte('a');">A+</button>
         <button class="btn-info" onClick="fonte('d');">A-</button> -->
 
-      @include('layouts.menu')
-
       <div id="page-container" style="background-color:#12583C">
         <div id="content-wrap">
           @yield('content')
