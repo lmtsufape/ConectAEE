@@ -13,7 +13,7 @@
         <div class="panel panel-default">
           <div class="panel-heading" id="login-card">
             <h2>
-              <strong>
+              <strong style="color: #12583C">
                 Editar Aluno
               </strong>
               <div style="font-size: 14px" id="login-card">
