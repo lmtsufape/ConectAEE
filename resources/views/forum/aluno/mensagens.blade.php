@@ -1,25 +1,27 @@
 @extends('layouts.principal')
 @section('title','Fórum')
 @section('navbar')
-<a href="{{route('aluno.listar')}}">Início</a>
-> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
-> Fórum
 @endsection
 @section('content')
 
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-heading" id="forum">
+      <div class="panel panel-default" style="margin-top: -20px; padding: 10px 20px;" id="login-card">
+        <div class="panel-heading" id="login-card">
           <h3>
             Fórum - <strong>{{$aluno->nome}}</strong>
           </h3>
+          <div style="font-size: 14px" id="login-card">
+            <a href="{{route('aluno.listar')}}">Início</a>
+            > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
+            > Fórum
+          </div>
         </div>
 
-        <div class="panel-body" style="background-color: #e5ddd5">
+        <div class="panel-body" style="background-color: #e5ddd5" id="login-card">
           @if ($errors->has('texto'))
-          <div style="margin-left: 1%; margin-right: 1%" class="alert alert-danger">
+          <div style="margin-left: 1%; margin-right: 1%" class="alert alert-danger" id="login-card">
             <strong>Erro!</strong>
             {{ $errors->first('texto') }}
           </div>
@@ -28,16 +30,16 @@
             @csrf
             <input name="forum_id" type="text" value={{$aluno->forum->id}} hidden>
 
-            <div style="margin: 1%" class="form-group">
-              <textarea name="mensagem" style="width:75%; display: inline" id="summer" type="text" class="form-control summernote"></textarea>
+            <div style="margin: 1%" class="form-group" id="login-card">
+              <textarea name="mensagem" style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px; display: inline" id="" type="text" class="form-control summernote"></textarea>
               <br>
               <button type="submit" class="btn btn-primary" style="width:100%">Enviar</button>
             </div>
           </form>
         </div>
 
-        <div class="panel-footer" style="background-color: #e5ddd5;">
-          <div class="form-group">
+        <div class="panel-footer" style="background-color: #e5ddd5;" id="login-card">
+          <div class="form-group" id="login-card">
             @foreach($mensagens as $mensagem)
               @if($mensagem->user_id == \Auth::user()->id)
                 <div style="text-align: right; width: 80%; margin-left: 20%" id='user-message'>
