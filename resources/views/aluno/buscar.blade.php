@@ -1,7 +1,6 @@
 @extends('layouts.principal')
 @section('title','Buscar alunos')
 @section('navbar')
-<a href="{{route('aluno.listar')}}">Início</a>
 > Buscar
 @endsection
 @section('content')
@@ -14,6 +13,9 @@
             <strong>
               Buscar Aluno
             </strong>
+            <div style="font-size: 14px" id="login-card">
+              <a href="{{route('aluno.listar')}}">Início</a>
+            </div>
           </h2>
 
           <hr style="border-top: 1px solid black;">
