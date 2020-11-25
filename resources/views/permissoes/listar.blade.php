@@ -1,29 +1,31 @@
 @extends('layouts.principal')
 @section('title','Listar autorizações')
 @section('navbar')
-<a href="{{route('aluno.listar')}}">Início</a>
-> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
-> Autorizações
 @endsection
 @section('content')
 
 @php($atual = App\Gerenciar::where('user_id','=',Auth::user()->id)->where('aluno_id','=',$aluno->id)->first())
 
-<div class="container">
+<div class="container" style="color: #12583C">
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <div class="row">
-            <div class="col-md-12">
-              <div style="width: 100%; margin-left: 0%;" class="row">
-                <div style="width: 50%; float: left; margin-left:-20px;" class="col-md-6">
-                  <h3>
-                    <strong>Autorizações</strong>
-                  </h3>
+      <div class="panel panel-default" style="margin-top: -20px; padding: 10px 20px;" id="login-card">
+        <div class="panel-heading" id="login-card">
+          <div class="row" id="login-card">
+            <div class="col-md-12" id="login-card">
+              <div style="width: 100%; margin-left: 0%;" class="row" id="login-card">
+                <div style="width: 50%; float: left; margin-left:-20px;" class="col-md-6" id="login-card">
+                  <h2>
+                    <strong style="color: #12583C">Autorizações</strong>
+                  </h2>
+                  <div style="font-size: 14px" id="login-card">
+                    <a href="{{route('aluno.listar')}}">Início</a>
+                    > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
+                    > Autorizações
+                  </div>
                 </div>
-                <div style="width:50%; float:right; margin-right:-25px;margin-top:20px" class="col-md-6 text-right">
-                  <a class="btn btn-primary" style="width:14rem" href="{{ route("aluno.permissoes.cadastrar",['id_aluno' => $aluno->id])}}">
+                <div style="width:50%; float:right; margin-right:-25px;margin-top:20px" class="col-md-6 text-right" id="login-card">
+                  <a class="btn btn-primary" style="float:right; margin-left: -50px; background-color: #0398fc; color: white; font-weight: bold; font-size: 13px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC" id="signup" href="{{ route("aluno.permissoes.cadastrar",['id_aluno' => $aluno->id])}}">
                     Nova Autorização
                   </a>
                 </div>
@@ -34,17 +36,17 @@
           <hr style="border-top: 1px solid black;">
         </div>
 
-        <div class="panel-body">
+        <div class="panel-body" id="login-card">
           @if (\Session::has('Success'))
             <br>
-            <div class="alert alert-success">
+            <div class="alert alert-success" id="login-card">
               <strong>Sucesso!</strong>
               {!! \Session::get('Success') !!}
             </div>
           @endif
           @if (\Session::has('Removed'))
             <br>
-            <div class="alert alert-success">
+            <div class="alert alert-success" id="login-card">
               <strong>Removido!</strong>
               {!! \Session::get('Removed') !!}
             </div>
@@ -112,9 +114,9 @@
           </div>
         </div>
 
-        <div class="panel-footer" style="background-color:white">
-          <div class="text-center">
-            <a class="btn btn-secondary" href="{{route('aluno.gerenciar',$aluno->id)}}#perfil">
+        <div class="panel-footer" style="background-color:white" id="login-card">
+          <div class="text-center" id="login-card">
+            <a class="btn btn-secondary" href="{{route('aluno.gerenciar',$aluno->id)}}#perfil" id="menu-a">
               Voltar
             </a>
           </div>
