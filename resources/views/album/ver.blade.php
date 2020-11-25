@@ -137,7 +137,7 @@
 
         <div class="panel-footer" style="background-color:white" id="login-card">
           <div class="text-center" id="login-card">
-            <a class="btn btn-secondary" href="{{route('album.listar', $aluno->id) }}" id="menu-a">
+            <a class="btn btn-secondary" href="{{route('aluno.gerenciar',$aluno->id) }}" id="menu-a">
               Voltar
             </a>
           </div>
