@@ -1,31 +1,33 @@
 @extends('layouts.principal')
 @section('title','Ver sugestão')
 @section('navbar')
-<a href="{{route('aluno.listar')}}">Início</a>
-> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
-> <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
-> <a href="{{route('objetivo.gerenciar',[$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
-> <strong>Sugestão</strong>
 @endsection
 
 @section('content')
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default">
+      <div class="panel panel-default" style="margin-top: -20px; padding: 10px 20px;" id="login-card">
 
-        <div class="panel-heading">
-          <div class="row">
+        <div class="panel-heading" id="login-card">
+          <div class="row" id="login-card">
 
-            <div class="col-md-6">
+            <div class="col-md-6" id="login-card">
               <h2>
                 <strong>
                   Gerenciar sugestão
                 </strong>
+                <div style="font-size: 14px" id="login-card">
+                  <a href="{{route('aluno.listar')}}">Início</a>
+                  > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
+                  > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
+                  > <a href="{{route('objetivo.gerenciar',[$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
+                  > <strong>Sugestão</strong>
+                </div>
               </h2>
             </div>
 
-            <div class="col-md-6 text-right" style="margin-top:20px">
+            <div class="col-md-6 text-right" style="margin-top:20px" id="login-card">
               @if($sugestao->user->id == \Auth::user()->id)
                 <a class="btn btn-primary" href={{ route("sugestao.editar" , ['id_sugestao' => $sugestao->id]) }}>
                   Editar
@@ -39,58 +41,58 @@
 
           </div>
 
-          <hr style="border-top: 1px solid black;">
+          <hr style="border-top: 1px solid #AAA;">
         </div>
 
-        <div class="panel-body">
+        <div class="panel-body" id="login-card">
 
           @if (\Session::has('success'))
             <br>
-            <div class="alert alert-success">
+            <div class="alert alert-success" id="login-card">
               <strong>Sucesso!</strong>
               {!! \Session::get('success') !!}
             </div>
           @endif
 
-          <div class="row col-md-12" style="margin-left:0px; margin-top:-20px;">
+          <div class="row col-md-12" style="margin-left:0px; margin-top:-20px;" id="login-card">
             <h3>
               <strong>Sugestão: </strong>{{$sugestao->titulo}}
             </h3>
-            <hr style="border-top: 1px solid black;">
+            <hr style="border-top: 1px solid #AAA;">
 
             <strong>Data: </strong> {{$sugestao->data}}
             <br>
             <strong>Autor: </strong> {{$sugestao->user->name}}
             <br>
-            <div class="text-justify">
+            <div class="text-justify" id="login-card">
               <strong>Descrição: </strong>{{$sugestao->descricao}}
             </div>
           </div>
 
-          <div class="row col-md-12" style="margin-left:0px;">
+          <div class="row col-md-12" style="margin-left:0px;" id="login-card">
             @if (\Session::has('feedback'))
               <br><br>
-              <div class="alert alert-success">
+              <div class="alert alert-success" id="login-card">
                 <strong>Sucesso!</strong>
                 {!! \Session::get('feedback') !!}
               </div>
             @endif
 
+
+            <div class="col-md-12" id="login-card">
+
+              <hr style="border-top: 1px solid #AAA;">
             <h3>
               <strong>Comentários:</strong>
             </h3>
-
-            <div class="col-md-12">
-
-              <hr style="border-top: 1px solid black;">
 
               <form class="form-horizontal" method="POST" action="{{ route("feedbacks.criar") }}">
                 {{ csrf_field() }}
 
                 <input hidden type="text" name="id_sugestao" value="{{$sugestao->id}}">
 
-                <div class="form-group{{ $errors->has('feedback') ? ' has-error' : '' }}">
-                  <textarea name="feedback" id="summer" type="text" class="form-control summernote"></textarea>
+                <div class="form-group{{ $errors->has('feedback') ? ' has-error' : '' }}" id="login-card">
+                  <textarea name="feedback" style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px;" id="" type="text" class="form-control summernote"></textarea>
 
                   @if ($errors->has('feedback'))
                     <span class="help-block">
@@ -106,8 +108,8 @@
 
               <br>
 
-              <div align="center">
-                <div class="card">
+              <div align="center" id="login-card">
+                <div class="card" id="login-card">
                   @foreach($feedbacks as $key => $feedback)
                     <div class="card-body" align="justify" style="background-color:#eeeeee; padding:1rem;">
                       <span class="">
@@ -156,9 +158,9 @@
           </div>
         </div>
 
-        <div class="panel-footer" style="background-color:white">
-          <div class="text-center">
-            <a class="btn btn-secondary" href="{{route('objetivo.gerenciar',[$objetivo->id])}}">
+        <div class="panel-footer" style="background-color:white" id="login-card">
+          <div class="text-center" id="login-card">
+            <a class="btn btn-secondary" href="{{route('objetivo.gerenciar',[$objetivo->id])}}" id="menu-a">
               Voltar
             </a>
           </div>

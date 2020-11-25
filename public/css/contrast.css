@@ -42,6 +42,12 @@
 
 .contrast #signup {
     box-shadow: 4px 4px 4px #373f3c !important;
+    background: #004b7c !important;
+    border-color: #004b7c !important;
+}
+
+.contrast #shadow-dark {
+    box-shadow: 10px 10px 4px #373f3c !important;
 }
 
 .contrast #login-bottom {
