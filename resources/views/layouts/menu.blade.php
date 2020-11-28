@@ -1,5 +1,5 @@
-<nav class="navbar-default" style="background: #fff; border-color: #d3e0e9; margin-top: 10px" role="navigation" id="barra-menu">
-  <div class="navbar-header">
+<nav class="navbar-default" style="background: #fff; border-color: #d3e0e9; margin-top: 10px;" role="navigation" id="barra-menu">
+  <div class="navbar-header" id="barra-logos">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
       <span class="sr-only">Toggle navigation</span>
       <span class="icon-bar"></span>
@@ -23,22 +23,21 @@
         @endphp
 
       <li class="dropdown">
-        <a onclick="contraste()" id="altocontraste" data-toggle="tooltip" title="Contraste">
+        <a onclick="contraste()" id="altocontraste" data-toggle="tooltip" title="Contraste" style="height: 50px;">
           <img class="on-contrast-force-white" src="{{asset('images/contrasteBlack.png')}}" style="height:30px; margin-top: -5px">
         </a>
       </li>
       <li class="dropdown">
-        <a onclick="" id="altocontraste" data-toggle="tooltip" title="aumentar fonte">
-          <img class="on-contrast-force-white" src="{{asset('images/increase-font-size.png')}}" style="height: 30px; margin-top: -5px" align = "right">
+        <a onclick="" id="altocontraste" data-toggle="tooltip" title="aumentar fonte" style="height: 50px;">
+          <img class="on-contrast-force-white" src="{{asset('images/increase-font-size.png')}}" style="height: 30px; margin-top: -5px">
         </a>
       </li>
-      <li class="dropdown" style="margin-right:55px">
-        <a onclick="" id="altocontraste" data-toggle="tooltip" title="reduzir fonte">
-          <img class="on-contrast-force-white" src="{{asset('images/reduce-font-size.png')}}" style="height: 30px; margin-top: -5px;" align = "right">
+      <li class="dropdown" style="margin-right:0px">
+        <a onclick="" id="altocontraste" data-toggle="tooltip" title="reduzir fonte" style="height: 50px;">
+          <img class="on-contrast-force-white" src="{{asset('images/reduce-font-size.png')}}" style="height: 30px; margin-top: -5px;">
         </a>
       </li>
 
-    <ul class="nav navbar-nav" >
       @if(Auth::check() && Auth::user()->cadastrado)
         <li class="dropdown">
           <a  data-toggle="dropdown" role="button" area-expanded="false" class="dropdown-toggle" style="color: black">
@@ -77,7 +76,6 @@
           </ul>
         </li>
       @endif
-    </ul>
         <li class="dropdown">
           <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color: black">
             @if($lidos == null)
@@ -90,6 +88,7 @@
               <span class="badge badge-pill" style="position: absolute; top:2px; right:1px; background:red">{{$qtd_naolidos}}</span>
             @else
               Notificações
+            <span class="caret"></span>
               <!-- <i class="material-icons">notifications_none</i> -->
             @endif
           </a>

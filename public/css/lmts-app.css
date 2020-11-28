@@ -150,6 +150,12 @@ div.hifen {
   border-radius: 20px;
 }
 
+.navbar-default .navbar-nav > .dropdown > a:focus, .navbar-default .navbar-nav > .dropdown > a:hover:focus-within {
+  color: #fff;
+  background-color: #aaa;
+  border-radius: 20px;
+}
+
 /* Select2 Selects CSS - Start */
 .select2-container--bootstrap .select2-selection--single .select2-selection__placeholder  {
   color: #555;
@@ -201,7 +207,6 @@ margin-bottom: 12px;
 }
 
 @media (max-width: 1024px) {
-#barra-logos{display: none;}
 .btn-toggle{display: block;}
 }
 
