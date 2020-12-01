@@ -61,11 +61,11 @@
                       <a href="{{ route("home") }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="50px" align="left" ></a>
                   @endif
 
-                  <a onclick="" id="altocontraste" data-toggle="tooltip" title="reduzir fonte">
+                  <a onclick="fonte('d')" id="altocontraste" data-toggle="tooltip" title="reduzir fonte">
                     <img class="on-contrast-force-white" src="{{asset('images/reduce-font-size.png')}}" style = "margin-left: 30px; margin-top:20px " height="30" align = "right">
                   </a>
 
-                  <a onclick="" id="altocontraste" data-toggle="tooltip" title="aumentar fonte">
+                  <a onclick="fonte('a')" id="altocontraste" data-toggle="tooltip" title="aumentar fonte">
                     <img class="on-contrast-force-white" src="{{asset('images/increase-font-size.png')}}" style = "margin-left: 30px; margin-top:20px " height="30" align = "right">
                   </a>
 

@@ -10,7 +10,25 @@
   <div class="collapse navbar-collapse" id="barra-menu">
     <!-- logo -->
     <ul class="nav navbar-nav navbar-left">
-      <a class="on-contrast-force-white" href="{{ route('home') }}"><img src="{{asset('images/logo.png')}}" height="50px"></a>
+      <li style="margin-top: -18px">
+        <a class="on-contrast-force-white" href="{{ route('home') }}"><img src="{{asset('images/logo.png')}}" height="50px"></a>
+      </li>
+
+      <li class="dropdown">
+        <a onclick="contraste()" id="altocontraste" data-toggle="tooltip" title="Contraste" style="height: 50px;">
+          <img class="on-contrast-force-white" src="{{asset('images/contrasteBlack.png')}}" style="height:30px; margin-top: -5px">
+        </a>
+      </li>
+      <li class="dropdown">
+        <a onclick="fonte('a')" id="altocontraste" data-toggle="tooltip" title="Aumentar fonte" style="height: 50px;">
+          <img class="on-contrast-force-white" src="{{asset('images/increase-font-size.png')}}" style="height: 30px; margin-top: -5px">
+        </a>
+      </li>
+      <li class="dropdown" style="margin-right:0px">
+        <a onclick="fonte('d')" id="altocontraste" data-toggle="tooltip" title="Reduzir fonte" style="height: 50px;">
+          <img class="on-contrast-force-white" src="{{asset('images/reduce-font-size.png')}}" style="height: 30px; margin-top: -5px;">
+        </a>
+      </li>
     </ul>
 
     <!-- botões -->
@@ -22,21 +40,6 @@
           $qtd_naolidos = count(array_keys($lidos, false));
         @endphp
 
-      <li class="dropdown">
-        <a onclick="contraste()" id="altocontraste" data-toggle="tooltip" title="Contraste" style="height: 50px;">
-          <img class="on-contrast-force-white" src="{{asset('images/contrasteBlack.png')}}" style="height:30px; margin-top: -5px">
-        </a>
-      </li>
-      <li class="dropdown">
-        <a onclick="" id="altocontraste" data-toggle="tooltip" title="aumentar fonte" style="height: 50px;">
-          <img class="on-contrast-force-white" src="{{asset('images/increase-font-size.png')}}" style="height: 30px; margin-top: -5px">
-        </a>
-      </li>
-      <li class="dropdown" style="margin-right:0px">
-        <a onclick="" id="altocontraste" data-toggle="tooltip" title="reduzir fonte" style="height: 50px;">
-          <img class="on-contrast-force-white" src="{{asset('images/reduce-font-size.png')}}" style="height: 30px; margin-top: -5px;">
-        </a>
-      </li>
 
       @if(Auth::check() && Auth::user()->cadastrado)
         <li class="dropdown">
