@@ -77,14 +77,14 @@
           @endif
 
           <!-- Cards Alunos -->
-          <div class="row" align="center">
-            <div class="container col-md-12" id="login-card">
-              <div class="card-body">
+          <div class="row" align="center" id="login-card">
+            <div class="col-md-12" id="login-card">
+              <div class="card-body" id="login-card">
                 <?php
                 foreach ($alunos as $aluno) {?>
                   <div class="col-md-3 mt-3" id="login-card">
                     <a href="{{ route('aluno.gerenciar', ['id_aluno'=>$aluno->id]) }}#perfil" style="display: block;">
-                      <div style="padding: 15px; margin: 10px; border-radius: 20px; max-height: 270px; box-shadow: 4px 4px 4px 4px #CCC;" id="shadow-dark">
+                      <div style="padding: 15px; margin: 10px; border-radius: 20px; max-height: 270px; max-width: 300px; min-width: 100px; box-shadow: 4px 4px 4px 4px #CCC;" id="shadow-dark">
                         @if($aluno->imagem != null)
                           <img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="border-radius: 60%; width:130px; height: 130px; object-fit: cover;" class="card-img-top img-responsive" >
                         @else

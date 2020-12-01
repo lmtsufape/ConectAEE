@@ -75,7 +75,7 @@
 					@endphp
 
 					<!-- Informações do Aluno -->
-					<div class="row" style="margin-top: -30px">
+					<div class="row" style="margin-top: -30px" id="login-card">
 						<div class="col-md-12" id="login-card">
 							<div class="col-md-3" id="login-card">
 								<div class="text-center" id="login-card">
@@ -248,7 +248,7 @@
 					<input name="forum_id" type="text" value={{$aluno->forum->id}} hidden>
 
 					<div style="margin: 1%" class="form-group">
-						<textarea name="mensagem" style="width:75%; display: inline" id="summer" type="text" class="form-control summernote"></textarea>
+						<textarea name="mensagem" style="display: inline; width:100%; min-width: 100%; max-width: 100%;min-height: 80px;" type="text" class="form-control summernote"></textarea>
 						<br>
 
 						@if ($errors->has('mensagem'))
