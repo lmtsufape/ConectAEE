@@ -1,65 +1,67 @@
 @extends('layouts.principal')
 @section('title','Listar Instituições')
 @section('navbar')
-<a href="{{route('aluno.listar')}}">Início</a>
-> <a href="{{route('instituicao.listar')}}">Instituições</a>
-> Listar
 @endsection
 @section('content')
-<div class="container">
+<div class="container" style="color: #12583C">
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <div class="row">
-            <div class="col-md-8">
-              <div style="width: 100%; margin-left: 0%;" class="row">
-                <div style="width: 50%; float: left; margin-left:-20px;" class="col-md-6">
+      <div class="panel panel-default" style="padding: 10px 20px;" id="login-card">
+
+        <div class="panel-heading" id="login-card">
+          <div class="row" style="margin-bottom: -20px">
+            <div class="col-md-12" id="login-card">
+              <div style="width: 100%; margin-left: 0%;" class="row" id="login-card">
+                <div style="float: left;" class="col-md-6" id="login-card">
                   <h2>
-                    <strong>
+                    <strong style="color: #12583C">
                       Instituições
                     </strong>
                   </h2>
+                  <div style="font-size: 14px" id="login-card">
+                    <a href="{{route('aluno.listar')}}">Início</a>
+                    > Instituições
+                  </div>
                 </div>
-                <div style="width:50%; float:right; margin-right:-25px;" class="col-md-6">
-                  <a class="btn btn-primary" style="float:right; margin-top:20px;" href="{{ route("instituicao.cadastrar")}}">
+                <div style="float:right;" class="col-md-3" id="login-card">
+                  <a class="btn btn-primary" style="float:right; margin-top:20px; background-color: #0398fc; color: white; font-weight: bold; font-size: 14px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC"  id="signup" href="{{ route('instituicao.cadastrar')}}">
                     Nova Instituição
                   </a>
+                </div>
+                <div class="row col-md-3" style="float:right; " id="login-card">
+                  @if(count($instituicoes) != 0 || $termo != null)
+                    <form class="form-horizontal" method="GET" action="{{ route("instituicao.buscar") }}">
+
+                      <div id="divBusca" style="margin-top:20px;" id="login-card">
+
+                      <i class="material-icons" style="margin-top:5px;">search</i>
+
+                      @if ($termo == null)
+                        <input id="termo" type="text" autocomplete="off" name="termo" autofocus placeholder="Nome ou endereço">
+                      @else
+                        <input id="termo" type="text" autocomplete="off" name="termo" autofocus placeholder="Nome ou endereço" value="{{$termo}}">
+                      @endif
+
+                      <button id="btnBusca" type="submit">
+                        Buscar
+                      </button>
+                      </div>
+                    </form>
+                  @endif
                 </div>
               </div>
             </div>
 
-            <div class="row col-md-4">
-              @if(count($instituicoes) != 0 || $termo != null)
-                <form class="form-horizontal" method="GET" action="{{ route("instituicao.buscar") }}">
-
-                  <div id="divBusca" style="margin-top:20px;">
-
-                  <i class="material-icons">search</i>
-
-                  @if ($termo == null)
-                    <input id="termo" type="text" autocomplete="off" name="termo" autofocus placeholder="Nome ou endereço">
-                  @else
-                    <input id="termo" type="text" autocomplete="off" name="termo" autofocus placeholder="Nome ou endereço" value="{{$termo}}">
-                  @endif
-
-                  <button id="btnBusca" type="submit">
-                    Buscar
-                  </button>
-                  </div>
-                </form>
-              @endif
-            </div>
           </div>
 
-          <hr style="border-top: 1px solid black;">
+          <hr style="border-top: 1px solid #AAA;">
         </div>
 
-        <div class="panel-body">
+        <div class="panel-body" id="login-card">
 
           @if (\Session::has('success'))
             <br>
-            <div class="alert alert-success">
+            <div class="alert alert-success" id="login-card">
               <strong>Sucesso!</strong>
               {!! \Session::get('success') !!}
             </div>
@@ -102,9 +104,9 @@
           </div>
         </div>
 
-        <div class="panel-footer" style="background-color:white">
-          <div class="text-center">
-            <a class="btn btn-secondary" href="{{route('aluno.listar')}}">
+        <div class="panel-footer" style="background-color:white" id="login-card">
+          <div class="text-center" id="login-card">
+            <a class="btn btn-secondary" href="{{route('aluno.listar')}}" id="menu-a">
               Voltar
             </a>
           </div>

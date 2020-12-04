@@ -1,5 +1,5 @@
-<nav class="navbar-default" style="background-color: #12583c; border-color: #d3e0e9" role="navigation">
-  <div class="navbar-header">
+<nav class="navbar-default" style="background: #fff; border-color: #d3e0e9; margin-top: 10px;" role="navigation" id="barra-menu">
+  <div class="navbar-header" id="barra-logos">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
       <span class="sr-only">Toggle navigation</span>
       <span class="icon-bar"></span>
@@ -7,61 +7,32 @@
       <span class="icon-bar"></span>
     </button>
   </div>
-  <div class="collapse navbar-collapse" style="margin-left:5%">
-    <ul class="nav navbar-nav" >
-      @if(Auth::check() && Auth::user()->cadastrado)
-        <li class="dropdown">
-          <a class="menu-principal" href="{{ route('home') }}">Início</a>
-        </li>
-        <!-- <li class="dropdown">
-          <a class="menu-principal" href="#" id="altocontraste" onclick="contraste()">Contraste</a>
-        </li> -->
-      @elseif(Auth::check() && !Auth::user()->cadastrado)
-        <li class="dropdown">
-          <a class="menu-principal" href="{{ route('usuario.completarCadastro') }}">Início</a>
-        </li>
-      @endif
+  <div class="collapse navbar-collapse" id="barra-menu">
+    <!-- logo -->
+    <ul class="nav navbar-nav navbar-left">
+      <li style="margin-top: -18px">
+        <a class="on-contrast-force-white" href="{{ route('home') }}"><img src="{{asset('images/logo.png')}}" height="50px"></a>
+      </li>
+
+      <li class="dropdown">
+        <a onclick="contraste()" id="altocontraste" data-toggle="tooltip" title="Contraste" style="height: 50px;">
+          <img class="on-contrast-force-white" src="{{asset('images/contrasteBlack.png')}}" style="height:30px; margin-top: -5px">
+        </a>
+      </li>
+      <li class="dropdown">
+        <a onclick="fonte('a')" id="altocontraste" data-toggle="tooltip" title="Aumentar fonte" style="height: 50px;">
+          <img class="on-contrast-force-white" src="{{asset('images/increase-font-size.png')}}" style="height: 30px; margin-top: -5px">
+        </a>
+      </li>
+      <li class="dropdown" style="margin-right:0px">
+        <a onclick="fonte('d')" id="altocontraste" data-toggle="tooltip" title="Reduzir fonte" style="height: 50px;">
+          <img class="on-contrast-force-white" src="{{asset('images/reduce-font-size.png')}}" style="height: 30px; margin-top: -5px;">
+        </a>
+      </li>
     </ul>
-    <ul class="nav navbar-nav" >
-      @if(Auth::check() && Auth::user()->cadastrado)
-        <li class="dropdown">
-          <a href="{{ route('aluno.listar') }}">
-            Alunos
-            <!-- <span class="caret"></span> -->
-          </a>
-          <!-- <ul class="dropdown-menu" role="menu">
-            <li>
-              <a href="{{ route('aluno.listar') }}">
-                Listar
-              </a>
-            </li>
-            <li>
-              <a href="{{ route('aluno.buscar') }}">
-                Buscar por matrícula
-              </a>
-            </li>
-          </ul> -->
-        </li>
-        <li class="dropdown">
-          <a href="{{ route('instituicao.listar') }}">
-            Instituições
-          </a>
-          <!-- <ul class="dropdown-menu" role="menu">
-            <li>
-              <a href="{{ route('instituicao.listar') }}">
-                Listar
-              </a>
-            </li>
-            <li>
-              <a href="{{ route('instituicao.cadastrar') }}">
-                Cadastrar
-              </a>
-            </li>
-          </ul> -->
-        </li>
-      @endif
-    </ul>
-    <ul class="nav navbar-nav navbar-right" style="margin-right:5%">
+
+    <!-- botões -->
+    <ul class="nav navbar-nav navbar-right">
       @if(Auth::check() && Auth::user()->cadastrado)
         @php
           $notificacoes = Auth::user()->notificacoes;
@@ -69,22 +40,58 @@
           $qtd_naolidos = count(array_keys($lidos, false));
         @endphp
 
+
+      @if(Auth::check() && Auth::user()->cadastrado)
         <li class="dropdown">
-          <a onclick="contraste()" id="altocontraste" data-toggle="tooltip" title="Contraste">
-            <img class="on-contrast-force-white" src="{{asset('images/contraste.png')}}" style="height:25px">
+          <a  data-toggle="dropdown" role="button" area-expanded="false" class="dropdown-toggle" style="color: black">
+            Alunos
+            <span class="caret"></span>
           </a>
+          <ul class="dropdown-menu" role="menu">
+            <li>
+              <a href="{{ route('aluno.listar') }}" id="menu-a">
+                Listar
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('aluno.buscar') }}" id="menu-a">
+                Cadastrar
+              </a>
+            </li>
+          </ul>
         </li>
         <li class="dropdown">
-          <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+          <a data-toggle="dropdown" role="button" area-expanded="false" class="dropdown-toggle" style="color: black">
+            Instituições
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li>
+              <a href="{{ route('instituicao.listar') }}" id="menu-a">
+                Listar
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('instituicao.cadastrar') }}" id="menu-a">
+                Cadastrar
+              </a>
+            </li>
+          </ul>
+        </li>
+      @endif
+        <li class="dropdown">
+          <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color: black">
             @if($lidos == null)
-              Notificacões
+              Notificações
               <!-- <i class="material-icons">notifications_none</i> -->
             @elseif(gettype(array_search(false, $lidos)) == 'integer')
               Notificacões
+              <span class="caret"></span>
               <!-- <i class="material-icons">notifications</i> -->
               <span class="badge badge-pill" style="position: absolute; top:2px; right:1px; background:red">{{$qtd_naolidos}}</span>
             @else
-              Notificacões
+              Notificações
+            <span class="caret"></span>
               <!-- <i class="material-icons">notifications_none</i> -->
             @endif
           </a>
@@ -132,7 +139,7 @@
               </table>
 
               <li>
-                <a class="text-center" href="{{ route('notificacao.listar') }}">
+                <a class="text-center" href="{{ route('notificacao.listar') }}"  id="menu-a">
                   Ver todas
                 </a>
               </li>
@@ -148,17 +155,17 @@
         </li>
 
         <li class="dropdown">
-          <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-            {{\Auth::user()->name}} <span class="caret"></span>
+          <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color: black">
+            Olá, <strong style="color: gray !important">{{\Auth::user()->name}}</strong> <span class="caret"></span>
           </a>
           <ul class="dropdown-menu" role="menu">
             <li>
-              <a href="{{ route('usuario.editar') }}">
+              <a href="{{ route('usuario.editar') }}" id="menu-a">
                 Meu Perfil
               </a>
             </li>
             <li>
-              <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" id="menu-a">
                 Sair
               </a>
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -189,8 +196,8 @@
             <img class="on-contrast-force-white" src="{{asset('images/contraste.png')}}" style="height:25px">
           </a>
         </li>
-        <li><a class="menu-principal" href="{{ route('login') }}">Entrar</a></li>
-        <li><a class="menu-principal" href="{{ route('register') }}">Cadastrar</a></li>
+        <li><a class="menu-principal" href="{{ route('login') }}" style="color: black">Entrar</a></li>
+        <li><a class="menu-principal" href="{{ route('register') }}" style="color: black">Cadastrar</a></li>
       @endif
     </ul>
   </div>

@@ -1,50 +1,70 @@
 @extends('layouts.principal')
 @section('title','Perfil de aluno')
-
-@section('navbar')
+<!-- 
 <a href="{{route('aluno.listar')}}">Início</a>
 > Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong>
-@endsection
+@section('navbar')
+@endsection -->
 
 @section('content')
 <div class="container">
 	<div class="row">
-		<div class="col-md-12">
-			<div id="perfil" class="panel panel-default" style="width:100%">
+		<div class="col-md-12" style="margin-top: -20px;">
+			<div  id="login-card" class="panel panel-default" style="width:100%; padding: 10px 20px;">
 
-				<div class="panel-heading">
-	        <div class="row">
-
-	          <div class="col-md-6">
+				<div class="panel-heading" id="login-card">
+	        <div class="row" style="margin-bottom: -20px" id="login-card">
+	          <div class="col-md-6" id="login-card">
 	            <h2>
-	              <strong>
+	              <strong style="color: #12583C">
 	                {{$aluno->nome}}
 	              </strong>
 	            </h2>
+							<div style="font-size: 14px" id="login-card">
+								<a href="{{route('aluno.listar')}}">Início</a> > Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong>
+							</div>
 	          </div>
 
-	          <div class="col-md-6 text-right" style="margin-top:20px">
+	          <div class="col-md-6 text-right" style="margin-top:20px" id="login-card">
+							<a class="btn btn-primary" style="height: 50px; font-weight: bold; font-size: 20px; background: #0398fc; justify: center" href="{{route('objetivo.listar', ['id_aluno'=>$aluno->id]) }}">
+								Objetivos
+							</a>
 							@if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
-								<a class="btn btn-primary" data-toggle="tooltip" title="Editar aluno" href={{route("aluno.editar", ["id_aluno"=>$aluno->id]) }}>
-									Editar
-								</a>
-								<a data-toggle="tooltip" title="Autorizar acesso ao aluno" class="btn btn-primary" href="{{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}">
-									Autorização
-								</a>
-								<a class="btn btn-danger" data-toggle="tooltip" title="Excluir aluno" onclick="return confirm('\Confirmar exclusão do aluno {{$aluno->nome}}?')" href={{route("aluno.excluir", ["id_aluno"=>$aluno->id]) }}>
-									Excluir
-								</a>
+								<li class="dropdown">
+									<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height: 50px; font-weight: bold; font-size: 20px; background: gray">
+										Ações
+										<span class="caret" style="border-left: 11px solid transparent; border-right: 11px solid transparent; border-top: 11px solid;"></span>
+									</button>
+
+									<ul class="dropdown-menu" role="menu" style="background-color: rgba(255, 255, 255, 0); border-width: 0px">
+										<li>
+											<a class="btn btn-primary" data-toggle="tooltip" title="Editar aluno" href="{{route('aluno.editar', ['id_aluno'=>$aluno->id]) }}" style="width: 100%; height: 30px; background: #999; font-size: 16px; border-radius: 5px; color: white; margin-bottom: 5px">
+												Editar
+											</a>
+										</li>
+										<li>
+											<a class="btn btn-primary" data-toggle="tooltip" title="Autorizar acesso ao aluno" href="{{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}" style="width: 100%; height: 30px; background: #1c5; font-size: 16px; border-radius: 5px; color: white;  margin-bottom: 5px">
+												Autorização
+											</a>
+										</li>
+										<li>
+											<a class="btn btn-danger" data-toggle="tooltip" title="Excluir aluno" onclick="return confirm('\Confirmar exclusão do aluno {{$aluno->nome}}?')" href="{{route('aluno.excluir', ['id_aluno'=>$aluno->id]) }}" style="width: 100%; height: 30px; background: #f44; font-size: 16px; border-radius: 5px; color: white">
+												Excluir
+											</a>
+										</li>
+									</ul>
+								</li>
 							@endif
 	          </div>
 
 	        </div>
 
-	        <hr style="border-top: 1px solid black;">
+	        <hr style="border-top: 1px solid #AAA;">
 	      </div>
 
-				<div class="panel-body">
+				<div class="panel-body" id="login-card">
 					@if (\Session::has('success'))
-	          <div class="alert alert-success">
+	          <div class="alert alert-success" id="login-card">
 	            <strong>Sucesso!</strong>
 	            {!! \Session::get('success') !!}
 	          </div>
@@ -54,15 +74,16 @@
 						$gerenciars = $aluno->gerenciars;
 					@endphp
 
-					<div class="row">
-						<div class="col-md-12">
-							<div class="col-md-2">
-								<div class="text-center">
+					<!-- Informações do Aluno -->
+					<div class="row" style="margin-top: -30px" id="login-card">
+						<div class="col-md-12" id="login-card">
+							<div class="col-md-3" id="login-card">
+								<div class="text-center" id="login-card">
 									@if($aluno->imagem != null)
-										<img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="border-radius: 60%; height:150px; width:150px; object-fit: cover;">
+										<img src="{{asset('storage/avatars/'.$aluno->imagem)}}" style="border-radius: 60%; height:200px; width:200px; object-fit: cover;">
 										<br/>
 									@else
-										<img src="{{asset('images/avatar.png')}}" style="border-radius: 60%; width:150px; height: 150px; object-fit: cover;">
+										<img src="{{asset('images/avatar.png')}}" style="border-radius: 60%; width:200px; height: 200px; object-fit: cover;">
 										<br/>
 									@endif
 								</div>
@@ -70,65 +91,58 @@
 								<br>
 							</div>
 
-							<div class="col-md-5">
-								<?php
-								foreach($gerenciars as $gerenciar){
-									if($gerenciar->user->id == \Auth::user()->id && $gerenciar->isAdministrador){
-										?>
-										<strong>CPF:</strong> {{$aluno->cpf}}
-										<br/>
-										<?php
-										break;
+							<div class="col-md-6" id="login-card">
+								<h4 style="color: #12583C">
+									<?php
+									foreach($gerenciars as $gerenciar){
+										if($gerenciar->user->id == \Auth::user()->id && $gerenciar->isAdministrador){
+											?>
+											<strong>CPF:</strong> {{$aluno->cpf}}
+											<br/>
+											<?php
+											break;
+										}
 									}
-								}
-								?>
+									?>
 
-								@if($aluno->sexo == 'M')
-									<strong>Sexo:</strong> Masculino
-								@else
-									<strong>Sexo:</strong> Feminino
-								@endif
+									@if($aluno->sexo == 'M')
+										<strong>Sexo:</strong> Masculino
+									@else
+										<strong>Sexo:</strong> Feminino
+									@endif
+									<br/>
+									<strong>Data de Nascimento:</strong> {{$aluno->data_de_nascimento}}
+								</h4>
 
-								<br/>
-								<strong>Data de Nascimento:</strong> {{$aluno->data_de_nascimento}}
-								<br/>
-								<strong>Endereço:</strong>
-								<br>
-								<?php
-									// echo "CEP: ", $aluno->endereco->cep, ", ",
-									// $aluno->endereco->rua, ", nº ",
-									// $aluno->endereco->numero, ", ",
-									// $aluno->endereco->bairro, ", ",
-									// $aluno->endereco->cidade, " - ",
-									// $aluno->endereco->estado;
-								?>
-								<strong>Cep: </strong>{{$aluno->endereco->cep}}
-								<br>
-								<strong>Rua: </strong>{{$aluno->endereco->rua}}
-								<br>
-								<strong>Bairro: </strong>{{$aluno->endereco->bairro}}
-								<br>
-								<strong>Cidade: </strong>{{$aluno->endereco->cidade}}
-								<br>
-								<strong>Estado: </strong>{{$aluno->endereco->estado}}
-								</div>
-
-							<div class="col-md-5">
+								<h4 style="color: #12583C">
+									<strong>Endereço:</strong>
+									<?php
+										echo $aluno->endereco->rua, ", nº ",
+										$aluno->endereco->numero, ", ",
+										$aluno->endereco->bairro, ", ",
+										$aluno->endereco->cidade, " - ",
+										$aluno->endereco->estado;
+									?>
+								</h4>	
+								
 								@if($aluno->cid != null)
-									<strong>CID:</strong> {{$aluno->cid}}
-									<br/>
-									<strong>Descrição CID:</strong> {{$aluno->descricao_cid}}
-									<br/>
+								<h4 style="color: #b38a1d">
+										<strong style="color: #12583C">CID:</strong> {{$aluno->cid}}
+										<br/>
+										<strong style="color: #12583C">Descrição CID:</strong> {{$aluno->descricao_cid}}
+										<br/>
+								</h4>
 								@endif
+							</div>
 
-								<br>
-								<strong>Instituições:</strong>
+							<div class="col-md-3" id="login-card">
+								<strong style="color: #12583C">Instituições:</strong>
 								<br>
 
 								<ul>
 									@foreach ($aluno->instituicoes as $instituicao)
 										<li>
-											<a href="{{ route("instituicao.ver", ["id_instituiçao"=>$instituicao->id]) }}">{{$instituicao->nome}}</a>
+											<a href="{{ route('instituicao.ver', ['id_instituiçao'=>$instituicao->id]) }}" style="color: #3097D1">{{$instituicao->nome}}</a>
 										</li>
 									@endforeach
 								</ul>
@@ -136,57 +150,59 @@
 							</div>
 						</div>
 
-						<div class="col-md-12">
-							<div class="col-md-10 col-md-offset-2 text-justify">
+						<div class="col-md-12" id="login-card">
+							<div class="col-md-9 col-md-offset-3 text-justify" id="login-card">
 								@if($aluno->observacao != null)
+									<h4 style="color: #12583C">
 									<strong>Observações:</strong> {!! $aluno->observacao !!}
+									</h4>
 									<br/>
 								@endif
 							</div>
 						</div>
 					</div>
 
-					<hr style="border-top: 1px solid black;">
+					<hr style="border-top: 1px solid #AAA;">
 
-					<div class="row col-md-8 col-md-offset-2">
-						<a href="{{route("objetivo.listar", ["id_aluno"=>$aluno->id]) }}" data-toggle="tooltip" title="Ver objetivos">
-							<div class="card cartao text-center " style="border-radius: 20px">
-								<div class="card-body d-flex justify-content-center">
-									<h2 style="margin-top:80px;">
-										<img src="{{asset('images/objetivo.png')}}" style="width:44px; height:44px;">
-										<br>
-										Objetivos
-									</h2>
-								</div>
-							</div>
-						</a>
+					<h2>
+						<strong style="color: #12583C">
+							Álbuns
+						</strong>
+					</h2>
 
-						<a href="{{route("album.listar", ["id_aluno"=>$aluno->id]) }}" data-toggle="tooltip" title="Ver álbuns">
-							<div class="card cartao text-center " style="border-radius: 20px">
-								<div class="card-body d-flex justify-content-center">
-									<h2 style="margin-top:80px;">
-										<img src="{{asset('images/album.png')}}" style="width:44px; height:44px;">
-										<br>
-										Álbuns
-									</h2>
+          <div class="row" align="center" id="login-card">
+            <div class="container col-md-12" id="login-card">
+              <div class="card-body" style="margin-left: -35px">
+								<div class="col-md-3 mt-3" style="opacity: 0.7;" id="login-card">
+									<a href="{{route('album.cadastrar' , ['id_aluno'=>$aluno->id])}}" data-toggle="tooltip" title="Ver objetivos">
+										<div class="card cartao text-center " style="border-radius: 20px;  width: 230px; height: 230px">
+											<div class="card-body d-flex justify-content-center">
+												<h2 style="margin-top:80px;">
+													<img src="{{asset('images/album.png')}}" style="width:44px; height:44px;">
+													<br>
+													Novo Álbum
+												</h2>
+											</div>
+										</div>
+									</a>
 								</div>
-							</div>
-						</a>
+                <?php
+                foreach ($albuns as $album) {?>
+                  <div class="col-md-3 mt-3" id="login-card">
+										<div class="card cartao text-center" style="border-radius: 20px; background: #FFF; width: 230px; height: 230px" id="login-card">
+											<div class="card-body d-flex justify-content-center" style="border-radius: 23px; background: #EEE; height: 100%">
+												<a href="{{route('album.ver', ['id_album'=>$album->id])}}">
+													<img style="width:100%; object-fit: cover;" src="{{asset('storage/albuns/'.$aluno->id.'/'.$album->fotos[0]->imagem)}}">
+												</a>
+												&nbsp; &nbsp;
+											</div>
+										</div>
+                  </div>
+                <?php }?>
+              </div>
+            </div>
+          </div>
 
-						<!-- @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
-							<a href="{{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}">
-								<div class="card cartao text-center " style="border-radius: 20px">
-									<div class="card-body d-flex justify-content-center">
-										<h2 style="margin-top:80px;">
-											<img src="{{asset('images/acesso.png')}}" style="width:44px; height:44px;">
-											<br>
-											Acesso
-										</h2>
-									</div>
-								</div>
-							</a>
-						@endif -->
-					</div>
 				</div>
 
 				<!-- <div class="panel-footer" style="background-color:white">
@@ -232,7 +248,7 @@
 					<input name="forum_id" type="text" value={{$aluno->forum->id}} hidden>
 
 					<div style="margin: 1%" class="form-group">
-						<textarea name="mensagem" style="width:75%; display: inline" id="summer" type="text" class="form-control summernote"></textarea>
+						<textarea name="mensagem" style="display: inline; width:100%; min-width: 100%; max-width: 100%;min-height: 80px;" type="text" class="form-control summernote"></textarea>
 						<br>
 
 						@if ($errors->has('mensagem'))

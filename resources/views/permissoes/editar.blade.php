@@ -1,45 +1,47 @@
 @extends('layouts.principal')
 @section('title','Editar permissão')
 @section('navbar')
-<a href="{{route('aluno.listar')}}">Início</a>
-> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
-> <a href="{{route('aluno.permissoes',$aluno->id)}}">Autorizações</a>
-> Editar
 @endsection
 @section('content')
-<div class="container">
+<div class="container" style="color: #12583C">
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default">
+      <div class="panel panel-default" style="margin-top: -20px; padding: 10px 20px;" id="login-card">
 
-        <div class="panel-heading">
+        <div class="panel-heading" id="login-card">
           <h2>
-            <strong>
+            <strong style="color: #12583C">
               Editar Autorização
             </strong>
+            <div style="font-size: 14px" id="login-card" id="login-card">
+              <a href="{{route('aluno.listar')}}">Início</a>
+              > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
+              > <a href="{{route('aluno.permissoes',$aluno->id)}}">Autorizações</a>
+              > Editar
+            </div>
           </h2>
 
           <hr style="border-top: 1px solid black;">
         </div>
 
-        <div class="panel-body panel-body-cadastro">
+        <div class="panel-body panel-body-cadastro" id="login-card">
           @if (\Session::has('Fail'))
-            <div class="alert alert-danger">
+            <div class="alert alert-danger" id="login-card">
               <strong>Erro!</strong>
               {!! \Session::get('Fail') !!}
             </div>
           @endif
 
-          <div class="col-md-8 col-md-offset-2">
+          <div class="col-md-8 col-md-offset-2" id="login-card">
             <form autocomplete="off" method="POST" action="{{ route("aluno.permissoes.atualizar") }}">
               {{ csrf_field() }}
 
               <input type="hidden" name="id_permissao" value="{{$gerenciar->id}}">
 
-              <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+              <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}" id="login-card">
                 <label for="username" class="col-md-12 control-label">Nome de Usuário</label>
 
-                <div class="col-md-12">
+                <div class="col-md-12" id="login-card">
 
                   <input id="username" type="text" class="form-control" name="username" value="{{ $gerenciar->user->username }}" disabled>
 
@@ -51,10 +53,10 @@
                 </div>
               </div>
 
-              <div class="form-group{{ $errors->has('perfil') ? ' has-error' : '' }}">
+              <div class="form-group{{ $errors->has('perfil') ? ' has-error' : '' }}" id="login-card">
                 <label for="perfil" class="col-md-12 control-label">Perfil</label>
 
-                <div class="col-md-12">
+                <div class="col-md-12" id="login-card">
                   <select id="perfil" name="perfil" class="form-control" onchange="showEspecializacao(this)">
                     @if (old('tipo',NULL) != NULL)
                       @foreach($perfis as $perfil)
@@ -90,7 +92,7 @@
               @endif
                 <label for="especializacao" class="col-md-12 control-label">Especialização</label>
 
-                <div class="autocomplete col-md-12">
+                <div class="autocomplete col-md-12" id="login-card">
                   @if(old('especializacao',NULL) != NULL)
                     <input id="especializacao" type="text" class="form-control" autocomplete="off" name="especializacao" value="{{ old('especializacao') }}">
                   @else
@@ -105,7 +107,7 @@
                 </div>
               </div>
 
-              <div class="form-check col-md-12">
+              <div class="form-check col-md-12" id="login-card">
                 @if(old('isAdministrador',NULL) != NULL)
                   <input id="isAdministrador" type="checkbox" class="form-check-input" name="isAdministrador" value="true">
                 @else
@@ -119,10 +121,10 @@
                 <label class="form-check-label" for="isAdministrador">Usuário administrador</label>
               </div>
 
-              <div class="form-group">
-                <div class="row col-md-12 text-center">
+              <div class="form-group" id="login-card">
+                <div class="row col-md-12 text-center" id="login-card">
                   <br>
-                  <a class="btn btn-secondary" href="{{route('aluno.permissoes',$aluno->id)}}">
+                  <a class="btn btn-secondary" href="{{route('aluno.permissoes',$aluno->id)}}" id="menu-a">
                     Voltar
                   </a>
                   <button type="submit" class="btn btn-primary">

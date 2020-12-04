@@ -1,33 +1,35 @@
 @extends('layouts.principal')
 @section('title','Novo aluno')
 @section('navbar')
-<a href="{{route('aluno.listar')}}">Início</a>
-> Novo Aluno
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container" style="color: #12583C">
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">
+      <div class="panel panel-default" style="margin-top: -20px; padding: 10px 20px;" id="login-card">
+        <div class="panel-heading" id="login-card">
           <h2>
-            <strong>
+            <strong style="color: #12583C">
               Novo Aluno
             </strong>
+            <div style="font-size: 14px" id="login-card">
+              <a href="{{route('aluno.listar')}}">Início</a>
+              > Novo Aluno
+            </div>
           </h2>
 
-          <hr style="border-top: 1px solid black;">
+          <hr style="border-top: 1px solid #AAA;">
         </div>
 
-        <div class="panel-body panel-body-cadastro">
-          <div class="col-md-8 col-md-offset-2">
+        <div class="panel-body panel-body-cadastro" id="login-card">
+          <div class="col-md-8 col-md-offset-2" id="login-card">
             <form method="GET" action="{{ route("aluno.buscarCPF") }}">
 
-              <div class="form-group{{ $errors->has('cpf') ? ' has-error' : '' }}">
+              <div class="form-group{{ $errors->has('cpf') ? ' has-error' : '' }}" id="login-card">
                 <label for="cpf" class="col-md-12 control-label"> Informe o CPF do aluno: <font color="red">*</font></label>
 
-                <div class="col-md-12">
+                <div class="col-md-12" id="login-card">
                   @if ($cpf == null)
                     <input id="cpf" type="text" class="form-control" onkeydown="fMasc( this, mCPF );" placeholder="000.000.000-00" name="cpf">
                   @else
@@ -42,10 +44,10 @@
                 </div>
               </div>
 
-              <div class="form-group">
-                <div class="row col-md-12 text-center">
+              <div class="form-group" id="login-card">
+                <div class="row col-md-12 text-center" id="login-card">
                   <br>
-                  <a class="btn btn-secondary" href="{{route('aluno.listar')}}">
+                  <a class="btn btn-secondary" href="{{route('aluno.listar')}}" id="menu-a">
                     Voltar
                   </a>
                   <button type="submit" class="btn btn-primary">
@@ -58,9 +60,9 @@
           </div>
         </div>
 
-        <div class="panel-body">
+        <div class="panel-body" id="login-card">
           @if($aluno != null)
-            <div class="alert alert-info text-center">
+            <div class="alert alert-info text-center" id="login-card">
               <strong>
                 O aluno {{ $aluno->nome }} já está cadastrado no sistema.
                 @if(!$botaoAtivo)

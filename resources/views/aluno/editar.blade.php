@@ -3,29 +3,30 @@
 @section('path','Início')
 
 @section('navbar')
-<a href="{{route('aluno.listar')}}">Início</a>
-> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
-> Editar
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container" style="color: #12583C">
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default">
+      <div class="panel panel-default" style="margin-top: -20px; padding: 10px 20px;" id="login-card">
         <div class="panel panel-default">
-          <div class="panel-heading">
+          <div class="panel-heading" id="login-card">
             <h2>
-              <strong>
+              <strong style="color: #12583C">
                 Editar Aluno
               </strong>
+              <div style="font-size: 14px" id="login-card">
+                <a href="{{route('aluno.listar')}}">Início</a>
+                > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
+              </div>
             </h2>
 
-            <hr style="border-top: 1px solid black;">
+            <hr style="border-top: 1px solid #AAA;">
           </div>
 
-          <div class="panel-body panel-body-cadastro">
-            <div class="col-md-8 col-md-offset-2">
+          <div class="panel-body panel-body-cadastro" id="login-card">
+            <div class="col-md-8 col-md-offset-2" id="login-card">
               <form method="POST" action="{{ route("aluno.atualizar") }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
@@ -39,12 +40,12 @@
                     </strong>
                   </h3>
 
-                  <hr style="border-top: 1px solid black;">
+                  <hr style="border-top: 1px solid #AAA;">
 
-                  <div class="form-group{{ $errors->has('instituicoes') ? ' has-error' : '' }}">
+                  <div class="form-group{{ $errors->has('instituicoes') ? ' has-error' : '' }}" id="login-card">
                     <label for="instituicoes" class="col-md-12 control-label">Instituição(ões) <font color="red">*</font> </label>
 
-                    <div class="col-md-12">
+                    <div class="col-md-12" id="login-card">
                       <select class="form-control js-example-basic-multiple" name="instituicoes[]" multiple="multiple" autofocus>
                         @if(old("instituicoes.0") != null )
                           @foreach ($instituicoes as $instituicao)
@@ -92,8 +93,8 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <div class="col-md-12 col-md-offset-4">
+                  <div class="form-group" id="login-card">
+                    <div class="col-md-12 col-md-offset-4" id="login-card">
                       Instituição não encontrada? &nbsp;
                       <a class="btn btn-primary" href="{{ route("instituicao.cadastrar") }}">Cadastre</a>
                     </div>
@@ -105,12 +106,12 @@
                     </strong>
                   </h3>
 
-                  <hr style="border-top: 1px solid black;">
+                  <hr style="border-top: 1px solid #AAA;">
 
-                  <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
+                  <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}" id="login-card">
                     <label for="nome" class="col-md-12 control-label"> Nome <font color="red">*</font></label>
 
-                    <div class="col-md-12">
+                    <div class="col-md-12" id="login-card">
 
                       @if(old('nome',NULL) != NULL)
                         <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}">
@@ -126,11 +127,11 @@
                     </div>
                   </div>
 
-                  <div class="form-group{{ $errors->has('imagem') ? ' has-error' : '' }}">
+                  <div class="form-group{{ $errors->has('imagem') ? ' has-error' : '' }}" id="login-card">
 
                     <label for="imagem" class="col-md-12 control-label" >Foto de perfil</label>
 
-                    <div class="col-md-12">
+                    <div class="col-md-12" id="login-card">
 
                       <!-- @if($aluno->imagem != null)
                         <img style="object-fit: cover;" src="{{asset('storage/avatars/'.$aluno->imagem)}}" height="64" width="64" >
@@ -146,12 +147,12 @@
                     </div>
                   </div>
 
-                  <div class="row" style="padding:0px">
-                    <div class="col-md-12" style="padding:0px">
-                      <div class="col-md-6">
-                        <div class="form-group{{ $errors->has('data_nascimento') ? ' has-error' : '' }}">
+                  <div class="row" style="padding:0px" id="login-card">
+                    <div class="col-md-12" style="padding:0px" id="login-card">
+                      <div class="col-md-6" id="login-card">
+                        <div class="form-group{{ $errors->has('data_nascimento') ? ' has-error' : '' }}" id="login-card">
                           <label for="data_nascimento" class="col-md-12 control-label">Data de Nascimento <font color="red">*</font> </label>
-                          <div class="col-md-12">
+                          <div class="col-md-12" id="login-card">
 
                             @if(old('data_nascimento',NULL) != NULL)
                               <input id="data_nascimento" type="date" class="form-control" name="data_nascimento" value="{{ old('data_nascimento') }}">
@@ -169,12 +170,12 @@
 
                       </div>
 
-                      <div class="col-md-6">
-                        <div class="form-group{{ $errors->has('sexo') ? ' has-error' : '' }}">
+                      <div class="col-md-6" id="login-card">
+                        <div class="form-group{{ $errors->has('sexo') ? ' has-error' : '' }}" id="login-card">
 
                           <label for="sexo" class="col-md-12 control-label">Sexo <font color="red">*</font> </label>
 
-                          <div class="col-md-12">
+                          <div class="col-md-12" id="login-card">
 
                             @if(old('sexo') == 'M' || (old('sexo', NULL) == NULL && $aluno->sexo == 'M'))
                               <input type="radio" id="sexo1" name="sexo" value="M" checked="checked">
@@ -210,15 +211,15 @@
                     </strong>
                   </h3>
 
-                  <hr style="border-top: 1px solid black;">
+                  <hr style="border-top: 1px solid #AAA;">
 
-                  <div class="row" style="padding:0px">
-                    <div class="col-md-12" style="padding:0px">
-                      <div class="col-md-3">
-                        <div class="form-group{{ $errors->has('cep') ? ' has-error' : '' }}">
+                  <div class="row" style="padding:0px" id="login-card">
+                    <div class="col-md-12" style="padding:0px" id="login-card">
+                      <div class="col-md-3" id="login-card">
+                        <div class="form-group{{ $errors->has('cep') ? ' has-error' : '' }}" id="login-card">
                           <label for="cep" class="col-md-12 control-label">Cep <font color="red">*</font></label>
 
-                          <div class="col-md-12">
+                          <div class="col-md-12" id="login-card">
 
                             @if(old('cep',NULL) != NULL)
                               <input id="cep" onblur="pesquisacep(this.value);" type="text" class="form-control" name="cep" value="{{ old('cep') }}">
@@ -234,11 +235,11 @@
                           </div>
                         </div>
                       </div>  
-                      <div class="col-md-5">
-                        <div class="form-group{{ $errors->has('rua') ? ' has-error' : '' }}">
+                      <div class="col-md-5" id="login-card">
+                        <div class="form-group{{ $errors->has('rua') ? ' has-error' : '' }}" id="login-card">
                           <label for="rua" class="col-md-12 control-label">Rua <font color="red">*</font></label>
 
-                          <div class="col-md-12">
+                          <div class="col-md-12" id="login-card">
 
                             @if(old('rua',NULL) != NULL)
                               <input id="rua" type="text" class="form-control" name="rua" value="{{ old('rua') }}">
@@ -255,11 +256,11 @@
                         </div>
                       </div>
 
-                      <div class="col-md-4">
-                        <div class="form-group{{ $errors->has('numero') ? ' has-error' : '' }}">
+                      <div class="col-md-4" id="login-card">
+                        <div class="form-group{{ $errors->has('numero') ? ' has-error' : '' }}" id="login-card">
                           <label for="numero" class="col-md-12 control-label">Número <font color="red">*</font> </label>
 
-                          <div class="col-md-12">
+                          <div class="col-md-12" id="login-card">
 
                             @if(old('numero',NULL) != NULL)
                               <input id="numero" type="text" class="form-control" name="numero" value="{{ old('numero') }}">
@@ -278,13 +279,13 @@
                     </div>
                   </div>
 
-                  <div class="row" style="padding:0px">
-                    <div class="col-md-12" style="padding:0px">
-                      <div class="col-md-4">
-                        <div class="form-group{{ $errors->has('bairro') ? ' has-error' : '' }}">
+                  <div class="row" style="padding:0px" id="login-card">
+                    <div class="col-md-12" style="padding:0px" id="login-card">
+                      <div class="col-md-4" id="login-card">
+                        <div class="form-group{{ $errors->has('bairro') ? ' has-error' : '' }}" id="login-card">
                           <label for="bairro" class="col-md-12 control-label">Bairro <font color="red">*</font></label>
 
-                          <div class="col-md-12">
+                          <div class="col-md-12" id="login-card">
 
                             @if(old('bairro',NULL) != NULL)
                               <input id="bairro" type="text" class="form-control" name="bairro" value="{{ old('bairro') }}">
@@ -301,11 +302,11 @@
                         </div>
                       </div>
 
-                      <div class="col-md-4">
-                        <div class="form-group{{ $errors->has('estado') ? ' has-error' : '' }}">
+                      <div class="col-md-4" id="login-card">
+                        <div class="form-group{{ $errors->has('estado') ? ' has-error' : '' }}" id="login-card">
                           <label for="estado" class="col-md-12 control-label">Estado <font color="red">*</font> </label>
 
-                          <div class="col-md-12">
+                          <div class="col-md-12" id="login-card">
                             <select id="estado" class="form-control" name="estado" data-target="#cidade">
                               <option value="" selected hidden>-- UF --</option>
                               <option @if($endereco->estado == 'AC') selected @endif value="AC">Acre</option>
@@ -346,11 +347,11 @@
                         </div>
                       </div>
 
-                      <div class="col-md-4">
-                        <div class="form-group{{ $errors->has('cidade') ? ' has-error' : '' }}">
+                      <div class="col-md-4" id="login-card">
+                        <div class="form-group{{ $errors->has('cidade') ? ' has-error' : '' }}" id="login-card">
                           <label for="cidade" class="col-md-12 control-label">Cidade <font color="red">*</font> </label>
 
-                          <div class="col-md-12">
+                          <div class="col-md-12" id="login-card">
 
                             <input id="cidade" class="form-control" name="cidade" value="{{ $endereco->cidade }}">
                               
@@ -371,12 +372,12 @@
                     </strong>
                   </h3>
 
-                  <hr style="border-top: 1px solid black;">
+                  <hr style="border-top: 1px solid #AAA;">
 
-                  <div class="form-group{{ $errors->has('cid') ? ' has-error' : '' }}">
+                  <div class="form-group{{ $errors->has('cid') ? ' has-error' : '' }}" id="login-card">
                     <label for="cid" class="col-md-12 control-label">CID</label>
 
-                    <div class="col-md-12">
+                    <div class="col-md-12" id="login-card">
 
                       @if(old('cid',NULL) != NULL)
                         <input id="cid" type="text" class="form-control" placeholder="X000" name="cid" value="{{ old('cid') }}">
@@ -392,10 +393,10 @@
                     </div>
                   </div>
 
-                  <div class="form-group{{ $errors->has('descricaoCid') ? ' has-error' : '' }}">
+                  <div class="form-group{{ $errors->has('descricaoCid') ? ' has-error' : '' }}" id="login-card">
                     <label for="descricaoCid" class="col-md-12 control-label">Descrição do CID</label>
 
-                    <div class="col-md-12">
+                    <div class="col-md-12" id="login-card">
 
                       @if(old('descricaoCid',NULL) != NULL)
                         <input style="margin-bottom:15px;" id="descricaoCid" type="text" class="form-control" name="descricaoCid" value="{{ old('descricaoCid') }}">
@@ -417,19 +418,19 @@
                     </strong>
                   </h3>
 
-                  <hr style="border-top: 1px solid black;">
+                  <hr style="border-top: 1px solid #AAA;">
 
-                  <div class="form-group{{ $errors->has('observacao') ? ' has-error' : '' }}">
+                  <div class="form-group{{ $errors->has('observacao') ? ' has-error' : '' }}" id="login-card">
                     <label for="observacao" class="col-md-12 control-label">Observações</label>
 
-                    <div class="col-md-12">
+                    <div class="col-md-12" id="login-card">
 
                       @if(old('observacao',NULL) != NULL)
-                        <textarea name="observacao" style="width:75%; display: inline" id="summer" type="text" class="form-control summernote">
+                        <textarea name="observacao" style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px; display: inline" id="" type="text" class="form-control summernote">
                           {{old('observacao')}}
                         </textarea>
                       @else
-                        <textarea name="observacao" style="width:75%; display: inline" id="summer" type="text" class="form-control summernote">
+                        <textarea name="observacao" style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px; display: inline" id="" type="text" class="form-control summernote">
                           {{$aluno->observacao}}
                         </textarea>
                       @endif
@@ -444,10 +445,10 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <div class="row col-md-12 text-center">
+                  <div class="form-group" id="login-card">
+                    <div class="row col-md-12 text-center" id="login-card">
                       <br>
-                      <a class="btn btn-secondary" href="{{route('aluno.gerenciar',$aluno->id)}}#perfil">
+                      <a class="btn btn-secondary" href="{{route('aluno.gerenciar',$aluno->id)}}#perfil" id="menu-a">
                         Voltar
                       </a>
                       <button type="submit" class="btn btn-primary">
@@ -456,7 +457,7 @@
                     </div>
                   </div>
                 @else
-                  <div class="alert alert-info">
+                  <div class="alert alert-info" id="login-card">
                     <center>
                       <h3>
                         Cadastre uma instituicão para seguir com o cadastro de aluno.

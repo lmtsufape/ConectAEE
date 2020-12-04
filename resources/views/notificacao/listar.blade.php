@@ -3,32 +3,30 @@
 @section('path','Início')
 
 @section('navbar')
-<a href="{{route('notificacao.listar')}}">Notificações</a> > Listar
 @endsection
 
 @section('content')
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">
+      <div class="panel panel-default" style="margin-top: -20px; padding: 10px 20px;" id="login-card">
+        <div class="panel-heading" id="login-card">
           <h2>
             <strong>
               Suas notificações
             </strong>
           </h2>
+          <div style="font-size: 14px" id="login-card">
+            <a href="{{route('notificacao.listar')}}">Notificações</a> > Listar
+          </div>
 
-          <hr style="border-top: 1px solid black;">
+          <hr style="border-top: 1px solid #AAA;">
         </div>
 
-        <div class="panel-body">
-          <div id="tabela" class="table-responsive">
+        <div class="panel-body" id="login-card">
+          <div id="tabela" class="table-responsive" id="login-card">
             <table id="tabela_dados" class="table table-hover table-bordered">
-              <thead>
-                <tr>
-                  <th></th>
-                </tr>
-              </thead>
+              
               <tbody>
                 @foreach($notificacoes as $notificacao)
                   @if($notificacao->aluno != null)
@@ -50,24 +48,16 @@
           </div>
         </div>
 
-        <div class="text-center">
+        <div class="text-center" id="login-card">
           {{$notificacoes->links()}}
         </div>
 
-          <!-- <a class="btn btn-danger" href="{{ route("home") }}">
-            <i class="material-icons">keyboard_backspace</i>
-            <br>
-            Voltar
-          </a> -->
-
-      </div>
-
-      <div class="panel-footer" style="background-color:white">
-        <div class="text-center">
-          <a class="btn btn-secondary" href="{{route('aluno.listar')}}">
+        <div class="text-center" id="login-card">
+          <a class="btn btn-secondary" href="{{route('aluno.listar')}}" id="menu-a">
             Voltar
           </a>
         </div>
+
       </div>
     </div>
   </div>

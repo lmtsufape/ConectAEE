@@ -3,33 +3,35 @@
 @section('path','Início')
 
 @section('navbar')
-<a href="{{route('aluno.listar')}}">Início</a>
-> <a href="{{route('instituicao.listar')}}">Instituições</a>
-> Nova Instituição
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container" style="color: #12583C">
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">
+      <div class="panel panel-default" style="margin-top: -20px; padding: 10px 20px;" id="login-card">
+        <div class="panel-heading" id="login-card">
           <h2>
-            <strong>
+            <strong style="color: #12583C">
               Nova Instituição
             </strong>
+            <div style="font-size: 14px" id="login-card">
+              <a href="{{route('aluno.listar')}}">Início</a>
+              > <a href="{{route('instituicao.listar')}}">Instituições</a>
+              > Nova Instituição
+            </div>
           </h2>
 
-          <hr style="border-top: 1px solid black;">
+          <hr style="border-top: 1px solid #AAA;">
         </div>
 
-        <div class="panel-body panel-body-cadastro">
+        <div class="panel-body panel-body-cadastro" id="login-card">
 
 
-          <div class="col-md-8 col-md-offset-2">
+          <div class="col-md-8 col-md-offset-2" id="login-card">
 
             @if (\Session::has('info'))
-              <div class="alert alert-info">
+              <div class="alert alert-info" id="login-card">
                 <strong>
                   {!! \Session::get('info') !!}
                 </strong>
@@ -47,12 +49,12 @@
                 </strong>
               </h3>
 
-              <hr style="border-top: 1px solid black;">
+              <hr style="border-top: 1px solid #AAA;">
 
-              <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
+              <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}" id="login-card">
                 <label for="nome" class="col-md-12 control-label"> Nome <font color="red">*</font> </label>
 
-                <div class="col-md-12">
+                <div class="col-md-12" id="login-card">
                   <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}" autofocus>
 
                   @if ($errors->has('nome'))
@@ -63,13 +65,13 @@
                 </div>
               </div>
 
-              <div class="row" style="padding:0px">
-                <div class="col-md-12" style="padding:0px">
-                  <div class="col-md-6">
-                    <div class="form-group{{ $errors->has('telefone') ? ' has-error' : '' }}">
+              <div class="row" style="padding:0px" id="login-card">
+                <div class="col-md-12" style="padding:0px" id="login-card">
+                  <div class="col-md-6" id="login-card">
+                    <div class="form-group{{ $errors->has('telefone') ? ' has-error' : '' }}" id="login-card">
                       <label for="telefone" class="col-md-12 control-label">Telefone <font color="red">*</font> </label>
 
-                      <div class="col-md-12">
+                      <div class="col-md-12" id="login-card">
                         <input  type="digit" class="form-control" name="telefone" id="telefone" minlength="10" placeholder="DDD+Telefone" maxlength="11" value="{{ old('telefone') }}">
 
                         @if ($errors->has('telefone'))
@@ -81,11 +83,11 @@
                     </div>
                   </div>
 
-                  <div class="col-md-6">
-                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                  <div class="col-md-6" id="login-card">
+                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}" id="login-card">
                       <label for="email" class="col-md-12 control-label">E-Mail</label>
 
-                      <div class="col-md-12">
+                      <div class="col-md-12" id="login-card">
                         <input id="email" class="form-control" name="email" value="{{ old('email') }}">
 
                         @if ($errors->has('email'))
@@ -105,15 +107,15 @@
                 </strong>
               </h3>
 
-              <hr style="border-top: 1px solid black;">
+              <hr style="border-top: 1px solid #AAA;">
 
-              <div class="row" style="padding:0px">
-                <div class="col-md-12" style="padding:0px">
-                  <div class="col-md-3">
-                    <div class="form-group{{ $errors->has('cep') ? ' has-error' : '' }}">
+              <div class="row" style="padding:0px" id="login-card">
+                <div class="col-md-12" style="padding:0px" id="login-card">
+                  <div class="col-md-3" id="login-card">
+                    <div class="form-group{{ $errors->has('cep') ? ' has-error' : '' }}" id="login-card">
                         <label for="cep" class="col-md-12 control-label">Cep <font color="red">*</font></label>
 
-                        <div class="col-md-12">
+                        <div class="col-md-12" id="login-card">
 
                           <input id="cep" onblur="pesquisacep(this.value);" type="text" class="form-control" name="cep" value="{{ old('cep') }}">
 
@@ -125,11 +127,11 @@
                         </div>
                       </div>
                     </div>
-                  <div class="col-md-5">
-                    <div class="form-group{{ $errors->has('rua') ? ' has-error' : '' }}">
+                  <div class="col-md-5" id="login-card">
+                    <div class="form-group{{ $errors->has('rua') ? ' has-error' : '' }}" id="login-card">
                       <label for="rua" class="col-md-12 control-label">Rua <font color="red">*</font></label>
 
-                      <div class="col-md-12">
+                      <div class="col-md-12" id="login-card">
 
                         <input id="rua" type="text" class="form-control" name="rua" value="{{ old('rua') }}">
 
@@ -142,11 +144,11 @@
                     </div>
                   </div>
 
-                  <div class="col-md-4">
-                    <div class="form-group{{ $errors->has('numero') ? ' has-error' : '' }}">
+                  <div class="col-md-4" id="login-card">
+                    <div class="form-group{{ $errors->has('numero') ? ' has-error' : '' }}" id="login-card">
                   <label for="numero" class="col-md-12 control-label">Número <font color="red">*</font> </label>
 
-                  <div class="col-md-12">
+                  <div class="col-md-12" id="login-card">
 
                     <input id="numero" type="text" class="form-control" name="numero" value="{{ old('numero') }}">
 
@@ -161,13 +163,13 @@
                 </div>
               </div>
 
-              <div class="row" style="padding:0px">
-                <div class="col-md-12" style="padding:0px">
-                  <div class="col-md-4">
-                    <div class="form-group{{ $errors->has('bairro') ? ' has-error' : '' }}">
+              <div class="row" style="padding:0px" id="login-card">
+                <div class="col-md-12" style="padding:0px" id="login-card">
+                  <div class="col-md-4" id="login-card">
+                    <div class="form-group{{ $errors->has('bairro') ? ' has-error' : '' }}" id="login-card">
                       <label for="bairro" class="col-md-12 control-label">Bairro <font color="red">*</font></label>
 
-                      <div class="col-md-12">
+                      <div class="col-md-12" id="login-card">
 
                         <input id="bairro" type="text" class="form-control" name="bairro" value="{{ old('bairro') }}">
 
@@ -181,11 +183,11 @@
 
                   </div>
 
-                  <div class="col-md-4">
-                    <div class="form-group{{ $errors->has('estado') ? ' has-error' : '' }}">
+                  <div class="col-md-4" id="login-card">
+                    <div class="form-group{{ $errors->has('estado') ? ' has-error' : '' }}" id="login-card">
                       <label for="estado" class="col-md-12 control-label">Estado <font color="red">*</font> </label>
 
-                      <div class="col-md-12">
+                      <div class="col-md-12" id="login-card">
                         <select id="estado" class="form-control" name="estado" data-target="#cidade">                          
                           <option value="" selected hidden>-- UF --</option>
                           <option @if(old('uf') == 'AC') selected @endif value="AC">Acre</option>
@@ -226,11 +228,11 @@
                     </div>
                   </div>
 
-                  <div class="col-md-4">
-                    <div class="form-group{{ $errors->has('cidade') ? ' has-error' : '' }}">
+                  <div class="col-md-4" id="login-card">
+                    <div class="form-group{{ $errors->has('cidade') ? ' has-error' : '' }}" id="login-card">
                       <label for="cidade" class="col-md-12 control-label">Cidade <font color="red">*</font> </label>
 
-                      <div class="col-md-12">
+                      <div class="col-md-12" id="login-card">
 
                         <input id="cidade" class="form-control" name="cidade" value="{{ old('cidade') }}">
                           
@@ -245,10 +247,10 @@
                 </div>
               </div>
 
-              <div class="form-group">
-                <div class="row col-md-12 text-center">
+              <div class="form-group" id="login-card">
+                <div class="row col-md-12 text-center" id="login-card">
                   <br>
-                  <a class="btn btn-secondary" href="{{route('instituicao.listar')}}">
+                  <a class="btn btn-secondary" href="{{route('instituicao.listar')}}" id="menu-a">
                     Voltar
                   </a>
                   <button type="submit" class="btn btn-primary">
