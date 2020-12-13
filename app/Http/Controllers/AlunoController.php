@@ -87,7 +87,7 @@ class AlunoController extends Controller{
 
   public static function cadastrar(){
     $instituicoes = \Auth::user()->instituicoes;
-    $perfis = [[1,'Responsável'], [2,'Professor AEE']];
+    $perfis = Perfil::all();
 
     if (count($instituicoes) == 0) {
       return redirect()->route("instituicao.cadastrar")->with('info','O cadastro de alunos, requer que uma instituicão esteja cadastrada.');

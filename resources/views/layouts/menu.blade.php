@@ -20,12 +20,12 @@
         </a>
       </li>
       <li class="dropdown">
-        <a onclick="fonte('a')" id="altocontraste" data-toggle="tooltip" title="Aumentar fonte" style="height: 50px;">
+        <a onclick="fonte('a')" id="aumentarfonte" data-toggle="tooltip" title="Aumentar fonte" style="height: 50px;">
           <img class="on-contrast-force-white" src="{{asset('images/increase-font-size.png')}}" style="height: 30px; margin-top: -5px">
         </a>
       </li>
       <li class="dropdown" style="margin-right:0px">
-        <a onclick="fonte('d')" id="altocontraste" data-toggle="tooltip" title="Reduzir fonte" style="height: 50px;">
+        <a onclick="fonte('d')" id="diminuirfonte" data-toggle="tooltip" title="Reduzir fonte" style="height: 50px;">
           <img class="on-contrast-force-white" src="{{asset('images/reduce-font-size.png')}}" style="height: 30px; margin-top: -5px;">
         </a>
       </li>
