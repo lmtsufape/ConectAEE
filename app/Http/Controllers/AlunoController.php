@@ -474,7 +474,7 @@ class AlunoController extends Controller{
   public static function criarPermissao(Request $request){
     //Validação dos dados
     $rules = array(
-      'username' => 'required|exists:users,name',
+      'username' => 'required|exists:users,username',
       'perfil' => 'required',
       'especializacao' => 'required_if:perfil,Profissional Externo',
     );
@@ -489,7 +489,7 @@ class AlunoController extends Controller{
       return redirect()->back()->withErrors($validator->errors())->withInput();
     }
     //Se já existe a relação
-    $user = User::where('name','=',$request->username)->first();
+    $user = User::where('username','=',$request->username)->first();
     
     if((Gerenciar::where('user_id','=',$user->id)->where('aluno_id','=',$request->id_aluno))->first()){
       $validator->errors()->add('username','O usuário já possui permissões de acesso ao aluno.');
