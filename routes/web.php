@@ -119,3 +119,6 @@ Route::get('/instituicao/{id_instituicao}/editar', 'InstituicaoController@editar
 Route::get('/instituicao/{id_instituicao}/excluir', 'InstituicaoController@excluir')->name('instituicao.excluir')->middleware('checkInstituicaoCriador');
 Route::post('/instituicao/criar', 'InstituicaoController@criar')->name('instituicao.criar');
 Route::post('/instituicao/atualizar', 'InstituicaoController@atualizar')->name('instituicao.atualizar');
+
+//Rotas para relatorio
+Route::get('/aluno/{id_aluno}/relatorio', 'RelatorioController@gerarRelatorio')->name('relatorio.gerar');

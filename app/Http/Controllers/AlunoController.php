@@ -174,7 +174,7 @@ class AlunoController extends Controller{
     $validator = Validator::make($request->all(), [
       'perfil' => ['required'],
       'instituicoes' => ['required'],
-      'imagem' => 'image|mimes:jpeg,png,jpg,jpe|max:3000',
+      'imagem.*' => 'image|mimes:jpeg,png,jpg,jpe|max:3000',
       'nome' => ['required','min:2','max:191'],
       'sexo' => ['required'],
       'cpf'=> ['unique:alunos'],
@@ -301,7 +301,7 @@ class AlunoController extends Controller{
 
     $validator = Validator::make($request->all(), [
       'instituicoes' => ['required'],
-      'imagem' => 'image|mimes:jpeg,png,jpg,jpe|max:3000',
+      'imagem.*' => 'image|mimes:jpeg,png,jpg,jpe|max:3000',
       'nome' => ['required','min:2','max:191'],
       'sexo' => ['required'],
       'cid' => ['nullable','regex:/(^([a-zA-z])(\d)(\d)(\d)$)/u'],
