@@ -29,19 +29,19 @@ class GerenciarSeeder extends Seeder
                 'aluno_id' => $aluno->id,
                 'perfil_id' => array_pop($array),
                 'user_id' => 1,
-                'isAdministrador' => True,
+                'tipoUsuario' => 3,
             ]);
             factory(Gerenciar::class)->create([
                 'aluno_id' => $aluno->id,
                 'perfil_id' => 1,
                 'user_id' => array_pop($array_users),
-                'isAdministrador' => True,
+                'tipoUsuario' => 3,
             ]);
             factory(Gerenciar::class)->create([
                 'aluno_id' => $aluno->id,
                 'perfil_id' => array_pop($array),
                 'user_id' => array_pop($array_users),
-                'isAdministrador' => False,
+                'tipoUsuario' => 1,
             ]);
         }
         //factory(Gerenciar::class, count(Aluno::all()))->create();
