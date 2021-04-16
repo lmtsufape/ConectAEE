@@ -144,6 +144,10 @@ div.hifen {
   border-radius:20px;
 }
 
+.tab{
+  margin-left: 40px;
+}
+
 .navbar-default .navbar-nav > .dropdown > a:focus, .navbar-default .navbar-nav > .dropdown > a:hover {
   color: #fff;
   background-color: #aaa;

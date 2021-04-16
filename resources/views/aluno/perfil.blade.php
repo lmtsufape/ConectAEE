@@ -27,17 +27,30 @@
                             </div>
 
                             <div class="col-md-6 text-right" style="margin-top:20px" id="login-card">
-                                <a class="btn btn-primary"
-                                   style="height: 50px; font-weight: bold; font-size: 20px; background: #1a8057; justify: center"
-                                   href="{{route('relatorio.gerar', ['id_aluno'=>$aluno->id]) }}" target="_blank">
-                                    Relatorio
-                                </a>
+                                @php
+                                    $gerenciamento = App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first();
+                                    $pdi = \App\Pdi::where('aluno_id', '=', $aluno->id)->first();
+                                @endphp
+                                @if($gerenciamento->tipoUsuario != 2 and $gerenciamento->perfil_id == 2)
+                                    <a class="btn btn-primary"
+                                       style="height: 50px; font-weight: bold; font-size: 20px; background: #bf5329; text-align: center; width: auto"
+                                       href="{{route('pdi.listar', ['id_aluno'=>$aluno->id]) }}">
+                                        Listar PDI's
+                                    </a>
+                                @endif
+                                @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario == 3)
+                                    <a class="btn btn-primary" class="btn btn-primary" data-toggle="modal"
+                                       data-target="#modalRelatorio"
+                                       style="height: 50px; font-weight: bold; font-size: 20px; background: #6574cd; justify: center">
+                                        Relatorio
+                                    </a>
+                                @endif
                                 <a class="btn btn-primary"
                                    style="height: 50px; font-weight: bold; font-size: 20px; background: #0398fc; justify: center"
                                    href="{{route('objetivo.listar', ['id_aluno'=>$aluno->id]) }}">
                                     Objetivos
                                 </a>
-                                @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->isAdministrador == true)
+                                @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario == 3)
                                     <li class="dropdown">
                                         <button type="button" class="btn btn-primary dropdown-toggle"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -88,11 +101,11 @@
                                 <strong>Sucesso!</strong>
                                 {!! \Session::get('success') !!}
                             </div>
-                    @endif
+                        @endif
 
-                    @php
-                        $gerenciars = $aluno->gerenciars;
-                    @endphp
+                        @php
+                            $gerenciars = $aluno->gerenciars;
+                        @endphp
 
                     <!-- Informações do Aluno -->
                         <div class="row" style="margin-top: -30px" id="login-card">
@@ -117,7 +130,7 @@
                                     <h4 style="color: #12583C">
                                         <?php
                                         foreach($gerenciars as $gerenciar){
-                                        if($gerenciar->user->id == \Auth::user()->id && $gerenciar->isAdministrador){
+                                        if($gerenciar->user->id == \Auth::user()->id && $gerenciar->tipoUsuario == 3){
                                         ?>
                                         <strong>CPF:</strong> {{$aluno->cpf}}
                                         <br/>
@@ -185,54 +198,55 @@
                                 </div>
                             </div>
                         </div>
+                        @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario != 2)
+                            <hr style="border-top: 1px solid #AAA;">
 
-                        <hr style="border-top: 1px solid #AAA;">
+                            <h2>
+                                <strong style="color: #12583C">
+                                    Álbuns
+                                </strong>
+                            </h2>
 
-                        <h2>
-                            <strong style="color: #12583C">
-                                Álbuns
-                            </strong>
-                        </h2>
-
-                        <div class="row" align="center" id="login-card">
-                            <div class="container col-md-12" id="login-card">
-                                <div class="card-body" style="margin-left: -35px">
-                                    <div class="col-md-3 mt-3" style="opacity: 0.7;" id="login-card">
-                                        <a href="{{route('album.cadastrar' , ['id_aluno'=>$aluno->id])}}"
-                                           data-toggle="tooltip" title="Ver objetivos">
-                                            <div class="card cartao text-center "
-                                                 style="border-radius: 20px;  width: 230px; height: 230px">
-                                                <div class="card-body d-flex justify-content-center">
-                                                    <h2 style="margin-top:80px;">
-                                                        <img src="{{asset('images/album.png')}}"
-                                                             style="width:44px; height:44px;">
-                                                        <br>
-                                                        Novo Álbum
-                                                    </h2>
+                            <div class="row" align="center" id="login-card">
+                                <div class="container col-md-12" id="login-card">
+                                    <div class="card-body" style="margin-left: -35px">
+                                        <div class="col-md-3 mt-3" style="opacity: 0.7;" id="login-card">
+                                            <a href="{{route('album.cadastrar' , ['id_aluno'=>$aluno->id])}}"
+                                               data-toggle="tooltip" title="Ver objetivos">
+                                                <div class="card cartao text-center "
+                                                     style="border-radius: 20px;  width: 230px; height: 230px">
+                                                    <div class="card-body d-flex justify-content-center">
+                                                        <h2 style="margin-top:80px;">
+                                                            <img src="{{asset('images/album.png')}}"
+                                                                 style="width:44px; height:44px;">
+                                                            <br>
+                                                            Novo Álbum
+                                                        </h2>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <?php
+                                        foreach ($albuns as $album) {?>
+                                        <div class="col-md-3 mt-3" id="login-card">
+                                            <div class="card cartao text-center"
+                                                 style="border-radius: 20px; background: #4e555b; width: 230px; height: 230px"
+                                                 id="login-card">
+                                                <div class="card-body d-flex justify-content-center"
+                                                     style="border-radius: 20px; background: #EEE; height: 100%">
+                                                    <a href="{{route('album.ver', ['id_album'=>$album->id])}}">
+                                                        <img style="border-radius: 20px; width: 224.2px; height: 224.2px;"
+                                                             src="{{asset('storage/albuns/'.$aluno->id.'/'.$album->fotos[0]->imagem)}}">
+                                                    </a>
+                                                    &nbsp; &nbsp;
                                                 </div>
                                             </div>
-                                        </a>
-                                    </div>
-                                    <?php
-                                    foreach ($albuns as $album) {?>
-                                    <div class="col-md-3 mt-3" id="login-card">
-                                        <div class="card cartao text-center"
-                                             style="border-radius: 20px; background: #FFF; width: 230px; height: 230px"
-                                             id="login-card">
-                                            <div class="card-body d-flex justify-content-center"
-                                                 style="border-radius: 23px; background: #EEE; height: 100%">
-                                                <a href="{{route('album.ver', ['id_album'=>$album->id])}}">
-                                                    <img style="width:100%; object-fit: cover;"
-                                                         src="{{asset('storage/albuns/'.$aluno->id.'/'.$album->fotos[0]->imagem)}}">
-                                                </a>
-                                                &nbsp; &nbsp;
-                                            </div>
                                         </div>
+                                        <?php }?>
                                     </div>
-                                    <?php }?>
                                 </div>
                             </div>
-                        </div>
+                        @endif
 
                     </div>
 
@@ -338,6 +352,59 @@
                                 </div>
                             </div>
                         </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="modalRelatorio" tabindex="-1" role="dialog"
+                     aria-labelledby="modalRelatorioLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Fechar">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h2 class="modal-title" id="modalRelatorioLabel" align="center">
+                                    Selecione
+                                    um intervalo de tempo</h2>
+                            </div>
+                            <form method="GET" action="{{ route("relatorio.gerar", ['id_aluno'=>$aluno->id]) }}"
+                                  target="_blank" onsubmit="setTimeout(function(){window.location.reload();},10);">
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <label for="dataInicial" class="col-2 col-form-label">Selecione
+                                                    a
+                                                    data inicial</label>
+                                                <input class="form-control" type="date"
+                                                       id="dataInicial" name="dataInicial"
+                                                       value="{{date('Y-m-d', strtotime('-1 months'))}}">
+                                            </div>
+                                            <div class="col-md-1">
+                                                <span></span>
+                                            </div>
+                                            <div class="col-md-5 ml-auto">
+                                                <label for="dataFinal" class="col-2 col-form-label">Selecione a
+                                                    data
+                                                    final</label>
+                                                <input class="form-control" type="date"
+                                                       id="dataFinal" name="dataFinal" value="{{date('Y-m-d')}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                        Fechar
+                                    </button>
+                                    <button type="submit" id="btnSubmit" class="btn btn-primary">
+                                        Enviar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
 
                 <script type="text/javascript">

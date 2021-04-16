@@ -122,3 +122,12 @@ Route::post('/instituicao/atualizar', 'InstituicaoController@atualizar')->name('
 
 //Rotas para relatorio
 Route::get('/aluno/{id_aluno}/relatorio', 'RelatorioController@gerarRelatorio')->name('relatorio.gerar');
+
+//Rotas para pdi
+Route::get('/aluno/{id_aluno}/pdi/cadastrar', 'PdiController@cadastrar')->name('pdi.cadastrar')->middleware('checkPdi');
+Route::post('/pdi/criar', 'PdiController@criar')->name('pdi.criar');
+Route::get('/aluno/{id_aluno}/pdi/listar', 'PdiController@listar')->name('pdi.listar')->middleware('checkPdi');
+Route::get('/aluno/pdi/{id_pdi}/ver', 'PdiController@ver')->name('pdi.ver');
+Route::get('/aluno/pdi/{id_pdi}/excluir', 'PdiController@excluir')->name('pdi.excluir')->middleware('checkPdiCriador');
+Route::get('/aluno/pdi/{id_pdi}/editar', 'PdiController@editar')->name('pdi.editar')->middleware('checkPdiCriador');
+Route::post('/pdi/atualizar', 'PdiController@atualizar')->name('pdi.atualizar');

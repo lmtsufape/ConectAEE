@@ -212,6 +212,88 @@
 
                                     <h3>
                                         <strong>
+                                            Familia
+                                        </strong>
+                                    </h3>
+
+                                    <hr style="border-top: 1px solid #AAA;">
+
+                                    <div class="form-group{{ $errors->has('nome_mae') ? ' has-error' : '' }}"
+                                         id="login-card">
+                                        <label for="nome_mae" class="col-md-12 control-label"> Nome da Mãe <font
+                                                    color="red">*</font></label>
+
+                                        <div class="col-md-12" id="login-card">
+                                            <input id="nome_mae" type="text" class="form-control" name="nome_mae"
+                                                   value="{{old('nome_mae')}}">
+
+                                            @if ($errors->has('nome_mae'))
+                                                <span class="help-block">
+                        <strong>{{ $errors->first('nome_mae') }}</strong>
+                      </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group{{ $errors->has('nome_pai') ? ' has-error' : '' }}"
+                                         id="login-card">
+                                        <label for="nome_pai" class="col-md-12 control-label"> Nome do Pai <font
+                                                    color="red">*</font></label>
+
+                                        <div class="col-md-12" id="login-card">
+                                            <input id="nome_pai" type="text" class="form-control" name="nome_pai"
+                                                   value="{{old('nome_pai')}}">
+
+                                            @if ($errors->has('nome_pai'))
+                                                <span class="help-block">
+                        <strong>{{ $errors->first('nome_pai') }}</strong>
+                      </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group{{ $errors->has('nome_responsavel') ? ' has-error' : '' }}"
+                                         id="login-card">
+                                        <label for="nome_responsavel" class="col-md-12 control-label"> Nome do
+                                            Responsavel <font
+                                                    color="red">*</font></label>
+
+                                        <div class="col-md-12" id="login-card" style="padding-bottom: 20px">
+                                            <input id="nome_responsavel" type="text" class="form-control"
+                                                   name="nome_responsavel"
+                                                   value="{{ old('nome_responsavel') }}">
+
+                                            @if ($errors->has('nome_responsavel'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('nome_responsavel') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group{{ $errors->has('numero_irmaos') ? ' has-error' : '' }}"
+                                         id="login-card">
+                                        <label for="numero_irmaos" class="col-md-12 control-label"> Numero de Irmãos
+                                            <font
+                                                    color="red">*</font></label>
+                                        <div class="col-md-12" style="padding:0px" id="login-card">
+                                            <div class="col-md-2" id="login-card" style="padding-bottom: 20px">
+                                                <input id="numero_irmaos" type="number" class="form-control"
+                                                       name="numero_irmaos"
+                                                       value="{{ old('numero_irmaos') }}" min="0" step="1" max="69">
+
+                                                @if ($errors->has('numero_irmaos'))
+                                                    <span class="help-block">
+                                                    <strong>{{ $errors->first('numero_irmaos') }}</strong>
+                                                </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <h3>
+                                        <strong>
                                             Endereço
                                         </strong>
                                     </h3>
@@ -311,85 +393,112 @@
                                                         <select id="estado" class="form-control" name="estado"
                                                                 data-target="#cidade">
                                                             <option value="" selected hidden>-- UF --</option>
-                                                            <option @if(old('uf') == 'AC') selected @endif value="AC">
+                                                            <option @if(old('estado') == 'AC')  selected
+                                                                    @endif value="AC">
                                                                 Acre
                                                             </option>
-                                                            <option @if(old('uf') == 'AL') selected @endif value="AL">
+                                                            <option @if(old('estado') == 'AL') selected
+                                                                    @endif value="AL">
                                                                 Alagoas
                                                             </option>
-                                                            <option @if(old('uf') == 'AP') selected @endif value="AP">
+                                                            <option @if(old('estado') == 'AP') selected
+                                                                    @endif value="AP">
                                                                 Amapá
                                                             </option>
-                                                            <option @if(old('uf') == 'AM') selected @endif value="AM">
+                                                            <option @if(old('estado') == 'AM') selected
+                                                                    @endif value="AM">
                                                                 Amazonas
                                                             </option>
-                                                            <option @if(old('uf') == 'BA') selected @endif value="BA">
+                                                            <option @if(old('estado') == 'BA') selected
+                                                                    @endif value="BA">
                                                                 Bahia
                                                             </option>
-                                                            <option @if(old('uf') == 'CE') selected @endif value="CE">
+                                                            <option @if(old('estado') == 'CE') selected
+                                                                    @endif value="CE">
                                                                 Ceará
                                                             </option>
-                                                            <option @if(old('uf') == 'DF') selected @endif value="DF">
+                                                            <option @if(old('estado') == 'DF') selected
+                                                                    @endif value="DF">
                                                                 Distrito Federal
                                                             </option>
-                                                            <option @if(old('uf') == 'ES') selected @endif value="ES">
+                                                            <option @if(old('estado') == 'ES') selected
+                                                                    @endif value="ES">
                                                                 Espírito Santo
                                                             </option>
-                                                            <option @if(old('uf') == 'GO') selected @endif value="GO">
+                                                            <option @if(old('estado') == 'GO') selected
+                                                                    @endif value="GO">
                                                                 Goiás
                                                             </option>
-                                                            <option @if(old('uf') == 'MA') selected @endif value="MA">
+                                                            <option @if(old('estado') == 'MA') selected
+                                                                    @endif value="MA">
                                                                 Maranhão
                                                             </option>
-                                                            <option @if(old('uf') == 'MT') selected @endif value="MT">
+                                                            <option @if(old('estado') == 'MT') selected
+                                                                    @endif value="MT">
                                                                 Mato Grosso
                                                             </option>
-                                                            <option @if(old('uf') == 'MS') selected @endif value="MS">
+                                                            <option @if(old('estado') == 'MS') selected
+                                                                    @endif value="MS">
                                                                 Mato Grosso do Sul
                                                             </option>
-                                                            <option @if(old('uf') == 'MG') selected @endif value="MG">
+                                                            <option @if(old('estado') == 'MG') selected
+                                                                    @endif value="MG">
                                                                 Minas Gerais
                                                             </option>
-                                                            <option @if(old('uf') == 'PA') selected @endif value="PA">
+                                                            <option @if(old('estado') == 'PA') selected
+                                                                    @endif value="PA">
                                                                 Pará
                                                             </option>
-                                                            <option @if(old('uf') == 'PB') selected @endif value="PB">
+                                                            <option @if(old('estado') == 'PB') selected
+                                                                    @endif value="PB">
                                                                 Paraíba
                                                             </option>
-                                                            <option @if(old('uf') == 'PR') selected @endif value="PR">
+                                                            <option @if(old('estado') == 'PR') selected
+                                                                    @endif value="PR">
                                                                 Paraná
                                                             </option>
-                                                            <option @if(old('uf') == 'PE') selected @endif value="PE">
+                                                            <option @if(old('estado') == 'PE') selected
+                                                                    @endif value="PE">
                                                                 Pernambuco
                                                             </option>
-                                                            <option @if(old('uf') == 'PI') selected @endif value="PI">
+                                                            <option @if(old('estado') == 'PI') selected
+                                                                    @endif value="PI">
                                                                 Piauí
                                                             </option>
-                                                            <option @if(old('uf') == 'RJ') selected @endif value="RJ">
+                                                            <option @if(old('estado') == 'RJ') selected
+                                                                    @endif value="RJ">
                                                                 Rio de Janeiro
                                                             </option>
-                                                            <option @if(old('uf') == 'RN') selected @endif value="RN">
+                                                            <option @if(old('estado') == 'RN') selected
+                                                                    @endif value="RN">
                                                                 Rio Grande do Norte
                                                             </option>
-                                                            <option @if(old('uf') == 'RS') selected @endif value="RS">
+                                                            <option @if(old('estado') == 'RS') selected
+                                                                    @endif value="RS">
                                                                 Rio Grande do Sul
                                                             </option>
-                                                            <option @if(old('uf') == 'RO') selected @endif value="RO">
+                                                            <option @if(old('estado') == 'RO') selected
+                                                                    @endif value="RO">
                                                                 Rondônia
                                                             </option>
-                                                            <option @if(old('uf') == 'RR') selected @endif value="RR">
+                                                            <option @if(old('estado') == 'RR') selected
+                                                                    @endif value="RR">
                                                                 Roraima
                                                             </option>
-                                                            <option @if(old('uf') == 'SC') selected @endif value="SC">
+                                                            <option @if(old('estado') == 'SC') selected
+                                                                    @endif value="SC">
                                                                 Santa Catarina
                                                             </option>
-                                                            <option @if(old('uf') == 'SP') selected @endif value="SP">
+                                                            <option @if(old('estado') == 'SP') selected
+                                                                    @endif value="SP">
                                                                 São Paulo
                                                             </option>
-                                                            <option @if(old('uf') == 'SE') selected @endif value="SE">
+                                                            <option @if(old('estado') == 'SE') selected
+                                                                    @endif value="SE">
                                                                 Sergipe
                                                             </option>
-                                                            <option @if(old('uf') == 'TO') selected @endif value="TO">
+                                                            <option @if(old('estado') == 'TO') selected
+                                                                    @endif value="TO">
                                                                 Tocantins
                                                             </option>
                                                         </select>
@@ -480,12 +589,9 @@
 
                                         <div class="col-md-12" id="login-card">
                     <textarea name="observacao" style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px;"
-                              id="" type="text" class="form-control">
-                      {{old('observacao')}}
-                    </textarea>
+                              id="observacao" type="text" class="form-control">{{old('observacao')}}</textarea>
 
                                             <br>
-
                                             @if ($errors->has('observacao'))
                                                 <span class="help-block">
                         <strong>{{ $errors->first('observacao') }}</strong>
@@ -513,14 +619,13 @@
                                                     <option id="perfil" selected disabled hidden>Escolha seu perfil
                                                     </option>
                                                 @endif
+                                                <option @if(old('perfil') == 1) selected
+                                                        @endif value='1'>Responsável
+                                                </option>
+                                                <option @if(old('perfil') == 2) selected
+                                                        @endif value='2'>Professor AEE
+                                                </option>
 
-                                                @foreach($perfis as $perfil)
-                                                    @if($perfil->especializacao != null)
-                                                            <option value={{$perfil->id}} selected>{{$perfil->nome}} - {{$perfil->especializacao}}</option>
-                                                    @else
-                                                        <option value={{$perfil->id}} selected>{{$perfil->nome}}</option>
-                                                    @endif
-                                                @endforeach
                                             </select>
 
                                             @if ($errors->has('perfil'))

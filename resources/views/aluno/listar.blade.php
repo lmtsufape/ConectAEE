@@ -67,19 +67,15 @@
                                 <strong>Sucesso!</strong>
                                 {!! \Session::get('success') !!}
                             </div>
-                        @endif
-
-                        @if (\Session::has('password'))
+                        @elseif (\Session::has('password'))
                             <div class="alert alert-info">
                                 <strong>Atenção!</strong>
                                 {!! \Session::get('password') !!}
                             </div>
-                        @endif
-
-                        @if (\Session::has('denied'))
+                        @elseif (\Session::has('denied'))
                             <div class="alert alert-warning">
                                 <strong>Não permitido!</strong>
-                                {!! \Session::get('denied') !!}
+                                {{ session('denied') }}
                             </div>
                         @endif
 
