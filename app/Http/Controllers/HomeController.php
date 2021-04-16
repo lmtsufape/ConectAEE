@@ -25,4 +25,9 @@ class HomeController extends Controller
   {
     return redirect()->route('aluno.listar');
   }
+
+  public function video()
+  {
+      return view('layouts.videoPopup');
+  }
 }

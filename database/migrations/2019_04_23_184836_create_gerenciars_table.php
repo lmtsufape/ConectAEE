@@ -15,7 +15,7 @@ class CreateGerenciarsTable extends Migration
   {
     Schema::create('gerenciars', function (Blueprint $table) {
       $table->bigIncrements('id');
-      $table->boolean('isAdministrador')->default(False);
+      $table->integer('tipoUsuario')->default(1);
       $table->integer('user_id');
       $table->integer('aluno_id');
       $table->integer('perfil_id')->nullable();

@@ -32,7 +32,7 @@
           <div class="col-md-8 col-md-offset-2" id="login-card">
             <h3>
               <strong>
-                Dados Instituicionais:
+                Dados Institucionais:
               </strong>
             </h3>
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,63 +37,71 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/lang/summernote-pt-BR.js"></script>
 
-  </head>
+</head>
 
-  <body class="acessibilidade">
-      <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
-        <ul id="menu-barra-temp" style="list-style:none;">
-          <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
-            <a href="http://brasil.gov.br" style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal do Governo Brasileiro</a>
-          </li>
-          <li>
-            <a style="font-family:sans,sans-serif; text-decoration:none; color:white;" href="http://epwg.governoeletronico.gov.br/barra/atualize.html">Atualize sua Barra de Governo</a>
-          </li>
-        </ul>
-      </div>
+<body class="acessibilidade">
+<div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
+    <ul id="menu-barra-temp" style="list-style:none;">
+        <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
+            <a href="http://brasil.gov.br" style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal
+                do Governo Brasileiro</a>
+        </li>
+        <li>
+            <a style="font-family:sans,sans-serif; text-decoration:none; color:white;"
+               href="http://epwg.governoeletronico.gov.br/barra/atualize.html">Atualize sua Barra de Governo</a>
+        </li>
+    </ul>
+</div>
 
-      <!-- Barra de Logos -->
-      <div id="barra-logos" class-"container" style="background:#ffffff; margin-top: 1px; height: 80px; padding: 10px 10px 10px 10px">
-          <ul id="logos" style="list-style:none;">
-              <li style="margin-right:140px; margin-left:110px; border-right:1px">
-                  @if(Auth::check() && (Auth::user()->username == 'adelino.lmts' || Auth::user()->username == 'alana.lmts' || Auth::user()->username == 'mateus.lmts' || Auth::user()->username == 'eberson.lmts'))
-                      <a href="{{ route("home") }}"><img src="{{asset('images/pikachinho.png')}}" style = "margin-left: 8px; margin-top:5px " height="60px" align = "left" ></a>
-                  @else
-                      <a href="{{ route("home") }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="50px" align = "left" ></a>
-                  @endif
+<!-- Barra de Logos -->
+<div id="barra-logos" class="container"
+     style="background:#ffffff; margin-top: 1px; height: 80px; padding: 10px 10px 10px 10px">
+    <ul id="logos" style="list-style:none;">
+        <li style="margin-right:140px; margin-left:110px; border-right:1px">
+            @if(Auth::check() && (Auth::user()->username == 'adelino.lmts' || Auth::user()->username == 'alana.lmts' || Auth::user()->username == 'mateus.lmts' || Auth::user()->username == 'eberson.lmts'))
+                <a href="{{ route("home") }}"><img src="{{asset('images/pikachinho.png')}}"
+                                                   style="margin-left: 8px; margin-top:5px " height="60px" align="left"></a>
+            @else
+                <a href="{{ route("home") }}"><img src="{{asset('images/logo.png')}}"
+                                                   style="margin-left: 8px; margin-top:5px " height="50px" align="left"></a>
+            @endif
 
-                  <a onclick="fonte('d')" id="altocontraste" data-toggle="tooltip" title="reduzir fonte">
-                    <img class="on-contrast-force-white" src="{{asset('images/reduce-font-size.png')}}" style = "margin-left: 30px; margin-top:20px " height="30" align = "right">
-                  </a>
+            <a onclick="fonte('d')" id="altocontraste" data-toggle="tooltip" title="reduzir fonte">
+                <img class="on-contrast-force-white" src="{{asset('images/reduce-font-size.png')}}"
+                     style="margin-left: 30px; margin-top:20px " height="30" align="right">
+            </a>
 
-                  <a onclick="fonte('a')" id="altocontraste" data-toggle="tooltip" title="aumentar fonte">
-                    <img class="on-contrast-force-white" src="{{asset('images/increase-font-size.png')}}" style = "margin-left: 30px; margin-top:20px " height="30" align = "right">
-                  </a>
+            <a onclick="fonte('a')" id="altocontraste" data-toggle="tooltip" title="aumentar fonte">
+                <img class="on-contrast-force-white" src="{{asset('images/increase-font-size.png')}}"
+                     style="margin-left: 30px; margin-top:20px " height="30" align="right">
+            </a>
 
-                  <a onclick="contraste()" id="altocontraste" data-toggle="tooltip" title="Contraste">
-                    <img class="on-contrast-force-white" src="{{asset('images/contrasteBlack.png')}}" style = "margin-left: 30px; margin-top:20px " height="30" align = "right">
-                  </a>
+            <a onclick="contraste()" id="altocontraste" data-toggle="tooltip" title="Contraste">
+                <img class="on-contrast-force-white" src="{{asset('images/contrasteBlack.png')}}"
+                     style="margin-left: 30px; margin-top:20px " height="30" align="right">
+            </a>
 
 
-              </li>
-          </ul>
-      </div>
+        </li>
+    </ul>
+</div>
 
-        <!-- <a class="btn-primary" id="altocontraste" onclick="contraste()">Contraste</a> -->
-        <!-- <button class="btn-info" onClick="fonte('a');">A+</button>
-        <button class="btn-info" onClick="fonte('d');">A-</button> -->
+<!-- <a class="btn-primary" id="altocontraste" onclick="contraste()">Contraste</a> -->
+<!-- <button class="btn-info" onClick="fonte('a');">A+</button>
+<button class="btn-info" onClick="fonte('d');">A-</button> -->
 
-      <div id="page-container" style="background-color:#12583C">
-        <div id="content-wrap">
-          @yield('content')
-          <br><br><br>
-        </div>
+<div id="page-container" style="background-color:#12583C">
+    <div id="content-wrap">
+        @yield('content')
+        <br><br><br>
+    </div>
 
-        <div id="footer-brasil"></div>
+    <div id="footer-brasil"></div>
 
-      </div>
+</div>
 
-    <!-- Scripts -->
-    @include('layouts.scripts')
-  </body>
+<!-- Scripts -->
+@include('layouts.scripts')
+</body>
 
 </html>

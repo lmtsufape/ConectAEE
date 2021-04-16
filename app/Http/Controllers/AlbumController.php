@@ -95,7 +95,7 @@ class AlbumController extends Controller
       'nome' => ['required','min:2','max:191'],
       'descricao' => ['nullable','max:500'],
       'imagens' => ['required'],
-      'imagens.*' => ['image','mimes:jpeg,png,jpg,jpe,gif','max:3000'],
+      'imagens.*' => ['mimes:jpeg,png,jpg,jpe,gif','max:3000'],
     ]);
 
     if($validator->fails()){
@@ -135,7 +135,7 @@ class AlbumController extends Controller
     $validator = Validator::make($request->all(), [
       'nome' => ['required','min:2','max:191'],
       'descricao' => ['nullable','max:500'],
-      'imagens.*' => ['image','mimes:jpeg,png,jpg,jpe,gif','max:3000'],
+      'imagens.*' => ['mimes:jpeg,png,jpg,jpe,gif','max:3000'],
     ]);
 
     if($validator->fails()){

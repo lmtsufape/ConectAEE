@@ -17,22 +17,21 @@
 
 .contrast #barra-logos {
     background: #404845 !important;
-    width: 100%;
     padding-left: 50px;
     padding-right: 50px;
 }
 
 .contrast #login-card {
-    background: #464848 !important; 
+    background: #464848 !important;
 }
 
 .contrast #barra-menu {
     background: #404845 !important;
-    margin-right: 20px;
-    margin-left: 20px;
+    margin-right: 0px;
+    margin-left: 0px;
 }
 .contrast #login-card-container {
-    background: #464848 !important; 
+    background: #464848 !important;
     box-shadow: 4px 4px 4px #373f3c !important;
 }
 
@@ -55,8 +54,8 @@
 }
 
 .contrast .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
-  color: #000;
-  background-color: #aaa;
+    color: #000;
+    background-color: #aaa;
 }
 
 .contrast h1,
@@ -75,7 +74,7 @@
 .contrast b,
 .contrast a,
 .contrast span {
-    color: white !important;
+    color: gray !important;
 }
 
 .contrast #menu-a {

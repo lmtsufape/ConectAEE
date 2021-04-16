@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('video', 'HomeController@video')->name('video');
+
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 
@@ -117,3 +119,15 @@ Route::get('/instituicao/{id_instituicao}/editar', 'InstituicaoController@editar
 Route::get('/instituicao/{id_instituicao}/excluir', 'InstituicaoController@excluir')->name('instituicao.excluir')->middleware('checkInstituicaoCriador');
 Route::post('/instituicao/criar', 'InstituicaoController@criar')->name('instituicao.criar');
 Route::post('/instituicao/atualizar', 'InstituicaoController@atualizar')->name('instituicao.atualizar');
+
+//Rotas para relatorio
+Route::get('/aluno/{id_aluno}/relatorio', 'RelatorioController@gerarRelatorio')->name('relatorio.gerar');
+
+//Rotas para pdi
+Route::get('/aluno/{id_aluno}/pdi/cadastrar', 'PdiController@cadastrar')->name('pdi.cadastrar')->middleware('checkPdi');
+Route::post('/pdi/criar', 'PdiController@criar')->name('pdi.criar');
+Route::get('/aluno/{id_aluno}/pdi/listar', 'PdiController@listar')->name('pdi.listar')->middleware('checkPdi');
+Route::get('/aluno/pdi/{id_pdi}/ver', 'PdiController@ver')->name('pdi.ver');
+Route::get('/aluno/pdi/{id_pdi}/excluir', 'PdiController@excluir')->name('pdi.excluir')->middleware('checkPdiCriador');
+Route::get('/aluno/pdi/{id_pdi}/editar', 'PdiController@editar')->name('pdi.editar')->middleware('checkPdiCriador');
+Route::post('/pdi/atualizar', 'PdiController@atualizar')->name('pdi.atualizar');
