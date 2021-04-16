@@ -77,6 +77,8 @@ class Kernel extends HttpKernel
         'checkAlbum' => \App\Http\Middleware\CheckAlbum::class,
         'checkAlbumCriador' => \App\Http\Middleware\CheckAlbumCriador::class,
         'checkInstituicaoCriador' => \App\Http\Middleware\CheckInstituicaoCriador::class,
+        'checkPdi' => \App\Http\Middleware\CheckPDI::class,
+        'checkPdiCriador' => \App\Http\Middleware\CheckPDICriador::class,
     ];
 
     /**

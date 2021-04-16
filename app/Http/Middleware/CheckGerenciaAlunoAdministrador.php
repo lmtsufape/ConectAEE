@@ -31,7 +31,7 @@ class CheckGerenciaAlunoAdministrador
 
       $gerenciar = Gerenciar::where('user_id','=',Auth::user()->id)->where('aluno_id','=',$aluno->id)->first();
 
-      if($gerenciar == NULL || $gerenciar->isAdministrador == false){
+      if($gerenciar == NULL || $gerenciar->tipoUsuario != 3){
         return redirect("/")->with('denied','Você não tem permissão para acessar esta página ou ela não existe.');
       }
 

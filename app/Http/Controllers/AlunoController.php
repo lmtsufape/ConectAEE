@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Familia;
 use App\User;
 use App\Instituicao;
 use App\Notificacao;
@@ -156,7 +157,7 @@ class AlunoController extends Controller{
       $gerenciars = $aluno->gerenciars;
 
       foreach ($gerenciars as $gerenciar) {
-        if ($gerenciar->user->id == \Auth::user()->id && $gerenciar->isAdministrador) {
+        if ($gerenciar->user->id == \Auth::user()->id && $gerenciar->tipoUsuario == 3) {
           $botaoAtivo = true;
         }
       }
@@ -188,6 +189,10 @@ class AlunoController extends Controller{
       'bairro' => ['required'],
       'cidade' => ['required'],
       'estado' => ['required'],
+      'nome_mae' => ['required'],
+      'nome_pai' => ['required'],
+      'nome_responsavel' => ['required'],
+      'numero_irmaos' => ['required'],
       'username' => ['required_if:perfil,==,2']
     ],[
       'username.required_if' => 'É necessário criar um usuário quando o cadastrante é um Professor AEE',
@@ -219,6 +224,13 @@ class AlunoController extends Controller{
     $endereco->estado = $request->estado;
     $endereco->save();
 
+    $familia = new Familia();
+    $familia->nome_mae = $request->nome_mae;
+    $familia->nome_pai = $request->nome_pai;
+    $familia->nome_responsavel = $request->nome_responsavel;
+    $familia->numero_irmaos = $request->numero_irmaos;
+    $familia->save();
+
     $aluno = new Aluno();
 
     if ($request->imagem != null) {
@@ -237,6 +249,7 @@ class AlunoController extends Controller{
     $aluno->data_de_nascimento = $request->data_nascimento;
     $aluno->endereco_id = $endereco->id;
     $aluno->cpf = $request->cpf;
+    $aluno->familia_id = $familia->id;
     $aluno->save();
 
     // do{
@@ -255,7 +268,7 @@ class AlunoController extends Controller{
     $gerenciar->user_id = \Auth::user()->id;
     $gerenciar->aluno_id = $aluno->id;
     $gerenciar->perfil_id = $request->perfil;
-    $gerenciar->isAdministrador = True;
+    $gerenciar->tipoUsuario = 3;
     $gerenciar->save();
 
     // $password = str_random(6);
@@ -277,7 +290,7 @@ class AlunoController extends Controller{
       $gerenciar->user_id = $user->id;
       $gerenciar->aluno_id = $aluno->id;
       $gerenciar->perfil_id = 1;  //responsavel
-      $gerenciar->isAdministrador = True;
+      $gerenciar->tipoUsuario = 3;
       $gerenciar->save();
     }
 
@@ -406,7 +419,7 @@ class AlunoController extends Controller{
     }
 
     foreach ($gerenciars as $gerenciar) {
-      if ($gerenciar->isAdministrador) {
+      if ($gerenciar->tipoUsuario == 3 and ($gerenciar->perfil_id == 1 or $gerenciar->perfil_id == 2)) {
         $notificacao = new Notificacao();
         $notificacao->aluno_id = $aluno->id;
         $notificacao->remetente_id = \Auth::user()->id;
@@ -515,8 +528,8 @@ class AlunoController extends Controller{
     }
 
     $gerenciar->perfil_id = $perfil->id;
-    if($request->exists('isAdministrador') || $request->perfil == 'Responsável'){
-      $gerenciar->isAdministrador = $request->isAdministrador;
+    if($request->exists('tipoUsuario') || $request->perfil == 'Responsável'){
+      $gerenciar->tipoUsuario = $request->tipoUsuario;
     }
     
     $gerenciar->save();
@@ -568,8 +581,8 @@ class AlunoController extends Controller{
 
     $gerenciar->perfil_id = $perfil->id;
 
-    if($request->exists('isAdministrador') || $request->perfil == 'Responsável'){
-      $gerenciar->isAdministrador = true;
+    if($request->exists('tipoUsuario') || $request->perfil == 'Responsável'){
+      $gerenciar->tipoUsuario = $request->tipoUsuario;
     }
 
     $gerenciar->update();

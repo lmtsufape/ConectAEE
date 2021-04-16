@@ -37,6 +37,14 @@ class Aluno extends Model
         return $this->hasOne(ForumAluno::class);
     }
 
+    public function familia(){
+        return $this->hasOne(Familia::class, 'id','familia_id');
+    }
+
+    public function pdi(){
+        return $this->belongsTo(Pdi::class);
+    }
+
     public function endereco(){
         return $this->hasOne(Endereco::class,'id','endereco_id');
     }
