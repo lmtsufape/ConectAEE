@@ -45,43 +45,78 @@
 <h2>Observações</h2>
 {{$aluno->observacao}}<br>
 
-@if(!empty($aluno->objetivos))
+@if(!empty($objetivos))
     <h2>Objetivos</h2>
-    @foreach($aluno->objetivos as $objetivo)
+    @foreach($objetivos as $objetivo)
         <p>
-            <b>{{$objetivo->titulo}}</b><br>
-            <b>Descrição: </b>{{$objetivo->descricao}}<br>
-            <b>Objetivo: </b>{{$objetivo->tipoObjetivo->tipo}}<br>
-            <b>Prioridade: </b>{{$objetivo->prioridade}}<br>
-            <b>Status: </b>
+            <b style="text-transform: uppercase;">{{$objetivo->titulo}}</b><br>
+            <b>Status:</b>
             @if($objetivo->concluido == 'true')
                 Concluido
             @else
                 Não Concluido
             @endif<br>
-            <b>Autor: </b>{{$objetivo->user->name}}
-
+            <b>Descrição: </b>{{$objetivo->descricao}}<br>
+            <b>Tipo: </b>{{\App\TipoObjetivo::all()->where('id', '=', $objetivo->tipo_objetivo_id)->first()->tipo}}<br>
+            <b>Prioridade: </b>{{$objetivo->prioridade}}<br>
+            <b>Autor: </b>{{\App\User::all()->where('id', '=', $objetivo->user_id)->first()->name}}<br>
+            <b>Data: </b>{{date_format(date_create($objetivo->data),'d/m/Y')}}
         </p>
+
+        <h3 style="margin-left: 3%">Atividades</h3>
+        <div style="border-style: groove; border-radius: 5px; margin-left: 2%;">
+            @php
+                $count = 1
+            @endphp
+            @foreach(\App\Atividade::all()->where('objetivo_id', '=', $objetivo->id) as $atividade)
+                @if($count != 1)
+                    <hr>
+                @endif
+                <p style="margin-left: 3%">
+                    <b style="text-transform: uppercase">{{$atividade->titulo}}</b><br>
+                    <b>Status: </b>{{$atividade->status}} -
+                    @if($objetivo->concluido == 'true')
+                        <b>Concluido</b>
+                    @else
+                        <b>Não Concluido</b>
+                    @endif<br>
+                    <b>Prioridade: </b>{{$atividade->prioridade}}<br>
+                    <b>Descrição: </b><span style="text-align: left">{{$atividade->descricao}}</span><br>
+                    <b>Data: </b>{{$atividade->data}}
+                </p>
+                @php
+                    $count++
+                @endphp
+            @endforeach
+        </div>
     @endforeach
 @endif
 
-@if(!empty($aluno->albuns))
+@if(!empty($albuns))
     <h2>Albuns</h2>
-    @foreach($aluno->albuns as $album)
-        <p>
-            <b>{{$album->nome}}</b><br>
-            <b>Descrição: </b>{{$album->descricao}}<br>
-        <div class="row">
-            @foreach($album->fotos as $foto)
-                <div class="column" style="float: left; padding-right: 10px">
-                    <img src="{{ public_path('storage/albuns/'.$aluno->id.'/'.$foto->imagem) }}"
-                         width="250px" height="250px"
-                         style="border-radius: 20px; border: 5px solid #1f648b;">
-                </div>
-            @endforeach
-        </div>
-        </p>
-    @endforeach
+    <table>
+        @foreach($albuns as $album)
+            <tr>
+                <td>
+                    <b>{{$album->nome}}</b><br>
+                    <b>Descrição: </b>{{$album->descricao}}<br>
+                    <b>Data: </b>{{date_format(date_create($album->created_at),'d/m/Y')}}<br>
+                </td>
+            </tr>
+            <br>
+            <tr>
+
+                @foreach(\App\Foto::all()->where('album_id', '=', $album->id)->take(3)  as $foto)
+                    <td style="float: left; padding-right: 10px; left: -10px">
+                        <img src="{{ public_path('storage/albuns/'.$aluno->id.'/'.$foto->imagem) }}"
+                             width="230px" height="230px"
+                             style="border-radius: 20px; border: 5px solid #1f648b;">
+                    </td>
+                @endforeach
+            </tr>
+            <br>
+        @endforeach
+    </table>
 @endif
 
 
