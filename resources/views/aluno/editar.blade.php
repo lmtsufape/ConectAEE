@@ -151,7 +151,7 @@
                     <div class="col-md-12" style="padding:0px" id="login-card">
                       <div class="col-md-6" id="login-card">
                         <div class="form-group{{ $errors->has('data_nascimento') ? ' has-error' : '' }}" id="login-card">
-                          <label for="data_nascimento" class="col-md-12 control-label">Data de Nascimento <font color="red">*</font> </label>
+                          <label for="data_nascimento" class="col-md-12 control-label">Data de nascimento<font color="red">*</font> </label>
                           <div class="col-md-12" id="login-card">
 
                             @if(old('data_nascimento',NULL) != NULL)
@@ -173,7 +173,7 @@
                       <div class="col-md-6" id="login-card">
                         <div class="form-group{{ $errors->has('sexo') ? ' has-error' : '' }}" id="login-card">
 
-                          <label for="sexo" class="col-md-12 control-label">Sexo <font color="red">*</font> </label>
+                          <label for="sexo" class="col-md-12 control-label">Sexo<font color="red">*</font> </label>
 
                           <div class="col-md-12" id="login-card">
 
@@ -215,7 +215,7 @@
 
                   <div class="form-group{{ $errors->has('nome_mae') ? ' has-error' : '' }}"
                        id="login-card">
-                    <label for="nome_mae" class="col-md-12 control-label"> Nome da Mãe<font
+                    <label for="nome_mae" class="col-md-12 control-label"> Nome da mãe<font
                               color="red">*</font></label>
 
                     <div class="col-md-12" id="login-card">
@@ -232,7 +232,7 @@
 
                   <div class="form-group{{ $errors->has('nome_pai') ? ' has-error' : '' }}"
                        id="login-card">
-                    <label for="nome_pai" class="col-md-12 control-label"> Nome do Pai</label>
+                    <label for="nome_pai" class="col-md-12 control-label"> Nome do pai</label>
 
                     <div class="col-md-12" id="login-card">
                       <input id="nome_pai" type="text" class="form-control" name="nome_pai"
@@ -249,7 +249,7 @@
                   <div class="form-group{{ $errors->has('nome_responsavel') ? ' has-error' : '' }}"
                        id="login-card">
                     <label for="nome_responsavel" class="col-md-12 control-label"> Nome do(a)
-                      Responsável<font
+                      responsável<font
                               color="red">*</font></label>
 
                     <div class="col-md-12" id="login-card" style="padding-bottom: 20px">
@@ -267,7 +267,7 @@
 
                   <div class="form-group{{ $errors->has('numero_irmaos') ? ' has-error' : '' }}"
                        id="login-card">
-                    <label for="numero_irmaos" class="col-md-12 control-label"> Número de Irmãos<font
+                    <label for="numero_irmaos" class="col-md-12 control-label"> Número de irmãos<font
                               color="red">*</font></label>
                     <div class="col-md-12" style="padding:0px" id="login-card">
                       <div class="col-md-2" id="login-card" style="padding-bottom: 20px">
@@ -492,7 +492,7 @@
                   </div>
 
                   <div class="form-group{{ $errors->has('observacao') ? ' has-error' : '' }}" id="login-card">
-                    <label for="observacao" class="col-md-12 control-label">Outras Observações</label>
+                    <label for="observacao" class="col-md-12 control-label">Outras observações</label>
 
                     <div class="col-md-12" id="login-card">
 
