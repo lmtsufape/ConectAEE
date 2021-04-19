@@ -432,6 +432,10 @@ background-color: #3097D1;
   border-radius: 15px
 }
 
+.btn {
+  font-family: Arial;
+}
+
 .btn-danger:hover{
   background-color: #581212;
   border-color: #d3e0e9;

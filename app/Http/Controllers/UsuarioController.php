@@ -23,7 +23,7 @@ class UsuarioController extends Controller
       'name' => ['required', 'string', 'max:255'],
       'email' => ['nullable', 'email', 'unique:users'],
       'username' => ['required', 'string', 'max:255'],
-      'telefone' => ['required','numeric'],
+      'telefone' => ['required','string'],
       'password' => ['required', 'string', 'min:6', 'confirmed'],
     ]);
 
@@ -63,9 +63,9 @@ class UsuarioController extends Controller
     $validator = Validator::make($request->all(), [
       'email' => 'nullable|string|email|max:255',
       'username' => 'required|string|max:255',
-      'telefone' => 'required|numeric',
+      'telefone' => 'required|string',
       'name' => 'required|string|max:255',
-      'senha' => 'required'
+      'senha' => 'required|string|min:6',
     ]);
 
     $validator->sometimes('username', 'unique:users', function ($request) use ($usuario){

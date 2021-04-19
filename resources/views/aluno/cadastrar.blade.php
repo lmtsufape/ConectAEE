@@ -40,8 +40,9 @@
                                     <hr style="border-top: 1px solid #AAA;">
 
                                     <div class="form-group{{ $errors->has('instituicoes') ? ' has-error' : '' }}"
-                                         style="margin-bottom: 20px" id="login-card">
-                                        <label for="instituicoes" class="col-md-12 control-label">Instituição(ões) <font
+                                         id="login-card">
+                                        <label for="instituicoes" class="col-md-12 control-label">Instituição(ões)
+                                            vinculada(s) ao aluno<font
                                                     color="red">*</font> </label>
 
                                         <div class="col-md-12" id="login-card">
@@ -88,13 +89,20 @@
                         <strong>{{ $errors->first("instituicoes") }}</strong>
                       </span>
                                             @endif
+                                            <br>
+                                        </div>
+                                    </div>
 
+                                    <div class="form-group" id="login-card">
+                                        <div class="col-md-12 col-md-offset-5" id="login-card">
+                                            Instituição não encontrada? &nbsp;
+                                            <a class="btn btn-primary" href="{{ route("instituicao.cadastrar") }}">Cadastre</a>
                                         </div>
                                     </div>
 
                                     <h3>
                                         <strong>
-                                            Identificação
+                                            Identificação do Aluno
                                         </strong>
                                     </h3>
 
@@ -103,7 +111,7 @@
 
                                     <div class="form-group{{ $errors->has('cpf') ? ' has-error' : '' }}"
                                          id="login-card">
-                                        <label for="cpf" class="col-md-12 control-label"> CPF <font color="red">*</font></label>
+                                        <label for="cpf" class="col-md-12 control-label"> CPF<font color="red">*</font></label>
 
                                         <div class="col-md-12" id="login-card">
                                             <input id="cpf" type="text" class="form-control" name="cpf" readonly
@@ -119,7 +127,7 @@
 
                                     <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}"
                                          id="login-card">
-                                        <label for="nome" class="col-md-12 control-label"> Nome <font
+                                        <label for="nome" class="col-md-12 control-label"> Nome<font
                                                     color="red">*</font></label>
 
                                         <div class="col-md-12" id="login-card">
@@ -157,11 +165,11 @@
                                                 <div class="form-group{{ $errors->has('data_nascimento') ? ' has-error' : '' }}"
                                                      id="login-card">
                                                     <label for="data_nascimento" class="col-md-12 control-label">Data de
-                                                        Nascimento <font color="red">*</font> </label>
+                                                        nascimento<font color="red">*</font> </label>
 
                                                     <div class="col-md-12" id="login-card">
                                                         <input id="data_nascimento" type="date" class="form-control"
-                                                               name="data_nascimento"
+                                                               name="data_nascimento" max=""
                                                                value="{{ old('data_nascimento') }}">
 
                                                         @if ($errors->has('data_nascimento'))
@@ -176,7 +184,7 @@
                                                 <div class="form-group{{ $errors->has('sexo') ? ' has-error' : '' }}"
                                                      id="login-card">
 
-                                                    <label for="sexo" class="col-md-12 control-label">Sexo <font
+                                                    <label for="sexo" class="col-md-12 control-label">Sexo<font
                                                                 color="red">*</font> </label>
 
                                                     <div class="col-md-12" id="login-card">
@@ -212,7 +220,7 @@
 
                                     <h3>
                                         <strong>
-                                            Familia
+                                            Dados Familiares do Aluno
                                         </strong>
                                     </h3>
 
@@ -220,7 +228,7 @@
 
                                     <div class="form-group{{ $errors->has('nome_mae') ? ' has-error' : '' }}"
                                          id="login-card">
-                                        <label for="nome_mae" class="col-md-12 control-label"> Nome da Mãe <font
+                                        <label for="nome_mae" class="col-md-12 control-label"> Nome da mãe<font
                                                     color="red">*</font></label>
 
                                         <div class="col-md-12" id="login-card">
@@ -237,8 +245,7 @@
 
                                     <div class="form-group{{ $errors->has('nome_pai') ? ' has-error' : '' }}"
                                          id="login-card">
-                                        <label for="nome_pai" class="col-md-12 control-label"> Nome do Pai <font
-                                                    color="red">*</font></label>
+                                        <label for="nome_pai" class="col-md-12 control-label"> Nome do pai</label>
 
                                         <div class="col-md-12" id="login-card">
                                             <input id="nome_pai" type="text" class="form-control" name="nome_pai"
@@ -254,8 +261,8 @@
 
                                     <div class="form-group{{ $errors->has('nome_responsavel') ? ' has-error' : '' }}"
                                          id="login-card">
-                                        <label for="nome_responsavel" class="col-md-12 control-label"> Nome do
-                                            Responsavel <font
+                                        <label for="nome_responsavel" class="col-md-12 control-label"> Nome do(a)
+                                            responsável<font
                                                     color="red">*</font></label>
 
                                         <div class="col-md-12" id="login-card" style="padding-bottom: 20px">
@@ -273,9 +280,8 @@
 
                                     <div class="form-group{{ $errors->has('numero_irmaos') ? ' has-error' : '' }}"
                                          id="login-card">
-                                        <label for="numero_irmaos" class="col-md-12 control-label"> Numero de Irmãos
-                                            <font
-                                                    color="red">*</font></label>
+                                        <label for="numero_irmaos" class="col-md-12 control-label"> Número de
+                                            irmãos<font color="red">*</font></label>
                                         <div class="col-md-12" style="padding:0px" id="login-card">
                                             <div class="col-md-2" id="login-card" style="padding-bottom: 20px">
                                                 <input id="numero_irmaos" type="number" class="form-control"
@@ -294,7 +300,7 @@
 
                                     <h3>
                                         <strong>
-                                            Endereço
+                                            Endereço da Moradia do Aluno
                                         </strong>
                                     </h3>
 
@@ -302,10 +308,10 @@
 
                                     <div class="row" style="padding:0px" id="login-card">
                                         <div class="col-md-12" style="padding:0px" id="login-card">
-                                            <div class="col-md-3" id="login-card">
+                                            <div class="col-md-4" id="login-card">
                                                 <div class="form-group{{ $errors->has('cep') ? ' has-error' : '' }}"
                                                      id="login-card">
-                                                    <label for="cep" class="col-md-12 control-label">Cep <font
+                                                    <label for="cep" class="col-md-12 control-label">CEP<font
                                                                 color="red">*</font></label>
 
                                                     <div class="col-md-12" id="login-card">
@@ -321,10 +327,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-5" id="login-card">
+                                            <div class="col-md-4" id="login-card">
                                                 <div class="form-group{{ $errors->has('rua') ? ' has-error' : '' }}"
                                                      id="login-card">
-                                                    <label for="rua" class="col-md-12 control-label">Rua <font
+                                                    <label for="rua" class="col-md-12 control-label">Rua<font
                                                                 color="red">*</font></label>
 
                                                     <div class="col-md-12" id="login-card">
@@ -344,7 +350,7 @@
                                             <div class="col-md-4" id="login-card">
                                                 <div class="form-group{{ $errors->has('numero') ? ' has-error' : '' }}"
                                                      id="login-card">
-                                                    <label for="numero" class="col-md-12 control-label">Número <font
+                                                    <label for="numero" class="col-md-12 control-label">Número<font
                                                                 color="red">*</font> </label>
 
                                                     <div class="col-md-12" id="login-card">
@@ -367,7 +373,7 @@
                                             <div class="col-md-4" id="login-card">
                                                 <div class="form-group{{ $errors->has('bairro') ? ' has-error' : '' }}"
                                                      id="login-card">
-                                                    <label for="bairro" class="col-md-12 control-label">Bairro <font
+                                                    <label for="bairro" class="col-md-12 control-label">Bairro<font
                                                                 color="red">*</font></label>
 
                                                     <div class="col-md-12" id="login-card">
@@ -386,7 +392,7 @@
                                             <div class="col-md-4" id="login-card">
                                                 <div class="form-group{{ $errors->has('estado') ? ' has-error' : '' }}"
                                                      id="login-card">
-                                                    <label for="estado" class="col-md-12 control-label">Estado <font
+                                                    <label for="estado" class="col-md-12 control-label">Estado<font
                                                                 color="red">*</font> </label>
 
                                                     <div class="col-md-12" id="login-card">
@@ -515,7 +521,7 @@
                                             <div class="col-md-4" id="login-card">
                                                 <div class="form-group{{ $errors->has('cidade') ? ' has-error' : '' }}"
                                                      id="login-card">
-                                                    <label for="cidade" class="col-md-12 control-label">Cidade <font
+                                                    <label for="cidade" class="col-md-12 control-label">Cidade<font
                                                                 color="red">*</font> </label>
 
                                                     <div class="col-md-12" id="login-card">
@@ -535,7 +541,7 @@
 
                                     <h3>
                                         <strong>
-                                            Dados Médicos
+                                            Dados Médicos do Aluno
                                         </strong>
                                     </h3>
 
@@ -563,7 +569,7 @@
                                             CID</label>
 
                                         <div class="col-md-12" id="login-card">
-                                            <input style="margin-bottom:15px;" id="descricaoCid" type="text"
+                                            <input id="descricaoCid" type="text"
                                                    class="form-control" name="descricaoCid"
                                                    value="{{ old('descricaoCid') }}">
 
@@ -575,17 +581,10 @@
                                         </div>
                                     </div>
 
-                                    <h3>
-                                        <strong>
-                                            Outras Observacões
-                                        </strong>
-                                    </h3>
-
-                                    <hr style="border-top: 1px solid #AAA;">
-
                                     <div class="form-group{{ $errors->has('observacao') ? ' has-error' : '' }}"
                                          id="login-card">
-                                        <label for="observacao" class="col-md-12 control-label">Observações</label>
+                                        <label for="observacao" class="col-md-12 control-label">Outras
+                                            observações</label>
 
                                         <div class="col-md-12" id="login-card">
                     <textarea name="observacao" style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px;"
@@ -610,7 +609,8 @@
 
                                     <div class="form-group{{ $errors->has('perfil') ? ' has-error' : '' }}"
                                          id="login-card">
-                                        <label for="perfil" class="col-md-12 control-label">Perfil</label>
+                                        <label for="perfil" class="col-md-12 control-label">Perfil<font
+                                                    color="red">*</font></label>
 
                                         <div class="col-md-12" id="login-card">
                                             <select style="margin-bottom:15px;" id="perfil" class="form-control"
@@ -741,6 +741,25 @@
 
     <script src="{{ asset('js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{ asset('js/select2.min.js') }}"></script>
+
+    <script>
+        $(function () {
+            var dtToday = new Date();
+
+            var month = dtToday.getMonth() + 1;
+            var day = dtToday.getDate();
+            var year = dtToday.getFullYear();
+
+            if (month < 10)
+                month = '0' + month.toString();
+            if (day < 10)
+                day = '0' + day.toString();
+
+            var maxDate = year + '-' + month + '-' + day;
+            $('#data_nascimento').attr('max', maxDate);
+        });
+    </script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             $('.js-example-basic-multiple').select2();

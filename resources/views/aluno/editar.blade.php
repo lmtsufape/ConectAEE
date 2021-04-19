@@ -43,7 +43,7 @@
                   <hr style="border-top: 1px solid #AAA;">
 
                   <div class="form-group{{ $errors->has('instituicoes') ? ' has-error' : '' }}" id="login-card">
-                    <label for="instituicoes" class="col-md-12 control-label">Instituição(ões) <font color="red">*</font> </label>
+                    <label for="instituicoes" class="col-md-12 control-label">Instituição(ões) vinculada(s) ao aluno<font color="red">*</font> </label>
 
                     <div class="col-md-12" id="login-card">
                       <select class="form-control js-example-basic-multiple" name="instituicoes[]" multiple="multiple" autofocus>
@@ -94,7 +94,7 @@
                   </div>
 
                   <div class="form-group" id="login-card">
-                    <div class="col-md-12 col-md-offset-4" id="login-card">
+                    <div class="col-md-12 col-md-offset-5" id="login-card">
                       Instituição não encontrada? &nbsp;
                       <a class="btn btn-primary" href="{{ route("instituicao.cadastrar") }}">Cadastre</a>
                     </div>
@@ -102,14 +102,14 @@
 
                   <h3>
                     <strong>
-                      Identificação
+                      Identificação do Aluno
                     </strong>
                   </h3>
 
                   <hr style="border-top: 1px solid #AAA;">
 
                   <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}" id="login-card">
-                    <label for="nome" class="col-md-12 control-label"> Nome <font color="red">*</font></label>
+                    <label for="nome" class="col-md-12 control-label"> Nome<font color="red">*</font></label>
 
                     <div class="col-md-12" id="login-card">
 
@@ -207,7 +207,7 @@
 
                   <h3>
                     <strong>
-                      Familia
+                      Dados Familiares do Aluno
                     </strong>
                   </h3>
 
@@ -215,7 +215,7 @@
 
                   <div class="form-group{{ $errors->has('nome_mae') ? ' has-error' : '' }}"
                        id="login-card">
-                    <label for="nome_mae" class="col-md-12 control-label"> Nome da Mãe <font
+                    <label for="nome_mae" class="col-md-12 control-label"> Nome da Mãe<font
                               color="red">*</font></label>
 
                     <div class="col-md-12" id="login-card">
@@ -232,8 +232,7 @@
 
                   <div class="form-group{{ $errors->has('nome_pai') ? ' has-error' : '' }}"
                        id="login-card">
-                    <label for="nome_pai" class="col-md-12 control-label"> Nome do Pai <font
-                              color="red">*</font></label>
+                    <label for="nome_pai" class="col-md-12 control-label"> Nome do Pai</label>
 
                     <div class="col-md-12" id="login-card">
                       <input id="nome_pai" type="text" class="form-control" name="nome_pai"
@@ -249,8 +248,8 @@
 
                   <div class="form-group{{ $errors->has('nome_responsavel') ? ' has-error' : '' }}"
                        id="login-card">
-                    <label for="nome_responsavel" class="col-md-12 control-label"> Nome do
-                      Responsavel <font
+                    <label for="nome_responsavel" class="col-md-12 control-label"> Nome do(a)
+                      Responsável<font
                               color="red">*</font></label>
 
                     <div class="col-md-12" id="login-card" style="padding-bottom: 20px">
@@ -268,8 +267,7 @@
 
                   <div class="form-group{{ $errors->has('numero_irmaos') ? ' has-error' : '' }}"
                        id="login-card">
-                    <label for="numero_irmaos" class="col-md-12 control-label"> Numero de Irmãos
-                      <font
+                    <label for="numero_irmaos" class="col-md-12 control-label"> Número de Irmãos<font
                               color="red">*</font></label>
                     <div class="col-md-12" style="padding:0px" id="login-card">
                       <div class="col-md-2" id="login-card" style="padding-bottom: 20px">
@@ -288,7 +286,7 @@
 
                   <h3>
                     <strong>
-                      Endereço
+                      Endereço da Moradia do Aluno
                     </strong>
                   </h3>
 
@@ -296,9 +294,9 @@
 
                   <div class="row" style="padding:0px" id="login-card">
                     <div class="col-md-12" style="padding:0px" id="login-card">
-                      <div class="col-md-3" id="login-card">
+                      <div class="col-md-4" id="login-card">
                         <div class="form-group{{ $errors->has('cep') ? ' has-error' : '' }}" id="login-card">
-                          <label for="cep" class="col-md-12 control-label">Cep <font color="red">*</font></label>
+                          <label for="cep" class="col-md-12 control-label">CEP<font color="red">*</font></label>
 
                           <div class="col-md-12" id="login-card">
 
@@ -316,9 +314,9 @@
                           </div>
                         </div>
                       </div>  
-                      <div class="col-md-5" id="login-card">
+                      <div class="col-md-4" id="login-card">
                         <div class="form-group{{ $errors->has('rua') ? ' has-error' : '' }}" id="login-card">
-                          <label for="rua" class="col-md-12 control-label">Rua <font color="red">*</font></label>
+                          <label for="rua" class="col-md-12 control-label">Rua<font color="red">*</font></label>
 
                           <div class="col-md-12" id="login-card">
 
@@ -339,7 +337,7 @@
 
                       <div class="col-md-4" id="login-card">
                         <div class="form-group{{ $errors->has('numero') ? ' has-error' : '' }}" id="login-card">
-                          <label for="numero" class="col-md-12 control-label">Número <font color="red">*</font> </label>
+                          <label for="numero" class="col-md-12 control-label">Número<font color="red">*</font> </label>
 
                           <div class="col-md-12" id="login-card">
 
@@ -364,7 +362,7 @@
                     <div class="col-md-12" style="padding:0px" id="login-card">
                       <div class="col-md-4" id="login-card">
                         <div class="form-group{{ $errors->has('bairro') ? ' has-error' : '' }}" id="login-card">
-                          <label for="bairro" class="col-md-12 control-label">Bairro <font color="red">*</font></label>
+                          <label for="bairro" class="col-md-12 control-label">Bairro<font color="red">*</font></label>
 
                           <div class="col-md-12" id="login-card">
 
@@ -385,7 +383,7 @@
 
                       <div class="col-md-4" id="login-card">
                         <div class="form-group{{ $errors->has('estado') ? ' has-error' : '' }}" id="login-card">
-                          <label for="estado" class="col-md-12 control-label">Estado <font color="red">*</font> </label>
+                          <label for="estado" class="col-md-12 control-label">Estado<font color="red">*</font> </label>
 
                           <div class="col-md-12" id="login-card">
                             <select id="estado" class="form-control" name="estado" data-target="#cidade">
@@ -430,7 +428,7 @@
 
                       <div class="col-md-4" id="login-card">
                         <div class="form-group{{ $errors->has('cidade') ? ' has-error' : '' }}" id="login-card">
-                          <label for="cidade" class="col-md-12 control-label">Cidade <font color="red">*</font> </label>
+                          <label for="cidade" class="col-md-12 control-label">Cidade<font color="red">*</font> </label>
 
                           <div class="col-md-12" id="login-card">
 
@@ -449,7 +447,7 @@
 
                   <h3>
                     <strong>
-                      Dados Médicos
+                      Dados Médicos do Aluno
                     </strong>
                   </h3>
 
@@ -480,9 +478,9 @@
                     <div class="col-md-12" id="login-card">
 
                       @if(old('descricaoCid',NULL) != NULL)
-                        <input style="margin-bottom:15px;" id="descricaoCid" type="text" class="form-control" name="descricaoCid" value="{{ old('descricaoCid') }}">
+                        <input id="descricaoCid" type="text" class="form-control" name="descricaoCid" value="{{ old('descricaoCid') }}">
                       @else
-                        <input style="margin-bottom:15px;" id="descricaoCid" type="text" class="form-control" name="descricaoCid" value="{{ $aluno->descricao_cid }}">
+                        <input id="descricaoCid" type="text" class="form-control" name="descricaoCid" value="{{ $aluno->descricao_cid }}">
                       @endif
 
                       @if ($errors->has('descricaoCid'))
@@ -493,26 +491,16 @@
                     </div>
                   </div>
 
-                  <h3>
-                    <strong>
-                      Outras Observacões
-                    </strong>
-                  </h3>
-
-                  <hr style="border-top: 1px solid #AAA;">
-
                   <div class="form-group{{ $errors->has('observacao') ? ' has-error' : '' }}" id="login-card">
-                    <label for="observacao" class="col-md-12 control-label">Observações</label>
+                    <label for="observacao" class="col-md-12 control-label">Outras Observações</label>
 
                     <div class="col-md-12" id="login-card">
 
                       @if(old('observacao',NULL) != NULL)
-                        <textarea name="observacao" style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px; display: inline" id="" type="text" class="form-control summernote">
-                          {{old('observacao')}}
+                        <textarea name="observacao" style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px; display: inline" id="" type="text" class="form-control summernote">{{old('observacao')}}
                         </textarea>
                       @else
-                        <textarea name="observacao" style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px; display: inline" id="" type="text" class="form-control summernote">
-                          {{$aluno->observacao}}
+                        <textarea name="observacao" style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px; display: inline" id="" type="text" class="form-control summernote">{{$aluno->observacao}}
                         </textarea>
                       @endif
 
@@ -572,6 +560,25 @@ $(document).ready(function() {
   $('.js-example-basic-multiple').select2();
 });
 </script>
+
+  <script>
+    $(function(){
+      var dtToday = new Date();
+
+      var month = dtToday.getMonth() + 1;
+      var day = dtToday.getDate();
+      var year = dtToday.getFullYear();
+
+      if(month < 10)
+        month = '0' + month.toString();
+      if(day < 10)
+        day = '0' + day.toString();
+
+      var maxDate = year + '-' + month + '-' + day;
+      $('#data_nascimento').attr('max', maxDate);
+    });
+  </script>
+
 <script>
 // var estados = [];
 
