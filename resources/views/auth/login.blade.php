@@ -74,7 +74,9 @@
                                     <label style="font-size:13px;">
                                         <input type="checkbox" name="remember"
                                                value="{{ old('remember') ? 'checked' : '' }}">
+                                        <span style="font-family: Arial; color: #7F7F7F">
                                         Lembrar e-mail e senha
+                                        </span>
                                     </label>
 
                                     <button type="submit"
