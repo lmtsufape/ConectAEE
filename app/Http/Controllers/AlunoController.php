@@ -200,7 +200,7 @@ class AlunoController extends Controller
             'cidade' => ['required'],
             'estado' => ['required'],
             'nome_mae' => ['required'],
-            'nome_pai' => ['required'],
+            'nome_pai' => ['nullable'],
             'nome_responsavel' => ['required'],
             'numero_irmaos' => ['required'],
             'username' => ['required_if:perfil,==,2']
@@ -335,7 +335,7 @@ class AlunoController extends Controller
             'cep' => ['required'],
             'rua' => ['required'],
             'nome_mae' => ['required'],
-            'nome_pai' => ['required'],
+            'nome_pai' => ['nullable'],
             'nome_responsavel' => ['required'],
             'numero_irmaos' => ['required'],
             'numero' => ['required', 'numeric'],

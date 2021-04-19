@@ -52,7 +52,7 @@
               <hr style="border-top: 1px solid #AAA;">
 
               <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}" id="login-card">
-                <label for="nome" class="col-md-12 control-label"> Nome <font color="red">*</font> </label>
+                <label for="nome" class="col-md-12 control-label"> Nome<font color="red">*</font> </label>
 
                 <div class="col-md-12" id="login-card">
                   <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}" autofocus>
@@ -69,7 +69,7 @@
                 <div class="col-md-12" style="padding:0px" id="login-card">
                   <div class="col-md-6" id="login-card">
                     <div class="form-group{{ $errors->has('telefone') ? ' has-error' : '' }}" id="login-card">
-                      <label for="telefone" class="col-md-12 control-label">Telefone <font color="red">*</font> </label>
+                      <label for="telefone" class="col-md-12 control-label">Telefone<font color="red">*</font> </label>
 
                       <div class="col-md-12" id="login-card">
                         <input  type="digit" class="form-control" name="telefone" id="telefone" minlength="10" placeholder="DDD+Telefone" maxlength="11" value="{{ old('telefone') }}">
@@ -111,9 +111,9 @@
 
               <div class="row" style="padding:0px" id="login-card">
                 <div class="col-md-12" style="padding:0px" id="login-card">
-                  <div class="col-md-3" id="login-card">
+                  <div class="col-md-4" id="login-card">
                     <div class="form-group{{ $errors->has('cep') ? ' has-error' : '' }}" id="login-card">
-                        <label for="cep" class="col-md-12 control-label">Cep <font color="red">*</font></label>
+                        <label for="cep" class="col-md-12 control-label">CEP<font color="red">*</font></label>
 
                         <div class="col-md-12" id="login-card">
 
@@ -127,9 +127,9 @@
                         </div>
                       </div>
                     </div>
-                  <div class="col-md-5" id="login-card">
+                  <div class="col-md-4" id="login-card">
                     <div class="form-group{{ $errors->has('rua') ? ' has-error' : '' }}" id="login-card">
-                      <label for="rua" class="col-md-12 control-label">Rua <font color="red">*</font></label>
+                      <label for="rua" class="col-md-12 control-label">Rua<font color="red">*</font></label>
 
                       <div class="col-md-12" id="login-card">
 
@@ -146,7 +146,7 @@
 
                   <div class="col-md-4" id="login-card">
                     <div class="form-group{{ $errors->has('numero') ? ' has-error' : '' }}" id="login-card">
-                  <label for="numero" class="col-md-12 control-label">Número <font color="red">*</font> </label>
+                  <label for="numero" class="col-md-12 control-label">Número<font color="red">*</font> </label>
 
                   <div class="col-md-12" id="login-card">
 
@@ -167,7 +167,7 @@
                 <div class="col-md-12" style="padding:0px" id="login-card">
                   <div class="col-md-4" id="login-card">
                     <div class="form-group{{ $errors->has('bairro') ? ' has-error' : '' }}" id="login-card">
-                      <label for="bairro" class="col-md-12 control-label">Bairro <font color="red">*</font></label>
+                      <label for="bairro" class="col-md-12 control-label">Bairro<font color="red">*</font></label>
 
                       <div class="col-md-12" id="login-card">
 
@@ -185,7 +185,7 @@
 
                   <div class="col-md-4" id="login-card">
                     <div class="form-group{{ $errors->has('estado') ? ' has-error' : '' }}" id="login-card">
-                      <label for="estado" class="col-md-12 control-label">Estado <font color="red">*</font> </label>
+                      <label for="estado" class="col-md-12 control-label">Estado<font color="red">*</font> </label>
 
                       <div class="col-md-12" id="login-card">
                         <select id="estado" class="form-control" name="estado" data-target="#cidade">                          
@@ -230,7 +230,7 @@
 
                   <div class="col-md-4" id="login-card">
                     <div class="form-group{{ $errors->has('cidade') ? ' has-error' : '' }}" id="login-card">
-                      <label for="cidade" class="col-md-12 control-label">Cidade <font color="red">*</font> </label>
+                      <label for="cidade" class="col-md-12 control-label">Cidade<font color="red">*</font> </label>
 
                       <div class="col-md-12" id="login-card">
 

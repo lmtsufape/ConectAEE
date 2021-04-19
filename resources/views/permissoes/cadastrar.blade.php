@@ -45,7 +45,8 @@
 
                                 <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}"
                                      id="login-card">
-                                    <label for="username" class="col-md-12 control-label">Nome de Usuário</label>
+                                    <label for="username" class="col-md-12 control-label">Nome do usuário que será autorizado<font color="red">*</font><font
+                                                color="red">*</font></label>
 
                                     <div class="col-md-12" id="login-card">
                                         <input id="username" type="text" class="form-control" name="username"
@@ -60,11 +61,14 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('perfil') ? ' has-error' : '' }}" id="login-card">
-                                    <label for="perfil" class="col-md-12 control-label">Perfil</label>
+                                    <label for="perfil" class="col-md-12 control-label">Autorizar acesso com o perfil de<font
+                                                color="red">*</font></label>
 
                                     <div class="col-md-12" id="login-card">
                                         <select id="perfil" name="perfil" class="form-control">
-                                            <option value="" selected disabled hidden>Escolha o Perfil</option>
+                                            <option value="" selected disabled hidden>Escolha o perfil do usuário que
+                                                irá ser autorizado
+                                            </option>
                                             @foreach($perfis as $perfil)
                                                 @if($perfil->nome == old('perfil'))
                                                     <option value="{{$perfil->nome}}"
@@ -109,6 +113,8 @@
 
                                             <div class="form-check col-md-12" id="login-card">
                                                 <div class="row">
+                                                    <label for="tipoUsuario" class="col-md-12 control-label">Escolha o nivel de acesso do
+                                                            usuário<font color="red">*</font></label>
                                                     <span style="margin-left: 3%;">
                                                         <input id="isPadrao" type="radio" class="form-check-input"
                                                                name="tipoUsuario" value="1" checked>

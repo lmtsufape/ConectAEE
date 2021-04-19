@@ -18,7 +18,7 @@ class CreateFamiliasTable extends Migration
             $table->timestamps();
 
             $table->string('nome_mae');
-            $table->string('nome_pai');
+            $table->string('nome_pai')->nullable();
             $table->integer('numero_irmaos');
             $table->string('nome_responsavel');
         });
