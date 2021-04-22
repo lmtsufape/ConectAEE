@@ -77,7 +77,7 @@ class InstituicaoController extends Controller
       $validator = Validator::make($request->all(), [
         'nome' => ['required','min:2','max:191'],
         'email' => ['nullable', 'string', 'email', 'max:255'],
-        'telefone' => ['required','numeric'],
+        'telefone' => ['required'],
         'cep' => ['required'],
         'rua' => ['required'],
         'numero' => ['required','numeric'],
