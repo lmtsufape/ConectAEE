@@ -115,7 +115,7 @@
         <div class="col-md-12" id="login-bottom">
 
             <div class="col-md-4"
-                 style="border: 1px solid; border-radius: 20px; box-shadow: 2px 2px 2px #999; width: 32%; margin-right: 1%;">
+                 style="border: 1px solid; border-radius: 20px; box-shadow: 2px 2px 2px #999; width: 32%; margin-right: 1%; height: 500px">
                 <div class="panel panel-default" style="width:100%">
 
                     <div class="panel-body">
@@ -142,7 +142,7 @@
             </div>
 
             <div class="col-md-4"
-                 style="border: 1px solid; border-radius: 20px; box-shadow: 2px 2px 2px #999; width: 32%; margin-right: 1%;">
+                 style="border: 1px solid; border-radius: 20px; box-shadow: 2px 2px 2px #999; width: 32%; margin-right: 1%; height: 500px">
                 <div class="panel panel-default" style="width:100%; height: 100%">
 
                     <div class="panel-body">
@@ -159,7 +159,7 @@
                         </div>
 
                         <div class="hifen text-center">
-                            <p style="color: #12583C; padding-bottom: 30px">
+                            <p style="color: #12583C;">
                                 Interaja com profissionais da Educação e forneça sugestões de como aumentar a qualidade
                                 de vida dos seus pacientes no ambiente escolar.
                             </p>
@@ -169,7 +169,7 @@
             </div>
 
             <div class="col-md-4"
-                 style="border: 1px solid; border-radius: 20px; box-shadow: 2px 2px 2px #999; width: 32%;">
+                 style="border: 1px solid; border-radius: 20px; box-shadow: 2px 2px 2px #999; width: 32%; height: 500px">
                 <div class="panel panel-default" style="width:100%; height: 100%">
                     <div class="panel-body">
                         <center>
