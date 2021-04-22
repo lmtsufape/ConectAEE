@@ -11,26 +11,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run(){
 
-        $this->call(UserSeeder::class);
+        //$this->call(UserSeeder::class);
         $this->call(PerfilSeeder::class);
-        $this->call(EnderecoSeeder::class);
-        $this->call(FamiliaSeeder::class);
-        $this->call(AlunoSeeder::class);
-        $this->call(InstituicaoSeeder::class);
-        $this->call(AlunoInstituicaoSeeder::class);
-        $this->call(GerenciarSeeder::class);
-        $this->call(ForumAlunoSeeder::class);
-        $this->call(MensagemForumAlunoSeeder::class);
-        $this->call(TipoObjetivoSeeder::class);
+        //$this->call(EnderecoSeeder::class);
+        //$this->call(FamiliaSeeder::class);
+        //$this->call(AlunoSeeder::class);
+        //$this->call(InstituicaoSeeder::class);
+        //$this->call(AlunoInstituicaoSeeder::class);
+        //$this->call(GerenciarSeeder::class);
+        //$this->call(ForumAlunoSeeder::class);
+        //$this->call(MensagemForumAlunoSeeder::class);
+        //$this->call(TipoObjetivoSeeder::class);
         $this->call(CorSeeder::class);
-        $this->call(ObjetivoSeeder::class);
-        $this->call(StatusSeeder::class);
-        $this->call(StatusObjetivoSeeder::class);
-        $this->call(AtividadeSeeder::class);
-        $this->call(SugestaoSeeder::class);
-        $this->call(ForumObjetivoSeeder::class);
-        $this->call(MensagemForumObjetivoSeeder::class);
-        $this->call(FeedbackSeeder::class);
-        $this->call(NotificacaoSeeder::class);
+        //$this->call(ObjetivoSeeder::class);
+        //$this->call(StatusSeeder::class);
+        //$this->call(StatusObjetivoSeeder::class);
+        //$this->call(AtividadeSeeder::class);
+        //$this->call(SugestaoSeeder::class);
+        //$this->call(ForumObjetivoSeeder::class);
+        //$this->call(MensagemForumObjetivoSeeder::class);
+        //$this->call(FeedbackSeeder::class);
+        //$this->call(NotificacaoSeeder::class);
     }
 }

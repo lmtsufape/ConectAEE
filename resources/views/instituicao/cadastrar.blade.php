@@ -72,7 +72,8 @@
                       <label for="telefone" class="col-md-12 control-label">Telefone<font color="red">*</font> </label>
 
                       <div class="col-md-12" id="login-card">
-                        <input  type="digit" class="form-control" name="telefone" id="telefone" minlength="10" placeholder="DDD+Telefone" maxlength="11" value="{{ old('telefone') }}">
+                        <input  type="digit" class="form-control" name="telefone" id="telefone" minlength="13" placeholder="DDD+Telefone" maxlength="14" value="{{ old('telefone') }}"
+                                onkeypress="mask(this, mphone);" onblur="mask(this, mphone);">
 
                         @if ($errors->has('telefone'))
                           <span class="help-block">
@@ -272,6 +273,32 @@
 $(document).ready(function() {
   $('.js-example-basic-multiple').select2();
 });
+</script>
+
+<script type="text/javascript">
+  function mask(o, f) {
+    setTimeout(function() {
+      var v = mphone(o.value);
+      if (v != o.value) {
+        o.value = v;
+      }
+    }, 1);
+  }
+
+  function mphone(v) {
+    var r = v.replace(/\D/g, "");
+    r = r.replace(/^0/, "");
+    if (r.length > 10) {
+      r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1)$2-$3");
+    } else if (r.length > 5) {
+      r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1)$2-$3");
+    } else if (r.length > 2) {
+      r = r.replace(/^(\d\d)(\d{0,5})/, "($1)$2");
+    } else {
+      r = r.replace(/^(\d*)/, "($1");
+    }
+    return r;
+  }
 </script>
 
 <script>
