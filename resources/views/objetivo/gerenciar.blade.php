@@ -127,7 +127,7 @@
 
                 <div class="col-md-12 text-center" id="login-card">
                   @if($objetivo->user_id == Auth::user()->id)
-                    <button type="submit" class="btn btn-primary" style="width: 100%; margin: 10px 0px; background-color: #6f5; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #6f5; box-shadow: 4px 4px 4px #CCC">
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin: 10px 0px; background-color: #17b01f; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #17b01f; box-shadow: 4px 4px 4px #CCC">
                       Atualizar
                     </button>
                   @endif
