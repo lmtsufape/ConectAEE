@@ -100,26 +100,28 @@
                                                            value="{{ $notificacao->perfil->especializacao }}" autofocus>
                                                 </div>
                                             </div>
-                                            <label for="tipoUsuario" class="col-md-12 control-label">Tipo do Usuário</label>
+                                            <label for="tipoUsuario" class="col-md-12 control-label">Tipo do
+                                                Usuário</label>
                                             <div class="form-check col-md-12" id="login-card">
 
                                                 <div class="row">
                                                     <span style="margin-left: 3%;">
-                                                        <input id="isPadrao" type="radio" class="form-check-input"
-                                                               name="tipoUsuario" value="1" checked>
-                                                        <label class="form-check-label" for="isPadrao">Padrão</label>
-                                                        </span>
-                                                    <span style="margin-left: 1%;">
-                                                    <input id="isObservador" type="radio" class="form-check-input"
-                                                           name="tipoUsuario" value="2">
-                                                    <label class="form-check-label"
-                                                           for="isObservador">Observador</label>
-                                                    </span>
-                                                    <span style="margin-left: 1%;">
                                                     <input id="isAdministrador" type="radio" class="form-check-input"
                                                            name="tipoUsuario" value="3">
                                                     <label class="form-check-label"
                                                            for="isAdministrador">Administrador</label>
+                                                    </span>
+                                                    <span style="margin-left: 1%;">
+                                                        <input id="isPadrao" type="radio" class="form-check-input"
+                                                               name="tipoUsuario" value="1" checked>
+                                                        <label id="isPadraoLabel" class="form-check-label"
+                                                               for="isPadrao">Padrão</label>
+                                                        </span>
+                                                    <span style="margin-left: 1%;">
+                                                    <input id="isObservador" type="radio" class="form-check-input"
+                                                           name="tipoUsuario" value="2">
+                                                    <label id="isObservadorLabel" class="form-check-label"
+                                                           for="isObservador">Observador</label>
                                                     </span>
                                                 </div>
                                             </div>
@@ -146,28 +148,36 @@
 
     <script type="text/javascript">
         var perfil = document.getElementById("perfil").value;
+        var adm = document.getElementById("isAdministrador");
+        var obser = document.getElementById('isObservador');
+        var obserLabel = document.getElementById('isObservadorLabel');
+        var padrao = document.getElementById('isPadrao');
+        var padraoLabel = document.getElementById('isPadraoLabel');
 
         if (perfil == "Responsável") {
-            var adm = document.getElementById("isAdministrador");
-            var obser = document.getElementById('isObservador');
-            var padrao = document.getElementById('isPadrao');
+
             adm.checked = true;
             adm.readonly = true;
             obser.disabled = true;
+            obser.hidden = true;
+            obserLabel.hidden = true;
             padrao.disabled = true;
+            padrao.hidden = true;
+            padraoLabel.hidden = true;
 
             adm.onchange = function () {
                 adm.checked = true;
             };
         }
         if (perfil == "Professor AEE") {
-            var adm = document.getElementById("isAdministrador");
-            var obser = document.getElementById('isObservador');
-            var padrao = document.getElementById('isPadrao');
             adm.checked = true;
             adm.readonly = true;
             obser.disabled = true;
+            obser.hidden = true;
+            obserLabel.hidden = true;
             padrao.disabled = true;
+            padrao.hidden = true;
+            padraoLabel.hidden = true;
 
             adm.onchange = function () {
                 adm.checked = true;

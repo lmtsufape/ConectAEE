@@ -116,22 +116,23 @@
                                                     <label for="tipoUsuario" class="col-md-12 control-label">Escolha o nivel de acesso do
                                                             usuário<font color="red">*</font></label>
                                                     <span style="margin-left: 3%;">
-                                                        <input id="isPadrao" type="radio" class="form-check-input"
-                                                               name="tipoUsuario" value="1" checked>
-                                                        <label class="form-check-label" for="isPadrao">Padrão</label>
-                                                        </span>
-                                                    <span style="margin-left: 1%;">
-                                                    <input id="isObservador" type="radio" class="form-check-input"
-                                                           name="tipoUsuario" value="2">
-                                                    <label class="form-check-label"
-                                                           for="isObservador">Observador</label>
-                                                    </span>
-                                                    <span style="margin-left: 1%;">
                                                     <input id="isAdministrador" type="radio" class="form-check-input"
                                                            name="tipoUsuario" value="3">
                                                     <label class="form-check-label"
                                                            for="isAdministrador">Administrador</label>
                                                     </span>
+                                                    <span style="margin-left: 1%;">
+                                                        <input id="isPadrao" type="radio" class="form-check-input"
+                                                               name="tipoUsuario" value="1" checked>
+                                                        <label id="isPadraoLabel" class="form-check-label" for="isPadrao">Padrão</label>
+                                                        </span>
+                                                    <span style="margin-left: 1%;">
+                                                    <input id="isObservador" type="radio" class="form-check-input"
+                                                           name="tipoUsuario" value="2">
+                                                    <label id="isObservadorLabel" class="form-check-label"
+                                                           for="isObservador">Observador</label>
+                                                    </span>
+
                                                 </div>
                                             </div>
 
@@ -155,51 +156,28 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        var perfil = document.getElementById("perfil").value;
-
-        if (perfil == "Responsável") {
-            var adm = document.getElementById("isAdministrador");
-            var obser = document.getElementById('isObservador');
-            var padrao = document.getElementById('isPadrao');
-            adm.checked = true;
-            adm.readonly = true;
-            obser.disabled = true;
-            padrao.disabled = true;
-
-            adm.onchange = function () {
-                adm.checked = true;
-            };
-        }
-        if (perfil == "Professor AEE") {
-            var adm = document.getElementById("isAdministrador");
-            var obser = document.getElementById('isObservador');
-            var padrao = document.getElementById('isPadrao');
-            adm.checked = true;
-            adm.readonly = true;
-            obser.disabled = true;
-            padrao.disabled = true;
-
-            adm.onchange = function () {
-                adm.checked = true;
-            };
-        }
-
-    </script>
-
 
     <script type="text/javascript">
         document.getElementById("perfil").onchange = function () {
+
             var perfil = document.getElementById("perfil");
+
             var adm = document.getElementById("isAdministrador");
             var obser = document.getElementById('isObservador');
+            var obserLabel = document.getElementById('isObservadorLabel');
             var padrao = document.getElementById('isPadrao');
+            var padraoLabel = document.getElementById('isPadraoLabel');
 
             if (perfil.selectedIndex == 1) {
                 adm.checked = true;
                 adm.readonly = true;
                 obser.disabled = true;
+                obser.hidden = true;
+                obserLabel.hidden = true;
                 padrao.disabled = true;
+                padrao.hidden = true;
+                padraoLabel.hidden = true;
+
                 document.getElementById("div-especializacao").style.display = "none";
 
                 adm.onchange = function () {
@@ -209,21 +187,42 @@
                 adm.checked = true;
                 adm.readonly = true;
                 obser.disabled = true;
+                obser.hidden = true;
+                obserLabel.hidden = true;
                 padrao.disabled = true;
+                padrao.hidden = true;
+                padraoLabel.hidden = true;
                 document.getElementById("div-especializacao").style.display = "none";
 
                 adm.onchange = function () {
                     adm.checked = true;
                 };
-            } else if (perfil.selectedIndex == 4) {
+            } else if(perfil.selectedIndex == 4) {
                 adm.checked = false;
                 adm.readonly = false;
+                obser.disabled = false;
+                obser.hidden = false;
+                obserLabel.hidden = false;
+                padrao.disabled = false;
+                padrao.hidden = false;
+                padraoLabel.hidden = false;
                 document.getElementById("div-especializacao").style.display = "block";
             } else {
                 adm.checked = false;
                 adm.readonly = false;
+                obser.disabled = false;
+                obser.hidden = false;
+                obserLabel.hidden = false;
+                padrao.checked = true;
+                padrao.disabled = false;
+                padrao.hidden = false;
+                padraoLabel.hidden = false;
                 document.getElementById("div-especializacao").style.display = "none";
+                adm.onchange = function () {
+                    adm.checked = true;
+                };
             }
+
         };
     </script>
 
