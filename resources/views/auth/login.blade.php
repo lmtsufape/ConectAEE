@@ -8,7 +8,7 @@
             <div class="panel panel-default" style="width:100%;background-color:#12583C; margin:20px;">
 
                 <div class="panel-body col-md-12 texto">
-                    <img src="{{asset('images/logo.png')}}" width="250px" height="150px" style="margin-left: 25%; margin-top: -2%; margin-bottom: 10px">
+                    <img src="{{asset('images/logo.png')}}" width="250px" height="130px" style="margin-left: 25%; margin-top: -2%; margin-bottom: 10px">
                     <p class="text-align-left">
                         O ConectAEE é um sistema pensado para que a educação inclusiva seja uma realidade nas escolas e
                         instituições de ensino do Brasil e que dá suporte ao acompanhamento de alunos
