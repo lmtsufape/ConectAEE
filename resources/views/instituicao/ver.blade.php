@@ -41,8 +41,14 @@
             <strong>Nome: </strong>{{$instituicao->nome}}
             <br>
             <strong>Telefone: </strong>{{$instituicao->telefone}}
+            @if($instituicao->email != null)
             <br>
             <strong>Email: </strong>{{$instituicao->email}}
+            @endif
+            @if($instituicao->cnpj != null)
+            <br>
+            <strong>CNPJ: </strong>{{$instituicao->cnpj}}
+            @endif
 
             <h3>
               <strong>

@@ -94,6 +94,24 @@
                 </div>
               </div>
 
+              <div class="form-group{{ $errors->has('cpf') ? ' has-error' : '' }}" id="login-card">
+                <label for="cpf" class="col-md-12 control-label">CPF</label>
+
+                <div class="col-md-12" id="login-card">
+                  @if(old('cpf',NULL) != NULL)
+                    <input id="cpf" type="text" class="form-control" name="cpf" value="{{old('cpf')}}">
+                  @else
+                    <input id="cpf" type="text" class="form-control" name="cpf" value="{{$usuario->cpf}}">
+                  @endif
+
+                  @if ($errors->has('cpf'))
+                    <span class="help-block">
+                    <strong>{{ $errors->first('cpf') }}</strong>
+                  </span>
+                  @endif
+                </div>
+              </div>
+
               <div class="form-group{{ $errors->has('telefone') ? ' has-error' : '' }}" id="login-card">
                 <label for="telefone" class="col-md-12 control-label">Telefone</label>
 

@@ -18,7 +18,8 @@ class CreateUsersTable extends Migration
       $table->string('name')->nullable();
       $table->string('username')->unique();
       $table->string('telefone',15)->nullable();
-      $table->string('email')->unique()->nullable();
+      $table->string('email')->unique();
+      $table->string('cpf')->unique();
       $table->boolean('cadastrado')->default(true);
       $table->string('password');
       $table->rememberToken();

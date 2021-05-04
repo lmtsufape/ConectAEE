@@ -10,113 +10,127 @@ use App\User;
 
 class UsuarioController extends Controller
 {
-  public function completarCadastro(){
-    $usuario = \Auth::user();
+    public function completarCadastro()
+    {
+        $usuario = \Auth::user();
 
-    return view("usuario.completarCadastro", ['usuario' => $usuario]);
-  }
-
-  public function completar(Request $request){
-    $user = User::find($request->id_usuario);
-
-    $validator = Validator::make($request->all(), [
-      'name' => ['required', 'string', 'max:255'],
-      'email' => ['nullable', 'email', 'unique:users'],
-      'username' => ['required', 'string', 'max:255'],
-      'telefone' => ['required','string'],
-      'password' => ['required', 'string', 'min:6', 'confirmed'],
-    ]);
-
-    $validator->sometimes('username', 'unique:users', function ($request) use ($user){
-      return $request->username != $user->username;
-    });
-
-    if($validator->fails()){
-      return redirect()->back()->withErrors($validator->errors())->withInput();
+        return view("usuario.completarCadastro", ['usuario' => $usuario]);
     }
 
-    $user->name = $request->name;
-    $user->email = $request->email;
-    $user->username = $request->username;
-    $user->telefone = $request->telefone;
-    $user->password = Hash::make($request->password);
-    $user->cadastrado = true;
+    public function completar(Request $request)
+    {
+        $user = User::find($request->id_usuario);
 
-    $user->update();
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'unique:users'],
+            'cpf' => ['required', 'unique:users'],
+            'username' => ['required', 'string', 'max:255'],
+            'telefone' => ['required', 'string'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+        ]);
 
-    return redirect()->route("aluno.listar")->with('success','Seu cadastro está completo!.');
-  }
+        $validator->sometimes('username', 'unique:users', function ($request) use ($user) {
+            return $request->username != $user->username;
+        });
 
-  public function editar(){
-    $usuario = \Auth::user();
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->errors())->withInput();
+        }
 
-    return view("usuario.editar", ['usuario' => $usuario]);
-  }
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->cpf = $request->cpf;
+        $user->username = $request->username;
+        $user->telefone = $request->telefone;
+        $user->password = Hash::make($request->password);
+        $user->cadastrado = true;
 
-  public function editarSenha(){
-    return view('usuario.editarSenha');
-  }
+        $user->update();
 
-  public static function atualizar(Request $request){
-    $usuario = \Auth::user();
-
-    $validator = Validator::make($request->all(), [
-      'email' => 'nullable|string|email|max:255',
-      'username' => 'required|string|max:255',
-      'telefone' => 'required|string',
-      'name' => 'required|string|max:255',
-      'senha' => 'required|string|min:6',
-    ]);
-
-    $validator->sometimes('username', 'unique:users', function ($request) use ($usuario){
-      return $request->username != $usuario->username;
-    });
-
-    $validator->sometimes('email', 'unique:users', function ($request) use ($usuario){
-      return $request->email != $usuario->email;
-    });
-
-    if($validator->fails()){
-      return redirect()->back()->withErrors($validator->errors())->withInput();
+        return redirect()->route("aluno.listar")->with('success', 'Seu cadastro está completo!.');
     }
 
-    if (!(Hash::check($request->senha, $usuario->password))){
-      return redirect()->back()->with('fail','Senha incorreta.');
+    public function editar()
+    {
+        $usuario = \Auth::user();
+
+        return view("usuario.editar", ['usuario' => $usuario]);
     }
 
-    $usuario->name = $request->name;
-    $usuario->username = $request->username;
-    $usuario->email = $request->email;
-    $usuario->telefone = $request->telefone;
-
-    $usuario->update();
-
-    return redirect()->route("aluno.listar")->with('success','Seus dados foram atualizados!');
-  }
-
-
-  public static function atualizarSenha(Request $request){
-    $usuario = \Auth::user();
-
-    if (!(Hash::check($request->senha_atual, $usuario->password))){
-      return redirect()->back()->with('fail','Senha atual incorreta.');
+    public function editarSenha()
+    {
+        return view('usuario.editarSenha');
     }
 
-    if ($request->nova_senha != $request->nova_senha_confirm){
-      return redirect()->back()->with('fail','Nova senha e confirmação são diferentes.');
+    public static function atualizar(Request $request)
+    {
+        $usuario = \Auth::user();
+
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|string|email|max:255',
+            'cpf' => ['required'],
+            'username' => 'required|string|max:255',
+            'telefone' => 'required|string',
+            'name' => 'required|string|max:255',
+            'senha' => 'required|string|min:6',
+        ]);
+
+        $validator->sometimes('username', 'unique:users', function ($request) use ($usuario) {
+            return $request->username != $usuario->username;
+        });
+
+        $validator->sometimes('email', 'unique:users', function ($request) use ($usuario) {
+            return $request->email != $usuario->email;
+        });
+
+        $validator->sometimes('cpf', 'unique:users', function ($request) use ($usuario) {
+            return $request->cpf != $usuario-cpf;
+        });
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->errors())->withInput();
+        }
+
+        if (!(Hash::check($request->senha, $usuario->password))) {
+            return redirect()->back()->with('fail', 'Senha incorreta.');
+        }
+
+        $usuario->name = $request->name;
+        $usuario->username = $request->username;
+        $usuario->email = $request->email;
+        $usuario->cpf = $request->cpf;
+        $usuario->telefone = $request->telefone;
+
+        $usuario->update();
+
+        return redirect()->route("aluno.listar")->with('success', 'Seus dados foram atualizados!');
     }
 
-    $validator = Validator::make($request->all(), [
-      'nova_senha' => 'min:6|max:16'
-    ]);
 
-    if($validator->fails()){
-      return redirect()->back()->withErrors($validator->errors())->withInput();
+    public static function atualizarSenha(Request $request)
+    {
+        $usuario = \Auth::user();
+
+        if (!(Hash::check($request->senha_atual, $usuario->password))) {
+            return redirect()->back()->with('fail', 'Senha atual incorreta.');
+        }
+
+        if ($request->nova_senha != $request->nova_senha_confirm) {
+            return redirect()->back()->with('fail', 'Nova senha e confirmação são diferentes.');
+        }
+
+        $validator = Validator::make($request->all(), [
+            'nova_senha' => 'min:6|max:16'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->errors())->withInput();
+        }
+
+        $usuario->password = bcrypt($request->nova_senha);
+        $usuario->update();
+
+        return redirect()->route("aluno.listar")->with('success', 'Sua senha foi atualizada!');
     }
-
-    $usuario->password = bcrypt($request->nova_senha);
-    $usuario->update();
-
-    return redirect()->route("aluno.listar")->with('success','Sua senha foi atualizada!');
-  }
 }

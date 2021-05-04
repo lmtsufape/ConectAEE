@@ -38,7 +38,7 @@
                                         Listar PDI's
                                     </a>
                                 @endif
-                                @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario == 3)
+                                @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario == 3 and $gerenciamento->perfil_id != 1)
                                     <a class="btn btn-primary" class="btn btn-primary" data-toggle="modal"
                                        data-target="#modalRelatorio"
                                        style="height: 50px; font-weight: bold; font-size: 20px; background: #6574cd; justify: center">

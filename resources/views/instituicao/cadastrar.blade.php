@@ -67,7 +67,7 @@
 
               <div class="row" style="padding:0px" id="login-card">
                 <div class="col-md-12" style="padding:0px" id="login-card">
-                  <div class="col-md-6" id="login-card">
+                  <div class="col-md-4" id="login-card">
                     <div class="form-group{{ $errors->has('telefone') ? ' has-error' : '' }}" id="login-card">
                       <label for="telefone" class="col-md-12 control-label">Telefone<font color="red">*</font> </label>
 
@@ -84,7 +84,7 @@
                     </div>
                   </div>
 
-                  <div class="col-md-6" id="login-card">
+                  <div class="col-md-4" id="login-card">
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}" id="login-card">
                       <label for="email" class="col-md-12 control-label">E-Mail</label>
 
@@ -94,6 +94,22 @@
                         @if ($errors->has('email'))
                           <span class="help-block">
                             <strong>{{ $errors->first('email') }}</strong>
+                          </span>
+                        @endif
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4" id="login-card">
+                    <div class="form-group{{ $errors->has('cnpj') ? ' has-error' : '' }}" id="login-card">
+                      <label for="cnpj" class="col-md-12 control-label">CNPJ</label>
+
+                      <div class="col-md-12" id="login-card">
+                        <input id="cnpj" class="form-control" name="cnpj" value="{{ old('cnpj') }}">
+
+                        @if ($errors->has('cnpj'))
+                          <span class="help-block">
+                            <strong>{{ $errors->first('cnpj') }}</strong>
                           </span>
                         @endif
                       </div>

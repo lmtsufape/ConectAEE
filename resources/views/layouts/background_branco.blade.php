@@ -57,28 +57,26 @@
 <div id="barra-logos" class="container"
      style="background:#ffffff; margin-top: 1px; padding: 10px 10px 10px 10px">
     <ul id="logos" style="list-style:none;">
-        <li style="margin-right:140px; margin-left:110px; border-right:1px">
-            @if(Auth::check() && (Auth::user()->username == 'adelino.lmts' || Auth::user()->username == 'alana.lmts' || Auth::user()->username == 'mateus.lmts' || Auth::user()->username == 'eberson.lmts'))
-                <a href="{{ route("home") }}"><img src="{{asset('images/pikachinho.png')}}"
-                                                   style="margin-left: 8px; margin-top:5px " height="60px" align="left"></a>
-            @else
-                <a href="{{ route("home") }}"><img src="{{asset('images/logo.png')}}"
-                                                   style="margin-left: 8px; margin-top:5px " height="50px" align="left"></a>
-            @endif
+        <li style="margin-right:140px; margin-left:110px; border-right:1px; margin-top: 10px">
 
+            <a class="btn" href="{{route('home')}}" style="">
+                <span style="color: #12583C; font-weight: 800; font-size: 20px; margin-top: 20px">
+                    ConectAEE
+                </span>
+            </a>
             <a onclick="fonte('d')" id="aumentarfonte" data-toggle="tooltip" title="reduzir fonte">
                 <img class="on-contrast-force-white" src="{{asset('images/reduce-font-size.png')}}"
-                     style="margin-left: 30px; margin-top:20px " height="30" align="right">
+                     style="margin-left: 30px; margin-top: 10px " height="30" align="right">
             </a>
 
             <a onclick="fonte('a')" id="diminuirfonte" data-toggle="tooltip" title="aumentar fonte">
                 <img class="on-contrast-force-white" src="{{asset('images/increase-font-size.png')}}"
-                     style="margin-left: 30px; margin-top:20px " height="30" align="right">
+                     style="margin-left: 30px; margin-top: 10px " height="30" align="right">
             </a>
 
             <a onclick="contraste()" id="altocontraste" data-toggle="tooltip" title="Modo Noturno">
                 <img class="on-contrast-force-white" src="{{asset('images/contrasteBlack.png')}}"
-                     style="margin-left: 30px; margin-top:20px " height="30" align="right">
+                     style="margin-left: 30px; margin-top: 10px " height="30" align="right">
             </a>
 
         </li>

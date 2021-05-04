@@ -12,7 +12,7 @@
 <body>
 
 <div class="teste">
-    <a class="video" title="Gif Libras" href="{{$src}}">{{$nome}}</a>
+    <a class="video" title="Gif Libras" href="{{$src}}"><img src="{{asset('images/surdoicon.png')}}" height="25px" style="margin-top: 20px"></a>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
