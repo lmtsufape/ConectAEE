@@ -41,7 +41,7 @@
               {{ csrf_field() }}
 
               <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}" id="login-card">
-                <label for="name" class="col-md-12 control-label">Nome</label>
+                <label for="name" class="col-md-12 control-label">Nome<font color="red">*</font></label>
 
                 <div class="col-md-12" id="login-card">
                   @if(old('name',NULL) != NULL)
@@ -59,7 +59,7 @@
               </div>
 
               <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}" id="login-card">
-                <label for="username" class="col-md-12 control-label">Nome de Usuário</label>
+                <label for="username" class="col-md-12 control-label">Nome de Usuário<font color="red">*</font></label>
 
                 <div class="col-md-12" id="login-card">
                   @if(old('username',NULL) != NULL)
@@ -77,7 +77,7 @@
               </div>
 
               <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}" id="login-card">
-                <label for="email" class="col-md-12 control-label">E-mail</label>
+                <label for="email" class="col-md-12 control-label">E-mail<font color="red">*</font></label>
 
                 <div class="col-md-12" id="login-card">
                   @if(old('email',NULL) != NULL)
@@ -95,7 +95,7 @@
               </div>
 
               <div class="form-group{{ $errors->has('cpf') ? ' has-error' : '' }}" id="login-card">
-                <label for="cpf" class="col-md-12 control-label">CPF</label>
+                <label for="cpf" class="col-md-12 control-label">CPF<font color="red">*</font></label>
 
                 <div class="col-md-12" id="login-card">
                   @if(old('cpf',NULL) != NULL)
@@ -113,7 +113,7 @@
               </div>
 
               <div class="form-group{{ $errors->has('telefone') ? ' has-error' : '' }}" id="login-card">
-                <label for="telefone" class="col-md-12 control-label">Telefone</label>
+                <label for="telefone" class="col-md-12 control-label">Telefone<font color="red">*</font></label>
 
                 <div class="col-md-12" id="login-card">
                   @if(old('telefone',NULL) != NULL)
@@ -131,7 +131,7 @@
               </div>
 
               <div class="form-group{{ $errors->has('senha') ? ' has-error' : '' }}" id="login-card">
-                <label for="senha" class="col-md-12 control-label">Confirme sua senha <font color="red">*</font></label>
+                <label for="senha" class="col-md-12 control-label">Confirme sua senha<font color="red">*</font></label>
 
                 <div class="col-md-12" id="login-card">
                   <input type="password" name="senha" class="form-control">

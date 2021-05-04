@@ -10,7 +10,7 @@
   <div class="collapse navbar-collapse" id="barra-menu">
     <!-- logo -->
     <ul class="nav navbar-nav navbar-left">
-        <li>
+        <li class="dropdown">
             <a class="btn" href="{{ route('home') }}"><span style="color: #12583C; font-weight: 800; font-size: 20px;">ConectAEE</span></a>
         </li>
 
