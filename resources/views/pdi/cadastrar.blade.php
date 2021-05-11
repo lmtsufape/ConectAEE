@@ -44,7 +44,7 @@
 
                                     <div class="col-md-12" id="login-card">
                                         <input id="nomeEscola" type="text" class="form-control" name="nomeEscola"
-                                               value="{{old('nomeEscola')}}">
+                                               value="@if($pdi != null) {{$pdi->nomeEscola}} @else {{old('nomeEscola')}} @endif">
 
                                         @if ($errors->has('nomeEscola'))
                                             <span class="help-block">
@@ -84,14 +84,28 @@
                                             <option value="" selected hidden style="text-align: center">-- Modalidade
                                                 --
                                             </option>
-                                            <option @if(old('modalidadeEscolar') == 'EducInfantil') selected
-                                                    @endif value="EducInfantil">
-                                                Educação Infantil
-                                            </option>
-                                            <option @if(old('modalidadeEscolar') == 'InicioFundamental') selected
-                                                    @endif value="InicioFundamental">
-                                                Anos Iniciais do Ensino Fundamental
-                                            </option>
+                                            @if($pdi != null)
+                                                <option @if(old('modalidadeEscolar') == 'EducInfantil' or $pdi->modalidadeEscolar == 'EducInfantil') selected
+                                                        @endif value="EducInfantil">
+                                                    Educação Infantil
+                                                </option>
+
+                                                <option @if(old('modalidadeEscolar') == 'InicioFundamental' or $pdi->modalidadeEscolar == 'InicioFundamental') selected
+                                                        @endif value="InicioFundamental">
+                                                    Anos Iniciais do Ensino Fundamental
+                                                </option>
+                                            @else
+                                                <option @if(old('modalidadeEscolar') == 'EducInfantil') selected
+                                                        @endif value="EducInfantil">
+                                                    Educação Infantil
+                                                </option>
+
+                                                <option @if(old('modalidadeEscolar') == 'InicioFundamental') selected
+                                                        @endif value="InicioFundamental">
+                                                    Anos Iniciais do Ensino Fundamental
+                                                </option>
+                                            @endif
+
                                         </select>
                                     </div>
                                 </div>
@@ -135,25 +149,47 @@
                                                             color="red">*</font> </label>
 
                                                 <div class="col-md-12" id="login-card">
-                                                    @if(old('banhoSozinho') == "true")
-                                                        <input type="radio" id="banhoSozinho1" name="banhoSozinho"
-                                                               value="true"
-                                                               checked="checked">
+                                                    @if($pdi != null)
+                                                        @if(old('banhoSozinho') == "true" or $pdi->banhoSozinho == true)
+                                                            <input type="radio" id="banhoSozinho1" name="banhoSozinho"
+                                                                   value="true"
+                                                                   checked="checked">
+                                                        @else
+                                                            <input type="radio" id="banhoSozinho1" name="banhoSozinho"
+                                                                   value="true">
+                                                        @endif
                                                     @else
-                                                        <input type="radio" id="banhoSozinho1" name="banhoSozinho"
-                                                               value="true">
+                                                        @if(old('banhoSozinho') == "true")
+                                                            <input type="radio" id="banhoSozinho1" name="banhoSozinho"
+                                                                   value="true"
+                                                                   checked="checked">
+                                                        @else
+                                                            <input type="radio" id="banhoSozinho1" name="banhoSozinho"
+                                                                   value="true">
+                                                        @endif
                                                     @endif
 
                                                     <label class="custom-control-label"
                                                            for="banhoSozinho1">Sim</label>
+                                                    @if($pdi != null)
 
-                                                    @if(old('banhoSozinho') == "false")
-                                                        <input type="radio" id="banhoSozinho2" name="banhoSozinho"
-                                                               value="false"
-                                                               checked="checked">
+                                                        @if(old('banhoSozinho') == "false" or $pdi->banhoSozinho == false)
+                                                            <input type="radio" id="banhoSozinho2" name="banhoSozinho"
+                                                                   value="false"
+                                                                   checked="checked">
+                                                        @else
+                                                            <input type="radio" id="banhoSozinho2" name="banhoSozinho"
+                                                                   value="false">
+                                                        @endif
                                                     @else
-                                                        <input type="radio" id="banhoSozinho2" name="banhoSozinho"
-                                                               value="false">
+                                                        @if(old('banhoSozinho') == "false")
+                                                            <input type="radio" id="banhoSozinho2" name="banhoSozinho"
+                                                                   value="false"
+                                                                   checked="checked">
+                                                        @else
+                                                            <input type="radio" id="banhoSozinho2" name="banhoSozinho"
+                                                                   value="false">
+                                                        @endif
                                                     @endif
 
                                                     <label class="custom-control-label" for="banhoSozinho2">Não</label>
@@ -175,25 +211,54 @@
                                                             color="red">*</font> </label>
 
                                                 <div class="col-md-12" id="login-card">
-                                                    @if(old('banheiroSozinho') == "true")
-                                                        <input type="radio" id="banheiroSozinho1" name="banheiroSozinho"
-                                                               value="true"
-                                                               checked="checked">
+                                                    @if($pdi != null)
+                                                        @if(old('banheiroSozinho') == "true" or $pdi->banheiroSozinho == true)
+                                                            <input type="radio" id="banheiroSozinho1"
+                                                                   name="banheiroSozinho"
+                                                                   value="true"
+                                                                   checked="checked">
+                                                        @else
+                                                            <input type="radio" id="banheiroSozinho1"
+                                                                   name="banheiroSozinho"
+                                                                   value="true">
+                                                        @endif
                                                     @else
-                                                        <input type="radio" id="banheiroSozinho1" name="banheiroSozinho"
-                                                               value="true">
+                                                        @if(old('banheiroSozinho') == "true")
+                                                            <input type="radio" id="banheiroSozinho1"
+                                                                   name="banheiroSozinho"
+                                                                   value="true"
+                                                                   checked="checked">
+                                                        @else
+                                                            <input type="radio" id="banheiroSozinho1"
+                                                                   name="banheiroSozinho"
+                                                                   value="true">
+                                                        @endif
                                                     @endif
 
                                                     <label class="custom-control-label"
                                                            for="banheiroSozinho1">Sim</label>
-
-                                                    @if(old('banheiroSozinho') == "false")
-                                                        <input type="radio" id="banheiroSozinho2" name="banheiroSozinho"
-                                                               value="false"
-                                                               checked="checked">
+                                                    @if($pdi != null)
+                                                        @if(old('banheiroSozinho') == "false" or $pdi->banheiroSozinho == false)
+                                                            <input type="radio" id="banheiroSozinho2"
+                                                                   name="banheiroSozinho"
+                                                                   value="false"
+                                                                   checked="checked">
+                                                        @else
+                                                            <input type="radio" id="banheiroSozinho2"
+                                                                   name="banheiroSozinho"
+                                                                   value="false">
+                                                        @endif
                                                     @else
-                                                        <input type="radio" id="banheiroSozinho2" name="banheiroSozinho"
-                                                               value="false">
+                                                        @if(old('banheiroSozinho') == "false")
+                                                            <input type="radio" id="banheiroSozinho2"
+                                                                   name="banheiroSozinho"
+                                                                   value="false"
+                                                                   checked="checked">
+                                                        @else
+                                                            <input type="radio" id="banheiroSozinho2"
+                                                                   name="banheiroSozinho"
+                                                                   value="false">
+                                                        @endif
                                                     @endif
 
                                                     <label class="custom-control-label"
@@ -221,25 +286,46 @@
                                                             color="red">*</font> </label>
 
                                                 <div class="col-md-12" id="login-card">
-                                                    @if(old('escovaDentesSozinho') == "true")
-                                                        <input type="radio" id="escovaDentesSozinho1"
-                                                               name="escovaDentesSozinho" value="true"
-                                                               checked="checked">
+                                                    @if($pdi != null)
+                                                        @if(old('escovaDentesSozinho') == "true" or $pdi->escovaDentesSozinho == true)
+                                                            <input type="radio" id="escovaDentesSozinho1"
+                                                                   name="escovaDentesSozinho" value="true"
+                                                                   checked="checked">
+                                                        @else
+                                                            <input type="radio" id="escovaDentesSozinho1"
+                                                                   name="escovaDentesSozinho" value="true">
+                                                        @endif
                                                     @else
-                                                        <input type="radio" id="escovaDentesSozinho1"
-                                                               name="escovaDentesSozinho" value="true">
+                                                        @if(old('escovaDentesSozinho') == "true")
+                                                            <input type="radio" id="escovaDentesSozinho1"
+                                                                   name="escovaDentesSozinho" value="true"
+                                                                   checked="checked">
+                                                        @else
+                                                            <input type="radio" id="escovaDentesSozinho1"
+                                                                   name="escovaDentesSozinho" value="true">
+                                                        @endif
                                                     @endif
 
                                                     <label class="custom-control-label"
                                                            for="escovaDentesSozinho1">Sim</label>
-
-                                                    @if(old('escovaDentesSozinho') == "false")
-                                                        <input type="radio" id="escovaDentesSozinho2"
-                                                               name="escovaDentesSozinho" value="false"
-                                                               checked="checked">
+                                                    @if($pdi != null)
+                                                        @if(old('escovaDentesSozinho') == "false" or $pdi->escovaDentesSozinho == false)
+                                                            <input type="radio" id="escovaDentesSozinho2"
+                                                                   name="escovaDentesSozinho" value="false"
+                                                                   checked="checked">
+                                                        @else
+                                                            <input type="radio" id="escovaDentesSozinho2"
+                                                                   name="escovaDentesSozinho" value="false">
+                                                        @endif
                                                     @else
-                                                        <input type="radio" id="escovaDentesSozinho2"
-                                                               name="escovaDentesSozinho" value="false">
+                                                        @if(old('escovaDentesSozinho') == "false")
+                                                            <input type="radio" id="escovaDentesSozinho2"
+                                                                   name="escovaDentesSozinho" value="false"
+                                                                   checked="checked">
+                                                        @else
+                                                            <input type="radio" id="escovaDentesSozinho2"
+                                                                   name="escovaDentesSozinho" value="false">
+                                                        @endif
                                                     @endif
 
                                                     <label class="custom-control-label"
@@ -262,25 +348,47 @@
                                                             color="red">*</font> </label>
 
                                                 <div class="col-md-12" id="login-card">
-                                                    @if(old('comeSozinho') == "true")
-                                                        <input type="radio" id="comeSozinho1" name="comeSozinho"
-                                                               value="true"
-                                                               checked="checked">
+                                                    @if($pdi != null)
+                                                        @if(old('comeSozinho') == "true" or $pdi->comeSozinho == true)
+                                                            <input type="radio" id="comeSozinho1" name="comeSozinho"
+                                                                   value="true"
+                                                                   checked="checked">
+                                                        @else
+                                                            <input type="radio" id="comeSozinho1" name="comeSozinho"
+                                                                   value="true">
+                                                        @endif
                                                     @else
-                                                        <input type="radio" id="comeSozinho1" name="comeSozinho"
-                                                               value="true">
+                                                        @if(old('comeSozinho') == "true")
+                                                            <input type="radio" id="comeSozinho1" name="comeSozinho"
+                                                                   value="true"
+                                                                   checked="checked">
+                                                        @else
+                                                            <input type="radio" id="comeSozinho1" name="comeSozinho"
+                                                                   value="true">
+                                                        @endif
                                                     @endif
 
                                                     <label class="custom-control-label"
                                                            for="comeSozinho1">Sim</label>
 
-                                                    @if(old('comeSozinho') == "false")
-                                                        <input type="radio" id="comeSozinho2" name="comeSozinho"
-                                                               value="false"
-                                                               checked="checked">
+                                                    @if($pdi != null)
+                                                        @if(old('comeSozinho') == "false" or $pdi->comeSozinho == false)
+                                                            <input type="radio" id="comeSozinho2" name="comeSozinho"
+                                                                   value="false"
+                                                                   checked="checked">
+                                                        @else
+                                                            <input type="radio" id="comeSozinho2" name="comeSozinho"
+                                                                   value="false">
+                                                        @endif
                                                     @else
-                                                        <input type="radio" id="comeSozinho2" name="comeSozinho"
-                                                               value="false">
+                                                        @if(old('comeSozinho') == "false")
+                                                            <input type="radio" id="comeSozinho2" name="comeSozinho"
+                                                                   value="false"
+                                                                   checked="checked">
+                                                        @else
+                                                            <input type="radio" id="comeSozinho2" name="comeSozinho"
+                                                                   value="false">
+                                                        @endif
                                                     @endif
 
                                                     <label class="custom-control-label" for="comeSozinho2">Não</label>
@@ -306,25 +414,54 @@
                                                             color="red">*</font> </label>
 
                                                 <div class="col-md-12" id="login-card">
-                                                    @if(old('bebeAguaSozinho') == "true")
-                                                        <input type="radio" id="bebeAguaSozinho1" name="bebeAguaSozinho"
-                                                               value="true"
-                                                               checked="checked">
+                                                    @if($pdi != null)
+                                                        @if(old('bebeAguaSozinho') == "true" or $pdi->bebeAguaSozinho == true)
+                                                            <input type="radio" id="bebeAguaSozinho1"
+                                                                   name="bebeAguaSozinho"
+                                                                   value="true"
+                                                                   checked="checked">
+                                                        @else
+                                                            <input type="radio" id="bebeAguaSozinho1"
+                                                                   name="bebeAguaSozinho"
+                                                                   value="true">
+                                                        @endif
                                                     @else
-                                                        <input type="radio" id="bebeAguaSozinho1" name="bebeAguaSozinho"
-                                                               value="true">
+                                                        @if(old('bebeAguaSozinho') == "true")
+                                                            <input type="radio" id="bebeAguaSozinho1"
+                                                                   name="bebeAguaSozinho"
+                                                                   value="true"
+                                                                   checked="checked">
+                                                        @else
+                                                            <input type="radio" id="bebeAguaSozinho1"
+                                                                   name="bebeAguaSozinho"
+                                                                   value="true">
+                                                        @endif
                                                     @endif
 
                                                     <label class="custom-control-label"
                                                            for="bebeAguaSozinho1">Sim</label>
-
-                                                    @if(old('bebeAguaSozinho') == "false")
-                                                        <input type="radio" id="bebeAguaSozinho2" name="bebeAguaSozinho"
-                                                               value="false"
-                                                               checked="checked">
+                                                    @if($pdi != null)
+                                                        @if(old('bebeAguaSozinho') == "false" or $pdi->bebeAguaSozinho == false)
+                                                            <input type="radio" id="bebeAguaSozinho2"
+                                                                   name="bebeAguaSozinho"
+                                                                   value="false"
+                                                                   checked="checked">
+                                                        @else
+                                                            <input type="radio" id="bebeAguaSozinho2"
+                                                                   name="bebeAguaSozinho"
+                                                                   value="false">
+                                                        @endif
                                                     @else
-                                                        <input type="radio" id="bebeAguaSozinho2" name="bebeAguaSozinho"
-                                                               value="false">
+                                                        @if(old('bebeAguaSozinho') == "false")
+                                                            <input type="radio" id="bebeAguaSozinho2"
+                                                                   name="bebeAguaSozinho"
+                                                                   value="false"
+                                                                   checked="checked">
+                                                        @else
+                                                            <input type="radio" id="bebeAguaSozinho2"
+                                                                   name="bebeAguaSozinho"
+                                                                   value="false">
+                                                        @endif
                                                     @endif
 
                                                     <label class="custom-control-label"
@@ -357,7 +494,7 @@
                                     <div class="col-md-12" id="login-card">
                                         <input id="problemaGestacao" type="text" class="form-control"
                                                name="problemaGestacao"
-                                               value="{{old('problemaGestacao')}}">
+                                               value="@if($pdi != null) {{$pdi->problemaGestacao}} @else {{old('problemaGestacao')}} @endif">
 
                                         @if ($errors->has('problemaGestacao'))
                                             <span class="help-block">
@@ -376,7 +513,7 @@
                     <textarea name="descProbGestacao"
                               style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px;"
                               id="descProbGestacao" type="text"
-                              class="form-control">{{old('descProbGestacao')}}</textarea>
+                              class="form-control">@if($pdi != null) {{$pdi->descProbGestacao}} @else {{old('descProbGestacao')}} @endif</textarea>
 
                                         @if ($errors->has('descProbGestacao'))
                                             <span class="help-block">
@@ -396,7 +533,7 @@
                     <textarea name="ambienteFamiliar"
                               style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px;"
                               id="ambienteFamiliar" type="text"
-                              class="form-control">{{old('ambienteFamiliar')}}</textarea>
+                              class="form-control">@if($pdi != null) {{$pdi->ambienteFamiliar}} @else {{old('ambienteFamiliar')}} @endif</textarea>
 
                                         @if ($errors->has('ambienteFamiliar'))
                                             <span class="help-block">
@@ -415,7 +552,7 @@
                     <textarea name="aprendizagemEscolar"
                               style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px;"
                               id="aprendizagemEscolar" type="text"
-                              class="form-control">{{old('aprendizagemEscolar')}}</textarea>
+                              class="form-control">@if($pdi != null) {{$pdi->aprendizagemEscolar}} @else {{old('aprendizagemEscolar')}} @endif</textarea>
                                         <br>
                                         @if ($errors->has('aprendizagemEscolar'))
                                             <span class="help-block">
@@ -443,7 +580,7 @@
                     <textarea name="recomendacoesSaude"
                               style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px;"
                               id="recomendacoesSaude" type="text"
-                              class="form-control">{{old('recomendacoesSaude')}}</textarea>
+                              class="form-control">@if($pdi != null) {{$pdi->recomendacoesSaude}} @else {{old('recomendacoesSaude')}} @endif</textarea>
 
                                         @if ($errors->has('recomendacoesSaude'))
                                             <span class="help-block">
@@ -466,7 +603,7 @@
                     <textarea name="diagnosticoSaude"
                               style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px;"
                               id="diagnosticoSaude" type="text"
-                              class="form-control">{{old('diagnosticoSaude')}}</textarea>
+                              class="form-control">@if($pdi != null) {{$pdi->diagnosticoSaude}} @else {{old('diagnosticoSaude')}} @endif</textarea>
 
                                         @if ($errors->has('diagnosticoSaude'))
                                             <span class="help-block">
@@ -487,7 +624,7 @@
                     <textarea name="problemasSaude"
                               style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px;"
                               id="problemasSaude" type="text"
-                              class="form-control">{{old('problemasSaude')}}</textarea>
+                              class="form-control">@if($pdi != null) {{$pdi->problemasSaude}} @else {{old('problemasSaude')}} @endif</textarea>
 
                                         @if ($errors->has('problemasSaude'))
                                             <span class="help-block">
@@ -506,7 +643,7 @@
                     <textarea name="descricaoMedicamentos"
                               style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px;"
                               id="descricaoMedicamentos" type="text"
-                              class="form-control">{{old('descricaoMedicamentos')}}</textarea>
+                              class="form-control">@if($pdi != null) {{$pdi->descricaoMedicamentos}} @else {{old('descricaoMedicamentos')}} @endif</textarea>
                                         <br>
                                         @if ($errors->has('descricaoMedicamentos'))
                                             <span class="help-block">
@@ -532,8 +669,8 @@
                                     <div class="col-md-12" id="login-card">
                                         <input name="sistemaLinguistico"
                                                id="sistemaLinguistico" type="text"
-                                               class="form-control">{{old('sistemaLinguistico')}}
-                                        </input>
+                                               class="form-control"
+                                               value="@if($pdi != null) {{$pdi->sistemaLinguistico}} @else {{old('sistemaLinguistico')}} @endif"> </input>
 
                                         @if ($errors->has('sistemaLinguistico'))
                                             <span class="help-block">
@@ -552,7 +689,8 @@
                                     <div class="col-md-12" id="login-card">
                                         <input name="tipoRecursoUsado"
                                                id="tipoRecursoUsado" type="text"
-                                               class="form-control">{{old('tipoRecursoUsado')}}</input>
+                                               class="form-control"
+                                               value="@if($pdi != null) {{$pdi->tipoRecursoUsado}} @else {{old('tipoRecursoUsado')}} @endif"></input>
 
                                         @if ($errors->has('tipoRecursoUsado'))
                                             <span class="help-block">
@@ -571,7 +709,8 @@
                                     <div class="col-md-12" id="login-card">
                                         <input name="tipoRecursoProvidenciado"
                                                id="tipoRecursoProvidenciado" type="text"
-                                               class="form-control">{{old('tipoRecursoProvidenciado')}}</input>
+                                               class="form-control"
+                                               value="@if($pdi != null) {{$pdi->tipoRecursoProvidenciado}} @else {{old('tipoRecursoProvidenciado')}} @endif"></input>
 
                                         @if ($errors->has('tipoRecursoProvidenciado'))
                                             <span class="help-block">
@@ -591,7 +730,7 @@
                     <textarea name="implicacoesEspecificidades"
                               style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px;"
                               id="implicacoesEspecificidades" type="text"
-                              class="form-control">{{old('implicacoesEspecificidades')}}</textarea>
+                              class="form-control">@if($pdi != null) {{$pdi->implicacoesEspecificidades}} @else {{old('implicacoesEspecificidades')}} @endif</textarea>
 
                                         @if ($errors->has('implicacoesEspecificidades'))
                                             <span class="help-block">
@@ -610,7 +749,7 @@
                     <textarea name="informacoesRelevantes"
                               style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px;"
                               id="informacoesRelevantes" type="text"
-                              class="form-control">{{old('informacoesRelevantes')}}</textarea>
+                              class="form-control">@if($pdi != null) {{$pdi->informacoesRelevantes}} @else {{old('informacoesRelevantes')}} @endif</textarea>
 
                                         <br>
                                         @if ($errors->has('informacoesRelevantes'))
@@ -641,7 +780,7 @@
                     <textarea name="avaliacaoMotora"
                               style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px;"
                               id="avaliacaoMotora" type="text"
-                              class="form-control">{{old('avaliacaoMotora')}}</textarea>
+                              class="form-control">@if($pdi != null) {{$pdi->avaliacaoMotora}} @else {{old('avaliacaoMotora')}} @endif</textarea>
 
                                         @if ($errors->has('avaliacaoMotora'))
                                             <span class="help-block">
@@ -665,7 +804,7 @@
                     <textarea name="avaliacaoEmocional"
                               style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px;"
                               id="avaliacaoEmocional" type="text"
-                              class="form-control">{{old('avaliacaoEmocional')}}</textarea>
+                              class="form-control">@if($pdi != null) {{$pdi->avaliacaoEmocional}} @else{{old('avaliacaoEmocional')}} @endif</textarea>
 
                                         @if ($errors->has('avaliacaoEmocional'))
                                             <span class="help-block">
@@ -688,7 +827,7 @@
                     <textarea name="especificidadesObjetivo"
                               style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px;"
                               id="especificidadesObjetivo" type="text"
-                              class="form-control">{{old('especificidadesObjetivo')}}</textarea>
+                              class="form-control">@if($pdi != null) {{$pdi->especificidadesObjetivo}} @else{{old('especificidadesObjetivo')}} @endif</textarea>
 
                                         <br>
                                         @if ($errors->has('especificidadesObjetivo'))

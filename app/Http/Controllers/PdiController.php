@@ -6,6 +6,7 @@ use App\Aluno;
 use App\Pdi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class PdiController extends Controller
@@ -25,8 +26,10 @@ class PdiController extends Controller
     public static function cadastrar($id_aluno)
     {
         $aluno = Aluno::find($id_aluno);
+        $pdi = DB::table('pdis')->latest('created_at')->where('user_id', '=', Auth::user()->id)->first();
         return view('pdi.cadastrar', [
             'aluno' => $aluno,
+            'pdi' => $pdi,
         ]);
     }
 
