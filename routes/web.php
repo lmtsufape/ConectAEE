@@ -131,3 +131,11 @@ Route::get('/aluno/pdi/{id_pdi}/ver', 'PdiController@ver')->name('pdi.ver');
 Route::get('/aluno/pdi/{id_pdi}/excluir', 'PdiController@excluir')->name('pdi.excluir')->middleware('checkPdiCriador');
 Route::get('/aluno/pdi/{id_pdi}/editar', 'PdiController@editar')->name('pdi.editar')->middleware('checkPdiCriador');
 Route::post('/pdi/atualizar', 'PdiController@atualizar')->name('pdi.atualizar');
+
+//Rotas para arquivo
+Route::get('/arquivo/{id_arquivo}/download','ArquivoController@download')->name('arquivo.download')->middleware('checkAtividadeCriador');
+Route::get('/arquivo/{id_arquivo}/excluir','ArquivoController@excluir')->name('arquivo.excluir')->middleware('checkAtividadeCriador');
+Route::get('/aluno/objetivo/gerenciar/atividade/{id_atividade}/arquivo/listar','ArquivoController@listar')->name('arquivo.listar')->middleware('checkAtividadeCriador');
+Route::get('/aluno/objetivo/gerenciar/atividade/{id_atividade}/{is_arquivo}/arquivo/cadastrar','ArquivoController@cadastrar')->name('arquivo.cadastrar')->middleware('checkAtividadeCriador');
+Route::post('/arquivo/criar','ArquivoController@criar')->name('arquivo.criar');
+
