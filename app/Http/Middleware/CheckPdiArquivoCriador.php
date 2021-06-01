@@ -2,11 +2,12 @@
 
 namespace App\Http\Middleware;
 
+use App\pdiArquivo;
 use Closure;
 use App\Pdi;
 use Illuminate\Support\Facades\Auth;
 
-class CheckPdiCriador
+class CheckPdiArquivoCriador
 {
     /**
      * Handle an incoming request.
@@ -23,7 +24,7 @@ class CheckPdiCriador
             return redirect()->route('usuario.completarCadastro');
         }
 
-        $pdi = Pdi::find($request->route('id_pdi'));
+        $pdi = pdiArquivo::find($request->route('id_pdiArquivo'));
 
         if($pdi == NULL || $pdi->user_id != Auth::user()->id){
             return redirect("/")->with('denied','Você não tem permissão para acessar esta página ou ela não existe.');

@@ -23,6 +23,11 @@ class CreatePdisTable extends Migration
             $table->integer('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 
+            $table->string('nomeMae');
+            $table->string('nomePai')->nullable();
+            $table->integer('numeroIrmaos');
+            $table->string('nomeResponsavel');
+
             $table->string('nomeEscola');
             $table->string('anoEscolaridade');
             $table->string('professorRegular');

@@ -79,6 +79,7 @@ class Kernel extends HttpKernel
         'checkInstituicaoCriador' => \App\Http\Middleware\CheckInstituicaoCriador::class,
         'checkPdi' => \App\Http\Middleware\CheckPDI::class,
         'checkPdiCriador' => \App\Http\Middleware\CheckPDICriador::class,
+        'checkPdiArquivoCriador' => \App\Http\Middleware\CheckPdiArquivoCriador::class,
     ];
 
     /**

@@ -249,6 +249,10 @@
                                 @if($objetivo->user->id == \Auth::user()->id)
                                   @if($atividade->concluido == false)
 
+                                    <a class="btn btn-secondary" style="margin-right: 36%" href={{ route("arquivo.listar" , ['id_atividade' => $atividade->id]) }}>
+                                      Listar Arquivos
+                                    </a>
+
                                     <a class="btn btn-primary" href={{ route("atividade.editar" , ['id_atividade' => $atividade->id]) }}>
                                       Editar
                                     </a>

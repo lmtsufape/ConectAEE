@@ -15,22 +15,15 @@
                                     <div style="float: left;" class="col-md-6" id="login-card">
                                         <h2>
                                             <strong style="color: #12583C">
-                                                PDI's
+                                                PDIs
                                             </strong>
                                         </h2>
                                         <div style="font-size: 14px" id="login-card">
                                             <a href="{{route('aluno.listar')}}">Início</a>>
                                             <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de
                                                 <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
-                                            > Pdi's
+                                            > Pdis
                                         </div>
-                                    </div>
-                                    <div style="float:right;" class="col-md-3" id="login-card">
-                                        <a class="btn btn-primary"
-                                           style="float:right; margin-top:20px; background-color: #0398fc; color: white; font-weight: bold; font-size: 14px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC"
-                                           id="signup" href="{{ route('pdi.cadastrar', $aluno->id)}}">
-                                            Novo PDI
-                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -54,43 +47,109 @@
                             </div>
                         @endif
 
-                        <table id="tabela_dados" class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th>Data de Criação</th>
-                                <th>Autor</th>
-                                <th>Ações</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#cadastrados" data-toggle="tab">Formularios</a></li>
+                                <li><a href="#documentos" data-toggle="tab">Arquivos</a></li>
+                            </ul>
 
-                            </thead>
-                            <tbody>
-                            @foreach ($pdis as $pdi)
-                                <tr>
-                                    <td data-title="Data">{{ $pdi->created_at }}</td>
-                                    <td data-title="Autor">{{\App\User::find($pdi->user_id)->name}}</td>
-                                    <td data-title="Ações">
-                                        <a class="btn btn-primary" href="{{route('pdi.ver', $pdi->id)}}">
-                                            Visualizar
-                                        </a>
-                                    </td>
-                                    <td data-title="">
-                                        <a class="btn btn-primary" href="{{route('pdi.editar', $pdi->id)}}">
-                                            Editar
-                                        </a>
-                                    </td>
-                                    <td data-title="">
-                                        <a class="btn btn-danger"
-                                           onclick="return confirm('\A Tem certeza que deseja excluir esse PDI ?')"
-                                           href="{{route('pdi.excluir', $pdi->id)}}">
-                                            Excluir
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active"  id="cadastrados">
+                                        @if($pdi == null)
+                                            <a class="btn btn-primary"
+                                               style="float:right; margin-top:20px; background-color: #0398fc; color: white; font-weight: bold; font-size: 14px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC"
+                                               id="signup" href="{{ route('pdi.cadastrar', $aluno->id)}}">
+                                                Novo PDI
+                                            </a>
+                                        @else
+                                            <a class="btn btn-primary"
+                                               style="float:right; margin-top:20px; background-color: #0398fc; color: white; font-weight: bold; font-size: 14px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC"
+                                               id="signup" href="{{ route('pdi.cadastrar', $aluno->id)}}">
+                                                Atualizar PDI
+                                            </a>
+
+                                        @endif
+                                    <table id="tabela_dados" class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Data de Criação</th>
+                                            <th>Autor</th>
+                                            <th>Ações</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+
+                                        </thead>
+                                        <tbody>
+                                        @foreach ($pdis as $pdi)
+                                            <tr>
+                                                <td data-title="Data">{{ $pdi->created_at }}</td>
+                                                <td data-title="Autor">{{\App\User::find($pdi->user_id)->name}}</td>
+                                                <td data-title="Ações">
+                                                    <a class="btn btn-primary" href="{{route('pdi.ver', $pdi->id)}}">
+                                                        Visualizar
+                                                    </a>
+                                                </td>
+                                                <td data-title="">
+                                                    <a class="btn btn-primary" href="{{route('pdi.editar', $pdi->id)}}">
+                                                        Editar
+                                                    </a>
+                                                </td>
+                                                <td data-title="">
+                                                    <a class="btn btn-danger"
+                                                       onclick="return confirm('\A Tem certeza que deseja excluir esse PDI ?')"
+                                                       href="{{route('pdi.excluir', $pdi->id)}}">
+                                                        Excluir
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade"  id="documentos">
+                                    <a class="btn btn-primary"
+                                       style="float:right; margin-top:20px; background-color: #0398fc; color: white; font-weight: bold; font-size: 14px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC"
+                                       id="signup" href="{{ route('pdi.cadastrarArquivo', $aluno->id)}}">
+                                        Novo Arquivo
+                                    </a>
+                                    <table id="tabela_arquivos" class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Data de Criação</th>
+                                            <th>Autor</th>
+                                            <th>Ações</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+
+                                        </thead>
+                                        <tbody>
+                                        @foreach ($pdiArquivos as $pdi)
+                                            <tr>
+                                                <td data-title="Data">{{ $pdi->created_at }}</td>
+                                                <td data-title="Autor">{{\App\User::find($pdi->user_id)->name}}</td>
+                                                <td data-title="Ações">
+                                                    <a class="btn btn-primary" href="{{route('pdi.download', $pdi->id)}}">
+                                                        Download
+                                                    </a>
+                                                </td>
+                                                <td data-title="">
+                                                    <a class="btn btn-danger"
+                                                       onclick="return confirm('\A Tem certeza que deseja excluir esse PDI ?')"
+                                                       href="{{route('pdi.excluirArquivo', $pdi->id)}}">
+                                                        Excluir
+                                                    </a>
+                                                </td>
+                                                <td hidden data-title="">
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
                     </div>
 
                     <div class="panel-footer" style="background-color:white" id="login-card">
@@ -109,6 +168,21 @@
         $(document).ready(function () {
 
             $('#tabela_dados').dataTable({
+                "order": [0, "desc"],
+                "columnDefs": [
+                    {"orderable": false, "targets": [2, 3, 4]},
+                ],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json",
+                },
+                "searching": true
+            });
+
+        });
+
+        $(document).ready(function () {
+
+            $('#tabela_arquivos').dataTable({
                 "order": [0, "desc"],
                 "columnDefs": [
                     {"orderable": false, "targets": [2, 3, 4]},

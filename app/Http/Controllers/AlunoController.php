@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Familia;
 use App\User;
-use App\Instituicao;
 use App\Notificacao;
 use App\Aluno;
 use App\Gerenciar;
@@ -203,7 +201,7 @@ class AlunoController extends Controller
             'nome_pai' => ['nullable'],
             'nome_responsavel' => ['required'],
             'numero_irmaos' => ['required'],
-            'username' => ['required_if:perfil,==,2']
+            'username' => ['required_if:perfil,==,2'],
         ], [
             'username.required_if' => 'É necessário criar um usuário quando o cadastrante é um Professor AEE',
         ]);
@@ -234,13 +232,6 @@ class AlunoController extends Controller
         $endereco->estado = $request->estado;
         $endereco->save();
 
-        $familia = new Familia();
-        $familia->nome_mae = $request->nome_mae;
-        $familia->nome_pai = $request->nome_pai;
-        $familia->nome_responsavel = $request->nome_responsavel;
-        $familia->numero_irmaos = $request->numero_irmaos;
-        $familia->save();
-
         $aluno = new Aluno();
 
         if ($request->imagem != null) {
@@ -259,7 +250,6 @@ class AlunoController extends Controller
         $aluno->data_de_nascimento = $request->data_nascimento;
         $aluno->endereco_id = $endereco->id;
         $aluno->cpf = $request->cpf;
-        $aluno->familia_id = $familia->id;
         $aluno->save();
 
         // do{
@@ -289,6 +279,8 @@ class AlunoController extends Controller
         if ($request->perfil == 2 && $request->cadastrado == "false") {
             $user->username = $request->username;
             $user->password = bcrypt($password);
+            $user->email = $aluno->id.'@gmail.com';
+            $user->cpf = $aluno->id;
             $user->cadastrado = false;
             $user->save();
         } else if ($request->perfil == 2 && $request->cadastrado == "true") {
@@ -357,14 +349,6 @@ class AlunoController extends Controller
         $endereco->cidade = $request->cidade;
         $endereco->estado = $request->estado;
         $endereco->update();
-
-        $familia = Familia::find($aluno->familia_id);
-        $familia->nome_mae = $request->nome_mae;
-        $familia->nome_pai = $request->nome_pai;
-        $familia->nome_responsavel = $request->nome_responsavel;
-        $familia->numero_irmaos = $request->numero_irmaos;
-        $familia->update();
-
 
         if ($request->imagem != null) {
             $nome = uniqid(date('HisYmd'));
