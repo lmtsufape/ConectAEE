@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Aluno;
 use App\Pdi;
 use App\pdiArquivo;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -168,6 +169,14 @@ class PdiController extends Controller
         $pdi->save();
 
         return redirect()->route("pdi.listar", $pdi->aluno_id)->with('success', 'O PDI foi cadastrado');
+    }
+
+    public function gerarPdf(Request $request, $idPdi)
+    {
+        $pdi = Pdi::find($idPdi);
+        $endereco = Aluno::find($pdi->aluno_id)->endereco;
+        $pdf = PDF::loadView('/pdi/pdf', compact('pdi', 'endereco'));
+        return $pdf->setPaper('a4')->stream('pdi' . '-' . time());
     }
 
     public static function editar($id_pdi)

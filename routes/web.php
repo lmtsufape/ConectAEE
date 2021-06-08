@@ -135,6 +135,7 @@ Route::get('/aluno/pdi/{id_pdi}/editar', 'PdiController@editar')->name('pdi.edit
 Route::post('/pdi/atualizar', 'PdiController@atualizar')->name('pdi.atualizar');
 Route::get('/arquivo/{id_pdiArquivo}/download','PdiController@download')->name('pdi.download');
 Route::get('/arquivo/{id_pdiArquivo}/excluirArquivo','PdiController@excluirArquivo')->name('pdi.excluirArquivo')->middleware('checkPdiArquivoCriador');
+Route::get('/pdi/{id_pdi}/pdf', 'PdiController@gerarPdf')->name('pdi.pdf');
 
 //Rotas para arquivo
 Route::get('/arquivo/{id_arquivo}/download','ArquivoController@download')->name('arquivo.download')->middleware('checkAtividadeCriador');
