@@ -90,6 +90,11 @@
                                                     </a>
                                                 </td>
                                                 <td data-title="">
+                                                    <a class="btn btn-primary" target="_blank" href="{{route('pdi.pdf', $pdi->id)}}">
+                                                        Download
+                                                    </a>
+                                                </td>
+                                                <td data-title="">
                                                     <a class="btn btn-primary" href="{{route('pdi.editar', $pdi->id)}}">
                                                         Editar
                                                     </a>
@@ -170,7 +175,7 @@
             $('#tabela_dados').dataTable({
                 "order": [0, "desc"],
                 "columnDefs": [
-                    {"orderable": false, "targets": [2, 3, 4]},
+                    {"orderable": false, "targets": [2, 3, 4, 5]},
                 ],
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json",
