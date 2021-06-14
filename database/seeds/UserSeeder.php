@@ -17,40 +17,21 @@ class UserSeeder extends Seeder
             'username' => "Edgar",
             'email' => "adgar.carvalho@hotmail.com",
             'password' => bcrypt("password"),
-        ]);
-
-        factory(User::class)->create([
-            'name' => "Aline",
-            'username' => "aline",
-            'email' => "aline.tenorio96@gmail.com",
-            'password' => "123456",
+            'cpf' => "106.981.514-45",
         ]);
 
         factory(User::class)->create([
             'name' => "Mariel",
             'username' => "mariel",
             'email' => "mariel@gmail.com",
+            'cpf' => "106.981.513-45",
         ]);
 
         factory(User::class)->create([
             'name' => "Igor",
             'username' => "igor",
-        ]);
-
-        factory(User::class)->create([
-            'name' => "Anderson",
-            'username' => "anderson",
-        ]);
-
-        factory(User::class)->create([
-            'name' => "Eberson",
-            'username' => "eberson.lmts",
-            'email' => "eberson.santos1@gmail.com",
-        ]);
-
-        factory(User::class)->create([
-            'name' => "Adelino",
-            'username' => "adelino.lmts",
+            'email' => "igor@gmail.com",
+            'cpf' => "106.981.524-45",
         ]);
 
         //factory(User::class, 45)->create();

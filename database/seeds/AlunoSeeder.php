@@ -18,7 +18,6 @@ class AlunoSeeder extends Seeder
         for ($i=1; $i<=20 ; $i++) {
           factory(Aluno::class)->create([
               'endereco_id' => $i,
-              'familia_id' => $i,
           ]);
         }
 
