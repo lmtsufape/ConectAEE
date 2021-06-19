@@ -13,18 +13,19 @@ class UserSeeder extends Seeder
     public function run()
     {
         factory(User::class)->create([
+            'name' => "Guilherme Silva",
+            'username' => "Gui",
+            'email' => "guilherme.dna06@gmail.com",
+            'password' => bcrypt("password"),
+            'cpf' => "106.981.574-45",
+        ]);
+
+        factory(User::class)->create([
             'name' => "Edgar Vinicius",
             'username' => "Edgar",
             'email' => "adgar.carvalho@hotmail.com",
             'password' => bcrypt("password"),
             'cpf' => "106.981.514-45",
-        ]);
-
-        factory(User::class)->create([
-            'name' => "Mariel",
-            'username' => "mariel",
-            'email' => "mariel@gmail.com",
-            'cpf' => "106.981.513-45",
         ]);
 
         factory(User::class)->create([

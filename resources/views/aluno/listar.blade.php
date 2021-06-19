@@ -24,7 +24,7 @@
                                                     </strong>
                                                 </h2>
                                             </div>
-                                            <div class="col-sm-10">
+                                            <div class="col-sm-10" id="img-libras">
                                                 @include('layouts.videoPopup', ['src' => asset('videos/gif-libras.mp4')])
                                             </div>
                                         </div>

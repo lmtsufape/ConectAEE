@@ -74,7 +74,7 @@
                      style="margin-left: 30px; margin-top: 10px " height="30" align="right">
             </a>
 
-            <a onclick="contraste()" id="altocontraste" data-toggle="tooltip" title="Modo Noturno">
+            <a onclick="contraste()" id="altocontraste" data-toggle="tooltip" title="Contraste">
                 <img class="on-contrast-force-white" src="{{asset('images/contrasteBlack.png')}}"
                      style="margin-left: 30px; margin-top: 10px " height="30" align="right">
             </a>
