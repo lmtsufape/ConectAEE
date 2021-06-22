@@ -84,7 +84,7 @@
                                         Entrar
                                     </button>
                                     <p style="font-size: 13px; margin-bottom: -15px">
-                                        <a style="font-size: 13px; font-weight: bold; color: #0398fc !important"
+                                        <a style="font-size: 13px; font-weight: bold; color: #0398fc"
                                            href="{{ route('password.request') }}" id="login-card">
                                             Clique aqui
                                         </a>
