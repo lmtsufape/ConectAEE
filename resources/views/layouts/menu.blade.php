@@ -156,7 +156,7 @@
 
         <li class="dropdown">
           <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color: black">
-            Olá, <strong style="color: gray !important">{{\Auth::user()->name}}</strong> <span class="caret"></span>
+            Olá, <strong style="color: gray ">{{\Auth::user()->name}}</strong> <span class="caret"></span>
           </a>
           <ul class="dropdown-menu" role="menu">
             <li>
