@@ -26,7 +26,7 @@
         <div class="panel-body" id="login-card">
           <div id="tabela" class="table-responsive" id="login-card">
             <table id="tabela_dados" class="table table-hover table-bordered">
-              
+              <a href="{{route('notificacao.lerTodas')}}">Ler Todas</a>
               <tbody>
                 @foreach($notificacoes as $notificacao)
                   @if($notificacao->aluno != null)
@@ -39,6 +39,9 @@
                           <a class="btn text-center" href="{{ route('aluno.permissoes.conceder', ['id_aluno' => $notificacao->aluno->id, 'id_notificacao' => $notificacao->id]) }}">
                             Você tem um pedido de acesso de {{$notificacao->remetente->name}} ao aluno {{$notificacao->aluno->nome}}
                           </a>
+
+
+
                         </td>
                     </tr>
                   @endif

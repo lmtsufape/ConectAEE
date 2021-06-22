@@ -37,4 +37,16 @@ class NotificacaoController extends Controller
     }
   }
 
+  public  function lerTodas()
+  {
+      $notificacoes = Notificacao::where('destinatario_id','=',Auth::user()->id)->paginate(20);
+      foreach ($notificacoes as $notificacao){
+          if($notificacao->lido == False) {
+              $notificacao->lido = true;
+              $notificacao->update();
+          }
+      }
+      return $this->listar();
+  }
+
 }

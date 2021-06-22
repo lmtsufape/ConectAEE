@@ -25,6 +25,7 @@ Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 //Rotas para notificacões
 Route::get('/usuario/notificacao/listar', 'NotificacaoController@listar')->name('notificacao.listar')->middleware('checkCadastrado');
 Route::get('/usuario/notificacao/{id_notificacao}/ler', 'NotificacaoController@ler')->name('notificacao.ler')->middleware('checkNotificacao');
+Route::get('/usuario/notificacao/lerTodas', 'NotificacaoController@lerTodas')->name('notificacao.lerTodas');
 
 //Rotas para usuarios
 Route::get('/usuario/completarCadastro', 'UsuarioController@completarCadastro')->name('usuario.completarCadastro')->middleware('checkNaoCadastrado');
