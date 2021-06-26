@@ -78,9 +78,8 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="btn btn-danger" data-toggle="tooltip" title="Excluir aluno"
-                                                   onclick="return confirm('\Confirmar exclusão do aluno {{$aluno->nome}}?')"
-                                                   href="{{route('aluno.excluir', ['id_aluno'=>$aluno->id]) }}"
+                                                <a class="btn btn-danger" data-toggle="modal" title="Excluir aluno"
+                                                   data-target="#modalConfirm"
                                                    style="width: 100%; height: 30px; background: #f44; font-size: 16px; border-radius: 5px; color: white">
                                                     Excluir
                                                 </a>
@@ -403,6 +402,31 @@
                                     </button>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Modal Confirm-->
+                <div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog"
+                     aria-labelledby="modalConfirmLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Fechar">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="modalConfirmLabel" align="center">
+                                    Confirmar exclusão do aluno {{$aluno->nome}}?</h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    Não
+                                </button>
+                                <a type="button"    href="{{route('aluno.excluir', ['id_aluno'=>$aluno->id]) }}"  id="btnSubmit" class="btn btn-primary">
+                                    Sim
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
