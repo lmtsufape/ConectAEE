@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\NovoObjetivo;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Objetivo;
@@ -11,12 +13,14 @@ use App\ForumObjetivo;
 use App\TipoObjetivo;
 use App\StatusObjetivo;
 use App\Aluno;
+use App\User;
 use App\Notificacao;
 use App\Cor;
 use App\Status;
 use App\MensagemForumObjetivo;
 use DateTime;
 use Auth;
+use Notification;
 
 class ObjetivoController extends Controller
 {
@@ -274,6 +278,7 @@ class ObjetivoController extends Controller
     $aluno = Aluno::find($id_aluno);
     $gerenciars = $aluno->gerenciars;
 
+
     foreach ($gerenciars as $gerenciar) {
       if ($gerenciar->user != Auth::user()) {
         $notificacao = new Notificacao();
@@ -284,6 +289,11 @@ class ObjetivoController extends Controller
         $notificacao->lido = false;
         $notificacao->tipo = 3; //onjetivo
         $notificacao->save();
+        //Enviando email de notificação
+          $user = User::find($notificacao->destinatario_id);
+          Notification::route('mail', $user->email)->notify(new NovoObjetivo($id_objetivo));
+
+
       }
     }
   }
