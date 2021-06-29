@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Notificacao;
+use App\Notifications\NovoAluno;
 use App\Aluno;
 use App\Gerenciar;
 use App\Perfil;
@@ -14,6 +15,7 @@ use App\Album;
 use File;
 use Image;
 use Auth;
+use Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -304,6 +306,9 @@ class AlunoController extends Controller
         $notificacao->lido = false;
         $notificacao->tipo = 2;
         $notificacao->save();
+        //Enviando email de notificação
+        $user = User::find($notificacao->destinatario_id);
+        Notification::route('mail', $user->email)->notify(new NovoAluno());
 
         if ($request->perfil == 2 && $request->cadastrado == "false") {
             return redirect()->route("aluno.listar")->with('success', 'O Aluno ' . $aluno->nome . ' foi cadastrado.')->with('password', 'A senha provisória do usuário ' . $request->username . ' é ' . $password . '.');
