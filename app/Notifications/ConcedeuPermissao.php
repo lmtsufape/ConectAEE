@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class NovoAluno extends Notification implements ShouldQueue
+class ConcedeuPermissao extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -41,10 +41,10 @@ class NovoAluno extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('ConectAEE - Notificação de Novo Aluno')
+            ->subject('ConectAEE - Notificação de Condecimento de Permissão')
             ->greeting('Olá,')
             ->line([
-                'Sua conta recebeu uma nova notificação de um novo aluno cadastrado.',
+                'Sua conta recebeu uma nova notificação.',
                 'Clique no botão abaixo para visualizar suas notificações:',
             ])
             ->action('Visualizar', url('/usuario/notificacao/listar'))

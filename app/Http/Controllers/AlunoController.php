@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Notificacao;
 use App\Notifications\NovoAluno;
+use App\Notifications\ConcedeuPermissao;
+use App\Notifications\NotificaPermissao;
 use App\Aluno;
 use App\Gerenciar;
 use App\Perfil;
@@ -441,6 +443,10 @@ class AlunoController extends Controller
                 $notificacao->lido = false;
                 $notificacao->tipo = 1;
                 $notificacao->save();
+                //Enviando email de notificação
+                $user = User::find($notificacao->destinatario_id);
+                Notification::route('mail', $user->email)->notify(new NotificaPermissao());
+
             }
         }
 
@@ -559,6 +565,10 @@ class AlunoController extends Controller
         $notificacao->lido = false;
         $notificacao->tipo = 2;
         $notificacao->save();
+        //Enviando email de notificação
+        $user = User::find($notificacao->destinatario_id);
+        Notification::route('mail', $user->email)->notify(new ConcedeuPermissao());
+
 
         return redirect()->route('aluno.permissoes', ['id_aluno' => $gerenciar->aluno_id])->with('Success', 'O usuário ' . $user->name . ' agora possui permissão de acesso ao aluno.');
     }
