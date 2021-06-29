@@ -291,7 +291,7 @@ class ObjetivoController extends Controller
         $notificacao->save();
         //Enviando email de notificação
           $user = User::find($notificacao->destinatario_id);
-          Notification::route('mail', $user->email)->notify(new NovoObjetivo($id_objetivo));
+          Notification::route('mail', $user->email)->notify(new NovoObjetivo());
 
 
       }
