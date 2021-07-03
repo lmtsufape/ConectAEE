@@ -10,9 +10,9 @@
   <div class="collapse navbar-collapse" id="barra-menu">
     <!-- logo -->
     <ul class="nav navbar-nav navbar-left">
-      <li style="margin-top: -18px">
-        <a class="on-contrast-force-white" href="{{ route('home') }}"><img src="{{asset('images/logo.png')}}" height="50px"></a>
-      </li>
+        <li class="dropdown">
+            <a class="btn" href="{{ route('home') }}"><span style="color: #12583C; font-weight: 800; font-size: 20px;">ConectAEE</span></a>
+        </li>
 
       <li class="dropdown">
         <a onclick="contraste()" id="altocontraste" data-toggle="tooltip" title="Contraste" style="height: 50px;">
@@ -156,7 +156,7 @@
 
         <li class="dropdown">
           <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color: black">
-            Olá, <strong style="color: gray !important">{{\Auth::user()->name}}</strong> <span class="caret"></span>
+            Olá, <strong style="color: gray ">{{\Auth::user()->name}}</strong> <span class="caret"></span>
           </a>
           <ul class="dropdown-menu" role="menu">
             <li>

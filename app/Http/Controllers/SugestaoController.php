@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Notifications\NovaSugestao;
 use Illuminate\Support\Facades\Validator;
 use App\Objetivo;
 use App\Aluno;
 use App\Notificacao;
 use App\Sugestao;
+use App\User;
 use DateTime;
 use Auth;
+use Notification;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 
@@ -146,6 +149,9 @@ class SugestaoController extends Controller
         $notificacao->lido = false;
         $notificacao->tipo = 5; //sugestao
         $notificacao->save();
+          //Enviando email de notificação
+          $user = User::find($notificacao->destinatario_id);
+          Notification::route('mail', $user->email)->notify(new NovaSugestao());
       }
     }
   }

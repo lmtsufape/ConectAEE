@@ -41,13 +41,13 @@
 
                             <hr style="border-top: 1px solid #AAA;">
 
-                            <strong>Nome da Mãe:</strong> {{\App\Aluno::find($pdi->aluno_id)->familia->nome_mae}}
+                            <strong>Nome da Mãe:</strong> {{$pdi->nomeMae}}
                             <br>
-                            <strong>Nome do Pai:</strong> {{\App\Aluno::find($pdi->aluno_id)->familia->nome_pai}}
+                            <strong>Nome do Pai:</strong> {{$pdi->nomePai}}
                             <br>
-                            <strong>Nome do Responsavel (Mora Com):</strong> {{\App\Aluno::find($pdi->aluno_id)->familia->nome_responsavel}}
+                            <strong>Nome do Responsavel (Mora Com):</strong> {{$pdi->nomeResponsavel}}
                             <br>
-                            <strong>Numero de Irmãos:</strong> {{\App\Aluno::find($pdi->aluno_id)->familia->numero_irmaos}}
+                            <strong>Numero de Irmãos:</strong> {{$pdi->numeroIrmaos}}
                         </div>
                     </div>
 

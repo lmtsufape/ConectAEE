@@ -130,7 +130,7 @@
                                                 <div class="row col-md-12 text-center" id="login-card">
                                                     <br>
                                                     <a class="btn btn-secondary"
-                                                       href="{{route('aluno.permissoes',$aluno->id)}}" id="menu-a">
+                                                       href="{{route('notificacao.listar')}}" id="menu-a">
                                                         Voltar
                                                     </a>
                                                     <button type="submit" class="btn btn-primary">

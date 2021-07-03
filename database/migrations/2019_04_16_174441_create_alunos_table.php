@@ -27,9 +27,6 @@ class CreateAlunosTable extends Migration
             $table->integer('endereco_id');
             $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('cascade');
 
-            $table->integer('familia_id');
-            $table->foreign('familia_id')->references('id')->on('familias')->onDelete('cascade');
-
             $table->timestamps();
             $table->softDeletes();
         });

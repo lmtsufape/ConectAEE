@@ -13,13 +13,21 @@
                             <div class="col-md-12" id="login-card">
                                 <div style="width: 100%; margin-left: 0%;" class="row" id="login-card">
                                     <div style="float: left; " class="col-md-6" id="login-card">
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                                <h2>
+                                                    <strong style="color: #12583C">
 
-                                        <h2>
-                                            <strong style="color: #12583C">
-                                                @include('layouts.videoPopup', ['src' => asset('videos/gif-libras.mp4'),
-                                                                                'nome' => 'Alunos'])
-                                            </strong>
-                                        </h2>
+                                                        Alunos
+
+
+                                                    </strong>
+                                                </h2>
+                                            </div>
+                                            <div class="col-sm-10" id="img-libras">
+                                                @include('layouts.videoPopup', ['src' => asset('videos/gif-libras.mp4')])
+                                            </div>
+                                        </div>
                                     </div>
                                     <div style="float:right" class="col-md-3" id="login-card">
                                         <a style="float:right; margin-top:20px; background-color: #0398fc; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC"

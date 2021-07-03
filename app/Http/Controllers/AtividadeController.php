@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\NovaAtividade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Objetivo;
@@ -10,6 +11,8 @@ use App\Notificacao;
 use App\Atividade;
 use DateTime;
 use Auth;
+use Notification;
+use App\User;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 
@@ -163,6 +166,9 @@ class AtividadeController extends Controller
         $notificacao->lido = false;
         $notificacao->tipo = 4; //atividade
         $notificacao->save();
+          //Enviando email de notificação
+          $user = User::find($notificacao->destinatario_id);
+          Notification::route('mail', $user->email)->notify(new NovaAtividade());
       }
     }
   }

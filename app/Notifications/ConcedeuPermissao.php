@@ -6,9 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
 
-class ResetPassword extends ResetPasswordNotification implements ShouldQueue
+class ConcedeuPermissao extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -17,9 +16,9 @@ class ResetPassword extends ResetPasswordNotification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($token)
+    public function __construct()
     {
-        parent::__construct($token);
+        //
     }
 
     /**
@@ -42,15 +41,14 @@ class ResetPassword extends ResetPasswordNotification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('ConectAEE - Redefinição de Senha')
-                    ->greeting('Olá,')
-                    ->line([
-                        'Recebemos uma solicitação para alteração de senha para sua conta.',
-                        'Clique no botão abaixo para redefinir:',
-                    ])
-                    ->action('Redefinir Senha', url('password/reset', $this->token))
-                    ->line('Se a solicitação não for sua, apenas ignore esse e-mail.')
-                    ->salutation('Atenciosamente, ConectAEE');
+            ->subject('ConectAEE - Notificação de Condecimento de Permissão')
+            ->greeting('Olá,')
+            ->line([
+                'Sua conta recebeu uma nova notificação.',
+                'Clique no botão abaixo para visualizar suas notificações:',
+            ])
+            ->action('Visualizar', url('/usuario/notificacao/listar'))
+            ->salutation('Atenciosamente, ConectAEE');
     }
 
     /**

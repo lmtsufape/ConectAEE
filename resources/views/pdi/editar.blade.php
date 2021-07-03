@@ -34,6 +34,86 @@
                                 <input type="hidden" name="id_pdi" id="id_pdi" value="{{$pdi->id}}">
 
                                 <h3>
+                                    <strong>
+                                        Dados Familiares do Aluno
+                                    </strong>
+                                </h3>
+
+                                <hr style="border-top: 1px solid #AAA;">
+
+                                <div class="form-group{{ $errors->has('nomeMae') ? ' has-error' : '' }}"
+                                     id="login-card">
+                                    <label for="nomeMae" class="col-md-12 control-label"> Nome da mãe<font
+                                                color="red">*</font></label>
+
+                                    <div class="col-md-12" id="login-card">
+                                        <input id="nomeMae" type="text" class="form-control" name="nomeMae"
+                                               value="{{$pdi->nomeMae}}">
+
+                                        @if ($errors->has('nomeMae'))
+                                            <span class="help-block">
+                        <strong>{{ $errors->first('nomeMae') }}</strong>
+                      </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('nomePai') ? ' has-error' : '' }}"
+                                     id="login-card">
+                                    <label for="nomePai" class="col-md-12 control-label"> Nome do pai</label>
+
+                                    <div class="col-md-12" id="login-card">
+                                        <input id="nomePai" type="text" class="form-control" name="nomePai"
+                                               value="{{$pdi->nomePai}}">
+
+                                        @if ($errors->has('nomePai'))
+                                            <span class="help-block">
+                        <strong>{{ $errors->first('nomePai') }}</strong>
+                      </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('nomeResponsavel') ? ' has-error' : '' }}"
+                                     id="login-card">
+                                    <label for="nomeResponsavel" class="col-md-12 control-label"> Nome do(a)
+                                        responsável<font
+                                                color="red">*</font></label>
+
+                                    <div class="col-md-12" id="login-card" style="padding-bottom: 20px">
+                                        <input id="nomeResponsavel" type="text" class="form-control"
+                                               name="nomeResponsavel"
+                                               value="{{$pdi->nomeResponsavel}}">
+
+                                        @if ($errors->has('nomeResponsavel'))
+                                            <span class="help-block">
+                                                    <strong>{{ $errors->first('nomeResponsavel') }}</strong>
+                                                </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group{{ $errors->has('numeroIrmaos') ? ' has-error' : '' }}"
+                                     id="login-card">
+                                    <label for="numeroIrmaos" class="col-md-12 control-label"> Número de
+                                        irmãos<font color="red">*</font></label>
+                                    <div class="col-md-12" style="padding:0px" id="login-card">
+                                        <div class="col-md-2" id="login-card" style="padding-bottom: 20px">
+                                            <input id="numeroIrmaos" type="number" class="form-control"
+                                                   name="numeroIrmaos"
+                                                   value="{{$pdi->numeroIrmaos}}"
+                                                   min="0" step="1" max="69">
+
+                                            @if ($errors->has('numeroIrmaos'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('numeroIrmaos') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h3>
                                     <strong>Informação Escolar</strong>
                                 </h3>
 
@@ -700,7 +780,8 @@
                                 <div class="form-group" id="login-card">
                                     <div class="row col-md-12 text-center" id="login-card">
                                         <br>
-                                        <a class="btn btn-secondary" href="{{route('aluno.listar')}}"
+                                        <a class="btn btn-secondary"
+                                           href="{{route('pdi.listar', ['id_aluno'=>$aluno->id])}}"
                                            id="menu-a">
                                             Voltar
                                         </a>

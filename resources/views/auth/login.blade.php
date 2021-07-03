@@ -8,9 +8,9 @@
             <div class="panel panel-default" style="width:100%;background-color:#12583C; margin:20px;">
 
                 <div class="panel-body col-md-12 texto">
-                    <h1><strong>ConectAEE</strong></h1>
+                    <img src="{{asset('images/logo.png')}}" width="250px" height="130px" style="margin-left: 25%; margin-top: -2%; margin-bottom: 10px">
                     <p class="text-align-left">
-                        É um sistema pensado para que a educação inclusiva seja uma realidade nas escolas e
+                        O ConectAEE é um sistema pensado para que a educação inclusiva seja uma realidade nas escolas e
                         instituições de ensino do Brasil e que dá suporte ao acompanhamento de alunos
                         que necessitam de Atendimento Educacional Especializado (AEE), permitindo uma maior
                         integração entre escola, família e profissionais da Saúde, uma vez que a troca de informações
@@ -84,7 +84,7 @@
                                         Entrar
                                     </button>
                                     <p style="font-size: 13px; margin-bottom: -15px">
-                                        <a style="font-size: 13px; font-weight: bold; color: #0398fc !important"
+                                        <a style="font-size: 13px; font-weight: bold; color: #0398fc"
                                            href="{{ route('password.request') }}" id="login-card">
                                             Clique aqui
                                         </a>

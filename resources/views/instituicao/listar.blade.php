@@ -93,7 +93,7 @@
                       </a>
                     </td>
                     <td data-title="">
-                      <a class="btn btn-danger" onclick="return confirm('\A instituicao será desvinculada de qualquer aluno cadastrado com ela. Confirmar exclusão da instituicao {{$instituicao->nome}}? ')" href="{{ route("instituicao.excluir" , ['id_instituicao' => $instituicao->id]) }}">
+                      <a class="btn btn-danger" data-toggle="modal" data-target="#modalConfirm" onclick="setDadosModal('{{ route("instituicao.excluir" , ['id_instituicao' => $instituicao->id]) }}','{{$instituicao->nome}}')" >
                         Excluir
                       </a>
                     </td>
@@ -115,6 +115,44 @@
     </div>
   </div>
 </div>
+
+<!--Modal Confirm-->
+<div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog"
+     aria-labelledby="modalConfirmLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"
+                aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h2 class="modal-title" id="modalConfirmLabel" align="center"></h2>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Não
+        </button>
+        <a type="button" href=""  id="btnSubmit" class="btn btn-primary">
+          Sim
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function setDadosModal(rota,nome) {
+    setLinkModal(rota);
+    setTextoModal(nome);
+  }
+  function setLinkModal(rota){
+    document.getElementById('btnSubmit').href=rota;
+  }
+  function setTextoModal(nome){
+    document.getElementById('modalConfirmLabel').innerText = '\A instituição será desvinculada de qualquer aluno cadastrado com ela. Confirmar exclusão da instituição '+nome+' ?';
+  }
+</script>
 
 <script type="text/javascript">
 $(document).ready( function () {

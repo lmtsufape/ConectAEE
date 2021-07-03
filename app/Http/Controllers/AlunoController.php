@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Familia;
 use App\User;
-use App\Instituicao;
 use App\Notificacao;
+use App\Notifications\NovoAluno;
+use App\Notifications\ConcedeuPermissao;
+use App\Notifications\NotificaPermissao;
 use App\Aluno;
 use App\Gerenciar;
 use App\Perfil;
@@ -16,6 +17,7 @@ use App\Album;
 use File;
 use Image;
 use Auth;
+use Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -199,11 +201,7 @@ class AlunoController extends Controller
             'bairro' => ['required'],
             'cidade' => ['required'],
             'estado' => ['required'],
-            'nome_mae' => ['required'],
-            'nome_pai' => ['nullable'],
-            'nome_responsavel' => ['required'],
-            'numero_irmaos' => ['required'],
-            'username' => ['required_if:perfil,==,2']
+            'username' => ['required_if:perfil,==,2'],
         ], [
             'username.required_if' => 'É necessário criar um usuário quando o cadastrante é um Professor AEE',
         ]);
@@ -234,13 +232,6 @@ class AlunoController extends Controller
         $endereco->estado = $request->estado;
         $endereco->save();
 
-        $familia = new Familia();
-        $familia->nome_mae = $request->nome_mae;
-        $familia->nome_pai = $request->nome_pai;
-        $familia->nome_responsavel = $request->nome_responsavel;
-        $familia->numero_irmaos = $request->numero_irmaos;
-        $familia->save();
-
         $aluno = new Aluno();
 
         if ($request->imagem != null) {
@@ -259,7 +250,6 @@ class AlunoController extends Controller
         $aluno->data_de_nascimento = $request->data_nascimento;
         $aluno->endereco_id = $endereco->id;
         $aluno->cpf = $request->cpf;
-        $aluno->familia_id = $familia->id;
         $aluno->save();
 
         // do{
@@ -289,6 +279,8 @@ class AlunoController extends Controller
         if ($request->perfil == 2 && $request->cadastrado == "false") {
             $user->username = $request->username;
             $user->password = bcrypt($password);
+            $user->email = $aluno->id.'@gmail.com';
+            $user->cpf = $aluno->id;
             $user->cadastrado = false;
             $user->save();
         } else if ($request->perfil == 2 && $request->cadastrado == "true") {
@@ -312,6 +304,9 @@ class AlunoController extends Controller
         $notificacao->lido = false;
         $notificacao->tipo = 2;
         $notificacao->save();
+        //Enviando email de notificação
+        $user = User::find($notificacao->destinatario_id);
+        Notification::route('mail', $user->email)->notify(new NovoAluno());
 
         if ($request->perfil == 2 && $request->cadastrado == "false") {
             return redirect()->route("aluno.listar")->with('success', 'O Aluno ' . $aluno->nome . ' foi cadastrado.')->with('password', 'A senha provisória do usuário ' . $request->username . ' é ' . $password . '.');
@@ -334,10 +329,6 @@ class AlunoController extends Controller
             'data_nascimento' => ['required', 'date', 'before:today', 'after:01/01/1900'],
             'cep' => ['required'],
             'rua' => ['required'],
-            'nome_mae' => ['required'],
-            'nome_pai' => ['nullable'],
-            'nome_responsavel' => ['required'],
-            'numero_irmaos' => ['required'],
             'numero' => ['required', 'numeric'],
             'bairro' => ['required'],
             'cidade' => ['required'],
@@ -357,14 +348,6 @@ class AlunoController extends Controller
         $endereco->cidade = $request->cidade;
         $endereco->estado = $request->estado;
         $endereco->update();
-
-        $familia = Familia::find($aluno->familia_id);
-        $familia->nome_mae = $request->nome_mae;
-        $familia->nome_pai = $request->nome_pai;
-        $familia->nome_responsavel = $request->nome_responsavel;
-        $familia->numero_irmaos = $request->numero_irmaos;
-        $familia->update();
-
 
         if ($request->imagem != null) {
             $nome = uniqid(date('HisYmd'));
@@ -452,6 +435,10 @@ class AlunoController extends Controller
                 $notificacao->lido = false;
                 $notificacao->tipo = 1;
                 $notificacao->save();
+                //Enviando email de notificação
+                $user = User::find($notificacao->destinatario_id);
+                Notification::route('mail', $user->email)->notify(new NotificaPermissao());
+
             }
         }
 
@@ -570,6 +557,10 @@ class AlunoController extends Controller
         $notificacao->lido = false;
         $notificacao->tipo = 2;
         $notificacao->save();
+        //Enviando email de notificação
+        $user = User::find($notificacao->destinatario_id);
+        Notification::route('mail', $user->email)->notify(new ConcedeuPermissao());
+
 
         return redirect()->route('aluno.permissoes', ['id_aluno' => $gerenciar->aluno_id])->with('Success', 'O usuário ' . $user->name . ' agora possui permissão de acesso ao aluno.');
     }

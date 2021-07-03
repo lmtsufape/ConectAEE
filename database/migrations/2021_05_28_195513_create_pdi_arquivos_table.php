@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFamiliasTable extends Migration
+class CreatePdiArquivosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,17 @@ class CreateFamiliasTable extends Migration
      */
     public function up()
     {
-        Schema::create('familias', function (Blueprint $table) {
+        Schema::create('pdi_arquivos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
 
-            $table->string('nome_mae');
-            $table->string('nome_pai')->nullable();
-            $table->integer('numero_irmaos');
-            $table->string('nome_responsavel');
+            $table->integer('aluno_id');
+            $table->foreign('aluno_id')->references('id')->on('alunos');
+
+            $table->integer('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->string('filename');
         });
     }
 
@@ -31,6 +34,6 @@ class CreateFamiliasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('familias');
+        Schema::dropIfExists('pdi_arquivos');
     }
 }
