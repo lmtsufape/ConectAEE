@@ -33,7 +33,7 @@
                   Editar
                 </a>
 
-                <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão da sugestao {{$sugestao->titulo}}?')" href={{ route("sugestao.excluir" , ['id_sugestao' => $sugestao->id]) }}>
+                <a class="btn btn-danger" data-toggle="modal" title="Excluir Sugestão" data-target="#modalConfirm">
                   Excluir
                 </a>
               @endif
@@ -165,6 +165,31 @@
             </a>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal Confirm-->
+<div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog"
+     aria-labelledby="modalConfirmLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"
+                aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="modalConfirmLabel" align="center">
+          Confirmar exclusão da sugestão {{$sugestao->titulo}}?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Não
+        </button>
+        <a type="button"  href={{ route("sugestao.excluir" , ['id_sugestao' => $sugestao->id]) }}  id="btnSubmit" class="btn btn-primary">
+          Sim
+        </a>
       </div>
     </div>
   </div>
