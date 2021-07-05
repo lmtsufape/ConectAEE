@@ -36,14 +36,32 @@
                       @else
                         <td class="bg-info" data-title="Notificacao">
                       @endif
-                          <a class="btn text-center" href="{{ route('aluno.permissoes.conceder', ['id_aluno' => $notificacao->aluno->id, 'id_notificacao' => $notificacao->id]) }}">
-                            Você tem um pedido de acesso de {{$notificacao->remetente->name}} ao aluno {{$notificacao->aluno->nome}}
-                          </a>
 
-
+                            @if($notificacao->tipo == 1)
+                                <a class="btn text-center" href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
+                                    {{$notificacao->remetente->name}} pediu para acessar os dados do(a) aluno(a) {{$notificacao->aluno->nome}}</br>
+                                </a>
+                            @elseif($notificacao->tipo == 2)
+                                <a class="btn text-center" href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
+                                    {{$notificacao->remetente->name}} lhe concedeu acesso aos dados do(a) aluno(a) {{$notificacao->aluno->nome}}</br>
+                                </a>
+                            @elseif($notificacao->tipo == 3)
+                                <a class="btn text-center" href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
+                                    {{$notificacao->remetente->name}} criou um novo objetivo para o(a) aluno(a) {{$notificacao->aluno->nome}}</br>
+                                </a>
+                            @elseif($notificacao->tipo == 4)
+                                <a class="btn text-center" href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
+                                    {{$notificacao->remetente->name}} criou uma nova atividade para o(a) aluno(a) {{$notificacao->aluno->nome}}</br>
+                                </a>
+                            @elseif($notificacao->tipo == 5)
+                                <a class="btn text-center" href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
+                                    {{$notificacao->remetente->name}} criou uma nova sugestão de atividade para o(a)aluno(a) {{$notificacao->aluno->nome}}</br>
+                                </a>
+                            @endif
 
                         </td>
                     </tr>
+
                   @endif
                 @endforeach
               </tbody>

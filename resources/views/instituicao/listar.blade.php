@@ -126,7 +126,7 @@
                 aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h2 class="modal-title" id="modalConfirmLabel" align="center"></h2>
+        <h4 class="modal-title" id="modalConfirmLabel" align="center"></h4>
       </div>
 
       <div class="modal-footer">
