@@ -92,30 +92,19 @@
     @endforeach
 @endif
 
-@if(!empty($albuns))
-    <h2>Albuns</h2>
+@if(!empty($imagens))
+    <h2>Fotos</h2>
     <table>
-        @foreach($albuns as $album)
-            <tr>
-                <td>
-                    <b>{{$album->nome}}</b><br>
-                    <b>Descrição: </b>{{$album->descricao}}<br>
-                    <b>Data: </b>{{date_format(date_create($album->created_at),'d/m/Y')}}<br>
+        <tr>
+            @foreach($imagens as $te)
+                <td style="float: left; padding-right: 10px; left: -10px">
+                    <img src="{{ public_path('storage/albuns/'.$aluno->id.'/'.$te) }}"
+                         width="230px" height="230px"
+                         style="border-radius: 20px; border: 5px solid #1f648b;">
                 </td>
-            </tr>
-            <br>
-            <tr>
-
-                @foreach(\App\Foto::all()->where('album_id', '=', $album->id)->take(3)  as $foto)
-                    <td style="float: left; padding-right: 10px; left: -10px">
-                        <img src="{{ public_path('storage/albuns/'.$aluno->id.'/'.$foto->imagem) }}"
-                             width="230px" height="230px"
-                             style="border-radius: 20px; border: 5px solid #1f648b;">
-                    </td>
-                @endforeach
-            </tr>
-            <br>
-        @endforeach
+            @endforeach
+        </tr>
+        <br>
     </table>
 @endif
 
