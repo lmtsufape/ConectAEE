@@ -16,7 +16,9 @@ class RelatorioController extends Controller
         and o.aluno_id = $idAluno" );
         $albuns = DB::select("select * from albums a where (a.updated_at between '" . date('Y-m-d H:i:s',strtotime($request->dataInicial)) . "' and '" . date('Y-m-d H:i:s',strtotime($request->dataFinal . ' +1 day')) . "') 
         and a.aluno_id = $idAluno" );
-        $pdf = PDF::loadView('/relatorio/relatorio', compact('aluno', 'objetivos', 'albuns'));
+
+        $imagens=$request->img;
+        $pdf = PDF::loadView('/relatorio/relatorio', compact('aluno', 'objetivos', 'albuns','imagens'));
         return $pdf->setPaper('a4')->stream('RelatorioAlunoConecta.pdf');
     }
 }

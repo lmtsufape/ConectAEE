@@ -1,6 +1,6 @@
 @extends('layouts.principal')
 @section('title','Perfil de aluno')
-<!-- 
+<!--
 <a href="{{route('aluno.listar')}}">Início</a>
 > Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong>
 @section('navbar')
@@ -367,28 +367,27 @@
                                     Selecione
                                     um intervalo de tempo</h2>
                             </div>
-                            <form method="GET" action="{{ route("relatorio.gerar", ['id_aluno'=>$aluno->id]) }}"
-                                  target="_blank" onsubmit="setTimeout(function(){window.location.reload();},10);">
+
                                 <div class="modal-body">
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div class="col-md-5">
-                                                <label for="dataInicial" class="col-2 col-form-label">Selecione
+                                                <label for="dataInicialR" class="col-2 col-form-label">Selecione
                                                     a
                                                     data inicial</label>
                                                 <input class="form-control" type="date"
-                                                       id="dataInicial" name="dataInicial"
+                                                       id="dataInicialR" name="dataInicialR"
                                                        value="{{date('Y-m-d', strtotime('-1 months'))}}">
                                             </div>
                                             <div class="col-md-1">
                                                 <span></span>
                                             </div>
                                             <div class="col-md-5 ml-auto">
-                                                <label for="dataFinal" class="col-2 col-form-label">Selecione a
+                                                <label for="dataFinalR" class="col-2 col-form-label">Selecione a
                                                     data
                                                     final</label>
                                                 <input class="form-control" type="date"
-                                                       id="dataFinal" name="dataFinal" value="{{date('Y-m-d')}}">
+                                                       id="dataFinalR" name="dataFinalR" value="{{date('Y-m-d')}}">
                                             </div>
                                         </div>
                                     </div>
@@ -397,14 +396,79 @@
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                         Fechar
                                     </button>
-                                    <button type="submit" id="btnSubmit" class="btn btn-primary">
-                                        Enviar
+                                    <button type="button" id="btnAvanc" class="btn btn-primary"
+                                    data-toggle="modal" data-target="#modalImg" data-dismiss="modal">
+                                        Próximo
                                     </button>
                                 </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--Modal Img-->
+                <div class="modal fade" id="modalImg" tabindex="-1" role="dialog"
+                     aria-labelledby="modalImgLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Fechar">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h2 class="modal-title" id="modalImgLabel" align="center">
+                                    Marque as imagens desejadas</h2>
+                            </div>
+
+
+                            <form method="GET" action="{{ route("relatorio.gerar", ['id_aluno'=>$aluno->id]) }}"
+                                  target="_blank" onsubmit="setTimeout(function(){window.location.reload();},10);">
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <input class="form-control" type="hidden"
+                                               id="dataInicial" name="dataInicial" readonly>
+                                        <input class="form-control" type="hidden"
+                                               id="dataFinal" name="dataFinal" readonly>
+                                        <div class="container-fluid" style="padding-bottom: 15px; padding-left: 0px;">
+                                            <?php
+
+                                            foreach ($albuns as $album) {
+                                            foreach ($album->fotos as $foto){?>
+                                            <div class="col-md-3 mt-3" id="login-card">
+                                                <div class="card cartao text-center"
+                                                     style="border-radius: 20px; background: transparent; width: 100px; height: 100px; border: transparent;"
+                                                     id="login-card">
+                                                    <div class="card-body d-flex justify-content-center"
+                                                         style="border-radius: 20px; background: transparent; height: 100%">
+                                                        <label><input type="checkbox"  name="img[]" value="{{$foto->imagem}}">
+                                                            <img style="border-radius: 20px; width: 100.2px; height: 100.2px;"
+                                                                 src="{{asset('storage/albuns/'.$aluno->id.'/'.$foto->imagem)}}">
+                                                        </label>
+
+                                                        &nbsp; &nbsp;
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php }}?>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                            Fechar
+                                        </button>
+                                        <button type="submit" id="btnSubmit" class="btn btn-primary">
+                                            Enviar
+                                        </button>
+                                    </div>
                             </form>
                         </div>
                     </div>
                 </div>
+
+
 
                 <!--Modal Confirm-->
                 <div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog"
@@ -430,6 +494,21 @@
                         </div>
                     </div>
                 </div>
+
+                <script type="text/javascript">
+
+                    function redirecionarValor() {
+                        document.getElementById("dataInicial").value=document.getElementById("dataInicialR").value;
+                        document.getElementById("dataFinal").value=document.getElementById("dataFinalR").value;
+                    }
+
+                    // Evento que é executado ao clicar no botão de enviar
+                    document.getElementById("btnAvanc").onclick = function(e) {
+                        redirecionarValor();
+
+                    }
+
+                </script>
 
                 <script type="text/javascript">
 

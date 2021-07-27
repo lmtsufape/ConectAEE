@@ -53,7 +53,7 @@
                   <!-- <i class="material-icons">edit</i> -->
                   Editar
                 </a>
-                <a class="btn btn-danger" onclick="return confirm('\Confirmar exclusão do album {{$album->nome}}?')" href="{{route("album.excluir" , ['id_album'=>$album->id]) }}">
+                <a class="btn btn-danger" data-toggle="modal" data-target="#modalConfirm">
                   <!-- <i class="material-icons">delete</i> -->
                   Excluir
                 </a>
@@ -143,6 +143,31 @@
           </div>
         </div>
 
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal Confirm-->
+<div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog"
+     aria-labelledby="modalConfirmLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"
+                aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="modalConfirmLabel" align="center">
+          Confirmar exclusão do album {{$album->nome}}?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Não
+        </button>
+        <a type="button"    href="{{route("album.excluir" , ['id_album'=>$album->id]) }}"  id="btnSubmit" class="btn btn-primary">
+          Sim
+        </a>
       </div>
     </div>
   </div>

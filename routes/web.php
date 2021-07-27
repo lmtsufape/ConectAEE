@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,8 +18,10 @@ Auth::routes();
 
 Route::get('video', 'HomeController@video')->name('video');
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
-Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
+Route::middleware('auth')->group(function() {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index');
+});
 
 //Rotas para notificacões
 Route::get('/usuario/notificacao/listar', 'NotificacaoController@listar')->name('notificacao.listar')->middleware('checkCadastrado');
