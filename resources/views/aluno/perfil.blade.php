@@ -353,6 +353,31 @@
                         </div>
                 </div>
 
+                <!--Modal Confirm-->
+                <div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog"
+                     aria-labelledby="modalConfirmLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Fechar">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="modalConfirmLabel" align="center">
+                                    Confirmar exclusão do aluno {{$aluno->nome}}?</h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    Não
+                                </button>
+                                <a type="button"    href="{{route('aluno.excluir', ['id_aluno'=>$aluno->id]) }}"  id="btnSubmit" class="btn btn-primary">
+                                    Sim
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Modal -->
                 <div class="modal fade" id="modalRelatorio" tabindex="-1" role="dialog"
                      aria-labelledby="modalRelatorioLabel" aria-hidden="true">
@@ -470,30 +495,6 @@
 
 
 
-                <!--Modal Confirm-->
-                <div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog"
-                     aria-labelledby="modalConfirmLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal"
-                                        aria-label="Fechar">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <h4 class="modal-title" id="modalConfirmLabel" align="center">
-                                    Confirmar exclusão do aluno {{$aluno->nome}}?</h4>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                    Não
-                                </button>
-                                <a type="button"    href="{{route('aluno.excluir', ['id_aluno'=>$aluno->id]) }}"  id="btnSubmit" class="btn btn-primary">
-                                    Sim
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <script type="text/javascript">
 
