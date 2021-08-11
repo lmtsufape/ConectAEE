@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8fdb14d5029887b400240e98584cff3b",
+    "content-hash": "2962849c22ff690e030f483073073034",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -654,29 +654,28 @@
         },
         {
             "name": "geekcom/validator-docs",
-            "version": "3.5.1",
+            "version": "3.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/geekcom/validator-docs.git",
-                "reference": "d5a0e7be832003332395b5e3eac2a58f879ca060"
+                "reference": "94064a98379dca1e781bd358e4c10d7a1cff0020"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/geekcom/validator-docs/zipball/d5a0e7be832003332395b5e3eac2a58f879ca060",
-                "reference": "d5a0e7be832003332395b5e3eac2a58f879ca060",
+                "url": "https://api.github.com/repos/geekcom/validator-docs/zipball/94064a98379dca1e781bd358e4c10d7a1cff0020",
+                "reference": "94064a98379dca1e781bd358e4c10d7a1cff0020",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2",
+                "php": ">=7.2",
                 "thiagocfn/inscricaoestadual": "^1.1"
             },
             "require-dev": {
                 "orchestra/testbench": "^4.0",
                 "php-coveralls/php-coveralls": "^2.2",
                 "phpstan/phpstan": "^0.12.5",
-                "phpunit/phpunit": "^8.4",
-                "squizlabs/php_codesniffer": "*",
-                "symplify/changelog-linker": "^6.1"
+                "phpunit/phpunit": "^8.4|^9.4",
+                "squizlabs/php_codesniffer": "*"
             },
             "type": "library",
             "extra": {
@@ -704,15 +703,15 @@
             "description": "Biblioteca para validação de Título de Eleitor, CPF, CNPJ, NIS e CNH",
             "support": {
                 "issues": "https://github.com/geekcom/validator-docs/issues",
-                "source": "https://github.com/geekcom/validator-docs/tree/3.5.1"
+                "source": "https://github.com/geekcom/validator-docs/tree/3.5.3"
             },
             "funding": [
                 {
-                    "url": "https://gumroad.com/geekcom",
+                    "url": "https://nubank.com.br/pagar/518o5/zVBzxd00Sb",
                     "type": "custom"
                 }
             ],
-            "time": "2020-10-27T23:14:38+00:00"
+            "time": "2021-06-29T20:08:48+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -6300,5 +6299,5 @@
         "php": "^7.1.3"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

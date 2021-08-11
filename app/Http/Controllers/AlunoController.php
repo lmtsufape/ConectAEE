@@ -153,9 +153,8 @@ class AlunoController extends Controller
 
     public function buscarCPF(Request $request)
     {
-
         $this->validate($request, [
-            'cpf' => 'required|cpf|formato_cpf',
+            'cpf' => 'required|cpf',
         ]);
 
         $cpf = $request->cpf;
@@ -166,7 +165,6 @@ class AlunoController extends Controller
             return redirect()->route("aluno.cadastrar")->with('cpf', $cpf);
         } else {
             $gerenciars = $aluno->gerenciars;
-
             foreach ($gerenciars as $gerenciar) {
                 if ($gerenciar->user->id == \Auth::user()->id && $gerenciar->tipoUsuario == 3) {
                     $botaoAtivo = true;
