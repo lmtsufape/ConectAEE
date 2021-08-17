@@ -5,10 +5,16 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
+use Illuminate\Notifications\Notifiable;
 
 class Aluno extends Model
 {
+    use Notifiable;
     use SoftDeletes;
+
+    protected $fillable=['cpf'];
+    public static $rules=['cpf' =>'required'];
+    public static $messages=['cpf'=>'erro cpf'];
 
     public function getDataDeNascimentoAttribute( $value ) {
       return (new Carbon($value))->format('d/m/Y');

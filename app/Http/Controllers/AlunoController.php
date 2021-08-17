@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App;
 use App\Notificacao;
 use App\Notifications\NovoAluno;
 use App\Notifications\ConcedeuPermissao;
@@ -153,30 +154,33 @@ class AlunoController extends Controller
 
     public function buscarCPF(Request $request)
     {
-        $this->validate($request, [
-            'cpf' => 'required|cpf',
-        ]);
+        try {
+            \App\Validator\CpfValidator::validate ($request->all());
+            $cpf = $request->cpf;
+            $aluno = Aluno::where('cpf', '=', $cpf)->first();
+            $botaoAtivo = false;
 
-        $cpf = $request->cpf;
-        $aluno = Aluno::where('cpf', '=', $cpf)->first();
-        $botaoAtivo = false;
-
-        if ($aluno == null) {
-            return redirect()->route("aluno.cadastrar")->with('cpf', $cpf);
-        } else {
-            $gerenciars = $aluno->gerenciars;
-            foreach ($gerenciars as $gerenciar) {
-                if ($gerenciar->user->id == \Auth::user()->id && $gerenciar->tipoUsuario == 3) {
-                    $botaoAtivo = true;
+            if ($aluno == null) {
+                return redirect()->route("aluno.cadastrar")->with('cpf', $cpf);
+            } else {
+                $gerenciars = $aluno->gerenciars;
+                foreach ($gerenciars as $gerenciar) {
+                    if ($gerenciar->user->id == \Auth::user()->id && $gerenciar->tipoUsuario == 3) {
+                        $botaoAtivo = true;
+                    }
                 }
             }
-        }
 
-        return view("aluno.buscarCPF", [
-            'aluno' => $aluno,
-            'cpf' => $cpf,
-            'botaoAtivo' => $botaoAtivo
-        ]);
+            return view("aluno.buscarCPF", [
+                'aluno' => $aluno,
+                'cpf' => $cpf,
+                'botaoAtivo' => $botaoAtivo
+            ]);
+        }catch (\App\Validator\ValidationException $exception){
+            return redirect('/aluno/buscar')
+                ->withErrors($exception->getValidator())
+                ->withInput();
+        }
 
     }
 
