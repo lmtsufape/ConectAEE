@@ -26,21 +26,21 @@
           <div class="col-md-8 col-md-offset-2" id="login-card">
             <form method="GET" action="{{ route("aluno.buscarCPF") }}">
 
-              <div class="form-group{{ $errors->has('cpf') ? ' has-error' : '' }}" id="login-card">
-                <label for="cpf" class="col-md-12 control-label"> Informe o CPF do aluno: <font color="red">*</font></label>
+                <div class="form-group {{ $errors->has('cpf') ? ' has-error' : '' }}" id="login-card">
+                    <label for="cpf" class="col-md-12 control-label"> Informe o CPF do aluno: <font color="red">*</font></label>
 
-                <div class="col-md-12" id="login-card">
-                  @if ($cpf == null)
-                    <input id="cpf" type="text" class="form-control" onkeydown="fMasc( this, mCPF );" placeholder="000.000.000-00" name="cpf">
-                  @else
-                    <input id="cpf" type="text" class="form-control" onkeydown="fMasc( this, mCPF );" placeholder="000.000.000-00" name="cpf" value="{{$cpf}}">
-                  @endif
+                    <div class="col-md-12" id="login-card">
+                        @if ($cpf == null)
+                            <input id="cpf" type="text" class="form-control" onkeydown="fMasc( this, mCPF );" placeholder="000.000.000-00" name="cpf">
+                        @else
+                            <input id="cpf" type="text" class="form-control @error('cpf') is-invalid @enderror" onkeydown="fMasc( this, mCPF );" placeholder="000.000.000-00" name="cpf" value="{{$cpf}}">
+                        @endif
 
-                  @if ($errors->has('cpf'))
-                    <span class="help-block">
-                      <strong>{{ $errors->first('cpf') }}</strong>
-                    </span>
-                  @endif
+                        @error('cpf')
+                            <span class="help-block">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                 </div>
               </div>
 
