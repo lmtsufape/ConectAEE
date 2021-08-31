@@ -19,9 +19,18 @@ Auth::routes();
 Route::get('video', 'HomeController@video')->name('video');
 
 Route::middleware('auth')->group(function() {
-    Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/', 'HomeController@index');
+    Route::get('home', 'HomeController@index')->name('home');
+    Route::get('', 'HomeController@index');
 });
+
+// Authentication Routes...
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+// Registration Routes...
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@register');
 
 //Rotas para notificacões
 Route::get('/usuario/notificacao/listar', 'NotificacaoController@listar')->name('notificacao.listar')->middleware('checkCadastrado');
