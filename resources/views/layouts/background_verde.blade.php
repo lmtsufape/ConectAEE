@@ -59,10 +59,10 @@
     <ul id="logos" style="list-style:none;">
         <li style="margin-right:140px; margin-left:110px; border-right:1px">
             @if(Auth::check() && (Auth::user()->username == 'adelino.lmts' || Auth::user()->username == 'alana.lmts' || Auth::user()->username == 'mateus.lmts' || Auth::user()->username == 'eberson.lmts'))
-                <a href="{{ route("home") }}"><img src="{{asset('images/pikachinho.png')}}"
+                <a href="{{ route("login") }}"><img src="{{asset('images/pikachinho.png')}}"
                                                    style="margin-left: 8px; margin-top:5px " height="60px" align="left"></a>
             @else
-                <a href="{{ route("home") }}"><img src="{{asset('images/logo.png')}}"
+                <a href="{{ route("login") }}"><img src="{{asset('images/logo.png')}}"
                                                    style="margin-left: 8px; margin-top:5px " height="50px" align="left"></a>
             @endif
 
