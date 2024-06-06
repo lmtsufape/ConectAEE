@@ -42,7 +42,7 @@
                                     <a class="btn btn-primary" class="btn btn-primary" data-toggle="modal"
                                        data-target="#modalRelatorio"
                                        style="height: 50px; font-weight: bold; font-size: 20px; background: #6574cd; justify: center">
-                                        Relatorio
+                                        Relatório
                                     </a>
                                 @endif
                                 <a class="btn btn-primary"

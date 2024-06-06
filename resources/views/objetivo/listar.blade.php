@@ -35,7 +35,7 @@
                 </div>
                 <div class="row col-md-4" style="float:right;" id="login-card">
                   @if(count($objetivosGroupByUser) != 0 || ($termo != "" && count($objetivosGroupByUser) == 0))
-                    <form class="form-horizontal" method="GET" action="{{ route('objetivo.buscar', ['id-aluno' => $aluno->id]) }}">
+                    <form class="form-horizontal" method="GET" action="{{ route('objetivo.buscar', ['id_aluno' => $aluno->id]) }}">
 
                       <div id="divBusca" style="margin-top:20px;">
 
