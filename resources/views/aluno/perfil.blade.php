@@ -177,7 +177,7 @@
                                     <ul>
                                         @foreach ($aluno->instituicoes as $instituicao)
                                             <li>
-                                                <a href="{{ route('instituicao.ver', ['id_instituiçao'=>$instituicao->id]) }}"
+                                                <a href="{{ route('instituicao.ver', ['id_instituicao'=>$instituicao->id]) }}"
                                                    style="color: #3097D1">{{$instituicao->nome}}</a>
                                             </li>
                                         @endforeach
