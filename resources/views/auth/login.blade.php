@@ -2,7 +2,7 @@
 @section('title','ConectAEE')
 @section('content')
 
-    <div class="row" style="background-color:#12583C; padding:20px;">
+    <div class="row" style="padding:20px;">
         <br>
         <div class="col-md-7">
             <div class="panel panel-default" style="width:100%;background-color:#12583C; margin:20px;">

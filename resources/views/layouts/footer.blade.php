@@ -1,13 +1,29 @@
-<div class="footer" style="background: #12442C; height: 200px; padding: 20px">
-  <div style="display: flex; justify-content: center; align-items: center">
-    <!-- logos -->
-    <a target="_blank" href="http://ufape.edu.br/">
-      <img class="footer-on-contrast-force-white" src="{{asset('images/ufape.png')}}" style = "margin-left: 10px;" height="120" width="70" >
-    </a>
+<div class="d-flex justify-content-between align-items-center" style="background: #94A69D; height: 150px; padding: 20px">
+    <div class="text-center">
+        <img src="{{ asset('images/logo.png') }}" alt="logo-conectaee" width="160px">
+    </div>
 
-    <a target="_blank" href="http://lmts.uag.ufrpe.br/">
-      <img class="footer-on-contrast-force-white" src="{{asset('images/lmts3.png')}}" style = "margin-left: 8px; " height="80" >
-    </a>
+    <div class="text-center">
+        <a href="http://ufape.edu.br" target="_blank">
+            <img src="{{ asset('images/layouts/footer/UFAPElogo.png') }}" alt="logo-ufape">
+        </a>
 
-  </div>
+        <a href="http://www.lmts.ufape.edu.br" target="_blank">
+            <img src="{{ asset('images/layouts/footer/LMTSlogo.png') }}" alt="logo-lmts">
+        </a>
+    </div>
+
+    <div class="text-center">
+        <a href="#">
+            <img class="logo-redes" src="{{ asset('images/layouts/footer/email.svg') }}" alt="">
+        </a>
+
+        <a href="#" class="mx-4">
+            <img class="logo-redes" src="{{ asset('images/layouts/footer/facebook.svg') }}" alt="">
+        </a>
+
+        <a href="#">
+            <img class="logo-redes" src="{{ asset('images/layouts/footer/instagram.svg') }}" alt="">
+        </a>
+    </div>
 </div>

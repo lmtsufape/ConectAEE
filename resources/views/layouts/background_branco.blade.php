@@ -28,7 +28,6 @@
     <!-- Scripts -->
     <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
     <!-- Summernote -->
@@ -36,69 +35,44 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/lang/summernote-pt-BR.js"></script>
+    
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </head>
 
-<body class="acessibilidade">
-<div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
-    <ul id="menu-barra-temp" style="list-style:none;">
-        <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
-            <a href="http://brasil.gov.br" style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal
-                do Governo Brasileiro</a>
-        </li>
-        <li>
-            <a style="font-family:sans,sans-serif; text-decoration:none; color:white;"
-               href="http://epwg.governoeletronico.gov.br/barra/atualize.html">Atualize sua Barra de Governo</a>
-        </li>
-    </ul>
-</div>
-
-<!-- Barra de Logos -->
-<div id="barra-logos" class="container"
-     style="background:#ffffff; margin-top: 1px; padding: 10px 10px 10px 10px">
-    <ul id="logos" style="list-style:none;">
-        <li style="margin-right:140px; margin-left:110px; border-right:1px; margin-top: 10px">
-
-            <a class="btn" href="{{route('home')}}" style="">
-                <span style="color: #12583C; font-weight: 800; font-size: 20px; margin-top: 20px">
-                    ConectAEE
-                </span>
-            </a>
-            <a onclick="fonte('d')" id="aumentarfonte" data-toggle="tooltip" title="reduzir fonte">
-                <img class="on-contrast-force-white" src="{{asset('images/reduce-font-size.png')}}"
-                     style="margin-left: 30px; margin-top: 10px " height="30" align="right">
-            </a>
-
-            <a onclick="fonte('a')" id="diminuirfonte" data-toggle="tooltip" title="aumentar fonte">
-                <img class="on-contrast-force-white" src="{{asset('images/increase-font-size.png')}}"
-                     style="margin-left: 30px; margin-top: 10px " height="30" align="right">
-            </a>
-
-            <a onclick="contraste()" id="altocontraste" data-toggle="tooltip" title="Contraste">
-                <img class="on-contrast-force-white" src="{{asset('images/contrasteBlack.png')}}"
-                     style="margin-left: 30px; margin-top: 10px " height="30" align="right">
-            </a>
-
-        </li>
-    </ul>
-</div>
-
-<!-- <a class="btn-primary" id="altocontraste" onclick="contraste()">Contraste</a> -->
-<!-- <button class="btn-info" onClick="fonte('a');">A+</button>
-<button class="btn-info" onClick="fonte('d');">A-</button> -->
-
-<div id="page-container" style="background-color:#FFFFFF">
-    <div id="content-wrap">
-        @yield('content')
-        <br><br><br>
+<body class="acessibilidade" style="background-color: #92A69E">
+    <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
+        <ul id="menu-barra-temp" style="list-style:none;">
+            <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
+                <a href="http://brasil.gov.br" style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal
+                    do Governo Brasileiro</a>
+            </li>
+            <li>
+                <a style="font-family:sans,sans-serif; text-decoration:none; color:white;"
+                href="http://epwg.governoeletronico.gov.br/barra/atualize.html">Atualize sua Barra de Governo</a>
+            </li>
+        </ul>
     </div>
 
-    <div id="footer-brasil"></div>
+    <head>
+        @include('layouts.navbar')
+    </head>
 
-</div>
+    <main id="page-container">
+        <div>
+            @yield('content')
+        </div>
+    </main>
 
-<!-- Scripts -->
-@include('layouts.scripts')
+    <footer>
+        @include('layouts.footer')
+    </footer>
+
+    <!-- Scripts -->
+    @include('layouts.scripts')
 </body>
 
 </html>
