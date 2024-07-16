@@ -1,12 +1,8 @@
-@extends('layouts.principal')
+@extends('layouts.app')
 @section('title','Listar objetivos')
-<!-- <a href="{{route('aluno.listar')}}">Início</a>
-> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
-> Objetivos
-@section('navbar')
-@endsection -->
+
 @section('content')
-<div class="container">
+
   <div class="row">
     <div class="col-md-12" style="margin-top: -20px">
       <div class="panel panel-default" style="padding: 10px 20px;" id="login-card">

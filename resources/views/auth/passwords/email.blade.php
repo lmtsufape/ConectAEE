@@ -1,9 +1,8 @@
-@extends('layouts.background_verde')
+@extends('layouts.app')
 @section('title','Recuperar Senha')
 @section('content')
 
-<div class="container" style="background-color:#12583C;">
-  <br><br><br>
+
 
   <div class="panel panel-default col-md-6 col-md-offset-3 sombra" id="login-card">
     <div class="panel-heading text-center" id="login-card">

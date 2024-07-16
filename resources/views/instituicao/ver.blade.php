@@ -1,15 +1,8 @@
-@extends('layouts.principal')
+@extends('layouts.app')
 @section('title','Ver instituição')
-@section('navbar')
-@endsection
 
 @section('content')
-<div class="container" style="color: #12583C">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="panel panel-default" style="margin-top: -20px; padding: 10px 20px;" id="login-card">
 
-        <div class="panel-heading" id="login-card">
           <div class="row" style="margin-bottom: -20px" id="login-card">
 
             <div class="col-md-6" id="login-card">

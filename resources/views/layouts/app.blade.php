@@ -17,18 +17,24 @@
     <link href="{{ asset('css/lmts.css') }}" rel="stylesheet">
     <link href="{{ asset('css/lmts-app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/contrast.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/forum.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/lightbox.css') }}" rel="stylesheet">
     <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/select2-bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- JavaScripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/lightbox-plus-jquery.min.js') }}"></script>
+
 
     <!-- Scripts -->
-    <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
+    <script defer="defer" src="//barra.brasil.gov.br/barra_2.0.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://kit.fontawesome.com/635526a09b.js" crossorigin="anonymous"></script>
 
     <!-- Summernote -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -44,27 +50,31 @@
 </head>
 
 <body class="acessibilidade" style="background-color: #92A69E">
-    <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
-        <ul id="menu-barra-temp" style="list-style:none;">
-            <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
-                <a href="http://brasil.gov.br" style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal
-                    do Governo Brasileiro</a>
-            </li>
-            <li>
-                <a style="font-family:sans,sans-serif; text-decoration:none; color:white;"
-                href="http://epwg.governoeletronico.gov.br/barra/atualize.html">Atualize sua Barra de Governo</a>
-            </li>
-        </ul>
-    </div>
+    
 
     <head>
+        <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
+            <ul id="menu-barra-temp" style="list-style:none;">
+                <li
+                    style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
+                    <a href="http://brasil.gov.br"
+                        style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal
+                        do Governo Brasileiro</a>
+                </li>
+            </ul>
+        </div>
+        
         @include('layouts.navbar')
     </head>
 
-    <main id="page-container">
-        <div>
+    <main>
+        @auth
+            <div class="container-md border rounded-5 bg-white">
+                @yield('content')
+            </div>
+        @else
             @yield('content')
-        </div>
+        @endauth
     </main>
 
     <footer>

@@ -1,30 +1,25 @@
-@extends('layouts.principal')
+@extends('layouts.app')
 @section('title','Cadastrar aluno')
-@section('path','Início')
-
-@section('navbar')
-@endsection
 
 @section('content')
-    <div class="container" style="color: #12583C">
         <div class="row">
             <div class="col-md-12">
-                <div class="panel panel-default" style="margin-top: -20px; padding: 10px 20px;" id="login-card">
-                    <div class="panel-heading" id="login-card">
-                        <h2>
+                <div>
+                    <div>
+                        <h1>
                             <strong style="color: #12583C">
                                 Novo Aluno
                             </strong>
-                            <div style="font-size: 14px" id="login-card">
+                            <div>
                                 <a href="{{route('aluno.listar')}}">Início</a> > Novo Aluno
                             </div>
-                        </h2>
+                        </h1>
 
                         <hr style="border-top: 1px solid #AAA;">
                     </div>
 
-                    <div class="panel-body panel-body-cadastro" id="login-card">
-                        <div class="col-md-8 col-md-offset-2" id="login-card">
+                    <div>
+                        <div class="col-md-8 col-md-offset-2">
                             <form method="POST" action="{{ route("aluno.criar") }}" enctype="multipart/form-data">
 
                                 {{ csrf_field() }}
@@ -110,10 +105,10 @@
                                     <input type="hidden" name="cpf" value="{!! \Session::get('cpf') !!}">
 
                                     <div class="form-group{{ $errors->has('cpf') ? ' has-error' : '' }}"
-                                         id="login-card">
+                                        >
                                         <label for="cpf" class="col-md-12 control-label"> CPF<font color="red">*</font></label>
 
-                                        <div class="col-md-12" id="login-card">
+                                        <div class="col-md-12">
                                             <input id="cpf" type="text" class="form-control" name="cpf" readonly
                                                    value="{!! \Session::get('cpf') !!}">
 
@@ -126,11 +121,11 @@
                                     </div>
 
                                     <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}"
-                                         id="login-card">
+                                        >
                                         <label for="nome" class="col-md-12 control-label"> Nome<font
                                                     color="red">*</font></label>
 
-                                        <div class="col-md-12" id="login-card">
+                                        <div class="col-md-12">
                                             <input id="nome" type="text" class="form-control" name="nome"
                                                    value="{{ old('nome') }}">
 
@@ -142,11 +137,10 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group{{ $errors->has('imagem') ? ' has-error' : '' }}"
-                                         id="login-card">
+                                    <div class="form-group{{ $errors->has('imagem') ? ' has-error' : '' }}">
                                         <label for="imagem" class="col-md-12 control-label">Foto de perfil</label>
 
-                                        <div class="col-md-12" id="login-card">
+                                        <div class="col-md-12">
                                             <input id="imagem" type="file" class="filestyle" name="imagem"
                                                    data-placeholder="Nenhum arquivo" data-text="Selecionar"
                                                    data-btnClass="btn btn-primary">
@@ -159,15 +153,15 @@
                                         </div>
                                     </div>
 
-                                    <div class="row" style="padding:0px" id="login-card">
-                                        <div class="col-md-12" style="padding:0px" id="login-card">
-                                            <div class="col-md-6" id="login-card">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="form-group{{ $errors->has('data_nascimento') ? ' has-error' : '' }}"
-                                                     id="login-card">
+                                                    >
                                                     <label for="data_nascimento" class="col-md-12 control-label">Data de
                                                         nascimento<font color="red">*</font> </label>
 
-                                                    <div class="col-md-12" id="login-card">
+                                                    <div class="col-md-12">
                                                         <input id="data_nascimento" type="date" class="form-control"
                                                                name="data_nascimento" max=""
                                                                value="{{ old('data_nascimento') }}">
@@ -227,8 +221,8 @@
 
                                     <hr style="border-top: 1px solid #AAA;">
 
-                                    <div class="row" style="padding:0px" id="login-card">
-                                        <div class="col-md-12" style="padding:0px" id="login-card">
+                                    <div class="row">
+                                        <div class="col-md-12">
                                             <div class="col-md-4" id="login-card">
                                                 <div class="form-group{{ $errors->has('cep') ? ' has-error' : '' }}"
                                                      id="login-card">
@@ -248,13 +242,13 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4" id="login-card">
+                                            <div class="col-md-4">
                                                 <div class="form-group{{ $errors->has('rua') ? ' has-error' : '' }}"
-                                                     id="login-card">
+                                                    >
                                                     <label for="rua" class="col-md-12 control-label">Rua<font
                                                                 color="red">*</font></label>
 
-                                                    <div class="col-md-12" id="login-card">
+                                                    <div class="col-md-12">
 
                                                         <input id="rua" type="text" class="form-control" name="rua"
                                                                value="{{ old('rua') }}">
@@ -268,13 +262,13 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-4" id="login-card">
+                                            <div class="col-md-4">
                                                 <div class="form-group{{ $errors->has('numero') ? ' has-error' : '' }}"
-                                                     id="login-card">
+                                                    >
                                                     <label for="numero" class="col-md-12 control-label">Número<font
                                                                 color="red">*</font> </label>
 
-                                                    <div class="col-md-12" id="login-card">
+                                                    <div class="col-md-12">
                                                         <input id="numero" type="text" class="form-control"
                                                                name="numero" value="{{ old('numero') }}">
 
@@ -289,15 +283,15 @@
                                         </div>
                                     </div>
 
-                                    <div class="row" style="padding:0px" id="login-card">
-                                        <div class="col-md-12" style="padding:0px" id="login-card">
-                                            <div class="col-md-4" id="login-card">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="col-md-4">
                                                 <div class="form-group{{ $errors->has('bairro') ? ' has-error' : '' }}"
-                                                     id="login-card">
+                                                    >
                                                     <label for="bairro" class="col-md-12 control-label">Bairro<font
                                                                 color="red">*</font></label>
 
-                                                    <div class="col-md-12" id="login-card">
+                                                    <div class="col-md-12">
                                                         <input id="bairro" type="text" class="form-control"
                                                                name="bairro" value="{{ old('bairro') }}">
 
@@ -310,13 +304,13 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-4" id="login-card">
+                                            <div class="col-md-4">
                                                 <div class="form-group{{ $errors->has('estado') ? ' has-error' : '' }}"
-                                                     id="login-card">
+                                                    >
                                                     <label for="estado" class="col-md-12 control-label">Estado<font
                                                                 color="red">*</font> </label>
 
-                                                    <div class="col-md-12" id="login-card">
+                                                    <div class="col-md-12">
                                                         <select id="estado" class="form-control" name="estado"
                                                                 data-target="#cidade">
                                                             <option value="" selected hidden>-- UF --</option>
@@ -439,13 +433,13 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-4" id="login-card">
+                                            <div class="col-md-4">
                                                 <div class="form-group{{ $errors->has('cidade') ? ' has-error' : '' }}"
-                                                     id="login-card">
+                                                    >
                                                     <label for="cidade" class="col-md-12 control-label">Cidade<font
                                                                 color="red">*</font> </label>
 
-                                                    <div class="col-md-12" id="login-card">
+                                                    <div class="col-md-12">
                                                         <input id="cidade" class="form-control" name="cidade"
                                                                value="{{ old('cidade') }}">
 
@@ -469,10 +463,10 @@
                                     <hr style="border-top: 1px solid #AAA;">
 
                                     <div class="form-group{{ $errors->has('cid') ? ' has-error' : '' }}"
-                                         id="login-card">
+                                        >
                                         <label for="cid" class="col-md-12 control-label">CID</label>
 
-                                        <div class="col-md-12" id="login-card">
+                                        <div class="col-md-12">
                                             <input id="cid" type="text" class="form-control" placeholder="X000"
                                                    name="cid" value="{{ old('cid') }}">
 
@@ -485,11 +479,11 @@
                                     </div>
 
                                     <div class="form-group{{ $errors->has('descricaoCid') ? ' has-error' : '' }}"
-                                         id="login-card">
+                                        >
                                         <label for="descricaoCid" class="col-md-12 control-label">Descrição do
                                             CID</label>
 
-                                        <div class="col-md-12" id="login-card">
+                                        <div class="col-md-12">
                                             <input id="descricaoCid" type="text"
                                                    class="form-control" name="descricaoCid"
                                                    value="{{ old('descricaoCid') }}">
@@ -503,11 +497,11 @@
                                     </div>
 
                                     <div class="form-group{{ $errors->has('observacao') ? ' has-error' : '' }}"
-                                         id="login-card">
+                                        >
                                         <label for="observacao" class="col-md-12 control-label">Outras
                                             observações</label>
 
-                                        <div class="col-md-12" id="login-card">
+                                        <div class="col-md-12">
                     <textarea name="observacao" style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px;"
                               id="observacao" type="text" class="form-control">{{old('observacao')}}</textarea>
 
@@ -529,7 +523,7 @@
                                     <hr style="border-top: 1px solid #AAA;">
 
                                     <div class="form-group{{ $errors->has('perfil') ? ' has-error' : '' }}"
-                                         id="login-card">
+                                       >
                                         <label for="perfil" class="col-md-12 control-label">Perfil<font
                                                     color="red">*</font></label>
 
@@ -558,9 +552,9 @@
                                     </div>
 
                                     @if(old('perfil') == "2")
-                                        <div id="div-responsavel" style="display: block;" id="login-card">
+                                        <div id="div-responsavel" style="display: block;">
                                             @else
-                                                <div id="div-responsavel" style="display: none;" id="login-card">
+                                                <div id="div-responsavel" style="display: none;">
                                                     @endif
 
                                                     <h3>
@@ -572,11 +566,11 @@
                                                     <hr style="border-top: 1px solid #AAA;">
 
                                                     <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}"
-                                                         id="login-card">
+                                                       >
                                                         <label for="username" class="col-md-12 control-label">Nome de
                                                             Usuário <font color="red">*</font> </label>
 
-                                                        <div class="col-md-12" id="login-card">
+                                                        <div class="col-md-12">
                                                             <input id="username" autocomplete="off" name="username"
                                                                    type="text" class="form-control"
                                                                    value="{{old('username')}}">
@@ -590,11 +584,11 @@
                                                     </div>
 
                                                     <div class="form-group{{ $errors->has('cadastrado') ? ' has-error' : '' }}"
-                                                         id="login-card">
+                                                        >
                                                         <label for="cadastrado" class="col-md-12 control-label">Usuário
                                                             já cadastrado?</label>
 
-                                                        <div class="col-md-12" id="login-card">
+                                                        <div class="col-md-12">
                                                             @if(old('cadastrado') == "true")
                                                                 <input type="radio" name="cadastrado" id="sim"
                                                                        value="true" checked>
@@ -620,8 +614,8 @@
 
                                                 </div>
 
-                                                <div class="form-group" id="login-card">
-                                                    <div class="row col-md-12 text-center" id="login-card">
+                                                <div class="form-group">
+                                                    <div class="row col-md-12 text-center">
                                                         <br>
                                                         <a class="btn btn-secondary" href="{{route('aluno.listar')}}"
                                                            id="menu-a">
@@ -633,7 +627,7 @@
                                                     </div>
                                                 </div>
                                                 @else
-                                                    <div class="alert alert-info" id="login-card">
+                                                    <div class="alert alert-info">
                                                         <center>
                                                             <h3>
                                                                 Informe o CPF do aluno nesta página primeiro:
@@ -650,7 +644,7 @@
                 </div>
             </div>
         </div>
-    </div>
+   
 
     <script type="text/javascript">
         $('#summer').summernote({

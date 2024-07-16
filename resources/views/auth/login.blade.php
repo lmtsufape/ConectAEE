@@ -1,4 +1,4 @@
-@extends('layouts.background_branco')
+@extends('layouts.app')
 @section('title','ConectAEE')
 @section('content')
 
@@ -23,8 +23,8 @@
 
         <div class="col-md-4">
             <div class="panel panel-default" id="login-card-container"
-                 style="padding-top:10px; box-shadow: 4px 4px 4px 4px #12443C">
-                <div class="text-center" style="height:15px;" id="login-card">
+                 style="padding-top:10px;">
+                <div class="text-center" style="height:15px;">
                     <h2>
                         <strong style="color: #12583C">
                             Entrar
@@ -32,15 +32,15 @@
                     </h2>
                 </div>
 
-                <div class="panel-body" id="login-card">
+                <div class="panel-body">
                     <form method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('username') || $errors->has('email') ? ' has-error' : '' }}"
-                             id="login-card">
+                            >
                             <label for="login" class="col-md-12 control-label text-left">E-mail</label>
 
-                            <div class="col-md-12" id="login-card">
+                            <div class="col-md-12">
                                 <input id="login" type="text" class="form-control" name="login"
                                        value="{{ old('username') ?: old('email') }}" placeholder="exemplo@email.com"
                                        autofocus>
@@ -53,12 +53,12 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}" id="login-card">
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-12 control-label">Senha</label>
 
-                            <div class="col-md-12" id="login-card">
+                            <div class="col-md-12">
                                 <input id="password" type="password" class="form-control" name="password"
-                                       placeholder="********">
+                                       placeholder="Insira a senha">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -68,9 +68,9 @@
                             </div>
                         </div>
 
-                        <div class="form-group" id="login-card">
-                            <div class="col-md-12" id="login-card">
-                                <div class="checkbox" id="login-card">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="checkbox">
                                     <label style="font-size:13px;">
                                         <input type="checkbox" name="remember"
                                                value="{{ old('remember') ? 'checked' : '' }}">
@@ -80,12 +80,12 @@
                                     </label>
 
                                     <button type="submit"
-                                            style="width: 100%; margin: 10px 0px; background-color: #17b01f; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #17b01f; box-shadow: 4px 4px 4px #CCC">
+                                            class="btn btn-success btn-">
                                         Entrar
                                     </button>
                                     <p style="font-size: 13px; margin-bottom: -15px">
                                         <a style="font-size: 13px; font-weight: bold; color: #0398fc"
-                                           href="{{ route('password.request') }}" id="login-card">
+                                           href="{{ route('password.request') }}">
                                             Clique aqui
                                         </a>
                                         <span style="font-family: Arial; color: #7F7F7F">
@@ -97,7 +97,6 @@
                                         Clique em Cadastre-se para criar uma
                                         conta.</p>
                                     <a href="{{ route('register') }}"
-                                       style="width: 100%; margin: 10px 0px; background-color: #0398fc; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC"
                                        class="btn btn-primary" id="signup">
                                         Cadastre-se
                                     </a>

@@ -1,98 +1,60 @@
-@extends('layouts.principal')
+@extends('layouts.app')
 @section('title','Perfil de aluno')
-<!--
-<a href="{{route('aluno.listar')}}">Início</a>
-> Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong>
-@section('navbar')
-@endsection -->
+
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12" style="margin-top: -20px;">
-                <div id="login-card" class="panel panel-default" style="width:100%; padding: 10px 20px;">
 
-                    <div class="panel-heading" id="login-card">
-                        <div class="row" style="margin-bottom: -20px" id="login-card">
-                            <div class="col-md-6" id="login-card">
-                                <h2>
-                                    <strong style="color: #12583C">
-                                        {{$aluno->nome}}
-                                    </strong>
-                                </h2>
-                                <div style="font-size: 14px" id="login-card">
-                                    <a href="{{route('aluno.listar')}}">Início</a> > Perfil de
-                                    <strong>{{ explode(" ", $aluno->nome)[0]}}</strong>
-                                </div>
-                            </div>
+    <div class="row p-4">
+        <div class="col-md-6">
+            <h1>
+                <strong style="color: #12583C">
+                    {{$aluno->nome}}
+                </strong>
+            </h1>
+        </div>
 
-                            <div class="col-md-6 text-right" style="margin-top:20px" id="login-card">
-                                @php
-                                    $gerenciamento = App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first();
-                                    $pdi = \App\Pdi::where('aluno_id', '=', $aluno->id)->first();
-                                @endphp
-                                @if($gerenciamento->tipoUsuario != 2 and $gerenciamento->perfil_id == 2)
-                                    <a class="btn btn-primary"
-                                       style="height: 50px; font-weight: bold; font-size: 20px; background: #bf5329; text-align: center; width: auto"
-                                       href="{{route('pdi.listar', ['id_aluno'=>$aluno->id]) }}">
-                                        Listar PDI's
-                                    </a>
-                                @endif
-                                @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario == 3 and $gerenciamento->perfil_id != 1)
-                                    <a class="btn btn-primary" class="btn btn-primary" data-toggle="modal"
-                                       data-target="#modalRelatorio"
-                                       style="height: 50px; font-weight: bold; font-size: 20px; background: #6574cd; justify: center">
-                                        Relatório
-                                    </a>
-                                @endif
-                                <a class="btn btn-primary"
-                                   style="height: 50px; font-weight: bold; font-size: 20px; background: #0398fc; justify: center"
-                                   href="{{route('objetivo.listar', ['id_aluno'=>$aluno->id]) }}">
-                                    Objetivos
-                                </a>
-                                @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario == 3)
-                                    <li class="dropdown">
-                                        <button type="button" class="btn btn-primary dropdown-toggle"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                                style="height: 50px; font-weight: bold; font-size: 20px; background: gray">
-                                            Ações
-                                            <span class="caret"
-                                                  style="border-left: 11px solid transparent; border-right: 11px solid transparent; border-top: 11px solid;"></span>
-                                        </button>
+        <div class="col-md-6">
+            @php
+                $gerenciamento = App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first();
+                $pdi = \App\Pdi::where('aluno_id', '=', $aluno->id)->first();
+            @endphp
+            @if($gerenciamento->tipoUsuario != 2 and $gerenciamento->perfil_id == 2)
+                <a class="btn btn-info btn-lg" href="{{route('pdi.listar', ['id_aluno'=>$aluno->id]) }}">
+                    Listar PDI's
+                </a>
+            @endif
+            @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario == 3 and $gerenciamento->perfil_id != 1)
+                <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalRelatorio">
+                    Relatório
+                </a>
+            @endif
+            <a class="btn btn-primary btn-lg" href="{{route('objetivo.listar', ['id_aluno'=>$aluno->id]) }}">
+                Objetivos
+            </a>
+            @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario == 3)
 
-                                        <ul class="dropdown-menu" role="menu"
-                                            style="background-color: rgba(255, 255, 255, 0); border-width: 0px">
-                                            <li>
-                                                <a class="btn btn-primary" data-toggle="tooltip" title="Editar aluno"
-                                                   href="{{route('aluno.editar', ['id_aluno'=>$aluno->id]) }}"
-                                                   style="width: 100%; height: 30px; background: #999; font-size: 16px; border-radius: 5px; color: white; margin-bottom: 5px">
-                                                    Editar
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="btn btn-primary" data-toggle="tooltip"
-                                                   title="Autorizar acesso ao aluno"
-                                                   href="{{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}"
-                                                   style="width: 100%; height: 30px; background: #1c5; font-size: 16px; border-radius: 5px; color: white;  margin-bottom: 5px">
-                                                    Autorização
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="btn btn-danger" data-toggle="modal" title="Excluir aluno"
-                                                   data-target="#modalConfirm"
-                                                   style="width: 100%; height: 30px; background: #f44; font-size: 16px; border-radius: 5px; color: white">
-                                                    Excluir
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                @endif
-                            </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Ações
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{route('aluno.editar', ['id_aluno'=>$aluno->id]) }}" data-toggle="tooltip" title="Editar aluno">Editar</a></li>
+                        <li><a class="dropdown-item" href="{{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}" data-toggle="tooltip" title="Autorizar acesso ao aluno">Autorização</a></li>
+                        <li><a class="dropdown-item" href="#"data-toggle="modal" title="Excluir aluno" data-target="#modalConfirm">Excluir</a></li>
+                        <li><hr class="dropdown-divider"></li>
 
-                        </div>
+                    </ul>
+                </div>
+            
+            @endif
+        </div>
+        <h4>
+            <a href="{{route('aluno.listar')}}">Início</a> > Perfil de
+            <strong>{{ explode(" ", $aluno->nome)[0]}}</strong>
+        </h4>
+        <hr style="border-top: 1px solid #AAA;">
+    </div>
 
-                        <hr style="border-top: 1px solid #AAA;">
-                    </div>
 
                     <div class="panel-body" id="login-card">
                         @if (\Session::has('success'))
@@ -106,157 +68,145 @@
                             $gerenciars = $aluno->gerenciars;
                         @endphp
 
-                    <!-- Informações do Aluno -->
-                        <div class="row" style="margin-top: -30px" id="login-card">
-                            <div class="col-md-12" id="login-card">
-                                <div class="col-md-3" id="login-card">
-                                    <div class="text-center" id="login-card">
-                                        @if($aluno->imagem != null)
-                                            <img src="{{asset('storage/avatars/'.$aluno->imagem)}}"
-                                                 style="border-radius: 60%; height:200px; width:200px; object-fit: cover;">
-                                            <br/>
-                                        @else
-                                            <img src="{{asset('images/avatar.png')}}"
-                                                 style="border-radius: 60%; width:200px; height: 200px; object-fit: cover;">
-                                            <br/>
-                                        @endif
-                                    </div>
+    <!-- Informações do Aluno -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <div class="text-center">
+                    @if($aluno->imagem != null)
+                        <img src="{{asset('storage/avatars/'.$aluno->imagem)}}"
+                                style="border-radius: 60%; height:200px; width:200px; object-fit: cover;">
+                        <br/>
+                    @else
+                        <img src="{{asset('images/avatar.png')}}"
+                                style="border-radius: 60%; width:200px; height: 200px; object-fit: cover;">
+                        <br/>
+                    @endif
+                </div>
 
-                                    <br>
-                                </div>
+                <br>
+            </div>
 
-                                <div class="col-md-6" id="login-card">
-                                    <h4 style="color: #12583C">
-                                        <?php
-                                        foreach($gerenciars as $gerenciar){
-                                        if($gerenciar->user->id == \Auth::user()->id && $gerenciar->tipoUsuario == 3){
-                                        ?>
-                                        <strong>CPF:</strong> {{$aluno->cpf}}
-                                        <br/>
-                                        <?php
-                                        break;
-                                        }
-                                        }
-                                        ?>
+            <div class="col-md-6">
+                <h4 style="color: #12583C">
+                    <?php
+                    foreach($gerenciars as $gerenciar){
+                    if($gerenciar->user->id == \Auth::user()->id && $gerenciar->tipoUsuario == 3){
+                    ?>
+                    <strong>CPF:</strong> {{$aluno->cpf}}
+                    <br/>
+                    <?php
+                    break;
+                    }
+                    }
+                    ?>
 
-                                        @if($aluno->sexo == 'M')
-                                            <strong>Sexo:</strong> Masculino
-                                        @else
-                                            <strong>Sexo:</strong> Feminino
-                                        @endif
-                                        <br/>
-                                        <strong>Data de Nascimento:</strong> {{$aluno->data_de_nascimento}}
-                                    </h4>
+                    @if($aluno->sexo == 'M')
+                        <strong>Sexo:</strong> Masculino
+                    @else
+                        <strong>Sexo:</strong> Feminino
+                    @endif
+                    <br/>
+                    <strong>Data de Nascimento:</strong> {{$aluno->data_de_nascimento}}
+                </h4>
 
-                                    <h4 style="color: #12583C">
-                                        <strong>Endereço:</strong>
-                                        <?php
-                                        echo $aluno->endereco->rua, ", nº ",
-                                        $aluno->endereco->numero, ", ",
-                                        $aluno->endereco->bairro, ", ",
-                                        $aluno->endereco->cidade, " - ",
-                                        $aluno->endereco->estado;
-                                        ?>
-                                    </h4>
+                <h4 style="color: #12583C">
+                    <strong>Endereço:</strong>
+                    <?php
+                    echo $aluno->endereco->rua, ", nº ",
+                    $aluno->endereco->numero, ", ",
+                    $aluno->endereco->bairro, ", ",
+                    $aluno->endereco->cidade, " - ",
+                    $aluno->endereco->estado;
+                    ?>
+                </h4>
 
-                                    @if($aluno->cid != null)
-                                        <h4 style="color: #b38a1d">
-                                            <strong style="color: #12583C">CID:</strong> {{$aluno->cid}}
-                                            <br/>
-                                            <strong style="color: #12583C">Descrição
-                                                CID:</strong> {{$aluno->descricao_cid}}
-                                            <br/>
-                                        </h4>
-                                    @endif
-                                </div>
+                @if($aluno->cid != null)
+                    <h4 style="color: #b38a1d">
+                        <strong style="color: #12583C">CID:</strong> {{$aluno->cid}}
+                        <br/>
+                        <strong style="color: #12583C">Descrição
+                            CID:</strong> {{$aluno->descricao_cid}}
+                        <br/>
+                    </h4>
+                @endif
+            </div>
 
-                                <div class="col-md-3" id="login-card">
-                                    <strong style="color: #12583C">Instituições:</strong>
-                                    <br>
+            <div class="col-md-3">
+                <strong style="color: #12583C">Instituições:</strong>
+                <br>
 
-                                    <ul>
-                                        @foreach ($aluno->instituicoes as $instituicao)
-                                            <li>
-                                                <a href="{{ route('instituicao.ver', ['id_instituicao'=>$instituicao->id]) }}"
-                                                   style="color: #3097D1">{{$instituicao->nome}}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
+                <ul>
+                    @foreach ($aluno->instituicoes as $instituicao)
+                        <li>
+                            <a href="{{ route('instituicao.ver', ['id_instituicao'=>$instituicao->id]) }}"
+                                style="color: #3097D1">{{$instituicao->nome}}</a>
+                        </li>
+                    @endforeach
+                </ul>
 
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="col-md-9 col-md-offset-3 text-justify">
+                @if($aluno->observacao != null)
+                    <h4 style="color: #12583C">
+                        <strong>Observações:</strong> {!! $aluno->observacao !!}
+                    </h4>
+                    <br/>
+                @endif
+            </div>
+        </div>
+    </div>
+    <hr style="border-top: 1px solid #AAA;">
+    @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario != 2)
+
+        <h2>
+            <strong style="color: #12583C">
+                Álbuns
+            </strong>
+        </h2>
+
+        <div class="row">
+            <div class="container col-md-12">
+                <div style="margin-left: -35px">
+                    <div class="col-md-3 mt-3" style="opacity: 0.7;">
+                        <a href="{{route('album.cadastrar' , ['id_aluno'=>$aluno->id])}}"
+                            data-toggle="tooltip" title="Ver objetivos">
+                            <div class="card cartao text-center "
+                                    style="border-radius: 20px;  width: 230px; height: 230px">
+                                <div class="d-flex justify-content-center">
+                                    <h2 style="margin-top:80px;">
+                                        <img src="{{asset('images/album.png')}}"
+                                                style="width:44px; height:44px;">
+                                        <br>
+                                        Novo Álbum
+                                    </h2>
                                 </div>
                             </div>
-
-                            <div class="col-md-12" id="login-card">
-                                <div class="col-md-9 col-md-offset-3 text-justify" id="login-card">
-                                    @if($aluno->observacao != null)
-                                        <h4 style="color: #12583C">
-                                            <strong>Observações:</strong> {!! $aluno->observacao !!}
-                                        </h4>
-                                        <br/>
-                                    @endif
+                        </a>
+                    </div>
+                    @foreach ($albuns as $album)
+                        <div class="col-md-3 mt-3">
+                            <div class="card cartao text-center"
+                                    style="border-radius: 20px; background: #4e555b; width: 230px; height: 230px">
+                                <div class="card-body d-flex justify-content-center"
+                                        style="border-radius: 20px; background: #EEE; height: 100%">
+                                    <a href="{{route('album.ver', ['id_album'=>$album->id])}}">
+                                        <img style="border-radius: 20px; width: 224.2px; height: 224.2px;"
+                                                src="{{asset('storage/albuns/'.$aluno->id.'/'.$album->fotos[0]->imagem)}}">
+                                    </a>
+                                    &nbsp; &nbsp;
                                 </div>
                             </div>
                         </div>
-                        @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario != 2)
-                            <hr style="border-top: 1px solid #AAA;">
-
-                            <h2>
-                                <strong style="color: #12583C">
-                                    Álbuns
-                                </strong>
-                            </h2>
-
-                            <div class="row" align="center" id="login-card">
-                                <div class="container col-md-12" id="login-card">
-                                    <div class="card-body" style="margin-left: -35px">
-                                        <div class="col-md-3 mt-3" style="opacity: 0.7;" id="login-card">
-                                            <a href="{{route('album.cadastrar' , ['id_aluno'=>$aluno->id])}}"
-                                               data-toggle="tooltip" title="Ver objetivos">
-                                                <div class="card cartao text-center "
-                                                     style="border-radius: 20px;  width: 230px; height: 230px">
-                                                    <div class="card-body d-flex justify-content-center">
-                                                        <h2 style="margin-top:80px;">
-                                                            <img src="{{asset('images/album.png')}}"
-                                                                 style="width:44px; height:44px;">
-                                                            <br>
-                                                            Novo Álbum
-                                                        </h2>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <?php
-                                        foreach ($albuns as $album) {?>
-                                        <div class="col-md-3 mt-3" id="login-card">
-                                            <div class="card cartao text-center"
-                                                 style="border-radius: 20px; background: #4e555b; width: 230px; height: 230px"
-                                                 id="login-card">
-                                                <div class="card-body d-flex justify-content-center"
-                                                     style="border-radius: 20px; background: #EEE; height: 100%">
-                                                    <a href="{{route('album.ver', ['id_album'=>$album->id])}}">
-                                                        <img style="border-radius: 20px; width: 224.2px; height: 224.2px;"
-                                                             src="{{asset('storage/albuns/'.$aluno->id.'/'.$album->fotos[0]->imagem)}}">
-                                                    </a>
-                                                    &nbsp; &nbsp;
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <?php }?>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-
-                    </div>
-
-                <!-- <div class="panel-footer" style="background-color:white">
-          <a class="btn btn-danger" href="{{URL::previous()}}">
-            <i class="material-icons">keyboard_backspace</i>
-            <br>
-            Voltar
-          </a>
-        </div> -->
+                    @endforeach
                 </div>
+            </div>
+        </div>
+    @endif
+
 
                 <button class="open-button" data-toggle="tooltip" title="Ver fórum" style="border-radius:15px;"
                         onclick="openForm()">Fórum

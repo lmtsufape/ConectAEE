@@ -1,9 +1,5 @@
-@extends('layouts.principal')
+@extends('layouts.app')
 @section('title','Notificações')
-@section('path','Início')
-
-@section('navbar')
-@endsection
 
 @section('content')
 <div class="container">

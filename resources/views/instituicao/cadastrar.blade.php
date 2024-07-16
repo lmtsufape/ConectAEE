@@ -1,9 +1,5 @@
-@extends('layouts.principal')
+@extends('layouts.app')
 @section('title','Cadastrar instituição')
-@section('path','Início')
-
-@section('navbar')
-@endsection
 
 @section('content')
 <div class="container" style="color: #12583C">

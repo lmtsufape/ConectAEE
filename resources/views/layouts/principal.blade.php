@@ -60,7 +60,7 @@
     </div>
 
     <!-- Barra de Logos -->
-    <div id="barra-logos" class="container" style="background:#ffffff; margin-top: 1px; padding: 10px 10px 10px 10px">
+    <div id="barra-logos" class="container" style="margin-top: 1px; padding: 10px 10px 10px 10px">
 
         @include('layouts.menu')
     </div>

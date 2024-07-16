@@ -1,7 +1,6 @@
-@extends('layouts.principal')
+@extends('layouts.app')
 @section('title','Conceder permissão')
-@section('navbar')
-@endsection
+
 @section('content')
     <div class="container" style="color: #12583C">
         <div class="row">

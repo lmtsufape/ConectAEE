@@ -5,13 +5,13 @@
             ConectAEE
         </span>
     </a>
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="sr-only">Toggle navigation</span>
     </button>
 
-    <div class="collapse navbar-collapse" id="barra-menu">
+    <div class="collapse navbar-collapse" id="navbarNav">
         <!-- logo -->
-        <ul class="nav navbar-nav navbar-left">
+        <ul class="nav navbar-nav mr-auto">
             <li class="dropdown">
                 <a onclick="contraste()" id="altocontraste" data-toggle="tooltip" title="Contraste"
                     style="height: 50px;">
@@ -36,7 +36,7 @@
         </ul>
 
         <!-- botões -->
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav ml-auto">
             @if (Auth::check() && Auth::user()->cadastrado)
                 @php
                     $notificacoes = Auth::user()->notificacoes;
@@ -45,66 +45,60 @@
                 @endphp
 
 
-                @if (Auth::check() && Auth::user()->cadastrado)
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" role="button" area-expanded="false" class="dropdown-toggle"
-                            style="color: black">
-                            Alunos
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{{ route('aluno.listar') }}" id="menu-a">
-                                    Listar
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('aluno.buscar') }}" id="menu-a">
-                                    Cadastrar
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" role="button" area-expanded="false" class="dropdown-toggle"
-                            style="color: black">
-                            Instituições
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{{ route('instituicao.listar') }}" id="menu-a">
-                                    Listar
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('instituicao.cadastrar') }}" id="menu-a">
-                                    Cadastrar
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                @endif
-                <li class="dropdown">
-                    <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button"
-                        aria-expanded="false" style="color: black">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" 
+                        style="color: black">
+                        Alunos
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item" href="{{ route('aluno.listar') }}">
+                                Listar
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('aluno.buscar') }}">
+                                Cadastrar
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item dropdown">
+                    <a  class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false"
+                        style="color: black">
+                        Instituições
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item" href="{{ route('instituicao.listar') }}">
+                                Listar
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('instituicao.cadastrar') }}">
+                                Cadastrar
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false" style="color: black">
                         @if ($lidos == null)
                             Notificações
                             <!-- <i class="material-icons">notifications_none</i> -->
                         @elseif(gettype(array_search(false, $lidos)) == 'integer')
                             Notificacões
-                            <span class="caret"></span>
                             <!-- <i class="material-icons">notifications</i> -->
                             <span class="badge badge-pill"
                                 style="position: absolute; top:2px; right:1px; background:red">{{ $qtd_naolidos }}</span>
                         @else
                             Notificações
-                            <span class="caret"></span>
                             <!-- <i class="material-icons">notifications_none</i> -->
                         @endif
                     </a>
 
-                    <ul class="dropdown-menu" role="menu">
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @if (count($notificacoes) != 0)
                             <table class="table table-hover table-bordered">
                                 @php($i = 0)
@@ -113,38 +107,38 @@
                                         <tr>
                                             @if ($notificacao->lido)
                                                 <td data-title="Notificacao">
-                                                @else
+                                            @else
                                                 <td class="bg-info" data-title="Notificacao">
                                             @endif
 
                                             @if ($notificacao->tipo == 1)
-                                                <a class="btn text-center"
+                                                <a class="dropdown-item text-center"
                                                     href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
                                                     {{ $notificacao->remetente->name }} pediu para acessar os dados
                                                     do(a) aluno(a)
                                                     {{ explode(' ', $notificacao->aluno->nome)[0] }}</br>
                                                 </a>
                                             @elseif($notificacao->tipo == 2)
-                                                <a class="btn text-center"
+                                                <a class="dropdown-item text-center"
                                                     href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
                                                     {{ $notificacao->remetente->name }} lhe concedeu acesso aos dados
                                                     do(a) aluno(a)
                                                     {{ explode(' ', $notificacao->aluno->nome)[0] }}</br>
                                                 </a>
                                             @elseif($notificacao->tipo == 3)
-                                                <a class="btn text-center"
+                                                <a class="dropdown-item text-center"
                                                     href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
                                                     {{ $notificacao->remetente->name }} criou um novo objetivo para
                                                     o(a) aluno(a) {{ explode(' ', $notificacao->aluno->nome)[0] }}</br>
                                                 </a>
                                             @elseif($notificacao->tipo == 4)
-                                                <a class="btn text-center"
+                                                <a class="dropdown-item text-center"
                                                     href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
                                                     {{ $notificacao->remetente->name }} criou uma nova atividade para
                                                     o(a) aluno(a) {{ explode(' ', $notificacao->aluno->nome)[0] }}</br>
                                                 </a>
                                             @elseif($notificacao->tipo == 5)
-                                                <a class="btn text-center"
+                                                <a class="dropdown item text-center"
                                                     href="{{ route('notificacao.ler', ['id_notificacao' => $notificacao->id]) }}">
                                                     {{ $notificacao->remetente->name }} criou uma nova sugestão de
                                                     atividade para o(a) aluno(a)
@@ -160,13 +154,13 @@
                             </table>
 
                             <li>
-                                <a class="text-center" href="{{ route('notificacao.listar') }}" id="menu-a">
+                                <a class="dropdown-item text-center" href="{{ route('notificacao.listar') }}" id="menu-a">
                                     Ver todas
                                 </a>
                             </li>
                         @else
                             <li>
-                                <a class="text-center bg-info">
+                                <a class=" dropdown-item text-center bg-info">
                                     Sem notificações
                                 </a>
                             </li>
@@ -174,22 +168,21 @@
                     </ul>
                 </li>
 
-                <li class="dropdown">
-                    <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button"
-                        aria-expanded="false" style="color: black">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle"id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: black">
                         Olá, <strong style="color: gray ">{{ \Auth::user()->name }}</strong> <span
                             class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu" role="menu">
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
-                            <a href="{{ route('usuario.editar') }}" id="menu-a">
+                            <a class="dropdown-item" href="{{ route('usuario.editar') }}">
                                 Meu Perfil
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('logout') }}"
+                            <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                id="menu-a">
+                                >
                                 Sair
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -200,12 +193,11 @@
                     </ul>
                 </li>
             @elseif(Auth::check() && !Auth::user()->cadastrado)
-                <li class="dropdown">
-                    <a class="menu-principal dropdown-toggle" data-toggle="dropdown" role="button"
-                        aria-expanded="false">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         {{ \Auth::user()->username }} <span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu" role="menu">
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
                             <a href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
