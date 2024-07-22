@@ -66,7 +66,7 @@ class AlunoController extends Controller
             array_push($ids_alunos, $gerenciar->aluno_id);
         }
 
-        $alunos = Aluno::whereIn('id', $ids_alunos)->orderBy('nome', 'asc')->paginate(16);
+        $alunos = Aluno::whereIn('id', $ids_alunos)->orderBy('nome', 'asc')->paginate(15);
 
         return view("aluno.listar", [
             'alunos' => $alunos,

@@ -1,4 +1,4 @@
-@extends('layouts.principal')
+@extends('layouts.app')
 @section('title','Editar aluno')
 @section('path','Início')
 

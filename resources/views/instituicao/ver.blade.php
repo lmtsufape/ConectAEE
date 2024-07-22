@@ -1,84 +1,51 @@
 @extends('layouts.app')
-@section('title','Ver instituição')
+@section('title', 'Ver instituição')
 
 @section('content')
 
-          <div class="row" style="margin-bottom: -20px" id="login-card">
 
-            <div class="col-md-6" id="login-card">
-              <h2>
-                <strong style="color: #12583C">
-                  {{$instituicao->nome}}
-                </strong>
-              <div style="font-size: 14px" id="login-card">
-                <a href="{{route('aluno.listar')}}">Início</a>
-                > <a href="{{route('instituicao.listar')}}">Instituições</a>
-                > Instituição {{$instituicao->nome}}
-              </div>
-              </h2>
-            </div>
+  <div>
+      <h2>
+          <strong style="color: #12583C">
+              {{ $instituicao->nome }}
+          </strong>
+          <div style="font-size: 14px">
+              <a href="{{ route('aluno.listar') }}">Início</a>
+              > <a href="{{ route('instituicao.listar') }}">Instituições</a>
+              > Instituição {{ $instituicao->nome }}
           </div>
-          <hr style="border-top: 1px solid #AAA;">
-        </div>
-
-        <div class="panel-body" style="margin-top: -30px" id="login-card">
-          <div class="col-md-8 col-md-offset-2" id="login-card">
-            <h3>
-              <strong>
-                Dados Institucionais:
-              </strong>
-            </h3>
-
-            <hr style="border-top: 1px solid #AAA;">
-
-            <strong>Nome: </strong>{{$instituicao->nome}}
-            <br>
-            <strong>Telefone: </strong>{{$instituicao->telefone}}
-            @if($instituicao->email != null)
-            <br>
-            <strong>Email: </strong>{{$instituicao->email}}
-            @endif
-            @if($instituicao->cnpj != null)
-            <br>
-            <strong>CNPJ: </strong>{{$instituicao->cnpj}}
-            @endif
-
-            <h3>
-              <strong>
-                Endereço:
-              </strong>
-            </h3>
-
-            <hr style="border-top: 1px solid #AAA;">
-
-            <div class="col-md-6" style="padding:0px" id="login-card">
-              <strong>Cep: </strong>{{$instituicao->endereco->cep}}
-              <br>
-              <strong>Rua: </strong>{{$instituicao->endereco->rua}}
-              <br>
-              <strong>Bairro: </strong>{{$instituicao->endereco->bairro}}
-              <br>
-              <strong>Cidade: </strong>{{$instituicao->endereco->cidade}}
-              <br>
-              <strong>Estado: </strong>{{$instituicao->endereco->estado}}
-            </div>
-
-            <div class="col-md-6" style="padding: 0px" id="login-card">
-              <strong>Número: </strong>{{$instituicao->endereco->numero}}
-            </div>
-
-          </div>
-        </div>
-
-        <div class="panel-footer" style="background-color:white" id="login-card">
-          <div class="text-center" id="login-card">
-            <a class="btn btn-secondary" href="{{route('instituicao.listar')}}" id="menu-a">
-              Voltar
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+      </h2>
   </div>
-</div>
+  <hr style="border-top: 1px solid #AAA;">
+
+  <h3>
+      <strong>
+          Dados Institucionais:
+      </strong>
+  </h3>
+
+  <hr style="border-top: 1px solid black;">
+
+  <p><strong>Nome: </strong>{{ $instituicao->nome }}</p>
+  <p><strong>Telefone: </strong>{{ $instituicao->telefone }}</p>
+  <p><strong>Email: </strong>{{ $instituicao->email }}</p>
+  <p><strong>CNPJ: </strong>{{ $instituicao->cnpj }}</p>
+
+  <hr style="border-top: 1px solid black;">
+
+  <div>
+    <p><strong>Cidade: </strong>{{ $instituicao->endereco->cidade }}</p>
+    <p><strong>Estado: </strong>{{ $instituicao->endereco->estado }}</p>
+    <p><strong>Logradouro: </strong>{{ $instituicao->endereco->rua }}</p>
+    <p><strong>Número: </strong>{{ $instituicao->endereco->numero }}</p>
+    <p><strong>Bairro: </strong>{{ $instituicao->endereco->bairro }}</p>
+    <p><strong>Cep: </strong>{{ $instituicao->endereco->cep }}</p>
+  </div>
+
+  <div class="text-center">
+      <a class="btn btn-secondary" href="{{ route('instituicao.listar') }}">
+          Voltar
+      </a>
+  </div>
+
 @endsection

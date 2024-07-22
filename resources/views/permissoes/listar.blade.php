@@ -1,7 +1,6 @@
-@extends('layouts.principal')
+@extends('layouts.app')
 @section('title','Listar autorizações')
-@section('navbar')
-@endsection
+
 @section('content')
 
 @php($atual = App\Gerenciar::where('user_id','=',Auth::user()->id)->where('aluno_id','=',$aluno->id)->first())
