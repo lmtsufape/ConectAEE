@@ -558,7 +558,7 @@
                 <span style="margin-left: 5px">
                     RESPONSÁVEIS PELA AVALIAÇÃO:
                 </span>
-                <div style="margin-left: 5px; color: #4169e1">{{\App\User::find($pdi->user_id)->name}}</div>
+                <div style="margin-left: 5px; color: #4169e1">{{\App\Models\User::find($pdi->user_id)->name}}</div>
                 <br>
                 &nbsp;
             </td>

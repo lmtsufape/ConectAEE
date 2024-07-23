@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\MensagemForumAluno;
-use App\MensagemForumObjetivo;
+use App\Models\MensagemForumAluno;
+use App\Models\MensagemForumObjetivo;
 use Illuminate\Support\Facades\Validator;
-use App\Aluno;
-use App\Objetivo;
+use App\Models\Aluno;
+use App\Models\Objetivo;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 
@@ -31,7 +32,7 @@ class ForumController extends Controller
 
     $mensagem = new MensagemForumAluno();
     $mensagem->texto = $request->mensagem;
-    $mensagem->user_id = \Auth::user()->id;
+    $mensagem->user_id = Auth::user()->id;
     $mensagem->forum_aluno_id = $request->forum_id;
     $mensagem->save();
 
@@ -66,7 +67,7 @@ class ForumController extends Controller
 
     $mensagem = new MensagemForumObjetivo();
     $mensagem->texto = $request->mensagem;
-    $mensagem->user_id = \Auth::user()->id;
+    $mensagem->user_id = Auth::user()->id;
     $mensagem->forum_objetivo_id = $request->forum_id;
     $mensagem->save();
 

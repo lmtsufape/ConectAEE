@@ -59,7 +59,7 @@
             <b>Descrição: </b>{{$objetivo->descricao}}<br>
             <b>Tipo: </b>{{\App\TipoObjetivo::all()->where('id', '=', $objetivo->tipo_objetivo_id)->first()->tipo}}<br>
             <b>Prioridade: </b>{{$objetivo->prioridade}}<br>
-            <b>Autor: </b>{{\App\User::all()->where('id', '=', $objetivo->user_id)->first()->name}}<br>
+            <b>Autor: </b>{{\App\Models\User::all()->where('id', '=', $objetivo->user_id)->first()->name}}<br>
             <b>Data: </b>{{date_format(date_create($objetivo->data),'d/m/Y')}}
         </p>
 

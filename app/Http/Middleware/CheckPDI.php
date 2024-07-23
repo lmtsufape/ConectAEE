@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use Auth;
-use App\Aluno;
-use App\Gerenciar;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Aluno;
+use App\Models\Gerenciar;
 use Closure;
 
 class CheckPDI

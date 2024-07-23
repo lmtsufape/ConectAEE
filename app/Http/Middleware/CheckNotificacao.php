@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Middleware;
-use Auth;
-use App\Notificacao;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Notificacao;
 use Closure;
 
 class CheckNotificacao

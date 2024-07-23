@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Auth;
-use App\Album;
-use App\Gerenciar;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Album;
+use App\Models\Gerenciar;
 
 class CheckAlbumCriador
 {

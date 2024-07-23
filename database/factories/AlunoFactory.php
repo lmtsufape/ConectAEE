@@ -1,6 +1,8 @@
 <?php
 
-use App\Aluno;
+namespace Database\Factories;
+
+use App\Models\Aluno;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 

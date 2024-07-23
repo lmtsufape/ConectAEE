@@ -1,6 +1,8 @@
 <?php
 
-use App\Perfil;
+namespace Database\Factories;
+
+use App\Models\Perfil;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 

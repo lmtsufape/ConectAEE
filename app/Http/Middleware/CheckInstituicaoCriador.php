@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Auth;
-use App\Instituicao;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Instituicao;
 
 class CheckInstituicaoCriador
 {

@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Auth;
-use App\Gerenciar;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Gerenciar;
 
 class CheckGerenciaAdministrador
 {

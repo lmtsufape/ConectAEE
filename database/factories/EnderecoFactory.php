@@ -1,8 +1,11 @@
 <?php
 
+namespace Database\Factories;
+
+use App\Models\Endereco;
 use Faker\Generator as Faker;
 
-$factory->define(App\Endereco::class, function (Faker $faker) {
+$factory->define(Endereco::class, function (Faker $faker) {
     return [
       'numero' => $faker->buildingNumber,
       'rua' => $faker->streetName,

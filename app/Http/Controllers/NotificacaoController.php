@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Notificacao;
-use Auth;
+use App\Models\Notificacao;
+use Illuminate\Support\Facades\Auth;
 
 class NotificacaoController extends Controller
 {
@@ -27,13 +27,10 @@ class NotificacaoController extends Controller
         return redirect()->route('aluno.permissoes.conceder',[
           'id_notificacao' => $notificacao->id
         ]);
-        break;
       case 2:
         return redirect()->route('aluno.gerenciar',['id_aluno' => $notificacao->aluno->id]);
-        break;
       default:
         return redirect()->route('objetivo.gerenciar',['id_objetivo' => $notificacao->objetivo->id]);
-        break;
     }
   }
 

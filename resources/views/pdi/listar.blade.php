@@ -83,7 +83,7 @@
                                         @foreach ($pdis as $pdi)
                                             <tr>
                                                 <td data-title="Data">{{ $pdi->created_at }}</td>
-                                                <td data-title="Autor">{{\App\User::find($pdi->user_id)->name}}</td>
+                                                <td data-title="Autor">{{\App\Models\User::find($pdi->user_id)->name}}</td>
                                                 <td data-title="Ações">
                                                     <a class="btn btn-primary" href="{{route('pdi.ver', $pdi->id)}}">
                                                         Visualizar
@@ -132,7 +132,7 @@
                                         @foreach ($pdiArquivos as $pdi)
                                             <tr>
                                                 <td data-title="Data">{{ $pdi->created_at }}</td>
-                                                <td data-title="Autor">{{\App\User::find($pdi->user_id)->name}}</td>
+                                                <td data-title="Autor">{{\App\Models\User::find($pdi->user_id)->name}}</td>
                                                 <td data-title="Ações">
                                                     <a class="btn btn-primary" href="{{route('pdi.download', $pdi->id)}}">
                                                         Download

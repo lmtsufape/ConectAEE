@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use App\Aluno;
-use App\Objetivo;
-use App\Status;
-use App\StatusObjetivo;
+use App\Models\Aluno;
+use App\Models\Objetivo;
+use App\Models\Status;
+use App\Models\StatusObjetivo;
 use DateTime;
 
 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use PDF;
 use Illuminate\Http\Request;
-use App\Aluno;
+use App\Models\Aluno;
 
 class RelatorioController extends Controller
 {

@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use App\pdiArquivo;
+use App\Models\pdiArquivo;
 use Closure;
-use App\Pdi;
+use App\Models\Pdi;
 use Illuminate\Support\Facades\Auth;
 
 class CheckPdiArquivoCriador

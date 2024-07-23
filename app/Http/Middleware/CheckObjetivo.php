@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Auth;
-use App\Objetivo;
-use App\Gerenciar;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Objetivo;
+use App\Models\Gerenciar;
 
 class CheckObjetivo
 {

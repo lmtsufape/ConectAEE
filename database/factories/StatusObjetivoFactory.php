@@ -1,6 +1,9 @@
 <?php
 
-use App\StatusObjetivo;
+namespace Database\Factories;
+
+use App\Models\StatusObjetivo;
+use DateTime;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 

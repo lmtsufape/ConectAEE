@@ -37,8 +37,8 @@
                 </a>
             @endif
 
-            @if (App\Gerenciar::where('user_id', '=', \Auth::user()->id)->where('aluno_id', '=', $aluno->id)->first() != null && $objetivo->user->id != \Auth::user()->id and
-                    App\Gerenciar::where('user_id', '=', \Auth::user()->id)->where('aluno_id', '=', $aluno->id)->first()->tipoUsuario !=
+            @if (App\Models\Gerenciar::where('user_id', '=', \Auth::user()->id)->where('aluno_id', '=', $aluno->id)->first() != null && $objetivo->user->id != \Auth::user()->id and
+                    App\Models\Gerenciar::where('user_id', '=', \Auth::user()->id)->where('aluno_id', '=', $aluno->id)->first()->tipoUsuario !=
                         2)
                 <a class="btn btn-primary"
                     style="float:right; margin-left: -50px; background-color: #0398fc; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC"
@@ -129,8 +129,8 @@
                 </div>
 
                 <div class="col-md-6 text-right">
-                    @if (App\Gerenciar::where('user_id', '=', \Auth::user()->id)->where('aluno_id', '=', $aluno->id)->first()->perfil_id != 1 && $objetivo->user->id == \Auth::user()->id and
-                            App\Gerenciar::where('user_id', '=', \Auth::user()->id)->where('aluno_id', '=', $aluno->id)->first()->tipoUsuario !=
+                    @if (App\Models\Gerenciar::where('user_id', '=', \Auth::user()->id)->where('aluno_id', '=', $aluno->id)->first()->perfil_id != 1 && $objetivo->user->id == \Auth::user()->id and
+                            App\Models\Gerenciar::where('user_id', '=', \Auth::user()->id)->where('aluno_id', '=', $aluno->id)->first()->tipoUsuario !=
                                 2)
                         <a class="btn btn-primary"
                             style="float:right; margin-left: -50px; background-color: #0398fc; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC"
@@ -290,8 +290,8 @@
                 </div>
 
                 <div class="col-md-6 text-right">
-                    @if (App\Gerenciar::where('user_id', '=', \Auth::user()->id)->where('aluno_id', '=', $aluno->id)->first() != null && $objetivo->user->id != \Auth::user()->id and
-                            App\Gerenciar::where('user_id', '=', \Auth::user()->id)->where('aluno_id', '=', $aluno->id)->first()->tipoUsuario !=
+                    @if (App\Models\Gerenciar::where('user_id', '=', \Auth::user()->id)->where('aluno_id', '=', $aluno->id)->first() != null && $objetivo->user->id != \Auth::user()->id and
+                            App\Models\Gerenciar::where('user_id', '=', \Auth::user()->id)->where('aluno_id', '=', $aluno->id)->first()->tipoUsuario !=
                                 2)
                         <a class="btn btn-primary"
                             style="float:right; margin-left: -50px; background-color: #0398fc; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC"

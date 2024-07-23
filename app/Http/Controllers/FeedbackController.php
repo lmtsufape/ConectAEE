@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use App\Sugestao;
-use App\Aluno;
-use App\Objetivo;
-use App\Feedback;
-use \Auth;
+use App\Models\Sugestao;
+use App\Models\Aluno;
+use App\Models\Objetivo;
+use App\Models\Feedback;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 

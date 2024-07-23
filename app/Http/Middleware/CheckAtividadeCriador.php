@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Arquivo;
+use App\Models\Arquivo;
 use Closure;
-use Auth;
-use App\Atividade;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Atividade;
 
 class CheckAtividadeCriador
 {

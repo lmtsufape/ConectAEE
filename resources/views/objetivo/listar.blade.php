@@ -23,7 +23,7 @@
                 </div>
 
                 <div style="float:right;" class="col-md-2" id="login-card">
-                  @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->perfil_id != 1 and App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario != 2)
+                  @if(App\Models\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->perfil_id != 1 and App\Models\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario != 2)
                     <a style="float:right; margin-top:20px; margin-left: -50px; background-color: #0398fc; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC" href="{{ route('objetivo.cadastrar' , ['id_aluno'=>$aluno->id])}}" id="signup">
                       Novo Objetivo
                     </a>
@@ -86,7 +86,7 @@
                   //dd( $objetivos);
                     $perfil = "";
 
-                    $gerenciar = App\Gerenciar::where('user_id','=',$user_id)->where('aluno_id','=',$aluno->id)->first();
+                    $gerenciar = App\Models\Gerenciar::where('user_id','=',$user_id)->where('aluno_id','=',$aluno->id)->first();
 
                     if(isset($gerenciar->perfil) && $gerenciar->perfil->especializacao == NULL){
                       $perfil = $gerenciar->perfil->nome;

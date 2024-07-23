@@ -1,6 +1,8 @@
 <?php
 
-use App\ForumObjetivo;
+namespace Database\Factories;
+
+use App\Models\ForumObjetivo;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 

@@ -3,16 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
-use App\User;
+use App\Models\User;
 
 class UsuarioController extends Controller
 {
     public function completarCadastro()
     {
-        $usuario = \Auth::user();
+        $usuario = Auth::user();
 
         return view("usuario.completarCadastro", ['usuario' => $usuario]);
     }
@@ -53,7 +54,7 @@ class UsuarioController extends Controller
 
     public function editar()
     {
-        $usuario = \Auth::user();
+        $usuario = Auth::user();
 
         return view("usuario.editar", ['usuario' => $usuario]);
     }
@@ -65,7 +66,7 @@ class UsuarioController extends Controller
 
     public static function atualizar(Request $request)
     {
-        $usuario = \Auth::user();
+        $usuario = Auth::user();
 
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255',
@@ -110,7 +111,7 @@ class UsuarioController extends Controller
 
     public static function atualizarSenha(Request $request)
     {
-        $usuario = \Auth::user();
+        $usuario = Auth::user();
 
         if (!(Hash::check($request->senha_atual, $usuario->password))) {
             return redirect()->back()->with('fail', 'Senha atual incorreta.');

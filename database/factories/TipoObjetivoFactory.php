@@ -1,6 +1,8 @@
 <?php
 
-use App\TipoObjetivo;
+namespace Database\Factories;
+
+use App\Models\TipoObjetivo;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 

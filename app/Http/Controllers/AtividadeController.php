@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use App\Notifications\NovaAtividade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Objetivo;
-use App\Aluno;
-use App\Notificacao;
-use App\Atividade;
+use App\Models\Objetivo;
+use App\Models\Aluno;
+use App\Models\Notificacao;
+use App\Models\Atividade;
 use DateTime;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Notification;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 
@@ -138,13 +138,10 @@ class AtividadeController extends Controller
     switch ($status) {
       case 'Não iniciada':
         return '#661414';
-        break;
       case 'Em andamento':
         return '#DDA600';
-        break;
       case 'Finalizada':
         return '#12583C';
-        break;
     }
   }
 

@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Notifications\NovaSugestao;
 use Illuminate\Support\Facades\Validator;
-use App\Objetivo;
-use App\Aluno;
-use App\Notificacao;
-use App\Sugestao;
-use App\User;
+use App\Models\Objetivo;
+use App\Models\Aluno;
+use App\Models\Notificacao;
+use App\Models\Sugestao;
+use App\Models\User;
 use DateTime;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Notification;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
@@ -90,7 +90,7 @@ class SugestaoController extends Controller
     $sugestao->descricao = $request->descricao;
     $sugestao->data = new DateTime();
     $sugestao->objetivo_id = $request->id_objetivo;
-    $sugestao->user_id = \Auth::user()->id;
+    $sugestao->user_id = Auth::user()->id;
     $sugestao->save();
 
     SugestaoController::notificarSugestao($sugestao);

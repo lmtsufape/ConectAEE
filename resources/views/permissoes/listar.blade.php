@@ -3,7 +3,7 @@
 
 @section('content')
 
-@php($atual = App\Gerenciar::where('user_id','=',Auth::user()->id)->where('aluno_id','=',$aluno->id)->first())
+@php($atual = App\Models\Gerenciar::where('user_id','=',Auth::user()->id)->where('aluno_id','=',$aluno->id)->first())
 
 <div class="container" style="color: #12583C">
   <div class="row">

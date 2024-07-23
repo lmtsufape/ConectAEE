@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Aluno;
-use App\Album;
-use App\Foto;
+use App\Models\Aluno;
+use App\Models\Album;
+use App\Models\Foto;
 use DateTime;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class AlbumController extends Controller
 {

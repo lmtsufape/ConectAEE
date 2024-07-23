@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Arquivo;
-use App\Atividade;
+use App\Models\Arquivo;
+use App\Models\Atividade;
 use FontLib\EOT\File;
 use http\Env\Response;
 use Illuminate\Http\Request;

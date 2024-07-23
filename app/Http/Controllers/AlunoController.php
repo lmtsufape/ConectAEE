@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\User;
 use App;
-use App\Notificacao;
+use App\Models\Notificacao;
 use App\Notifications\NovoAluno;
 use App\Notifications\ConcedeuPermissao;
 use App\Notifications\NotificaPermissao;
-use App\Aluno;
-use App\Gerenciar;
-use App\Perfil;
-use App\Endereco;
-use App\ForumAluno;
-use App\MensagemForumAluno;
-use App\Album;
+use App\Models\Aluno;
+use App\Models\Gerenciar;
+use App\Models\Perfil;
+use App\Models\Endereco;
+use App\Models\ForumAluno;
+use App\Models\MensagemForumAluno;
+use App\Models\Album;
 use File;
 use Image;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -59,7 +59,7 @@ class AlunoController extends Controller
 
     public static function listar()
     {
-        $gerenciars = \Auth::user()->gerenciars;
+        $gerenciars = Auth::user()->gerenciars;
         $ids_alunos = array();
 
         foreach ($gerenciars as $gerenciar) {
@@ -77,7 +77,7 @@ class AlunoController extends Controller
     public static function buscarAluno(Request $request)
     {
 
-        $gerenciars = \Auth::user()->gerenciars;
+        $gerenciars = Auth::user()->gerenciars;
         $ids_alunos = array();
 
         foreach ($gerenciars as $gerenciar) {
@@ -95,7 +95,7 @@ class AlunoController extends Controller
 
     public static function cadastrar()
     {
-        $instituicoes = \Auth::user()->instituicoes;
+        $instituicoes = Auth::user()->instituicoes;
         $perfis = Perfil::all();
 
         if (count($instituicoes) == 0) {
@@ -114,7 +114,7 @@ class AlunoController extends Controller
         $aluno = Aluno::find($id_aluno);
         $endereco = $aluno->endereco;
         $perfis = [[1, 'Responsável'], [2, 'Professor AEE']];
-        $instituicoes = \Auth::user()->instituicoes;
+        $instituicoes = Auth::user()->instituicoes;
 
         return view("aluno.editar", [
             'aluno' => $aluno,
@@ -165,7 +165,7 @@ class AlunoController extends Controller
             } else {
                 $gerenciars = $aluno->gerenciars;
                 foreach ($gerenciars as $gerenciar) {
-                    if ($gerenciar->user->id == \Auth::user()->id && $gerenciar->tipoUsuario == 3) {
+                    if ($gerenciar->user->id == Auth::user()->id && $gerenciar->tipoUsuario == 3) {
                         $botaoAtivo = true;
                     }
                 }
@@ -216,7 +216,7 @@ class AlunoController extends Controller
             return $request->cadastrado == "true";
         });
 
-        if (\Auth::user()->username == $request->username) {
+        if (Auth::user()->username == $request->username) {
             $validator->errors()->add('username', 'Você não pode colocar seu nome de usuário neste campo.');
             return redirect()->back()->withErrors($validator->errors())->withInput()->with('cpf', $request->cpf);
         }
@@ -267,7 +267,7 @@ class AlunoController extends Controller
         $forum->save();
 
         $gerenciar = new Gerenciar();
-        $gerenciar->user_id = \Auth::user()->id;
+        $gerenciar->user_id = Auth::user()->id;
         $gerenciar->aluno_id = $aluno->id;
         $gerenciar->perfil_id = $request->perfil;
         $gerenciar->tipoUsuario = 3;
@@ -300,7 +300,7 @@ class AlunoController extends Controller
 
         $notificacao = new Notificacao();
         $notificacao->aluno_id = $gerenciar->aluno_id;
-        $notificacao->remetente_id = \Auth::user()->id;
+        $notificacao->remetente_id = Auth::user()->id;
         $notificacao->destinatario_id = $gerenciar->user_id;
         $notificacao->perfil_id = $gerenciar->perfil_id;
         $notificacao->lido = false;
@@ -431,7 +431,7 @@ class AlunoController extends Controller
             if ($gerenciar->tipoUsuario == 3 and ($gerenciar->perfil_id == 1 or $gerenciar->perfil_id == 2)) {
                 $notificacao = new Notificacao();
                 $notificacao->aluno_id = $aluno->id;
-                $notificacao->remetente_id = \Auth::user()->id;
+                $notificacao->remetente_id = Auth::user()->id;
                 $notificacao->destinatario_id = $gerenciar->user_id;
                 $notificacao->perfil_id = $perfil->id;
                 $notificacao->lido = false;
@@ -553,7 +553,7 @@ class AlunoController extends Controller
 
         $notificacao = new Notificacao();
         $notificacao->aluno_id = $gerenciar->aluno_id;
-        $notificacao->remetente_id = \Auth::user()->id;
+        $notificacao->remetente_id = Auth::user()->id;
         $notificacao->destinatario_id = $gerenciar->user_id;
         $notificacao->perfil_id = $gerenciar->perfil_id;
         $notificacao->lido = false;
@@ -613,7 +613,7 @@ class AlunoController extends Controller
 
         // $notificacao = new Notificacao();
         // $notificacao->aluno_id = $gerenciar->aluno_id;
-        // $notificacao->remetente_id = \Auth::user()->id;
+        // $notificacao->remetente_id = Auth::user()->id;
         // $notificacao->destinatario_id = $gerenciar->user_id;
         // $notificacao->perfil_id = $gerenciar->perfil_id;
         // $notificacao->lido = false;

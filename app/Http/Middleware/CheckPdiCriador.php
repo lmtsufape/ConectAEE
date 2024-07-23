@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Pdi;
+use App\Models\Pdi;
 use Illuminate\Support\Facades\Auth;
 
 class CheckPdiCriador

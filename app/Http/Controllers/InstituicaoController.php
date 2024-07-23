@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Endereco;
-use App\Aluno;
-use App\Instituicao;
+use App\Models\Endereco;
+use App\Models\Aluno;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Instituicao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -19,7 +20,7 @@ class InstituicaoController extends Controller
     {
 
         $instituicoes = Instituicao::where(function ($query) use ($request) {
-            $query->where('user_id', '=', \Auth::user()->id);
+            $query->where('user_id', '=', Auth::user()->id);
         })->where(function ($query) use ($request) {
             $query->orwhere('nome', 'ilike', '%' . $request->termo . '%')
                 ->orWhereHas('endereco', function ($query) use ($request) {
@@ -35,7 +36,7 @@ class InstituicaoController extends Controller
                     $query->where('bairro', 'ilike', '%' . $request->termo . '%');
                 })
                 ->orWhereHas('endereco', function ($query) use ($request) {
-                    $query->where('estado', 'ilike', '%' . $request->termo . '%');
+                    $query->where('eAuth::stado', 'ilike', '%' . $request->termo . '%');
                 });
         })->get();
 
@@ -69,7 +70,7 @@ class InstituicaoController extends Controller
 
     public static function listar()
     {
-        $instituicoes = \Auth::user()->instituicoes;
+        $instituicoes = Auth::user()->instituicoes;
 
         return view("instituicao.listar", [
             'instituicoes' => $instituicoes,
@@ -112,7 +113,7 @@ class InstituicaoController extends Controller
         $instituicao->email = $request->email;
         $instituicao->cnpj = $request->cnpj;
         $instituicao->endereco_id = $endereco->id;
-        $instituicao->user_id = \Auth::user()->id;
+        $instituicao->user_id = Auth::user()->id;
         $instituicao->save();
 
         if (preg_match('/aluno\/cadastrar/', $request->rota)) {

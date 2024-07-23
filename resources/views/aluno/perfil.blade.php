@@ -15,15 +15,15 @@
 
         <div class="col-md-6">
             @php
-                $gerenciamento = App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first();
-                $pdi = \App\Pdi::where('aluno_id', '=', $aluno->id)->first();
+                $gerenciamento = App\Models\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first();
+                $pdi = \App\Models\Pdi::where('aluno_id', '=', $aluno->id)->first();
             @endphp
             @if($gerenciamento->tipoUsuario != 2 and $gerenciamento->perfil_id == 2)
                 <a class="btn btn-info btn-lg" href="{{route('pdi.listar', ['id_aluno'=>$aluno->id]) }}">
                     Listar PDI's
                 </a>
             @endif
-            @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario == 3 and $gerenciamento->perfil_id != 1)
+            @if(App\Models\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario == 3 and $gerenciamento->perfil_id != 1)
                 <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalRelatorio">
                     Relatório
                 </a>
@@ -31,7 +31,7 @@
             <a class="btn btn-primary btn-lg" href="{{route('objetivo.listar', ['id_aluno'=>$aluno->id]) }}">
                 Objetivos
             </a>
-            @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario == 3)
+            @if(App\Models\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario == 3)
 
                 <div class="btn-group">
                     <button type="button" class="btn btn-secondary btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -160,7 +160,7 @@
         </div>
     </div>
     <hr style="border-top: 1px solid #AAA;">
-    @if(App\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario != 2)
+    @if(App\Models\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario != 2)
 
         <h2>
             <strong style="color: #12583C">

@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Auth;
-use App\Aluno;
-use App\Gerenciar;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Aluno;
+use App\Models\Gerenciar;
 
 class CheckNaoResponsavel
 {

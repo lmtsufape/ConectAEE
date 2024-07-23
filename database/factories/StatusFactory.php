@@ -1,6 +1,8 @@
 <?php
 
-use App\Status;
+namespace Database\Factories;
+
+use App\Models\Status;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Aluno;
-use App\Pdi;
-use App\pdiArquivo;
+use App\Models\Aluno;
+use App\Models\Pdi;
+use App\Models\pdiArquivo;
 use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -131,7 +131,7 @@ class PdiController extends Controller
 
         $pdi = new Pdi();
 
-        $pdi->user_id = \Auth::user()->id;
+        $pdi->user_id = Auth::user()->id;
         $pdi->aluno_id = $request->aluno_id;
         $pdi->nomeMae = $request->nomeMae;
         $pdi->nomePai = $request->nomePai;
