@@ -1,0 +1,896 @@
+Cod Mec,Escola,Gre,Município
+26000024,Escola de Referencia em Ensino Medio Luiz Gonzaga Duarte,Sertao do Araripe(Araripina),Araripina
+26000261,Escola da Independencia,Sertao do Araripe(Araripina),Araripina
+26000636,Escola de Referencia em Ensino Medio Manoel Ribeiro Damasceno,Sertao do Araripe(Araripina),Araripina
+26000741,Escola de Referencia em Ensino Medio Padre Luiz Gonzaga,Sertao do Araripe(Araripina),Araripina
+26000792,Escola Professor Manoel Bonifacio Costa,Sertao do Araripe(Araripina),Araripina
+26001225,Escola Sao Joao Batista - Araripina,Sertao do Araripe(Araripina),Araripina
+26001594,Escola Moises Bom de Oliveira,Sertao do Araripe(Araripina),Araripina
+26001624,Escola de Referencia em Ensino Medio Anizio Rodrigues Coelho,Sertao do Araripe(Araripina),Araripina
+26001896,Escola Vitalina Maria de Jesus,Sertao do Araripe(Araripina),Araripina
+26001900,Escola Joao Carlos Locio de Almeida,Sertao do Araripe(Araripina),Bodoco
+26001942,Escola de Referencia em Ensino Medio Artur Barros Cavalcanti,Sertao do Araripe(Araripina),Bodoco
+26003066,Escola de Referencia em Ensino Medio Barao de Exu,Sertao do Araripe(Araripina),Exu
+26003082,Escola Padre Medeiros,Sertao do Araripe(Araripina),Exu
+26003210,Escola Sao Vicente de Paula - Exu,Sertao do Araripe(Araripina),Exu
+26003821,Escola Nelson Araujo,Sertao do Araripe(Araripina),Exu
+26004453,Escola Nossa Senhora do Bom Conselho,Sertao do Araripe(Araripina),Granito
+26004488,Escola Nossa Senhora do Socorro,Sertao do Araripe(Araripina),Ipubi
+26004518,Escola de Referencia em Ensino Medio Arao Peixoto de Alencar,Sertao do Araripe(Araripina),Ipubi
+26004593,Escola de Referencia em Ensino Medio Joaquim Eugenio Silva,Sertao do Araripe(Araripina),Ipubi
+26005107,Escola de Referencia em Ensino Medio Sao Sebastiao - Ouricuri,Sertao do Araripe(Araripina),Ouricuri
+26005115,Escola de Referencia em Ensino Medio Fernando Bezerra,Sertao do Araripe(Araripina),Ouricuri
+26005468,Escola Nossa Senhora de Fatima - Ouricuri,Sertao do Araripe(Araripina),Ouricuri
+26005689,Escola Sao Vicente de Paula - Ouricuri,Sertao do Araripe(Araripina),Ouricuri
+26006138,Escola Dom Idilio Jose Soares,Sertao do Araripe(Araripina),Ouricuri
+26006499,Escola Professor Telesforo Siqueira,Sertao do Araripe(Araripina),Ouricuri
+26008181,Escola de Referencia em Ensino Medio Presidente Medici - Moreilandia,Sertao do Araripe(Araripina),Moreilandia
+26008467,Escola Coronel Chico Romao,Sertao do Araripe(Araripina),Moreilandia
+26008505,Escola Maria Luiza de Brito Ferreira,Sertao do Araripe(Araripina),Moreilandia
+26008530,Escola de Referencia em Ensino Medio Governador Muniz Falcao,Sertao do Araripe(Araripina),Trindade
+26008548,Escola Hortencio Pereira Lima,Sertao do Araripe(Araripina),Trindade
+26008882,Escola Professora Antonia Marinho Apolinario,Sertao do Araripe(Araripina),Trindade
+26009315,Escola de Referencia em Ensino Medio Professor Manoel Joaquim Leite,Sertao Central(Salgueiro),Cedro
+26009323,Escola de Referencia em Ensino Fundamental E Medio Valdicleiwtson da Silva Menezes,Sertao Central(Salgueiro),Cedro
+26009390,Escola de Referencia em Ensino Medio Francisco Pires,Sertao Central(Salgueiro),Mirandiba
+26009617,Escola Francisco Alves de Carvalho,Sertao Central(Salgueiro),Mirandiba
+26010100,Escola Andre Nunes,Sertao Central(Salgueiro),Mirandiba
+26010151,Escola de Referencia em Ensino Medio Odorico Melo,Sertao Central(Salgueiro),Parnamirim
+26010607,Escola Euclides da Cunha,Sertao Central(Salgueiro),Parnamirim
+26011050,Escola Antonio Vieira de Barros,Sertao Central(Salgueiro),Salgueiro
+26011069,Escola de Referencia em Ensino Medio Aura Sampaio Parente Muniz,Sertao Central(Salgueiro),Salgueiro
+26011344,Escola Tecnica Estadual Professor Urbano Gomes de Sa,Sertao Central(Salgueiro),Salgueiro
+26011352,Escola Professora Maurina Rodrigues Dos Santos,Sertao Central(Salgueiro),Salgueiro
+26011611,Escola de Referencia em Ensino Medio Carlos Pena Filho,Sertao Central(Salgueiro),Salgueiro
+26011654,Escola de Referencia em Ensino Fundamental Jose Vitorino de Barros,Sertao Central(Salgueiro),Salgueiro
+26011883,Escola Professor Manuel Leite,Sertao Central(Salgueiro),Salgueiro
+26012081,Escola de Referencia em Ensino Fundamental E Ensino Medio Agricola de Umas,Sertao Central(Salgueiro),Salgueiro
+26012359,Escola de Referencia em Ensino Medio Doutor Walmy Campos Bezerra,Sertao Central(Salgueiro),Sao Jose do Belmonte
+26013185,Escola de Referencia em Ensino Fundamental E Medio Professor Manoel de Queiroz,Sertao Central(Salgueiro),Sao Jose do Belmonte
+26013436,Escola de Referencia em Ensino Fundamental E Ensino Medio Napoleao Araujo,Sertao Central(Salgueiro),Sao Jose do Belmonte
+26013452,Escola de Referencia em Ensino Medio Desembargador Joao Paes,Sertao Central(Salgueiro),Serrita
+26014190,Escola de Referencia em Ensino Medio Anisio Veras,Sertao Central(Salgueiro),Verdejante
+26014564,Escola de Referencia em Ensino Medio Normal Estadual Professora Ione de Goes Barros,Sertao do Alto Pajeu(Afogados da Ingazeira),Afogados da Ingazeira
+26014572,Escola Conego Joao Leite Goncalves de Andrade,Sertao do Alto Pajeu(Afogados da Ingazeira),Afogados da Ingazeira
+26014670,Escola de Referencia em Ensino Medio Monsenhor Antonio de Padua Santos,Sertao do Alto Pajeu(Afogados da Ingazeira),Afogados da Ingazeira
+26015315,Escola de Referencia Ensino Medio Jose Severino de Araujo,Sertao do Alto Pajeu(Afogados da Ingazeira),Brejinho
+26015625,Escola de Referencia em Ensino Medio Antonio Gomes de Lima,Sertao do Alto Pajeu(Afogados da Ingazeira),Calumbi
+26016010,Escola Joao Gomes Dos Reis,Sertao do Alto Pajeu(Afogados da Ingazeira),Carnaiba
+26016028,Escola de Referencia em Ensino Medio Joaquim Mendes da Silva,Sertao do Alto Pajeu(Afogados da Ingazeira),Carnaiba
+26016540,Escola de Referencia em Ensino Medio Aires Gama,Sertao do Alto Pajeu(Afogados da Ingazeira),Flores
+26016729,Escola de Referencia em Ensino Fundamental E Ensino Medio Dario Gomes de Lima,Sertao do Alto Pajeu(Afogados da Ingazeira),Flores
+26017598,Escola Estadual Joaquim Alves de Freitas,Sertao do Alto Pajeu(Afogados da Ingazeira),Iguaracy
+26017750,Escola de Referencia em Ensino Medio Professora Rosete Bezerra de Souza,Sertao do Alto Pajeu(Afogados da Ingazeira),Iguaracy
+26018020,Escola de Referencia em Ensino Medio Aristaque Jose de Veras,Sertao do Alto Pajeu(Afogados da Ingazeira),Ingazeira
+26018314,Escola de Referencia em Ensino Medio Teresa Torres,Sertao do Alto Pajeu(Afogados da Ingazeira),Itapetim
+26018977,Escola Tome Francisco da Silva,Sertao do Alto Pajeu(Afogados da Ingazeira),Quixaba
+26019370,Escola Santa Cruz,Sertao do Alto Pajeu(Afogados da Ingazeira),Santa Cruz da Baixa Verde
+26019493,Escola de Referencia em Ensino Medio Santa Terezinha,Sertao do Alto Pajeu(Afogados da Ingazeira),Santa Terezinha
+26019825,Escola de Referencia em Ensino Medio Edson Simoes,Sertao do Alto Pajeu(Afogados da Ingazeira),Sao Jose do Egito
+26019922,Escola de Referencia em Ensino Medio Oliveira Lima - Sj Egito,Sertao do Alto Pajeu(Afogados da Ingazeira),Sao Jose do Egito
+26019949,Escola de Referencia em Ensino Fundamental Professor Sebastiao Ferreira Rabelo Sobrinho,Sertao do Alto Pajeu(Afogados da Ingazeira),Sao Jose do Egito
+26020572,Escola Maxima Vieira de Melo,Sertao do Alto Pajeu(Afogados da Ingazeira),Sao Jose do Egito
+26020882,Escola de Referencia em Ensino Fundamental E Ensino Medio Methodio de Godoy Lima,Sertao do Alto Pajeu(Afogados da Ingazeira),Serra Talhada
+26020955,Escola Tecnica Estadual Clovis Nogueira Alves,Sertao do Alto Pajeu(Afogados da Ingazeira),Serra Talhada
+26020963,Escola de Referencia em Ensino Fundamental E Medio Antonio Timoteo,Sertao do Alto Pajeu(Afogados da Ingazeira),Serra Talhada
+26020971,Escola de Referencia em Ensino Medio Cornelio Soares,Sertao do Alto Pajeu(Afogados da Ingazeira),Serra Talhada
+26020998,Escola de Referencia em Ensino Fundamental Irma Elizabeth,Sertao do Alto Pajeu(Afogados da Ingazeira),Serra Talhada
+26021820,Escola de Referencia em Ensino Fundamental E Medio Manoel Pereira Lins,Sertao do Alto Pajeu(Afogados da Ingazeira),Serra Talhada
+26021900,Escola de Referencia em Ensino Medio Solidonio Leite,Sertao do Alto Pajeu(Afogados da Ingazeira),Serra Talhada
+26021927,Escola de Referencia em Ensino Medio Irnero Ignacio,Sertao do Alto Pajeu(Afogados da Ingazeira),Serra Talhada
+26022850,Escola de Referencia em Ensino Medio Nossa Senhora de Lourdes,Sertao do Alto Pajeu(Afogados da Ingazeira),Solidao
+26023245,Escola de Referencia em Ensino Fundamental E Medio Arnaldo Alves Cavalcanti,Sertao do Alto Pajeu(Afogados da Ingazeira),Tabira
+26023334,Escola de Referencia em Fundamental E Medio Pedro Pires Ferreira,Sertao do Alto Pajeu(Afogados da Ingazeira),Tabira
+26024047,Escola Monsenhor Luiz Sampaio,Sertao do Alto Pajeu(Afogados da Ingazeira),Triunfo
+26024551,Escola de Referencia em Ensino Medio Conego Olimpio Torres,Sertao do Alto Pajeu(Afogados da Ingazeira),Tuparetama
+26024578,Escola de Referencia em Ensino Fundamental Ernesto de Souza Leite,Sertao do Alto Pajeu(Afogados da Ingazeira),Tuparetama
+26024675,Escola de Referencia em Ensino Medio Senador Vitorino Freire,Sertao do Moxoto Ipanema(Arcoverde),Arcoverde
+26024721,Escola de Referencia em Ensino Fundamental Antonio Japiassu,Sertao do Moxoto Ipanema(Arcoverde),Arcoverde
+26024730,Escola de Referencia em Ensino Medio Carlos Rios,Sertao do Moxoto Ipanema(Arcoverde),Arcoverde
+26024756,Escola Industrial de Arcoverde,Sertao do Moxoto Ipanema(Arcoverde),Arcoverde
+26024764,Escola Jornalista Edson Regis,Sertao do Moxoto Ipanema(Arcoverde),Arcoverde
+26024780,Escola Lions Antonio Moreno,Sertao do Moxoto Ipanema(Arcoverde),Arcoverde
+26024802,Escola de Referencia em Ensino Fundamental E Medio Monsenhor Jose Kehrle,Sertao do Moxoto Ipanema(Arcoverde),Arcoverde
+26025175,Escola Noe Nunes Ferraz,Sertao do Moxoto Ipanema(Arcoverde),Arcoverde
+26025280,Escola Santa Cecilia,Sertao do Moxoto Ipanema(Arcoverde),Arcoverde
+26025876,Escola de Referencia em Ensino Medio Osmar de Souza Ferraz,Sertao do Moxoto Ipanema(Arcoverde),Betania
+26025981,Escola General Joaquim Inacio,Sertao do Moxoto Ipanema(Arcoverde),Custodia
+26026627,Escola de Referencia em Ensino Medio Jose Pereira Burgos,Sertao do Moxoto Ipanema(Arcoverde),Custodia
+26026902,Escola Apolonio Alves da Silva,Sertao do Moxoto Ipanema(Arcoverde),Ibimirim
+26026910,Escola Cicero Augusto Gomes,Sertao do Moxoto Ipanema(Arcoverde),Ibimirim
+26027488,Escola Joaquim Guedes Correia Gondim Neto,Sertao do Moxoto Ipanema(Arcoverde),Ibimirim
+26027615,Escola Iracema Moura de Moraes Veras,Sertao do Moxoto Ipanema(Arcoverde),Ibimirim
+26027828,Escola de Referencia em Ensino Medio Pedro Bezerra de Melo,Sertao do Moxoto Ipanema(Arcoverde),Ibimirim
+26027836,Escola de Referencia em Ensino Fundamental Inocencio Correia Lima,Sertao do Moxoto Ipanema(Arcoverde),Ibimirim
+26027917,Escola de Referencia em Ensino Medio Antonio Guilherme Dias Lima,Sertao do Moxoto Ipanema(Arcoverde),Inaja
+26028573,Escola de Referencia em Ensino Fundamental Joel Pedro da Silva,Sertao do Moxoto Ipanema(Arcoverde),Inaja
+26029243,Escola de Referencia em Ensino Medio Coronel Manoel de Souza Neto,Sertao do Moxoto Ipanema(Arcoverde),Manari
+26029812,Escola Amaro Lafayette,Sertao do Moxoto Ipanema(Arcoverde),Sertania
+26029910,Escola de Referencia em Ensino Medio Olavo Bilac,Sertao do Moxoto Ipanema(Arcoverde),Sertania
+26029936,Escola de Referencia em Ensino Fundamental Professor Jorge de Menezes,Sertao do Moxoto Ipanema(Arcoverde),Sertania
+26030950,Escola Antonio Cavalcanti Filho,Sertao Medio Sao Francisco(Petrolina),Afranio
+26031272,Escola de Referencia em Ensino Medio Jose Caldas Cavalcanti,Sertao Medio Sao Francisco(Petrolina),Cabrobo
+26031914,Escola de Referencia em Ensino Medio Senador Paulo Guerra,Sertao Medio Sao Francisco(Petrolina),Cabrobo
+26032082,Escola Ministro Marcos Freire,Sertao Medio Sao Francisco(Petrolina),Cabrobo
+26033089,Escola Nossa Senhora Das Gracas - Dormentes,Sertao Medio Sao Francisco(Petrolina),Dormentes
+26033356,Escola de Referencia em Ensino Medio Senador Nilo Coelho,Sertao Medio Sao Francisco(Petrolina),Dormentes
+26033364,Escola de Referencia em Ensino Medio Jacob Antonio de Oliveira,Sertao Medio Sao Francisco(Petrolina),Oroco
+26033879,Escola de Referencia em Ensino Medio Otacilio Nunes de Souza,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26034298,Escola de Referencia em Ensino Medio Antonio Padilha,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26034310,Escola Estadual de Alternancia,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26034328,Escola de Referencia em Ensino Fundamental E Medio Dom Avelar Brandao Vilela,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26034336,Escola de Referencia em Ensino Medio Dom Malan,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26034344,Escola Doutor Diego Rego Barros,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26034352,Escola de Referencia em Ensino Medio Doutor Pacifico Rodrigues da Luz,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26034360,Escola Edison Nolasco,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26034379,Escola de Referencia em Ensino Fundamental Eduardo Coelho,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26034425,Escola de Referencia em Ensino Fundamental Joaquim Andre Cavalcanti,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26034441,Escola de Referencia em Ensino Medio Marechal Antonio Alves Filho,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26034476,Escola de Referencia em Ensino Fundamental Moyses Barbosa,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26034832,Escola de Referencia em Ensino Fundamental E Medio Monteiro Lobato,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26035049,Escola de Referencia em Ensino Medio Padre Manoel de Paiva Netto,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26035073,Escola Poeta Carlos Drumond de Andrade,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26035111,Escola de Referencia em Ensino Fundamental E Medio Professor Manoel Xavier Paes Barreto,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26035120,Escola de Referencia em Ensino Medio Professora Osa Santana de Carvalho,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26035138,Escola Professora Wilma Wzely Cunha Coelho Amorim,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26035146,Escola Professora Adelina Almeida,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26035251,Escola Francisco Xavier Dos Santos,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26035316,Escola de Referencia em Ensino Medio Jornalista Joao Ferreira Gomes,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26035340,Escola de Referencia em Ensino Fundamental E Medio Antonio Cassimiro,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26035502,Escola Antonio Nunes Dos Santos,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26035553,Escola Estadual de Aplicacao Professora Vande de Souza Ferreira,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26035561,Escola Dom Antonio Campelo,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26035600,Escola de Referencia em Ensino Medio Gercino Coelho,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26035979,Escola de Referencia em Ensino Fundamental E Medio Padre Luiz Cassiano,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26036010,Escola Poeta Jose Raulino Sampaio,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26036037,Escola Professor Simao Amorim Durando,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26036045,Escola de Referencia em Ensino Medio Professor Humberto Soares,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26036118,Escola de Referencia em Ensino Medio Jesuino Antonio Davila,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26036134,Escola de Referencia em Ensino Fundamental E Medio Nucleo de Moradores 11,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26036169,Escola Manoel Marinho,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26036177,Escola Nucleo de Moradores - 6,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26036193,Escola Nucleo de Moradores-7,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26036207,Escola Erika Thaynara da Silva Leite,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26036215,Escola Nucleo de Moradores - 9,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26036223,Escola de Referencia em Ensino Fundamental E Medio Nossa Senhora Aparecida,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26036266,Escola Sao Jose - Petrolina,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26037599,Escola Professora Judith Gomes de Barros,Sertao Medio Sao Francisco(Petrolina),Santa Maria da Boa Vista
+26037653,Escola Professor Agamenon Magalhaes,Sertao Medio Sao Francisco(Petrolina),Santa Maria da Boa Vista
+26037700,Escola Santa Maria,Sertao Medio Sao Francisco(Petrolina),Lagoa Grande
+26037726,Escola de Referencia em Ensino Fundamental E Medio Antonio de Amorim Coelho,Sertao Medio Sao Francisco(Petrolina),Lagoa Grande
+26037904,Escola de Referencia em Ensino Medio Padre Maurilo Sampaio,Sertao Medio Sao Francisco(Petrolina),Santa Maria da Boa Vista
+26038536,Escola de Referencia em Ensino Medio Gumercindo Cabral,Sertao Central(Salgueiro),Terra Nova
+26038935,Escola de Referencia em Ensino Medio Monsenhor Joao Pires,Sertao do Submedio Sao Francisco(Floresta),Belem do Sao Francisco
+26039702,Escola de Referencia em Ensino Medio Tercina Roriz,Sertao do Submedio Sao Francisco(Floresta),Belem do Sao Francisco
+26039770,Escola de Referencia em Ensino Fundamental E Ensino Medio Doutor Alipio Lustosa,Sertao do Submedio Sao Francisco(Floresta),Belem do Sao Francisco
+26040220,Escola Celestino Nunes,Sertao do Submedio Sao Francisco(Floresta),Belem do Sao Francisco
+26040280,Escola de Referencia em Ensino Medio Professor Aureliano Goncalves Dos Santos,Sertao do Submedio Sao Francisco(Floresta),Carnaubeira da Penha
+26040310,Escola Bom Jesus Dos Aflitos,Sertao do Submedio Sao Francisco(Floresta),Carnaubeira da Penha
+26040468,Escola Olho Dagua do Padre,Sertao do Submedio Sao Francisco(Floresta),Carnaubeira da Penha
+26040522,Escola Sagrada Familia,Gre Sertao do Submedio Sao Francisco - Floresta,Carnaubeira da Penha
+26040530,Escola Tia Amelia Caxiado,Gre Sertao do Submedio Sao Francisco - Floresta,Carnaubeira da Penha
+26040646,Escola Emiliano Quirino de Sa,Sertao do Submedio Sao Francisco(Floresta),Carnaubeira da Penha
+26040824,Escola Estadual Indigena Especiosa Benigna de Barros,Sertao do Submedio Sao Francisco(Floresta),Carnaubeira da Penha
+26040948,Escola de Referencia em Ensino Medio Capitao Nestor Valgueiro de Carvalho,Sertao do Submedio Sao Francisco(Floresta),Floresta
+26040956,Escola Tecnica Estadual Deputado Afonso Ferraz,Sertao do Submedio Sao Francisco(Floresta),Floresta
+26040972,Escola Julio de Mello,Sertao do Submedio Sao Francisco(Floresta),Floresta
+26041200,Escola de Referencia em Ensino Fundamental E Medio Tres Marias,Sertao do Submedio Sao Francisco(Floresta),Floresta
+26041910,Escola de Referencia em Ensino Medio Professora Maria de Menezes Guimaraes,Sertao do Submedio Sao Francisco(Floresta),Itacuruba
+26042037,Escola de Referencia em Ensino Medio de Jatoba,Sertao do Submedio Sao Francisco(Floresta),Petrolandia
+26042045,Escola de Referencia em Ensino Medio Delmiro Gouveia-Petrolandia,Sertao do Submedio Sao Francisco(Floresta),Petrolandia
+26042053,Escola de Referencia em Ensino Medio de Itaparica,Sertao do Submedio Sao Francisco(Floresta),Jatoba
+26042070,Escola de Referencia em Ensino Medio Maria Cavalcanti Nunes,Sertao do Submedio Sao Francisco(Floresta),Petrolandia
+26042096,Escola Estadual Indigena Jose Luciano,Sertao do Submedio Sao Francisco(Floresta),Jatoba
+26042126,Escola Estadual Indigena Dr Carlos Estevao,Sertao do Submedio Sao Francisco(Floresta),Jatoba
+26042169,Escola Logradouro,Gre Sertao do Submedio Sao Francisco - Floresta,Petrolandia
+26042312,Escola de Referencia em Ensino Fundamental E Medio Sao Francisco,Sertao do Submedio Sao Francisco(Floresta),Petrolandia
+26042428,Escola Estadual Dom Joao Bosco,Gre Sertao do Submedio Sao Francisco - Floresta,Petrolandia
+26042479,Escola Pankararus,Sertao do Submedio Sao Francisco(Floresta),Jatoba
+26042525,Escola Nossa Senhora Aparecida - Jatoba,Sertao do Submedio Sao Francisco(Floresta),Jatoba
+26042711,Escola do Espinheiro,Sertao do Submedio Sao Francisco(Floresta),Tacaratu
+26042797,Escola Cabral,Sertao do Submedio Sao Francisco(Floresta),Tacaratu
+26043017,Escola Santa Ines da Tapera,Gre Sertao do Submedio Sao Francisco - Floresta,Tacaratu
+26043076,Escola Pankararus Ezequiel,Sertao do Submedio Sao Francisco(Floresta),Tacaratu
+26043130,Escola de Referencia em Ensino Fundamental Sergio Magalhaes,Sertao do Submedio Sao Francisco(Floresta),Tacaratu
+26043335,Escola de Referencia em Ensino Medio Joao Batista de Vasconcelos - Tacaratu,Sertao do Submedio Sao Francisco(Floresta),Tacaratu
+26043408,Escola Princesa Isabel,Gre Sertao do Submedio Sao Francisco - Floresta,Tacaratu
+26043505,Escola de Referencia em Ensino Medio Julia Gomes de Araujo,Sertao do Submedio Sao Francisco(Floresta),Tacaratu
+26044412,Escola Joao Rodrigues Cardoso,Agreste Meridional(Garanhuns),Aguas Belas
+26044862,Escola de Referencia em Ensino Medio Coronel Nicolau Siqueira,Agreste Meridional(Garanhuns),Aguas Belas
+26045656,Escola de Referencia em Ensino Medio Sao Felix de Cantalice,Sertao do Moxoto Ipanema(Arcoverde),Buique
+26045745,Escola de Referencia em Ensino Medio Duque de Caxias,Sertao do Moxoto Ipanema(Arcoverde),Buique
+26046040,Escola de Referencia em Ensino Fundamental E Medio Vigario Joao Inacio,Sertao do Moxoto Ipanema(Arcoverde),Buique
+26047187,Escola de Referencia em Ensino Medio Pedro de Alcantara Ramos,Sertao do Moxoto Ipanema(Arcoverde),Itaiba
+26047365,Escola Frei Joao Pereira de Souza,Sertao do Moxoto Ipanema(Arcoverde),Itaiba
+26047837,Escola de Referencia em Ensino Medio Professor Brasiliano Donino da Costa Lima,Sertao do Moxoto Ipanema(Arcoverde),Pedra
+26047845,Escola Anete Vale de Oliveira,Sertao do Moxoto Ipanema(Arcoverde),Pedra
+26048078,Escola Amalia Cavalcanti da Costa Lima,Sertao do Moxoto Ipanema(Arcoverde),Pedra
+26048337,Escola de Referencia em Ensino Medio Jose emilio de Melo,Sertao do Moxoto Ipanema(Arcoverde),Tupanatinga
+26049406,Escola de Referencia em Ensino Medio Quiteria Wanderley Simoes,Sertao do Moxoto Ipanema(Arcoverde),Venturosa
+26049422,Escola Conego Emanuel Vasconcelos,Sertao do Moxoto Ipanema(Arcoverde),Venturosa
+26049562,Escola de Referencia em Ensino Medio Goncalo Antunes Bezerra,Sertao do Moxoto Ipanema(Arcoverde),Alagoinha
+26054019,Escola de Referencia em Ensino Fundamental E Medio Antonia Cavalcanti de Albuquerque,Agreste Centro Norte(Caruaru),Caruaru
+26062836,Escola de Referencia em Ensino Fundamental E Medio Joaquim Ribeiro da Rocha,Agreste Centro Norte(Caruaru),Sao Caitano
+26052792,Escola de Referencia em Ensino Fundamental E Medio Presidente Kennedy,Agreste Centro Norte(Caruaru),Cachoeirinha
+26062410,Escola de Referencia em Ensino Medio Agamenon Magalhaes,Agreste Centro Norte(Caruaru),Sao Caitano
+26052083,Escola de Referencia em Ensino Medio Andre Cordeiro,Agreste Centro Norte(Caruaru),Brejo da Madre de Deus
+26054027,Escola de Referencia em Ensino Medio Arnaldo Assuncao,Agreste Centro Norte(Caruaru),Caruaru
+26050048,Escola de Referencia em Ensino Medio Bento Americo,Agreste Centro Norte(Caruaru),Belo Jardim
+26052776,Escola de Referencia em Ensino Medio Corsina Braga,Agreste Centro Norte(Caruaru),Cachoeirinha
+26051176,Escola de Referencia em Ensino Fundamental E Ensino Medio Eurico Queiroz,Mata Centro(Vitoria de Santo Antao),Bezerros
+26051702,Escola Dom Jose Lamartine Soares,Mata Centro(Vitoria de Santo Antao),Bezerros
+26051737,Escola de Referencia em Ensino Medio Professora Maria Ana,Mata Centro(Vitoria de Santo Antao),Bezerros
+26051761,Escola de Referencia em Ensino Medio Conego Alexandre Cavalcanti,Mata Centro(Vitoria de Santo Antao),Bezerros
+26179873,Escola de Referencia em Ensino Medio de Belo Jardim,Agreste Centro Norte(Caruaru),Belo Jardim
+26178656,Escola de Referencia em Ensino Medio de Panelas,Agreste Centro Norte(Caruaru),Panelas
+26054043,Escola de Referencia em Ensino Medio Dom Miguel de Lima Valverde,Agreste Centro Norte(Caruaru),Caruaru
+26053608,Escola de Referencia em Ensino Medio Nossa Senhora do Perpetuo Socorro,Agreste Meridional(Garanhuns),Capoeiras
+26148447,Escola de Referencia em Ensino Medio Doutor Adilson Bezerra de Souza,Agreste Centro Norte(Caruaru),Santa Cruz do Capibaribe
+26054094,Escola de Referencia em Ensino Medio Felisberto Carvalho,Agreste Centro Norte(Caruaru),Caruaru
+26050102,Escola de Referencia em Ensino Medio Joao Monteiro de Melo,Agreste Centro Norte(Caruaru),Belo Jardim
+26063891,Escola de Referencia em Ensino Medio Jose Francelino Aragao,Agreste Centro Norte(Caruaru),Santa Cruz do Capibaribe
+26063310,Escola de Referencia em Ensino Medio Jose Leite Barros,Agreste Centro Norte(Caruaru),Tacaimbo
+26082020,Escola de Referencia em Ensino Medio Jose Lins de Figueiredo,Agreste Centro Norte(Caruaru),Altinho
+26057743,Escola de Referencia em Ensino Medio Jose Lopes de Siqueira,Agreste Centro Norte(Caruaru),Jatauba
+26063905,Escola de Referencia em Ensino Medio Luiz Alves da Silva,Agreste Centro Norte(Caruaru),Santa Cruz do Capibaribe
+26060124,Escola de Referencia em Ensino Medio Manoel Bacelar,Agreste Centro Norte(Caruaru),Riacho Das Almas
+26084317,Escola de Referencia em Ensino Medio Manoel Moreira da Costa,Agreste Centro Norte(Caruaru),Ibirajuba
+26054140,Escola de Referencia em Ensino Medio Maria Auxiliadora Liberato,Agreste Centro Norte(Caruaru),Caruaru
+26053853,Escola de Referencia em Ensino Medio Nicanor Souto Maior,Agreste Centro Norte(Caruaru),Caruaru
+26054809,Escola de Referencia em Ensino Medio Padre Zacarias Tavares,Agreste Centro Norte(Caruaru),Caruaru
+26063999,Escola de Referencia em Ensino Medio Padre Zuzinha,Agreste Centro Norte(Caruaru),Santa Cruz do Capibaribe
+26082179,Escola de Referencia em Ensino Medio Professor Francisco Joaquim de Barros Correia,Agreste Centro Norte(Caruaru),Altinho
+26081849,Escola de Referencia em Ensino Medio Professor Jose Constantino,Agreste Centro Norte(Caruaru),Agrestina
+26055082,Escola de Referencia em Ensino Medio Professor Lisboa,Agreste Centro Norte(Caruaru),Caruaru
+26054850,Escola de Referencia em Ensino Medio Professor Mario Sette,Agreste Centro Norte(Caruaru),Caruaru
+26054876,Escola de Referencia em Ensino Medio Professor Vicente Monteiro,Agreste Centro Norte(Caruaru),Caruaru
+26054884,Escola de Referencia em Ensino Medio Professora Adelia Leal Ferreira,Agreste Centro Norte(Caruaru),Caruaru
+26054914,Escola de Referencia em Ensino Medio Professora Elisete Lopes de Lima Pires,Agreste Centro Norte(Caruaru),Caruaru
+26056550,Escola Aarao Lins de Andrade,Mata Centro(Vitoria de Santo Antao),Gravata
+26056577,Escola de Referencia em Ensino Medio Professor Antonio Farias,Mata Centro(Vitoria de Santo Antao),Gravata
+26056623,Escola de Referencia em Ensino Medio Cleto Campelo,Mata Centro(Vitoria de Santo Antao),Gravata
+26056658,Escola de Referencia em Ensino Medio Devaldo Borges,Mata Centro(Vitoria de Santo Antao),Gravata
+26056798,Escola de Referencia em Ensino Fundamental Monsenhor Jose Elias de Almeida,Mata Centro(Vitoria de Santo Antao),Gravata
+26084201,Escola de Referencia em Ensino Medio Professora Maria de Lourdes Temporal,Agreste Centro Norte(Caruaru),Cupira
+26058430,Escola de Referencia em Ensino Medio Jose de Almeida Maciel,Sertao do Moxoto Ipanema(Arcoverde),Pesqueira
+26058812,Escola Professor Arruda Marinho,Sertao do Moxoto Ipanema(Arcoverde),Pesqueira
+26058910,Escola Cacilda Almeida,Sertao do Moxoto Ipanema(Arcoverde),Pesqueira
+26058936,Escola de Referencia em Ensino Fundamental Dom Adelmo Cavalcanti Machado,Sertao do Moxoto Ipanema(Arcoverde),Pesqueira
+26058952,Escola Elizeu Araujo,Sertao do Moxoto Ipanema(Arcoverde),Pesqueira
+26058960,Escola de Referencia em Ensino Medio Cristo Rei,Sertao do Moxoto Ipanema(Arcoverde),Pesqueira
+26059088,Escola de Referencia em Ensino Medio Professora Margarida de Lima Falcao,Sertao do Moxoto Ipanema(Arcoverde),Pesqueira
+26059789,Escola de Referencia em Ensino Medio Comendador Manoel Caetano de Brito,Sertao do Moxoto Ipanema(Arcoverde),Pocao
+26050200,Escola de Referencia em Ensino Medio Professora Maria Galvao,Agreste Centro Norte(Caruaru),Belo Jardim
+26061023,Escola de Referencia em Ensino Medio Nossa Senhora de Fatima,Sertao do Moxoto Ipanema(Arcoverde),Sanharo
+26061112,Escola de Referencia em Ensino Fundamental Doutor Benjamin Caraciolo,Sertao do Moxoto Ipanema(Arcoverde),Sanharo
+26061643,Escola de Referencia em Ensino Medio Rodolfo Paiva,Agreste Meridional(Garanhuns),Sao Bento do Una
+26061724,Escola Elpidio Barbosa Maciel,Agreste Meridional(Garanhuns),Sao Bento do Una
+26066220,Escola de Referencia em Ensino Medio Protazio Soares de Souza,Agreste Centro Norte(Caruaru),Toritama
+26065592,Escola de Referencia em Ensino Medio Severino Cordeiro de Arruda,Agreste Centro Norte(Caruaru),Taquaritinga do Norte
+26054060,Escola Dom Vital - Caruaru,Agreste Centro Norte(Caruaru),Caruaru
+26148021,Escola Estadual Gregorio Bezerra - Panelas,Agreste Centro Norte(Caruaru),Panelas
+26066181,Escola Estelita Timoteo,Agreste Centro Norte(Caruaru),Toritama
+26063522,Escola Teofilo Severino de Arruda,Vale do Capibaribe(Limoeiro),Frei Miguelinho
+26063530,Escola de Referencia em Ensino Medio Sao Jose,Vale do Capibaribe(Limoeiro),Frei Miguelinho
+26084040,Escola Ezequiel Bertino de Almeida,Agreste Centro Norte(Caruaru),Cupira
+26063280,Escola Francisco de Assis Barros,Agreste Centro Norte(Caruaru),Tacaimbo
+26050064,Escola Frei Cassiano Comacchio,Agreste Centro Norte(Caruaru),Belo Jardim
+26055368,Escola Irma Sonia,Agreste Centro Norte(Caruaru),Caruaru
+26065606,Escola Jose Bezerra de Andrade,Agreste Centro Norte(Caruaru),Taquaritinga do Norte
+26064294,Escola de Referencia em Ensino Medio Joao David de Souza,Vale do Capibaribe(Limoeiro),Santa Maria do Cambuca
+26064618,Escola de Referencia em Ensino Medio Natalicia Maria Figueiroa da Silva,Vale do Capibaribe(Limoeiro),Surubim
+26064626,Escola de Referencia em Ensino Medio Severino Farias,Vale do Capibaribe(Limoeiro),Surubim
+26064642,Escola de Referencia em Ensino Fundamental Maria Cecilia Barbosa Leal,Vale do Capibaribe(Limoeiro),Surubim
+26065401,Escola de Referencia em Ensino Medio Ana Faustina,Vale do Capibaribe(Limoeiro),Surubim
+26065568,Escola de Referencia em Ensino Medio Joao Xxiii,Vale do Capibaribe(Limoeiro),Casinhas
+26055210,Escola Jose Carlos Florencio,Agreste Centro Norte(Caruaru),Caruaru
+26064030,Escola Malaquias Cardoso Aragao,Agreste Centro Norte(Caruaru),Santa Cruz do Capibaribe
+26050137,Escola Ministro Marcos de Barros Freire,Agreste Centro Norte(Caruaru),Belo Jardim
+26050188,Escola Padre Giovanni Toniutti,Agreste Centro Norte(Caruaru),Belo Jardim
+26066572,Escola de Referencia em Ensino Medio Gil Rodrigues,Vale do Capibaribe(Limoeiro),Vertentes
+26067137,Escola de Referencia em Ensino Medio Doutor Mota Silveira,Vale do Capibaribe(Limoeiro),Bom Jardim
+26067382,Escola de Referencia em Ensino Medio Justulino Ferreira Gomes,Vale do Capibaribe(Limoeiro),Bom Jardim
+26067552,Escola de Referencia em Ensino Medio Raimundo Honorio,Vale do Capibaribe(Limoeiro),Bom Jardim
+26067803,Escola de Referencia em Ensino Medio Manoel Goncalves de Lima,Vale do Capibaribe(Limoeiro),Cumaru
+26068427,Escola de Referencia em Ensino Medio Professora Marilene Chaves de Santana,Vale do Capibaribe(Limoeiro),Feira Nova
+26068508,Escola de Referencia em Ensino Medio Antonio Inacio,Vale do Capibaribe(Limoeiro),Feira Nova
+26068729,Escola de Referencia em Ensino Medio Jarina Maia,Vale do Capibaribe(Limoeiro),Joao Alfredo
+26068877,Escola de Referencia em Ensino Medio Nossa Senhora Auxiliadora,Vale do Capibaribe(Limoeiro),Joao Alfredo
+26069210,Escola de Referencia em Ensino Medio Professora Jandira de Andrade Lima,Vale do Capibaribe(Limoeiro),Limoeiro
+26069288,Escola de Referencia em Ensino Medio Austro Costa,Vale do Capibaribe(Limoeiro),Limoeiro
+26069318,Escola de Referencia em Ensino Medio Doutor Sebastiao de Vasconcelos Galvao,Vale do Capibaribe(Limoeiro),Limoeiro
+26069555,Escola Serafico Ricardo,Vale do Capibaribe(Limoeiro),Limoeiro
+26069652,Escola de Referencia em Ensino Fundamental Ginasio Arthur Correia de Oliveira,Vale do Capibaribe(Limoeiro),Limoeiro
+26070090,Escola de Referencia em Ensino Medio Severino de Andrade Guerra,Vale do Capibaribe(Limoeiro),Machados
+26070260,Escola de Referencia em Ensino Medio Abilio de Souza Barbosa,Vale do Capibaribe(Limoeiro),Orobo
+26070456,Escola de Referencia em Ensino Medio Professora Rita Maria da Conceicao,Vale do Capibaribe(Limoeiro),Orobo
+26070618,Escola Professor Antonio Pedro de Aguiar,Vale do Capibaribe(Limoeiro),Orobo
+26070782,Escola de Referencia em Ensino Medio Conego Fernando Passos,Vale do Capibaribe(Limoeiro),Passira
+26070880,Escola de Referencia em Ensino Medio Manoel Guilherme da Silva,Vale do Capibaribe(Limoeiro),Passira
+26071606,Escola de Referencia em Ensino Medio Coronel Joao Francisco,Mata Norte(Nazare da Mata),Sao Vicente Ferrer
+26071673,Escola Professor Joao Barbosa de Almeida,Mata Norte(Nazare da Mata),Sao Vicente Ferrer
+26071924,Escola de Referencia em Ensino Medio Azarias Salgado,Agreste Meridional(Garanhuns),Angelim
+26072149,Escola de Referencia em Ensino Medio Coronel Jose Abilio,Agreste Meridional(Garanhuns),Bom Conselho
+26072254,Escola de Referencia em Ensino Medio Frei Caetano de Messina,Agreste Meridional(Garanhuns),Bom Conselho
+26072637,Escola Mestra Beatriz,Agreste Meridional(Garanhuns),Bom Conselho
+26073102,Escola de Referencia em Ensino Medio Professora Ismenia Lemos Wanderley,Agreste Meridional(Garanhuns),Brejao
+26073498,Escola de Referencia em Ensino Medio Luiz Pereira Junior,Agreste Meridional(Garanhuns),Caetes
+26074079,Escola de Referencia em Ensino Medio Augusta Cordeiro de Melo,Agreste Meridional(Garanhuns),Calcado
+26074311,Escola de Referencia em Ensino Medio Jeronimo Gueiros,Agreste Meridional(Garanhuns),Canhotinho
+26074362,Escola Pe Antonio Callou de Alencar,Agreste Meridional(Garanhuns),Canhotinho
+26074907,Escola de Referencia em Ensino Medio Augusto Lucio da Silva,Agreste Meridional(Garanhuns),Correntes
+26074923,Escola Professora Clarice Godoy,Agreste Meridional(Garanhuns),Correntes
+26075385,Escola de Referencia em Ensino Medio Francisco Madeiros,Agreste Meridional(Garanhuns),Garanhuns
+26075687,Escola de Referencia em Ensino Medio Dom Joao da Mata Amaral,Agreste Meridional(Garanhuns),Garanhuns
+26075709,Escola Dom Juvencio Britto,Agreste Meridional(Garanhuns),Garanhuns
+26075733,Escola Duque de Caxias,Agreste Meridional(Garanhuns),Garanhuns
+26075768,Escola de Referencia em Ensino Medio Henrique Dias,Agreste Meridional(Garanhuns),Garanhuns
+26075903,Escola de Referencia em Ensino Medio Professor Jeronimo Gueiros,Agreste Meridional(Garanhuns),Garanhuns
+26075911,Escola Professora Elisa Coelho,Agreste Meridional(Garanhuns),Garanhuns
+26075920,Escola Professora Elvira Viana,Agreste Meridional(Garanhuns),Garanhuns
+26075970,Escola Sao Cristovao,Agreste Meridional(Garanhuns),Garanhuns
+26075997,Escola Senador Aderbal Jurema - Garanhuns,Agreste Meridional(Garanhuns),Garanhuns
+26076047,Escola Simoa Gomes,Agreste Meridional(Garanhuns),Garanhuns
+26076250,Escola de Referencia em Ensino Medio Virgem do Socorro,Agreste Meridional(Garanhuns),Garanhuns
+26076357,Escola Instituto Presbiteriano de Heliopolis,Agreste Meridional(Garanhuns),Garanhuns
+26076780,Escola de Referencia em Ensino Medio Francisco Pereira da Costa,Agreste Meridional(Garanhuns),Iati
+26077825,Escola de Referencia em Ensino Medio Sebastiao Tiago de Oliveira,Agreste Meridional(Garanhuns),Jupi
+26078562,Escola de Referencia em Ensino Medio Abilio Monteiro,Agreste Meridional(Garanhuns),Lagoa do Ouro
+26078805,Escola de Referencia em Ensino Medio Deolinda Amaral,Agreste Meridional(Garanhuns),Lajedo
+26078872,Escola Jornalista Manuel Amaral,Agreste Meridional(Garanhuns),Lajedo
+26079593,Escola de Referencia em Ensino Medio Regina Pacis - Garanhuns,Agreste Meridional(Garanhuns),Palmeirina
+26079739,Escola de Referencia em Ensino Medio Narciso Correia,Agreste Meridional(Garanhuns),Paranatama
+26080516,Escola de Referencia em Ensino Medio Monsenhor Joao Marques,Agreste Meridional(Garanhuns),Saloa
+26081059,Escola de Referencia em Ensino Medio Joao Fernandes da Silva,Agreste Meridional(Garanhuns),Sao Joao
+26081180,Escola de Referencia em Ensino Medio Monsenhor Alfredo Damaso,Agreste Meridional(Garanhuns),Terezinha
+26055473,Escola Paulina Monteiro,Agreste Centro Norte(Caruaru),Caruaru
+26062585,Escola Pio XII,Agreste Centro Norte(Caruaru),Sao Caitano
+26050196,Escola Professor Donino,Agreste Centro Norte(Caruaru),Belo Jardim
+26082861,Escola de Referencia em Ensino Medio Leobaldo Soares da Silva,Mata Centro(Vitoria de Santo Antao),Barra de Guabiraba
+26083159,Escola de Referencia em Ensino Medio Doutor Alexandrino da Rocha,Mata Centro(Vitoria de Santo Antao),Bonito
+26083493,Escola Pe Jose Augusto,Mata Centro(Vitoria de Santo Antao),Bonito
+26083639,Escola de Referencia em Ensino Medio Quintino Bocaiuva,Mata Centro(Vitoria de Santo Antao),Camocim de Sao Felix
+26054965,Escola Professor Jose Bione de Araujo,Agreste Centro Norte(Caruaru),Caruaru
+26054825,Escola Professora Jesuina Pereira Rego,Agreste Centro Norte(Caruaru),Caruaru
+26064006,Escola Professora Maria Lucia Alves,Agreste Centro Norte(Caruaru),Santa Cruz do Capibaribe
+26084791,Escola de Referencia em Ensino Medio Professor Manoel Edmundo,Mata Sul(Palmares),Lagoa Dos Gatos
+26086077,Escola Joao Pessoa Souto Maior,Mata Centro(Vitoria de Santo Antao),Saire
+26086638,Escola Frei Epifanio,Mata Centro(Vitoria de Santo Antao),Sao Joaquim do Monte
+26086905,Escola de Referencia em Ensino Medio Joaquina Lira,Mata Norte(Nazare da Mata),Alianca
+26087022,Escola Cel Luiz Ignacio Pessoa de Melo,Mata Norte(Nazare da Mata),Alianca
+26087030,Escola Dom Bosco,Mata Norte(Nazare da Mata),Alianca
+26087375,Escola de Referencia em Ensino Medio Jaime Coelho,Mata Norte(Nazare da Mata),Buenos Aires
+26087529,Escola de Referencia em Ensino Fundamental Laurindo Gomes,Mata Norte(Nazare da Mata),Buenos Aires
+26087715,Escola de Referencia em Ensino Medio Pedro Tavares,Mata Norte(Nazare da Mata),Camutanga
+26087880,Escola de Referencia em Ensino Fundamental E Medio Deputado Joao Teobaldo de Azevedo,Mata Norte(Nazare da Mata),Carpina
+26087910,Escola de Referencia em Ensino Medio Joao Cavalcanti Petribu,Mata Norte(Nazare da Mata),Carpina
+26087928,Escola de Referencia em Ensino Medio Jose de Lima Junior,Mata Norte(Nazare da Mata),Carpina
+26088037,Escola Paula Frassinetti,Mata Norte(Nazare da Mata),Carpina
+26088053,Escola Lions Clube de Carpina,Mata Norte(Nazare da Mata),Carpina
+26088134,Escola Sao Jose,Mata Norte(Nazare da Mata),Carpina
+26088258,Escola Aluisio Germano,Mata Norte(Nazare da Mata),Carpina
+26088282,Escola de Referencia em Ensino Medio Joaquim Olavo,Mata Norte(Nazare da Mata),Carpina
+26088410,Escola de Referencia em Ensino Medio Antonio Correia de Oliveira Andrade,Mata Norte(Nazare da Mata),Condado
+26088533,Escola Julio Correia de Oliveira,Mata Norte(Nazare da Mata),Condado
+26088606,Escola de Referencia em Ensino Medio emiliano Pereira Borges,Mata Norte(Nazare da Mata),Ferreiros
+26088851,Escola de Referencia em Ensino Medio Augusto Gondim,Mata Norte(Nazare da Mata),Goiana
+26088886,Escola de Referencia em Ensino Medio Doutor Joao Alfredo,Mata Norte(Nazare da Mata),Goiana
+26088894,Escola de Referencia em Ensino Medio Benigno Pessoa de Araujo,Mata Norte(Nazare da Mata),Goiana
+26089190,Escola Andre Vidal de Negreiros,Mata Norte(Nazare da Mata),Goiana
+26089238,Escola Cel Jose Pinto de Abreu,Mata Norte(Nazare da Mata),Goiana
+26089424,Escola de Referencia em Ensino Medio Frei Campo Mayor,Mata Norte(Nazare da Mata),Goiana
+26089505,Escola de Referencia em Ensino Medio Frei Orlando,Mata Norte(Nazare da Mata),Itambe
+26089530,Escola Arruda Camara,Mata Norte(Nazare da Mata),Itambe
+26089718,Escola de Referencia em Ensino Fundamental Jose Antonio Bezerra de Menezes,Mata Norte(Nazare da Mata),Itambe
+26089947,Escola Severino Gouveia de Lima,Mata Norte(Nazare da Mata),Itaquitinga
+26090058,Escola de Referencia em Ensino Medio Doutor Francisco Siqueira C da Cunha,Mata Norte(Nazare da Mata),Lagoa do Carro
+26090309,Escola de Referencia em Ensino Medio Tristao Ferreira Bessa,Vale do Capibaribe(Limoeiro),Lagoa de Itaenga
+26090406,Escola de Referencia em Ensino Medio Creusa de Freitas Cavalcanti,Mata Norte(Nazare da Mata),Macaparana
+26090759,Escola Brigadeiro Eduardo Gomes,Mata Norte(Nazare da Mata),Macaparana
+26090767,Escola Antonio Coutinho,Mata Norte(Nazare da Mata),Macaparana
+26090856,Escola Capitao Plinio de Souza Monteiro,Mata Norte(Nazare da Mata),Nazare da Mata
+26090864,Escola Dom Carlos Coelho - Nazare,Mata Norte(Nazare da Mata),Nazare da Mata
+26090899,Escola Dom Ricardo Vilela,Mata Norte(Nazare da Mata),Nazare da Mata
+26090902,Escola de Referencia em Ensino Medio Don Vieira,Mata Norte(Nazare da Mata),Nazare da Mata
+26090910,Escola de Referencia em Ensino Medio Maciel Monteiro,Mata Norte(Nazare da Mata),Nazare da Mata
+26090970,Escola de Aplicacao Professor Chaves,Mata Norte(Nazare da Mata),Nazare da Mata
+26091259,Escola de Referencia em Ensino Medio Confederacao do Equador,Mata Norte(Nazare da Mata),Paudalho
+26091267,Escola de Referencia em Ensino Medio Herculano Bandeira,Mata Norte(Nazare da Mata),Paudalho
+26091291,Escola de Referencia em Ensino Medio Monsenhor Landelino Barreto Lins,Mata Norte(Nazare da Mata),Paudalho
+26091542,Escola Joao Cavalcanti Petribu,Mata Norte(Nazare da Mata),Paudalho
+26091658,Escola de Referencia em Ensino Fundamental Clovis Salgado,Mata Norte(Nazare da Mata),Timbauba
+26091720,Escola de Referencia em Ensino Medio Jornalista Jader de Andrade,Mata Norte(Nazare da Mata),Timbauba
+26091771,Escola Mariana Ferreira Lima,Mata Norte(Nazare da Mata),Timbauba
+26091828,Escola de Referencia em Ensino Medio Professor Jose Mendes da Silva,Mata Norte(Nazare da Mata),Timbauba
+26091836,Escola Professora Elisabeth Lyra,Mata Norte(Nazare da Mata),Timbauba
+26091879,Escola de Referencia em Ensino Fundamental Ana Eufrasia Cabral de Moura,Mata Norte(Nazare da Mata),Timbauba
+26091925,Escola Professor Joao Roberto Moreira,Mata Norte(Nazare da Mata),Timbauba
+26092298,Escola de Referencia em Ensino Fundamental Agamenon Magalhaes,Mata Norte(Nazare da Mata),Tracunhaem
+26092301,Escola de Referencia em Ensino Medio Doutor Walfredo Luiz Pessoa de Melo,Mata Norte(Nazare da Mata),Tracunhaem
+26092492,Escola de Referencia em Ensino Medio Doutor Joaquim Correia,Mata Norte(Nazare da Mata),Vicencia
+26092786,Escola de Referencia em Ensino Medio Padre Guedes,Mata Norte(Nazare da Mata),Vicencia
+26093030,Escola de Referencia em Ensino Medio Presidente Costa E Silva,Mata Centro(Vitoria de Santo Antao),Cha de Alegria
+26093219,Escola de Referencia em Ensino Medio Joao Batista de Vasconcelos - Cha Grande,Mata Centro(Vitoria de Santo Antao),Cha Grande
+26093570,Escola de Referencia em Ensino Medio Professor Barros Guimaraes,Mata Centro(Vitoria de Santo Antao),Gloria do Goita
+26093600,Escola Paroquial de Menores,Mata Centro(Vitoria de Santo Antao),Gloria do Goita
+26093995,Escola de Referencia em Ensino Medio Capitao Manoel Gomes D Assuncao,Mata Centro(Vitoria de Santo Antao),Pombos
+26094800,Escola de Referencia em Ensino Medio Antonio Dias Cardoso,Mata Centro(Vitoria de Santo Antao),Vitoria de Santo Antao
+26094860,Escola de Referencia em Ensino Medio Guiomar Krause Goncalves,Mata Centro(Vitoria de Santo Antao),Vitoria de Santo Antao
+26094878,Escola Madre Lucila Magalhaes,Mata Centro(Vitoria de Santo Antao),Vitoria de Santo Antao
+26095289,Escola Tecnica Estadual Jose Joaquim da Silva Filho,Mata Centro(Vitoria de Santo Antao),Vitoria de Santo Antao
+26095297,Escola de Referencia em Ensino Medio Professora Amelia Coelho,Mata Centro(Vitoria de Santo Antao),Vitoria de Santo Antao
+26095335,Escola de Referencia em Ensino Medio Senador Joao Cleofas de Oliveira,Mata Centro(Vitoria de Santo Antao),Vitoria de Santo Antao
+26095530,Escola de Referencia em Ensino Medio Professora Eudoxia de Alcantara Ferreira,Mata Centro(Vitoria de Santo Antao),Vitoria de Santo Antao
+26095572,Escola Olivia Carneiro de Carvalho,Mata Centro(Vitoria de Santo Antao),Vitoria de Santo Antao
+26096030,Escola de Referencia em Ensino Medio Joao Vicente de Queiroz,Mata Sul(Palmares),Agua Preta
+26096072,Escola Mirandolina Pessoa de Queiroz,Mata Sul(Palmares),Xexeu
+26096358,Escola de Referencia em Ensino Medio Joao Vicente de Queiroz - Usina,Mata Sul(Palmares),Agua Preta
+26097117,Escola de Referencia em Ensino Medio Antonio Alves de Araujo,Mata Sul(Palmares),Amaraji
+26097249,Escola Dom Luiz de Brito,Mata Sul(Palmares),Amaraji
+26097257,Escola de Referencia em Ensino Medio Doutor Anthenor Guimaraes,Mata Sul(Palmares),Barreiros
+26097354,Escola de Referencia em Ensino Fundamental E Medio Cristiano Barbosa E Silva,Mata Sul(Palmares),Barreiros
+26097370,Escola Helio Santiago Ramos,Mata Sul(Palmares),Barreiros
+26097591,Escola de Referencia em Ensino Medio Professor Joaquim Augusto de Noronha Filho,Mata Sul(Palmares),Barreiros
+26097710,Escola Tecnica Estadual Central de Barreiros,Mata Sul(Palmares),Barreiros
+26097982,Escola de Referencia em Ensino Medio Presidente Tancredo Neves,Mata Sul(Palmares),Belem de Maria
+26098210,Escola Athayde Accioly Lins,Mata Sul(Palmares),Catende
+26098270,Escola de Referencia em Ensino Medio Costa Azevedo - Catende,Mata Sul(Palmares),Catende
+26098415,Escola de Referencia em Ensino Fundamental E Medio Sofia Feijo Sampaio,Mata Sul(Palmares),Catende
+26098482,Escola de Referencia em Ensino Medio Mendo Sampaio,Mata Sul(Palmares),Catende
+26098504,Escola Tobias Barreto,Mata Sul(Palmares),Catende
+26098822,Escola de Referencia em Ensino Medio Professora Abigail Guerra,Mata Sul(Palmares),Cortes
+26098920,Escola Tecnica Estadual Luiz Dias Lins,Mata Centro(Vitoria de Santo Antao),Escada
+26099322,Escola de Referencia em Ensino Medio Professor Eraldo Campos,Mata Centro(Vitoria de Santo Antao),Escada
+26099365,Escola Doutor Fernando Campelo,Mata Centro(Vitoria de Santo Antao),Escada
+26099489,Escola de Referencia em Ensino Medio Monsenhor Joao Rodrigues de Carvalho,Mata Centro(Vitoria de Santo Antao),Escada
+26099497,Escola de Referencia em Ensino Medio Vigario Pedrosa,Mata Centro(Vitoria de Santo Antao),Escada
+26099853,Escola de Referencia em Ensino Medio Doutor Jaime Monteiro,Mata Sul(Palmares),Gameleira
+26100525,Escola de Referencia em Ensino Medio Governador Eduardo Campos,Mata Sul(Palmares),Joaquim Nabuco
+26100614,Escola de Referencia em Ensino Medio Fabio da Silveira Barros,Mata Sul(Palmares),Maraial
+26100940,Escola de Referencia em Ensino Medio Miguel Pellegrino,Mata Sul(Palmares),Jaqueira
+26101084,Escola de Referencia em Ensino Medio Monsenhor Abilio Americo Galvao,Mata Sul(Palmares),Palmares
+26101203,Escola de Referencia em Ensino Medio Doutor Pedro Afonso de Medeiros,Mata Sul(Palmares),Palmares
+26101599,Escola Professor Eliseu Pereira de Melo,Mata Sul(Palmares),Palmares
+26101602,Escola de Referencia em Ensino Medio da Fraternidade Palmarense,Mata Sul(Palmares),Palmares
+26101610,Escola Maquinista Amaro Monteiro,Mata Sul(Palmares),Palmares
+26101653,Escola Tecnica Estadual de Palmares,Mata Sul(Palmares),Palmares
+26102153,Escola de Referencia em Ensino Medio Elisa Marques de Assis,Mata Sul(Palmares),Primavera
+26102250,Escola de Referencia em Ensino Medio Doutor Fernando Pessoa de Mello,Mata Sul(Palmares),Quipapa
+26102552,Escola de Referencia em Ensino Medio Joao Lopes de Siqueira Santos,Mata Sul(Palmares),Ribeirao
+26102633,Escola de Referencia em Ensino Medio Padre Americo Novais,Mata Sul(Palmares),Ribeirao
+26103052,Escola de Referencia em Ensino Fundamental E Medio Joaquim Nabuco,Mata Sul(Palmares),Ribeirao
+26103370,Escola de Referencia em Ensino Medio Joaquim Silverio Pimentel,Mata Sul(Palmares),Rio Formoso
+26103745,Escola de Referencia em Ensino Medio Wilson de Andrade Barreto,Mata Sul(Palmares),Rio Formoso
+26103834,Escola de Referencia em Ensino Medio Tamandare,Mata Sul(Palmares),Tamandare
+26104083,Escola de Referencia em Ensino Medio Eloy Malta de Alencar,Mata Sul(Palmares),Sao Benedito do Sul
+26104229,Escola de Referencia em Ensino Medio Professor Carlos Jose Dias da Silva,Mata Sul(Palmares),Sao Jose da Coroa Grande
+26104245,Escola Sao Francisco de Assis - Lt,Mata Sul(Palmares),Sao Jose da Coroa Grande
+26104601,Escola de Referencia em Ensino Medio Barra do Sirinhaem,Mata Sul(Palmares),Sirinhaem
+26104920,Escola de Referencia em Ensino Medio Doutor Eurico Chaves,Mata Sul(Palmares),Sirinhaem
+26105101,Escola de Referencia em Ensino Medio Joao Pereira Sobrinho,Mata Sul(Palmares),Xexeu
+26105187,Escola Barao de Vera Cruz,Metropolitano Norte,Igarassu
+26105195,Escola de Referencia em Ensino Medio Brasilino Jose de Carvalho,Metropolitano Norte,Igarassu
+26105225,Escola de Referencia em Ensino Fundamental Desembargador Carlos Xavier Paes Barretto,Metropolitano Norte,Igarassu
+26105250,Escola de Referencia em Ensino Medio Eurico Pfisterer,Metropolitano Norte,Igarassu
+26105314,Escola de Referencia em Ensino Medio Joao Pessoa Guerra,Metropolitano Norte,Igarassu
+26105519,Escola de Referencia em Ensino Medio Santos Cosme E Damiao,Metropolitano Norte,Igarassu
+26105730,Escola Professor Aderbal Jurema - Mn,Metropolitano Norte,Igarassu
+26105837,Escola de Referencia em Ensino Medio Maria Gayao Pessoa Guerra,Metropolitano Norte,Aracoiaba
+26105888,Escola de Referencia em Ensino Fundamental E Medio Nova Cruz,Metropolitano Norte,Igarassu
+26106060,Escola de Referencia em Ensino Medio Alberto Augusto de Morais Pradines,Metropolitano Norte,Ilha de Itamaraca
+26106159,Escola Senador Paulo Pessoa Guerra,Metropolitano Norte,Ilha de Itamaraca
+26106213,Escola de Jaguaribe,Metropolitano Norte,Ilha de Itamaraca
+26106337,Escola Professora Gercina Fernandes Rodrigues,Metropolitano Norte,Itapissuma
+26106353,Escola de Referencia em Ensino Fundamental E Ensino Medio Senador Jose Ermirio de Moraes,Metropolitano Norte,Itapissuma
+26106388,Escola de Referencia em Ensino Medio Euridice Cadaval,Metropolitano Norte,Itapissuma
+26106582,Escola General Abreu E Lima,Metropolitano Norte,Abreu E Lima
+26106612,Escola Marechal Costa E Silva,Metropolitano Norte,Abreu E Lima
+26106698,Escola Orfanato Estrela de Bethel,Metropolitano Norte,Abreu E Lima
+26106701,Escola de Referencia em Ensino Fundamental E Medio Pastor Amaro de Sena,Metropolitano Norte,Abreu E Lima
+26106728,Escola de Referencia em Ensino Fundamental E Ensino Medio Polivalente de Abreu E Lima,Metropolitano Norte,Abreu E Lima
+26106957,Escola de Referencia em Ensino Medio Luiz Rodolfo de Araujo Junior,Metropolitano Norte,Abreu E Lima
+26107074,Escola de Referencia em Ensino Fundamental E Medio Professora Azinete Ramos Carneiro,Metropolitano Norte,Abreu E Lima
+26107082,Escola Professora Isaura de Franca,Metropolitano Norte,Abreu E Lima
+26107104,Escola de Abreu E Lima,Metropolitano Norte,Abreu E Lima
+26107546,Escola de Referencia em Ensino Fundamental E Medio Antonio Correia de Araujo,Metropolitano Sul,Camaragibe
+26107562,Escola de Referencia em Ensino Fundamental E Medio Conselheiro Samuel Mac Dowell,Metropolitano Sul,Camaragibe
+26107570,Escola de Referencia em Ensino Fundamental E Ensino Medio Deputado Oscar Carneiro,Metropolitano Sul,Camaragibe
+26107597,Escola de Referencia em Ensino Fundamental E Ensino Medio Francisco de Paula Correa de Araujo,Metropolitano Sul,Camaragibe
+26107600,Escola Frei Caneca,Metropolitano Sul,Camaragibe
+26107627,Escola Joaquim Amazonas,Metropolitano Sul,Camaragibe
+26107651,Escola Maria da Conceicao do Rego B Lacerda,Recife Sul,Recife
+26107678,Escola Ministro Jarbas Passarinho,Metropolitano Sul,Camaragibe
+26107937,Escola de Referencia em Ensino Medio Professor Antonio Carneiro Leao,Metropolitano Sul,Camaragibe
+26107945,Escola de Referencia em Ensino Medio Professor Carlos Frederico do Rego Maciel,Metropolitano Sul,Camaragibe
+26107961,Escola Professor Nelson Chaves,Metropolitano Sul,Camaragibe
+26107996,Escola Vale Das Pedreiras,Metropolitano Sul,Camaragibe
+26108038,Escola de Referencia em Ensino Medio Tito Pereira de Oliveira,Metropolitano Sul,Camaragibe
+26108046,Escola Major Lelio,Metropolitano Sul,Camaragibe
+26108240,Escola Timbi,Metropolitano Sul,Camaragibe
+26108275,Escola Santa Apolonia,Gre Metropolitana Sul,Camaragibe
+26108801,Escola de Referencia em Ensino Medio Frei Romeu Perea,Metropolitano Sul,Jaboatao Dos Guararapes
+26108925,Escola de Referencia em Ensino Medio Nestor Gomes de Moura,Metropolitano Sul,Jaboatao Dos Guararapes
+26108984,Escola de Referencia em Ensino Medio Poeta Mauro Mota,Metropolitano Sul,Jaboatao Dos Guararapes
+26109042,Escola de Referencia em Ensino Medio Rodolfo Aureliano,Metropolitano Sul,Jaboatao Dos Guararapes
+26109107,Escola de Referencia em Ensino Medio Simon Bolivar,Metropolitano Sul,Jaboatao Dos Guararapes
+26109115,Escola Souza Brandao,Metropolitano Sul,Jaboatao Dos Guararapes
+26109360,Escola de Referencia em Ensino Medio Bernardo Vieira,Metropolitano Sul,Jaboatao Dos Guararapes
+26109441,Escola de Referencia em Ensino Medio Desportista Rubem Rodrigues Moreira,Metropolitano Sul,Jaboatao Dos Guararapes
+26109468,Escola de Referencia em Ensino Medio Vila Rica,Metropolitano Sul,Jaboatao Dos Guararapes
+26109506,Escola Henriqueta de Oliveira,Metropolitano Sul,Jaboatao Dos Guararapes
+26110016,Escola de Referencia em Ensino Medio Frei Jaboatao,Metropolitano Sul,Jaboatao Dos Guararapes
+26110148,Escola Alfredo Tenorio,Metropolitano Sul,Jaboatao Dos Guararapes
+26110199,Escola de Referencia em Ensino Medio Murilo Braga,Metropolitano Sul,Jaboatao Dos Guararapes
+26110229,Escola de Referencia em Ensino Fundamental E Medio Odete Antunes,Metropolitano Sul,Jaboatao Dos Guararapes
+26110237,Escola de Referencia em Ensino Medio Senador Petronio Portela,Metropolitano Sul,Jaboatao Dos Guararapes
+26110245,Escola de Referencia em Ensino Medio Senador Aderbal Jurema,Metropolitano Sul,Jaboatao Dos Guararapes
+26110270,Escola de Referencia em Ensino Medio Professor Moacyr de Albuquerque,Metropolitano Sul,Jaboatao Dos Guararapes
+26110849,Escola Alto Dos Guararapes,Metropolitano Sul,Jaboatao Dos Guararapes
+26110857,Escola Alzira da Fonseca Breuel,Metropolitano Sul,Jaboatao Dos Guararapes
+26110881,Escola de Referencia em Ensino Medio Augusto Severo,Metropolitano Sul,Jaboatao Dos Guararapes
+26110970,Escola de Referencia em Ensino Medio Edmur Arlindo de Oliveira,Metropolitano Sul,Jaboatao Dos Guararapes
+26110997,Escola de Referencia em Ensino Medio Edson Moury Fernandes,Metropolitano Sul,Jaboatao Dos Guararapes
+26111012,Escola de Referencia em Ensino Medio Felipe Camarao,Metropolitano Sul,Jaboatao Dos Guararapes
+26111020,Escola de Referencia em Ensino Medio Humberto Lins Barradas,Metropolitano Sul,Jaboatao Dos Guararapes
+26111071,Escola Jose Glicerio,Metropolitano Sul,Jaboatao Dos Guararapes
+26111195,Escola Pedro Barros Filho,Metropolitano Sul,Jaboatao Dos Guararapes
+26111209,Escola de Referencia em Ensino Medio Professor Benedito Cunha Melo,Metropolitano Sul,Jaboatao Dos Guararapes
+26111225,Escola de Referencia em Ensino Medio Professor Epitacio Andre Dias,Metropolitano Sul,Jaboatao Dos Guararapes
+26111241,Escola de Referencia em Ensino Medio Desembargador Jose Neves Filho,Metropolitano Sul,Jaboatao Dos Guararapes
+26111268,Escola Joao Paulo I,Metropolitano Sul,Jaboatao Dos Guararapes
+26111284,Escola Vila Joao de Deus,Metropolitano Sul,Jaboatao Dos Guararapes
+26111314,Escola de Referencia em Ensino Medio Saturnino de Brito,Metropolitano Sul,Jaboatao Dos Guararapes
+26111349,Escola de Referencia em Ensino Fundamental E Medio Supervisora Miriam Seixas,Metropolitano Sul,Jaboatao Dos Guararapes
+26111357,Escola Zequinha Barreto,Metropolitano Sul,Jaboatao Dos Guararapes
+26111403,Escola de Referencia em Ensino Medio Adelaide Pessoa Camara,Metropolitano Sul,Jaboatao Dos Guararapes
+26111411,Escola Amor Divino,Metropolitano Sul,Jaboatao Dos Guararapes
+26111853,Escola Artur Mendonca,Metropolitano Sul,Moreno
+26111870,Escola de Referencia em Ensino Medio Cardeal Dom Jaime Camara,Metropolitano Sul,Moreno
+26111926,Escola de Referencia em Ensino Medio Maria do Ceu Bandeira,Metropolitano Sul,Moreno
+26112108,Escola de Referencia em Ensino Medio Sofronio Portela,Metropolitano Sul,Moreno
+26112701,Escola de Referencia em Ensino Medio de Olinda,Metropolitano Norte,Olinda
+26113198,Escola Antonio Souto Filho,Metropolitano Norte,Olinda
+26113210,Escola Argentina Castello Branco,Metropolitano Norte,Olinda
+26113236,Escola de Referencia em Ensino Medio Aurea de Moura Cavalcanti,Metropolitano Norte,Olinda
+26113260,Escola Carlos Goncalves,Metropolitano Norte,Olinda
+26113279,Escola Cel Valeriano Eugenio de Melo,Metropolitano Norte,Olinda
+26113325,Escola de Referencia em Ensino Fundamental E Medio Clidio de Lima Nigro,Metropolitano Norte,Olinda
+26113333,Escola Conego Jonas Taurino,Metropolitano Norte,Olinda
+26113392,Escola de Referencia em Ensino Medio Desembargador Renato Fonseca,Metropolitano Norte,Olinda
+26113449,Escola de Referencia em Ensino Fundamental Dom Pedro Bandeira de Melo,Metropolitano Norte,Olinda
+26113538,Escola de Referencia em Ensino Medio Guedes Alcoforado,Metropolitano Norte,Olinda
+26113562,Escola de Referencia em Ensino Fundamental E Medio Jeronimo de Albuquerque,Metropolitano Norte,Olinda
+26113635,Escola de Referencia em Ensino Fundamental E Medio Maria Emilia Romeiro Estelita,Metropolitano Norte,Olinda
+26113660,Escola Marechal Mascarenhas de Moraes,Metropolitano Norte,Olinda
+26113724,Escola Monsenhor Arruda Camara,Metropolitano Norte,Olinda
+26113783,Escola de Referencia em Ensino Medio Padre Francisco Carneiro,Metropolitano Norte,Olinda
+26113805,Escola de Referencia em Ensino Medio Pintor Manoel Bandeira,Metropolitano Norte,Olinda
+26113813,Escola de Referencia em Ensino Fundamental E Medio Compositor Antonio Maria,Metropolitano Norte,Olinda
+26113830,Escola de Referencia em Ensino Fundamental Professor Candido Pessoa,Metropolitano Norte,Olinda
+26113856,Escola de Referencia em Ensino Medio Professor Estevao Pinto,Metropolitano Norte,Olinda
+26113872,Escola Professora Deana Clark Xavier,Metropolitano Norte,Olinda
+26113880,Escola Professora Ines Borba,Metropolitano Norte,Olinda
+26113929,Escola Raimundo Diniz,Metropolitano Norte,Olinda
+26114054,Escola Sao Lucas,Metropolitano Norte,Olinda
+26114135,Escola de Referencia em Ensino Fundamental Santo Inacio de Loyola,Metropolitano Norte,Olinda
+26114488,Escola Capitao Andre Pereira Temudo,Metropolitano Norte,Olinda
+26114496,Escola de Referencia em Ensino Medio Capitao Luiz Reis,Metropolitano Norte,Olinda
+26114607,Escola Joao Matos Guimaraes,Metropolitano Norte,Olinda
+26114720,Escola de Referencia em Ensino Medio Professor Ernesto Silva,Metropolitano Norte,Olinda
+26114852,Escola de Referencia em Ensino Fundamental Sigismundo Goncalves,Metropolitano Norte,Olinda
+26114860,Escola de Referencia em Ensino Fundamental E Medio Tabajara,Metropolitano Norte,Olinda
+26115050,Escola Joaquim Nabuco - Olinda,Metropolitano Norte,Olinda
+26115069,Escola Nossa Senhora do Carmo - Olinda,Metropolitano Norte,Olinda
+26115085,Escola Themistocles de Andrade,Metropolitano Norte,Olinda
+26115883,Escola de Referencia em Ensino Medio de Paulista,Metropolitano Norte,Paulista
+26115913,Escola de Referencia em Ensino Medio Doutor Luiz Cabral de Melo,Metropolitano Norte,Paulista
+26115964,Escola Governador Eraldo Gueiros Leite,Metropolitano Norte,Paulista
+26115972,Escola Historiador Pereira da Costa,Metropolitano Norte,Paulista
+26115999,Escola de Referencia em Ensino Medio Jose Manuel de Queiroz,Metropolitano Norte,Paulista
+26116014,Escola de Referencia em Ensino Medio Maestro Nelson Ferreira,Metropolitano Norte,Paulista
+26116308,Escola de Referencia em Ensino Fundamental E Medio Presidente Castelo Branco,Metropolitano Norte,Paulista
+26116316,Escola de Referencia em Ensino Medio Professora Amarina Simoes,Metropolitano Norte,Paulista
+26116324,Escola de Referencia em Ensino Medio Professor Arnaldo Carneiro Leao,Metropolitano Norte,Paulista
+26116359,Escola Professor Jose Brasileiro Vila Nova,Metropolitano Norte,Paulista
+26116367,Escola Professora Generosa Gil Perez,Metropolitano Norte,Paulista
+26116383,Escola Professora Maria Alves Machado,Metropolitano Norte,Paulista
+26116391,Escola Professora Zulmira de Paula Almeida,Metropolitano Norte,Paulista
+26116413,Escola de Referencia em Ensino Medio Radialista Luiz Queiroga,Metropolitano Norte,Paulista
+26116634,Escola de Referencia em Ensino Fundamental E Medio Professora Maria do Carmo Pinto Ribeiro,Metropolitano Norte,Paulista
+26117010,Escola Estadual Sao Jose,Metropolitano Norte,Paulista
+26117045,Escola de Referencia em Ensino Medio Dantas Barreto,Metropolitano Norte,Paulista
+26117088,Escola Walfrido Advincula,Metropolitano Norte,Paulista
+26117258,Escola Custodio Pessoa,Metropolitano Norte,Paulista
+26117274,Escola Manuel Bastos Tigre,Metropolitano Norte,Paulista
+26117290,Escola de Referencia em Ensino Medio Padre Osmar Novaes,Metropolitano Norte,Paulista
+26118742,Escola de Referencia em Ensino Medio Senador Paulo Pessoa Guerra,Recife Sul,Recife
+26119730,Escola de Aplicacao do Recife,Recife Sul,Recife
+26120100,Escola de Referencia em Ensino Fundamental E Ensino Medio Professora Inalda Spinelli,Recife Sul,Recife
+26120992,Escola de Referencia em Ensino Fundamental E Medio Liceu de Artes E Oficios,Recife Norte,Recife
+26121247,Escola de Referencia em Ensino Medio Joaquim Nabuco,Recife Sul,Recife
+26121310,Escola de Referencia em Ensino Medio Manoel Borba,Recife Sul,Recife
+26121344,Escola de Referencia em Ensino Medio Luiz Delgado,Recife Norte,Recife
+26121620,Escola de Referencia em Ensino Fundamental Joao Barbalho,Recife Norte,Recife
+26121638,Escola Monsenhor Francisco Salles,Recife Norte,Recife
+26121654,Escola de Referencia em Ensino Medio Oliveira Lima,Recife Norte,Recife
+26121670,Escola de Referencia em Ensino Medio Poeta Manuel Bandeira,Recife Norte,Recife
+26121751,Escola Tecnica Estadual Ginasio Pernambucano,Recife Norte,Recife
+26121816,Escola Tecnica Estadual Almirante Soares Dutra,Recife Norte,Recife
+26121859,Escola de Referencia em Ensino Medio Anibal Fernandes,Recife Norte,Recife
+26121867,Escola Conego Rochael de Medeiros,Recife Norte,Recife
+26121891,Escola Jose Maria,Recife Norte,Recife
+26121921,Escola de Referencia em Ensino Medio Sizenando Silveira,Recife Norte,Recife
+26121948,Escola de Referencia em Ensino Medio Sylvio Rabelo,Recife Norte,Recife
+26122120,Colegio da Policia Militar de Pernambuco,Recife Norte,Recife
+26122227,Escola de Referencia em Ensino Fundamental E Ensino Medio Governador Barbosa Lima,Recife Norte,Recife
+26122260,Escola de Referencia em Ensino Fundamental Professor Motta E Albuquerque,Recife Norte,Recife
+26122278,Escola de Referencia em Ensino Medio Regueira Costa,Recife Norte,Recife
+26122510,Escola de Referencia em Ensino Medio Clovis Bevilaqua,Recife Norte,Recife
+26122545,Escola Dom Carlos Coelho - Recife,Recife Norte,Recife
+26122553,Escola de Referencia em Ensino Fundamental Embaixador Gilberto Amado,Recife Norte,Recife
+26122677,Escola de Referencia em Ensino Medio Santa Paula Frassinetti,Recife Norte,Recife
+26122685,Escola Tecnica Estadual Professor Agamenon Magalhaes - Etepam,Recife Norte,Recife
+26122839,Escola de Referencia em Ensino Medio Othon Paraiso,Recife Sul,Recife
+26122847,Escola de Referencia em Ensino Medio Amaury de Medeiros,Recife Sul,Recife
+26122855,Escola Debora Feijo,Recife Sul,Recife
+26122880,Escola Presidente Arthur da Costa E Silva,Recife Sul,Recife
+26122952,Escola Senador Nilo de Souza Coelho,Recife Sul,Recife
+26122960,Escola de Referencia em Ensino Medio Vidal de Negreiros,Recife Sul,Recife
+26122987,Escola Carmela Dutra,Recife Sul,Recife
+26123150,Escola de Referencia em Ensino Fundamental Creusa Barreto Dornelas,Recife Sul,Recife
+26123231,Escola Maciel Pinheiro,Recife Sul,Recife
+26123240,Escola Maria Goretti,Recife Sul,Recife
+26123258,Escola de Referencia em Ensino Medio Martins Junior,Recife Sul,Recife
+26123282,Escola de Referencia em Ensino Medio Joaquim Tavora,Recife Sul,Recife
+26123479,Escola de Referencia em Ensino Medio Alberto Torres,Recife Sul,Recife
+26123509,Escola Edwiges de Sa Pereira,Recife Sul,Recife
+26123517,Escola de Referencia em Ensino Medio Jose Mariano,Recife Sul,Recife
+26123525,Escola Marcelino Champagnat,Recife Sul,Recife
+26123533,Escola Monsenhor Alvaro Negromonte,Recife Sul,Recife
+26123576,Escola de Referencia em Ensino Medio Presidente Humberto Castelo Branco,Recife Sul,Recife
+26123584,Escola Professora Olindina Alves Semente,Recife Sul,Recife
+26123592,Escola de Referencia em Ensino Medio Professor Trajano de Mendonca,Recife Sul,Recife
+26123630,Escola Municipal Marechal Rondon,Recife Sul,Recife
+26123703,Escola de Referencia em Ensino Medio Anibal Falcao,Recife Sul,Recife
+26123720,Escola de Referencia em Ensino Fundamental E Medio Barao do Bonito,Recife Sul,Recife
+26123770,Escola Herois da Restauracao,Recife Sul,Recife
+26123819,Escola Tecnica Estadual Mariano Teixeira,Recife Sul,Recife
+26124190,Escola de Referencia em Ensino Medio Santos Dumont,Recife Sul,Recife
+26124424,Escola Professor Marcos de Barros Freire,Recife Sul,Recife
+26124432,Escola de Referencia em Ensino Medio Apolonio Sales,Recife Sul,Recife
+26124440,Escola de Referencia em Ensino Medio Assis Chateaubriand,Recife Sul,Recife
+26124475,Escola Brigadeiro Eduardo Gomes - Recife,Recife Sul,Recife
+26124572,Escola de Referencia em Ensino Fundamental Delmiro Gouveia,Recife Sul,Recife
+26124580,Escola de Referencia em Ensino Medio Eleanor Roosevelt,Recife Sul,Recife
+26124599,Escola Eneida Rabello,Recife Sul,Recife
+26124602,Escola de Referencia em Ensino Medio Engenheiro Lauro Diniz,Recife Sul,Recife
+26124645,Escola de Referencia em Ensino Fundamental E Medio Jornalista Costa Porto,Recife Sul,Recife
+26124653,Escola de Referencia em Ensino Medio Lagoa Encantada,Recife Sul,Recife
+26124670,Escola de Referencia em Ensino Fundamental E Medio Marechal Eurico Gaspar Dutra,Recife Sul,Recife
+26124696,Escola de Referencia em Ensino Medio Maria Rita da Silva Lessa,Recife Sul,Recife
+26124777,Escola Othon Bezerra de Melo,Recife Sul,Recife
+26124785,Escola de Referencia em Ensino Medio Dom Sebastiao Leme,Recife Sul,Recife
+26124807,Escola Professor Jose Vicente Barbosa,Recife Sul,Recife
+26124831,Escola Padre Lebret,Recife Sul,Recife
+26124858,Escola Nossa Senhora da Conceicao,Recife Sul,Recife
+26124874,Escola Missionario Sao Bento,Recife Sul,Recife
+26124904,Escola Vila Dos Milagres,Recife Sul,Recife
+26124912,Escola Roberto Silveira,Recife Sul,Recife
+26124920,Escola de Referencia em Ensino Fundamental E Medio Sao Francisco de Assis,Recife Sul,Recife
+26124939,Escola Sargento Camargo,Recife Sul,Recife
+26125013,Escola de Referencia em Ensino Fundamental E Ensino Medio Gercino de Pontes,Recife Sul,Recife
+26125048,Escola Tecnica Estadual Joao Bezerra,Recife Sul,Recife
+26125072,Escola Landelino Rocha,Recife Sul,Recife
+26125080,Escola de Referencia em Ensino Fundamental Luis de Camoes,Recife Sul,Recife
+26125250,Escola de Referencia em Ensino Medio Professor Fernando Mota,Recife Sul,Recife
+26125293,Escola de Referencia em Ensino Fundamental Senador Antonio Farias,Recife Sul,Recife
+26125358,Escola de Referencia em Ensino Fundamental E Medio Monte Verde,Recife Sul,Recife
+26125641,Escola de Referencia em Ensino Medio Jose Vilela,Recife Norte,Recife
+26125650,Escola de Referencia em Ensino Fundamental E Medio Lions de Parnamirim,Recife Norte,Recife
+26125757,Escola de Referencia em Ensino Medio Professor Candido Duarte,Recife Norte,Recife
+26125781,Escola de Referencia em Ensino Medio Silva Jardim,Recife Norte,Recife
+26125943,Escola de Referencia em Ensino Fundamental E Medio Monsenhor Manoel Marques,Recife Norte,Recife
+26125978,Escola de Referencia em Ensino Medio Alvaro Lins,Recife Norte,Recife
+26125986,Escola Ana Malta da Costa Azevedo,Recife Norte,Recife
+26126010,Escola Caio Pereira,Recife Norte,Recife
+26126044,Escola de Referencia em Ensino Medio Clotilde de Oliveira,Recife Norte,Recife
+26126052,Escola Coronel Othon,Recife Norte,Recife
+26126079,Escola de Referencia em Ensino Medio Ageu Magalhaes,Recife Norte,Recife
+26126109,Escola de Referencia em Ensino Medio Padre Machado,Recife Norte,Recife
+26126125,Escola Tecnica Estadual Dom Bosco - Recife,Recife Norte,Recife
+26126133,Escola de Referencia em Ensino Medio Dom Vital,Recife Norte,Recife
+26126141,Escola Dona Maria Teresa Correa,Recife Norte,Recife
+26126150,Escola Erundina Negreiros de Araujo,Recife Norte,Recife
+26126192,Escola Gabriela Mistral,Recife Norte,Recife
+26126206,Escola Gilberto Freyre,Recife Norte,Recife
+26126214,Escola Gov Carlos de Lima Cavalcanti,Recife Norte,Recife
+26126230,Escola Irma Magna,Recife Norte,Recife
+26126290,Escola Maria Amalia,Recife Norte,Recife
+26126311,Escola Matias de Albuquerque,Recife Norte,Recife
+26126443,Escola de Referencia em Ensino Fundamental E Medio Nossa Senhora de Fatima,Recife Norte,Recife
+26126559,Escola Comandante Luiz Gomes,Recife Norte,Recife
+26126575,Escola Padre Joao Barbosa,Recife Norte,Recife
+26126605,Escola Tome Gibson,Recife Norte,Recife
+26126613,Escola de Referencia em Ensino Medio Rosa de Magalhaes Melo,Recife Norte,Recife
+26126621,Escola de Referencia em Ensino Medio Rotary de Nova Descoberta,Recife Norte,Recife
+26127300,Escola de Referencia em Ensino Medio Diario de Pernambuco,Recife Sul,Recife
+26127334,Escola de Referencia em Ensino Medio Jornalista Trajano Chacon,Recife Sul,Recife
+26127415,Escola de Referencia em Ensino Medio Olinto Victor,Recife Sul,Recife
+26127423,Escola de Referencia em Ensino Fundamental Pintor Lauro Villares,Recife Sul,Recife
+26127431,Escola de Referencia em Ensino Medio Professor Leal de Barros,Recife Sul,Recife
+26127474,Escola Padre Dehon,Recife Sul,Recife
+26127512,Escola de Referencia em Ensino Fundamental E Medio Senador Novaes Filho,Recife Sul,Recife
+26127539,Escola Professora Fontainha de Abreu,Recife Sul,Recife
+26127571,Escola de Referencia em Ensino Fundamental E Medio Barros Carvalho,Recife Sul,Recife
+26127636,Escola Educador Paulo Freire,Recife Sul,Recife
+26127695,Escola de Referencia em Ensino Fundamental E Medio Joaquim Xavier de Brito,Recife Sul,Recife
+26127741,Escola de Referencia em Ensino Medio Professora Helena Pugo,Recife Sul,Recife
+26127857,Escola Fernandes Vieira,Recife Sul,Recife
+26127865,Escola Professor Candido Duarte,Recife Sul,Recife
+26128101,Escola de Referencia em Ensino Medio de Beberibe,Recife Norte,Recife
+26128160,Escola Doutor Fabio Correa,Recife Norte,Recife
+26128179,Escola Doutor Francisco Pessoa de Queiroz,Recife Norte,Recife
+26128195,Escola de Referencia em Ensino Medio Jarbas Pernambucano,Recife Norte,Recife
+26128403,Escola de Referencia em Ensino Medio Padre Nercio Rodrigues,Recife Norte,Recife
+26128420,Escola de Referencia em Ensino Medio Pedro Celso,Recife Norte,Recife
+26128454,Escola Professor Jose Dos Anjos,Recife Norte,Recife
+26128462,Escola de Referencia em Ensino Fundamental Professor Pedro Augusto Carneiro Leao,Recife Norte,Recife
+26128497,Escola Tecnica Estadual Professor Alfredo Freyre,Recife Norte,Recife
+26128527,Escola Rotary do Alto do Pascoal,Recife Norte,Recife
+26128560,Escola Sao Francisco de Assis - Rn,Recife Norte,Recife
+26128586,Escola Sao Judas Tadeu,Recife Norte,Recife
+26128594,Escola Sao Miguel,Recife Norte,Recife
+26128721,Escola de Referencia em Ensino Medio Professor Mardonio de Andrade Lima Coelho,Recife Norte,Recife
+26129086,Escola de Referencia em Ensino Medio Conde Correa de Araujo,Metropolitano Sul,Sao Lourenco da Mata
+26129094,Escola de Referencia em Ensino Medio Conde Pereira Carneiro,Metropolitano Sul,Sao Lourenco da Mata
+26129124,Escola Dona Leonor Porto,Metropolitano Sul,Sao Lourenco da Mata
+26129132,Escola Doutor Leoncio Gomes de Araujo,Metropolitano Sul,Sao Lourenco da Mata
+26129388,Escola de Referencia em Ensino Medio Professor Agamenom Magalhaes,Metropolitano Sul,Sao Lourenco da Mata
+26129566,Escola 10 de Agosto,Metropolitano Sul,Sao Lourenco da Mata
+26129590,Escola Varzea Fria,Metropolitano Sul,Sao Lourenco da Mata
+26129817,Escola de Referencia em Ensino Medio Desembargador Antonio da Silva Guimaraes,Metropolitano Sul,Cabo de Santo Agostinho
+26129868,Escola Tecnica Estadual Epitacio Pessoa,Metropolitano Sul,Cabo de Santo Agostinho
+26129922,Escola de Referencia em Ensino Medio Luisa Guerra,Metropolitano Sul,Cabo de Santo Agostinho
+26130114,Escola de Referencia em Ensino Medio Pastor Jose Florencio Rodrigues,Metropolitano Sul,Cabo de Santo Agostinho
+26130149,Escola de Referencia em Ensino Medio emidio Cavalcanti de Albuquerque,Metropolitano Sul,Cabo de Santo Agostinho
+26130181,Escola Municipal Ponte Dos Carvalhos,Metropolitano Sul,Cabo de Santo Agostinho
+26130203,Escola de Referencia em Ensino Medio Senador Francisco Pessoa de Queiroz,Metropolitano Sul,Cabo de Santo Agostinho
+26130319,Escola Professor Natanael Barbosa Medrado,Metropolitano Sul,Cabo de Santo Agostinho
+26130386,Escola de Referencia em Ensino Medio Jose Rodrigues de Carvalho,Metropolitano Sul,Cabo de Santo Agostinho
+26130513,Escola Municipal Pontezinha,Metropolitano Sul,Cabo de Santo Agostinho
+26130521,Escola de Referencia em Ensino Medio Zumbi Dos Palmares,Metropolitano Sul,Cabo de Santo Agostinho
+26130947,Escola Domingos de Albuquerque,Metropolitano Sul,Ipojuca
+26131528,Escola de Referencia em Ensino Medio Albertina da Costa Soares,Metropolitano Sul,Ipojuca
+26131668,Escola Anibal Cardoso,Metropolitano Sul,Ipojuca
+26131684,Escola de Referencia em Ensino Medio Frei Otto,Metropolitano Sul,Ipojuca
+26131692,Escola de Referencia em Ensino Medio Jose Mario Alves da Silva,Metropolitano Sul,Ipojuca
+26132001,Escola de Referencia em Ensino Fundamental E Ensino Medio Arquipelago Fernando de Noronha,Recife Norte,Fernando de Noronha
+26132230,Escola de Aplicacao Professora Ivonita Alves Guerra,Agreste Meridional(Garanhuns),Garanhuns
+26132735,Escola de Referencia em Ensino Medio Solidonio Pereira de Carvalho,Sertao do Alto Pajeu(Afogados da Ingazeira),Quixaba
+26132790,Escola Professora Maria Bernadete Marins de Brito,Sertao Central(Salgueiro),Salgueiro
+26133920,Escola de Referencia em Ensino Medio Padre Antonio Barbosa Junior,Agreste Meridional(Garanhuns),Jurema
+26133949,Escola de Referencia em Ensino Medio Professora Carlota Breckenfeld,Sertao do Alto Pajeu(Afogados da Ingazeira),Tabira
+26133974,Escola Pedro Santos Estima,Sertao do Alto Pajeu(Afogados da Ingazeira),Flores
+26133985,Escola de Referencia em Ensino Medio Regina Pacis,Sertao do Alto Pajeu(Afogados da Ingazeira),Santa Cruz da Baixa Verde
+26134085,Escola de Referencia em Ensino Medio Alfredo de Carvalho,Sertao do Alto Pajeu(Afogados da Ingazeira),Triunfo
+26134213,Escola Tecnica Estadual Maria emilia Cantarelli,Sertao do Submedio Sao Francisco(Floresta),Belem do Sao Francisco
+26134350,Escola Municipal Padre Donino,Recife Norte,Recife
+26135400,Escola Estadual Professora Mariza Jose Barbosa da Silva,Vale do Capibaribe(Limoeiro),Passira
+26135555,Escola de Referencia em Ensino Medio Escritor Paulo Cavalcanti,Metropolitano Norte,Olinda
+26136455,Escola de Referencia em Ensino Medio Marechal Floriano Peixoto,Metropolitano Norte,Olinda
+26136460,Escola de Referencia em Ensino Medio Santa Ana,Metropolitano Norte,Olinda
+26136489,Escola de Referencia em Ensino Medio Escritor Jose de Alencar,Metropolitano Norte,Paulista
+26137149,Escola de Referencia em Ensino Fundamental E Medio Stela Maria Dos Santos Pinto Barros,Metropolitano Norte,Abreu E Lima
+26138875,Anexo I do Colegio da Policia Militar Petrolina,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26139081,Escola de Referencia em Ensino Medio Joao Rodrigues Leite,Sertao do Submedio Sao Francisco(Floresta),Carnaubeira da Penha
+26139120,Escola Estadual Honorio Bernardes da Silva,Sertao do Submedio Sao Francisco(Floresta),Belem do Sao Francisco
+26140144,Escola de Referencia em Ensino Medio Pau Brasil,Sertao Medio Sao Francisco(Petrolina),Santa Maria da Boa Vista
+26140179,Escola de Referencia em Ensino Fundamental Eneide Coelho Paixao Cavalcanti,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26140187,Escola de Referencia em Ensino Fundamental Professora Suzel Galiza,Vale do Capibaribe(Limoeiro),Limoeiro
+26145677,Escola de Referencia em Ensino Medio Justa Barbosa de Sales,Vale do Capibaribe(Limoeiro),Vertente do Lerio
+26146967,Escola Bem-Te-Vi,Sertao Medio Sao Francisco(Petrolina),Oroco
+26054949,Escola Professora Rosilda Maciel Vieira,Agreste Centro Norte(Caruaru),Caruaru
+26055040,Escola Santo Amaro,Agreste Centro Norte(Caruaru),Caruaru
+26149907,Escola de Referencia em Ensino Fundamental E Medio Juazeiro,Sertao do Submedio Sao Francisco(Floresta),Tacaratu
+26150131,Escola de Referencia em Ensino Fundamental Professor Paulo Freire,Metropolitano Norte,Olinda
+26153491,Escola de Referencia em Ensino Fundamental Monsenhor Manoel Leonardo de Barros Barreto,Recife Sul,Recife
+26153742,Escola Estadual Madre Iva Bezerra de Araujo,Metropolitano Sul,Cabo de Santo Agostinho
+26154358,Escola de Referencia em Ensino Fundamental E Ensino Medio Ico Mandantes,Sertao do Submedio Sao Francisco(Floresta),Petrolandia
+26154803,Escola de Referencia em Ensino Medio Elvira Granja de Souza,Sertao do Araripe(Araripina),Santa Cruz
+26155516,Escola Estadual Indigena Apinage,Gre Sertao do Submedio Sao Francisco - Floresta,Jatoba
+26155559,Escola de Referencia em Ensino Medio Dom Helder Camara,Sertao Medio Sao Francisco(Petrolina),Lagoa Grande
+26155567,Escola Professora Josefina Gomes Araujo,Sertao Medio Sao Francisco(Petrolina),Lagoa Grande
+26165112,Escola Santa Sofia,Metropolitano Sul,Camaragibe
+26165783,Escola Estadual Nossa Senhora da Penha,Mata Sul(Palmares),Gameleira
+26167158,Escola Professora Galtemir Lins,Mata Sul(Palmares),Palmares
+26169029,Escola de Referencia em Ensino Medio Raimundo de Castro Ferreira,Sertao do Araripe(Araripina),Santa Filomena
+26169193,Escola Estadual Teotonio Correia da Silva,Mata Sul(Palmares),Sirinhaem
+26169223,Escola Estadual Doutor Caetano Monteiro,Mata Sul(Palmares),Rio Formoso
+26169975,Escola Jose Antonio Fagundes,Mata Norte(Nazare da Mata),Paudalho
+26171198,Escola de Referencia em Ensino Fundamental E Medio Professora Maria Eugenia Lopes Gomes,Metropolitano Sul,Cabo de Santo Agostinho
+26171600,Escola de Referencia em Ensino Fundamental Rural Manoel Gomes de Sa,Sertao do Submedio Sao Francisco(Floresta),Jatoba
+26172712,Escola de Referencia em Ensino Medio Ginasio Pernambucano - Aurora,Recife Norte,Recife
+26174464,Escola de Referencia em Ensino Medio Henrique Justino de Melo,Agreste Meridional(Garanhuns),Jucati
+26174570,Escola Estadual Pio Xii,Metropolitano Sul,Camaragibe
+26175509,Escola Estadual Quilombola Professora Rosa Doralina Mendes,Sertao Central(Salgueiro),Salgueiro
+26175533,Escola Tecnica Estadual Pedro Muniz Falcao,Sertao do Araripe(Araripina),Araripina
+26176203,Escola Tecnica Estadual Professor Paulo Freire,Sertao do Alto Pajeu(Afogados da Ingazeira),Carnaiba
+26176211,Escola Tecnica Estadual Maria Jose Vasconcelos,Mata Centro(Vitoria de Santo Antao),Bezerros
+26176220,Escola Tecnica Estadual Celia de Souza Leao Arraes de Alencar,Mata Centro(Vitoria de Santo Antao),Bonito
+26176238,Escola Tecnica Estadual Professor Lucilo Avila Pessoa,Recife Sul,Recife
+26176246,Escola Tecnica Estadual Alcides do Nascimento Lins,Metropolitano Sul,Camaragibe
+26053845,Escola Tecnica Estadual de Caruaru Nelson Barbalho,Agreste Centro Norte(Caruaru),Caruaru
+26176262,Escola Tecnica Estadual Professora Celia Siqueira,Sertao do Alto Pajeu(Afogados da Ingazeira),Sao Jose do Egito
+26176882,Escola Tecnica Estadual Professor Jose Luiz de Mendonca,Mata Centro(Vitoria de Santo Antao),Gravata
+26177013,Escola de Referencia em Ensino Medio de Bezerros,Mata Centro(Vitoria de Santo Antao),Bezerros
+26177927,Escola Malaquias Mendes da Silva,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26178028,Escola de Referencia em Ensino Medio de Ipojuca,Metropolitano Sul,Ipojuca
+26178079,Escola Estadual Fernando Soares Lyra,Metropolitano Sul,Cabo de Santo Agostinho
+26178087,Escola de Referencia em Ensino Medio Cabo de Santo Agostinho,Metropolitano Sul,Cabo de Santo Agostinho
+26178095,Escola de Referencia em Ensino Medio Clementino Coelho,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26178176,Escola de Referencia em Ensino Medio de Timbauba Professor Antonio Jose Barboza Dos Santos,Mata Norte(Nazare da Mata),Timbauba
+26178192,Escola de Referencia em Ensino Medio Professor Adauto Carvalho,Sertao do Alto Pajeu(Afogados da Ingazeira),Serra Talhada
+26178222,Escola de Referencia em Ensino Medio Dos Palmares Dom Acacio Rodrigues Alves,Mata Sul(Palmares),Palmares
+26178230,Escola Tecnica Estadual Cicero Dias,Recife Sul,Recife
+26178435,Escola de Referencia em Ensino Medio Maria Vieira Muliterno,Metropolitano Norte,Abreu E Lima
+26185938,Escola Tecnica Estadual Edson Mororo Moura,Agreste Centro Norte(Caruaru),Belo Jardim
+26178699,Escola de Referencia em Ensino Medio de Arcoverde,Sertao do Moxoto Ipanema(Arcoverde),Arcoverde
+26179474,Escola de Referencia em Ensino Medio Josias Inojosa de Oliveira,Sertao do Araripe(Araripina),Araripina
+26179610,Escola de Referencia em Ensino Medio Nobrega,Recife Norte,Recife
+26179806,Escola de Referencia em Ensino Medio de Salgueiro,Sertao Central(Salgueiro),Salgueiro
+26179857,Escola Tecnica Estadual Porto Digital,Recife Sul,Recife
+26176254,Escola Tecnica Estadual Jose Nivaldo Pereira Ramos,Agreste Centro Norte(Caruaru),Santa Cruz do Capibaribe
+26179997,Escola de Referencia em Ensino Medio Professora Edite Matos,Sertao Medio Sao Francisco(Petrolina),Santa Maria da Boa Vista
+26181282,Escola Tecnica Estadual Jose Alencar Gomes da Silva,Metropolitano Norte,Paulista
+26181320,Escola Estadual Dr Miguel Arraes de Alencar,Mata Sul(Palmares),Sirinhaem
+26181649,Escola de Referencia em Ensino Medio Quilombola Vereadora Alzira Tenorio do Amaral,Sertao do Moxoto Ipanema(Arcoverde),Custodia
+26181975,Escola de Referencia em Ensino Medio Djalma Macedo Gomes,Sertao do Araripe(Araripina),Santa Filomena
+26182084,Escola Estadual Jose Rodrigues de Barros - Mestre Zuza,Mata Sul(Palmares),Sao Jose da Coroa Grande
+26182092,Escola Estadual Escritor Maximiano Accioly Campos,Mata Sul(Palmares),Sirinhaem
+26182106,Escola Tecnica Estadual Antonio Dourado Cavalcanti,Agreste Meridional(Garanhuns),Lajedo
+26183021,Escola Tecnica Estadual Miguel Batista,Recife Norte,Recife
+26183030,Escola Estadual de Matriz da Luz,Metropolitano Sul,Sao Lourenco da Mata
+26184699,Escola Estadual Colette Catta,Metropolitano Sul,Cabo de Santo Agostinho
+26185059,Escola de Referencia em Ensino Medio Genifa Felisbela Nobre,Sertao do Araripe(Araripina),Ipubi
+26185113,Escola Tecnica Estadual Pedro Leao Leal,Sertao Central(Salgueiro),Sao Jose do Belmonte
+26185660,Escola Tecnica Estadual Governador Eduardo Campos - Sao Bento do Una - Garanhuns,Agreste Meridional(Garanhuns),Sao Bento do Una
+26185725,Escola Estadual Luiz Gomes Diniz,Sertao do Araripe(Araripina),Bodoco
+26185741,Escola Tecnica Estadual Professor Francisco Jonas Feitosa Costa,Sertao do Moxoto Ipanema(Arcoverde),Arcoverde
+26185750,Escola Tecnica Estadual Jornalista Cyl Gallindo,Sertao do Moxoto Ipanema(Arcoverde),Buique
+26185768,Escola Tecnica Estadual Luiz Alves Lacerda,Metropolitano Sul,Cabo de Santo Agostinho
+26185806,Escola Tecnica Estadual Governador Eduardo Campos,Metropolitano Sul,Sao Lourenco da Mata
+26187051,Escola Tecnica Estadual Ministro Fernando Lyra,Agreste Centro Norte(Caruaru),Caruaru
+26185946,Escola Tecnica Estadual Advogado Jose Davi Gil Rodrigues,Metropolitano Sul,Jaboatao Dos Guararapes
+26186004,Escola Tecnica Estadual Senador Wilson Campos,Mata Norte(Nazare da Mata),Paudalho
+26186241,Escola de Referencia em Ensino Medio Professor Jordao emerenciano,Recife Sul,Recife
+26186411,Escola Estadual Indigena Josefa Alice da Conceicao,Sertao do Submedio Sao Francisco(Floresta),Itacuruba
+26186446,Escola Estadual Indigena Quiteria Maria de Jesus,Gre Sertao do Submedio Sao Francisco - Floresta,Jatoba
+26050331,Escola Tomas Alves,Agreste Centro Norte(Caruaru),Belo Jardim
+26187566,Escola Estadual Claudio Rodrigues Galindo,Sertao Medio Sao Francisco(Petrolina),Afranio
+26187825,Escola Tecnica Estadual Jurandir Bezerra Lins,Metropolitano Norte,Igarassu
+26187965,Escola Tecnica Estadual Professora Maria Wilza Barros de Miranda,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26187973,Escola de Referencia em Ensino Medio Professora Evanira de Souza Dias,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26188295,Escola de Referencia em Ensino Medio Pompeia Campos,Recife Norte,Recife
+26188538,Escola Tecnica Estadual Ariano Vilar Suassuna - Garanhuns,Agreste Meridional(Garanhuns),Garanhuns
+26188554,Escola Tecnica Estadual Francisco de Matos Sobrinho,Agreste Meridional(Garanhuns),Bom Conselho
+26188643,Escola Estadual Indigena Ananias de Sena,Sertao do Submedio Sao Francisco(Floresta),Carnaubeira da Penha
+26189526,Escola Estadual Indigena Luiz Pereira Leal,Gre Sertao do Submedio Sao Francisco - Floresta,Itacuruba
+26189585,Escola Tecnica Estadual Pastor Isaac Martins Rodrigues,Metropolitano Norte,Abreu E Lima
+26190028,Escola Estadual Paulo Dantas Filho,Sertao do Moxoto Ipanema(Arcoverde),Buique
+26213800,Escola Manoel Messias Barbosa,Sertao Medio Sao Francisco(Petrolina),Petrolina
+26305615,Escola de Referencia em Ensino Medio Carlos Soares da Silva,Vale do Capibaribe(Limoeiro),Salgadinho
+26366614,Escola de Referencia em Ensino Medio Jose do Patrocinio Mota,Agreste Meridional(Garanhuns),Sao Bento do Una
+26408643,Escola de Referencia em Ensino Medio Professora Benedita de Morais Guerra,Mata Norte(Nazare da Mata),Macaparana
+26413817,Escola de Referencia em Ensino Fundamental E Medio Torquato de Castro,Metropolitano Sul,Camaragibe
+26419823,Escola Estadual Teresinha de Souza Lira,Sertao do Submedio Sao Francisco(Floresta),Floresta
+26419831,Escola Estadual Jose Ferreira da Silva,Sertao do Submedio Sao Francisco(Floresta),Floresta
+26525720,Escola Tecnica Estadual Maria Eduarda Ramos de Barros,Mata Norte(Nazare da Mata),Carpina
+26525780,Escola de Referencia em Ensino Medio Governador Miguel Arraes de Alencar,Sertao do Araripe(Araripina),Granito
+26525798,Escola Tecnica Estadual Aderico Alves de Vasconcelos,Mata Norte(Nazare da Mata),Goiana
+26525801,Escola Tecnica Estadual Jose Humberto de Moura Cavalcanti,Vale do Capibaribe(Limoeiro),Limoeiro
+26525810,Escola Tecnica Estadual Miguel Arraes de Alencar,Mata Norte(Nazare da Mata),Timbauba
+26525828,Escola Tecnica Estadual Maximiano Accioly Campos,Metropolitano Sul,Jaboatao Dos Guararapes
+26525836,Escola Tecnica Estadual Antonio Arruda de Farias,Vale do Capibaribe(Limoeiro),Surubim
+26525852,Escola de Referencia em Ensino Medio Professor Denival Jose Rodrigues de Melo,Mata Norte(Nazare da Mata),Itaquitinga
+26525933,Escola Tecnica Estadual Arlindo Ferreira Dos Santos,Sertao do Moxoto Ipanema(Arcoverde),Sertania
+26540720,Escola de Referencia em Ensino Medio Professora Irene Maria Ramos Coelho,Sertao Medio Sao Francisco(Petrolina),Afranio
