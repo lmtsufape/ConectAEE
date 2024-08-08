@@ -19,8 +19,7 @@ use Faker\Generator as Faker;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'username' => $faker->username,
+        'nome' => $faker->name,
         'telefone' => "911111111",
         'password' => bcrypt('123456'),
         'remember_token' => Str::random(10),

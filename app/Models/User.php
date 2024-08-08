@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'telefone', 'username', 'cpf'
+        'nome', 'email', 'cpf', 'matricula', 'telefone', 'password', 
     ];
 
     /**
@@ -40,6 +40,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function roles(){
+        return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
+    }
 
     public function gerenciars(){
         return $this->hasMany(Gerenciar::class);
