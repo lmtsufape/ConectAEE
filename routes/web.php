@@ -12,7 +12,7 @@ use App\Http\Controllers\NotificacaoController;
 use App\Http\Controllers\ObjetivoController;
 use App\Http\Controllers\PdiController;
 use App\Http\Controllers\SugestaoController;
-use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\UserController;
 use App\Models\Feedback;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -46,7 +46,7 @@ Route::prefix('usuarios/notificacoes')->controller(NotificacaoController::class)
 
 });
 
-Route::prefix('users')->controller(UsuarioController::class)->group(function(){
+Route::prefix('users')->controller(UserController::class)->group(function(){
     Route::get('/completarCadastro', 'completarCadastro')->name('usuario.completarCadastro')->middleware('checkNaoCadastrado');
     Route::post('/completar', 'completar')->name('usuario.completar');
     Route::get('/editar', 'editar')->name('usuario.editar')->middleware('checkCadastrado');

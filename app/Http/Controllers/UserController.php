@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use App\Models\User;
 
-class UsuarioController extends Controller
+class UserController extends Controller
 {
     public function completarCadastro()
     {
