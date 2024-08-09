@@ -21,8 +21,8 @@ class CreateUsersTable extends Migration
       $table->integer('matricula')->unique();
       $table->string('telefone');
       $table->string('password');
-
-      $table->foreignId('especialidade_id')->constrained();
+      $table->boolean('ativo')->default(false);
+      
       $table->rememberToken();
       $table->timestamps();
       $table->softDeletes();

@@ -18,7 +18,7 @@ class CheckCadastrado
     {
       if(!Auth::check()){
         return redirect('/')->with('denied', 'É necessário estar logado para acessar o sistema');
-      }else if(Auth::user()->cadastrado == false){
+      }else if(Auth::user()->ativo == false){
         return redirect()->route('usuario.completarCadastro');
       }else{
         return $next($request);

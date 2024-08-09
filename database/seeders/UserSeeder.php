@@ -14,20 +14,34 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class)->create([
-            'name' => "Administrador",
-            'username' => "Gui",
+        User::create([
+            'nome' => "Administrador",
             'email' => "admin@gmail.com",
+            'matricula' => 123456,
+            'telefone' => '1233455654',
             'password' => bcrypt("password"),
             'cpf' => "106.981.574-45",
+            'ativo' => true,
         ]);
 
-        factory(User::class)->create([
-            'name' => "Professor AEE",
-            'username' => "Edgar",
-            'email' => "professoraee@gmail.com",
+        User::create([
+            'nome' => "Professor",
+            'email' => "professor@gmail.com",
+            'matricula' => 123896,
+            'telefone' => '1233455654',
             'password' => bcrypt("password"),
-            'cpf' => "106.981.514-45",
+            'cpf' => "007.982.270-36",
+            'ativo' => true,
+        ]);
+
+        User::create([
+            'nome' => "Professor2",
+            'email' => "professor2@gmail.com",
+            'matricula' => 1238926,
+            'telefone' => '12332455654',
+            'password' => bcrypt("password"),
+            'cpf' => "426.886.970-05",
+            'ativo' => true,
         ]);
     }
 }

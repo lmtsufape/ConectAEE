@@ -29,11 +29,7 @@ class AlunoController extends Controller
     {
         $aluno = Aluno::find($id_aluno);
 
-        $mensagens = MensagemForumAluno::where('forum_aluno_id', '=', $aluno->forum->id)
-            // ->where('texto', 'not like', '%'.'<img'.'%')
-            // ->where('texto', 'not like', '%'.'<iframe'.'%')
-            // ->orderBy('id','desc')->take(5)->get();
-            ->orderBy('id', 'desc')->get();
+        $mensagens = MensagemForumAluno::where('forum_aluno_id', '=', $aluno->forum->id)->orderBy('id', 'desc')->get();
 
         foreach ($mensagens as $mensagem) {
             $img = strpos($mensagem->texto, '<img');
@@ -59,14 +55,8 @@ class AlunoController extends Controller
 
     public static function listar()
     {
-        $gerenciars = Auth::user()->gerenciars;
-        $ids_alunos = array();
 
-        foreach ($gerenciars as $gerenciar) {
-            array_push($ids_alunos, $gerenciar->aluno_id);
-        }
-
-        $alunos = Aluno::whereIn('id', $ids_alunos)->orderBy('nome', 'asc')->paginate(15);
+        $alunos = Aluno::where('professor_responsavel', Auth::user()->id)->orderBy('nome', 'asc')->paginate(15);
 
         return view("aluno.listar", [
             'alunos' => $alunos,

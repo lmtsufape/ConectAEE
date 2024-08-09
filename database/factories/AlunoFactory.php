@@ -23,6 +23,22 @@ $factory->define(Aluno::class, function (Faker $faker) {
   $replace = '';
 
   return [
+    'matricula' => 23434,
+    'idade_inicio_estudos' => 2,
+    'idade_escola_atual' => 2,
+    'nome_pai' => 'sdfsdfdsf',
+    'escolaridade_pai' => 'sdfasdf',
+    'profissao_pai' => 'sdfasdf',
+    'nome_mae' => 'sdfsadf',
+    'escolaridade_mae' => 'sdfsadf',
+    'profissao_mae' => 'sdfsfd',
+    'num_irmaos' => 23,
+    'contato_responsavel' => '2324354545',
+    'imagem' => '',
+    'municipio_id' => 1,
+    'escola_id' => 1,
+    'endereco_id' => 1,
+    'professor_responsavel' => 2,
     'nome' => str_replace($order, $replace, $str),
     'cid' => 'H910',
     'cpf' => $faker->cpf,

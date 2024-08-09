@@ -14,16 +14,19 @@ class CreateAlunosTable extends Migration
     public function up()
     {
         Schema::create('alunos', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('nome');
             $table->date('data_de_nascimento');
             $table->string('cpf')->unique();
             $table->integer('matricula');
+            $table->integer('idade_inicio_estudos');
+            $table->integer('idade_escola_atual');
+
             $table->string('nome_pai');
             $table->string('escolaridade_pai');
             $table->string('profissao_pai');
             $table->string('nome_mae');
-            $table->string('escolaridade_mae') ;
+            $table->string('escolaridade_mae');
             $table->string('profissao_mae');
             $table->integer('num_irmaos');
             $table->string('contato_responsavel');
@@ -35,8 +38,10 @@ class CreateAlunosTable extends Migration
             $table->text('observacao')->nullable();
             $table->string('imagem')->nullable();
 
-            $table->integer('endereco_id');
-            $table->foreign('endereco_id')->references('id')->on('enderecos')->onDelete('cascade');
+            $table->foreignId('municipio_id')->constrained();
+            $table->foreignId('escola_id')->constrained();
+            $table->foreignId('endereco_id')->constrained()->onDelete('cascade');
+            $table->foreignId('professor_responsavel')->constrained('users');
 
             $table->timestamps();
             $table->softDeletes();

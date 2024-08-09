@@ -63,7 +63,7 @@ class LoginController extends Controller
   }
 
   protected function authenticated(Request $request, $user){
-    if ( $user->cadastrado ){
+    if ($user->ativo){
       return redirect()->route('home');
     } else{
       return redirect()->route("usuario.completarCadastro");

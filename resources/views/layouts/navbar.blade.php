@@ -34,7 +34,7 @@
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto">
-                @if (Auth::check() && Auth::user()->cadastrado)
+                @if (Auth::check() && Auth::user()->ativo)
                     @php
                         $notificacoes = Auth::user()->notificacoes;
                         $lidos = array_column($notificacoes->toArray(), 'lido');
@@ -175,7 +175,7 @@
                             </li>
                         </ul>
                     </li>
-                @elseif(Auth::check() && !Auth::user()->cadastrado)
+                @elseif(Auth::check() && !Auth::user()->ativo)
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
                             aria-expanded="false">

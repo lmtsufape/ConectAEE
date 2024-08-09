@@ -2,94 +2,80 @@
 @section('title','ConectAEE')
 @section('content')
 
-    <div class="row">
+    <div class="d-flex flex-row justify-content-center align-item-center" style="min-height: 70vh">
         <div class="col-md-7">
-            <div class="d-flex flex-column">
-                <div class="container text-center">
+            <div class="d-flex flex-column m-5">
+                <div class="container p-5 ">
                     <img src="{{asset('images/logo.png')}}" width="250px" height="130px">
+                    <p class="text-justify pt-5">
+                        O ConectAEE é um sistema pensado para que a educação inclusiva seja uma realidade nas escolas e
+                        instituições de ensino do Brasil e que dá suporte ao acompanhamento de alunos
+                        que necessitam de Atendimento Educacional Especializado (AEE), permitindo uma maior
+                        integração entre escola, família e profissionais da Saúde, uma vez que a troca de informações
+                        entre cada um desses indivíduos é indispensável.
+                    </p>
                 </div>
-                <p class="text-justify p-5 m-5">
-                    O ConectAEE é um sistema pensado para que a educação inclusiva seja uma realidade nas escolas e
-                    instituições de ensino do Brasil e que dá suporte ao acompanhamento de alunos
-                    que necessitam de Atendimento Educacional Especializado (AEE), permitindo uma maior
-                    integração entre escola, família e profissionais da Saúde, uma vez que a troca de informações
-                    entre cada um desses indivíduos é indispensável.
-                </p>
             </div>
         </div>
 
         <div class="col-md-5">
-            <div class="panel panel-default">
-                <div style="height:30px;">
-                    <h2 class="text-center">
-                        <strong style="color: #12583C">
-                            Entrar
-                        </strong>
-                    </h2>
-                </div>
-
-                <div class="panel-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-                        <div class="form-group{{ $errors->has('username') || $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="login" class="col-md-12 control-label text-left">E-mail</label>
-
-                            <div class="col-md-12">
-                                <input id="login" type="text" class="form-control" name="login"
-                                       value="{{ old('username') ?: old('email') }}" placeholder="exemplo@email.com"
-                                       autofocus>
-
-                                @if ($errors->has('username') || $errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('username') ?: $errors->first('email') }}</strong>
+            <div class="col-md-9 bg-white rounded-5 shadow-lg">
+                <h2 class="text-center">
+                    <strong style="color: #12583C">
+                        Entrar
+                    </strong>
+                </h2>
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+                    <div class="form-group{{ $errors->has('username') || $errors->has('email') ? ' has-error' : '' }}">
+                        <label for="login" class="col-md-12 control-label text-left">E-mail</label>
+                        <div class="col-md-12">
+                            <input id="login" type="text" class="form-control" name="login"
+                                    value="{{ old('username') ?: old('email') }}" placeholder="exemplo@email.com"
+                                    autofocus>
+                            @if ($errors->has('username') || $errors->has('email'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('username') ?: $errors->first('email') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <label for="password" class="col-md-12 control-label">Senha</label>
+                        <div class="col-md-12">
+                            <input id="password" type="password" class="form-control" name="password"
+                                    placeholder="Insira a senha">
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="checkbox">
+                                <label style="font-size:13px;">
+                                    <input type="checkbox" name="remember"
+                                            value="{{ old('remember') ? 'checked' : '' }}">
+                                    <span style="font-family: Arial; color: #7F7F7F">
+                                    Lembrar e-mail e senha
                                     </span>
-                                @endif
+                                </label>
+                                <button type="submit" class="btn btn-success w-100">
+                                    Entrar
+                                </button>
+                                <p style="font-size: 13px; margin-bottom: -15px">
+                                    <a href="{{ route('password.request') }}">Clique aqui </a>se você esqueceu sua senha.
+                                </p>
+                                <hr class="p-2" style="border-top: 1px solid #CCC">
+                                <a class="btn btn-primary w-100" href="{{ route('register') }}" id="signup">
+                                    Cadastre-se
+                                </a>
                             </div>
                         </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-12 control-label">Senha</label>
-
-                            <div class="col-md-12">
-                                <input id="password" type="password" class="form-control" name="password"
-                                       placeholder="Insira a senha">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <div class="checkbox">
-                                    <label style="font-size:13px;">
-                                        <input type="checkbox" name="remember"
-                                               value="{{ old('remember') ? 'checked' : '' }}">
-                                        <span style="font-family: Arial; color: #7F7F7F">
-                                        Lembrar e-mail e senha
-                                        </span>
-                                    </label>
-
-                                    <button type="submit" class="btn btn-success w-100">
-                                        Entrar
-                                    </button>
-                                    <p style="font-size: 13px; margin-bottom: -15px">
-                                        <a href="{{ route('password.request') }}">Clique aqui </a>se você esqueceu sua senha.
-                                    </p>
-
-                                    <hr class="p-2" style="border-top: 1px solid #CCC">
-         
-                                    <a class="btn btn-primary w-100" href="{{ route('register') }}" id="signup">
-                                        Cadastre-se
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

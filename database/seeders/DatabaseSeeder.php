@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Gre;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,7 +15,12 @@ class DatabaseSeeder extends Seeder
     public function run(){
 
         //Comentar
+        $this->call(EspecialidadeSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(GreSeeder::class);
+        $this->call(MunicipioSeeder::class);
+        $this->call(EscolaSeeder::class);
+
 
         //Não comentar
         $this->call(PerfilSeeder::class);
@@ -24,16 +30,15 @@ class DatabaseSeeder extends Seeder
         $this->call(AlunoSeeder::class);
         $this->call(InstituicaoSeeder::class);
         $this->call(AlunoInstituicaoSeeder::class);
-        $this->call(GerenciarSeeder::class);
         $this->call(ForumAlunoSeeder::class);
-        $this->call(MensagemForumAlunoSeeder::class);
+        // $this->call(MensagemForumAlunoSeeder::class);
 
         //Não comentar
         $this->call(TipoObjetivoSeeder::class);
         $this->call(CorSeeder::class);
 
         //Comentar
-        $this->call(ObjetivoSeeder::class);
+        // $this->call(ObjetivoSeeder::class);
 
         //Não comentar
         $this->call(StatusSeeder::class);
