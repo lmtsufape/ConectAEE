@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-white">
+<nav class="navbar navbar-expand-lg bg-white mb-5">
     <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}" style="list-style:none;">
             <span style="color: #12583C; font-weight: 800; font-size: 20px;">
@@ -46,10 +46,10 @@
                             Alunos
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('aluno.listar') }}">
+                            <li><a class="dropdown-item" href="{{ route('aluno.index') }}">
                                     Listar
                                 </a></li>
-                            <li><a class="dropdown-item" href="{{ route('aluno.buscar') }}">
+                            <li><a class="dropdown-item" href="{{ route('aluno.create') }}">
                                     Cadastrar
                                 </a></li>
                         </ul>
@@ -155,11 +155,11 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            Olá, <strong style="color: gray ">{{ \Auth::user()->name }}</strong>
+                            Olá, <strong style="color: gray ">{{ \Auth::user()->nome }}</strong>
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="{{ route('usuario.editar') }}">
+                                <a class="dropdown-item" href="{{ route('user.edit', ['id' => \Auth::user()->id]) }}">
                                     Meu Perfil
                                 </a>
                             </li>

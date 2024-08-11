@@ -49,32 +49,32 @@ Route::prefix('usuarios/notificacoes')->controller(NotificacaoController::class)
 Route::prefix('users')->controller(UserController::class)->group(function(){
     Route::get('/completarCadastro', 'completarCadastro')->name('usuario.completarCadastro')->middleware('checkNaoCadastrado');
     Route::post('/completar', 'completar')->name('usuario.completar');
-    Route::get('/editar', 'editar')->name('usuario.editar')->middleware('checkCadastrado');
-    Route::post('/atualizar', 'atualizar')->name('usuario.atualizar');
-    Route::get('/editarSenha', 'editarSenha')->name('usuario.editarSenha')->middleware('checkCadastrado');
-    Route::post('/atualizarSenha', 'atualizarSenha')->name('usuario.atualizarSenha');
+    Route::get('/create', 'create')->name('user.create');
+    Route::post('/store', 'store')->name('user.store');
+    Route::get('/edit/{id}', 'edit')->name('user.edit');
+    Route::put('/', 'update')->name('user.update');
 
 });
 
 Route::prefix('aluno')->controller(AlunoController::class)->group(function(){
-    Route::get('/cadastrar', 'cadastrar')->name('aluno.cadastrar')->middleware('checkCadastrado');
-    Route::get('/listar', 'listar')->name('aluno.listar')->middleware('checkCadastrado');
-    Route::get('/buscar', 'buscar')->name('aluno.buscar')->middleware('checkCadastrado');
-    Route::get('/buscarCPF', 'buscarCPF')->name('aluno.buscarCPF')->middleware('checkCadastrado');
-    Route::get('/buscarAluno', 'buscarAluno')->name('aluno.buscarAluno')->middleware('checkCadastrado');
-    Route::get('/{id_aluno}/gerenciar', 'gerenciar')->name('aluno.gerenciar')->middleware('checkGerenciaAluno');
-    Route::get('/{id_aluno}/editar', 'editar')->name('aluno.editar')->middleware('checkGerenciaAlunoAdministrador');
-    Route::get('/{id_aluno}/excluir', 'excluir')->name('aluno.excluir')->middleware('checkGerenciaAlunoAdministrador');
-    Route::post('/criar', 'criar')->name('aluno.criar');
+    Route::get('/cadastrar', 'create')->name('aluno.create');
+    Route::get('/', 'index')->name('aluno.index');
+    Route::get('/buscar', 'buscar')->name('aluno.buscar');
+    Route::get('/buscarCPF', 'buscarCPF')->name('aluno.buscarCPF');
+    Route::get('/buscarAluno', 'buscarAluno')->name('aluno.buscarAluno');
+    Route::get('/{id_aluno}/gerenciar', 'gerenciar')->name('aluno.gerenciar');
+    Route::get('/{id_aluno}/editar', 'editar')->name('aluno.editar');
+    Route::get('/{id_aluno}/excluir', 'excluir')->name('aluno.excluir');
+    Route::post('/criar', 'store')->name('aluno.store');
     Route::post('/atualizar', 'atualizar')->name('aluno.atualizar');
     
     //Rotas para permissões
-    Route::get('/{id_aluno}/gerenciar/permissoes/listar','gerenciarPermissoes')->name('aluno.permissoes')->middleware('checkGerenciaAlunoAdministrador');
-    Route::get('/{id_aluno}/gerenciar/permissoes/cadastrar','cadastrarPermissao')->name('aluno.permissoes.cadastrar')->middleware('checkGerenciaAlunoAdministrador');
-    Route::get('/{cpf}/gerenciar/permissoes/requisitar', 'requisitarPermissao')->name('aluno.permissoes.requisitar')->middleware('checkCadastrado');
-    Route::get('/gerenciar/permissoes/{id_permissao}/editar','editarPermissao')->name('aluno.permissoes.editar')->middleware('checkGerenciaAdministrador');
-    Route::get('/gerenciar/permissoes/{id_permissao}/remover','removerPermissao')->name('aluno.permissoes.remover')->middleware('checkGerenciaAdministrador');
-    Route::get('/gerenciar/permissoes/notificacao/{id_notificacao}/conceder', 'concederPermissao')->name('aluno.permissoes.conceder')->middleware('checkNotificacao');
+    Route::get('/{id_aluno}/gerenciar/permissoes/listar','gerenciarPermissoes')->name('aluno.permissoes');
+    Route::get('/{id_aluno}/gerenciar/permissoes/cadastrar','cadastrarPermissao')->name('aluno.permissoes.cadastrar');
+    Route::get('/{cpf}/gerenciar/permissoes/requisitar', 'requisitarPermissao')->name('aluno.permissoes.requisitar');
+    Route::get('/gerenciar/permissoes/{id_permissao}/editar','editarPermissao')->name('aluno.permissoes.editar');
+    Route::get('/gerenciar/permissoes/{id_permissao}/remover','removerPermissao')->name('aluno.permissoes.remover');
+    Route::get('/gerenciar/permissoes/notificacao/{id_notificacao}/conceder', 'concederPermissao')->name('aluno.permissoes.conceder');
     Route::post('/gerenciar/permissoes/criar','criarPermissao')->name('aluno.permissoes.criar');
     Route::post('/gerenciar/permissoes/notificar','notificarPermissao')->name('aluno.permissoes.notificar');
     Route::post('/gerenciar/permissoes/atualizar','atualizarPermissao')->name('aluno.permissoes.atualizar');

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -11,91 +13,36 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function completarCadastro()
-    {
-        $usuario = Auth::user();
 
-        return view("usuario.completarCadastro", ['usuario' => $usuario]);
+    public function index(): View
+    {
+        $users = User::all();
+
+        return view('users.index', compact('users'));
     }
 
-    public function completar(Request $request)
+    public function create(): View
     {
-        $user = User::find($request->id_usuario);
-
-        $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'unique:users'],
-            'cpf' => ['required', 'unique:users'],
-            'username' => ['required', 'string', 'max:255'],
-            'telefone' => ['required', 'string'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
-
-        $validator->sometimes('username', 'unique:users', function ($request) use ($user) {
-            return $request->username != $user->username;
-        });
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->errors())->withInput();
-        }
-
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->cpf = $request->cpf;
-        $user->username = $request->username;
-        $user->telefone = $request->telefone;
-        $user->password = Hash::make($request->password);
-        $user->cadastrado = true;
-
-        $user->update();
-
-        return redirect()->route("aluno.listar")->with('success', 'Seu cadastro está completo!.');
+        return view('auth.register');
     }
 
-    public function editar()
+    public function store(StoreUserRequest $request): Void
+    {
+        dd($request);
+        User::create([$request]);
+    }
+
+    public function edit($id): View
     {
         $usuario = Auth::user();
 
         return view("usuario.editar", ['usuario' => $usuario]);
     }
 
-    public function editarSenha()
+    public function update(Request $request, $id)
     {
-        return view('usuario.editarSenha');
-    }
-
-    public static function atualizar(Request $request)
-    {
-        $usuario = Auth::user();
-
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email|max:255',
-            'cpf' => ['required'],
-            'username' => 'required|string|max:255',
-            'telefone' => 'required|string',
-            'name' => 'required|string|max:255',
-            'senha' => 'required|string|min:6',
-        ]);
-
-        $validator->sometimes('username', 'unique:users', function ($request) use ($usuario) {
-            return $request->username != $usuario->username;
-        });
-
-        $validator->sometimes('email', 'unique:users', function ($request) use ($usuario) {
-            return $request->email != $usuario->email;
-        });
-
-        $validator->sometimes('cpf', 'unique:users', function ($request) use ($usuario) {
-            return $request->cpf != $usuario-cpf;
-        });
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->errors())->withInput();
-        }
-
-        if (!(Hash::check($request->senha, $usuario->password))) {
-            return redirect()->back()->with('fail', 'Senha incorreta.');
-        }
+        $usuario = User::find($id);
+        
 
         $usuario->name = $request->name;
         $usuario->username = $request->username;
@@ -106,6 +53,12 @@ class UserController extends Controller
         $usuario->update();
 
         return redirect()->route("aluno.listar")->with('success', 'Seus dados foram atualizados!');
+    }
+
+
+    public function editarSenha()
+    {
+        return view('usuario.editarSenha');
     }
 
 

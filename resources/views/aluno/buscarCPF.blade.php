@@ -9,7 +9,7 @@
         Novo Aluno
       </strong>
       <div style="font-size: 14px" id="login-card">
-        <a href="{{route('aluno.listar')}}">Início</a>
+        <a href="{{route('aluno.index')}}">Início</a>
         > Novo Aluno
       </div>
     </h2>
@@ -42,7 +42,7 @@
         <div class="form-group">
           <div class="row col-md-12 text-center">
             <br>
-            <a class="btn btn-secondary" href="{{route('aluno.listar')}}">
+            <a class="btn btn-secondary" href="{{route('aluno.index')}}">
               Voltar
             </a>
             <button type="submit" class="btn btn-primary">

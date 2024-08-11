@@ -35,7 +35,7 @@
     
         </div>
         <div class="ms-auto">
-            <a class="btn btn-success" href="{{ route('aluno.buscar')}}">Adicionar novo aluno</a>
+            <a class="btn btn-success" href="{{ route('aluno.create')}}">Adicionar novo aluno</a>
         </div>
     </div>
     <hr style="border-top: 2px solid">
@@ -50,20 +50,18 @@
                 <div class="m-3 rounded-5 shadow-lg d-flex flex-column justify-content-center align-items-center border" style="width: 11vw; height: 33vh;">
                     @if($aluno->imagem != null)
                         <img src="{{asset('storage/avatars/'.$aluno->imagem)}}"
-                                style="border-radius: 60%; width:130px; height: 130px; object-fit: cover;"
-                                class="card-img-top img-responsive">
+                                style="width:130px; height: 130px; object-fit: cover;"
+                                class="rounded-circle">
                     @else
                         <img src="{{asset('images/avatar.png')}}"
-                                style="border-radius: 60%; width:150px; height: 150px; object-fit: cover;"
-                                class="card-img-top img-responsive">
+                                style="width:130px; height: 130px; object-fit: cover;"
+                                class="rounded-circle">
                     @endif
 
-                    <h2 class="card-title" style="max-width: 160px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">{{$aluno->nome}}</h2>
-                    <p class="fs-5">
-                        {{$aluno->data_de_nascimento}}
-                    </p>
-                    <p class="fs-5">{{$aluno->endereco->cidade}} - {{$aluno->endereco->estado}}</p>
-                    <p class="fs-5">{{$aluno->cid}}</p>
+                    <h2 class="fs-5" style="max-width: 160px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">{{$aluno->nome}}</h2>
+                    <span class="fs-5">{{$aluno->data_de_nascimento}}</span>
+                    <span class="fs-5">{{$aluno->endereco->cidade}} - {{$aluno->endereco->estado}}</span>
+                    <span class="fs-5">{{$aluno->cid}}</span>
                 </div>
             </a>
         @endforeach 

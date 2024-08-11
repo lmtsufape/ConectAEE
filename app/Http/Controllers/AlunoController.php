@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App;
 use App\Models\Notificacao;
 use App\Notifications\NovoAluno;
 use App\Notifications\ConcedeuPermissao;
@@ -15,8 +14,6 @@ use App\Models\Endereco;
 use App\Models\ForumAluno;
 use App\Models\MensagemForumAluno;
 use App\Models\Album;
-use File;
-use Image;
 use Illuminate\Support\Facades\Auth;
 use Notification;
 use Illuminate\Http\Request;
@@ -53,9 +50,8 @@ class AlunoController extends Controller
         ]);
     }
 
-    public static function listar()
+    public function index()
     {
-
         $alunos = Aluno::where('professor_responsavel', Auth::user()->id)->orderBy('nome', 'asc')->paginate(15);
 
         return view("aluno.listar", [
@@ -64,26 +60,7 @@ class AlunoController extends Controller
         ]);
     }
 
-    public static function buscarAluno(Request $request)
-    {
-
-        $gerenciars = Auth::user()->gerenciars;
-        $ids_alunos = array();
-
-        foreach ($gerenciars as $gerenciar) {
-            array_push($ids_alunos, $gerenciar->aluno_id);
-        }
-
-        $alunos = Aluno::whereIn('id', $ids_alunos)->where('nome', 'ilike', '%' . $request->termo . '%')->paginate(12);
-
-        return view("aluno.listar", [
-            'alunos' => $alunos,
-            'termo' => $request->termo
-        ]);
-
-    }
-
-    public static function cadastrar()
+    public function create()
     {
         $instituicoes = Auth::user()->instituicoes;
         $perfis = Perfil::all();
@@ -98,123 +75,9 @@ class AlunoController extends Controller
         ]);
     }
 
-    public static function editar($id_aluno)
+
+    public function store(Request $request)
     {
-
-        $aluno = Aluno::find($id_aluno);
-        $endereco = $aluno->endereco;
-        $perfis = [[1, 'Responsável'], [2, 'Professor AEE']];
-        $instituicoes = Auth::user()->instituicoes;
-
-        return view("aluno.editar", [
-            'aluno' => $aluno,
-            'endereco' => $endereco,
-            'instituicoes' => $instituicoes,
-            'perfis' => $perfis
-        ]);
-    }
-
-    public static function excluir($id_aluno)
-    {
-        $aluno = Aluno::find($id_aluno);
-
-        $gerenciars = Gerenciar::where('aluno_id', '=', $aluno->id)->get();
-
-        foreach ($gerenciars as $gerenciar) {
-            $gerenciar->delete();
-        }
-
-        $aluno->delete();
-
-        return redirect()->route("aluno.listar")->with('success', 'O aluno ' . $aluno->nome . ' foi excluído.');
-    }
-
-    public static function buscar()
-    {
-
-        if (count(Auth::user()->instituicoes) == 0) {
-            return redirect()->route("instituicao.cadastrar")->with('info', 'O cadastro de alunos, requer que uma instituicão esteja cadastrada.');
-        }
-
-        return view("aluno.buscarCPF", [
-            'cpf' => [],
-            'aluno' => []
-        ]);
-    }
-
-    public function buscarCPF(Request $request)
-    {
-        try {
-            \App\Validator\CpfValidator::validate ($request->all());
-            $cpf = $request->cpf;
-            $aluno = Aluno::where('cpf', '=', $cpf)->first();
-            $botaoAtivo = false;
-
-            if ($aluno == null) {
-                return redirect()->route("aluno.cadastrar")->with('cpf', $cpf);
-            } else {
-                $gerenciars = $aluno->gerenciars;
-                foreach ($gerenciars as $gerenciar) {
-                    if ($gerenciar->user->id == Auth::user()->id && $gerenciar->tipoUsuario == 3) {
-                        $botaoAtivo = true;
-                    }
-                }
-            }
-
-            return view("aluno.buscarCPF", [
-                'aluno' => $aluno,
-                'cpf' => $cpf,
-                'botaoAtivo' => $botaoAtivo
-            ]);
-        }catch (\App\Validator\ValidationException $exception){
-            return redirect('/aluno/buscar')
-                ->withErrors($exception->getValidator())
-                ->withInput();
-        }
-
-    }
-
-    public static function criar(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'perfil' => ['required'],
-            'instituicoes' => ['required'],
-            'imagem.*' => 'image|mimes:jpeg,png,jpg,jpe|max:3000',
-            'nome' => ['required', 'min:2', 'max:191'],
-            'sexo' => ['required'],
-            'cpf' => ['unique:alunos'],
-            'cid' => ['nullable'], //,'regex:/(^([a-zA-z])(\d)(\d)(\d)$)/u'],
-            'descricaoCid' => ['required_with:cid'],
-            'observacao' => ['nullable'],
-            'data_nascimento' => ['required', 'date', 'before:today', 'after:01/01/1900'],
-            'cep' => ['required'],
-            'rua' => ['required'],
-            'numero' => ['required', 'numeric'],
-            'bairro' => ['required'],
-            'cidade' => ['required'],
-            'estado' => ['required'],
-            'username' => ['required_if:perfil,==,2'],
-        ], [
-            'username.required_if' => 'É necessário criar um usuário quando o cadastrante é um Professor AEE',
-        ]);
-
-        $validator->sometimes('username', 'unique:users', function ($request) {
-            return $request->cadastrado == "false";
-        });
-
-        $validator->sometimes('username', 'exists:users', function ($request) {
-            return $request->cadastrado == "true";
-        });
-
-        if (Auth::user()->username == $request->username) {
-            $validator->errors()->add('username', 'Você não pode colocar seu nome de usuário neste campo.');
-            return redirect()->back()->withErrors($validator->errors())->withInput()->with('cpf', $request->cpf);
-        }
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->errors())->withInput()->with('cpf', $request->cpf);
-        }
-
         $endereco = new Endereco();
         $endereco->cep = $request->cep;
         $endereco->numero = $request->numero;
@@ -244,10 +107,6 @@ class AlunoController extends Controller
         $aluno->cpf = $request->cpf;
         $aluno->save();
 
-        // do{
-        //   $matricula = str_random(8);
-        //   $alunoCPF = Aluno::where('matricula','=',$matricula)->first();
-        // }while($alunoCPF != NULL);
 
 
         $aluno->instituicoes()->attach($request->instituicoes);
@@ -307,6 +166,22 @@ class AlunoController extends Controller
         }
     }
 
+    public static function edit($id_aluno)
+    {
+
+        $aluno = Aluno::find($id_aluno);
+        $endereco = $aluno->endereco;
+        $perfis = [[1, 'Responsável'], [2, 'Professor AEE']];
+        $instituicoes = Auth::user()->instituicoes;
+
+        return view("aluno.editar", [
+            'aluno' => $aluno,
+            'endereco' => $endereco,
+            'instituicoes' => $instituicoes,
+            'perfis' => $perfis
+        ]);
+    }
+
     public static function atualizar(Request $request)
     {
 
@@ -363,6 +238,74 @@ class AlunoController extends Controller
 
         return redirect()->route("aluno.gerenciar", ['id_aluno' => $request->id_aluno])->with('success', 'O Aluno ' . $aluno->nome . ' foi atualizado.');
     }
+    public static function excluir($id_aluno)
+    {
+        $aluno = Aluno::find($id_aluno);
+
+        $gerenciars = Gerenciar::where('aluno_id', '=', $aluno->id)->get();
+
+        foreach ($gerenciars as $gerenciar) {
+            $gerenciar->delete();
+        }
+
+        $aluno->delete();
+
+        return redirect()->route("aluno.listar")->with('success', 'O aluno ' . $aluno->nome . ' foi excluído.');
+    }
+
+    public static function buscarAluno(Request $request)
+    {
+
+        $gerenciars = Auth::user()->gerenciars;
+        $ids_alunos = array();
+
+        foreach ($gerenciars as $gerenciar) {
+            array_push($ids_alunos, $gerenciar->aluno_id);
+        }
+
+        $alunos = Aluno::whereIn('id', $ids_alunos)->where('nome', 'ilike', '%' . $request->termo . '%')->paginate(12);
+
+        return view("aluno.listar", [
+            'alunos' => $alunos,
+            'termo' => $request->termo
+        ]);
+
+    }
+
+    public function buscarCPF(Request $request)
+    {
+        try {
+            \App\Validator\CpfValidator::validate ($request->all());
+            $cpf = $request->cpf;
+            $aluno = Aluno::where('cpf', '=', $cpf)->first();
+            $botaoAtivo = false;
+
+            if ($aluno == null) {
+                return redirect()->route("aluno.cadastrar")->with('cpf', $cpf);
+            } else {
+                $gerenciars = $aluno->gerenciars;
+                foreach ($gerenciars as $gerenciar) {
+                    if ($gerenciar->user->id == Auth::user()->id && $gerenciar->tipoUsuario == 3) {
+                        $botaoAtivo = true;
+                    }
+                }
+            }
+
+            return view("aluno.buscarCPF", [
+                'aluno' => $aluno,
+                'cpf' => $cpf,
+                'botaoAtivo' => $botaoAtivo
+            ]);
+        }catch (\App\Validator\ValidationException $exception){
+            return redirect('/aluno/buscar')
+                ->withErrors($exception->getValidator())
+                ->withInput();
+        }
+
+    }
+
+
+    
 
     public static function requisitarPermissao($cpf)
     {

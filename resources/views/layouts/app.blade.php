@@ -14,8 +14,6 @@
     <link rel="shortcut icon" type="image/png" href="{{ asset('images/logo.png') }}">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/lmts-app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/contrast.css') }}" rel="stylesheet">
     <link href="{{ asset('css/forum.css') }}" rel="stylesheet">
     <link href="{{ asset('css/lightbox.css') }}" rel="stylesheet">
@@ -48,7 +46,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 
-<body class="d-flex flex-column min-vh-100" style="background-color: #92A69E; font-size: 18px;">
+<body class="d-flex flex-column min-vh-100" style="background-color: #92A69E;">
     
 
     <header>
@@ -68,7 +66,7 @@
 
     <main class="flex-grow-1">
         @auth
-            <div class="container-md border rounded-5 bg-white">
+            <div class="container-md border rounded-5 shadow-lg bg-white p-3">
                 @yield('content')
             </div>
         @else

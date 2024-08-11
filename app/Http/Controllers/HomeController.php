@@ -23,7 +23,7 @@ class HomeController extends Controller
   */
   public function index()
   {
-    return redirect()->route('aluno.listar');
+    return redirect()->route('aluno.index');
   }
 
   public function video()
