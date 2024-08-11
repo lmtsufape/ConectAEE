@@ -19,7 +19,7 @@
         </div>
 
         <div class="col-md-5">
-            <div class="col-md-9 bg-white rounded-5 shadow-lg">
+            <div class="col-md-9 bg-white p-5 m-5 rounded-5 shadow-lg ">
                 <h2 class="text-center">
                     <strong style="color: #12583C">
                         Entrar
@@ -27,53 +27,44 @@
                 </h2>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-                    <div class="form-group{{ $errors->has('username') || $errors->has('email') ? ' has-error' : '' }}">
-                        <label for="login" class="col-md-12 control-label text-left">E-mail</label>
-                        <div class="col-md-12">
-                            <input id="login" type="text" class="form-control" name="login"
-                                    value="{{ old('username') ?: old('email') }}" placeholder="exemplo@email.com"
-                                    autofocus>
-                            @if ($errors->has('username') || $errors->has('email'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('username') ?: $errors->first('email') }}</strong>
-                                </span>
-                            @endif
-                        </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="text" class="form-control @error('email') is-invalid @enderror" name="login" id="login"
+                                value="{{ old('email') }}" autofocus>
+
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
                     </div>
-                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                        <label for="password" class="col-md-12 control-label">Senha</label>
-                        <div class="col-md-12">
-                            <input id="password" type="password" class="form-control" name="password"
-                                    placeholder="Insira a senha">
-                            @if ($errors->has('password'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('password') }}</strong>
-                                </span>
-                            @endif
-                        </div>
+
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password"
+                                placeholder="Insira a senha">
+
+                        @error ('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        
                     </div>
                     <div class="form-group">
-                        <div class="col-md-12">
-                            <div class="checkbox">
-                                <label style="font-size:13px;">
-                                    <input type="checkbox" name="remember"
-                                            value="{{ old('remember') ? 'checked' : '' }}">
-                                    <span style="font-family: Arial; color: #7F7F7F">
-                                    Lembrar e-mail e senha
-                                    </span>
-                                </label>
-                                <button type="submit" class="btn btn-success w-100">
-                                    Entrar
-                                </button>
-                                <p style="font-size: 13px; margin-bottom: -15px">
-                                    <a href="{{ route('password.request') }}">Clique aqui </a>se você esqueceu sua senha.
-                                </p>
-                                <hr class="p-2" style="border-top: 1px solid #CCC">
-                                <a class="btn btn-primary w-100" href="{{ route('user.create') }}" id="signup">
-                                    Cadastre-se
-                                </a>
-                            </div>
-                        </div>
+                        <input type="checkbox" name="remember" value="{{ old('remember') ? 'checked' : '' }}">
+                        <span style="font-size:13px;">Lembrar e-mail e senha</span>
+                        
+                        <button type="submit" class="btn btn-success w-100">
+                            Entrar
+                        </button>
+                        <p style="font-size: 13px;">
+                            <a href="{{ route('password.request') }}">Clique aqui</a> se você esqueceu sua senha.
+                        </p>
+                        <hr style="border-top: 1px solid black">
+                        <a class="btn btn-primary w-100" href="{{ route('user.create') }}">
+                            Cadastre-se
+                        </a>
                     </div>
                 </form>
             </div>
