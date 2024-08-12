@@ -14,7 +14,7 @@
                             </strong>
                         </h2>
                         <div style="font-size: 14px" id="login-card">
-                            <a href="{{route('aluno.listar')}}">Início</a>
+                            <a href="{{route('aluno.index')}}">Início</a>
                             > <a href="{{route('aluno.buscar')}}">Novo Aluno</a>
                             > Requisitar acesso
                         </div>

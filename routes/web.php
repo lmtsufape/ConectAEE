@@ -40,14 +40,14 @@ Route::controller(HomeController::class)->group(function(){
 });
 
 Route::prefix('usuarios/notificacoes')->controller(NotificacaoController::class)->group(function(){
-    Route::get('listar', 'listar')->name('notificacao.listar')->middleware('checkCadastrado');
+    Route::get('listar', 'listar')->name('notificacao.listar');
     Route::get('{id_notificacao}/ler', 'ler')->name('notificacao.ler')->middleware('checkNotificacao');
     Route::get('lerTodas', 'lerTodas')->name('notificacao.lerTodas');
 
 });
 
 Route::prefix('users')->controller(UserController::class)->group(function(){
-    Route::get('/completarCadastro', 'completarCadastro')->name('usuario.completarCadastro')->middleware('checkNaoCadastrado');
+    Route::get('/completarCadastro', 'completarCadastro')->name('usuario.completarCadastro');
     Route::post('/completar', 'completar')->name('usuario.completar');
     Route::get('/create', 'create')->name('user.create');
     Route::post('/store', 'store')->name('user.store');
@@ -139,27 +139,15 @@ Route::prefix('alunos/albuns')->controller(AlbumController::class)->group(functi
     Route::post('/atualizar', 'atualizar')->name('album.atualizar');
 });
 
-Route::prefix('intituicoes')->controller(InstituicaoController::class)->group(function(){
-    Route::get('/cadastrar', 'cadastrar')->name('instituicao.cadastrar')->middleware('checkCadastrado');
-    Route::get('/listar', 'listar')->name('instituicao.listar')->middleware('checkCadastrado');
-    Route::get('/buscar', 'buscar')->name('instituicao.buscar')->middleware('checkCadastrado');
-    Route::get('/{id_instituicao}/ver', 'ver')->name('instituicao.ver')->middleware('checkCadastrado');
-    Route::get('/{id_instituicao}/editar', 'editar')->name('instituicao.editar')->middleware('checkInstituicaoCriador');
-    Route::get('/{id_instituicao}/excluir', 'excluir')->name('instituicao.excluir')->middleware('checkInstituicaoCriador');
-    Route::post('/criar', 'criar')->name('instituicao.criar');
-    Route::post('/atualizar', 'atualizar')->name('instituicao.atualizar');
-
-});
-
 Route::prefix('aluno/pdi')->controller(PdiController::class)->group(function(){
-    Route::get('/{id_aluno}/cadastrar', 'cadastrar')->name('pdi.cadastrar')->middleware('checkPdi');
-    Route::get('/{id_aluno}/cadastrarArquivo', 'cadastrarArquivo')->name('pdi.cadastrarArquivo')->middleware('checkPdi');
+    Route::get('/{id_aluno}/cadastrar', 'cadastrar')->name('pdi.cadastrar');
+    Route::get('/{id_aluno}/cadastrarArquivo', 'cadastrarArquivo')->name('pdi.cadastrarArquivo');
     Route::post('/criar', 'criar')->name('pdi.criar');
     Route::post('/criarArquivo', 'criarArquivo')->name('pdi.criarArquivo');
-    Route::get('/{id_aluno}/listar', 'listar')->name('pdi.listar')->middleware('checkPdi');
+    Route::get('/{id_aluno}/listar', 'listar')->name('pdi.listar');
     Route::get('/{id_pdi}/ver', 'ver')->name('pdi.ver');
-    Route::get('/{id_pdi}/excluir', 'excluir')->name('pdi.excluir')->middleware('checkPdiCriador');
-    Route::get('/{id_pdi}/editar', 'editar')->name('pdi.editar')->middleware('checkPdiCriador');
+    Route::get('/{id_pdi}/excluir', 'excluir')->name('pdi.excluir');
+    Route::get('/{id_pdi}/editar', 'editar')->name('pdi.editar');
     Route::post('/atualizar', 'atualizar')->name('pdi.atualizar');
     Route::get('/arquivo/{id_pdiArquivo}/download','download')->name('pdi.download');
     Route::get('/arquivo/{id_pdiArquivo}/excluirArquivo','excluirArquivo')->name('pdi.excluirArquivo')->middleware('checkPdiArquivoCriador');

@@ -1,4 +1,4 @@
-@extends('layouts.principal')
+@extends('layouts.app')
 @section('title','Ver PDI')
 @section('navbar')
 @endsection
@@ -18,8 +18,8 @@
                                         Ver Pdi - {{$pdi->created_at}}
                                     </strong>
                                     <div style="font-size: 14px" id="login-card">
-                                        <a href="{{route('aluno.listar')}}">Início</a>
-                                        > <a href="{{route('aluno.listar')}}">Início</a>> <a
+                                        <a href="{{route('aluno.index')}}">Início</a>
+                                        > <a href="{{route('aluno.index')}}">Início</a>> <a
                                                 href="{{route('aluno.gerenciar',$pdi->aluno_id)}}">Perfil de
                                             <strong>{{ explode(" ", \App\Aluno::find($pdi->aluno_id)->nome)[0]}}</strong></a>>
                                         <a href="{{route('pdi.listar', $pdi->aluno_id)}}">Listar PDI's</a>>

@@ -18,7 +18,7 @@
                                 Nova Autorização
                             </strong>
                             <div style="font-size: 14px" id="login-card">
-                                <a href="{{route('aluno.listar')}}">Início</a>
+                                <a href="{{route('aluno.index')}}">Início</a>
                                 > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de
                                     <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
                                 > <a href="{{route('aluno.permissoes',$aluno->id)}}">Autorizações</a>

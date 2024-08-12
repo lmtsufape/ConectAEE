@@ -27,14 +27,6 @@ class Aluno extends Model
       return $ano."-".$mes."-".$dia;
     }
 
-    public function gerenciars(){
-        return $this->hasMany(Gerenciar::class);
-    }
-
-    public function instituicoes(){
-        return $this->belongsToMany(Instituicao::class, 'aluno_instituicaos');
-    }
-
     public function objetivos(){
         return $this->hasMany(Objetivo::class)->orderBy('updated_at','desc');
     }

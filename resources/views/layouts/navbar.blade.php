@@ -60,10 +60,10 @@
                             Instituições
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('instituicao.listar') }}">
+                            <li><a class="dropdown-item" href="*">
                                     Listar
                                 </a></li>
-                            <li><a class="dropdown-item" href="{{ route('instituicao.cadastrar') }}">
+                            <li><a class="dropdown-item" href="*">
                                     Cadastrar
                                 </a></li>
                         </ul>

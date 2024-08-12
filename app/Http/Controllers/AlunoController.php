@@ -65,12 +65,9 @@ class AlunoController extends Controller
         $instituicoes = Auth::user()->instituicoes;
         $perfis = Perfil::all();
 
-        if (count($instituicoes) == 0) {
-            return redirect()->route("instituicao.cadastrar")->with('info', 'O cadastro de alunos, requer que uma instituicão esteja cadastrada.');
-        }
+
 
         return view("aluno.cadastrar", [
-            'instituicoes' => $instituicoes,
             'perfis' => $perfis,
         ]);
     }
@@ -115,13 +112,6 @@ class AlunoController extends Controller
         $forum->aluno_id = $aluno->id;
         $forum->save();
 
-        $gerenciar = new Gerenciar();
-        $gerenciar->user_id = Auth::user()->id;
-        $gerenciar->aluno_id = $aluno->id;
-        $gerenciar->perfil_id = $request->perfil;
-        $gerenciar->tipoUsuario = 3;
-        $gerenciar->save();
-
         // $password = str_random(6);
         $password = '12345678';
 
@@ -160,9 +150,9 @@ class AlunoController extends Controller
         Notification::route('mail', $user->email)->notify(new NovoAluno());
 
         if ($request->perfil == 2 && $request->cadastrado == "false") {
-            return redirect()->route("aluno.listar")->with('success', 'O Aluno ' . $aluno->nome . ' foi cadastrado.')->with('password', 'A senha provisória do usuário ' . $request->username . ' é ' . $password . '.');
+            return redirect()->route("aluno.index")->with('success', 'O Aluno ' . $aluno->nome . ' foi cadastrado.')->with('password', 'A senha provisória do usuário ' . $request->username . ' é ' . $password . '.');
         } else {
-            return redirect()->route("aluno.listar")->with('success', 'O Aluno ' . $aluno->nome . ' foi cadastrado.');
+            return redirect()->route("aluno.index")->with('success', 'O Aluno ' . $aluno->nome . ' foi cadastrado.');
         }
     }
 
@@ -250,7 +240,7 @@ class AlunoController extends Controller
 
         $aluno->delete();
 
-        return redirect()->route("aluno.listar")->with('success', 'O aluno ' . $aluno->nome . ' foi excluído.');
+        return redirect()->route("aluno.index")->with('success', 'O aluno ' . $aluno->nome . ' foi excluído.');
     }
 
     public static function buscarAluno(Request $request)
@@ -265,7 +255,7 @@ class AlunoController extends Controller
 
         $alunos = Aluno::whereIn('id', $ids_alunos)->where('nome', 'ilike', '%' . $request->termo . '%')->paginate(12);
 
-        return view("aluno.listar", [
+        return view("aluno.index", [
             'alunos' => $alunos,
             'termo' => $request->termo
         ]);
@@ -377,7 +367,7 @@ class AlunoController extends Controller
             }
         }
 
-        return redirect()->route("aluno.listar")->with('success', 'Seu pedido de acesso à ' . $aluno->nome . ' foi enviado. Aguarde aceitação.');
+        return redirect()->route("aluno.index")->with('success', 'Seu pedido de acesso à ' . $aluno->nome . ' foi enviado. Aguarde aceitação.');
     }
 
     public static function gerenciarPermissoes($id_aluno)

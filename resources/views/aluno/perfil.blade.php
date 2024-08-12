@@ -15,41 +15,34 @@
 
         <div class="col-md-6">
             @php
-                $gerenciamento = App\Models\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first();
                 $pdi = \App\Models\Pdi::where('aluno_id', '=', $aluno->id)->first();
             @endphp
-            @if($gerenciamento->tipoUsuario != 2 and $gerenciamento->perfil_id == 2)
-                <a class="btn btn-info btn-lg" href="{{route('pdi.listar', ['id_aluno'=>$aluno->id]) }}">
-                    Listar PDI's
-                </a>
-            @endif
-            @if(App\Models\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario == 3 and $gerenciamento->perfil_id != 1)
-                <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalRelatorio">
-                    Relatório
-                </a>
-            @endif
+            <a class="btn btn-info btn-lg" href="{{route('pdi.listar', ['id_aluno'=>$aluno->id]) }}">
+                Listar PDI's
+            </a>
+            <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalRelatorio">
+                Relatório
+            </a>
             <a class="btn btn-primary btn-lg" href="{{route('objetivo.listar', ['id_aluno'=>$aluno->id]) }}">
                 Objetivos
             </a>
-            @if(App\Models\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario == 3)
 
-                <div class="btn-group">
-                    <button type="button" class="btn btn-secondary btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        Ações
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{route('aluno.editar', ['id_aluno'=>$aluno->id]) }}" data-toggle="tooltip" title="Editar aluno">Editar</a></li>
-                        <li><a class="dropdown-item" href="{{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}" data-toggle="tooltip" title="Autorizar acesso ao aluno">Autorização</a></li>
-                        <li><a class="dropdown-item" href="#"data-toggle="modal" title="Excluir aluno" data-target="#modalConfirm">Excluir</a></li>
-                        <li><hr class="dropdown-divider"></li>
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Ações
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{route('aluno.editar', ['id_aluno'=>$aluno->id]) }}" data-toggle="tooltip" title="Editar aluno">Editar</a></li>
+                    <li><a class="dropdown-item" href="{{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}" data-toggle="tooltip" title="Autorizar acesso ao aluno">Autorização</a></li>
+                    <li><a class="dropdown-item" href="#"data-toggle="modal" title="Excluir aluno" data-target="#modalConfirm">Excluir</a></li>
+                    <li><hr class="dropdown-divider"></li>
 
-                    </ul>
-                </div>
+                </ul>
+            </div>
             
-            @endif
         </div>
         <h4>
-            <a href="{{route('aluno.listar')}}">Início</a> > Perfil de
+            <a href="{{route('aluno.index')}}">Início</a> > Perfil de
             <strong>{{ explode(" ", $aluno->nome)[0]}}</strong>
         </h4>
         <hr style="border-top: 1px solid #AAA;">
@@ -89,17 +82,6 @@
 
             <div class="col-md-6">
                 <h4 style="color: #12583C">
-                    <?php
-                    foreach($gerenciars as $gerenciar){
-                    if($gerenciar->user->id == \Auth::user()->id && $gerenciar->tipoUsuario == 3){
-                    ?>
-                    <strong>CPF:</strong> {{$aluno->cpf}}
-                    <br/>
-                    <?php
-                    break;
-                    }
-                    }
-                    ?>
 
                     @if($aluno->sexo == 'M')
                         <strong>Sexo:</strong> Masculino
@@ -136,14 +118,12 @@
                 <strong style="color: #12583C">Instituições:</strong>
                 <br>
 
-                <ul>
-                    @foreach ($aluno->instituicoes as $instituicao)
-                        <li>
-                            <a href="{{ route('instituicao.ver', ['id_instituicao'=>$instituicao->id]) }}"
-                                style="color: #3097D1">{{$instituicao->nome}}</a>
-                        </li>
-                    @endforeach
-                </ul>
+                {{-- <ul>
+                    <li>
+                        <a href="{{ route('instituicao.ver', ['id_instituicao'=>$instituicao->id]) }}"
+                            style="color: #3097D1">{{$instituicao->nome}}</a>
+                    </li>
+                </ul> --}}
 
             </div>
         </div>
@@ -160,7 +140,6 @@
         </div>
     </div>
     <hr style="border-top: 1px solid #AAA;">
-    @if(App\Models\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario != 2)
 
         <h2>
             <strong style="color: #12583C">
@@ -205,7 +184,6 @@
                 </div>
             </div>
         </div>
-    @endif
 
 
                 <button class="open-button" data-toggle="tooltip" title="Ver fórum" style="border-radius:15px;"
@@ -215,92 +193,92 @@
 
             @if (\Session::has('display'))
                 <div class="chat-popup" id="myForm" style="display:block; background-color:white;">
-                    @else
-                        <div class="chat-popup" id="myForm" style="display:none;background-color:white; ">
-                            @endif
-                            <div class="panel-heading" id="forum" style="display:absolute;">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h3>
-                                            <a target="_blank"
-                                               href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}">
-                                                Fórum <i class="material-icons">open_in_new</i>
-                                            </a>
-                                        </h3>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <button type="button"
-                                                style="float:right; width:50px; height:44px; background-color:red; color:white; margin-top:10px;"
-                                                class="btn" onclick="closeForm()">
-                                            <i class="material-icons">close</i>
-                                        </button>
-                                    </div>
+            @else
+                <div class="chat-popup" id="myForm" style="display:none;background-color:white; ">
+            @endif
+                        <div class="panel-heading" id="forum" style="display:absolute;">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h3>
+                                        <a target="_blank"
+                                            href="{{route('aluno.forum',['id_aluno'=>$aluno->id]).'#forum'}}">
+                                            Fórum <i class="material-icons">open_in_new</i>
+                                        </a>
+                                    </h3>
                                 </div>
-                            </div>
 
-                            <div class="panel"
-                                 style="max-height:400px; max-width: 450px; overflow:auto; background-color: #e5ddd5">
-                                <div class="panel-body">
-
-                                    <form class="form-horizontal" method="POST"
-                                          action="{{route('aluno.forum.mensagem.enviar')}}">
-                                        @csrf
-                                        <input name="forum_id" type="text" value={{$aluno->forum->id}} hidden>
-
-                                        <div style="margin: 1%" class="form-group">
-                                            <textarea name="mensagem"
-                                                      style="display: inline; width:100%; min-width: 100%; max-width: 100%;min-height: 80px;"
-                                                      type="text" class="form-control summernote"></textarea>
-                                            <br>
-
-                                            @if ($errors->has('mensagem'))
-                                                <div style="margin-left: 1%; margin-right: 1%"
-                                                     class="alert alert-danger">
-                                                    <strong>Erro!</strong>
-                                                    {{ $errors->first('mensagem') }}
-                                                </div>
-                                            @endif
-
-                                            <button type="submit" class="btn btn-primary">Enviar</button>
-
-                                        </div>
-                                    </form>
-
-                                    <div class="form-group">
-                                        @foreach($mensagens as $mensagem)
-                                            @if($mensagem->user_id == \Auth::user()->id)
-                                                <div style="text-align: right; width: 80%; margin-left: 20%"
-                                                     id='user-message'>
-                                                    <div class="panel panel-default">
-                                                        <div style="background-color: #dbf6c5; color: #262626"
-                                                             class="panel-body">
-                                                            <div class="hifen">
-                                                                {!! $mensagem->texto !!}<br>
-                                                                {{$mensagem->created_at->format('d/m/y h:i')}}<br>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @else
-                                                <div style="text-align: left; width: 80%" id='others-message'>
-                                                    <div class="panel panel-default">
-                                                        <div style="background-color: white; color: #262626"
-                                                             class="panel-body">
-                                                            <div class="hifen">
-                                                                <strong>{{$mensagem->user->name}}:</strong><br>
-                                                                {!! $mensagem->texto !!}<br>
-                                                                {{$mensagem->created_at->format('d/m/y h:i')}}<br>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @endif
-                                        @endforeach
-                                    </div>
+                                <div class="col-md-6">
+                                    <button type="button"
+                                            style="float:right; width:50px; height:44px; background-color:red; color:white; margin-top:10px;"
+                                            class="btn" onclick="closeForm()">
+                                        <i class="material-icons">close</i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="panel"
+                                style="max-height:400px; max-width: 450px; overflow:auto; background-color: #e5ddd5">
+                            <div class="panel-body">
+
+                                <form class="form-horizontal" method="POST"
+                                        action="{{route('aluno.forum.mensagem.enviar')}}">
+                                    @csrf
+                                    <input name="forum_id" type="text" value={{$aluno->forum->id}} hidden>
+
+                                    <div style="margin: 1%" class="form-group">
+                                        <textarea name="mensagem"
+                                                    style="display: inline; width:100%; min-width: 100%; max-width: 100%;min-height: 80px;"
+                                                    type="text" class="form-control summernote"></textarea>
+                                        <br>
+
+                                        @if ($errors->has('mensagem'))
+                                            <div style="margin-left: 1%; margin-right: 1%"
+                                                    class="alert alert-danger">
+                                                <strong>Erro!</strong>
+                                                {{ $errors->first('mensagem') }}
+                                            </div>
+                                        @endif
+
+                                        <button type="submit" class="btn btn-primary">Enviar</button>
+
+                                    </div>
+                                </form>
+
+                                <div class="form-group">
+                                    @foreach($mensagens as $mensagem)
+                                        @if($mensagem->user_id == \Auth::user()->id)
+                                            <div style="text-align: right; width: 80%; margin-left: 20%"
+                                                    id='user-message'>
+                                                <div class="panel panel-default">
+                                                    <div style="background-color: #dbf6c5; color: #262626"
+                                                            class="panel-body">
+                                                        <div class="hifen">
+                                                            {!! $mensagem->texto !!}<br>
+                                                            {{$mensagem->created_at->format('d/m/y h:i')}}<br>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div style="text-align: left; width: 80%" id='others-message'>
+                                                <div class="panel panel-default">
+                                                    <div style="background-color: white; color: #262626"
+                                                            class="panel-body">
+                                                        <div class="hifen">
+                                                            <strong>{{$mensagem->user->name}}:</strong><br>
+                                                            {!! $mensagem->texto !!}<br>
+                                                            {{$mensagem->created_at->format('d/m/y h:i')}}<br>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!--Modal Confirm-->

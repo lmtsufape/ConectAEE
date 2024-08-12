@@ -18,7 +18,7 @@
                     </strong>
                   </h2>
                   <div style="font-size: 14px" id="login-card">
-                    <a href="{{route('aluno.listar')}}">Início</a>
+                    <a href="{{route('aluno.index')}}">Início</a>
                     > Instituições
                   </div>
                 </div>
@@ -105,7 +105,7 @@
 
         <div class="panel-footer" style="background-color:white" id="login-card">
           <div class="text-center" id="login-card">
-            <a class="btn btn-secondary" href="{{route('aluno.listar')}}" id="menu-a">
+            <a class="btn btn-secondary" href="{{route('aluno.index')}}" id="menu-a">
               Voltar
             </a>
           </div>

@@ -45,16 +45,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
     }
 
-    public function gerenciars(){
-        return $this->hasMany(Gerenciar::class);
-    }
-
     public function objetivos(){
         return $this->hasMany(Objetivo::class);
-    }
-
-    public function instituicoes(){
-        return $this->hasMany(Instituicao::class);
     }
 
     public function feedbacks(){
