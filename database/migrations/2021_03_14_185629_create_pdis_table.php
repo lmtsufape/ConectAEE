@@ -16,32 +16,44 @@ class CreatePdisTable extends Migration
         Schema::create('pdis', function (Blueprint $table) {
             $table->id();
 
-            $table->boolean('banhoSozinho');
-            $table->boolean('banheiroSozinho');
-            $table->boolean('escovaDentesSozinho');
-            
-            $table->boolean('comeSozinho');
-            $table->boolean('bebeAguaSozinho');
-            
-            $table->string('problemaGestacao');
-            $table->string('descProbGestacao')->nullable();
-            $table->string('ambienteFamiliar');
-            $table->string('aprendizagemEscolar');
-            
-            $table->string('recomendacoesSaude');
-            $table->string('diagnosticoSaude');
-            $table->string('problemasSaude');
-            $table->string('descricaoMedicamentos')->nullable();
-            
-            $table->string('sistemaLinguistico');
-            $table->string('tipoRecursoUsado');
-            $table->string('tipoRecursoProvidenciado');
-            $table->string('implicacoesEspecificidades');
-            $table->string('informacoesRelevantes')->nullable();
-            
-            $table->string('avaliacaoMotora');
-            $table->string('avaliacaoEmocional');
-            $table->string('especificidadesObjetivo');
+            $table->string('percepcao')->nullable();
+            $table->string('atencao')->nullable();
+            $table->string('memoria')->nullable();
+            $table->string('linguagem')->nullable();
+            $table->string('raciocinio_logico')->nullable();
+            $table->string('desenvolvimento_capacidade_motora')->nullable();
+            $table->string('area_emocional_afetiva_social')->nullable();
+            $table->string('atividades_vida_autonoma')->nullable();
+
+            $table->string('escola_acoes_existentes');
+            $table->string('escola_acoes_desenvolvidas');
+            $table->string('escola_responsaveis_acoes');
+            $table->string('sala_aula_acoes_existentes');
+            $table->string('sala_aula_acoes_desenvolvidas');
+            $table->string('sala_aula_responsaveis_acoes');
+            $table->string('sala_aee_acoes_existentes');
+            $table->string('sala_aee_acoes_desenvolvidas');
+            $table->string('sala_aee_responsaveis_acoes');
+            $table->string('familia_acoes_existentes');
+            $table->string('familia_acoes_desenvolvidas');
+            $table->string('familia_responsaveis_acoes');
+            $table->string('saude_acoes_existentes');
+            $table->string('saude_acoes_desenvolvidas');
+            $table->string('saude_responsaveis_acoes');
+
+            $table->string('recursos_multi_trabalho_area_cognitiva');
+            $table->string('recursos_multi_objetivo_area_cognitiva');
+            $table->string('recursos_multi_trabalho_area_social');
+            $table->string('recursos_multi_objetivo_area_social');
+            $table->string('recursos_multi_trabalho_area_motora');
+            $table->string('recursos_multi_objetivo_area_motora');
+            $table->string('recursos_multi_trabalho_altas_habilidade_superdotacao');
+            $table->string('recursos_multi_objetivo_altas_habilidade_superdotacao');
+
+
+
+
+            $table->string('resumo_avaliacao_trimestral');
 
             $table->foreignId('aluno_id')->constrained();
             $table->foreignId('user_id')->constrained();
