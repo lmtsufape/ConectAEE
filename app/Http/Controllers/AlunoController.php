@@ -65,8 +65,6 @@ class AlunoController extends Controller
         $instituicoes = Auth::user()->instituicoes;
         $perfis = Perfil::all();
 
-
-
         return view("aluno.cadastrar", [
             'perfis' => $perfis,
         ]);
