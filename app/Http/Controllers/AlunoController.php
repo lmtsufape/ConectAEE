@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAlunoRequest;
+use App\Http\Requests\UpdateAlunoRequest;
 use App\Models\User;
 use App\Models\Notificacao;
 use App\Notifications\NovoAluno;
@@ -14,17 +16,29 @@ use App\Models\Endereco;
 use App\Models\ForumAluno;
 use App\Models\MensagemForumAluno;
 use App\Models\Album;
+use App\Models\Escola;
 use Illuminate\Support\Facades\Auth;
 use Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\View\View;
 
 class AlunoController extends Controller
 {
 
-    public static function gerenciar($id_aluno)
+    
+    public function index()
     {
-        $aluno = Aluno::find($id_aluno);
+        $alunos = Aluno::where('professor_responsavel', Auth::user()->id)->orderBy('nome', 'asc')->paginate(15);
+        
+        return view("alunos.index", [
+            'alunos' => $alunos,
+        ]);
+    }
+
+    public function show($aluno_id): View
+    {
+        $aluno = Aluno::find($aluno_id);
 
         $mensagens = MensagemForumAluno::where('forum_aluno_id', '=', $aluno->forum->id)->orderBy('id', 'desc')->get();
 
@@ -41,46 +55,27 @@ class AlunoController extends Controller
             }
         }
 
-        $albuns = Album::where('aluno_id', $aluno->id)->paginate(16);
+        $albuns = Album::where('aluno_id', $aluno->id)->paginate(15);
 
-        return view("aluno.perfil", [
+        return view("alunos.show", [
             'aluno' => $aluno,
             'mensagens' => $mensagens,
             'albuns' => $albuns,
         ]);
     }
-
-    public function index()
-    {
-        $alunos = Aluno::where('professor_responsavel', Auth::user()->id)->orderBy('nome', 'asc')->paginate(15);
-
-        return view("aluno.listar", [
-            'alunos' => $alunos,
-            'termo' => ""
-        ]);
-    }
-
+    
     public function create()
     {
-        $instituicoes = Auth::user()->instituicoes;
-        $perfis = Perfil::all();
-
-        return view("aluno.cadastrar", [
-            'perfis' => $perfis,
+        $escolas = Escola::all();
+        
+        return view("aluno.create", [
+            'escolas'
         ]);
     }
 
 
-    public function store(Request $request)
+    public function store(StoreAlunoRequest $request)
     {
-        $endereco = new Endereco();
-        $endereco->cep = $request->cep;
-        $endereco->numero = $request->numero;
-        $endereco->rua = $request->rua;
-        $endereco->bairro = $request->bairro;
-        $endereco->cidade = $request->cidade;
-        $endereco->estado = $request->estado;
-        $endereco->save();
 
         $aluno = new Aluno();
 
@@ -91,50 +86,16 @@ class AlunoController extends Controller
             $request->imagem->storeAs('public/avatars', $nomeArquivo);
             $aluno->imagem = $nomeArquivo;
         }
+        
+        Aluno::create($request->all());
 
-        $aluno->nome = $request->nome;
-        $aluno->sexo = $request->sexo;
-        $aluno->cid = $request->cid;
-        $aluno->descricao_cid = $request->descricaoCid;
-        $aluno->observacao = $request->observacao;
-        $aluno->data_de_nascimento = $request->data_nascimento;
-        $aluno->endereco_id = $endereco->id;
-        $aluno->cpf = $request->cpf;
-        $aluno->save();
-
-
-
-        $aluno->instituicoes()->attach($request->instituicoes);
-
+        $aluno->escola()->attach($request->instituicoes);
+        
         $forum = new ForumAluno();
         $forum->aluno_id = $aluno->id;
         $forum->save();
 
-        // $password = str_random(6);
-        $password = '12345678';
-
-        $user = new User();
-
-        if ($request->perfil == 2 && $request->cadastrado == "false") {
-            $user->username = $request->username;
-            $user->password = bcrypt($password);
-            $user->email = $aluno->id.'@gmail.com';
-            $user->cpf = $aluno->id;
-            $user->cadastrado = false;
-            $user->save();
-        } else if ($request->perfil == 2 && $request->cadastrado == "true") {
-            $user = User::where('username', '=', $request->username)->first();
-        }
-
-        if ($request->perfil == 2) {
-            $gerenciar = new Gerenciar();
-            $gerenciar->user_id = $user->id;
-            $gerenciar->aluno_id = $aluno->id;
-            $gerenciar->perfil_id = 1;  //responsavel
-            $gerenciar->tipoUsuario = 3;
-            $gerenciar->save();
-        }
-
+        
         $notificacao = new Notificacao();
         $notificacao->aluno_id = $gerenciar->aluno_id;
         $notificacao->remetente_id = Auth::user()->id;
@@ -146,14 +107,15 @@ class AlunoController extends Controller
         //Enviando email de notificação
         $user = User::find($notificacao->destinatario_id);
         Notification::route('mail', $user->email)->notify(new NovoAluno());
-
+        
         if ($request->perfil == 2 && $request->cadastrado == "false") {
             return redirect()->route("aluno.index")->with('success', 'O Aluno ' . $aluno->nome . ' foi cadastrado.')->with('password', 'A senha provisória do usuário ' . $request->username . ' é ' . $password . '.');
         } else {
             return redirect()->route("aluno.index")->with('success', 'O Aluno ' . $aluno->nome . ' foi cadastrado.');
         }
     }
-
+    
+   
     public static function edit($id_aluno)
     {
 
@@ -170,7 +132,7 @@ class AlunoController extends Controller
         ]);
     }
 
-    public static function atualizar(Request $request)
+    public static function update(UpdateAlunoRequest $request)
     {
 
         $validator = Validator::make($request->all(), [

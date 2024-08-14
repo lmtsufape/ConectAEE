@@ -27,10 +27,10 @@
         </div>
 
         <div class="form-group">
-            <label for="data">Data de nascimento</label>
-            <input type="date" class="form-control @error('data') is-invalid @enderror">
+            <label for="data_de_nascimento">Data de nascimento</label>
+            <input type="date" class="form-control @error('data_de_nascimento') is-invalid @enderror">
 
-            @error('data')
+            @error('data_de_nascimento')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{$message}}</strong>
                 </span>
@@ -91,7 +91,7 @@
         <hr style="border-top: 1px solid #AAA;">
 
         <div class="form-group">
-            <label for="">Nome do pai</label>
+            <label for="nome_pai">Nome do pai</label>
             <input type="text" class="form-control">
 
             @error('nome_pai')
@@ -102,12 +102,12 @@
         </div>
 
         <div class="form-group">
-            <label for="">Escolaridade do pai</label>
-            <select class="form-control" name="" id="">
+            <label for="escolaridade_pai">Escolaridade do pai</label>
+            <select class="form-control" name="escolaridade_pai" id="escolaridade_pai">
 
             </select>
 
-            @error('nome_pai')
+            @error('escolaridade_pai')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{$message}}</strong>
                 </span>
@@ -115,10 +115,10 @@
         </div>
 
         <div class="form-group">
-            <label for="">Profissão do pai</label>
-            <input type="text" class="form-control">
+            <label for="profissao_pai">Profissão do pai</label>
+            <input type="text" class="form-control" id="profissao_pai" name="profissao_pai">
 
-            @error('nome_pai')
+            @error('profissao_pai')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{$message}}</strong>
                 </span>
@@ -126,8 +126,8 @@
         </div>
 
         <div class="form-group">
-            <label for="">Nome da mãe</label>
-            <input type="text" class="form-control">
+            <label for="nome_mae">Nome da mãe</label>
+            <input type="text" class="form-control" id="nome_mae" name="nome_mae">
 
             @error('nome_mae')
                 <span class="invalid-feedback" role="alert">
@@ -137,12 +137,12 @@
         </div>
 
         <div class="form-group">
-            <label for="">Escolaridade da mãe</label>
-            <select class="form-control" name="" id="">
+            <label for="escolaridade_mae">Escolaridade da mãe</label>
+            <select class="form-control" name="escolaridade_mae" id="escolaridade_mae">
 
             </select>
 
-            @error('nome_mae')
+            @error('escolaridade_mae')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{$message}}</strong>
                 </span>
@@ -150,10 +150,32 @@
         </div>
 
         <div class="form-group">
-            <label for="">Profissão da mãe</label>
-            <input type="text" class="form-control">
+            <label for="profissao_mae">Profissão da mãe</label>
+            <input type="text" class="form-control" id="profissao_mae" name="profissao_mae">
 
-            @error('nome_mae')
+            @error('profissao_mae')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="num_irmaos">Profissão da mãe</label>
+            <input type="text" class="form-control" id="num_irmaos" name="num_irmaos">
+
+            @error('num_irmaos')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="contato_responsavel">Profissão da mãe</label>
+            <input type="text" class="form-control" id="contato_responsavel" name="contato_responsavel">
+
+            @error('contato_responsavel')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{$message}}</strong>
                 </span>

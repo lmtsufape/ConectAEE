@@ -12,20 +12,22 @@ class Aluno extends Model
     use Notifiable;
     use SoftDeletes;
 
-    protected $fillable=['cpf'];
-    public static $rules=['cpf' =>'required'];
-    public static $messages=['cpf'=>'erro cpf'];
-
-    public function getDataDeNascimentoAttribute( $value ) {
-      return (new Carbon($value))->format('d/m/Y');
-    }
-
-    public function getData(){
-      $ano= substr($this->data_de_nascimento, 6);
-      $mes= substr($this->data_de_nascimento, 3,-5);
-      $dia= substr($this->data_de_nascimento, 0,-8);
-      return $ano."-".$mes."-".$dia;
-    }
+    protected $fillable = [
+        'nome', 
+        'data_de_nascimento', 
+        'cpf', 
+        'matricula', 
+        'idade_inicio_estudos', 
+        'idade_escola_atual', 
+        'nome_pai', 
+        'escolaridade_pai', 
+        'profissao_pai', 
+        'nome_mae', 
+        'escolaridade_mae', 
+        'profissao_mae', 
+        'num_irmaos', 
+        'contato_responsavel'
+    ];
 
     public function objetivos(){
         return $this->hasMany(Objetivo::class)->orderBy('updated_at','desc');
@@ -40,7 +42,7 @@ class Aluno extends Model
     }
 
     public function endereco(){
-        return $this->hasOne(Endereco::class,'id','endereco_id');
+        return $this->hasOne(Endereco::class);
     }
 
     public function albuns(){
