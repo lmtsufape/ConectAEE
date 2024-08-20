@@ -12,7 +12,7 @@
         </h2>
         <div style="font-size: 14px" >
             <a href="{{route('aluno.index')}}">Início</a>>
-            <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de
+            <a href="{{route('aluno.show',$aluno->id)}}">Perfil de
                 <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
             > Pdis
         </div>
@@ -34,13 +34,13 @@
                     
                 <a class="btn btn-primary"
                     style="float:right; margin-top:20px; background-color: #0398fc; color: white; font-weight: bold; font-size: 14px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC"
-                    href="{{ route('pdi.cadastrar', $aluno->id)}}">
+                    href="{{ route('pdi.create', $aluno->id)}}">
                     Novo PDI
                 </a>
             
                 <a class="btn btn-primary"
                     style="float:right; margin-top:20px; background-color: #0398fc; color: white; font-weight: bold; font-size: 14px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC"
-                    href="{{ route('pdi.cadastrar', $aluno->id)}}">
+                    href="{{ route('pdi.create', $aluno->id)}}">
                     Atualizar PDI
                 </a>
 
@@ -78,7 +78,7 @@
                                 <td data-title="">
                                     <a class="btn btn-danger"
                                         onclick="return confirm('\A Tem certeza que deseja excluir esse PDI ?')"
-                                        href="{{route('pdi.excluir', $pdi->id)}}">
+                                        href="{{route('pdi.delete', $pdi->id)}}">
                                         Excluir
                                     </a>
                                 </td>
@@ -133,7 +133,7 @@
 
     <div style="background-color:white" >
         <div class="text-center" >
-            <a class="btn btn-secondary" href="{{route('aluno.gerenciar',$aluno->id)}}">
+            <a class="btn btn-secondary" href="{{route('aluno.show',$aluno->id)}}">
                 Voltar
             </a>
         </div>

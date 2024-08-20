@@ -14,6 +14,7 @@ use App\Models\Endereco;
 use App\Models\ForumAluno;
 use App\Models\MensagemForumAluno;
 use App\Models\Album;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Notification;
 use Illuminate\Http\Request;
@@ -22,41 +23,24 @@ use Illuminate\Support\Facades\Validator;
 class AlunoController extends Controller
 {
 
-    public static function gerenciar($id_aluno)
+    public function show($aluno_id)
     {
-        $aluno = Aluno::find($id_aluno);
-
-        $mensagens = MensagemForumAluno::where('forum_aluno_id', '=', $aluno->forum->id)->orderBy('id', 'desc')->get();
-
-        foreach ($mensagens as $mensagem) {
-            $img = strpos($mensagem->texto, '<img');
-            $video = strpos($mensagem->texto, '<iframe');
-
-            if ($img) {
-                $mensagem->texto = str_replace('<img', '<img style="width:100%"', $mensagem->texto);
-            }
-
-            if ($video) {
-                $mensagem->texto = str_replace('<iframe', '<iframe style="width:100%"', $mensagem->texto);
-            }
-        }
+        $aluno = Aluno::find($aluno_id);
 
         $albuns = Album::where('aluno_id', $aluno->id)->paginate(16);
 
-        return view("aluno.perfil", [
+        return view("aluno.show", [
             'aluno' => $aluno,
-            'mensagens' => $mensagens,
             'albuns' => $albuns,
         ]);
     }
 
-    public function index()
+    public function index(): View
     {
         $alunos = Aluno::where('professor_responsavel', Auth::user()->id)->orderBy('nome', 'asc')->paginate(15);
 
-        return view("aluno.listar", [
+        return view("aluno.index", [
             'alunos' => $alunos,
-            'termo' => ""
         ]);
     }
 
@@ -65,7 +49,7 @@ class AlunoController extends Controller
         $instituicoes = Auth::user()->instituicoes;
         $perfis = Perfil::all();
 
-        return view("aluno.cadastrar", [
+        return view("aluno.create", [
             'perfis' => $perfis,
         ]);
     }
@@ -154,7 +138,7 @@ class AlunoController extends Controller
         }
     }
 
-    public static function edit($id_aluno)
+    public function edit($id_aluno)
     {
 
         $aluno = Aluno::find($id_aluno);
@@ -162,7 +146,7 @@ class AlunoController extends Controller
         $perfis = [[1, 'Responsável'], [2, 'Professor AEE']];
         $instituicoes = Auth::user()->instituicoes;
 
-        return view("aluno.editar", [
+        return view("aluno.edit", [
             'aluno' => $aluno,
             'endereco' => $endereco,
             'instituicoes' => $instituicoes,
@@ -170,7 +154,7 @@ class AlunoController extends Controller
         ]);
     }
 
-    public static function atualizar(Request $request)
+    public function update(Request $request)
     {
 
         $validator = Validator::make($request->all(), [
@@ -226,7 +210,7 @@ class AlunoController extends Controller
 
         return redirect()->route("aluno.gerenciar", ['id_aluno' => $request->id_aluno])->with('success', 'O Aluno ' . $aluno->nome . ' foi atualizado.');
     }
-    public static function excluir($id_aluno)
+    public static function delete($id_aluno)
     {
         $aluno = Aluno::find($id_aluno);
 

@@ -17,7 +17,7 @@
             @php
                 $pdi = \App\Models\Pdi::where('aluno_id', '=', $aluno->id)->first();
             @endphp
-            <a class="btn btn-info btn-lg" href="{{route('pdi.listar', ['id_aluno'=>$aluno->id]) }}">
+            <a class="btn btn-info btn-lg" href="{{route('pdi.index', ['id_aluno'=>$aluno->id]) }}">
                 Listar PDI's
             </a>
             <a class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalRelatorio">
@@ -32,8 +32,8 @@
                     Ações
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{route('aluno.editar', ['id_aluno'=>$aluno->id]) }}" data-toggle="tooltip" title="Editar aluno">Editar</a></li>
-                    <li><a class="dropdown-item" href="{{route('aluno.permissoes',['id_aluno'=>$aluno->id])}}" data-toggle="tooltip" title="Autorizar acesso ao aluno">Autorização</a></li>
+                    <li><a class="dropdown-item" href="{{route('aluno.edit', ['aluno_id'=>$aluno->id]) }}" data-toggle="tooltip" title="Editar aluno">Editar</a></li>
+                    <li><a class="dropdown-item" href="{{route('aluno.permissoes',['aluno_id'=>$aluno->id])}}" data-toggle="tooltip" title="Autorizar acesso ao aluno">Autorização</a></li>
                     <li><a class="dropdown-item" href="#"data-toggle="modal" title="Excluir aluno" data-target="#modalConfirm">Excluir</a></li>
                     <li><hr class="dropdown-divider"></li>
 
@@ -47,19 +47,6 @@
         </h4>
         <hr style="border-top: 1px solid #AAA;">
     </div>
-
-
-                    <div class="panel-body" id="login-card">
-                        @if (\Session::has('success'))
-                            <div class="alert alert-success" id="login-card">
-                                <strong>Sucesso!</strong>
-                                {!! \Session::get('success') !!}
-                            </div>
-                        @endif
-
-                        @php
-                            $gerenciars = $aluno->gerenciars;
-                        @endphp
 
     <!-- Informações do Aluno -->
     <div class="row">
@@ -216,68 +203,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="panel"
-                                style="max-height:400px; max-width: 450px; overflow:auto; background-color: #e5ddd5">
-                            <div class="panel-body">
-
-                                <form class="form-horizontal" method="POST"
-                                        action="{{route('aluno.forum.mensagem.enviar')}}">
-                                    @csrf
-                                    <input name="forum_id" type="text" value={{$aluno->forum->id}} hidden>
-
-                                    <div style="margin: 1%" class="form-group">
-                                        <textarea name="mensagem"
-                                                    style="display: inline; width:100%; min-width: 100%; max-width: 100%;min-height: 80px;"
-                                                    type="text" class="form-control summernote"></textarea>
-                                        <br>
-
-                                        @if ($errors->has('mensagem'))
-                                            <div style="margin-left: 1%; margin-right: 1%"
-                                                    class="alert alert-danger">
-                                                <strong>Erro!</strong>
-                                                {{ $errors->first('mensagem') }}
-                                            </div>
-                                        @endif
-
-                                        <button type="submit" class="btn btn-primary">Enviar</button>
-
-                                    </div>
-                                </form>
-
-                                <div class="form-group">
-                                    @foreach($mensagens as $mensagem)
-                                        @if($mensagem->user_id == \Auth::user()->id)
-                                            <div style="text-align: right; width: 80%; margin-left: 20%"
-                                                    id='user-message'>
-                                                <div class="panel panel-default">
-                                                    <div style="background-color: #dbf6c5; color: #262626"
-                                                            class="panel-body">
-                                                        <div class="hifen">
-                                                            {!! $mensagem->texto !!}<br>
-                                                            {{$mensagem->created_at->format('d/m/y h:i')}}<br>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @else
-                                            <div style="text-align: left; width: 80%" id='others-message'>
-                                                <div class="panel panel-default">
-                                                    <div style="background-color: white; color: #262626"
-                                                            class="panel-body">
-                                                        <div class="hifen">
-                                                            <strong>{{$mensagem->user->name}}:</strong><br>
-                                                            {!! $mensagem->texto !!}<br>
-                                                            {{$mensagem->created_at->format('d/m/y h:i')}}<br>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -298,7 +223,7 @@
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                     Não
                                 </button>
-                                <a type="button"    href="{{route('aluno.excluir', ['id_aluno'=>$aluno->id]) }}"  id="btnSubmit" class="btn btn-primary">
+                                <a type="button"    href="{{route('aluno.delete', ['aluno_id'=>$aluno->id]) }}"  id="btnSubmit" class="btn btn-primary">
                                     Sim
                                 </a>
                             </div>

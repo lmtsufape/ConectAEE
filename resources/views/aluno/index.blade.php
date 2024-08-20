@@ -36,7 +36,7 @@
     <div class="d-flex flex-wrap gap-3">
         
         @foreach($alunos as $aluno)
-            <a class="text-decoration-none text-body" href="{{ route('aluno.gerenciar', ['id_aluno'=>$aluno->id]) }}">
+            <a class="text-decoration-none text-body" href="{{ route('aluno.show', ['aluno_id'=>$aluno->id]) }}">
                 <div class="m-3 rounded-5 shadow-lg d-flex flex-column justify-content-center align-items-center border" style="width: 11vw; height: 33vh;">
                     @if($aluno->imagem != null)
                         <img src="{{asset('storage/avatars/'.$aluno->imagem)}}"

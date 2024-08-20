@@ -17,9 +17,9 @@
                             </strong>
                             <div style="font-size: 14px" id="login-card">
                                 <a href="{{route('aluno.index')}}">Início</a>> <a
-                                        href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de
+                                        href="{{route('aluno.show',$aluno->id)}}">Perfil de
                                     <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>>
-                                <a href="{{route('pdi.listar', $aluno->id)}}">Listar PDI's</a>
+                                <a href="{{route('pdi.index', $aluno->id)}}">Listar PDI's</a>
                                 >Cadastrar PDI
                             </div>
                         </h2>
@@ -29,8 +29,8 @@
 
                     <div class="panel-body panel-body-cadastro" id="login-card">
                         <div class="col-md-8 col-md-offset-2" id="login-card">
-                            <form method="POST" action="{{ route("pdi.criar") }}" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                            <form method="POST" action="{{ route("pdi.create", ['id_aluno' => $aluno->id]) }}" enctype="multipart/form-data">
+                                @csrf
                                 <input type="hidden" name="aluno_id" id="aluno_id" value="{{$aluno->id}}">
 
                                 <h3>
@@ -932,7 +932,7 @@
                                     <div class="row col-md-12 text-center" id="login-card">
                                         <br>
                                         <a class="btn btn-secondary"
-                                           href="{{route('pdi.listar', ['id_aluno'=>$aluno->id])}}"
+                                           href="{{route('pdi.index', ['id_aluno'=>$aluno->id])}}"
                                            id="menu-a">
                                             Voltar
                                         </a>

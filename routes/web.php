@@ -57,20 +57,20 @@ Route::prefix('users')->controller(UserController::class)->group(function(){
 });
 
 Route::prefix('aluno')->controller(AlunoController::class)->group(function(){
-    Route::get('/cadastrar', 'create')->name('aluno.create');
     Route::get('/', 'index')->name('aluno.index');
+    Route::get('/{aluno_id}/show', 'show')->name('aluno.show');
+    Route::post('/criar', 'store')->name('aluno.store');
+    Route::get('/cadastrar', 'create')->name('aluno.create');
+    Route::get('/{aluno_id}/editar', 'edit')->name('aluno.edit');
+    Route::post('/atualizar', 'update')->name('aluno.update');
     Route::get('/buscar', 'buscar')->name('aluno.buscar');
     Route::get('/buscarCPF', 'buscarCPF')->name('aluno.buscarCPF');
     Route::get('/buscarAluno', 'buscarAluno')->name('aluno.buscarAluno');
-    Route::get('/{id_aluno}/gerenciar', 'gerenciar')->name('aluno.gerenciar');
-    Route::get('/{id_aluno}/editar', 'editar')->name('aluno.editar');
-    Route::get('/{id_aluno}/excluir', 'excluir')->name('aluno.excluir');
-    Route::post('/criar', 'store')->name('aluno.store');
-    Route::post('/atualizar', 'atualizar')->name('aluno.atualizar');
+    Route::get('/{aluno_id}/excluir', 'delete')->name('aluno.delete');
     
     //Rotas para permissões
-    Route::get('/{id_aluno}/gerenciar/permissoes/listar','gerenciarPermissoes')->name('aluno.permissoes');
-    Route::get('/{id_aluno}/gerenciar/permissoes/cadastrar','cadastrarPermissao')->name('aluno.permissoes.cadastrar');
+    Route::get('/{aluno_id}/gerenciar/permissoes/listar','gerenciarPermissoes')->name('aluno.permissoes');
+    Route::get('/{aluno_id}/gerenciar/permissoes/cadastrar','cadastrarPermissao')->name('aluno.permissoes.cadastrar');
     Route::get('/{cpf}/gerenciar/permissoes/requisitar', 'requisitarPermissao')->name('aluno.permissoes.requisitar');
     Route::get('/gerenciar/permissoes/{id_permissao}/editar','editarPermissao')->name('aluno.permissoes.editar');
     Route::get('/gerenciar/permissoes/{id_permissao}/remover','removerPermissao')->name('aluno.permissoes.remover');
@@ -140,15 +140,16 @@ Route::prefix('alunos/albuns')->controller(AlbumController::class)->group(functi
 });
 
 Route::prefix('aluno/pdi')->controller(PdiController::class)->group(function(){
-    Route::get('/{id_aluno}/cadastrar', 'cadastrar')->name('pdi.cadastrar');
+    Route::get('/{id_aluno}/listar', 'index')->name('pdi.index');
+    Route::get('/{id_pdi}/ver', 'show')->name('pdi.show');
+    Route::get('/{id_aluno}/cadastrar', 'create')->name('pdi.create');
+    Route::post('/criar', 'store')->name('pdi.store');
+    Route::get('/{id_pdi}/editar', 'edit')->name('pdi.edit');
+    Route::post('/atualizar', 'update')->name('pdi.update');
+    Route::get('/{id_pdi}/excluir', 'delete')->name('pdi.delete');
+
     Route::get('/{id_aluno}/cadastrarArquivo', 'cadastrarArquivo')->name('pdi.cadastrarArquivo');
-    Route::post('/criar', 'criar')->name('pdi.criar');
     Route::post('/criarArquivo', 'criarArquivo')->name('pdi.criarArquivo');
-    Route::get('/{id_aluno}/listar', 'listar')->name('pdi.listar');
-    Route::get('/{id_pdi}/ver', 'ver')->name('pdi.ver');
-    Route::get('/{id_pdi}/excluir', 'excluir')->name('pdi.excluir');
-    Route::get('/{id_pdi}/editar', 'editar')->name('pdi.editar');
-    Route::post('/atualizar', 'atualizar')->name('pdi.atualizar');
     Route::get('/arquivo/{id_pdiArquivo}/download','download')->name('pdi.download');
     Route::get('/arquivo/{id_pdiArquivo}/excluirArquivo','excluirArquivo')->name('pdi.excluirArquivo')->middleware('checkPdiArquivoCriador');
     Route::get('/{id_pdi}/pdf', 'gerarPdf')->name('pdi.pdf');

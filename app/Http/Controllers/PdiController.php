@@ -13,14 +13,14 @@ use Illuminate\Support\Facades\Validator;
 
 class PdiController extends Controller
 {
-    public static function listar($id_aluno)
+    public static function index($id_aluno)
     {
         $pdis = Pdi::all()->where('aluno_id', "=", $id_aluno);
         $pdiArquivos = pdiArquivo::all()->where('aluno_id', "=", $id_aluno);
         $aluno = Aluno::find($id_aluno);
         $pdi = DB::table('pdis')->latest('created_at')->where('user_id', '=', Auth::user()->id)->first();
 
-        return view("pdi.listar", [
+        return view("pdi.index", [
             'pdis' => $pdis,
             'pdiArquivos' => $pdiArquivos,
             'aluno' => $aluno,
@@ -29,11 +29,11 @@ class PdiController extends Controller
 
     }
 
-    public static function cadastrar($id_aluno)
+    public static function create($id_aluno)
     {
         $aluno = Aluno::find($id_aluno);
         $pdi = DB::table('pdis')->latest('created_at')->where('user_id', '=', Auth::user()->id)->first();
-        return view('pdi.cadastrar', [
+        return view('pdi.create', [
             'aluno' => $aluno,
             'pdi' => $pdi,
         ]);
@@ -87,7 +87,7 @@ class PdiController extends Controller
         return redirect()->back()->with('success','O arquivo foi excluído.');
     }
 
-    public static function criar(Request $request)
+    public static function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'nomeMae' => ['required'],
@@ -179,17 +179,17 @@ class PdiController extends Controller
         return $pdf->setPaper('a4')->stream('pdi' . '-' . time());
     }
 
-    public static function editar($id_pdi)
+    public static function edit($id_pdi)
     {
         $pdi = Pdi::find($id_pdi);
         $aluno = Aluno::find($pdi->aluno_id);
-        return view('pdi.editar', [
+        return view('pdi.edit', [
             'pdi' => $pdi,
             'aluno' => $aluno,
         ]);
     }
 
-    public static function atualizar(Request $request)
+    public static function update(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'nomeMae' => ['required'],
@@ -268,10 +268,10 @@ class PdiController extends Controller
         $pdi->especificidadesObjetivo = $request->especificidadesObjetivo;
         $pdi->update();
 
-        return redirect()->route("pdi.listar", $pdi->aluno_id)->with('success', 'O PDI foi cadastrado');
+        return redirect()->route("pdi.index", $pdi->aluno_id)->with('success', 'O PDI foi cadastrado');
     }
 
-    public static function ver($id_pdi)
+    public static function show($id_pdi)
     {
         $pdi = Pdi::find($id_pdi);
         return view('pdi.ver', [
@@ -279,7 +279,7 @@ class PdiController extends Controller
         ]);
     }
 
-    public static function excluir($id_pdi)
+    public static function delete($id_pdi)
     {
         $pdi = Pdi::find($id_pdi);
         $aluno = $pdi->aluno_id;
