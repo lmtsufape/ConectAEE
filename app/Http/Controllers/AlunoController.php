@@ -27,14 +27,15 @@ class AlunoController extends Controller
 {
 
     
-    public function index()
+    public function index(): View
     {
         $alunos = Aluno::where('professor_responsavel', Auth::user()->id)->orderBy('nome', 'asc')->paginate(15);
-        
+
         return view("alunos.index", [
             'alunos' => $alunos,
         ]);
     }
+    
 
     public function show($aluno_id): View
     {
@@ -42,26 +43,19 @@ class AlunoController extends Controller
 
         $albuns = Album::where('aluno_id', $aluno->id)->paginate(15);
 
-        return view("aluno.show", [
+        return view("alunos.show", [
             'aluno' => $aluno,
             'albuns' => $albuns,
         ]);
     }
 
-    public function index(): View
-    {
-        $alunos = Aluno::where('professor_responsavel', Auth::user()->id)->orderBy('nome', 'asc')->paginate(15);
 
-        return view("aluno.index", [
-            'alunos' => $alunos,
-        ]);
-    }
 
     public function create()
     {
         $escolas = Escola::all();
         
-        return view("aluno.create", [
+        return view("alunos.create", [
             'escolas'
         ]);
     }
@@ -116,7 +110,7 @@ class AlunoController extends Controller
         $perfis = [[1, 'Responsável'], [2, 'Professor AEE']];
         $instituicoes = Auth::user()->instituicoes;
 
-        return view("aluno.edit", [
+        return view("alunos.edit", [
             'aluno' => $aluno,
             'endereco' => $endereco,
             'instituicoes' => $instituicoes,
@@ -233,7 +227,7 @@ class AlunoController extends Controller
                 }
             }
 
-            return view("aluno.buscarCPF", [
+            return view("alunos.buscarCPF", [
                 'aluno' => $aluno,
                 'cpf' => $cpf,
                 'botaoAtivo' => $botaoAtivo

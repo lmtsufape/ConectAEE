@@ -23,6 +23,8 @@ class CreateEnderecosTable extends Migration
       $table->string('estado');
       $table->string('cep');
 
+      $table->foreignId('aluno_id')->constrained();
+
       $table->timestamps();
     });
   }

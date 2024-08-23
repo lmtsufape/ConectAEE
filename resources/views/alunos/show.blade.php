@@ -91,7 +91,7 @@
                 </h4>
 
                 @if($aluno->cid != null)
-                    <h4 style="color: #b38a1d">
+                    <p style="color: #b38a1d">
                         <strong style="color: #12583C">CID:</strong> {{$aluno->cid}}
                         <br/>
                         <strong style="color: #12583C">Descrição
@@ -105,12 +105,6 @@
                 <strong style="color: #12583C">Instituições:</strong>
                 <br>
 
-                {{-- <ul>
-                    <li>
-                        <a href="{{ route('instituicao.ver', ['id_instituicao'=>$instituicao->id]) }}"
-                            style="color: #3097D1">{{$instituicao->nome}}</a>
-                    </li>
-                </ul> --}}
 
             </div>
         </div>

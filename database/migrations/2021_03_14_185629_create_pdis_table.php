@@ -16,7 +16,22 @@ class CreatePdisTable extends Migration
         Schema::create('pdis', function (Blueprint $table) {
             $table->id();
 
-          
+            $table->boolean('tem_diagnostico')->default(false);
+            $table->date('data_diagnostico')->nullable(); 
+            $table->string('resultado_diagnostico')->nullable(); 
+            $table->string('situacao_diagnostico')->nullable(); 
+
+            $table->boolean('tem_outras_condicoes')->default(false);
+            $table->string('outras_condicoes')->nullable();
+
+            $table->boolean('faz_uso_medicacao')->default(false); 
+            $table->string('medicacoes')->nullable();
+
+            $table->boolean('tem_recomendacoes')->default(false);
+            $table->string('recomendacoes')->nullable();
+
+            $table->boolean('faz_acompanhamento')->default(false);
+            $table->string('acompanhamento')->nullable(); 
 
             $table->enum('sistema_linguistico', [
                 'Comunicação Verbal/Fala',
@@ -26,10 +41,10 @@ class CreatePdisTable extends Migration
             ])->default('Comunicação Verbal/Fala');
             $table->string('outro_sistema_linguistico')->nullable();
 
-            $table->text('tecnologia_assistiva_utilizada')->nullable();
-            $table->text('recursos_equipamentos_necessarios')->nullable();
-            $table->text('implicacoes_especificidade_educacional_acessibilidade_curricular')->nullable();
-            $table->text('outras_informacoes_relevantes')->nullable();
+            $table->string('tecnologia_assistiva_utilizada')->nullable();
+            $table->string('recursos_equipamentos_necessarios')->nullable();
+            $table->string('implicacoes_especificidade_educacional_acessibilidade_curricular')->nullable();
+            $table->string('outras_informacoes_relevantes')->nullable();
 
             $table->string('percepcao')->nullable();
             $table->string('atencao')->nullable();

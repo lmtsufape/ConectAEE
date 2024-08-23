@@ -13,14 +13,14 @@ use Illuminate\Support\Facades\Validator;
 
 class PdiController extends Controller
 {
-    public static function index($id_aluno)
+    public function index($aluno_id)
     {
-        $pdis = Pdi::all()->where('aluno_id', "=", $id_aluno);
-        $pdiArquivos = pdiArquivo::all()->where('aluno_id', "=", $id_aluno);
-        $aluno = Aluno::find($id_aluno);
+        $pdis = Pdi::where('aluno_id', $aluno_id)->get();
+        $pdiArquivos = pdiArquivo::where('aluno_id', $aluno_id)->get();
+        $aluno = Aluno::find($aluno_id);
         $pdi = DB::table('pdis')->latest('created_at')->where('user_id', '=', Auth::user()->id)->first();
 
-        return view("pdi.index", [
+        return view("pdis.index", [
             'pdis' => $pdis,
             'pdiArquivos' => $pdiArquivos,
             'aluno' => $aluno,
@@ -29,25 +29,27 @@ class PdiController extends Controller
 
     }
 
-    public static function create($id_aluno)
+    public function create($aluno_id)
     {
-        $aluno = Aluno::find($id_aluno);
-        $pdi = DB::table('pdis')->latest('created_at')->where('user_id', '=', Auth::user()->id)->first();
-        return view('pdi.create', [
+        $aluno = Aluno::find($aluno_id);
+        $pdi = Pdi::where('aluno_id', $aluno_id)->orderByDesc('created_at')->first();
+
+        return view('pdis.create', [
             'aluno' => $aluno,
             'pdi' => $pdi,
         ]);
     }
 
-    public static function cadastrarArquivo($id_aluno)
+    public function cadastrarArquivo($aluno_id)
     {
-        $aluno = Aluno::find($id_aluno);
-        return view('pdi.cadastrarArquivo', [
+        $aluno = Aluno::find($aluno_id);
+
+        return view('pdis.cadastrarArquivo', [
             'aluno' => $aluno,
         ]);
     }
 
-    public static function criarArquivo(Request $request)
+    public function criarArquivo(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'filenames' => 'mimes:doc,pdf,docx|max:2000',
@@ -73,12 +75,12 @@ class PdiController extends Controller
         return redirect()->route('pdi.listar', $request->aluno_id)->with('success', 'Seu arquivo foi adicionado com sucesso!');
     }
 
-    public static function download($id_pdiArquivo){
+    public function download($id_pdiArquivo){
         $arquivo = pdiArquivo::find($id_pdiArquivo);
         return response()->download(public_path() . '/pdis/'.$arquivo->aluno_id.'/'.$arquivo->filename);
     }
 
-    public static function excluirArquivo($id_pdiArquivo){
+    public function excluirArquivo($id_pdiArquivo){
         $arquivo = pdiArquivo::find($id_pdiArquivo);
         $arquivo->delete();
         if (file_exists(public_path() . '/pdis/'.$arquivo->aluno_id.'/'.$arquivo->filename)){
@@ -87,7 +89,7 @@ class PdiController extends Controller
         return redirect()->back()->with('success','O arquivo foi excluído.');
     }
 
-    public static function store(Request $request)
+    public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'nomeMae' => ['required'],
@@ -179,17 +181,18 @@ class PdiController extends Controller
         return $pdf->setPaper('a4')->stream('pdi' . '-' . time());
     }
 
-    public static function edit($id_pdi)
+    public function edit($id_pdi)
     {
         $pdi = Pdi::find($id_pdi);
         $aluno = Aluno::find($pdi->aluno_id);
-        return view('pdi.edit', [
+
+        return view('pdis.edit', [
             'pdi' => $pdi,
             'aluno' => $aluno,
         ]);
     }
 
-    public static function update(Request $request)
+    public function update(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'nomeMae' => ['required'],
@@ -271,15 +274,15 @@ class PdiController extends Controller
         return redirect()->route("pdi.index", $pdi->aluno_id)->with('success', 'O PDI foi cadastrado');
     }
 
-    public static function show($id_pdi)
+    public function show($id_pdi)
     {
         $pdi = Pdi::find($id_pdi);
-        return view('pdi.ver', [
+        return view('pdis.ver', [
             'pdi' => $pdi,
         ]);
     }
 
-    public static function delete($id_pdi)
+    public function delete($id_pdi)
     {
         $pdi = Pdi::find($id_pdi);
         $aluno = $pdi->aluno_id;

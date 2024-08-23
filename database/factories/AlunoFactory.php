@@ -37,7 +37,6 @@ $factory->define(Aluno::class, function (Faker $faker) {
     'imagem' => '',
     'municipio_id' => 1,
     'escola_id' => 1,
-    'endereco_id' => 1,
     'professor_responsavel' => 2,
     'nome' => str_replace($order, $replace, $str),
     'cid' => 'H910',

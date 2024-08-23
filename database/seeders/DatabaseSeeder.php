@@ -26,8 +26,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PerfilSeeder::class);
 
         //Comentar
-        $this->call(EnderecoSeeder::class);
         $this->call(AlunoSeeder::class);
+        $this->call(EnderecoSeeder::class);
         // $this->call(MensagemForumAlunoSeeder::class);
 
         //Não comentar

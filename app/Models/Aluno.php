@@ -10,7 +10,6 @@ use Illuminate\Notifications\Notifiable;
 class Aluno extends Model
 {
     use Notifiable;
-    use SoftDeletes;
 
     protected $fillable = [
         'nome', 

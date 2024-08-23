@@ -40,11 +40,9 @@ class CreateAlunosTable extends Migration
 
             $table->foreignId('municipio_id')->constrained();
             $table->foreignId('escola_id')->constrained();
-            $table->foreignId('endereco_id')->constrained()->onDelete('cascade');
             $table->foreignId('professor_responsavel')->constrained('users');
 
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

@@ -14,6 +14,7 @@ class Endereco extends Model
     'cidade',
     'estado',
     'cep',
+    'aluno_id'
   ];
 
   public function aluno()
