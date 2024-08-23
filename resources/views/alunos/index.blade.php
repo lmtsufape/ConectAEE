@@ -9,7 +9,6 @@
             <h1 style="color: #12583C">
                 Alunos
             </h1>
-            @include('layouts.videoPopup', ['src' => asset('videos/gif-libras.mp4')])
         </div>
                             
         <div class="d-flex">

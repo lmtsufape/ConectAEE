@@ -4,7 +4,7 @@
 @section('content')
 
 
-    <form method="POST" action="{{ route('aluno.store') }}" enctype="multipart/form-data">
+    <form class="m-3" method="POST" action="{{ route('aluno.store') }}" enctype="multipart/form-data">
         @csrf
 
         <h3>

@@ -36,7 +36,7 @@ class UserController extends Controller
     {
         $usuario = Auth::user();
 
-        return view("usuario.editar", ['usuario' => $usuario]);
+        return view("users.edit", ['usuario' => $usuario]);
     }
 
     public function update(Request $request, $id)
@@ -58,7 +58,7 @@ class UserController extends Controller
 
     public function editarSenha()
     {
-        return view('usuario.editarSenha');
+        return view('users.editarSenha');
     }
 
 
