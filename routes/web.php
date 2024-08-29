@@ -4,6 +4,9 @@ use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\ArquivoController;
 use App\Http\Controllers\AtividadeController;
+use App\Http\Controllers\CondicaoSaudeController;
+use App\Http\Controllers\DesenvolvimentoController;
+use App\Http\Controllers\EspecificidadeEducacionalController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\HomeController;
@@ -11,6 +14,7 @@ use App\Http\Controllers\InstituicaoController;
 use App\Http\Controllers\NotificacaoController;
 use App\Http\Controllers\ObjetivoController;
 use App\Http\Controllers\PdiController;
+use App\Http\Controllers\RecursosMultifuncionaisController;
 use App\Http\Controllers\SugestaoController;
 use App\Http\Controllers\UserController;
 use App\Models\Feedback;
@@ -153,13 +157,25 @@ Route::prefix('aluno/pdi')->controller(PdiController::class)->group(function(){
     Route::get('/arquivo/{id_pdiArquivo}/download','download')->name('pdi.download');
     Route::get('/arquivo/{id_pdiArquivo}/excluirArquivo','excluirArquivo')->name('pdi.excluirArquivo')->middleware('checkPdiArquivoCriador');
     Route::get('/{id_pdi}/pdf', 'gerarPdf')->name('pdi.pdf');
+
+    
+    
 });
+Route::get('/saude/{pdi_id}', [CondicaoSaudeController::class, 'create_condicoes_saude'])->name('pdi.create_condicoes_saude');
+Route::get('/desenvolvimento/{pdi_id}', [DesenvolvimentoController::class, 'create_desenvolvimento_estudante'])->name('pdi.create_desenvolvimento_estudante');
+Route::get('/especificidade/{pdi_id}', [EspecificidadeEducacionalController::class, 'create_especificidade_educacional'])->name('pdi.create_especificidade_educacional');
+Route::get('/recursos/{pdi_id}', [RecursosMultifuncionaisController::class, 'create_recursos_mult_funcionais'])->name('pdi.create_recursos_mult_funcionais');
+Route::post('/cond', [CondicaoSaudeController::class, 'store'])->name('pdi.condicoes_saude');
+Route::post('/desen', [DesenvolvimentoController::class, 'store'])->name('pdi.desenvolvimento_estudante');
+Route::post('/especificidade', [EspecificidadeEducacionalController::class, 'store'])->name('pdi.especificidade_educacional');
+Route::post('/recursos', [RecursosMultifuncionaisController::class, 'store'])->name('pdi.recursos_mult_funcionais');
+// Route::get('/listar5', 'create_finalizacao')->name('pdi.create_finalizacao');
 
 Route::prefix('arquivos')->controller(ArquivoController::class)->group(function(){
     Route::get('/{id_arquivo}/download','download')->name('arquivo.download')->middleware('checkAtividadeCriador');
     Route::get('/{id_arquivo}/excluir','excluir')->name('arquivo.excluir')->middleware('checkAtividadeCriador');
     Route::get('/aluno/objetivo/gerenciar/atividade/{id_atividade}/listar','listar')->name('arquivo.listar')->middleware('checkAtividadeCriador');
-    Route::get('/aluno/objetivo/gerenciar/atividade/{id_atividade}/{is_arquivo}/cadastrar','cadastrar')->name('arquivo.cadastrar')->middleware('checkAtividadeCriador');
+    Route::get('/aluno/objetivo/gerenciar/atividade/{id_atividade}/{is_arquivo}/cadastrar','cada strar')->name('arquivo.cadastrar')->middleware('checkAtividadeCriador');
     Route::post('/criar','criar')->name('arquivo.criar');
 });
 

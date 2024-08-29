@@ -31,14 +31,11 @@
 
         <div>
             <div>
-                    
                 <a class="btn btn-primary"
                     style="float:right; margin-top:20px; background-color: #0398fc; color: white; font-weight: bold; font-size: 14px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC"
                     href="{{ route('pdi.create', $aluno->id)}}">
                     Novo PDI
                 </a>
-        
-
                     
                 <table class="table table-hover shadow-lg">
                     <thead class="align-middle">
@@ -54,7 +51,7 @@
                                 <td>{{ $pdi->created_at }}</td>
                                 <td>{{\App\Models\User::find($pdi->user_id)->name}}</td>
                                 <td>
-                                    <a class="btn btn-primary" href="{{route('pdi.ver', $pdi->id)}}">
+                                    <a class="btn btn-primary" href="{{route('pdi.show', $pdi->id)}}">
                                         Visualizar
                                     </a>
                                 </td>
@@ -64,7 +61,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary" href="{{route('pdi.editar', $pdi->id)}}">
+                                    <a class="btn btn-primary" href="{{route('pdi.edit', $pdi->id)}}">
                                         Editar
                                     </a>
                                 </td>

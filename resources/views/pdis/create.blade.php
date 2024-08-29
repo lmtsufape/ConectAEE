@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.form')
 
-@section('content')
+@section('form')
 
     <div>
         <h2>

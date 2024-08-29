@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Validator;
 
 class PdiController extends Controller
 {
+    public function create_finalizacao(){
+        return view('pdis.finalizacao');
+    }
     public function index($aluno_id)
     {
         $pdis = Pdi::where('aluno_id', $aluno_id)->get();
@@ -31,13 +34,9 @@ class PdiController extends Controller
 
     public function create($aluno_id)
     {
-        $aluno = Aluno::find($aluno_id);
-        $pdi = Pdi::where('aluno_id', $aluno_id)->orderByDesc('created_at')->first();
-
-        return view('pdis.create', [
-            'aluno' => $aluno,
-            'pdi' => $pdi,
-        ]);
+        $pdi = $this->store($aluno_id);
+        
+        return view('pdis.condicoes_saude', ['pdi' => $pdi]);
     }
 
     public function cadastrarArquivo($aluno_id)
@@ -89,88 +88,14 @@ class PdiController extends Controller
         return redirect()->back()->with('success','O arquivo foi excluído.');
     }
 
-    public function store(Request $request)
+    public function store($aluno_id)
     {
-        $validator = Validator::make($request->all(), [
-            'nomeMae' => ['required'],
-            'nomePai' => ['nullable'],
-            'numeroIrmaos' => ['required'],
-            'nomeResponsavel' => ['required'],
-            'bebeAguaSozinho' => ['required'],
-            'nomeEscola' => ['required'],
-            'professorRegular' => ['required'],
-            'modalidadeEscolar' => ['required'],
-            'anoEscolaridade' => ['required'],
-            'comeSozinho' => ['required'],
-            'escovaDentesSozinho' => ['required'],
-            'banheiroSozinho' => ['required'],
-            'banhoSozinho' => ['required'],
-            'banheiroSozinho' => ['required'],
-            'escovaDentesSozinho' => ['required'],
-            'comeSozinho' => ['required'],
-            'bebeAguaSozinho' => ['required'],
-            'problemaGestacao' => ['required'],
-            'descProbGestacao' => ['nullable'],
-            'ambienteFamiliar' => ['required'],
-            'aprendizagemEscolar' => ['required'],
-            'recomendacoesSaude' => ['required'], ['min:3'],
-            'diagnosticoSaude' => ['required'],
-            'problemasSaude' => ['required'], ['min:3'],
-            'descricaoMedicamentos' => ['nullable'],
-            'sistemaLinguistico' => ['required'],
-            'tipoRecursoUsado' => ['required'],
-            'tipoRecursoProvidenciado' => ['required'],
-            'implicacoesEspecificidades' => ['required'],
-            'informacoesRelevantes' => ['nullable'],
-            'avaliacaoMotora' => ['required'],
-            'avaliacaoEmocional' => ['required'],
-            'especificidadesObjetivo' => ['required'],
+        if(Pdi::where('aluno_id', $aluno_id)->orderByDesc('created_at')->first()){
 
-        ]);
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->errors())->withInput();
         }
+        $pdi = Pdi::create(['aluno_id' => $aluno_id, 'user_id' => Auth::user()->id]);
 
-        $pdi = new Pdi();
-
-        $pdi->user_id = Auth::user()->id;
-        $pdi->aluno_id = $request->aluno_id;
-        $pdi->nomeMae = $request->nomeMae;
-        $pdi->nomePai = $request->nomePai;
-        $pdi->numeroIrmaos = $request->numeroIrmaos;
-        $pdi->nomeResponsavel = $request->nomeResponsavel;
-        $pdi->bebeAguaSozinho = $request->bebeAguaSozinho;
-        $pdi->nomeEscola = $request->nomeEscola;
-        $pdi->professorRegular = $request->professorRegular;
-        $pdi->modalidadeEscolar = $request->modalidadeEscolar;
-        $pdi->anoEscolaridade = $request->anoEscolaridade;
-        $pdi->comeSozinho = $request->comeSozinho;
-        $pdi->escovaDentesSozinho = $request->escovaDentesSozinho;
-        $pdi->banheiroSozinho = $request->banheiroSozinho;
-        $pdi->banhoSozinho = $request->banhoSozinho;
-        $pdi->banheiroSozinho = $request->banheiroSozinho;
-        $pdi->escovaDentesSozinho = $request->escovaDentesSozinho;
-        $pdi->comeSozinho = $request->comeSozinho;
-        $pdi->bebeAguaSozinho = $request->bebeAguaSozinho;
-        $pdi->problemaGestacao = $request->problemaGestacao;
-        $pdi->descProbGestacao = $request->descProbGestacao;
-        $pdi->ambienteFamiliar = $request->ambienteFamiliar;
-        $pdi->aprendizagemEscolar = $request->aprendizagemEscolar;
-        $pdi->recomendacoesSaude = $request->recomendacoesSaude;
-        $pdi->diagnosticoSaude = $request->diagnosticoSaude;
-        $pdi->problemasSaude = $request->problemasSaude;
-        $pdi->descricaoMedicamentos = $request->descricaoMedicamentos;
-        $pdi->sistemaLinguistico = $request->sistemaLinguistico;
-        $pdi->tipoRecursoUsado = $request->tipoRecursoUsado;
-        $pdi->tipoRecursoProvidenciado = $request->tipoRecursoProvidenciado;
-        $pdi->implicacoesEspecificidades = $request->implicacoesEspecificidades;
-        $pdi->informacoesRelevantes = $request->informacoesRelevantes;
-        $pdi->avaliacaoMotora = $request->avaliacaoMotora;
-        $pdi->avaliacaoEmocional = $request->avaliacaoEmocional;
-        $pdi->especificidadesObjetivo = $request->especificidadesObjetivo;
-        $pdi->save();
-
-        return redirect()->route("pdi.listar", $pdi->aluno_id)->with('success', 'O PDI foi cadastrado');
+        return $pdi;
     }
 
     public function gerarPdf(Request $request, $idPdi)

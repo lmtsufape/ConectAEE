@@ -65,6 +65,7 @@
     </header>
 
     <main class="flex-grow-1">
+        @stack('nav-form')
         @auth
             <div class="container-md border rounded-5 shadow-lg bg-white p-3">
                 @yield('content')
@@ -78,8 +79,9 @@
         @include('layouts.footer')
     </footer>
 
-    <!-- Scripts -->
-    @include('layouts.scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    @stack('scripts')
 </body>
 
 </html>
