@@ -5,8 +5,9 @@
 @endpush
 
 @section('content')
-<form action="{{route('pdi.desenvolvimento_estudante')}}" method="POST">
+<form class="m-2" action="{{route('pdi.desenvolvimento_estudante', ['pdi_id' => $pdi->id])}}" method="POST">
     @csrf
+    <h4>Desenvolvimento do Estudande</h1>
     <div class="form-group">
         <label for="sistema_linguistico" class="form-label">Sistema linguístico utilizado pelo estudante na sua comunicação</label>
         <select class="form-control @error('sistema_linguistico') is-invalid @enderror" name="sistema_linguistico" id="sistema_linguistico">
@@ -166,6 +167,10 @@
                 <strong>{{$message}}</strong>
             </span>
         @enderror
+    </div>
+    <div class="d-flex justify-content-between pt-5 pb-3">
+        <a class="btn btn-danger" href="{{}}">Salvar e Voltar</a>
+        <button class="btn btn-success" type="submit">Salvar e Continuar</button>
     </div>
 </form>
 

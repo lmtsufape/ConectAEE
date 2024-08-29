@@ -24,17 +24,17 @@ return new class extends Migration
 
             $table->string('tecnologia_assistiva_utilizada')->nullable();
             $table->string('recursos_equipamentos_necessarios')->nullable();
-            $table->string('implicacoes_especificidade_educacional')->nullable();
-            $table->string('outras_informacoes_relevantes')->nullable();
+            $table->text('implicacoes_especificidade_educacional')->nullable();
+            $table->text('outras_informacoes_relevantes')->nullable();
 
-            $table->string('percepcao')->nullable();
-            $table->string('atencao')->nullable();
-            $table->string('memoria')->nullable();
-            $table->string('linguagem')->nullable();
-            $table->string('raciocinio_logico')->nullable();
-            $table->string('desenvolvimento_capacidade_motora')->nullable();
-            $table->string('area_emocional_afetiva_social')->nullable();
-            $table->string('atividades_vida_autonoma')->nullable();
+            $table->text('percepcao')->nullable();
+            $table->text('atencao')->nullable();
+            $table->text('memoria')->nullable();
+            $table->text('linguagem')->nullable();
+            $table->text('raciocinio_logico')->nullable();
+            $table->text('desenvolvimento_capacidade_motora')->nullable();
+            $table->text('area_emocional_afetiva_social')->nullable();
+            $table->text('atividades_vida_autonoma')->nullable();
 
             $table->foreignId('pdi_id')->constrained();
             $table->timestamps();

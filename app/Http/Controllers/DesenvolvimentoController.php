@@ -18,6 +18,6 @@ class DesenvolvimentoController extends Controller
     public function store(StoreDesenvolvimentoRequest $request){
         $desenvolvimento = Desenvolvimento::create($request->all());
 
-        return view('');
+        return redirect()->route('pdi.desenvolvimento_estudante');
     }
 }

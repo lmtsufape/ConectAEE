@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Validator;
 
 class PdiController extends Controller
 {
-    public function create_finalizacao(){
-        return view('pdis.finalizacao');
+    public function create_finalizacao(Request $request, $pdi_id){
+        $pdi = Pdi::find($pdi_id);
+
+        $pdi->
+        return view('pdis.finalizacao', ['pdi' => $pdi]);
     }
     public function index($aluno_id)
     {
@@ -36,7 +39,7 @@ class PdiController extends Controller
     {
         $pdi = $this->store($aluno_id);
         
-        return view('pdis.condicoes_saude', ['pdi' => $pdi]);
+        return redirect()->route('pdi.create_condicoes_saude', ['pdi_id' => $pdi->id]);
     }
 
     public function cadastrarArquivo($aluno_id)

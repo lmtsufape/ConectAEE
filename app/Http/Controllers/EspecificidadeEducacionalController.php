@@ -17,6 +17,6 @@ class EspecificidadeEducacionalController extends Controller
     public function store(StoreEspecificidadeEducacionalRequest $request){
         $especificidade = EspecificidadeEducacional::create($request->all());
 
-        return view('');
+        return redirect()->view('pdi.especificidade_educacional');
     }
 }

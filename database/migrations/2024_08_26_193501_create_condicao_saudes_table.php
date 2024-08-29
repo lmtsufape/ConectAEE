@@ -16,20 +16,20 @@ return new class extends Migration
             
             $table->boolean('tem_diagnostico')->default(false);
             $table->date('data_diagnostico')->nullable(); 
-            $table->string('resultado_diagnostico')->nullable(); 
-            $table->string('situacao_diagnostico')->nullable(); 
+            $table->text('resultado_diagnostico')->nullable(); 
+            $table->text('situacao_diagnostico')->nullable(); 
 
             $table->boolean('tem_outras_condicoes')->default(false);
-            $table->string('outras_condicoes')->nullable();
+            $table->text('outras_condicoes')->nullable();
 
             $table->boolean('faz_uso_medicacao')->default(false); 
             $table->string('medicacoes')->nullable();
 
             $table->boolean('tem_recomendacoes')->default(false);
-            $table->string('recomendacoes')->nullable();
+            $table->text('recomendacoes')->nullable();
 
             $table->boolean('faz_acompanhamento')->default(false);
-            $table->string('acompanhamento')->nullable(); 
+            $table->text('acompanhamento')->nullable(); 
 
             $table->foreignId('pdi_id')->constrained();
             $table->timestamps();

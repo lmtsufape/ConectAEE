@@ -1,4 +1,4 @@
-<div class="my-5 justify-content-center">
+<div class="mt-2 mb-5 justify-content-center">
     <ul class="nav justify-content-center gap-3">
         <li class="nav-item">
             <a class="nav-link border-bottom border-3 {{Route::is('pdi.create_condicoes_saude') ? 'text-success border-success' : 'text-secondary border-secondary'}}" aria-current="page"
@@ -15,6 +15,10 @@
         <li class="nav-item">
             <a class="nav-link border-bottom border-3 {{Route::is('pdi.create_recursos_mult_funcionais') ? 'text-success border-success' : 'text-secondary border-secondary'}}"
                 href="{{route('pdi.create_recursos_mult_funcionais', ['pdi_id' => $pdi->id])}}">4. Sala de Recursos Multifuncionais</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link border-bottom border-3 {{Route::is('pdi.create_finalizacao') ? 'text-success border-success' : 'text-secondary border-secondary'}}"
+                href="{{route('pdi.create_finalizacao', ['pdi_id' => $pdi->id])}}">5. Finalização</a>
         </li>
     </ul>
 </div>

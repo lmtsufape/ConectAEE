@@ -14,21 +14,21 @@ return new class extends Migration
         Schema::create('especificidade_educacionals', function (Blueprint $table) {
             $table->id();
 
-            $table->string('escola_acoes_existentes');
-            $table->string('escola_acoes_desenvolvidas');
-            $table->string('escola_responsaveis_acoes');
-            $table->string('sala_aula_acoes_existentes');
-            $table->string('sala_aula_acoes_desenvolvidas');
-            $table->string('sala_aula_responsaveis_acoes');
-            $table->string('sala_aee_acoes_existentes');
-            $table->string('sala_aee_acoes_desenvolvidas');
-            $table->string('sala_aee_responsaveis_acoes');
-            $table->string('familia_acoes_existentes');
-            $table->string('familia_acoes_desenvolvidas');
-            $table->string('familia_responsaveis_acoes');
-            $table->string('saude_acoes_existentes');
-            $table->string('saude_acoes_desenvolvidas');
-            $table->string('saude_responsaveis_acoes');
+            $table->text('escola_acoes_existentes');
+            $table->text('escola_acoes_desenvolvidas');
+            $table->text('escola_responsaveis_acoes');
+            $table->text('sala_aula_acoes_existentes');
+            $table->text('sala_aula_acoes_desenvolvidas');
+            $table->text('sala_aula_responsaveis_acoes');
+            $table->text('sala_aee_acoes_existentes');
+            $table->text('sala_aee_acoes_desenvolvidas');
+            $table->text('sala_aee_responsaveis_acoes');
+            $table->text('familia_acoes_existentes');
+            $table->text('familia_acoes_desenvolvidas');
+            $table->text('familia_responsaveis_acoes');
+            $table->text('saude_acoes_existentes');
+            $table->text('saude_acoes_desenvolvidas');
+            $table->text('saude_responsaveis_acoes');
 
             $table->enum('organizacao_tipo_aee', [
                 'Sala de Recursos Multifuncional',

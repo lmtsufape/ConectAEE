@@ -6,14 +6,13 @@
 
 @section('content')
 
-<form action="{{route('pdi.especificidade_educacional')}}" method="POST">
+<form class="m-2" action="{{route('pdi.especificidade_educacional', ['pdi_id' => $pdi->id])}}" method="POST">
     @csrf
     <div>
         <h4>NA ESCOLA</h4>
         <div>
             <label for="escola_acoes_existentes" class="form-label">Descreva as ações necessárias já existentes</label>
-            <input class="form-control @error('escola_acoes_existentes') is-invalid @enderror" type="text" name="escola_acoes_existentes" id="escola_acoes_existentes">
-    
+            <textarea class="form-control @error('escola_acoes_existentes') is-invalid @enderror" name="escola_acoes_existentes" id="escola_acoes_existentes" cols="30" rows="4"></textarea>
             @error('escola_acoes_existentes')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{$message}}</strong>
@@ -246,6 +245,10 @@
                 <strong>{{$message}}</strong>
             </span>
         @enderror
+    </div>
+    <div class="d-flex justify-content-between pt-5 pb-3">
+        <a class="btn btn-danger" href="{{}}">Salvar e Voltar</a>
+        <button class="btn btn-success" type="submit">Salvar e Continuar</button>
     </div>
 </form>
 

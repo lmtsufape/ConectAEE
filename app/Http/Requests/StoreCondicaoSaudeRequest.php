@@ -22,10 +22,10 @@ class StoreCondicaoSaudeRequest extends FormRequest
     public function rules(): array
     {
         return [
-           'tem_diagnostico'        => 'required',
-            'data_diagnostico'      => 'required',
-            'resultado_diagnostico' => 'required',
-            'situacao_diagnostico'  => 'required',
+            'tem_diagnostico'       => 'required',
+            'data_diagnostico'      => 'required_if:tem_diagnostico,true',
+            'resultado_diagnostico' => 'required_if:tem_diagnostico,true',
+            'situacao_diagnostico'  => 'required_if:tem_diagnostico,false',
             'tem_outras_condicoes'  => 'required',
             'outras_condicoes'      => 'required',
             'faz_uso_medicacao'     => 'required',
@@ -40,18 +40,7 @@ class StoreCondicaoSaudeRequest extends FormRequest
     public function messages()
     {
         return [
-            'tem_diagnostico.required'        => 'required',
-            'data_diagnostico.required'      => 'required',
-            'resultado_diagnostico.required' => 'required',
-            'situacao_diagnostico.required'  => 'required',
-            'tem_outras_condicoes.required'  => 'required',
-            'outras_condicoes.required'      => 'required',
-            'faz_uso_medicacao.required'     => 'required',
-            'medicacoes.required'            => 'required',
-            'tem_recomendacoes.required'     => 'required',
-            'recomendacoes.required'         => 'required',
-            'faz_acompanhamento.required'    => 'required',
-            'acompanhamento.required'        => 'required',
+            
         ];
     }
 }

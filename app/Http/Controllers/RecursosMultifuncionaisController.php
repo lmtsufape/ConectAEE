@@ -15,9 +15,9 @@ class RecursosMultifuncionaisController extends Controller
         return view('pdis.recursos_mult_funcionais', ['pdi' => $pdi]);
     }
 
-    public function store(StoreRecursosMultifuncionaisRequest $request){
+    public function store(StoreRecursosMultifuncionaisRequest $request, $pdi_id){
         $recursosMulti = RecursosMultifuncionais::create($request->all());
 
-        return view('');
+        return redirect()->route('pdi.recursos_mult_funcionais');
     }
 }

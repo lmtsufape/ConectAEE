@@ -158,6 +158,8 @@ Route::prefix('aluno/pdi')->controller(PdiController::class)->group(function(){
     Route::get('/arquivo/{id_pdiArquivo}/excluirArquivo','excluirArquivo')->name('pdi.excluirArquivo')->middleware('checkPdiArquivoCriador');
     Route::get('/{id_pdi}/pdf', 'gerarPdf')->name('pdi.pdf');
 
+    Route::get('/{pdi_id}', 'create_finalizacao')->name('pdi.create_finalizacao');
+    Route::post('/{pdi_id}/recursos', 'store')->name('pdi.finalizacao');
     
     
 });
@@ -165,11 +167,10 @@ Route::get('/saude/{pdi_id}', [CondicaoSaudeController::class, 'create_condicoes
 Route::get('/desenvolvimento/{pdi_id}', [DesenvolvimentoController::class, 'create_desenvolvimento_estudante'])->name('pdi.create_desenvolvimento_estudante');
 Route::get('/especificidade/{pdi_id}', [EspecificidadeEducacionalController::class, 'create_especificidade_educacional'])->name('pdi.create_especificidade_educacional');
 Route::get('/recursos/{pdi_id}', [RecursosMultifuncionaisController::class, 'create_recursos_mult_funcionais'])->name('pdi.create_recursos_mult_funcionais');
-Route::post('/cond', [CondicaoSaudeController::class, 'store'])->name('pdi.condicoes_saude');
-Route::post('/desen', [DesenvolvimentoController::class, 'store'])->name('pdi.desenvolvimento_estudante');
-Route::post('/especificidade', [EspecificidadeEducacionalController::class, 'store'])->name('pdi.especificidade_educacional');
-Route::post('/recursos', [RecursosMultifuncionaisController::class, 'store'])->name('pdi.recursos_mult_funcionais');
-// Route::get('/listar5', 'create_finalizacao')->name('pdi.create_finalizacao');
+Route::post('/{pdi_id}/cond', [CondicaoSaudeController::class, 'store'])->name('pdi.condicoes_saude');
+Route::post('/{pdi_id}/desen', [DesenvolvimentoController::class, 'store'])->name('pdi.desenvolvimento_estudante');
+Route::post('/{pdi_id}/especificidade', [EspecificidadeEducacionalController::class, 'store'])->name('pdi.especificidade_educacional');
+Route::post('/{pdi_id}/recursos', [RecursosMultifuncionaisController::class, 'store'])->name('pdi.recursos_mult_funcionais');
 
 Route::prefix('arquivos')->controller(ArquivoController::class)->group(function(){
     Route::get('/{id_arquivo}/download','download')->name('arquivo.download')->middleware('checkAtividadeCriador');

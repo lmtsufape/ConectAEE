@@ -6,8 +6,9 @@
 
 @section('content')
 
-<form action="{{route('pdi.recursos_mult_funcionais')}}" method="POST">
+<form class="m-2" action="{{route('pdi.recursos_mult_funcionais', ['pdi_id' => $pdi->id])}}" method="POST">
     @csrf
+    <h4>Sala de Recursos Multifuncionais</h1>
     <div class="form-group">
         <label for="trabalho_area_cognitiva" class="form-label">Descreva sobre o trabalho a ser realizado na sala de recursos multifuncionais na Área Cognitiva</label>
         <input class="form-control @error('trabalho_area_cognitiva') is-invalid @enderror" type="text" name="trabalho_area_cognitiva" id="trabalho_area_cognitiva">
@@ -117,6 +118,10 @@
                 <strong>{{$message}}</strong>
             </span>
         @enderror
+    </div>
+    <div class="d-flex justify-content-between pt-5 pb-3">
+        <a class="btn btn-danger" href="{{}}">Salvar e Voltar</a>
+        <button class="btn btn-success" type="submit">Salvar e Continuar</button>
     </div>
 </form>
 
