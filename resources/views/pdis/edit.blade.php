@@ -781,7 +781,7 @@
                                     <div class="row col-md-12 text-center" id="login-card">
                                         <br>
                                         <a class="btn btn-secondary"
-                                           href="{{route('pdi.listar', ['id_aluno'=>$aluno->id])}}"
+                                           href="{{route('pdi.listar', ['aluno_id'=>$aluno->id])}}"
                                            id="menu-a">
                                             Voltar
                                         </a>

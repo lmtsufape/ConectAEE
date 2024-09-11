@@ -16,8 +16,8 @@ class RecursosMultifuncionaisController extends Controller
     }
 
     public function store(StoreRecursosMultifuncionaisRequest $request, $pdi_id){
-        $recursosMulti = RecursosMultifuncionais::create($request->all());
-
-        return redirect()->route('pdi.recursos_mult_funcionais');
+        RecursosMultifuncionais::create(array_merge($request->all(), ['pdi_id' => $pdi_id]));
+        
+        return redirect()->route('pdi.create_finalizacao', ['pdi_id' => $pdi_id]);
     }
 }

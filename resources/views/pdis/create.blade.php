@@ -19,7 +19,7 @@
         <hr style="border-top: 1px solid #AAA;">
     </div>
 
-    <form class="m-3" method="POST" action="{{ route("pdi.store", ['id_aluno' => $aluno->id]) }}" enctype="multipart/form-data">
+    <form class="m-3" method="POST" action="{{ route("pdi.store", ['aluno_id' => $aluno->id]) }}" enctype="multipart/form-data">
         @csrf
         <h3>Condições de saúde</h3>
         <div class="form-group">
@@ -325,7 +325,7 @@
 
         <div class="text-center p-3">
             <a class="btn btn-secondary"
-                href="{{route('pdi.index', ['id_aluno'=>$aluno->id])}}">
+                href="{{route('pdi.index', ['aluno_id'=>$aluno->id])}}">
                 Voltar
             </a>
             <button type="submit" class="btn btn-primary">

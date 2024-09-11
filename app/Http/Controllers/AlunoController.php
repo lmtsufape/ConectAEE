@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreAlunoRequest;
-use App\Http\Requests\UpdateAlunoRequest;
+use App\Enums\Escolaridade;
+use App\Http\Requests\alunos\StoreAlunoRequest;
+use App\Http\Requests\alunos\UpdateAlunoRequest;
 use App\Models\User;
 use App\Models\Notificacao;
-use App\Notifications\NovoAluno;
 use App\Notifications\ConcedeuPermissao;
 use App\Notifications\NotificaPermissao;
 use App\Models\Aluno;
 use App\Models\Gerenciar;
 use App\Models\Perfil;
 use App\Models\Endereco;
-use App\Models\ForumAluno;
-use App\Models\MensagemForumAluno;
 use App\Models\Album;
 use App\Models\Escola;
+use App\Models\Gre;
+use App\Models\Municipio;
 use Illuminate\Support\Facades\Auth;
 use Notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
@@ -53,59 +54,49 @@ class AlunoController extends Controller
 
     public function create()
     {
+        $gres = Gre::all();
+        $municipios = Municipio::all();
         $escolas = Escola::all();
+        $escolaridadeAluno = Escolaridade::anosEscolaridade();
+        $escolaridadeAdulto = Escolaridade::escolaridadeAdulto(); 
         
-        return view("alunos.create", [
-            'escolas'
-        ]);
+        return view("alunos.create", compact(['gres', 'municipios', 'escolas', 'escolaridadeAluno', 'escolaridadeAdulto']));
     }
 
 
     public function store(StoreAlunoRequest $request)
     {
 
-        $aluno = new Aluno();
+        DB::transaction(function() use ($request){
 
-        if ($request->imagem != null) {
-            $nome = uniqid(date('HisYmd'));
-            $extensao = $request->imagem->extension();
-            $nomeArquivo = "{$nome}.{$extensao}";
-            $request->imagem->storeAs('public/avatars', $nomeArquivo);
-            $aluno->imagem = $nomeArquivo;
-        }
+            $endereco = Endereco::create(['logradouro' => $request->logradouro,
+                                'numero'  => $request->numero,
+                                'bairro'  => $request->bairro,
+                                'cidade'  => $request->cidade,
+                                'cep'  => $request->cep]);
+                                
+            if ($request->imagem != null) {
+                $nome = uniqid(date('HisYmd'));
+                $extensao = $request->imagem->extension();
+                $nomeArquivo = "{$nome}.{$extensao}";
+                $request->imagem->storeAs('public/avatars', $nomeArquivo);
+            }
+                                
+            $dados = array_merge(
+                $request->except(['endereco']),
+                ['endereco_id' => $endereco->id, 'professor_responsavel' => Auth::user()->id, 'imagem' => $nomeArquivo]
+            );
+    
+            $aluno = Aluno::create($dados);
+        });
         
-        Aluno::create($request->all());
-
-        $aluno->escola()->attach($request->instituicoes);
-        
-        $forum = new ForumAluno();
-        $forum->aluno_id = $aluno->id;
-        $forum->save();
-
-        
-        $notificacao = new Notificacao();
-        $notificacao->aluno_id = $gerenciar->aluno_id;
-        $notificacao->remetente_id = Auth::user()->id;
-        $notificacao->destinatario_id = $gerenciar->user_id;
-        $notificacao->perfil_id = $gerenciar->perfil_id;
-        $notificacao->lido = false;
-        $notificacao->tipo = 2;
-        $notificacao->save();
-        //Enviando email de notificação
-        $user = User::find($notificacao->destinatario_id);
-        Notification::route('mail', $user->email)->notify(new NovoAluno());
-        
-        if ($request->perfil == 2 && $request->cadastrado == "false") {
-            return redirect()->route("aluno.index")->with('success', 'O Aluno ' . $aluno->nome . ' foi cadastrado.')->with('password', 'A senha provisória do usuário ' . $request->username . ' é ' . $password . '.');
-        } else {
-            return redirect()->route("aluno.index")->with('success', 'O Aluno ' . $aluno->nome . ' foi cadastrado.');
-        }
+        return redirect()->route('aluno.index');
     }
 
-    public function edit($id_aluno)
+    public function edit($aluno_id)
     {
 
-        $aluno = Aluno::find($id_aluno);
+        $aluno = Aluno::find($aluno_id);
         $endereco = $aluno->endereco;
         $perfis = [[1, 'Responsável'], [2, 'Professor AEE']];
         $instituicoes = Auth::user()->instituicoes;
@@ -141,7 +132,7 @@ class AlunoController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator->errors())->withInput();
         }
-        $aluno = Aluno::find($request->id_aluno);
+        $aluno = Aluno::find($request->aluno_id);
 
         $endereco = Endereco::find($request->id_endereco);
         $endereco->cep = $request->cep;
@@ -172,11 +163,11 @@ class AlunoController extends Controller
         $aluno->instituicoes()->detach();
         $aluno->instituicoes()->attach($request->instituicoes);
 
-        return redirect()->route("aluno.gerenciar", ['id_aluno' => $request->id_aluno])->with('success', 'O Aluno ' . $aluno->nome . ' foi atualizado.');
+        return redirect()->route("aluno.gerenciar", ['aluno_id' => $request->aluno_id])->with('success', 'O Aluno ' . $aluno->nome . ' foi atualizado.');
     }
-    public static function delete($id_aluno)
+    public static function delete($aluno_id)
     {
-        $aluno = Aluno::find($id_aluno);
+        $aluno = Aluno::find($aluno_id);
 
         $gerenciars = Gerenciar::where('aluno_id', '=', $aluno->id)->get();
 
@@ -280,7 +271,7 @@ class AlunoController extends Controller
             return redirect()->back()->withErrors($validator->errors())->withInput();
         }
 
-        $aluno = Aluno::find($request->id_aluno);
+        $aluno = Aluno::find($request->aluno_id);
         $gerenciars = $aluno->gerenciars;
 
         $perfil = Perfil::where('nome', '=', $request->perfil)->where('especializacao', '=', $request->especializacao)->first();
@@ -316,9 +307,9 @@ class AlunoController extends Controller
         return redirect()->route("aluno.index")->with('success', 'Seu pedido de acesso à ' . $aluno->nome . ' foi enviado. Aguarde aceitação.');
     }
 
-    public static function gerenciarPermissoes($id_aluno)
+    public static function gerenciarPermissoes($aluno_id)
     {
-        $aluno = Aluno::find($id_aluno);
+        $aluno = Aluno::find($aluno_id);
         $gerenciars = $aluno->gerenciars;
 
         $names = [];
@@ -338,9 +329,9 @@ class AlunoController extends Controller
         ]);
     }
 
-    public static function cadastrarPermissao($id_aluno)
+    public static function cadastrarPermissao($aluno_id)
     {
-        $aluno = Aluno::find($id_aluno);
+        $aluno = Aluno::find($aluno_id);
         $perfis = Perfil::where('especializacao', '=', NULL)->get();
         $usuarios = User::all()->toArray();
         $usuarios = array_column($usuarios, 'name');
@@ -390,7 +381,7 @@ class AlunoController extends Controller
         //Se já existe a relação
         $user = User::where('username', '=', $request->username)->first();
 
-        if ((Gerenciar::where('user_id', '=', $user->id)->where('aluno_id', '=', $request->id_aluno))->first()) {
+        if ((Gerenciar::where('user_id', '=', $user->id)->where('aluno_id', '=', $request->aluno_id))->first()) {
             $validator->errors()->add('username', 'O usuário já possui permissões de acesso ao aluno.');
             return redirect()->back()->withErrors($validator->errors())->withInput();
         }
@@ -398,7 +389,7 @@ class AlunoController extends Controller
         //Criação do Gerencimento
         $gerenciar = new Gerenciar();
         $gerenciar->user_id = $user->id;
-        $gerenciar->aluno_id = (int)$request->id_aluno;
+        $gerenciar->aluno_id = (int)$request->aluno_id;
 
         $perfil = Perfil::where('nome', '=', $request->perfil)->where('especializacao', '=', $request->especializacao)->first();
 
@@ -433,7 +424,7 @@ class AlunoController extends Controller
         Notification::route('mail', $user->email)->notify(new ConcedeuPermissao());
 
 
-        return redirect()->route('aluno.permissoes', ['id_aluno' => $gerenciar->aluno_id])->with('Success', 'O usuário ' . $user->name . ' agora possui permissão de acesso ao aluno.');
+        return redirect()->route('aluno.permissoes', ['aluno_id' => $gerenciar->aluno_id])->with('Success', 'O usuário ' . $user->name . ' agora possui permissão de acesso ao aluno.');
     }
 
     public static function atualizarPermissao(Request $request)
@@ -489,7 +480,7 @@ class AlunoController extends Controller
         // $notificacao->tipo = 2;
         // $notificacao->save();
 
-        return redirect()->route('aluno.permissoes', ['id_aluno' => $gerenciar->aluno_id])->with('Success', 'A permissão de acesso do usuário ' . $user->name . ' foi alterada.');
+        return redirect()->route('aluno.permissoes', ['aluno_id' => $gerenciar->aluno_id])->with('Success', 'A permissão de acesso do usuário ' . $user->name . ' foi alterada.');
     }
 
 

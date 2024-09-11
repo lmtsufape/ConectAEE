@@ -13,6 +13,7 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::createMany(['nome' => 'Administrador'], ['nome' => 'Professor']);
+        Role::create(['nome' => 'Administrador']);
+        Role::create(['nome' => 'Professor']);
     }
 }

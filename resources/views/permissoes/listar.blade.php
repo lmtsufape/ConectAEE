@@ -24,7 +24,7 @@
                   </div>
                 </div>
                 <div style="width:50%; float:right; margin-right:-25px;margin-top:20px" class="col-md-6 text-right" id="login-card">
-                  <a class="btn btn-primary" style="float:right; margin-left: -50px; background-color: #0398fc; color: white; font-weight: bold; font-size: 13px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC" id="signup" href="{{ route("aluno.permissoes.cadastrar",['id_aluno' => $aluno->id])}}">
+                  <a class="btn btn-primary" style="float:right; margin-left: -50px; background-color: #0398fc; color: white; font-weight: bold; font-size: 13px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC" id="signup" href="{{ route("aluno.permissoes.cadastrar",['aluno_id' => $aluno->id])}}">
                     Nova Autorização
                   </a>
                 </div>

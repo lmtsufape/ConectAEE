@@ -36,4 +36,8 @@ class EspecificidadeEducacional extends Model
             'profissionais_educacao_outro',
             'pdi_id'
     ];
+
+    public function pdi(){
+        return $this->belongsTo(Pdi::class);
+    }
 }

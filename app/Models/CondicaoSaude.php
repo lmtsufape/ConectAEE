@@ -24,4 +24,8 @@ class CondicaoSaude extends Model
         'acompanhamento',
         'pdi_id'   
     ];
+
+    public function pdi(){
+        return $this->belongsTo(Pdi::class);
+    }
 }

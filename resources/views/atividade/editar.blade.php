@@ -29,7 +29,7 @@
             <form method="POST" action="{{ route("atividade.atualizar") }}">
               {{ csrf_field() }}
 
-              <input type="hidden" name="id_aluno" value="{{ $aluno->id }}">
+              <input type="hidden" name="aluno_id" value="{{ $aluno->id }}">
               <input type="hidden" name="id_objetivo" value="{{ $objetivo->id }}">
               <input type="hidden" name="id_atividade" value="{{ $atividade->id }}">
 

@@ -24,14 +24,14 @@
 
                 <div style="float:right;" class="col-md-2" id="login-card">
                   @if(App\Models\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->perfil_id != 1 and App\Models\Gerenciar::where('user_id','=',\Auth::user()->id)->where('aluno_id','=',$aluno->id)->first()->tipoUsuario != 2)
-                    <a style="float:right; margin-top:20px; margin-left: -50px; background-color: #0398fc; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC" href="{{ route('objetivo.cadastrar' , ['id_aluno'=>$aluno->id])}}" id="signup">
+                    <a style="float:right; margin-top:20px; margin-left: -50px; background-color: #0398fc; color: white; font-weight: bold; font-size: 15px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC" href="{{ route('objetivo.cadastrar' , ['aluno_id'=>$aluno->id])}}" id="signup">
                       Novo Objetivo
                     </a>
                   @endif
                 </div>
                 <div class="row col-md-4" style="float:right;" id="login-card">
                   @if(count($objetivosGroupByUser) != 0 || ($termo != "" && count($objetivosGroupByUser) == 0))
-                    <form class="form-horizontal" method="GET" action="{{ route('objetivo.buscar', ['id_aluno' => $aluno->id]) }}">
+                    <form class="form-horizontal" method="GET" action="{{ route('objetivo.buscar', ['aluno_id' => $aluno->id]) }}">
 
                       <div id="divBusca" style="margin-top:20px;">
 

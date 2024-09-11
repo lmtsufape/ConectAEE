@@ -23,7 +23,7 @@
     <form method="POST" action="{{ route('objetivo.criar') }}">
         {{ csrf_field() }}
 
-        <input id="id_aluno" type="hidden" class="form-control" name="id_aluno" value="{{ $aluno->id }}">
+        <input id="aluno_id" type="hidden" class="form-control" name="aluno_id" value="{{ $aluno->id }}">
 
         <div class="form-group{{ $errors->has('titulo') ? ' has-error' : '' }}">
             <label for="titulo" class="col-md-12 control-label">Título <font color="red">*</font> </label>

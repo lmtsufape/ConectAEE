@@ -65,7 +65,7 @@
               Pedir Permissão de Acesso
             </a>
           @else
-            <a class="btn btn-primary" href="{{ route("aluno.gerenciar", ["id_aluno" => $aluno->id]) }}">
+            <a class="btn btn-primary" href="{{ route("aluno.gerenciar", ["aluno_id" => $aluno->id]) }}">
               Ver Perfil
             </a>
           @endif

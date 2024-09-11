@@ -11,16 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('desenvolvimento', function (Blueprint $table) {
+        Schema::create('desenvolvimentos', function (Blueprint $table) {
             $table->id();
 
-            $table->enum('sistema_linguistico', [
-                'Comunicação Verbal/Fala',
-                'Comunicação Alternativa/Suplementar',
-                'Comunicação Alternativa/Voz',
-                'Outro'
-            ])->default('Comunicação Verbal/Fala');
-            $table->string('outro_sistema_linguistico')->nullable();
+            $table->string('sistema_linguistico');
+            $table->string('outro_sistema_linguistico')->nullable();//pensar sobre a permanencia deste campo
 
             $table->string('tecnologia_assistiva_utilizada')->nullable();
             $table->string('recursos_equipamentos_necessarios')->nullable();
@@ -46,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('desenvolvimento');
+        Schema::dropIfExists('desenvolvimentos');
     }
 };

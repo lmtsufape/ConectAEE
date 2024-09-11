@@ -16,18 +16,16 @@ class DatabaseSeeder extends Seeder
 
         //Comentar
         $this->call(EspecialidadeSeeder::class);
+        $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(GreSeeder::class);
         $this->call(MunicipioSeeder::class);
         $this->call(EscolaSeeder::class);
 
 
-        //Não comentar
-        $this->call(PerfilSeeder::class);
-
         //Comentar
-        $this->call(AlunoSeeder::class);
         $this->call(EnderecoSeeder::class);
+        $this->call(AlunoSeeder::class);
         // $this->call(MensagemForumAlunoSeeder::class);
 
         //Não comentar

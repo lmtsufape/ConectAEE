@@ -28,7 +28,7 @@
               {{ csrf_field() }}
 
               <input type="hidden" name="id_objetivo" value="{{ $objetivo->id }}">
-              <input type="hidden" name="id_aluno" value="{{ $aluno->id }}">
+              <input type="hidden" name="aluno_id" value="{{ $aluno->id }}">
 
               <div class="form-group{{ $errors->has('titulo') ? ' has-error' : '' }}">
                 <label for="titulo" class="col-md-12 control-label">Título <font color="red">*</font></label>

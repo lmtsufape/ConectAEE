@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Auth;
 
 class AlbumController extends Controller
 {
-  public static function listar($id_aluno){
-    $aluno = Aluno::find($id_aluno);
+  public static function listar($aluno_id){
+    $aluno = Aluno::find($aluno_id);
     // $albuns = $aluno->albuns;
 
     $albuns = Album::where('aluno_id', $aluno->id)->paginate(18);
@@ -81,8 +81,8 @@ class AlbumController extends Controller
     }
   }
 
-  public static function cadastrar($id_aluno){
-    $aluno = Aluno::find($id_aluno);
+  public static function cadastrar($aluno_id){
+    $aluno = Aluno::find($aluno_id);
 
     return view("album.cadastrar",[
       'aluno' => $aluno,
@@ -105,7 +105,7 @@ class AlbumController extends Controller
     $album = new Album();
     $album->nome = $request->nome;
     $album->descricao = $request->descricao;
-    $album->aluno_id = $request->id_aluno;
+    $album->aluno_id = $request->aluno_id;
     $album->user_id = Auth::user()->id;
     $album->save();
 
@@ -113,7 +113,7 @@ class AlbumController extends Controller
       $nome = uniqid(date('HisYmd'));
       $extensao = $imagem->extension();
 
-      $path = "public/albuns/".$request->id_aluno;
+      $path = "public/albuns/".$request->aluno_id;
       $nomeArquivo = "{$nome}.{$extensao}";
       $imagem->storeAs($path, $nomeArquivo);
 
@@ -125,7 +125,7 @@ class AlbumController extends Controller
     }
 
     return redirect()->route("album.listar", [
-      "id_aluno"=>$request->id_aluno
+      "aluno_id"=>$request->aluno_id
     ])->with('success','O álbum '.$album->nome.' foi criado.');
 
   }
@@ -152,7 +152,7 @@ class AlbumController extends Controller
         $nome = uniqid(date('HisYmd'));
         $extensao = $imagem->extension();
 
-        $path = "public/albuns/".$request->id_aluno;
+        $path = "public/albuns/".$request->aluno_id;
         $nomeArquivo = "{$nome}.{$extensao}";
         $imagem->storeAs($path, $nomeArquivo);
 

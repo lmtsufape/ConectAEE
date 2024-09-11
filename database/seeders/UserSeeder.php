@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt("password"),
             'cpf' => "106.981.574-45",
             'ativo' => true,
-        ]);
+        ])->roles()->attach(1);
 
         User::create([
             'nome' => "Professor",
@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt("password"),
             'cpf' => "007.982.270-36",
             'ativo' => true,
-        ]);
+        ])->roles()->attach(2);;
 
         User::create([
             'nome' => "Professor2",
@@ -42,6 +42,6 @@ class UserSeeder extends Seeder
             'password' => bcrypt("password"),
             'cpf' => "426.886.970-05",
             'ativo' => true,
-        ]);
+        ])->roles()->attach(2);;
     }
 }

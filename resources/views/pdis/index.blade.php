@@ -12,7 +12,7 @@
         </h2>
         <div style="font-size: 14px" >
             <a href="{{route('aluno.index')}}">Início</a>>
-            <a href="{{route('aluno.show',$aluno->id)}}">Perfil de
+            <a href="{{route('aluno.show', ['aluno_id' => $aluno->id])}}">Perfil de
                 <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
             > Pdis
         </div>
@@ -24,10 +24,6 @@
     
 
     <div>
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="#cadastrados" data-toggle="tab">Formularios</a></li>
-            <li><a href="#documentos" data-toggle="tab">Arquivos</a></li>
-        </ul>
 
         <div>
             <div>
@@ -53,11 +49,6 @@
                                 <td>
                                     <a class="btn btn-primary" href="{{route('pdi.show', $pdi->id)}}">
                                         Visualizar
-                                    </a>
-                                </td>
-                                <td>
-                                    <a class="btn btn-primary" target="_blank" href="{{route('pdi.pdf', $pdi->id)}}">
-                                        Download
                                     </a>
                                 </td>
                                 <td>

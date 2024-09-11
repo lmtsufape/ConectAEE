@@ -134,9 +134,9 @@ class SugestaoController extends Controller
   private static function notificarSugestao($sugestao){
 
     $id_objetivo = $sugestao->objetivo->id;
-    $id_aluno =$sugestao->objetivo->aluno->id;
+    $aluno_id =$sugestao->objetivo->aluno->id;
 
-    $aluno = Aluno::find($id_aluno);
+    $aluno = Aluno::find($aluno_id);
     $gerenciars = $aluno->gerenciars;
 
     foreach ($gerenciars as $gerenciar) {

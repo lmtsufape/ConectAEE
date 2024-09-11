@@ -41,7 +41,7 @@
                             <form autocomplete="off" method="POST" action="{{ route("aluno.permissoes.criar") }}">
                                 {{ csrf_field() }}
 
-                                <input type="hidden" name="id_aluno" value="{{$aluno->id}}">
+                                <input type="hidden" name="aluno_id" value="{{$aluno->id}}">
 
                                 <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}"
                                      id="login-card">

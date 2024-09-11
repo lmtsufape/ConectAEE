@@ -39,8 +39,8 @@ class ForumController extends Controller
     return Redirect::to(URL::previous() . "#forum")->with('display',true);
   }
 
-  public function abrirForumAluno($id_aluno){
-    $aluno = Aluno::find($id_aluno);
+  public function abrirForumAluno($aluno_id){
+    $aluno = Aluno::find($aluno_id);
 
     $mensagens = MensagemForumAluno::where('forum_aluno_id','=',$aluno->forum->id)->orderBy('id','desc')->get();
 

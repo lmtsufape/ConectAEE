@@ -12,36 +12,47 @@ class Aluno extends Model
     use Notifiable;
 
     protected $fillable = [
-        'nome', 
-        'data_de_nascimento', 
-        'cpf', 
-        'matricula', 
-        'idade_inicio_estudos', 
-        'idade_escola_atual', 
-        'nome_pai', 
-        'escolaridade_pai', 
-        'profissao_pai', 
-        'nome_mae', 
-        'escolaridade_mae', 
-        'profissao_mae', 
-        'num_irmaos', 
-        'contato_responsavel'
+            'nome', 
+            'data_nascimento', 
+            'cpf', 
+            'matricula', 
+            'idade_inicio_estudos', 
+            'idade_escola_atual', 
+            'nome_pai', 
+            'escolaridade_pai', 
+            'profissao_pai', 
+            'nome_mae', 
+            'escolaridade_mae', 
+            'profissao_mae', 
+            'num_irmaos', 
+            'contato_responsavel',
+            'mora_com',
+            'escolaridade_atual_aluno',
+            'historico_comum',
+            'historico_especifico',
+            'motivo_encaminhamento_aee',
+            'avaliacao_geral_familiar',
+            'avaliacao_geral_escolar',
+            'anexos_laudos',
+            'cid',
+            'descricao_cid',
+            'imagem',
+            'municipio_id',
+            'escola_id',
+            'endereco_id',
+            'professor_responsavel'
     ];
 
     public function objetivos(){
         return $this->hasMany(Objetivo::class)->orderBy('updated_at','desc');
     }
 
-    public function forum(){
-        return $this->hasOne(ForumAluno::class);
-    }
-
     public function pdi(){
-        return $this->belongsTo(Pdi::class);
+        return $this->hasMany(Pdi::class);
     }
 
     public function endereco(){
-        return $this->hasOne(Endereco::class);
+        return $this->belongsTo(Endereco::class);
     }
 
     public function albuns(){

@@ -37,15 +37,15 @@ class StoreEspecificidadeEducacionalRequest extends FormRequest
             'saude_acoes_existentes' => "required",
             'saude_acoes_desenvolvidas' => "required",
             'saude_responsaveis_acoes' => "required",
+
             'organizacao_tipo_aee' => 'required',
-            'descricao_outro' => 'required',
+            'descricao_outro' => 'required_if:organizacao_tipo_aee,Outro',
             'atendimento_sala_recursos_multifuncionais' => 'required',
-            'tipo_sala' => 'required',
-            'espaco_alternativo' => 'required',
+   
             'frequencia_atendimentos' => 'required',
-            'frequencia_outro' => 'required',
+            'frequencia_outro' => 'required_if:frequencia_atendimentos,Outro',
             'profissionais_educacao_necessarios' => 'required',
-            'profissionais_educacao_outro' => 'required',
+            'profissionais_educacao_outro' => 'required_if:profissionais_educacao_necessarios,Outro',
 
 
 

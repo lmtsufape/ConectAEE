@@ -25,7 +25,7 @@
         <div id="tem_diagnostico-sim" class="d-none">
             <div class="form-group">
                 <label for="data_diagnostico" class="form-label">Qual a data</label>
-                <input type="date" name="data_diagnostico" id="data_diagnostico" class="form-control @error('data_diagnostico') is-invalid @enderror">
+                <input type="date" name="data_diagnostico" id="data_diagnostico" value="{{old('data_diagnostico') ?? $pdi->condicaoSaude->data_diagnostico ?? ''}}" class="form-control @error('data_diagnostico') is-invalid @enderror">
 
                 @error('data_diagnostico')
                     <span class="invalid-feedback" role="alert">
@@ -36,7 +36,7 @@
     
             <div class="form-group">
                 <label for="resultado_diagnostico" class="form-label">Qual o resultado</label>
-                <input type="text" name="resultado_diagnostico" id="resultado_diagnostico" class="form-control @error('resultado_diagnostico') is-invalid @enderror">
+                <input type="text" name="resultado_diagnostico" id="resultado_diagnostico" value="{{old('resultado_diagnostico') ?? $pdi->condicaoSaude->resultado_diagnostico ?? ''}}" class="form-control @error('resultado_diagnostico') is-invalid @enderror">
 
                 @error('resultado_diagnostico')
                     <span class="invalid-feedback" role="alert">
@@ -49,7 +49,7 @@
         <div id="tem_diagnostico-nao" class="d-none">
             <div class="form-group">
                 <label for="situacao_diagnostico" class="form-label">qual a situação do diagnostico?</label>
-                <input type="text" name="situacao_diagnostico" id="situacao_diagnostico" class="form-control @error('situacao_diagnostico') is-invalid @enderror">
+                <input type="text" name="situacao_diagnostico" id="situacao_diagnostico" value="{{old('situacao_diagnostico') ?? $pdi->condicaoSaude->situacao_diagnostico ?? ''}}" class="form-control @error('situacao_diagnostico') is-invalid @enderror">
    
                 @error('situacao_diagnostico')
                     <span class="invalid-feedback" role="alert">
@@ -76,7 +76,7 @@
         <div id="tem_outras_condicoes-sim" class="d-none">
             <div class="form-group">
                 <label for="outras_condicoes" class="form-label">Quais condições?</label>
-                <input type="text" name="outras_condicoes" id="outras_condicoes" class="form-control @error('outras_condicoes') is-invalid @enderror">
+                <input type="text" name="outras_condicoes" id="outras_condicoes" value="{{old('outras_condicoes') ?? $pdi->condicaoSaude->outras_condicoes ?? ''}}" class="form-control @error('outras_condicoes') is-invalid @enderror">
        
                 @error('outras_condicoes')
                     <span class="invalid-feedback" role="alert">
@@ -103,7 +103,7 @@
         <div id="faz_uso_medicacao-sim" class="d-none">
             <div class="form-group">
                 <label for="medicacoes" class="form-label">qual a situação do diagnostico?</label>
-                <input type="text" name="medicacoes" id="medicacoes" class="form-control @error('medicacoes') is-invalid @enderror">
+                <input type="text" name="medicacoes" id="medicacoes" value="{{old('medicacoes') ?? $pdi->condicaoSaude->medicacoes ?? ''}}" class="form-control @error('medicacoes') is-invalid @enderror">
       
                 @error('medicacoes')
                     <span class="invalid-feedback" role="alert">
@@ -130,7 +130,7 @@
         <div id="tem_recomendacoes-sim" class="d-none">
             <div class="form-group">
                 <label for="recomendacoes" class="form-label">qual a situação do diagnostico?</label>
-                <input type="text" name="recomendacoes" id="recomendacoes" class="form-control @error('recomendacoes') is-invalid @enderror">
+                <input type="text" name="recomendacoes" id="recomendacoes" value="{{old('recomendacoes') ?? $pdi->condicaoSaude->recomendacoes ?? ''}}" class="form-control @error('recomendacoes') is-invalid @enderror">
      
                 @error('recomendacoes')
                     <span class="invalid-feedback" role="alert">
@@ -157,7 +157,7 @@
         <div id="faz_acompanhamento-sim" class="d-none">
             <div class="form-group">
                 <label for="acompanhamento" class="form-label">qual a situação do diagnostico?</label>
-                <input type="text" name="acompanhamento" id="acompanhamento" class="form-control @error('acompanhamento') is-invalid @enderror">
+                <input type="text" name="acompanhamento" id="acompanhamento" value="{{old('acompanhamento') ?? $pdi->condicaoSaude->acompanhamento ?? ''}}" class="form-control @error('acompanhamento') is-invalid @enderror">
       
                 @error('acompanhamento')
                     <span class="invalid-feedback" role="alert">
@@ -177,6 +177,24 @@
 
 @push('scripts')
     <script>
+
+        $(document).ready(function() {
+            function marcarRadio(nomeCampo, valorEsperado) {
+                $('input[name="' + nomeCampo + '"]').each(function() {
+                    if ($(this).val() === String(valorEsperado)) {
+                        $(this).click();
+                    }
+                });
+            }
+
+            marcarRadio('tem_diagnostico', @json(old('tem_diagnostico') ?? $pdi->condicaoSaude->tem_diagnostico ?? false));
+            marcarRadio('tem_outras_condicoes', @json(old('tem_outras_condicoes') ?? $pdi->condicaoSaude->tem_outras_condicoes ?? false));
+            marcarRadio('faz_uso_medicacao', @json(old('faz_uso_medicacao') ?? $pdi->condicaoSaude->faz_uso_medicacao ?? false));
+            marcarRadio('tem_recomendacoes', @json(old('tem_recomendacoes') ?? $pdi->condicaoSaude->tem_recomendacoes ?? false));
+            marcarRadio('faz_acompanhamento', @json(old('faz_acompanhamento') ?? $pdi->condicaoSaude->faz_acompanhamento ?? false));
+
+            
+        });
 
         $('input[name="tem_diagnostico"]').on('change', function() {
             if ($('#tem_diagnostico_sim').is(':checked')) {

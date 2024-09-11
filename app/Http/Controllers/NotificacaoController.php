@@ -28,7 +28,7 @@ class NotificacaoController extends Controller
           'id_notificacao' => $notificacao->id
         ]);
       case 2:
-        return redirect()->route('aluno.gerenciar',['id_aluno' => $notificacao->aluno->id]);
+        return redirect()->route('aluno.gerenciar',['aluno_id' => $notificacao->aluno->id]);
       default:
         return redirect()->route('objetivo.gerenciar',['id_objetivo' => $notificacao->objetivo->id]);
     }

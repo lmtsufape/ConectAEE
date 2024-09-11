@@ -27,7 +27,7 @@
                             <form method="POST" action="{{ route("aluno.permissoes.notificar") }}">
                                 {{ csrf_field() }}
 
-                                <input type="hidden" name="id_aluno" value="{{ $aluno->id }}">
+                                <input type="hidden" name="aluno_id" value="{{ $aluno->id }}">
 
                                 <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
                                     <label for="username" class="col-md-12 control-label">Seu nome de usuário</label>

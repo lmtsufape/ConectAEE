@@ -43,8 +43,16 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
     }
 
+    public function hasAnyRoles($roles){
+        return $this->roles()->whereIn('nome', $roles)->exists(); 
+    }
+
     public function objetivos(){
         return $this->hasMany(Objetivo::class);
+    }
+
+    public function pdi(){
+        return $this->hasMany(Pdi::class);
     }
 
     public function feedbacks(){

@@ -27,7 +27,7 @@
             <form method="POST" action="{{ route("album.criar") }}" enctype="multipart/form-data">
               {{ csrf_field() }}
 
-              <input id="id_aluno" type="hidden" class="form-control" name="id_aluno" value="{{ $aluno->id }}">
+              <input id="aluno_id" type="hidden" class="form-control" name="aluno_id" value="{{ $aluno->id }}">
 
               <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}" id="login-card">
                 <label for="nome" class="col-md-12 control-label"> Nome <font color="red">*</font>

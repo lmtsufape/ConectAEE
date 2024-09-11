@@ -12,13 +12,11 @@ class Endereco extends Model
     'numero',
     'bairro',
     'cidade',
-    'estado',
     'cep',
-    'aluno_id'
   ];
 
   public function aluno()
   {
-     return $this->belongsTo(Aluno::class);
+     return $this->hasMany(Aluno::class);
   }
 }

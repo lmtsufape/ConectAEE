@@ -23,7 +23,7 @@ class StoreDesenvolvimentoRequest extends FormRequest
     {
         return [
             'sistema_linguistico'        => 'required',
-            'outro_sistema_linguistico'      => 'required',
+            'outro_sistema_linguistico'      => 'required_if:sistema_linguistico,Outro',
             'tecnologia_assistiva_utilizada' => 'required',
             'recursos_equipamentos_necessarios'  => 'required',
             'implicacoes_especificidade_educacional'  => 'required',

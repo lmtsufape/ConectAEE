@@ -30,39 +30,18 @@ return new class extends Migration
             $table->text('saude_acoes_desenvolvidas');
             $table->text('saude_responsaveis_acoes');
 
-            $table->enum('organizacao_tipo_aee', [
-                'Sala de Recursos Multifuncional',
-                'Intérprete na sala regular',
-                'Professor de Libras',
-                'Domiciliar',
-                'Hospitalar',
-                'Outro'
-            ])->default('Outro');
-            $table->string('descricao_outro')->nullable();
+            $table->string('organizacao_tipo_aee');
+            $table->string('descricao_outro')->nullable();//analisar a permanencia
 
-            $table->boolean('atendimento_sala_recursos_multifuncionais')->default(false);
-            $table->enum('tipo_sala', ['tipo_1', 'tipo_2'])->nullable();
+            $table->boolean('atendimento_sala_recursos_multifuncionais')->default(true);
+            $table->string('tipo_sala')->nullable();
             $table->string('espaco_alternativo')->nullable();//outro_espaco
 
-            $table->enum('frequencia_atendimentos', [
-                '1 vez por semana',
-                '2 vezes por semana',
-                '3 vezes por semana',
-                '4 vezes por semana',
-                'Todo o período de aulas, na própria sala de aula',
-                'Outro'
-            ])->default('1 vez por semana');
-            $table->string('frequencia_outro')->nullable();
+            $table->string('frequencia_atendimentos');
+            $table->string('frequencia_outro')->nullable();//analisar a permanencia
 
-            $table->enum('profissionais_educacao_necessarios', [
-                'Professor Brailista',
-                'Professor Intérprete de Libras',
-                'Professor Instrutor de Libras',
-                'Profissional de Apoio Escolar',
-                'Não é necessário o apoio de outro profissional',
-                'Outro'
-            ])->default('Não é necessário o apoio de outro profissional');
-            $table->string('profissionais_educacao_outro')->nullable();
+            $table->string('profissionais_educacao_necessarios');
+            $table->string('profissionais_educacao_outro')->nullable();//analisar a permanencia
             
             $table->foreignId('pdi_id')->constrained();
 

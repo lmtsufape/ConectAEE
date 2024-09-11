@@ -27,7 +27,7 @@
           <form method="POST" action="{{ route('sugestoes.criar') }}">
               {{ csrf_field() }}
 
-              <input type="hidden" name="id_aluno" value="{{ $aluno->id }}">
+              <input type="hidden" name="aluno_id" value="{{ $aluno->id }}">
               <input type="hidden" name="id_objetivo" value="{{ $objetivo->id }}">
 
               <div class="form-group{{ $errors->has('titulo') ? ' has-error' : '' }}" id="login-card">

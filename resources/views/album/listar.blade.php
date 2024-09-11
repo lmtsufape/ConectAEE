@@ -24,7 +24,7 @@
                   </h3>
                 </div>
                 <div style="width:50%; float:right; margin-right:-25px;margin-top:20px" class="col-md-6 text-right">
-                  <a class="btn btn-primary" href="{{route("album.cadastrar" , ['id_aluno'=>$aluno->id])}}">
+                  <a class="btn btn-primary" href="{{route("album.cadastrar" , ['aluno_id'=>$aluno->id])}}">
                     Novo Álbum
                   </a>
                 </div>

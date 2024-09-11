@@ -23,30 +23,12 @@
                   </div>
                 </div>
                 <div style="float:right;" class="col-md-3" id="login-card">
-                  <a class="btn btn-primary" style="float:right; margin-top:20px; background-color: #0398fc; color: white; font-weight: bold; font-size: 14px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC"  id="signup" href="{{ route('instituicao.cadastrar')}}">
+                  <a class="btn btn-primary" style="float:right; margin-top:20px; background-color: #0398fc; color: white; font-weight: bold; font-size: 14px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC"  id="signup" href="{{ route('escola.create')}}">
                     Nova Instituição
                   </a>
                 </div>
                 <div class="row col-md-3" style="float:right; " id="login-card">
-                  @if(count($instituicoes) != 0 || $termo != null)
-                    <form class="form-horizontal" method="GET" action="{{ route("instituicao.buscar") }}">
-
-                      <div id="divBusca" style="margin-top:20px;" id="login-card">
-
-                      <i class="material-icons" style="margin-top:5px;">search</i>
-
-                      @if ($termo == null)
-                        <input id="termo" type="text" autocomplete="off" name="termo" autofocus placeholder="Nome ou endereço">
-                      @else
-                        <input id="termo" type="text" autocomplete="off" name="termo" autofocus placeholder="Nome ou endereço" value="{{$termo}}">
-                      @endif
-
-                      <button id="btnBusca" type="submit">
-                        Buscar
-                      </button>
-                      </div>
-                    </form>
-                  @endif
+              
                 </div>
               </div>
             </div>
@@ -78,21 +60,21 @@
 
               </thead>
               <tbody>
-                @foreach ($instituicoes as $instituicao)
+                @foreach ($escolas as $escola)
                   <tr>
-                    <td data-title="Nome">{{ $instituicao->nome }}</td>
+                    <td data-title="Nome">{{ $escola->nome }}</td>
                     <td data-title="Ações">
-                      <a class="btn btn-primary" href="{{ route("instituicao.ver" , ['id_instituicao' => $instituicao->id]) }}">
+                      <a class="btn btn-primary" href="{{ route("escola.show" , ['escola_id' => $escola->id]) }}">
                         Visualizar
                       </a>
                     </td>
                     <td data-title="">
-                      <a class="btn btn-primary" href="{{ route("instituicao.editar" , ['id_instituicao' => $instituicao->id]) }}">
+                      <a class="btn btn-primary" href="{{ route("escola.edit" , ['escola_id' => $escola->id]) }}">
                         Editar
                       </a>
                     </td>
                     <td data-title="">
-                      <a class="btn btn-danger" data-toggle="modal" data-target="#modalConfirm" onclick="setDadosModal('{{ route("instituicao.excluir" , ['id_instituicao' => $instituicao->id]) }}','{{$instituicao->nome}}')" >
+                      <a class="btn btn-danger" data-toggle="modal" data-target="#modalConfirm" onclick="setDadosModal('{{ route('escola.destroy' , ['escola_id' => $escola->id]) }}','{{$escola->nome}}')" >
                         Excluir
                       </a>
                     </td>
@@ -105,7 +87,7 @@
 
         <div class="panel-footer" style="background-color:white" id="login-card">
           <div class="text-center" id="login-card">
-            <a class="btn btn-secondary" href="{{route('aluno.index')}}" id="menu-a">
+            <a class="btn btn-secondary" href="{{route('home')}}" id="menu-a">
               Voltar
             </a>
           </div>

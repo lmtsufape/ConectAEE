@@ -43,7 +43,7 @@
                 <form method="POST" action="{{ route('album.atualizar') }}" enctype="multipart/form-data">
                   {{ csrf_field() }}
 
-                  <input id="id_aluno" type="hidden" class="form-control" name="id_aluno" value="{{ $aluno->id }}">
+                  <input id="aluno_id" type="hidden" class="form-control" name="aluno_id" value="{{ $aluno->id }}">
                   <input id="id_album" type="hidden" class="form-control" name="id_album" value="{{ $album->id }}">
 
                   <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}" id="login-card">

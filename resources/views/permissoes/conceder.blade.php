@@ -21,7 +21,7 @@
     <div>
         <form method="POST" action="{{ route('aluno.permissoes.criar') }}">
             {{ csrf_field() }}
-            <input type="hidden" name="id_aluno" value="{{ $aluno->id }}">
+            <input type="hidden" name="aluno_id" value="{{ $aluno->id }}">
             <div class="form-group{{ $errors->has('aluno') ? ' has-error' : '' }}">
                 <label for="aluno" class="col-md-12 control-label">Aluno</label>
                 <div class="col-md-12">

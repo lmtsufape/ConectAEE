@@ -20,10 +20,7 @@ class CreateEnderecosTable extends Migration
       $table->string('numero');
       $table->string('bairro');
       $table->string('cidade');
-      $table->string('estado');
       $table->string('cep');
-
-      $table->foreignId('aluno_id')->constrained();
 
       $table->timestamps();
     });

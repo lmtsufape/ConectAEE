@@ -17,13 +17,13 @@
             @php
                 $pdi = \App\Models\Pdi::where('aluno_id', '=', $aluno->id)->first();
             @endphp
-            <a class="btn btn-info btn" href="{{route('pdi.index', ['id_aluno'=>$aluno->id]) }}">
+            <a class="btn btn-info btn" href="{{route('pdi.index', ['aluno_id'=>$aluno->id]) }}">
                 Listar PDI's
             </a>
             <a class="btn btn-info btn" data-toggle="modal" data-target="#modalRelatorio">
                 Relatório
             </a>
-            <a class="btn btn-primary btn" href="{{route('objetivo.listar', ['id_aluno'=>$aluno->id]) }}">
+            <a class="btn btn-primary btn" href="{{route('objetivo.listar', ['aluno_id'=>$aluno->id]) }}">
                 Objetivos
             </a>
 
@@ -123,7 +123,7 @@
     <div class="row">
         <div class="container col-md-12">
             <div class="col-md-3 mt-3 border" style="opacity: 0.7;">
-                <a href="{{route('album.cadastrar' , ['id_aluno'=>$aluno->id])}}" data-toggle="tooltip">
+                <a href="{{route('album.cadastrar' , ['aluno_id'=>$aluno->id])}}" data-toggle="tooltip">
                     <div class="text-center" style="border-radius: 20px;  width: 230px; height: 230px">
                         <div class="d-flex justify-content-center">
                             <h2 style="margin-top:80px;">
@@ -248,7 +248,7 @@
                 </div>
 
 
-                <form method="GET" action="{{ route("relatorio.gerar", ['id_aluno'=>$aluno->id]) }}"
+                <form method="GET" action="{{ route("relatorio.gerar", ['aluno_id'=>$aluno->id]) }}"
                         target="_blank" onsubmit="setTimeout(function(){window.location.reload();},10);">
                     <div class="modal-body">
                         <div class="container-fluid">

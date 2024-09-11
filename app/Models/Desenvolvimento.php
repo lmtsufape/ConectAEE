@@ -26,4 +26,8 @@ class Desenvolvimento extends Model
         'atividades_vida_autonoma',
         'pdi_id'
     ];
+
+    public function pdi(){
+        return $this->belongsTo(Pdi::class);
+    }
 }

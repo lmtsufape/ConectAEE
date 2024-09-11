@@ -40,34 +40,38 @@
                         $lidos = array_column($notificacoes->toArray(), 'lido');
                         $qtd_naolidos = count(array_keys($lidos, false));
                     @endphp
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Alunos
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('aluno.index') }}">
-                                    Listar
-                                </a></li>
-                            <li><a class="dropdown-item" href="{{ route('aluno.create') }}">
-                                    Cadastrar
-                                </a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Instituições
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="*">
-                                    Listar
-                                </a></li>
-                            <li><a class="dropdown-item" href="*">
-                                    Cadastrar
-                                </a></li>
-                        </ul>
-                    </li>
+                    @can('professorSection', Auth()->user())
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Alunos
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('aluno.index') }}">
+                                        Listar
+                                    </a></li>
+                                <li><a class="dropdown-item" href="{{ route('aluno.create') }}">
+                                        Cadastrar
+                                    </a></li>
+                            </ul>
+                        </li>
+                    @endcan
+                    @can('adminSection', Auth()->user())
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Escolas
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{route('escola.index')}}">
+                                        Listar
+                                    </a></li>
+                                <li><a class="dropdown-item" href="{{route('escola.create')}}">
+                                        Cadastrar
+                                    </a></li>
+                            </ul>
+                        </li>
+                    @endcan
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">

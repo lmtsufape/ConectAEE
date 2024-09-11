@@ -24,7 +24,7 @@ class CheckGerenciaAlunoAdministrador
         return redirect()->route('usuario.completarCadastro');
       }
 
-      $aluno = Aluno::find($request->route('id_aluno'));
+      $aluno = Aluno::find($request->route('aluno_id'));
       if($aluno == NULL){
         return redirect("/")->with('denied','Você não tem permissão para acessar esta página ou ela não existe.');
       }

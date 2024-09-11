@@ -24,11 +24,11 @@ use Notification;
 
 class ObjetivoController extends Controller
 {
-  public static function cadastrar($id_aluno){
+  public static function cadastrar($aluno_id){
     $tipos = TipoObjetivo::all();
 
     $prioridades = ["Alta","Média","Baixa"];
-    $aluno = Aluno::find($id_aluno);
+    $aluno = Aluno::find($aluno_id);
 
     return view("objetivo.cadastrar", [
       'aluno' => $aluno,
@@ -39,13 +39,13 @@ class ObjetivoController extends Controller
 
   public static function buscar(Request $request){
 
-    $aluno = Aluno::find($request->id_aluno);
+    $aluno = Aluno::find($request->aluno_id);
 
     $objetivos = Objetivo::where(function ($query) use ($request){
-                     $query->where('aluno_id','=',$request->id_aluno)
+                     $query->where('aluno_id','=',$request->aluno_id)
                            ->where('titulo','ilike', '%'.$request->termo.'%');
                  })->orWhere(function ($query) use ($request){
-                     $query->where('aluno_id','=',$request->id_aluno)
+                     $query->where('aluno_id','=',$request->aluno_id)
                            ->where('descricao','ilike','%'.$request->termo.'%');
                  })->get();
 
@@ -73,9 +73,9 @@ class ObjetivoController extends Controller
 
   }
 
-  public static function listar($id_aluno){
+  public static function listar($aluno_id){
 
-    $aluno = Aluno::find($id_aluno);
+    $aluno = Aluno::find($aluno_id);
     $objetivosGroupByUser = $aluno->objetivos->groupBy('user_id');
   
     $names = [];
@@ -118,7 +118,7 @@ class ObjetivoController extends Controller
     $objetivo = Objetivo::find($id_objetivo);
     $objetivo->delete();
 
-    return redirect()->route("objetivo.listar", ["id_aluno" => $objetivo->aluno->id])->with('success','O objetivo '.$objetivo->titulo.' foi excluído.');;
+    return redirect()->route("objetivo.listar", ["aluno_id" => $objetivo->aluno->id])->with('success','O objetivo '.$objetivo->titulo.' foi excluído.');;
   }
 
   public static function criar(Request $request){
@@ -133,14 +133,14 @@ class ObjetivoController extends Controller
       return redirect()->back()->withErrors($validator->errors())->withInput();
     }
 
-    $objetivosUser = Objetivo::where('user_id','=',Auth::user()->id)->where('aluno_id','=',$request->id_aluno)->get();
+    $objetivosUser = Objetivo::where('user_id','=',Auth::user()->id)->where('aluno_id','=',$request->aluno_id)->get();
 
     $objetivo = new Objetivo();
     $objetivo->titulo = $request->titulo;
     $objetivo->descricao = $request->descricao;
     $objetivo->prioridade = $request->prioridade;
     $objetivo->data = new DateTime();
-    $objetivo->aluno_id = $request->id_aluno;
+    $objetivo->aluno_id = $request->aluno_id;
     $objetivo->user_id = Auth::user()->id;
     $objetivo->tipo_objetivo_id = $request->tipo;
     $objetivo->save();
@@ -169,9 +169,9 @@ class ObjetivoController extends Controller
     $forum->objetivo_id = $objetivo->id;
     $forum->save();
 
-    ObjetivoController::notificarObjetivo($request->id_aluno, $objetivo->id);
+    ObjetivoController::notificarObjetivo($request->aluno_id, $objetivo->id);
 
-    return redirect()->route("objetivo.listar", ["id_aluno" => $request->id_aluno])->with('success','Objetivo cadastrado.');
+    return redirect()->route("objetivo.listar", ["aluno_id" => $request->aluno_id])->with('success','Objetivo cadastrado.');
   }
 
   public static function atualizar(Request $request){
@@ -193,7 +193,7 @@ class ObjetivoController extends Controller
     $objetivo->tipo_objetivo_id = $request->tipo;
     $objetivo->update();
 
-    $aluno = Aluno::find($request->id_aluno);
+    $aluno = Aluno::find($request->aluno_id);
 
     return redirect()->route('objetivo.gerenciar',[$objetivo->id] )->with('success','O objetivo '.$objetivo->titulo.' foi atualizado.');;
   }
@@ -273,9 +273,9 @@ class ObjetivoController extends Controller
 
   }
 
-  private static function notificarObjetivo($id_aluno, $id_objetivo){
+  private static function notificarObjetivo($aluno_id, $id_objetivo){
 
-    $aluno = Aluno::find($id_aluno);
+    $aluno = Aluno::find($aluno_id);
     $gerenciars = $aluno->gerenciars;
 
 

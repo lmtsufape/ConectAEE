@@ -148,9 +148,9 @@ class AtividadeController extends Controller
   private static function notificarAtividade($atividade){
 
     $id_objetivo = $atividade->objetivo->id;
-    $id_aluno =$atividade->objetivo->aluno->id;
+    $aluno_id =$atividade->objetivo->aluno->id;
 
-    $aluno = Aluno::find($id_aluno);
+    $aluno = Aluno::find($aluno_id);
     $gerenciars = $aluno->gerenciars;
 
     foreach ($gerenciars as $gerenciar) {

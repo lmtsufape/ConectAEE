@@ -87,7 +87,7 @@
             <form method="POST" action="{{ route('objetivo.status.atualizar') }}">
                 {{ csrf_field() }}
 
-                <input id="id_aluno" type="hidden" class="form-control" name="id_aluno" value="{{ $aluno->id }}">
+                <input id="aluno_id" type="hidden" class="form-control" name="aluno_id" value="{{ $aluno->id }}">
                 <input id="id_objetivo" type="hidden" class="form-control" name="id_objetivo" value="{{ $objetivo->id }}">
 
                 <div>

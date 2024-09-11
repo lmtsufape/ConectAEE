@@ -30,7 +30,7 @@
               <form method="POST" action="{{ route("aluno.atualizar") }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
-                <input type="hidden" name="id_aluno" value="{{ $aluno->id }}">
+                <input type="hidden" name="aluno_id" value="{{ $aluno->id }}">
                 <input type="hidden" name="id_endereco" value="{{ $endereco->id }}">
 
                 @if(count($instituicoes) != 0)
