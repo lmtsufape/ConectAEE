@@ -54,7 +54,7 @@
             <ul id="menu-barra-temp" style="list-style:none;">
                 <li
                     style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
-                    <a href="http://brasil.gov.br"
+                    <a href="https://brasil.gov.br"
                         style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal
                         do Governo Brasileiro</a>
                 </li>

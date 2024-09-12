@@ -4,11 +4,11 @@
     </div>
 
     <div class="text-center">
-        <a href="http://ufape.edu.br" target="_blank">
+        <a href="https://ufape.edu.br" target="_blank">
             <img src="{{ asset('images/layouts/footer/UFAPElogo.png') }}" alt="logo-ufape">
         </a>
 
-        <a href="http://www.lmts.ufape.edu.br" target="_blank">
+        <a href="https://www.lmts.ufape.edu.br" target="_blank">
             <img src="{{ asset('images/layouts/footer/LMTSlogo.png') }}" alt="logo-lmts">
         </a>
     </div>
