@@ -20,7 +20,7 @@ class DesenvolvimentoController extends Controller
     public function store(StoreDesenvolvimentoRequest $request, $pdi_id){
         $pdi = Pdi::find($pdi_id);
 
-        if($pdi->desenvolvimento->exists()){
+        if($pdi->desenvolvimento){
             $pdi->desenvolvimento->update($request->all());
 
         return redirect()->route('pdi.create_especificidade_educacional', ['pdi_id' => $pdi->id]);
