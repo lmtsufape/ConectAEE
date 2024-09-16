@@ -18,7 +18,7 @@ class CondicaoSaudeController extends Controller
     public function store(StoreCondicaoSaudeRequest $request, $pdi_id){
         $pdi = Pdi::find($pdi_id);
 
-        if($pdi){
+        if($pdi->condicaoSaude->exists()){
             $pdi->condicaoSaude->update($request->all());
             
             return redirect()->route('pdi.create_desenvolvimento_estudante', ['pdi_id' => $pdi->id]);

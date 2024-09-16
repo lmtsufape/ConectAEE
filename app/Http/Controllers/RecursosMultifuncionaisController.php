@@ -18,7 +18,7 @@ class RecursosMultifuncionaisController extends Controller
     public function store(StoreRecursosMultifuncionaisRequest $request, $pdi_id){
         $pdi = Pdi::find($pdi_id);
 
-        if($pdi){
+        if($pdi->recursosMultifuncionais->exists()){
             $pdi->recursosMultifuncionais->update($request->all());
      
             return redirect()->route('pdi.create_finalizacao', ['pdi_id' => $pdi->id]);
