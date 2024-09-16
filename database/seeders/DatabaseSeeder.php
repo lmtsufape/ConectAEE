@@ -44,6 +44,5 @@ class DatabaseSeeder extends Seeder
         $this->call(SugestaoSeeder::class);
         $this->call(MensagemForumObjetivoSeeder::class);
         $this->call(FeedbackSeeder::class);
-        $this->call(NotificacaoSeeder::class);
     }
 }

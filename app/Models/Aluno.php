@@ -47,7 +47,7 @@ class Aluno extends Model
         return $this->hasMany(Objetivo::class)->orderBy('updated_at','desc');
     }
 
-    public function pdi(){
+    public function pdis(){
         return $this->hasMany(Pdi::class);
     }
 

@@ -16,7 +16,14 @@ class CondicaoSaudeController extends Controller
     }
 
     public function store(StoreCondicaoSaudeRequest $request, $pdi_id){
-        $condicao_saude = CondicaoSaude::create(array_merge($request->all(), ['pdi_id' => $pdi_id]));
+        $pdi = Pdi::find($pdi_id);
+
+        if($pdi){
+            $pdi->condicaoSaude->update($request->all());
+            
+            return redirect()->route('pdi.create_desenvolvimento_estudante', ['pdi_id' => $pdi->id]);
+        }
+        CondicaoSaude::create(array_merge($request->all(), ['pdi_id' => $pdi_id]));
 
         return redirect()->route('pdi.create_desenvolvimento_estudante', ['pdi_id' => $pdi_id]);
     }

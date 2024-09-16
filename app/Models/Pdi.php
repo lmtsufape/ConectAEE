@@ -11,7 +11,7 @@ class Pdi extends Model
 
     ];
 
-    public function alunos()
+    public function aluno()
     {
         return $this->belongsTo(Aluno::class);
     }

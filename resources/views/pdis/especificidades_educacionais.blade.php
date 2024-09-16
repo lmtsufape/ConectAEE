@@ -190,9 +190,9 @@
     <div>
         <label for="organizacao_tipo_aee" class="form-label">TIPO DE AEE</label>
         <select class="form-control" name="organizacao_tipo_aee" id="organizacao_tipo_aee">
-            <option value="" disabled></option>
+            <option value="" disabled selected>Selecione uma opção</option>
             @foreach ($organizacoes as $organizacao)
-                <option value="{{$organizacao}}">{{$organizacao}}</option>
+                <option value="{{$organizacao}}" @selected((old('organizacao_tipo_aee') ?? $pdi->especificidade->organizacao_tipo_aee ?? '') == $organizacao)>{{$organizacao}}</option>
             @endforeach
         </select>
     
@@ -218,9 +218,9 @@
         <div id="atendimento_sala_recursos_multifuncionais-sim" class="d-none">
             <label for="tipo_sala" class="form-label">Qual a sala?</label>
             <select class="form-control @error('tipo_sala') is-invalid @enderror" name="tipo_sala" id="tipo_sala">
-                <option value=""></option>
+                <option value="" disabled selected>Selecione uma opção</option>
                 @foreach ($tipo_salas as $tipo)
-                    <option value="{{$tipo['value']}}">{{$tipo['descricao']}}</option>
+                    <option value="{{$tipo['value']}}" @selected((old('tipo_sala') ?? $pdi->especificidade->tipo_sala ?? '') == $tipo['value'])>{{$tipo['descricao']}}</option>
                 @endforeach
             </select>
     
@@ -233,7 +233,7 @@
         <div id="atendimento_sala_recursos_multifuncionais-nao" class="d-none">
             <div class="form-group">
                 <label for="espaco_alternativo" class="form-label">Se o atendimento não for realizado nas salas de recursos multifuncionais, é realizado em qual espaço</label>
-                <input class="form-control @error('espaco_alternativo') is-invalid @enderror" type="text" name="espaco_alternativo" id="espaco_alternativo">
+                <input class="form-control @error('espaco_alternativo') is-invalid @enderror" type="text" name="espaco_alternativo" id="espaco_alternativo" value="{{old('espaco_alternativo') ?? $pdi->especificidade->espaco_alternativo ?? ''}}">
     
                 @error('espaco_alternativo')
                     <span class="invalid-feedback" role="alert">
@@ -246,9 +246,9 @@
     <div class="form-group">
         <label for="frequencia_atendimentos" class="form-label">FREQUÊNCIA DE ATENDIMENTOS SEMANAIS</label>
         <select class="form-control @error('frequencia_atendimentos') is-invalid @enderror" name="frequencia_atendimentos" id="frequencia_atendimentos">
-            <option value="" disabled></option>
+            <option value="" disabled selected>Selecione uma opção</option>
             @foreach ($atendimentos as $atendimento)
-                <option value="{{$atendimento}}">{{$atendimento}}</option>
+                <option value="{{$atendimento}}" @selected((old('frequencia_atendimentos') ?? $pdi->especificidade->frequencia_atendimentos ?? '') == $atendimento)>{{$atendimento}}</option>
             @endforeach
         </select>
     
@@ -271,9 +271,9 @@
     <div class="form-group">
         <label for="profissionais_educacao_necessarios" class="form-label">QUAIS PROFISSIONAIS DA EDUCAÇÃO ESPECÍFICA SERÃO NECESSÁRIOS PARA ESTE ESTUDANTE</label>
         <select class="form-control @error('profissionais_educacao_necessarios') is-invalid @enderror" name="profissionais_educacao_necessarios" id="profissionais_educacao_necessarios">
-            <option value="" disabled></option>
+            <option value="" disabled selected>Selecione uma opção</option>
             @foreach ($profissionais as $profissional)
-                <option value="{{$profissional}}">{{$profissional}}</option>
+                <option value="{{$profissional}}" @selected((old('profissionais_educacao_necessarios') ?? $pdi->especificidade->profissionais_educacao_necessarios ?? '') == $profissional)>{{$profissional}}</option>
             @endforeach
         </select>
     
@@ -301,6 +301,20 @@
 
 @push('scripts')
     <script>
+         $(document).ready(function() {
+            function marcarRadio(nomeCampo, valorEsperado) {
+                $('input[name="' + nomeCampo + '"]').each(function() {
+                    if ($(this).val() === String(valorEsperado)) {
+                        $(this).click();
+                    }
+                });
+            }
+
+            marcarRadio('atendimento_sala_recursos_multifuncionais', @json(old('atendimento_sala_recursos_multifuncionais') ?? $pdi->especificidade->atendimento_sala_recursos_multifuncionais ?? false));
+
+            
+        });
+
         $('input[name="atendimento_sala_recursos_multifuncionais"]').on('change', function() {
             if ($('#atendimento_sala_recursos_multifuncionais_sim').is(':checked')) {
                 $('#atendimento_sala_recursos_multifuncionais-sim').removeClass('d-none');

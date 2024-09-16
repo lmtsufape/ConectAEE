@@ -27,13 +27,13 @@ class StoreCondicaoSaudeRequest extends FormRequest
             'resultado_diagnostico' => 'required_if:tem_diagnostico,true',
             'situacao_diagnostico'  => 'required_if:tem_diagnostico,false',
             'tem_outras_condicoes'  => 'required',
-            'outras_condicoes'      => 'required',
+            'outras_condicoes'      => 'required_if:tem_outras_condicoes,true',
             'faz_uso_medicacao'     => 'required',
-            'medicacoes'            => 'required',
+            'medicacoes'            => 'required_if:faz_uso_medicacao,true',
             'tem_recomendacoes'     => 'required',
-            'recomendacoes'         => 'required',
+            'recomendacoes'         => 'required_if:tem_recomendacoes,true',
             'faz_acompanhamento'    => 'required',
-            'acompanhamento'        => 'required',
+            'acompanhamento'        => 'required_if:faz_acompanhamento,true',
         ];
     }
 

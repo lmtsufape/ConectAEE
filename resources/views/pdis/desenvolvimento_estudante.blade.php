@@ -11,9 +11,9 @@
     <div class="form-group">
         <label for="sistema_linguistico" class="form-label">Sistema linguístico utilizado pelo estudante na sua comunicação</label>
         <select class="form-control @error('sistema_linguistico') is-invalid @enderror" name="sistema_linguistico" id="sistema_linguistico">
-            <option value="" disabled></option>
+            <option value="" disabled selected>Selecione uma opção</option>
             @foreach ($sistemas_linguisticos as $sistema)
-                <option value="{{$sistema}}">{{$sistema}}</option>
+                <option value="{{$sistema}}" @selected((old('sistema_linguistico') ?? $pdi->desenvolvimento->sistema_linguistico ?? '') == $sistema)>{{$sistema}}</option>
                 
             @endforeach
         </select>

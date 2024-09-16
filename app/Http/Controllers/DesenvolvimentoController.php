@@ -18,6 +18,14 @@ class DesenvolvimentoController extends Controller
     }
 
     public function store(StoreDesenvolvimentoRequest $request, $pdi_id){
+        $pdi = Pdi::find($pdi_id);
+
+        if($pdi){
+            $pdi->desenvolvimento->update($request->all());
+
+        return redirect()->route('pdi.create_especificidade_educacional', ['pdi_id' => $pdi->id]);
+
+        }
         Desenvolvimento::create(attributes: array_merge($request->all(), ['pdi_id' => $pdi_id]));
 
         return redirect()->route('pdi.create_especificidade_educacional', ['pdi_id' => $pdi_id]);

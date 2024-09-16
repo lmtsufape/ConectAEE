@@ -24,6 +24,14 @@ class EspecificidadeEducacionalController extends Controller
     }
 
     public function store(StoreEspecificidadeEducacionalRequest $request, $pdi_id){
+        $pdi = Pdi::find($pdi_id);
+
+        if($pdi){
+            $pdi->especificidade->update($request->all());
+
+            return redirect()->route('pdi.create_recursos_mult_funcionais', ['pdi_id' => $pdi->id]);
+        }
+
         EspecificidadeEducacional::create(array_merge($request->all(), ['pdi_id' => $pdi_id]));
 
         return redirect()->route('pdi.create_recursos_mult_funcionais', ['pdi_id' => $pdi_id]);

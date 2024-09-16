@@ -35,8 +35,26 @@ class PdiController extends Controller
 
     public function store($aluno_id)
     {
-        if(Pdi::where('aluno_id', $aluno_id)->orderByDesc('created_at')->first()){
+        $pdi = Pdi::where('aluno_id', $aluno_id)->orderByDesc('created_at')->with('condicaoSaude', 'desenvolvimento', 'especificidade', 'recursosMultifuncionais')->first();
 
+        if($pdi){
+            $novoPdi = $pdi->replicate();
+            $novoPdi->save();
+            
+            $novaEntidade = $pdi->condicaoSaude->replicate();
+            $novaEntidade->pdi_id = $novoPdi->id;
+            $novaEntidade->save(); 
+            $novaEntidade = $pdi->desenvolvimento->replicate();
+            $novaEntidade->pdi_id = $novoPdi->id;
+            $novaEntidade->save(); 
+            $novaEntidade = $pdi->especificidade->replicate();
+            $novaEntidade->pdi_id = $novoPdi->id;
+            $novaEntidade->save(); 
+            $novaEntidade = $pdi->recursosMultifuncionais->replicate();
+            $novaEntidade->pdi_id = $novoPdi->id;
+            $novaEntidade->save(); 
+            
+            return $novoPdi;
         }
         $pdi = Pdi::create(['aluno_id' => $aluno_id, 'user_id' => Auth::user()->id]);
 
@@ -46,7 +64,8 @@ class PdiController extends Controller
     public function finalizacao(Request $request, $pdi_id){
         $pdi = Pdi::find($pdi_id);
         if($pdi->condicaoSaude()->exists() && $pdi->desenvolvimento()->exists() && $pdi->especificidade()->exists() && $pdi->recursosMultifuncionais()->exists()){
-            $pdi->save(['resumo_avaliacao_trimestral_aluno' => $request->resumo_avaliacao_trimestral_aluno]);
+            $pdi->resumo_avaliacao_trimestral_aluno = $request->resumo_avaliacao_trimestral_aluno;//implementado desta forma para garantir a data que o formulário foi submetido.
+            $pdi->save();
 
             return redirect()->route('pdi.index', ['aluno_id' => $pdi->aluno_id]);
         }
@@ -74,8 +93,6 @@ class PdiController extends Controller
 
     public function create_finalizacao(Request $request, $pdi_id){
         $pdi = Pdi::find($pdi_id);
-
-        $pdi->update(['resumo_avaliacao_trimestral_aluno' => $request->all()]);
 
         return view('pdis.finalizacao', ['pdi' => $pdi]);
     }
