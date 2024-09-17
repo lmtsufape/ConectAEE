@@ -43,12 +43,6 @@ Route::controller(HomeController::class)->group(function(){
     });
 });
 
-Route::prefix('usuarios/notificacoes')->controller(NotificacaoController::class)->group(function(){
-    Route::get('listar', 'listar')->name('notificacao.listar');
-    Route::get('{id_notificacao}/ler', 'ler')->name('notificacao.ler')->middleware('checkNotificacao');
-    Route::get('lerTodas', 'lerTodas')->name('notificacao.lerTodas');
-
-});
 
 Route::prefix('users')->controller(UserController::class)->group(function(){
     Route::get('/completarCadastro', 'completarCadastro')->name('usuario.completarCadastro');
@@ -57,9 +51,8 @@ Route::prefix('users')->controller(UserController::class)->group(function(){
     Route::post('/store', 'store')->name('user.store');
     Route::get('/edit/{id}', 'edit')->name('user.edit');
     Route::put('/', 'update')->name('user.update');
-
+    
 });
-
 Route::prefix('escolas')->controller(EscolaController::class)->group(function(){
     Route::get('/', 'index')->name('escola.index');
     Route::get('/create', 'create')->name('escola.create');
@@ -71,6 +64,13 @@ Route::prefix('escolas')->controller(EscolaController::class)->group(function(){
     Route::put('/', 'update')->name('escola.update');
 
 });
+Route::prefix('usuarios/notificacoes')->controller(NotificacaoController::class)->group(function(){
+    Route::get('listar', 'listar')->name('notificacao.listar');
+    Route::get('{id_notificacao}/ler', 'ler')->name('notificacao.ler')->middleware('checkNotificacao');
+    Route::get('lerTodas', 'lerTodas')->name('notificacao.lerTodas');
+
+});
+
 
 Route::prefix('aluno')->controller(AlunoController::class)->group(function(){
     Route::get('/', 'index')->name('aluno.index');
@@ -84,17 +84,6 @@ Route::prefix('aluno')->controller(AlunoController::class)->group(function(){
     Route::get('/buscarAluno', 'buscarAluno')->name('aluno.buscarAluno');
     Route::get('/{aluno_id}/excluir', 'delete')->name('aluno.delete');
     
-    //Rotas para permissões
-    Route::get('/{aluno_id}/gerenciar/permissoes/listar','gerenciarPermissoes')->name('aluno.permissoes');
-    Route::get('/{aluno_id}/gerenciar/permissoes/cadastrar','cadastrarPermissao')->name('aluno.permissoes.cadastrar');
-    Route::get('/{cpf}/gerenciar/permissoes/requisitar', 'requisitarPermissao')->name('aluno.permissoes.requisitar');
-    Route::get('/gerenciar/permissoes/{id_permissao}/editar','editarPermissao')->name('aluno.permissoes.editar');
-    Route::get('/gerenciar/permissoes/{id_permissao}/remover','removerPermissao')->name('aluno.permissoes.remover');
-    Route::get('/gerenciar/permissoes/notificacao/{id_notificacao}/conceder', 'concederPermissao')->name('aluno.permissoes.conceder');
-    Route::post('/gerenciar/permissoes/criar','criarPermissao')->name('aluno.permissoes.criar');
-    Route::post('/gerenciar/permissoes/notificar','notificarPermissao')->name('aluno.permissoes.notificar');
-    Route::post('/gerenciar/permissoes/atualizar','atualizarPermissao')->name('aluno.permissoes.atualizar');
-});
 
 Route::prefix('aluno/objetivos')->controller(ObjetivoController::class)->group(function(){
     Route::get('/{aluno_id}/cadastrar','cadastrar')->name('objetivo.cadastrar')->middleware('checkNaoResponsavel');
@@ -137,12 +126,6 @@ Route::prefix('alunos/objetivos/gerenciar/sugestoes/feedbacks')->controller(Feed
     Route::post('/atualizar', 'atualizar')->name('feedback.atualizar');
 });
 
-Route::prefix('alunos/forum')->controller(ForumController::class)->group(function(){
-    Route::get('/{aluno_id}','abrirForumAluno')->name('aluno.forum')->middleware('checkGerenciaAluno');
-    Route::post('/mensagem/enviar','enviarMensagemForumAluno')->name('aluno.forum.mensagem.enviar');
-    Route::post('/objetivo/mensagem/enviar','enviarMensagemForumObjetivo')->name('objetivo.forum.mensagem.enviar');
-
-});
 
 Route::prefix('alunos/albuns')->controller(AlbumController::class)->group(function(){
     Route::get('/{aluno_id}/listar', 'listar')->name('album.listar')->middleware('checkGerenciaAluno');
