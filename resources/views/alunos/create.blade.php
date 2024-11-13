@@ -433,5 +433,11 @@
         </div>
 
     </form>
-
 @endsection
+
+@push('scripts')
+    <script>
+        var dados = @json($gres);
+    </script>
+    <script src="{{ asset('js/filtrar-gre.js') }}"></script>
+@endpush
