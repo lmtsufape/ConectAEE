@@ -33,19 +33,19 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::middleware('auth')->group(function() {
+Route::middleware(['auth', 'ativo'])->group(function() {
     
     Route::controller(HomeController::class)->group(function(){
-        Route::get('video', 'video')->name('video');
-        Route::get('home', 'index')->name('home');
-        Route::get('', 'index');
+        Route::get('/video', 'video')->name('video');
+        Route::get('/home', 'index')->name('home');
+        Route::get('/', 'index');
     
     });
    
     Route::prefix('users')->controller(UserController::class)->group(function(){
 
-        Route::get('/create', 'create')->name('user.create');
-        Route::post('/store', 'store')->name('user.store');
+        Route::get('/create', 'create')->name('user.create')->withoutMiddleware('auth');
+        Route::post('/store', 'store')->name('user.store')->withoutMiddleware('auth');
         Route::get('/edit/{id}', 'edit')->name('user.edit');
         Route::put('/', 'update')->name('user.update');
         
@@ -177,4 +177,10 @@ Route::middleware('auth')->group(function() {
 
         Route::post('/aluno/objetivo/status/atualizar', 'StatusController@atualizar')->name('objetivo.status.atualizar');
     });
+});
+
+Route::prefix('inativo')->group(function() {
+    Route::get('/', function(){
+        return view('users.check_ativo');
+    })->name('inativo');
 });

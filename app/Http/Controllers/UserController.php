@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\users\StoreUserRequest;
+use App\Models\Especialidade;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -23,13 +25,22 @@ class UserController extends Controller
 
     public function create(): View
     {
-        return view('auth.register');
+        $especialidades = Especialidade::all();
+
+        return view('auth.register', compact( 'especialidades'));
     }
 
-    public function store(StoreUserRequest $request): Void
+    public function store(StoreUserRequest $request)
     {
-        dd($request);
-        User::create([$request]);
+        DB::transaction(function () use ($request) {
+            $user = User::create(array_merge($request->except('password'), ['password' => Hash::make($request->password)]));
+            $user->roles()->attach(2);
+            $user->especialidades()->attach($request->especialidade);
+            
+            Auth::login($user);
+        });
+
+        return redirect()->route('home');
     }
 
     public function edit($id): View

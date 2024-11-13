@@ -35,14 +35,9 @@ class DatabaseSeeder extends Seeder
         //Comentar
         // $this->call(ObjetivoSeeder::class);
 
-        //Não comentar
-        $this->call(StatusSeeder::class);
-        $this->call(StatusObjetivoSeeder::class);
-
         //Comentar
         $this->call(AtividadeSeeder::class);
         $this->call(SugestaoSeeder::class);
-        $this->call(MensagemForumObjetivoSeeder::class);
         $this->call(FeedbackSeeder::class);
     }
 }

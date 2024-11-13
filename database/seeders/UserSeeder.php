@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'telefone' => '1233455654',
             'password' => bcrypt("password"),
             'cpf' => "106.981.574-45",
-            'ativo' => true,
+            'flag_ativo' => true,
         ])->roles()->attach(1);
 
         User::create([
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
             'telefone' => '1233455654',
             'password' => bcrypt("password"),
             'cpf' => "007.982.270-36",
-            'ativo' => true,
+            'flag_ativo' => true,
         ])->roles()->attach(2);;
 
         User::create([
@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
             'telefone' => '12332455654',
             'password' => bcrypt("password"),
             'cpf' => "426.886.970-05",
-            'ativo' => true,
+            'flag_ativo' => true,
         ])->roles()->attach(2);;
     }
 }

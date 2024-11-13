@@ -33,7 +33,6 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{route('aluno.edit', ['aluno_id'=>$aluno->id]) }}" data-toggle="tooltip" title="Editar aluno">Editar</a></li>
-                    <li><a class="dropdown-item" href="{{route('aluno.permissoes',['aluno_id'=>$aluno->id])}}" data-toggle="tooltip" title="Autorizar acesso ao aluno">Autorização</a></li>
                     <li><a class="dropdown-item" href="#"data-toggle="modal" title="Excluir aluno" data-target="#modalConfirm">Excluir</a></li>
                     <li><hr class="dropdown-divider"></li>
 

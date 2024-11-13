@@ -12,4 +12,9 @@ class Especialidade extends Model
     protected $fillable = [
         'nome'
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'especialidade_user', 'especialidade_id', 'user_id');
+    }
 }

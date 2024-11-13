@@ -34,7 +34,7 @@
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto">
-                @if (Auth::check() && Auth::user()->ativo)
+                @auth
                     @php
                         $notificacoes = Auth::user()->notificacoes;
                         $lidos = array_column($notificacoes->toArray(), 'lido');
@@ -179,26 +179,7 @@
                             </li>
                         </ul>
                     </li>
-                @elseif(Auth::check() && !Auth::user()->ativo)
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
-                            aria-expanded="false">
-                            {{ \Auth::user()->username }} <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Sair
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    style="display: none;">
-                                    @csrf
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                @endif
+                @endauth
             </ul>
         </div>
     </div>

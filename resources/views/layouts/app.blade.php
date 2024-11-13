@@ -12,6 +12,8 @@
     <title>@yield('title')</title>
 
     <link rel="shortcut icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <!-- select2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 
     <!-- Styles -->
     <link href="{{ asset('css/contrast.css') }}" rel="stylesheet">

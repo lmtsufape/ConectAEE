@@ -289,21 +289,8 @@
 
         <hr style="border-top: 1px solid #AAA;">
 
-        <div class="form-group">
-            <label for="gre_id" class="form-label">Gre</label>
-            <select value="{{old('gre_id')}}" class="form-control @error('gre_id') is-invalid @enderror" name="gre_id" id="gre_id">
-                <option value="" disabled>Listagem das Gres</option>
-                @foreach ($gres as $gre)
-                    <option value="{{$gre->id}}">{{$gre->nome}}</option>
-                @endforeach
-            </select>
+        @include('layouts.components.select2', ['label'=> 'Gre', 'id'=> 'gre_id', 'name' => 'gre_id', 'values' => $gres])
 
-            @error('gre_id')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{$message}}</strong>
-                </span>
-            @enderror
-        </div>
 
         <div class="form-group">
             <label for="municipio_id" class="form-label">Municípios</label>

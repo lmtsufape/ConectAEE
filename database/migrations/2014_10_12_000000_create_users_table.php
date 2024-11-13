@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
       $table->integer('matricula')->unique();
       $table->string('telefone');
       $table->string('password');
-      $table->boolean('ativo')->default(false);
+      $table->boolean('flag_ativo')->default(false);
       
       $table->rememberToken();
       $table->timestamps();

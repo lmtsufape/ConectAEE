@@ -27,7 +27,6 @@ class CreateNotificacaosTable extends Migration
       $table->foreign('objetivo_id')->references('id')->on('objetivos');
       $table->foreign('remetente_id')->references('id')->on('users');
       $table->foreign('destinatario_id')->references('id')->on('users');
-      $table->foreign('perfil_id')->references('id')->on('perfils')->onDelete('cascade');
 
       $table->timestamps();
     });

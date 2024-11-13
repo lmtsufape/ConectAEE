@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nome', 'email', 'cpf', 'matricula', 'telefone', 'password', 'ativo' 
+        'nome', 'email', 'cpf', 'matricula', 'telefone', 'password', 'flag_ativo' 
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -41,6 +41,11 @@ class User extends Authenticatable
 
     public function roles(){
         return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
+    }
+
+    public function especialidades()
+    {
+        return $this->belongsToMany(Especialidade::class, 'especialidade_user', 'user_id', 'especialidade_id');
     }
 
     public function hasAnyRoles($roles){
