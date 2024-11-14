@@ -2,155 +2,95 @@
 @section('title','Listar Instituições')
 
 @section('content')
-<div class="container" style="color: #12583C">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="panel panel-default" style="padding: 10px 20px;" id="login-card">
 
-        <div class="panel-heading" id="login-card">
-          <div class="row" style="margin-bottom: -20px">
-            <div class="col-md-12" id="login-card">
-              <div style="width: 100%; margin-left: 0%;" class="row" id="login-card">
-                <div style="float: left;" class="col-md-6" id="login-card">
-                  <h2>
-                    <strong style="color: #12583C">
-                      Instituições
-                    </strong>
-                  </h2>
-                  <div style="font-size: 14px" id="login-card">
-                    <a href="{{route('aluno.index')}}">Início</a>
-                    > Instituições
-                  </div>
-                </div>
-                <div style="float:right;" class="col-md-3" id="login-card">
-                  <a class="btn btn-primary" style="float:right; margin-top:20px; background-color: #0398fc; color: white; font-weight: bold; font-size: 14px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC"  id="signup" href="{{ route('escola.create')}}">
-                    Nova Instituição
-                  </a>
-                </div>
-                <div class="row col-md-3" style="float:right; " id="login-card">
-              
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <hr style="border-top: 1px solid #AAA;">
-        </div>
-
-        <div class="panel-body" id="login-card">
-
-          @if (\Session::has('success'))
-            <br>
-            <div class="alert alert-success" id="login-card">
-              <strong>Sucesso!</strong>
-              {!! \Session::get('success') !!}
-            </div>
-          @endif
-
-          <div id="tabela" class="table-responsive">
-            <table id="tabela_dados" class="table table-hover">
-              <thead>
-                <tr>
-                  <th>Nome</th>
-                  <th>Ações</th>
-                  <th></th>
-                  <th></th>
-                </tr>
-
-              </thead>
-              <tbody>
-                @foreach ($escolas as $escola)
-                  <tr>
-                    <td data-title="Nome">{{ $escola->nome }}</td>
-                    <td data-title="Ações">
-                      <a class="btn btn-primary" href="{{ route("escola.show" , ['escola_id' => $escola->id]) }}">
-                        Visualizar
-                      </a>
-                    </td>
-                    <td data-title="">
-                      <a class="btn btn-primary" href="{{ route("escola.edit" , ['escola_id' => $escola->id]) }}">
-                        Editar
-                      </a>
-                    </td>
-                    <td data-title="">
-                      <a class="btn btn-danger" data-toggle="modal" data-target="#modalConfirm" onclick="setDadosModal('{{ route('escola.destroy' , ['escola_id' => $escola->id]) }}','{{$escola->nome}}')" >
-                        Excluir
-                      </a>
-                    </td>
-                  </tr>
-                @endforeach
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="panel-footer" style="background-color:white" id="login-card">
-          <div class="text-center" id="login-card">
-            <a class="btn btn-secondary" href="{{route('home')}}" id="menu-a">
-              Voltar
-            </a>
-          </div>
-        </div>
-      </div>
+  <div class="row m-2">
+    <div class="col-md-6">
+      <h2>
+        <strong style="color: #12583C">
+          Escolas
+        </strong>
+      </h2>
     </div>
-  </div>
-</div>
-
-<!--Modal Confirm-->
-<div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog"
-     aria-labelledby="modalConfirmLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"
-                aria-label="Fechar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title" id="modalConfirmLabel" align="center"></h4>
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Não
-        </button>
-        <a type="button" href=""  id="btnSubmit" class="btn btn-primary">
-          Sim
+    
+    <div class="col-md-6">
+      <div class="text-end">
+        <a class="btn btn-primary" href="{{ route('escola.create')}}">
+          Nova Escola
         </a>
       </div>
     </div>
   </div>
-</div>
 
-<script>
-  function setDadosModal(rota,nome) {
-    setLinkModal(rota);
-    setTextoModal(nome);
-  }
-  function setLinkModal(rota){
-    document.getElementById('btnSubmit').href=rota;
-  }
-  function setTextoModal(nome){
-    document.getElementById('modalConfirmLabel').innerText = '\A instituição será desvinculada de qualquer aluno cadastrado com ela. Confirmar exclusão da instituição '+nome+' ?';
-  }
-</script>
+  <hr style="border-top: 1px solid #AAA;">
+    
+  <div class="m-4">
+    <table class="table shadow table-hover">
+      <thead class="table-primary">
+        <tr>
+          <th>Nome</th>
+          <th>GRE</th>
+          <th>Município</th>
+          <th>Ações</th>
+        </tr>
 
-<script type="text/javascript">
-$(document).ready( function () {
+      </thead>
+      <tbody>
+        @foreach ($escolas as $escola)
+          <tr>
+            <td>{{ $escola->nome }}</td>
+            <td>{{ $escola->municipio->nome }}</td>
+            <td>{{ $escola->municipio->gre->nome }}</td>
 
-  $('#tabela_dados').DataTable( {
-    "language": {
-      "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
-    },
-    "columnDefs": [
-      { "orderable": false, "targets": 1 },
-      { "orderable": false, "targets": 2 },
-      { "orderable": false, "targets": 3 }
-    ],
-    searching: false
-  });
+            <td data-title="Ações">
+              <a class="btn btn-primary" href="{{ route("escola.show" , ['escola_id' => $escola->id]) }}">
+                Visualizar
+              </a>
+            
+              <a class="btn btn-primary" href="{{ route("escola.edit" , ['escola_id' => $escola->id]) }}">
+                Editar
+              </a>
+            
+              <a class="btn btn-danger" data-toggle="modal" data-target="#modalConfirm" onclick="setDadosModal('{{ route('escola.destroy' , ['escola_id' => $escola->id]) }}','{{$escola->nome}}')" >
+                Excluir
+              </a>
+            </td>
+          </tr>
+        @endforeach
+      </tbody>
+    </table>
 
-});
-</script>
+    <div class="d-flex justify-content-center">
+      {{$escolas->links()}}
+    </div>
+
+    <a class="btn btn-secondary" href="{{route('home')}}">
+      Voltar
+    </a>
+  </div>
+
+  <!--Modal Confirm-->
+  <div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog"
+      aria-labelledby="modalConfirmLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"
+                  aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="modalConfirmLabel" align="center"></h4>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Não
+          </button>
+          <a type="button" href=""  id="btnSubmit" class="btn btn-primary">
+            Sim
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 @endsection

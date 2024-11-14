@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class EscolaController extends Controller
 {
     public function index(){
-        $escolas = Escola::all();
+        $escolas = Escola::paginate(10);
 
         return view('escolas.index', compact('escolas'));
     }
