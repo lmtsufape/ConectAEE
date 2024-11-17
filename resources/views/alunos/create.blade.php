@@ -2,8 +2,6 @@
 @section('title', 'Cadastrar aluno')
 
 @section('content')
-
-
     <form class="m-3" method="POST" action="{{ route('aluno.store') }}" enctype="multipart/form-data">
         @csrf
 
@@ -289,7 +287,21 @@
 
         <hr style="border-top: 1px solid #AAA;">
 
-        @include('layouts.components.select2', ['label'=> 'Gre', 'id'=> 'gre_id', 'name' => 'gre_id', 'values' => $gres])
+        <div class="form-group">
+            <label for="gre_id" class="form-label">GRE</label>
+            <select value="{{old('gre_id')}}" class="form-control @error('gre_id') is-invalid @enderror" name="gre_id" id="gre_id">
+                <option value="" disabled selected hidden>Selecione a GRE</option>
+                @foreach ($gres as $gre)
+                    <option value="{{$gre->id}}">{{$gre->nome}}</option>
+                @endforeach
+            </select>
+
+            @error('gre_id')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
 
 
         <div class="form-group">

@@ -5,7 +5,6 @@
     <select id="{{$id}}" name="{{$name}}" class="form-control" multiple>
         @foreach ($values as $value)
             <option value="{{$value->id}}">{{$value->nome}}</option>
-    
         @endforeach
     
         @error($name)
