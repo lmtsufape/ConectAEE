@@ -57,10 +57,10 @@ class AlunoController extends Controller
         $gres = Gre::select('id', 'nome')
         ->with([
             'municipios' => function ($query) {
-                $query->orderBy('nome');  // Ordena os municípios pelo nome
+                $query->select('id', 'nome', 'gre_id')->orderBy('nome');  // Ordena os municípios pelo nome
             },
             'municipios.escolas' => function ($query) {
-                $query->orderBy('nome');  // Ordena as escolas pelo nome
+                $query->select('id', 'nome', 'municipio_id')->orderBy('nome');  // Ordena as escolas pelo nome
             }
         ])
         ->orderBy('nome')  // Ordena as Gres pelo nome
