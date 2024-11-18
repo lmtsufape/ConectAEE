@@ -54,7 +54,18 @@ class AlunoController extends Controller
 
     public function create()
     {
-        $gres = Gre::all();
+        $gres = Gre::select('id', 'nome')
+        ->with([
+            'municipios' => function ($query) {
+                $query->select('id', 'nome', 'gre_id')->orderBy('nome');  // Ordena os municípios pelo nome
+            },
+            'municipios.escolas' => function ($query) {
+                $query->select('id', 'nome', 'municipio_id')->orderBy('nome');  // Ordena as escolas pelo nome
+            }
+        ])
+        ->orderBy('nome')  // Ordena as Gres pelo nome
+        ->get();    
+    
         $municipios = Municipio::all();
         $escolas = Escola::all();
         $escolaridadeAluno = Escolaridade::anosEscolaridade();
