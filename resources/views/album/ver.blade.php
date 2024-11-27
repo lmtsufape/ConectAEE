@@ -14,8 +14,8 @@
             <div class="col-md-6" id="login-card">
 
               <div style="font-size: 14px" id="login-card">
-                <a href="{{route('aluno.index')}}">Início</a>
-                > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
+                <a href="{{route('alunos.index')}}">Início</a>
+                > <a href="{{route('alunos.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
                 > <a href="{{route('album.listar', $aluno->id) }}"> Álbuns</a>
                 > Fotos do Álbum: <strong>{{$album->nome}}</strong>
               </div>
@@ -133,7 +133,7 @@
 
         <div class="panel-footer" style="background-color:white" id="login-card">
           <div class="text-center" id="login-card">
-            <a class="btn btn-secondary" href="{{route('aluno.gerenciar',$aluno->id) }}" id="menu-a">
+            <a class="btn btn-secondary" href="{{route('alunos.gerenciar',$aluno->id) }}" id="menu-a">
               Voltar
             </a>
           </div>

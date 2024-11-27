@@ -32,7 +32,7 @@
                     Ações
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{route('aluno.edit', ['aluno_id'=>$aluno->id]) }}" data-toggle="tooltip" title="Editar aluno">Editar</a></li>
+                    <li><a class="dropdown-item" href="{{route('alunos.edit', ['aluno_id'=>$aluno->id]) }}" data-toggle="tooltip" title="Editar aluno">Editar</a></li>
                     <li><a class="dropdown-item" href="#"data-toggle="modal" title="Excluir aluno" data-target="#modalConfirm">Excluir</a></li>
                     <li><hr class="dropdown-divider"></li>
 
@@ -41,7 +41,7 @@
             
         </div>
         <h4>
-            <a href="{{route('aluno.index')}}">Início</a> > Perfil de
+            <a href="{{route('alunos.index')}}">Início</a> > Perfil de
             <strong>{{ explode(" ", $aluno->nome)[0]}}</strong>
         </h4>
         <hr style="border-top: 1px solid #AAA;">
@@ -170,7 +170,7 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         Não
                     </button>
-                    <a type="button"    href="{{route('aluno.delete', ['aluno_id'=>$aluno->id]) }}"  id="btnSubmit" class="btn btn-primary">
+                    <a type="button"    href="{{route('alunos.delete', ['aluno_id'=>$aluno->id]) }}"  id="btnSubmit" class="btn btn-primary">
                         Sim
                     </a>
                 </div>

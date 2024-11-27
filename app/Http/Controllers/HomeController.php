@@ -21,10 +21,10 @@ class HomeController extends Controller
   public function index()
   {
     if(Auth::user()->hasAnyRoles(['Professor'])){
-      return redirect()->route('aluno.index');
+      return redirect()->route('alunos.index');
 
     }
-    return redirect()->route('escola.index');
+    return view('admins.index');
   }
 
   public function video()

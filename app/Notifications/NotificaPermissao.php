@@ -44,7 +44,7 @@ class NotificaPermissao extends Notification implements  ShouldQueue
             ->subject('ConectAEE - Notificação Pedido de acesso ao aluno')
             ->greeting('Olá,')
             ->line([
-                'Sua conta recebeu uma nova notificação relacionada a permissão de acesso aos dados de um aluno.',
+                'Sua conta recebeu uma nova notificação relacionada a permissão de acesso aos dados de um alunos.',
                 'Clique no botão abaixo para visualizar suas notificações:',
             ])
             ->action('Visualizar', url('/usuario/notificacao/listar'))

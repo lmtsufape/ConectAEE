@@ -13,8 +13,8 @@
               Novo Álbum
             </strong>
             <div style="font-size: 14px" id="login-card">
-              <a href="{{route('aluno.index')}}">Início</a>
-              > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
+              <a href="{{route('alunos.index')}}">Início</a>
+              > <a href="{{route('alunos.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
               > Novo Álbum
             </div>
           </h2>
@@ -81,7 +81,7 @@
               <div class="form-group" id="login-card">
                 <div class="row col-md-12 text-center" id="login-card">
                   <br>
-                  <a class="btn btn-secondary" href="{{route('aluno.gerenciar',$aluno->id)}}" id="menu-a">
+                  <a class="btn btn-secondary" href="{{route('alunos.gerenciar',$aluno->id)}}" id="menu-a">
                     Voltar
                   </a>
                   <button type="submit" class="btn btn-primary">

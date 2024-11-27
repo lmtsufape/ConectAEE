@@ -14,7 +14,7 @@
               Buscar Aluno
             </strong>
             <div style="font-size: 14px" id="login-card">
-              <a href="{{route('aluno.index')}}">Início</a>
+              <a href="{{route('alunos.index')}}">Início</a>
             </div>
           </h2>
 
@@ -22,7 +22,7 @@
         </div>
 
         <div class="panel-body">
-          <form class="form-horizontal" method="GET" action="{{ route("aluno.buscarMatricula") }}">
+          <form class="form-horizontal" method="GET" action="{{ route("alunos.buscarMatricula") }}">
 
             <div class="row" align="center">
               <div class="col-md-12">
@@ -62,11 +62,11 @@
                     <td data-title="Nome" >{{ $aluno->nome }}</td>
                     <td>
                       @if(!$botaoAtivo)
-                        <a class="btn btn-primary" style="width:auto;" href="{{ route("aluno.permissoes.requisitar", ["matricula" => $matricula]) }}">
+                        <a class="btn btn-primary" style="width:auto;" href="{{ route("alunos.permissoes.requisitar", ["matricula" => $matricula]) }}">
                           Pedir permissão
                         </a>
                       @else
-                        <a class="btn btn-primary" href="{{ route("aluno.gerenciar", ["aluno_id" => $aluno->id]) }}">
+                        <a class="btn btn-primary" href="{{ route("alunos.gerenciar", ["aluno_id" => $aluno->id]) }}">
                           Gerenciar
                         </a>
                       @endif

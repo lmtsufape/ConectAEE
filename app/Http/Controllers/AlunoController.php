@@ -101,7 +101,7 @@ class AlunoController extends Controller
             $aluno = Aluno::create($dados);
         });
         
-        return redirect()->route('aluno.index');
+        return redirect()->route('alunos.index');
     }
 
     public function edit($aluno_id)
@@ -153,7 +153,7 @@ class AlunoController extends Controller
         $aluno->instituicoes()->detach();
         $aluno->instituicoes()->attach($request->instituicoes);
 
-        return redirect()->route("aluno.gerenciar", ['aluno_id' => $request->aluno_id])->with('success', 'O Aluno ' . $aluno->nome . ' foi atualizado.');
+        return redirect()->route("alunos.gerenciar", ['aluno_id' => $request->aluno_id])->with('success', 'O Aluno ' . $aluno->nome . ' foi atualizado.');
     }
     public static function delete($aluno_id)
     {
@@ -161,7 +161,7 @@ class AlunoController extends Controller
 
         $aluno->delete();
 
-        return redirect()->route("aluno.index")->with('success', 'O aluno ' . $aluno->nome . ' foi excluído.');
+        return redirect()->route("alunos.index")->with('success', 'O aluno ' . $aluno->nome . ' foi excluído.');
     }
 
     public static function buscarAluno(Request $request)
@@ -176,7 +176,7 @@ class AlunoController extends Controller
 
         $alunos = Aluno::whereIn('id', $ids_alunos)->where('nome', 'ilike', '%' . $request->termo . '%')->paginate(12);
 
-        return view("aluno.index", [
+        return view("alunos.index", [
             'alunos' => $alunos,
             'termo' => $request->termo
         ]);
@@ -192,7 +192,7 @@ class AlunoController extends Controller
             $botaoAtivo = false;
 
             if ($aluno == null) {
-                return redirect()->route("aluno.cadastrar")->with('cpf', $cpf);
+                return redirect()->route("alunos.cadastrar")->with('cpf', $cpf);
             } else {
                 $gerenciars = $aluno->gerenciars;
                 foreach ($gerenciars as $gerenciar) {

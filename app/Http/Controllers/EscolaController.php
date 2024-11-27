@@ -3,14 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Escola;
+use App\Models\Gre;
+use App\Models\Municipio;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class EscolaController extends Controller
 {
-    public function index(){
-        $escolas = Escola::paginate(10);
-
-        return view('escolas.index', compact('escolas'));
+    public function index(Request $request){
+        $escolas = QueryBuilder::for(Escola::class)
+        ->allowedFilters([
+            AllowedFilter::exact('gre_id', 'municipio.gre_id'),
+            AllowedFilter::exact('municipio_id'), 
+        ]) 
+        ->defaultSort('nome')      
+        ->paginate(10);
+        $gres = Gre::all();
+        $municipios = Municipio::all();
+        return view('escolas.index', compact('escolas', 'gres', 'municipios'));
     }
 
     public function show($escola_id){

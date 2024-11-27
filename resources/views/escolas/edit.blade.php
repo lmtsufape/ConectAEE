@@ -12,7 +12,7 @@
               Editar Instituição
             </strong>
             <div style="font-size: 14px" id="login-card">
-              <a href="{{route('aluno.index')}}">Início</a>
+              <a href="{{route('alunos.index')}}">Início</a>
               > <a href="{{route('instituicao.listar')}}">Instituições</a>
               > Nova Instituição
             </div>

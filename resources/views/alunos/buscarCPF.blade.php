@@ -9,7 +9,7 @@
         Novo Aluno
       </strong>
       <div style="font-size: 14px" id="login-card">
-        <a href="{{route('aluno.index')}}">Início</a>
+        <a href="{{route('alunos.index')}}">Início</a>
         > Novo Aluno
       </div>
     </h2>
@@ -19,7 +19,7 @@
 
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      <form method="GET" action="{{ route("aluno.buscarCPF") }}">
+      <form method="GET" action="{{ route("alunos.buscarCPF") }}">
 
           <div class="form-group {{ $errors->has('cpf') ? ' has-error' : '' }}" id="login-card">
               <label for="cpf" class="col-md-12 control-label"> Informe o CPF do aluno: <font color="red">*</font></label>
@@ -42,7 +42,7 @@
         <div class="form-group">
           <div class="row col-md-12 text-center">
             <br>
-            <a class="btn btn-secondary" href="{{route('aluno.index')}}">
+            <a class="btn btn-secondary" href="{{route('alunos.index')}}">
               Voltar
             </a>
             <button type="submit" class="btn btn-primary">
@@ -61,11 +61,11 @@
         <strong>
           O aluno {{ $aluno->nome }} já está cadastrado no sistema.
           @if(!$botaoAtivo)
-            <a class="btn btn-primary" style="width:auto;" href="{{ route("aluno.permissoes.requisitar", ["cpf" => $cpf]) }}">
+            <a class="btn btn-primary" style="width:auto;" href="{{ route("alunos.permissoes.requisitar", ["cpf" => $cpf]) }}">
               Pedir Permissão de Acesso
             </a>
           @else
-            <a class="btn btn-primary" href="{{ route("aluno.gerenciar", ["aluno_id" => $aluno->id]) }}">
+            <a class="btn btn-primary" href="{{ route("alunos.gerenciar", ["aluno_id" => $aluno->id]) }}">
               Ver Perfil
             </a>
           @endif

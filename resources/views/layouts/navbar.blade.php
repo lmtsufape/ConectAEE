@@ -47,10 +47,10 @@
                                 Alunos
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('aluno.index') }}">
+                                <li><a class="dropdown-item" href="{{ route('alunos.index') }}">
                                         Listar
                                     </a></li>
-                                <li><a class="dropdown-item" href="{{ route('aluno.create') }}">
+                                <li><a class="dropdown-item" href="{{ route('alunos.create') }}">
                                         Cadastrar
                                     </a></li>
                             </ul>
@@ -63,14 +63,57 @@
                                 Escolas
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{route('escola.index')}}">
+                                <li><a class="dropdown-item" href="{{route('escolas.index')}}">
                                         Listar
                                     </a></li>
-                                <li><a class="dropdown-item" href="{{route('escola.create')}}">
+                                <li><a class="dropdown-item" href="{{route('escolas.create')}}">
                                         Cadastrar
                                     </a></li>
                             </ul>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Profissionais
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{route('escolas.index')}}">
+                                        Listar
+                                    </a></li>
+                                <li><a class="dropdown-item" href="{{route('escolas.create')}}">
+                                        Cadastrar
+                                    </a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Alunos
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{route('escolas.index')}}">
+                                        Listar
+                                    </a></li>
+                                <li><a class="dropdown-item" href="{{route('escolas.create')}}">
+                                        Cadastrar
+                                    </a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Relatórios
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{route('escolas.index')}}">
+                                        Listar
+                                    </a></li>
+                                <li><a class="dropdown-item" href="{{route('escolas.create')}}">
+                                        Cadastrar
+                                    </a></li>
+                            </ul>
+                        </li>
+                 
                     @endcan
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"

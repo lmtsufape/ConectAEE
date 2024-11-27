@@ -3,8 +3,8 @@
 @section('path','Início')
 
 @section('navbar')
-<a href="{{route('aluno.index')}}">Início</a>
-> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
+<a href="{{route('alunos.index')}}">Início</a>
+> <a href="{{route('alunos.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
 > Álbuns
 @endsection
 
@@ -131,7 +131,7 @@
 
         <div class="panel-footer" style="background-color:white">
           <div class="text-center">
-            <a class="btn btn-secondary" href="{{route('aluno.gerenciar',$aluno->id)}}#perfil">
+            <a class="btn btn-secondary" href="{{route('alunos.gerenciar',$aluno->id)}}#perfil">
               Voltar
             </a>
           </div>

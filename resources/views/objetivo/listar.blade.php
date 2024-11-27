@@ -18,7 +18,7 @@
                     </strong>
                   </h2>
                   <div style="font-size: 14px" id="login-card">
-                    <a href="{{route('aluno.index')}}">Início</a>> <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>> Objetivos
+                    <a href="{{route('alunos.index')}}">Início</a>> <a href="{{route('alunos.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>> Objetivos
                   </div>
                 </div>
 
@@ -149,7 +149,7 @@
 
         <div class="panel-footer" style="background-color:white" id="login-card">
           <div class="text-center" id="login-card">
-            <a class="btn btn-secondary" href="{{route('aluno.gerenciar',$aluno->id)}}#perfil" id="menu-a">
+            <a class="btn btn-secondary" href="{{route('alunos.gerenciar',$aluno->id)}}#perfil" id="menu-a">
               Voltar
             </a>
           </div>

@@ -8,14 +8,14 @@
             Nova Instituição
         </strong>
         <div style="font-size: 14px" id="login-card">
-            <a href="{{ route('escola.index') }}">Escolas</a>
+            <a href="{{ route('escolas.index') }}">Escolas</a>
             > Nova Escola
         </div>
     </h2>
 
     <hr style="border-top: 1px solid #AAA;">
 
-            <form method="POST" action="{{ route('escola.store') }}">
+            <form method="POST" action="{{ route('escolas.store') }}">
                 @csrf
 
                 <hr style="border-top: 1px solid #AAA;">
@@ -96,7 +96,7 @@
                 <div class="form-group" id="login-card">
                     <div class="text-center" id="login-card">
                         <br>
-                        <a class="btn btn-secondary" href="{{ route('escola.index') }}" id="menu-a">
+                        <a class="btn btn-secondary" href="{{ route('escolas.index') }}" id="menu-a">
                             Voltar
                         </a>
                         <button type="submit" class="btn btn-primary">

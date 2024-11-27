@@ -9,8 +9,8 @@
         </strong>
     </h2>
     <div style="font-size: 14px">
-        <a href="{{ route('aluno.index') }}">Início</a>
-        > <a href="{{ route('aluno.gerenciar', $aluno->id) }}">Perfil de
+        <a href="{{ route('alunos.index') }}">Início</a>
+        > <a href="{{ route('alunos.gerenciar', $aluno->id) }}">Perfil de
             <strong>{{ explode(' ', $aluno->nome)[0] }}</strong></a>
         > <a href="{{ route('objetivo.listar', $aluno->id) }}">Objetivos</a>
         > Novo

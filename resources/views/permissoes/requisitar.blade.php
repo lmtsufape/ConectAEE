@@ -14,8 +14,8 @@
                             </strong>
                         </h2>
                         <div style="font-size: 14px" id="login-card">
-                            <a href="{{route('aluno.index')}}">Início</a>
-                            > <a href="{{route('aluno.buscar')}}">Novo Aluno</a>
+                            <a href="{{route('alunos.index')}}">Início</a>
+                            > <a href="{{route('alunos.buscar')}}">Novo Aluno</a>
                             > Requisitar acesso
                         </div>
 
@@ -24,7 +24,7 @@
 
                     <div class="panel-body panel-body-cadastro">
                         <div class="col-md-8 col-md-offset-2">
-                            <form method="POST" action="{{ route("aluno.permissoes.notificar") }}">
+                            <form method="POST" action="{{ route("alunos.permissoes.notificar") }}">
                                 {{ csrf_field() }}
 
                                 <input type="hidden" name="aluno_id" value="{{ $aluno->id }}">
@@ -89,7 +89,7 @@
                                             <div class="form-group">
                                                 <div class="row col-md-12 text-center">
                                                     <br>
-                                                    <a class="btn btn-secondary" href="{{route('aluno.buscar')}}">
+                                                    <a class="btn btn-secondary" href="{{route('alunos.buscar')}}">
                                                         Voltar
                                                     </a>
                                                     <button type="submit" class="btn btn-primary">

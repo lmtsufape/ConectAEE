@@ -17,8 +17,8 @@
                                 Listar Arquivos e Links
                             </strong>
                             <div style="font-size: 14px" id="login-card">
-                                <a href="{{route('aluno.index')}}">Início</a>
-                                > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de
+                                <a href="{{route('alunos.index')}}">Início</a>
+                                > <a href="{{route('alunos.gerenciar',$aluno->id)}}">Perfil de
                                     <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
                                 > <a href="{{route('objetivo.listar',$aluno->id)}}">Objetivos</a>
                                 > <a href="{{route('objetivo.gerenciar',[$objetivo->id])}}">{{$objetivo->titulo}}</a>
@@ -80,7 +80,7 @@
                                                                  style="border-style: ridge; border-width: 3px; background-color: #dfe6e0">
                                                                 <h5 class="card-title">Arquivos</h5>
                                                                 <p class="card-text">Adicione arquivos referentes à
-                                                                    atividade realizada com o aluno.</p>
+                                                                    atividade realizada com o alunos.</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -283,7 +283,7 @@
                                                 <h5 class="card-title">Links</h5>
                                                 <p class="card-text">Adicione links de videos ou de
                                                     outros
-                                                    conteúdos relacionados com a atividade do aluno.</p>
+                                                    conteúdos relacionados com a atividade do alunos.</p>
                                             </div>
                                         </div>
                                     </div>

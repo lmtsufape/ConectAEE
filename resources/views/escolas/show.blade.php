@@ -10,7 +10,7 @@
               {{ $instituicao->nome }}
           </strong>
           <div style="font-size: 14px">
-              <a href="{{ route('aluno.index') }}">Início</a>
+              <a href="{{ route('alunos.index') }}">Início</a>
               > <a href="{{ route('instituicao.listar') }}">Instituições</a>
               > Instituição {{ $instituicao->nome }}
           </div>

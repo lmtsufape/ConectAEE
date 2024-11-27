@@ -18,10 +18,10 @@
                                 Nova Autorização
                             </strong>
                             <div style="font-size: 14px" id="login-card">
-                                <a href="{{route('aluno.index')}}">Início</a>
-                                > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de
+                                <a href="{{route('alunos.index')}}">Início</a>
+                                > <a href="{{route('alunos.gerenciar',$aluno->id)}}">Perfil de
                                     <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
-                                > <a href="{{route('aluno.permissoes',$aluno->id)}}">Autorizações</a>
+                                > <a href="{{route('alunos.permissoes',$aluno->id)}}">Autorizações</a>
                                 > Nova Autorização
                             </div>
                         </h2>
@@ -38,7 +38,7 @@
                         @endif
 
                         <div class="col-md-8 col-md-offset-2" id="login-card">
-                            <form autocomplete="off" method="POST" action="{{ route("aluno.permissoes.criar") }}">
+                            <form autocomplete="off" method="POST" action="{{ route("alunos.permissoes.criar") }}">
                                 {{ csrf_field() }}
 
                                 <input type="hidden" name="aluno_id" value="{{$aluno->id}}">
@@ -140,7 +140,7 @@
                                                 <div class="row col-md-12 text-center" id="login-card">
                                                     <br>
                                                     <a class="btn btn-secondary"
-                                                       href="{{route('aluno.permissoes',$aluno->id)}}" id="menu-a">
+                                                       href="{{route('alunos.permissoes',$aluno->id)}}" id="menu-a">
                                                         Voltar
                                                     </a>
                                                     <button type="submit" class="btn btn-primary">

@@ -11,8 +11,8 @@
             </strong>
         </h2>
         <div style="font-size: 14px" >
-            <a href="{{route('aluno.index')}}">Início</a>>
-            <a href="{{route('aluno.show', ['aluno_id' => $aluno->id])}}">Perfil de
+            <a href="{{route('alunos.index')}}">Início</a>>
+            <a href="{{route('alunos.show', ['aluno_id' => $aluno->id])}}">Perfil de
                 <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
             > Pdis
         </div>
@@ -74,7 +74,7 @@
 
     <div>
         <div class="text-center" >
-            <a class="btn btn-secondary" href="{{route('aluno.show',$aluno->id)}}">
+            <a class="btn btn-secondary" href="{{route('alunos.show',$aluno->id)}}">
                 Voltar
             </a>
         </div>

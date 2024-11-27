@@ -17,8 +17,8 @@
                 Editar Aluno
               </strong>
               <div style="font-size: 14px" id="login-card">
-                <a href="{{route('aluno.index')}}">Início</a>
-                > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
+                <a href="{{route('alunos.index')}}">Início</a>
+                > <a href="{{route('alunos.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
               </div>
             </h2>
 
@@ -27,7 +27,7 @@
 
           <div class="panel-body panel-body-cadastro" id="login-card">
             <div class="col-md-8 col-md-offset-2" id="login-card">
-              <form method="POST" action="{{ route("aluno.atualizar") }}" enctype="multipart/form-data">
+              <form method="POST" action="{{ route("alunos.atualizar") }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
                 <input type="hidden" name="aluno_id" value="{{ $aluno->id }}">
@@ -438,7 +438,7 @@
                   <div class="form-group" id="login-card">
                     <div class="row col-md-12 text-center" id="login-card">
                       <br>
-                      <a class="btn btn-secondary" href="{{route('aluno.gerenciar',$aluno->id)}}#perfil" id="menu-a">
+                      <a class="btn btn-secondary" href="{{route('alunos.gerenciar',$aluno->id)}}#perfil" id="menu-a">
                         Voltar
                       </a>
                       <button type="submit" class="btn btn-primary">
@@ -450,7 +450,7 @@
                   <div class="alert alert-info" id="login-card">
                     <center>
                       <h3>
-                        Cadastre uma instituicão para seguir com o cadastro de aluno.
+                        Cadastre uma instituicão para seguir com o cadastro de alunos.
                         <br><br>
                         <a class="btn btn-primary" style="width:160px" href="{{ route("instituicao.cadastrar") }}">Cadastrar Instituição</a>
                       </h3>

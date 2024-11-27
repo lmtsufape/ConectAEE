@@ -13,7 +13,7 @@
                             
         <div class="d-flex">
             <div class="collapse " id="collapseExample">
-                <form method="GET" action="{{ route("aluno.buscarAluno") }}">
+                <form method="GET" action="{{ route("alunos.buscarAluno") }}">
                     <input class="form-control" id="termo" type="text" name="termo" autofocus placeholder="Pesquise aqui...">
                 </form>
             </div>
@@ -22,7 +22,7 @@
                 <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                     <i class="material-icons">search</i>
                 </a>
-                <a class="btn btn-success" href="{{ route('aluno.create')}}">Adicionar novo aluno</a>
+                <a class="btn btn-success" href="{{ route('alunos.create')}}">Adicionar novo aluno</a>
             </p>
         </div>
         
@@ -35,7 +35,7 @@
     <div class="d-flex flex-wrap gap-3">
         
         @foreach($alunos as $aluno)
-            <a class="text-decoration-none text-body" href="{{ route('aluno.show', ['aluno_id'=>$aluno->id]) }}">
+            <a class="text-decoration-none text-body" href="{{ route('alunos.show', ['aluno_id'=>$aluno->id]) }}">
                 <div class="m-3 rounded-5 shadow-lg d-flex flex-column justify-content-center align-items-center border" style="width: 11vw; height: 33vh;">
                     @if($aluno->imagem != null)
                         <img src="{{asset('storage/avatars/'.$aluno->imagem)}}"

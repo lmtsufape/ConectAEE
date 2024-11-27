@@ -1,8 +1,8 @@
 @extends('layouts.principal')
 @section('title','Fórum')
 @section('navbar')
-<a href="{{route('aluno.index')}}">Início</a>
-> <a href="{{route('aluno.gerenciar',$objetivo->aluno->id)}}">Gerenciar: <strong>{{$objetivo->aluno->nome}}</strong></a>
+<a href="{{route('alunos.index')}}">Início</a>
+> <a href="{{route('alunos.gerenciar',$objetivo->aluno->id)}}">Gerenciar: <strong>{{$objetivo->aluno->nome}}</strong></a>
 > <a href="{{route('objetivo.listar',$objetivo->aluno->id)}}">Objetivos</a>
 > <a href="{{route('objetivo.gerenciar',[$objetivo->aluno->id,$objetivo->id])}}"><strong>{{$objetivo->titulo}}</strong></a>
 > Fórum

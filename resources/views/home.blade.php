@@ -20,7 +20,7 @@
                             @endif
 
                             <div class="form-group" align="center">
-                                <a href="{{ route("aluno.index") }}" class="btn btn-primary " role="button"
+                                <a href="{{ route("alunos.index") }}" class="btn btn-primary " role="button"
                                    aria-pressed="true">Alunos</a>
                             </div>
                     </div>

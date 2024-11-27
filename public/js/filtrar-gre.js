@@ -48,7 +48,7 @@ function filtrarEscolas(municipioId) {
             if (municipio) {
                 // Adiciona as escolas do município ao select
                 $.each(municipio.escolas, function (index, escola) {
-                    escolasOptions += '<option value="' + escola.id + '">' + escola.nome + '</option>';
+                    escolasOptions += '<option value="' + escolas.id + '">' + escolas.nome + '</option>';
                 });
                 $('#escola_id').html(escolasOptions).prop('disabled', false);
             }

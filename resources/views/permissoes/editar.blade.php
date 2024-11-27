@@ -14,9 +14,9 @@
               Editar Autorização
             </strong>
             <div style="font-size: 14px" id="login-card" id="login-card">
-              <a href="{{route('aluno.index')}}">Início</a>
-              > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
-              > <a href="{{route('aluno.permissoes',$aluno->id)}}">Autorizações</a>
+              <a href="{{route('alunos.index')}}">Início</a>
+              > <a href="{{route('alunos.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
+              > <a href="{{route('alunos.permissoes',$aluno->id)}}">Autorizações</a>
               > Editar
             </div>
           </h2>
@@ -33,7 +33,7 @@
           @endif
 
           <div class="col-md-8 col-md-offset-2" id="login-card">
-            <form autocomplete="off" method="POST" action="{{ route("aluno.permissoes.atualizar") }}">
+            <form autocomplete="off" method="POST" action="{{ route("alunos.permissoes.atualizar") }}">
               {{ csrf_field() }}
 
               <input type="hidden" name="id_permissao" value="{{$gerenciar->id}}">
@@ -124,7 +124,7 @@
               <div class="form-group" id="login-card">
                 <div class="row col-md-12 text-center" id="login-card">
                   <br>
-                  <a class="btn btn-secondary" href="{{route('aluno.permissoes',$aluno->id)}}" id="menu-a">
+                  <a class="btn btn-secondary" href="{{route('alunos.permissoes',$aluno->id)}}" id="menu-a">
                     Voltar
                   </a>
                   <button type="submit" class="btn btn-primary">

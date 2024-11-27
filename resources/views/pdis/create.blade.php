@@ -8,8 +8,8 @@
                 Cadastrar PDI
             </strong>
             <div style="font-size: 14px" id="login-card">
-                <a href="{{route('aluno.index')}}">Início</a>> <a
-                        href="{{route('aluno.show',$aluno->id)}}">Perfil de
+                <a href="{{route('alunos.index')}}">Início</a>> <a
+                        href="{{route('alunos.show',$aluno->id)}}">Perfil de
                     <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>>
                 <a href="{{route('pdi.index', $aluno->id)}}">Listar PDI's</a>
                 >Cadastrar PDI

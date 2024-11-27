@@ -44,21 +44,22 @@ Route::middleware(['auth', 'ativo'])->group(function() {
    
     Route::prefix('users')->controller(UserController::class)->group(function(){
 
+        Route::get('/', 'create')->name('users.index');
         Route::get('/create', 'create')->name('user.create')->withoutMiddleware('auth');
         Route::post('/store', 'store')->name('user.store')->withoutMiddleware('auth');
         Route::get('/edit/{id}', 'edit')->name('user.edit');
         Route::put('/', 'update')->name('user.update');
         
     });
-    Route::prefix('escolas')->controller(EscolaController::class)->group(function(){
-        Route::get('/', 'index')->name('escola.index');
-        Route::get('/create', 'create')->name('escola.create');
-        Route::post('/store', 'store')->name('escola.store');
-        Route::get('/edit/{escola_id}', 'edit')->name('escola.edit');
-        Route::get('/show/{escola_id}', 'show')->name('escola.show');
-        Route::delete('/{escola_id}', 'destroy')->name('escola.destroy');
+    Route::prefix('escolas')->controller(EscolaController::class)->name('escolas.')->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/edit/{escola_id}', 'edit')->name('edit');
+        Route::get('/show/{escola_id}', 'show')->name('show');
+        Route::delete('/{escola_id}', 'destroy')->name('destroy');
 
-        Route::put('/', 'update')->name('escola.update');
+        Route::put('/', 'update')->name('escolas.update');
 
     });
     Route::prefix('usuarios/notificacoes')->controller(NotificacaoController::class)->group(function(){
@@ -69,17 +70,17 @@ Route::middleware(['auth', 'ativo'])->group(function() {
     });
 
 
-    Route::prefix('aluno')->controller(AlunoController::class)->group(function(){
-        Route::get('/', 'index')->name('aluno.index');
-        Route::get('/{aluno_id}/show', 'show')->name('aluno.show');
-        Route::post('/criar', 'store')->name('aluno.store');
-        Route::get('/cadastrar', 'create')->name('aluno.create');
-        Route::get('/{aluno_id}/editar', 'edit')->name('aluno.edit');
-        Route::post('/atualizar', 'update')->name('aluno.update');
-        Route::get('/buscar', 'buscar')->name('aluno.buscar');
-        Route::get('/buscarCPF', 'buscarCPF')->name('aluno.buscarCPF');
-        Route::get('/buscarAluno', 'buscarAluno')->name('aluno.buscarAluno');
-        Route::get('/{aluno_id}/excluir', 'delete')->name('aluno.delete');
+    Route::prefix('aluno')->controller(AlunoController::class)->name('alunos.')->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::get('/{aluno_id}/show', 'show')->name('show');
+        Route::post('/criar', 'store')->name('store');
+        Route::get('/cadastrar', 'create')->name('create');
+        Route::get('/{aluno_id}/editar', 'edit')->name('edit');
+        Route::post('/atualizar', 'update')->name('update');
+        Route::get('/buscar', 'buscar')->name('buscar');
+        Route::get('/buscarCPF', 'buscarCPF')->name('buscarCPF');
+        Route::get('/buscarAluno', 'buscarAluno')->name('buscarAluno');
+        Route::get('/{aluno_id}/excluir', 'delete')->name('delete');
         
 
         Route::prefix('aluno/objetivos')->controller(ObjetivoController::class)->group(function(){

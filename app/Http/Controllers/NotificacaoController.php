@@ -24,11 +24,11 @@ class NotificacaoController extends Controller
 
     switch ($notificacao->tipo) {
       case 1:
-        return redirect()->route('aluno.permissoes.conceder',[
+        return redirect()->route('alunos.permissoes.conceder',[
           'id_notificacao' => $notificacao->id
         ]);
       case 2:
-        return redirect()->route('aluno.gerenciar',['aluno_id' => $notificacao->aluno->id]);
+        return redirect()->route('alunos.gerenciar',['aluno_id' => $notificacao->aluno->id]);
       default:
         return redirect()->route('objetivo.gerenciar',['id_objetivo' => $notificacao->objetivo->id]);
     }

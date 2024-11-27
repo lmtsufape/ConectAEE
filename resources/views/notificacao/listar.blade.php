@@ -72,7 +72,7 @@
     </div>
 
     <div class="text-center">
-        <a class="btn btn-secondary" href="{{ route('aluno.index') }}">
+        <a class="btn btn-secondary" href="{{ route('alunos.index') }}">
             Voltar
         </a>
     </div>

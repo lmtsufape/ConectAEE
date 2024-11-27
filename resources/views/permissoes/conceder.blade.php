@@ -8,10 +8,10 @@
             Nova Autorização
         </strong>
         <div style="font-size: 14px">
-            <a href="{{ route('aluno.index') }}">Início</a>
-            > <a href="{{ route('aluno.gerenciar', $aluno->id) }}">Perfil de
+            <a href="{{ route('alunos.index') }}">Início</a>
+            > <a href="{{ route('alunos.gerenciar', $aluno->id) }}">Perfil de
                 <strong>{{ explode(' ', $aluno->nome)[0] }}</strong></a>
-            > <a href="{{ route('aluno.permissoes', $aluno->id) }}">Autorizações</a>
+            > <a href="{{ route('alunos.permissoes', $aluno->id) }}">Autorizações</a>
             > Notificação
         </div>
     </h2>
@@ -19,7 +19,7 @@
     <hr style="border-top: 1px solid black;">
 
     <div>
-        <form method="POST" action="{{ route('aluno.permissoes.criar') }}">
+        <form method="POST" action="{{ route('alunos.permissoes.criar') }}">
             {{ csrf_field() }}
             <input type="hidden" name="aluno_id" value="{{ $aluno->id }}">
             <div class="form-group{{ $errors->has('aluno') ? ' has-error' : '' }}">

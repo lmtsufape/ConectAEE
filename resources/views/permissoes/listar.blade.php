@@ -18,13 +18,13 @@
                     <strong style="color: #12583C">Autorizações</strong>
                   </h2>
                   <div style="font-size: 14px" id="login-card">
-                    <a href="{{route('aluno.index')}}">Início</a>
-                    > <a href="{{route('aluno.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
+                    <a href="{{route('alunos.index')}}">Início</a>
+                    > <a href="{{route('alunos.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
                     > Autorizações
                   </div>
                 </div>
                 <div style="width:50%; float:right; margin-right:-25px;margin-top:20px" class="col-md-6 text-right" id="login-card">
-                  <a class="btn btn-primary" style="float:right; margin-left: -50px; background-color: #0398fc; color: white; font-weight: bold; font-size: 13px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC" id="signup" href="{{ route("aluno.permissoes.cadastrar",['aluno_id' => $aluno->id])}}">
+                  <a class="btn btn-primary" style="float:right; margin-left: -50px; background-color: #0398fc; color: white; font-weight: bold; font-size: 13px; padding: 7px; border-radius: 5px; border-color: #0398fc; box-shadow: 4px 4px 4px #CCC" id="signup" href="{{ route("alunos.permissoes.cadastrar",['aluno_id' => $aluno->id])}}">
                     Nova Autorização
                   </a>
                 </div>
@@ -88,12 +88,12 @@
                       @if(!($gerenciar->user->id == Auth::user()->id))
                         @if(!($gerenciar->isAdministrador))
                           <td data-title="Ações">
-                            <a class="btn btn-primary" href='{{route('aluno.permissoes.editar',[$gerenciar->id])}}'>
+                            <a class="btn btn-primary" href='{{route('alunos.permissoes.editar',[$gerenciar->id])}}'>
                               Editar
                             </a>
                           </td>
                           <td data-title="">
-                            <a class="btn btn-danger" href='{{route('aluno.permissoes.remover',[$gerenciar->id])}}' onclick="return confirm('Essa ação removerá as permissões de {{$gerenciar->user->name}}. Deseja prosseguir?')">
+                            <a class="btn btn-danger" href='{{route('alunos.permissoes.remover',[$gerenciar->id])}}' onclick="return confirm('Essa ação removerá as permissões de {{$gerenciar->user->name}}. Deseja prosseguir?')">
                               Excluir
                             </a>
                           </td>
@@ -115,7 +115,7 @@
 
         <div class="panel-footer" style="background-color:white" id="login-card">
           <div class="text-center" id="login-card">
-            <a class="btn btn-secondary" href="{{route('aluno.gerenciar',$aluno->id)}}#perfil" id="menu-a">
+            <a class="btn btn-secondary" href="{{route('alunos.gerenciar',$aluno->id)}}#perfil" id="menu-a">
               Voltar
             </a>
           </div>

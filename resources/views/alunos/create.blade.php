@@ -2,7 +2,7 @@
 @section('title', 'Cadastrar aluno')
 
 @section('content')
-    <form class="m-3" method="POST" action="{{ route('aluno.store') }}" enctype="multipart/form-data">
+    <form class="m-3" method="POST" action="{{ route('alunos.store') }}" enctype="multipart/form-data">
         @csrf
 
         <h3>
@@ -436,7 +436,7 @@
 
         <div class="row text-center m-3">
             <br>
-            <a class="col-md-6 btn btn-secondary" href="{{ route('aluno.index') }}" id="menu-a">
+            <a class="col-md-6 btn btn-secondary" href="{{ route('alunos.index') }}" id="menu-a">
                 Voltar
             </a>
             <button type="submit" class="btn btn-primary col-md-6">

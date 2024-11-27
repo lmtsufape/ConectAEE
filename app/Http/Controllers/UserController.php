@@ -63,7 +63,7 @@ class UserController extends Controller
 
         $usuario->update();
 
-        return redirect()->route("aluno.index")->with('success', 'Seus dados foram atualizados!');
+        return redirect()->route("alunos.index")->with('success', 'Seus dados foram atualizados!');
     }
 
 
@@ -96,6 +96,6 @@ class UserController extends Controller
         $usuario->password = bcrypt($request->nova_senha);
         $usuario->update();
 
-        return redirect()->route("aluno.index")->with('success', 'Sua senha foi atualizada!');
+        return redirect()->route("alunos.index")->with('success', 'Sua senha foi atualizada!');
     }
 }
