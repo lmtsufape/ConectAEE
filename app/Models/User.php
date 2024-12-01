@@ -60,6 +60,10 @@ class User extends Authenticatable
         return $this->hasMany(Pdi::class);
     }
 
+    public function escolas(){
+        return $this->belongsToMany(Escola::class, 'escola_user', 'user_id', 'escola_id');
+    }
+
     public function feedbacks(){
         return $this->hasMany(Feedback::class);
     }

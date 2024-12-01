@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\users\StoreUserRequest;
+use App\Models\Escola;
 use App\Models\Especialidade;
+use App\Models\Gre;
+use App\Models\Municipio;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,15 +15,29 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class UserController extends Controller
 {
 
-    public function index(): View
+    public function index(Request $request): View
     {
-        $users = User::all();
+        $users = QueryBuilder::for(User::class)
+        ->allowedFilters([
+            AllowedFilter::exact('escola_id', 'user.escola_id'),
+            AllowedFilter::exact('gre_id', 'municipio.gre_id'),
+            AllowedFilter::exact('municipio_id'), 
+        ])
+        ->defaultSort('nome')
+        ->paginate(10);
 
-        return view('users.index', compact('users'));
+        $gres = Gre::all();
+        $municipios = Municipio::all();
+        $escolas = Escola::all();
+        $especialidades = Especialidade::all();
+
+        return view('users.index', compact('users', 'gres', 'municipios', 'especialidades', 'escolas'));
     }
 
     public function create(): View

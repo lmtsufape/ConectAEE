@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
+        $user1 = User::create([
             'nome' => "Administrador",
             'email' => "admin@gmail.com",
             'matricula' => 123456,
@@ -24,7 +24,8 @@ class UserSeeder extends Seeder
             'flag_ativo' => true,
         ])->roles()->attach(1);
 
-        User::create([
+
+        $user2 = User::create([
             'nome' => "Professor",
             'email' => "professor@gmail.com",
             'matricula' => 123896,
@@ -32,9 +33,11 @@ class UserSeeder extends Seeder
             'password' => bcrypt("password"),
             'cpf' => "007.982.270-36",
             'flag_ativo' => true,
-        ])->roles()->attach(2);;
+        ]);
+        $user2->roles()->attach(2);
+        $user2->escolas()->attach(5);
 
-        User::create([
+        $user3 = User::create([
             'nome' => "Professor2",
             'email' => "professor2@gmail.com",
             'matricula' => 1238926,
@@ -42,6 +45,10 @@ class UserSeeder extends Seeder
             'password' => bcrypt("password"),
             'cpf' => "426.886.970-05",
             'flag_ativo' => true,
-        ])->roles()->attach(2);;
+        ]);
+        $user3->roles()->attach(2);
+
+        $user3->escolas()->attach(8);
+
     }
 }

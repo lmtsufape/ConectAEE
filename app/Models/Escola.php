@@ -11,10 +11,14 @@ class Escola extends Model
 
     protected $fillable = [
         'nome',
-        'municipio_id'
+        'municipio_id',
     ];
 
     public function municipio(){
         return $this->belongsTo(Municipio::class);
+    }
+
+    public function users(){
+        return $this->belongsToMany(User::class, 'escola_user', 'escola_id', 'user_id');
     }
 }

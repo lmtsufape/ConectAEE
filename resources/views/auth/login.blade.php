@@ -62,7 +62,7 @@
                             <a href="{{ route('password.request') }}">Clique aqui</a> se você esqueceu sua senha.
                         </p>
                         <hr style="border-top: 1px solid black">
-                        <a class="btn btn-primary w-100" href="{{ route('user.create') }}">
+                        <a class="btn btn-primary w-100" href="{{ route('users.create') }}">
                             Cadastre-se
                         </a>
                     </div>

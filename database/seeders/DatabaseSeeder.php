@@ -17,10 +17,10 @@ class DatabaseSeeder extends Seeder
         //Comentar
         $this->call(EspecialidadeSeeder::class);
         $this->call(RoleSeeder::class);
-        $this->call(UserSeeder::class);
         $this->call(GreSeeder::class);
         $this->call(MunicipioSeeder::class);
         $this->call(EscolaSeeder::class);
+        $this->call(UserSeeder::class);
 
 
         //Comentar

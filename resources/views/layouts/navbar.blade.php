@@ -206,7 +206,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="{{ route('user.edit', ['id' => \Auth::user()->id]) }}">
+                                <a class="dropdown-item" href="{{ route('users.edit', ['user_id' => \Auth::user()->id]) }}">
                                     Meu Perfil
                                 </a>
                             </li>
