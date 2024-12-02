@@ -58,4 +58,12 @@ class Aluno extends Model
     public function albuns(){
         return $this->hasMany(Album::class);
     }
+
+    public function escola(){
+        return $this->belongsTo(Escola::class);
+    }
+
+    public function municipio(){
+        return $this->belongsTo(Municipio::class);
+    } 
 }

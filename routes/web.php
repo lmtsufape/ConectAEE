@@ -71,7 +71,7 @@ Route::middleware(['auth', 'ativo'])->group(function() {
     });
 
 
-    Route::prefix('aluno')->controller(AlunoController::class)->name('alunos.')->group(function(){
+    Route::prefix('alunos')->controller(AlunoController::class)->name('alunos.')->group(function(){
         Route::get('/', 'index')->name('index');
         Route::get('/{aluno_id}/show', 'show')->name('show');
         Route::post('/criar', 'store')->name('store');

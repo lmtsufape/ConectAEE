@@ -23,18 +23,38 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class AlunoController extends Controller
 {
 
     
     public function index(): View
-    {
-        $alunos = Aluno::where('professor_responsavel', Auth::user()->id)->orderBy('nome', 'asc')->paginate(15);
+    {   
+        if(Auth::user()->hasAnyRoles(['Administrador'])){
+            $alunos = QueryBuilder::for(Aluno::class)
+            ->allowedFilters([
+                AllowedFilter::exact('escola_id'),
+                AllowedFilter::exact('gre_id', 'municipio.gre_id'),
+                AllowedFilter::exact('municipio_id')
+            ])
+            ->orderBy('escola_id', 'asc')
+            ->paginate(15);
+            
+            $escolas = Escola::all();
+            $gres = Gre::all();
+            $municipios = Municipio::all();
 
+            return view("alunos.index_admin", compact('alunos', 'escolas', 'gres', 'municipios'));
+        }
+
+        $alunos = Aluno::where('professor_responsavel', Auth::user()->id)->orderBy('nome', 'asc')->paginate(15);
+        
         return view("alunos.index", [
             'alunos' => $alunos,
         ]);
+
     }
     
 

@@ -33,8 +33,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="filter_gre">Escola</label>
-                        <select class="form-control" name="filter[gre_id]" id="filter_gre">
+                        <label for="filter_escola">Escola</label>
+                        <select class="form-control" name="filter[escola_id]" id="filter_escola">
                             <option value="" disabled selected>Selecione a escola para filtragem</option>
                             <option value="">Todas</option>
                             @foreach ($escolas as $escola)
