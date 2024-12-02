@@ -64,7 +64,7 @@
     <main class="flex-grow-1">
         @stack('nav-form')
         @auth
-            <div class="container-md border rounded-5 shadow-lg bg-white p-3">
+            <div class="container-md border rounded-4 shadow-lg bg-white p-4">
                 @yield('content')
             </div>
         @else
