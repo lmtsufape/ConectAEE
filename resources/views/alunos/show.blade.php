@@ -17,18 +17,18 @@
             @php
                 $pdi = \App\Models\Pdi::where('aluno_id', '=', $aluno->id)->first();
             @endphp
-            <a class="btn btn-info btn" href="{{route('pdi.index', ['aluno_id'=>$aluno->id]) }}">
+            <a class="btn btn-info" href="{{route('pdis.index', ['aluno_id' => $aluno->id])}}">
                 Listar PDI's
             </a>
-            <a class="btn btn-info btn" data-toggle="modal" data-target="#modalRelatorio">
+            <a class="btn btn-info" data-toggle="modal" data-target="#modalRelatorio">
                 Relatório
             </a>
-            <a class="btn btn-primary btn" href="{{route('objetivo.listar', ['aluno_id'=>$aluno->id]) }}">
+            <a class="btn btn-primary" href="{{route('objetivo.listar', ['aluno_id'=>$aluno->id]) }}">
                 Objetivos
             </a>
 
             <div class="btn-group">
-                <button type="button" class="btn btn-secondary btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     Ações
                 </button>
                 <ul class="dropdown-menu">

@@ -16,7 +16,6 @@ use App\Http\Controllers\PdiController;
 use App\Http\Controllers\RecursosMultifuncionaisController;
 use App\Http\Controllers\SugestaoController;
 use App\Http\Controllers\UserController;
-use App\Models\Feedback;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
@@ -31,7 +30,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Auth::routes();
+Auth::routes([ 'register' => false,
+'status' => false]);
 
 Route::middleware(['auth', 'ativo'])->group(function() {
     
@@ -71,17 +71,17 @@ Route::middleware(['auth', 'ativo'])->group(function() {
     });
 
 
-    Route::prefix('alunos')->controller(AlunoController::class)->name('alunos.')->group(function(){
-        Route::get('/', 'index')->name('index');
-        Route::get('/{aluno_id}/show', 'show')->name('show');
-        Route::post('/criar', 'store')->name('store');
-        Route::get('/cadastrar', 'create')->name('create');
-        Route::get('/{aluno_id}/editar', 'edit')->name('edit');
-        Route::post('/atualizar', 'update')->name('update');
-        Route::get('/buscar', 'buscar')->name('buscar');
-        Route::get('/buscarCPF', 'buscarCPF')->name('buscarCPF');
-        Route::get('/buscarAluno', 'buscarAluno')->name('buscarAluno');
-        Route::get('/{aluno_id}/excluir', 'delete')->name('delete');
+    Route::prefix('alunos')->controller(AlunoController::class)->group(function(){
+        Route::get('/', 'index')->name('alunos.index');
+        Route::get('/{aluno_id}/show', 'show')->name('alunos.show');
+        Route::post('/criar', 'store')->name('alunos.store');
+        Route::get('/cadastrar', 'create')->name('alunos.create');
+        Route::get('/{aluno_id}/editar', 'edit')->name('alunos.edit');
+        Route::post('/atualizar', 'update')->name('alunos.update');
+        Route::get('/buscar', 'buscar')->name('alunos.buscar');
+        Route::get('/buscarCPF', 'buscarCPF')->name('alunos.buscarCPF');
+        Route::get('/buscarAluno', 'buscarAluno')->name('alunos.buscarAluno');
+        Route::get('/{aluno_id}/excluir', 'delete')->name('alunos.delete');
         
 
         Route::prefix('aluno/objetivos')->controller(ObjetivoController::class)->group(function(){
@@ -137,23 +137,23 @@ Route::middleware(['auth', 'ativo'])->group(function() {
             Route::post('/atualizar', 'atualizar')->name('album.atualizar');
         });
 
-        Route::prefix('aluno/pdi')->controller(PdiController::class)->group(function(){
-            Route::get('/{aluno_id}/listar', 'index')->name('pdi.index');
-            Route::get('/{pdi_id}/ver', 'show')->name('pdi.show');
-            Route::get('/{aluno_id}/cadastrar', 'create')->name('pdi.create');
-            Route::post('/criar', 'store')->name('pdi.store');
-            Route::get('/{pdi_id}/editar', 'edit')->name('pdi.edit');
-            Route::post('/atualizar', 'update')->name('pdi.update');
-            Route::get('/{pdi_id}/excluir', 'delete')->name('pdi.delete');
+        Route::prefix('aluno/pdis')->controller(PdiController::class)->name('pdis.')->group(function(){
+            Route::get('/{aluno_id}/listar', 'index')->name('index');
+            Route::get('/{pdi_id}/ver', 'show')->name('show');
+            Route::get('/{aluno_id}/cadastrar', 'create')->name('create');
+            Route::post('/criar', 'store')->name('store');
+            Route::get('/{pdi_id}/editar', 'edit')->name('edit');
+            Route::post('/atualizar', 'update')->name('update');
+            Route::get('/{pdi_id}/excluir', 'delete')->name('delete');
 
-            Route::get('/{aluno_id}/cadastrarArquivo', 'cadastrarArquivo')->name('pdi.cadastrarArquivo');
-            Route::post('/criarArquivo', 'criarArquivo')->name('pdi.criarArquivo');
-            Route::get('/arquivo/{id_pdiArquivo}/download','download')->name('pdi.download');
-            Route::get('/arquivo/{id_pdiArquivo}/excluirArquivo','excluirArquivo')->name('pdi.excluirArquivo');
-            Route::get('/{id_pdi}/pdf', 'gerarPdf')->name('pdi.pdf');
+            Route::get('/{aluno_id}/cadastrarArquivo', 'cadastrarArquivo')->name('cadastrarArquivo');
+            Route::post('/criarArquivo', 'criarArquivo')->name('criarArquivo');
+            Route::get('/arquivo/{id_pdiArquivo}/download','download')->name('download');
+            Route::get('/arquivo/{id_pdiArquivo}/excluirArquivo','excluirArquivo')->name('excluirArquivo');
+            Route::get('/{id_pdi}/pdf', 'gerarPdf')->name('pdf');
 
-            Route::get('/{pdi_id}', 'create_finalizacao')->name('pdi.create_finalizacao');
-            Route::post('/{pdi_id}/recursos', 'finalizacao')->name('pdi.finalizacao');
+            Route::get('/{pdi_id}', 'create_finalizacao')->name('create_finalizacao');
+            Route::post('/{pdi_id}/recursos', 'finalizacao')->name('finalizacao');
             
             
         });
@@ -177,7 +177,6 @@ Route::middleware(['auth', 'ativo'])->group(function() {
         //Rotas para relatorio
         Route::get('/aluno/{aluno_id}/relatorio', 'RelatorioController@gerarRelatorio')->name('relatorio.gerar');
 
-        Route::post('/aluno/objetivo/status/atualizar', 'StatusController@atualizar')->name('objetivo.status.atualizar');
     });
 });
 

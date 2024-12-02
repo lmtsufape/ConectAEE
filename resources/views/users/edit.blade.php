@@ -34,7 +34,7 @@
                     @endif
 
                     <div class="col-md-8 col-md-offset-2">
-                        <form method="POST" action="{{ route('user.update') }}">
+                        <form method="POST" action="{{ route('users.update') }}">
                             @csrf
                             @method('update')
 

@@ -11,7 +11,7 @@
                 <a href="{{route('alunos.index')}}">Início</a>> <a
                         href="{{route('alunos.show',$aluno->id)}}">Perfil de
                     <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>>
-                <a href="{{route('pdi.index', $aluno->id)}}">Listar PDI's</a>
+                <a href="{{route('pdis.index', $aluno->id)}}">Listar PDI's</a>
                 >Cadastrar PDI
             </div>
         </h2>
@@ -325,7 +325,7 @@
 
         <div class="text-center p-3">
             <a class="btn btn-secondary"
-                href="{{route('pdi.index', ['aluno_id'=>$aluno->id])}}">
+                href="{{route('pdis.index', ['aluno_id'=>$aluno->id])}}">
                 Voltar
             </a>
             <button type="submit" class="btn btn-primary">

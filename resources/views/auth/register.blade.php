@@ -6,7 +6,7 @@
     <div class="container border rounded-5 bg-white">
         
         
-        <form class="m-3" method="POST" action="{{ route('user.store') }}">
+        <form class="m-3" method="POST" action="{{ route('users.store') }}">
             @csrf
             
             <h2>

@@ -67,7 +67,7 @@ class PdiController extends Controller
             $pdi->resumo_avaliacao_trimestral_aluno = $request->resumo_avaliacao_trimestral_aluno;//implementado desta forma para garantir a data que o formulário foi submetido.
             $pdi->save();
 
-            return redirect()->route('pdi.index', ['aluno_id' => $pdi->aluno_id]);
+            return redirect()->route('pdis.index', ['aluno_id' => $pdi->aluno_id]);
         }
 
         return redirect()->back()->with(['fail' => 'Falha na finalização']);
