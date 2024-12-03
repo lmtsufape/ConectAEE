@@ -45,15 +45,26 @@ class EscolaController extends Controller
     }
 
     public function edit($escola_id){
-        $escolas = Escola::find($escola_id);
+        $escola = Escola::find($escola_id);
+        $municipios = Municipio::orderBy('nome')->get();
 
-        return view('escolas.edit', compact('escolas'));
+        return view('escolas.edit', compact('escola', 'municipios'));
     }
 
     public function update(Request $request, $escola_id){
-        $escolas = Escola::find($escola_id);
+        $dados = $request->validate([
+            'nome' => 'required|string|min:3',
+            'municipio_id' => 'required|integer|exists:municipios,id'
+        ]);
 
-        return view('escolas.index', compact('escolas'));
+        try {
+            $escola = Escola::find($escola_id);
+            $escola->update($dados);
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors("Ocorreu um erro ao atualizar os dados da escola. [$e->getMessage()]");
+        }
+        
+        return redirect()->route('escolas.index')->with('Escola atualizada com sucesso!');
     }
 
     public function destroy($escola_id){
