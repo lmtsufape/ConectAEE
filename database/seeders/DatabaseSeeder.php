@@ -37,7 +37,6 @@ class DatabaseSeeder extends Seeder
 
         //Comentar
         $this->call(AtividadeSeeder::class);
-        $this->call(SugestaoSeeder::class);
         $this->call(FeedbackSeeder::class);
     }
 }

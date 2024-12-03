@@ -14,7 +14,6 @@ use App\Http\Controllers\NotificacaoController;
 use App\Http\Controllers\ObjetivoController;
 use App\Http\Controllers\PdiController;
 use App\Http\Controllers\RecursosMultifuncionaisController;
-use App\Http\Controllers\SugestaoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -106,16 +105,6 @@ Route::middleware(['auth', 'ativo'])->group(function() {
             Route::get('gerenciar/atividade/{id_atividade}/excluir','excluir')->name('atividade.excluir');
             Route::post('objetivos/criar', 'criar')->name('atividades.criar');
             Route::post('atividade/atualizar', 'atualizar')->name('atividade.atualizar');
-
-        });
-
-        Route::prefix('aluno/gerenciar/sugestoes')->controller(SugestaoController::class)->group(function(){
-            Route::get('objetivo/{id_objetivo}/cadastrar','cadastrar')->name('sugestoes.cadastrar');
-            Route::get('/objetivo/{id_sugestao}/ver','ver')->name('sugestao.ver');
-            Route::get('/objetivo/{id_sugestao}/editar','editar')->name('sugestao.editar');
-            Route::get('/objetivo/{id_sugestao}/excluir','excluir')->name('sugestao.excluir');
-            Route::post('/objetivo/criar', 'criar')->name('sugestoes.criar');
-            Route::post('/sugestao/atualizar', 'atualizar')->name('objetivo.sugestao.atualizar');
 
         });
 
