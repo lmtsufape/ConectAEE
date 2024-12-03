@@ -31,15 +31,15 @@
   <hr style="border-top: 1px solid #AAA;">
     
   <div class="m-4">
-    <table class="table shadow table-hover">
-      <thead class="table-primary">
+    <table class="table shadow table-hover table-borderless">
+      <thead style="background-color: #538970; color: white;">
         <tr>
           <th>Nome</th>
           <th>E-mail</th>
           <th>Matrícula</th>
           <th>Especialidade</th>
           <th>Status</th>
-          <th>Ações</th>
+          <th class="text-center">Ações</th>
         </tr>
 
       </thead>

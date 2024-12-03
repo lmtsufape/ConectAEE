@@ -31,13 +31,13 @@
   <hr style="border-top: 1px solid #AAA;">
     
   <div class="m-4">
-    <table class="table table-hover shadow">
-      <thead style="background-color: #2B6B44">
+    <table class="table table-hover table-borderless shadow">
+      <thead style="background-color: #538970; color: white;">
         <tr>
           <th>Nome</th>
           <th>GRE</th>
           <th>Município</th>
-          <th>Ações</th>
+          <th class="text-center">Ações</th>
         </tr>
 
       </thead>
@@ -48,7 +48,7 @@
             <td>{{ $escola->municipio->gre->nome }}</td>
             <td>{{ $escola->municipio->nome }}</td>
 
-            <td data-title="Ações">
+            <td>
               <a class="btn btn-primary" href="{{ route("escolas.show" , ['escola_id' => $escola->id]) }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                   <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
@@ -77,12 +77,10 @@
     <div class="d-flex justify-content-center">
       {{$escolas->links()}}
     </div>
-
     <a class="btn btn-secondary" href="{{route('home')}}">
       Voltar
     </a>
   </div>
-
   @include('escolas.filter-modal', compact('gres', 'municipios'))
   <!--Modal Confirm-->
   <div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog"

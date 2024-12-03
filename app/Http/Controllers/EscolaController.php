@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Escola;
 use App\Models\Gre;
 use App\Models\Municipio;
+use ConsoleTVs\Charts\Classes\C3\Chart;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -21,6 +22,7 @@ class EscolaController extends Controller
         ->paginate(10);
         $gres = Gre::all();
         $municipios = Municipio::all();
+        
         return view('escolas.index', compact('escolas', 'gres', 'municipios'));
     }
 

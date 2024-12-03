@@ -7,7 +7,7 @@
     <div class="col-md-6">
       <h2>
         <strong style="color: #12583C">
-          Usuários
+          Alunos
         </strong>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filterModal">
           Filtrar
@@ -31,11 +31,14 @@
   <hr style="border-top: 1px solid #AAA;">
     
   <div class="m-4">
-    <table class="table shadow table-hover">
-      <thead class="table-primary">
+    <table class="table shadow table-hover table-borderless">
+      <thead style="background-color: #538970; color: white;">
         <tr>
           <th>Nome</th>
-          <th>Ações</th>
+          <th>Matrícula</th>
+          <th>CID</th>
+          <th>Escola</th>
+          <th class="col-md-2 text-center">Ações</th>
         </tr>
 
       </thead>
@@ -44,8 +47,10 @@
           <tr>
             <td>{{ $aluno->nome }}</td>
 
-
-            <td data-title="Ações">
+            <td>{{$aluno->matricula}}</td>
+            <td>{{$aluno->descricao_cid}}</td>
+            <td>{{$aluno->escola->nome}}</td>
+            <td>
               {{-- <a class="btn btn-primary" href="{{ route("users.show" , ['user_id' => $user->id]) }}">
                 Visualizar
               </a> --}}
