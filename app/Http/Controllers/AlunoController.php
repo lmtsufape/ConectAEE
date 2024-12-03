@@ -106,19 +106,28 @@ class AlunoController extends Controller
                                 'cidade'  => $request->cidade,
                                 'cep'  => $request->cep]);
                                 
-            if ($request->imagem != null) {
-                $nome = uniqid(date('HisYmd'));
-                $extensao = $request->imagem->extension();
-                $nomeArquivo = "{$nome}.{$extensao}";
-                $request->imagem->storeAs('public/avatars', $nomeArquivo);
-            }
+            
                                 
             $dados = array_merge(
                 $request->except(['endereco']),
-                ['endereco_id' => $endereco->id, 'professor_responsavel' => Auth::user()->id, 'imagem' => $nomeArquivo]
+                ['endereco_id' => $endereco->id, 'professor_responsavel' => Auth::user()->id]
             );
     
             $aluno = Aluno::create($dados);
+
+            if ($request->file('imagem')) {
+                $nome = 'perfil_'. $aluno->id . now('d-m-Y_H-i-s');
+                $extensao = $request->imagem->getClientOriginalExtension();
+                $nomeArquivo = "{$nome}.{$extensao}";
+                $aluno->imagem = $request->imagem->storeAs('alunos', $nomeArquivo);
+                dd($aluno->imagem);
+            }
+            if($request->file('anexos_laudos')){
+                $anexos_laudos = 'laudos'. time().$request->anexos_laudos->getClientOriginalExtension();
+
+                dd($request->anexos_laudos->storeAs('alunos/', $anexos_laudos));
+            }
+
         });
         
         return redirect()->route('alunos.index');

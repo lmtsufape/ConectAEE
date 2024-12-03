@@ -1,18 +1,5 @@
 @extends('layouts.app')
 
-@push('css')
-    <style>
-        label[for]:has(+ input[required])::after {
-            content: " *";
-            color: red;
-        }
-
-        .content {
-            color: #12583C;
-        }
-    </style>
-@endpush
-
 @section('content')
     <div class="content">
 

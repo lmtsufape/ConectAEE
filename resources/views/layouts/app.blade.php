@@ -19,6 +19,7 @@
     <link href="{{ asset('css/contrast.css') }}" rel="stylesheet">
     <link href="{{ asset('css/forum.css') }}" rel="stylesheet">
     <link href="{{ asset('css/lightbox.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/layouts/app.css') }}">
     <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
