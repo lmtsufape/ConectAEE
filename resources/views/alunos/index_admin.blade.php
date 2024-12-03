@@ -18,14 +18,6 @@
       </button>
       </h2>
     </div>
-    
-    <div class="col-md-6">
-      <div class="text-end">
-        <a class="btn btn-primary" href="{{ route('users.create')}}">
-          Novo Usuário
-        </a>
-      </div>
-    </div>
   </div>
 
   <hr style="border-top: 1px solid #AAA;">

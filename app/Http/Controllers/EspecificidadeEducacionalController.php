@@ -29,11 +29,11 @@ class EspecificidadeEducacionalController extends Controller
         if($pdi->especificidade){
             $pdi->especificidade->update($request->all());
 
-            return redirect()->route('pdi.create_recursos_mult_funcionais', ['pdi_id' => $pdi->id]);
+            return redirect()->route('pdis.create_recursos_mult_funcionais', ['pdi_id' => $pdi->id]);
         }
 
         EspecificidadeEducacional::create(array_merge($request->all(), ['pdi_id' => $pdi_id]));
 
-        return redirect()->route('pdi.create_recursos_mult_funcionais', ['pdi_id' => $pdi_id]);
+        return redirect()->route('pdis.create_recursos_mult_funcionais', ['pdi_id' => $pdi_id]);
     }
 }

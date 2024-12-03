@@ -21,10 +21,10 @@ class CondicaoSaudeController extends Controller
         if($pdi->condicaoSaude){
             $pdi->condicaoSaude->update($request->all());
             
-            return redirect()->route('pdi.create_desenvolvimento_estudante', ['pdi_id' => $pdi->id]);
+            return redirect()->route('pdis.create_desenvolvimento_estudante', ['pdi_id' => $pdi->id]);
         }
         CondicaoSaude::create(array_merge($request->all(), ['pdi_id' => $pdi_id]));
 
-        return redirect()->route('pdi.create_desenvolvimento_estudante', ['pdi_id' => $pdi_id]);
+        return redirect()->route('pdis.create_desenvolvimento_estudante', ['pdi_id' => $pdi_id]);
     }
 }

@@ -157,10 +157,10 @@ Route::middleware(['auth', 'ativo'])->group(function() {
             
             
         });
-        Route::get('/saude/{pdi_id}', [CondicaoSaudeController::class, 'create_condicoes_saude'])->name('pdi.create_condicoes_saude');
-        Route::get('/desenvolvimento/{pdi_id}', [DesenvolvimentoController::class, 'create_desenvolvimento_estudante'])->name('pdi.create_desenvolvimento_estudante');
-        Route::get('/especificidade/{pdi_id}', [EspecificidadeEducacionalController::class, 'create_especificidade_educacional'])->name('pdi.create_especificidade_educacional');
-        Route::get('/recursos/{pdi_id}', [RecursosMultifuncionaisController::class, 'create_recursos_mult_funcionais'])->name('pdi.create_recursos_mult_funcionais');
+        Route::get('/saude/{pdi_id}', [CondicaoSaudeController::class, 'create_condicoes_saude'])->name('pdis.create_condicoes_saude');
+        Route::get('/desenvolvimento/{pdi_id}', [DesenvolvimentoController::class, 'create_desenvolvimento_estudante'])->name('pdis.create_desenvolvimento_estudante');
+        Route::get('/especificidade/{pdi_id}', [EspecificidadeEducacionalController::class, 'create_especificidade_educacional'])->name('pdis.create_especificidade_educacional');
+        Route::get('/recursos/{pdi_id}', [RecursosMultifuncionaisController::class, 'create_recursos_mult_funcionais'])->name('pdis.create_recursos_mult_funcionais');
         Route::post('/{pdi_id}/cond', [CondicaoSaudeController::class, 'store'])->name('pdi.condicoes_saude');
         Route::post('/{pdi_id}/desen', [DesenvolvimentoController::class, 'store'])->name('pdi.desenvolvimento_estudante');
         Route::post('/{pdi_id}/especificidade', [EspecificidadeEducacionalController::class, 'store'])->name('pdi.especificidade_educacional');

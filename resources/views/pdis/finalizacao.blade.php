@@ -6,7 +6,7 @@
 
 @section('content')
 
-<form class="m-2" action="{{route('pdi.finalizacao', ['pdi_id' => $pdi->id])}}" method="POST" >
+<form class="m-2" action="{{route('pdis.finalizacao', ['pdi_id' => $pdi->id])}}" method="POST" >
     @csrf
     <h4>Finalização</h1>
         <div class="form-group">

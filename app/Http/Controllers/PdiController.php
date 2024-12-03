@@ -24,13 +24,13 @@ class PdiController extends Controller
     {
         $pdi = $this->store($aluno_id);
         
-        return redirect()->route('pdi.create_condicoes_saude', ['pdi_id' => $pdi->id]);
+        return redirect()->route('pdis.create_condicoes_saude', ['pdi_id' => $pdi->id]);
     }
 
     public function edit($pdi_id){
         $pdi = Pdi::find($pdi_id);
         
-        return redirect()->route('pdi.create_condicoes_saude', ['pdi_id' => $pdi->id]);
+        return redirect()->route('pdis.create_condicoes_saude', ['pdi_id' => $pdi->id]);
     }
 
     public function store($aluno_id)
