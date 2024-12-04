@@ -42,18 +42,18 @@
                     <td>{{ $pdi->created_at }}</td>
                     <td>{{\App\Models\User::find($pdi->user_id)->name}}</td>
                     <td>
-                        <a class="btn btn-primary" href="{{route('pdi.show', $pdi->id)}}">
+                        <a class="btn btn-primary" href="{{route('pdis.show', $pdi->id)}}">
                             Visualizar
                         </a>
                     </td>
                     <td>
-                        <a class="btn btn-primary" href="{{route('pdi.edit', $pdi->id)}}">
+                        <a class="btn btn-primary" href="{{route('pdis.edit', $pdi->id)}}">
                             Editar
                         </a>
                     </td>
                     <td>
                         <a class="btn btn-danger" onclick="return confirm('\A Tem certeza que deseja excluir esse PDI ?')"
-                            href="{{route('pdi.delete', $pdi->id)}}">
+                            href="{{route('pdis.delete', $pdi->id)}}">
                             Excluir
                         </a>
                     </td>
