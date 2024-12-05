@@ -10,7 +10,10 @@ class Escola extends Model
     use HasFactory;
 
     protected $fillable = [
+        'codigo_mec',
         'nome',
+        'telefone',
+        'email',
         'municipio_id',
     ];
 

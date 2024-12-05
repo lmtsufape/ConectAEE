@@ -47,11 +47,10 @@
                 </div>
             </div>
 
-            <div class="row justify-content-center mt-3">
-                <div class="col-auto">
-                    <a type="button" class="btn btn-lg btn-secondary" href="{{ route('escolas.index') }}">Voltar</a>
-                    <button type="submit" class="btn btn-lg btn-success">Salvar</button>
-                </div>
+            <div class="d-flex justify-content-center gap-4 m-3">
+                <a type="button" class="btn btn-secondary w-25" href="{{ route('escolas.index') }}">Voltar</a>
+
+                <button type="submit" class="btn btn-success w-25">Salvar</button>
             </div>
         </form>
     </div>

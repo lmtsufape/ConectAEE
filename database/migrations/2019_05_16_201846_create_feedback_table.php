@@ -18,7 +18,7 @@ class CreateFeedbackTable extends Migration
       $table->text('texto');
       $table->integer('sugestao_id');
       $table->integer('user_id');
-      $table->foreign('sugestao_id')->references('id')->on('sugestaos')->onDelete('cascade');
+      // $table->foreign('sugestao_id')->references('id')->on('sugestaos')->onDelete('cascade');
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
       $table->timestamps();
     });

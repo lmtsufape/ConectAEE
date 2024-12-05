@@ -16,6 +16,8 @@ return new class extends Migration
 
             $table->integer('codigo_mec');
             $table->string('nome');
+            $table->string('telefone')->nullable();
+            $table->string('email')->nullable();
             $table->foreignId('municipio_id')->constrained();
 
             $table->timestamps();

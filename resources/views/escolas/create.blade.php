@@ -93,16 +93,13 @@
                     </div>
                 </div>     
 
-                <div class="form-group" id="login-card">
-                    <div class="text-center" id="login-card">
-                        <br>
-                        <a class="btn btn-secondary" href="{{ route('escolas.index') }}" id="menu-a">
-                            Voltar
-                        </a>
-                        <button type="submit" class="btn btn-primary">
-                            Cadastrar
-                        </button>
-                    </div>
+                <div class="d-flex justify-content-center gap-4 m-3">
+                    <a class="btn btn-secondary w-25" href="{{ route('escolas.index') }}">
+                        Voltar
+                    </a>
+                    <button type="submit" class="btn btn-success w-25">
+                        Cadastrar
+                    </button>
                 </div>
             </form>
 

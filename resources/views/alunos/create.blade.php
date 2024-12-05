@@ -435,12 +435,12 @@
             </div>
         </div>
 
-        <div class="row text-center m-3">
+        <div class="d-flex justify-content-center gap-4 m-3">
             <br>
-            <a class="col-md-6 btn btn-secondary" href="{{ route('alunos.index') }}" id="menu-a">
+            <a class="btn btn-secondary w-25" href="{{ route('alunos.index') }}">
                 Voltar
             </a>
-            <button type="submit" class="btn btn-primary col-md-6">
+            <button type="submit" class="btn btn-success w-25">
                 Cadastrar
             </button>
         </div>

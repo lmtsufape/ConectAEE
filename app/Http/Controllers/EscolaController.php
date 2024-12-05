@@ -68,8 +68,9 @@ class EscolaController extends Controller
     }
 
     public function destroy($escola_id){
-        Escola::find($escola_id)->delete();
+        $escola = Escola::findOrFail($escola_id);
+        $escola->delete();
 
-        return view('escolas.index', compact('escolas'));
+        return redirect()->route('escolas.index')->with('success', 'Escola deletada com sucesso!');
     }
 }

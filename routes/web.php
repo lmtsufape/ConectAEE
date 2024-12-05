@@ -48,18 +48,18 @@ Route::middleware(['auth', 'ativo'])->group(function() {
         Route::post('/store', 'store')->name('store')->withoutMiddleware('auth');
         Route::get('/edit/{user_id}', 'edit')->name('edit');
         Route::put('/', 'update')->name('update');
-        Route::delete('/{user_id}', 'destroy')->name('delete');
+        Route::delete('/{user_id}', 'destroy')->name('destroy');
         
     });
     Route::prefix('escolas')->controller(EscolaController::class)->name('escolas.')->group(function(){
         Route::get('/', 'index')->name('index');
+        Route::get('/show/{escola_id}', 'show')->name('show');
         Route::get('/create', 'create')->name('create');
         Route::post('/store', 'store')->name('store');
         Route::get('/edit/{escola_id}', 'edit')->name('edit');
-        Route::get('/show/{escola_id}', 'show')->name('show');
+        Route::put('/{escola_id}', 'update')->name('update');
         Route::delete('/{escola_id}', 'destroy')->name('destroy');
 
-        Route::put('/{escola_id}', 'update')->name('update');
 
     });
     Route::prefix('usuarios/notificacoes')->controller(NotificacaoController::class)->group(function(){
@@ -76,11 +76,11 @@ Route::middleware(['auth', 'ativo'])->group(function() {
         Route::post('/criar', 'store')->name('alunos.store');
         Route::get('/cadastrar', 'create')->name('alunos.create');
         Route::get('/{aluno_id}/editar', 'edit')->name('alunos.edit');
-        Route::post('/atualizar', 'update')->name('alunos.update');
+        Route::put('/{aluno_id}/atualizar', 'update')->name('alunos.update');
         Route::get('/buscar', 'buscar')->name('alunos.buscar');
         Route::get('/buscarCPF', 'buscarCPF')->name('alunos.buscarCPF');
         Route::get('/buscarAluno', 'buscarAluno')->name('alunos.buscarAluno');
-        Route::get('/{aluno_id}/excluir', 'delete')->name('alunos.delete');
+        Route::delete('/{aluno_id}', 'destroy')->name('alunos.destroy');
         
 
         Route::prefix('aluno/objetivos')->controller(ObjetivoController::class)->group(function(){

@@ -88,7 +88,7 @@ class PdiController extends Controller
         $aluno = $pdi->aluno_id;
         $pdi->delete();
 
-        return redirect()->route("pdi.listar", $aluno)->with('success', 'O PDI foi excluído.');;
+        return redirect()->route("pdis.index", $aluno->id)->with('success', 'O PDI foi excluído.');;
     }
 
     public function create_finalizacao(Request $request, $pdi_id){

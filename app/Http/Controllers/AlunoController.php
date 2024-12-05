@@ -116,18 +116,16 @@ class AlunoController extends Controller
             $aluno = Aluno::create($dados);
 
             if ($request->file('imagem')) {
-                $nome = 'perfil_'. $aluno->id . now('d-m-Y_H-i-s');
+                $nome = 'perfil_'. now()->format('d-m-Y_H-i-s');
                 $extensao = $request->imagem->getClientOriginalExtension();
                 $nomeArquivo = "{$nome}.{$extensao}";
-                $aluno->imagem = $request->imagem->storeAs('alunos', $nomeArquivo);
-                dd($aluno->imagem);
+                $aluno->imagem = $request->imagem->storeAs('alunos/'. $aluno->id. '/images', $nomeArquivo);
             }
             if($request->file('anexos_laudos')){
-                $anexos_laudos = 'laudos'. time().$request->anexos_laudos->getClientOriginalExtension();
+                $aluno->anexos_laudos = now()->format('d-m-Y_H-i-s') . $request->anexos_laudos->getClientOriginalExtension();
 
-                dd($request->anexos_laudos->storeAs('alunos/', $anexos_laudos));
             }
-
+            $aluno->update();
         });
         
         return redirect()->route('alunos.index');
@@ -135,21 +133,28 @@ class AlunoController extends Controller
 
     public function edit($aluno_id)
     {
-
         $aluno = Aluno::find($aluno_id);
-        $endereco = $aluno->endereco;
-        $perfis = [[1, 'Responsável'], [2, 'Professor AEE']];
-        $instituicoes = Auth::user()->instituicoes;
+        $gres = Gre::select('id', 'nome')
+        ->with([
+            'municipios' => function ($query) {
+                $query->select('id', 'nome', 'gre_id')->orderBy('nome');  // Ordena os municípios pelo nome
+            },
+            'municipios.escolas' => function ($query) {
+                $query->select('id', 'nome', 'municipio_id')->orderBy('nome');  // Ordena as escolas pelo nome
+            }
+        ])
+        ->orderBy('nome')  // Ordena as Gres pelo nome
+        ->get();    
+    
+        $municipios = Municipio::all();
+        $escolas = Escola::all();
+        $escolaridadeAluno = Escolaridade::anosEscolaridade();
+        $escolaridadeAdulto = Escolaridade::escolaridadeAdulto(); 
 
-        return view("alunos.edit", [
-            'aluno' => $aluno,
-            'endereco' => $endereco,
-            'instituicoes' => $instituicoes,
-            'perfis' => $perfis
-        ]);
+        return view("alunos.edit", compact('aluno', 'gres', 'municipios', 'escolas', 'escolaridadeAluno', 'escolaridadeAdulto'));
     }
 
-    public static function update(UpdateAlunoRequest $request)
+    public static function update(UpdateAlunoRequest $request, $aluno_id)
     {
         $aluno = Aluno::find($request->aluno_id);
 
@@ -182,15 +187,15 @@ class AlunoController extends Controller
         $aluno->instituicoes()->detach();
         $aluno->instituicoes()->attach($request->instituicoes);
 
-        return redirect()->route("alunos.gerenciar", ['aluno_id' => $request->aluno_id])->with('success', 'O Aluno ' . $aluno->nome . ' foi atualizado.');
+        return redirect()->route("alunos.index")->with('success', 'O Aluno ' . $aluno->nome . ' foi atualizado.');
     }
-    public static function delete($aluno_id)
+    public function destroy($aluno_id)
     {
-        $aluno = Aluno::find($aluno_id);
+        $aluno = Aluno::findOrFail($aluno_id);
 
         $aluno->delete();
 
-        return redirect()->route("alunos.index")->with('success', 'O aluno ' . $aluno->nome . ' foi excluído.');
+        return redirect()->route("alunos.index")->with('success', 'Aluno deletado com sucesso!');
     }
 
     public static function buscarAluno(Request $request)

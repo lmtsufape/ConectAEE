@@ -6,7 +6,7 @@
         <div class="col-md-7">
             <div class="d-flex flex-column m-5">
                 <div class="container p-5 ">
-                    <img src="{{asset('images/logo.png')}}" width="250px" height="130px">
+                    <img src="{{asset('images/logo3.png')}}" width="250px" height="130px">
                     <p class="text-justify pt-5">
                         O ConectAEE é um sistema pensado para que a educação inclusiva seja uma realidade nas escolas e
                         instituições de ensino do Brasil e que dá suporte ao acompanhamento de alunos

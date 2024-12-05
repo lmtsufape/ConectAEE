@@ -83,6 +83,17 @@ class UserController extends Controller
         return redirect()->route("alunos.index")->with('success', 'Seus dados foram atualizados!');
     }
 
+    public function destroy($user_id){
+        $user = User::findOrFail($user_id);
+        $user->roles()->detach();
+        $user->escolas()->detach();
+        $user->especialidades()->detach();
+        $user->delete();
+
+        return redirect()->route('users.index')->with('success', 'Usuário deletado com sucesso!');
+
+    }
+
 
     public function editarSenha()
     {

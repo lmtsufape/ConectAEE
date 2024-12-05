@@ -63,11 +63,11 @@
                 </svg>
               </a>
             
-              <a class="btn btn-danger" data-toggle="modal" data-target="#modalConfirm" onclick="setDadosModal('{{ route('escolas.destroy' , ['escola_id' => $escola->id]) }}','{{$escola->nome}}')" >
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash2-fill" viewBox="0 0 16 16">
                   <path d="M2.037 3.225A.7.7 0 0 1 2 3c0-1.105 2.686-2 6-2s6 .895 6 2a.7.7 0 0 1-.037.225l-1.684 10.104A2 2 0 0 1 10.305 15H5.694a2 2 0 0 1-1.973-1.671zm9.89-.69C10.966 2.214 9.578 2 8 2c-1.58 0-2.968.215-3.926.534-.477.16-.795.327-.975.466.18.14.498.307.975.466C5.032 3.786 6.42 4 8 4s2.967-.215 3.926-.534c.477-.16.795-.327.975-.466-.18-.14-.498-.307-.975-.466z"/>
                 </svg>
-              </a>
+              </button>
             </td>
           </tr>
         @endforeach
@@ -77,34 +77,20 @@
     <div class="d-flex justify-content-center">
       {{$escolas->links()}}
     </div>
+    {{-- <div class="pagination-info ml-auto">
+        <p>
+            <i class="fas fa-list-ul"></i>
+            <strong>Exibindo:</strong>
+            <span class="font-weight-bold">{{ $paginator->firstItem() }} - {{ $paginator->lastItem() }}</span>
+            de
+            <span class="font-weight-bold">{{ $paginator->total() }}</span> itens.
+        </p>
+    </div> --}}
     <a class="btn btn-secondary" href="{{route('home')}}">
       Voltar
     </a>
   </div>
   @include('escolas.filter-modal', compact('gres', 'municipios'))
-  <!--Modal Confirm-->
-  <div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog"
-      aria-labelledby="modalConfirmLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"
-                  aria-label="Fechar">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title" id="modalConfirmLabel" align="center"></h4>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Não
-          </button>
-          <a type="button" href=""  id="btnSubmit" class="btn btn-primary">
-            Sim
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
+  @include('layouts.components.delete_modal', ['route' => 'escolas.destroy', 'param' => 'escola_id', 'entity_id' => $escola->id])
 
 @endsection

@@ -33,8 +33,11 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{route('alunos.edit', ['aluno_id'=>$aluno->id]) }}" data-toggle="tooltip" title="Editar aluno">Editar</a></li>
-                    <li><a class="dropdown-item" href="#"data-toggle="modal" title="Excluir aluno" data-target="#modalConfirm">Excluir</a></li>
                     <li><hr class="dropdown-divider"></li>
+                    <li><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            Excluir
+                        </button>
+                    </li>
 
                 </ul>
             </div>
@@ -153,31 +156,7 @@
         </div>
     </div>
 
-    <!--Modal Confirm-->
-    <div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog"
-            aria-labelledby="modalConfirmLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"
-                            aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="modalConfirmLabel" align="center">
-                        Confirmar exclusão do aluno {{$aluno->nome}}?</h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                        Não
-                    </button>
-                    <a type="button"    href="{{route('alunos.delete', ['aluno_id'=>$aluno->id]) }}"  id="btnSubmit" class="btn btn-primary">
-                        Sim
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    @include('layouts.components.delete_modal', ['route' => 'alunos.destroy', 'param' => 'aluno_id', 'entity_id' => $aluno->id])
     <!-- Modal -->
     <div class="modal fade" id="modalRelatorio" tabindex="-1" role="dialog"
             aria-labelledby="modalRelatorioLabel" aria-hidden="true">

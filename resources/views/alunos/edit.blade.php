@@ -1,684 +1,484 @@
 @extends('layouts.app')
-@section('title','Editar aluno')
-@section('path','Início')
-
-@section('navbar')
-@endsection
+@section('title', 'Editar aluno')
 
 @section('content')
-<div class="container" style="color: #12583C">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="panel panel-default" style="margin-top: -20px; padding: 10px 20px;" id="login-card">
-        <div class="panel panel-default">
-          <div class="panel-heading" id="login-card">
-            <h2>
-              <strong style="color: #12583C">
-                Editar Aluno
-              </strong>
-              <div style="font-size: 14px" id="login-card">
-                <a href="{{route('alunos.index')}}">Início</a>
-                > <a href="{{route('alunos.gerenciar',$aluno->id)}}">Perfil de <strong>{{ explode(" ", $aluno->nome)[0]}}</strong></a>
-              </div>
-            </h2>
-
-            <hr style="border-top: 1px solid #AAA;">
-          </div>
-
-          <div class="panel-body panel-body-cadastro" id="login-card">
-            <div class="col-md-8 col-md-offset-2" id="login-card">
-              <form method="POST" action="{{ route("alunos.atualizar") }}" enctype="multipart/form-data">
-                {{ csrf_field() }}
-
-                <input type="hidden" name="aluno_id" value="{{ $aluno->id }}">
-                <input type="hidden" name="id_endereco" value="{{ $endereco->id }}">
-
-                @if(count($instituicoes) != 0)
-                  <h3>
-                    <strong>
-                      Instituição
-                    </strong>
-                  </h3>
-
-                  <hr style="border-top: 1px solid #AAA;">
-
-                  <div class="form-group{{ $errors->has('instituicoes') ? ' has-error' : '' }}" id="login-card">
-                    <label for="instituicoes" class="col-md-12 control-label">Instituição(ões) vinculada(s) ao aluno<font color="red">*</font> </label>
-
-                    <div class="col-md-12" id="login-card">
-                      <select class="form-control js-example-basic-multiple" name="instituicoes[]" multiple="multiple" autofocus>
-                        @if(old("instituicoes.0") != null )
-                          @foreach ($instituicoes as $instituicao)
-                            @php($selected = false)
-
-                            @for ($i=0; $i < count($instituicoes) ; $i++) {
-                              @if(old("instituicoes.".$i) == $instituicao->id)
-                                @php($selected = true)
-                                @break
-                              @endif
-                            @endfor
-
-                            @if($selected)
-                              <option value="{{$instituicao->id}}" selected> {{$instituicao->nome}}, {{ $instituicao->endereco->cep }}, {{ $instituicao->endereco->rua }}, {{ $instituicao->endereco->cidade }} - {{ $instituicao->endereco->estado }} </option>
-                            @else
-                              <option value="{{$instituicao->id}}">{{$instituicao->nome}}, {{ $instituicao->endereco->cep }}, {{ $instituicao->endereco->rua }}, {{ $instituicao->endereco->cidade }} - {{ $instituicao->endereco->estado }} </option>
-                            @endif
-                          @endforeach
-                        @else
-                          @foreach ($instituicoes as $instituicao)
-                            @php($selected = false)
-
-                            @foreach ($aluno->instituicoes as $instituicaoAluno)
-                              @if ($instituicaoAluno->id == $instituicao->id)
-                                @php($selected = true)
-                                @break
-                              @endif
-                            @endforeach
-
-                            @if($selected)
-                              <option value="{{$instituicao->id}}" selected> {{$instituicao->nome}}, {{ $instituicao->endereco->cep }}, {{ $instituicao->endereco->rua }}, {{ $instituicao->endereco->cidade }} - {{ $instituicao->endereco->estado }} </option>
-                            @else
-                              <option value="{{$instituicao->id}}">{{$instituicao->nome}}, {{ $instituicao->endereco->cep }}, {{ $instituicao->endereco->rua }}, {{ $instituicao->endereco->cidade }} - {{ $instituicao->endereco->estado }} </option>
-                            @endif
-                          @endforeach
-                        @endif
-                      </select>
-
-                      @if ($errors->has("instituicoes"))
-                        <span class="help-block">
-                          <strong>{{ $errors->first("instituicoes") }}</strong>
-                        </span>
-                      @endif
-
-                    </div>
-                  </div>
-
-                  <div class="form-group" id="login-card">
-                    <div class="col-md-12 col-md-offset-5" id="login-card">
-                      Instituição não encontrada? &nbsp;
-                      <a class="btn btn-primary" href="{{ route("instituicao.cadastrar") }}">Cadastre</a>
-                    </div>
-                  </div>
-
-                  <h3>
-                    <strong>
-                      Identificação do Aluno
-                    </strong>
-                  </h3>
-
-                  <hr style="border-top: 1px solid #AAA;">
-
-                  <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}" id="login-card">
-                    <label for="nome" class="col-md-12 control-label"> Nome<font color="red">*</font></label>
-
-                    <div class="col-md-12" id="login-card">
-
-                      @if(old('nome',NULL) != NULL)
-                        <input id="nome" type="text" class="form-control" name="nome" value="{{ old('nome') }}">
-                      @else
-                        <input id="nome" type="text" class="form-control" name="nome" value="{{ $aluno->nome }}">
-                      @endif
-
-                      @if ($errors->has('nome'))
-                        <span class="help-block">
-                          <strong>{{ $errors->first('nome') }}</strong>
-                        </span>
-                      @endif
-                    </div>
-                  </div>
-
-                  <div class="form-group{{ $errors->has('imagem') ? ' has-error' : '' }}" id="login-card">
-
-                    <label for="imagem" class="col-md-12 control-label" >Foto de perfil</label>
-
-                    <div class="col-md-12" id="login-card">
-
-                      <!-- @if($aluno->imagem != null)
-                        <img style="object-fit: cover;" src="{{asset('storage/avatars/'.$aluno->imagem)}}" height="64" width="64" >
-                      @endif -->
-
-                      <input id="imagem" type="file" class="filestyle" name="imagem" data-placeholder="Nenhum arquivo" data-text="Selecionar" data-btnClass="btn btn-primary">
-
-                      @if ($errors->has('imagem'))
-                        <span class="help-block">
-                          <strong>{{ $errors->first('imagem') }}</strong>
-                        </span>
-                      @endif
-                    </div>
-                  </div>
-
-                  <div class="row" style="padding:0px" id="login-card">
-                    <div class="col-md-12" style="padding:0px" id="login-card">
-                      <div class="col-md-6" id="login-card">
-                        <div class="form-group{{ $errors->has('data_nascimento') ? ' has-error' : '' }}" id="login-card">
-                          <label for="data_nascimento" class="col-md-12 control-label">Data de nascimento<font color="red">*</font> </label>
-                          <div class="col-md-12" id="login-card">
-
-                            @if(old('data_nascimento',NULL) != NULL)
-                              <input id="data_nascimento" type="date" class="form-control" name="data_nascimento" value="{{ old('data_nascimento') }}">
-                            @else
-                              <input id="data_nascimento" type="date" class="form-control" name="data_nascimento" value="{{ $aluno->getData() }}">
-                            @endif
-
-                            @if ($errors->has('data_nascimento'))
-                              <span class="help-block">
-                                <strong>{{ $errors->first('data_nascimento') }}</strong>
-                              </span>
-                            @endif
-                          </div>
-                        </div>
-
-                      </div>
-
-                      <div class="col-md-6" id="login-card">
-                        <div class="form-group{{ $errors->has('sexo') ? ' has-error' : '' }}" id="login-card">
-
-                          <label for="sexo" class="col-md-12 control-label">Sexo<font color="red">*</font> </label>
-
-                          <div class="col-md-12" id="login-card">
-
-                            @if(old('sexo') == 'M' || (old('sexo', NULL) == NULL && $aluno->sexo == 'M'))
-                              <input type="radio" id="sexo1" name="sexo" value="M" checked="checked">
-                            @else
-                              <input type="radio" id="sexo1" name="sexo" value="M">
-                            @endif
-
-                            <label class="custom-control-label" for="sexo1">Masculino</label>
-
-                            @if(old('sexo') == 'F' || (old('sexo', NULL) == NULL && $aluno->sexo == 'F'))
-                              <input type="radio" id="sexo2" name="sexo" value="F" checked="checked">
-                            @else
-                              <input type="radio" id="sexo2" name="sexo" value="F">
-                            @endif
-
-                            <label class="custom-control-label" for="sexo2">Feminino</label>
-
-                            @if ($errors->has('sexo'))
-                              <span class="help-block">
-                                <strong>{{ $errors->first('sexo') }}</strong>
-                              </span>
-                            @endif
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-
-                  <h3>
-                    <strong>
-                      Endereço da Moradia do Aluno
-                    </strong>
-                  </h3>
-
-                  <hr style="border-top: 1px solid #AAA;">
-
-                  <div class="row" style="padding:0px" id="login-card">
-                    <div class="col-md-12" style="padding:0px" id="login-card">
-                      <div class="col-md-4" id="login-card">
-                        <div class="form-group{{ $errors->has('cep') ? ' has-error' : '' }}" id="login-card">
-                          <label for="cep" class="col-md-12 control-label">CEP<font color="red">*</font></label>
-
-                          <div class="col-md-12" id="login-card">
-
-                            @if(old('cep',NULL) != NULL)
-                              <input id="cep" onblur="pesquisacep(this.value);" type="text" class="form-control" name="cep" value="{{ old('cep') }}">
-                            @else
-                              <input id="cep" onblur="pesquisacep(this.value);" type="text" class="form-control" name="cep" value="{{ $endereco->cep }}">
-                            @endif
-
-                            @if ($errors->has('cep'))
-                            <span class="help-block">
-                              <strong>{{ $errors->first('cep') }}</strong>
-                            </span>
-                            @endif
-                          </div>
-                        </div>
-                      </div>  
-                      <div class="col-md-4" id="login-card">
-                        <div class="form-group{{ $errors->has('rua') ? ' has-error' : '' }}" id="login-card">
-                          <label for="rua" class="col-md-12 control-label">Rua<font color="red">*</font></label>
-
-                          <div class="col-md-12" id="login-card">
-
-                            @if(old('rua',NULL) != NULL)
-                              <input id="rua" type="text" class="form-control" name="rua" value="{{ old('rua') }}">
-                            @else
-                              <input id="rua" type="text" class="form-control" name="rua" value="{{ $endereco->rua }}">
-                            @endif
-
-                            @if ($errors->has('rua'))
-                              <span class="help-block">
-                                <strong>{{ $errors->first('rua') }}</strong>
-                              </span>
-                            @endif
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-md-4" id="login-card">
-                        <div class="form-group{{ $errors->has('numero') ? ' has-error' : '' }}" id="login-card">
-                          <label for="numero" class="col-md-12 control-label">Número<font color="red">*</font> </label>
-
-                          <div class="col-md-12" id="login-card">
-
-                            @if(old('numero',NULL) != NULL)
-                              <input id="numero" type="text" class="form-control" name="numero" value="{{ old('numero') }}">
-                            @else
-                              <input id="numero" type="text" class="form-control" name="numero" value="{{ $endereco->numero }}">
-                            @endif
-
-                            @if ($errors->has('numero'))
-                              <span class="help-block">
-                                <strong>{{ $errors->first('numero') }}</strong>
-                              </span>
-                            @endif
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row" style="padding:0px" id="login-card">
-                    <div class="col-md-12" style="padding:0px" id="login-card">
-                      <div class="col-md-4" id="login-card">
-                        <div class="form-group{{ $errors->has('bairro') ? ' has-error' : '' }}" id="login-card">
-                          <label for="bairro" class="col-md-12 control-label">Bairro<font color="red">*</font></label>
-
-                          <div class="col-md-12" id="login-card">
-
-                            @if(old('bairro',NULL) != NULL)
-                              <input id="bairro" type="text" class="form-control" name="bairro" value="{{ old('bairro') }}">
-                            @else
-                              <input id="bairro" type="text" class="form-control" name="bairro" value="{{ $endereco->bairro }}">
-                            @endif
-
-                            @if ($errors->has('bairro'))
-                              <span class="help-block">
-                                <strong>{{ $errors->first('bairro') }}</strong>
-                              </span>
-                            @endif
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-md-4" id="login-card">
-                        <div class="form-group{{ $errors->has('estado') ? ' has-error' : '' }}" id="login-card">
-                          <label for="estado" class="col-md-12 control-label">Estado<font color="red">*</font> </label>
-
-                          <div class="col-md-12" id="login-card">
-                            <select id="estado" class="form-control" name="estado" data-target="#cidade">
-                              <option value="" selected hidden>-- UF --</option>
-                              <option @if($endereco->estado == 'AC') selected @endif value="AC">Acre</option>
-                              <option @if($endereco->estado == 'AL') selected @endif value="AL">Alagoas</option>
-                              <option @if($endereco->estado == 'AP') selected @endif value="AP">Amapá</option>
-                              <option @if($endereco->estado == 'AM') selected @endif value="AM">Amazonas</option>
-                              <option @if($endereco->estado == 'BA') selected @endif value="BA">Bahia</option>
-                              <option @if($endereco->estado == 'CE') selected @endif value="CE">Ceará</option>
-                              <option @if($endereco->estado == 'DF') selected @endif value="DF">Distrito Federal</option>
-                              <option @if($endereco->estado == 'ES') selected @endif value="ES">Espírito Santo</option>
-                              <option @if($endereco->estado == 'GO') selected @endif value="GO">Goiás</option>
-                              <option @if($endereco->estado == 'MA') selected @endif value="MA">Maranhão</option>
-                              <option @if($endereco->estado == 'MT') selected @endif value="MT">Mato Grosso</option>
-                              <option @if($endereco->estado == 'MS') selected @endif value="MS">Mato Grosso do Sul</option>
-                              <option @if($endereco->estado == 'MG') selected @endif value="MG">Minas Gerais</option>
-                              <option @if($endereco->estado == 'PA') selected @endif value="PA">Pará</option>
-                              <option @if($endereco->estado == 'PB') selected @endif value="PB">Paraíba</option>
-                              <option @if($endereco->estado == 'PR') selected @endif value="PR">Paraná</option>
-                              <option @if($endereco->estado == 'PE') selected @endif value="PE">Pernambuco</option>
-                              <option @if($endereco->estado == 'PI') selected @endif value="PI">Piauí</option>
-                              <option @if($endereco->estado == 'RJ') selected @endif value="RJ">Rio de Janeiro</option>
-                              <option @if($endereco->estado == 'RN') selected @endif value="RN">Rio Grande do Norte</option>
-                              <option @if($endereco->estado == 'RS') selected @endif value="RS">Rio Grande do Sul</option>
-                              <option @if($endereco->estado == 'RO') selected @endif value="RO">Rondônia</option>
-                              <option @if($endereco->estado == 'RR') selected @endif value="RR">Roraima</option>
-                              <option @if($endereco->estado == 'SC') selected @endif value="SC">Santa Catarina</option>
-                              <option @if($endereco->estado == 'SP') selected @endif value="SP">São Paulo</option>
-                              <option @if($endereco->estado == 'SE') selected @endif value="SE">Sergipe</option>
-                              <option @if($endereco->estado == 'TO') selected @endif value="TO">Tocantins</option>
-                            </select>
-
-                            @if ($errors->has('estado'))
-                            <span class="help-block">
-                              <strong>{{ $errors->first('estado') }}</strong>
-                            </span>
-                            @endif
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-md-4" id="login-card">
-                        <div class="form-group{{ $errors->has('cidade') ? ' has-error' : '' }}" id="login-card">
-                          <label for="cidade" class="col-md-12 control-label">Cidade<font color="red">*</font> </label>
-
-                          <div class="col-md-12" id="login-card">
-
-                            <input id="cidade" class="form-control" name="cidade" value="{{ $endereco->cidade }}">
-                              
-                            @if ($errors->has('cidade'))
-                            <span class="help-block">
-                              <strong>{{ $errors->first('cidade') }}</strong>
-                            </span>
-                            @endif
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <h3>
-                    <strong>
-                      Dados Médicos do Aluno
-                    </strong>
-                  </h3>
-
-                  <hr style="border-top: 1px solid #AAA;">
-
-                  <div class="form-group{{ $errors->has('cid') ? ' has-error' : '' }}" id="login-card">
-                    <label for="cid" class="col-md-12 control-label">CID</label>
-
-                    <div class="col-md-12" id="login-card">
-
-                      @if(old('cid',NULL) != NULL)
-                        <input id="cid" type="text" class="form-control" placeholder="X000" name="cid" value="{{ old('cid') }}">
-                      @else
-                        <input id="cid" type="text" class="form-control" placeholder="X000" name="cid" value="{{ $aluno->cid }}">
-                      @endif
-
-                      @if ($errors->has('cid'))
-                        <span class="help-block">
-                          <strong>{{ $errors->first('cid') }}</strong>
-                        </span>
-                      @endif
-                    </div>
-                  </div>
-
-                  <div class="form-group{{ $errors->has('descricaoCid') ? ' has-error' : '' }}" id="login-card">
-                    <label for="descricaoCid" class="col-md-12 control-label">Descrição do CID</label>
-
-                    <div class="col-md-12" id="login-card">
-
-                      @if(old('descricaoCid',NULL) != NULL)
-                        <input id="descricaoCid" type="text" class="form-control" name="descricaoCid" value="{{ old('descricaoCid') }}">
-                      @else
-                        <input id="descricaoCid" type="text" class="form-control" name="descricaoCid" value="{{ $aluno->descricao_cid }}">
-                      @endif
-
-                      @if ($errors->has('descricaoCid'))
-                        <span class="help-block">
-                          <strong>{{ $errors->first('descricaoCid') }}</strong>
-                        </span>
-                      @endif
-                    </div>
-                  </div>
-
-                  <div class="form-group{{ $errors->has('observacao') ? ' has-error' : '' }}" id="login-card">
-                    <label for="observacao" class="col-md-12 control-label">Outras observações</label>
-
-                    <div class="col-md-12" id="login-card">
-
-                      @if(old('observacao',NULL) != NULL)
-                        <textarea name="observacao" style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px; display: inline" id="" type="text" class="form-control summernote">{{old('observacao')}}
-                        </textarea>
-                      @else
-                        <textarea name="observacao" style="width:100%; min-width: 100%; max-width: 100%;min-height: 50px; display: inline" id="" type="text" class="form-control summernote">{{$aluno->observacao}}
-                        </textarea>
-                      @endif
-
-                      <br>
-
-                      @if ($errors->has('observacao'))
-                        <span class="help-block">
-                          <strong>{{ $errors->first('observacao') }}</strong>
-                        </span>
-                      @endif
-                    </div>
-                  </div>
-
-                  <div class="form-group" id="login-card">
-                    <div class="row col-md-12 text-center" id="login-card">
-                      <br>
-                      <a class="btn btn-secondary" href="{{route('alunos.gerenciar',$aluno->id)}}#perfil" id="menu-a">
-                        Voltar
-                      </a>
-                      <button type="submit" class="btn btn-primary">
-                        Atualizar
-                      </button>
-                    </div>
-                  </div>
-                @else
-                  <div class="alert alert-info" id="login-card">
-                    <center>
-                      <h3>
-                        Cadastre uma instituicão para seguir com o cadastro de alunos.
-                        <br><br>
-                        <a class="btn btn-primary" style="width:160px" href="{{ route("instituicao.cadastrar") }}">Cadastrar Instituição</a>
-                      </h3>
-                    </center>
-                  </div>
-                @endif
-              </form>
+    <form class="m-3" method="POST" action="{{ route('alunos.update', ['aluno_id' => $aluno->id]) }}" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+
+        <h3>
+            <strong>
+                Dados do estudante
+            </strong>
+        </h3>
+
+        <hr style="border-top: 1px solid #AAA;">
+
+        <div class="form-group">
+            <label for="nome" class="form-label">Nome Completo:</label>
+            <input value="{{old('nome') ?? $aluno->nome}}" type="text" class="form-control @error('nome') is-invalid @enderror" id="nome" name="nome" required>
+
+            @error('nome')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="data_nascimento" class="form-label">Data de nascimento:</label>
+            <input value="{{old('data_nascimento') ?? $aluno->data_nascimento}}" type="date" class="form-control @error('data_nascimento') is-invalid @enderror" id="data_nascimento" name="data_nascimento" required>
+
+            @error('data_nascimento')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="cpf" class="form-label">CPF:</label>
+            <input value="{{old('cpf') ?? $aluno->cpf}}" type="text" class="form-control @error('cpf') is-invalid @enderror" id="cpf" name="cpf" required>
+
+            @error('cpf')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div>
+            <label for="cid" class="form-label"> Código CID</label>
+            <input value="{{old('cid') ?? $aluno->cid}}" type="text" class="form-control @error('cid') is-invalid @enderror" id="cid" name="cid" required>
+
+            @error('cid')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div>
+            <label for="descricao_cid" class="form-label">Descrição CID</label>
+            <input value="{{old('descricao_cid') ?? $aluno->descricao_cid}}" type="text" class="form-control @error('descricao_cid') is-invalid @enderror" id="descricao_cid" name="descricao_cid" required>
+
+            @error('descricao_cid')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="imagem" class="form-label">Foto do aluno</label>
+            <input value="{{old('imagem')}}" type="file" class="form-control @error('imagem') is-invalid @enderror" id="imagem" name="imagem">
+
+            @error('imagem')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="matricula" class="form-label">Matrícula</label>
+            <input value="{{old('matricula') ?? $aluno->matricula}}" type="text" class="form-control @error('matricula') is-invalid @enderror" id="matricula" name="matricula" required>
+
+            @error('matricula')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="idade_inicio_estudos" class="form-label">Idade de início dos estudos </label>
+            <input value="{{old('idade_inicio_estudos') ?? $aluno->idade_inicio_estudos}}" type="number" class="form-control @error('idade_inicio_estudos') is-invalid @enderror" id="idade_inicio_estudos" name="idade_inicio_estudos" required>
+
+            @error('idade_inicio_estudos')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="idade_escola_atual" class="form-label">Idade de início dos estudos na escola atual</label>
+            <input value="{{old('idade_escola_atual') ?? $aluno->idade_escola_atual}}" type="number" class="form-control @error('idade_escola_atual') is-invalid @enderror" id="idade_escola_atual" name="idade_escola_atual" required>
+
+            @error('idade_escola_atual')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <h5>ENDEREÇO</h5>
+            <div>
+                <label for="logradouro" class="form-label">Logradouro</label>
+                <input value="{{old('logradouro') ?? $aluno->logradouro}}" type="text" class="form-control @error('logradouro') is-invalid @enderror" id="logradouro" name="logradouro" required>
+                @error('logradouro')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
+                @enderror
             </div>
-          </div>
+            
+            <div>
+                <label for="numero" class="form-label">Número</label>
+                <input value="{{old('numero') ?? $aluno->numero}}" type="text" class="form-control @error('numero') is-invalid @enderror" id="numero" name="numero" required>
+                @error('numero')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
+                @enderror
+            </div>
+            <div>
+                <label for="bairro" class="form-label">Bairro</label>
+                <input value="{{old('bairro') ?? $aluno->bairro}}" type="text" class="form-control @error('bairro') is-invalid @enderror" id="bairro" name="bairro" required>
+                @error('bairro')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
+                @enderror
+            </div>
+            <div>
+                <label for="cidade" class="form-label">Cidade</label>
+                <input value="{{old('cidade') ?? $aluno->cidade}}" type="text" class="form-control @error('cidade') is-invalid @enderror" id="cidade" name="cidade" required>
+                @error('cidade')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
+                @enderror
+            </div>
+            <div>
+                <label for="cep" class="form-label">CEP</label>
+                <input value="{{old('cep') ?? $aluno->cep}}" type="text" class="form-control @error('cep') is-invalid @enderror" id="cep" name="cep" required>
+                @error('cep')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
 
-      </div>
-    </div>
-  </div>
-</div>
+        <h3>
+            <strong>
+                Dados da família do estudante
+            </strong>
+        </h3>
+        
+        <hr style="border-top: 1px solid #AAA;">
 
-<script type="text/javascript">
-  $('#summer').summernote({
-    lang: 'pt-BR',
-    tabsize: 2,
-    height: 100
-  });
-</script>
+        <div class="form-group">
+            <label for="nome_pai" class="form-label">Nome do pai</label>
+            <input value="{{old('nome_pai') ?? $aluno->nome_pai}}" type="text" class="form-control @error('nome_pai') is-invalid @enderror" id="nome_pai" name="nome_pai" required>
 
-<script src="{{ asset('js/jquery-3.3.1.min.js')}}"></script>
-<script src="{{ asset('js/select2.min.js') }}"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-  $('.js-example-basic-multiple').select2();
-});
-</script>
+            @error('nome_pai')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
 
-  <script>
-    $(function(){
-      var dtToday = new Date();
+        <div class="form-group">
+            <label for="escolaridade_pai" class="form-label">Escolaridade do pai</label>
+            <select class="form-control @error('escolaridade_pai') is-invalid @enderror" name="escolaridade_pai" id="escolaridade_pai" required>
+                <option value="" disabled selected>Selecione a Escolaridade do Pai</option>
+                @foreach ($escolaridadeAdulto as $escolaridade)
+                    <option value="{{$escolaridade}}" @selected(old('escolaridade_pai') ?? $aluno->escolaridade_pai == $escolaridade)>{{$escolaridade}}</option>
+                @endforeach
+            </select>
 
-      var month = dtToday.getMonth() + 1;
-      var day = dtToday.getDate();
-      var year = dtToday.getFullYear();
+            @error('escolaridade_pai')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
 
-      if(month < 10)
-        month = '0' + month.toString();
-      if(day < 10)
-        day = '0' + day.toString();
+        <div class="form-group">
+            <label for="profissao_pai" class="form-label">Profissão do pai</label>
+            <input value="{{old('profissao_pai') ?? $aluno->profissao_pai}}" type="text" class="form-control @error('profissao_pai') is-invalid @enderror" id="profissao_pai" name="profissao_pai" required>
 
-      var maxDate = year + '-' + month + '-' + day;
-      $('#data_nascimento').attr('max', maxDate);
-    });
-  </script>
+            @error('profissao_pai')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
 
-<script>
-// var estados = [];
+        <div class="form-group">
+            <label for="nome_mae" class="form-label">Nome da mãe</label>
+            <input value="{{old('nome_mae') ?? $aluno->nome_mae}}" type="text" class="form-control @error('nome_mae') is-invalid @enderror" id="nome_mae" name="nome_mae" required>
 
-// function loadEstados(element) {
-//   if (estados.length > 0) {
-//     putEstados(element);
-//     $(element).removeAttr('disabled');
-//   } else {
-//     $.ajax({
-//       url: 'https://api.myjson.com/bins/enzld',
-//       method: 'get',
-//       dataType: 'json',
-//       beforeSend: function() {
-//         $(element).html('<option>Carregando...</option>');
-//       }
-//     }).done(function(response) {
-//       estados = response.estados;
-//       putEstados(element);
-//       $(element).removeAttr('disabled');
-//     });
-//   }
-// }
+            @error('nome_mae')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
 
-// function putEstados(element) {
-//   var oldEstado = "{{old('estado')}}";
-//   var instEstado = "{{$endereco->estado}}";
+        <div class="form-group">
+            <label for="escolaridade_mae" class="form-label">Escolaridade da mãe</label>
+            <select class="form-control @error('escolaridade_mae') is-invalid @enderror" name="escolaridade_mae" id="escolaridade_mae" required>
+                <option value="" disabled selected>Selecione a Escolaridade da Mãe</option>
+                @foreach ($escolaridadeAdulto as $escolaridade)
+                    <option value="{{$escolaridade}}" @selected(old('escolaridade_mae') ?? $aluno->escolaridade_mae == $escolaridade)>{{$escolaridade}}</option>
+                @endforeach
+            </select>
 
-//   var label = $(element).data('label');
-//   label = label ? label : 'Estado';
+            @error('escolaridade_mae')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
 
-//   var estadoAtual;
+        <div class="form-group">
+            <label for="profissao_mae" class="form-label">Profissão da mãe</label>
+            <input value="{{old('profissao_mae') ?? $aluno->profissao_mae}}" type="text" class="form-control @error('profissao_mae') is-invalid @enderror" id="profissao_mae" name="profissao_mae" required>
 
-//   var options = '<option value="">' + label + '</option>';
-//   for (var i in estados) {
-//     var estado = estados[i];
+            @error('profissao_mae')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
 
-//     if((estado.sigla == instEstado && oldEstado == "") || estado.sigla == oldEstado){
-//       estadoAtual = estado.sigla;
-//       options += '<option selected value="' + estado.sigla + '">' + estado.nome + '</option>';
-//     }else{
-//       options += '<option value="' + estado.sigla + '">' + estado.nome + '</option>';
-//     }
-//   }
+        <div class="form-group">
+            <label for="num_irmaos" class="form-label">Números de irmãos</label>
+            <input value="{{old('num_irmaos') ?? $aluno->num_irmaos}}" type="number" class="form-control @error('num_irmaos') is-invalid @enderror" id="num_irmaos" name="num_irmaos" required>
 
-//   var target = $(element).data('target');
+            @error('num_irmaos')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
 
-//   if (target) {
-//     loadCidades(target, estadoAtual);
-//   }
+        <div class="form-group">
+            <label for="contato_responsavel" class="form-label">Contato do responsável</label>
+            <input value="{{old('contato_responsavel') ?? $aluno->contato_responsavel}}" type="text" class="form-control @error('contato_responsavel') is-invalid @enderror" id="contato_responsavel" name="contato_responsavel" required>
 
-//   $(element).html(options);
-// }
+            @error('contato_responsavel')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
 
-// function loadCidades(element, estado_sigla) {
-//   if (estados.length > 0) {
-//     putCidades(element, estado_sigla);
-//     $(element).removeAttr('disabled');
-//   } else {
-//     $.ajax({
-//       url: theme_url + '/assets/json/estados.json',
-//       method: 'get',
-//       dataType: 'json',
-//       beforeSend: function() {
-//         $(element).html('<option>Carregando...</option>');
-//       }
-//     }).done(function(response) {
-//       estados = response.estados;
-//       putCidades(element, estado_sigla);
-//       $(element).removeAttr('disabled');
-//     });
-//   }
-// }
+        <div class="form-group">
+            <label for="mora_com" class="form-label">Com que mora</label>
+            <input value="{{old('mora_com') ?? $aluno->mora_com}}" type="text" class="form-control @error('mora_com') is-invalid @enderror" id="mora_com" name="mora_com" required>
 
-// function putCidades(element, estado_sigla) {
-//   var label = $(element).data('label');
-//   label = label ? label : 'Cidade';
+            @error('mora_com')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
 
-//   var oldCidade = "{{old('cidade')}}";
-//   var instCidade = "{{$endereco->cidade}}"
+        <h3>
+            <strong>
+                Dados da escolaridade do Estudante
+            </strong>
+        </h3>
 
-//   var options = '<option value="">' + label + '</option>';
-//   for (var i in estados) {
-//     var estado = estados[i];
-//     if (estado.sigla != estado_sigla)
-//     continue;
-//     for (var j in estado.cidades) {
-//       var cidade = estado.cidades[j];
+        <hr style="border-top: 1px solid #AAA;">
 
-//       if((cidade == instCidade && oldCidade == "") || cidade == oldCidade){
-//         options += '<option selected value="' + cidade + '">' + cidade + '</option>';
-//       }else {
-//         options += '<option value="' + cidade + '">' + cidade + '</option>';
-//       }
-//     }
-//   }
-//   $(element).html(options);
-// }
+        <div class="form-group">
+            <label for="gre_id" class="form-label">GRE</label>
+            <select class="form-control @error('gre_id') is-invalid @enderror" name="gre_id" id="gre_id" required>
+                <option value="" disabled selected>Selecione a GRE</option>
+                @foreach ($gres as $gre)
+                    <option value="{{$gre->id}}" @selected(old('gre_id') ?? $aluno->gre_id == $gre->id)>{{$gre->nome}}</option>
+                @endforeach
+            </select>
 
-// document.addEventListener('DOMContentLoaded', function() {
-//   loadEstados('#estado');
-
-//   $(document).on('change', '#estado', function(e) {
-//     var target = $(this).data('target');
-//     if (target) {
-//       loadCidades(target, $(this).val());
-//     }
-//   });
-// }, false);
-
- 
-function limpa_formulário_cep() {
-        //Limpa valores do formulário de cep.
-        document.getElementById('rua').value=("");
-        document.getElementById('bairro').value=("");
-        document.getElementById('cidade').value=("");
-        document.getElementById('estado').value=("");
-}
-
-function meu_callback(conteudo) {
-    if (!("erro" in conteudo)) {
-        //Atualiza os campos com os valores.
-        document.getElementById('rua').value=(conteudo.logradouro);
-        document.getElementById('bairro').value=(conteudo.bairro);
-        document.getElementById('cidade').value=(conteudo.localidade);
-        document.getElementById('estado').value=(conteudo.uf);
-
-    } //end if.
-    else {
-        //CEP não Encontrado.
-        limpa_formulário_cep();
-        alert("CEP não encontrado.");
-    }
-}
-
-function pesquisacep(valor) {
-
-    //Nova variável "cep" somente com dígitos.
-    var cep = valor.replace(/\D/g, '');
-
-    //Verifica se campo cep possui valor informado.
-    if (cep != "") {
-
-        //Expressão regular para validar o CEP.
-        var validacep = /^[0-9]{8}$/;
-
-        //Valida o formato do CEP.
-        if(validacep.test(cep)) {
-
-            //Preenche os campos com "..." enquanto consulta webservice.
-            document.getElementById('rua').value="...";
-            document.getElementById('bairro').value="...";
-            document.getElementById('cidade').value="...";
-            document.getElementById('estado').value="...";
-
-            //Cria um elemento javascript.
-            var script = document.createElement('script');
-
-            //Sincroniza com o callback.
-            script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
-
-            //Insere script no documento e carrega o conteúdo.
-            document.body.appendChild(script);
-
-        } //end if.
-        else {
-            //cep é inválido.
-            limpa_formulário_cep();
-            alert("Formato de CEP inválido.");
-        }
-    } //end if.
-    else {
-        //cep sem valor, limpa formulário.
-        limpa_formulário_cep();
-    }
-};
+            @error('gre_id')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
 
 
-</script>
+        <div class="form-group">
+            <label for="municipio_id" class="form-label">Municípios</label>
+            <select class="form-control @error('municipio_id') is-invalid @enderror" name="municipio_id" id="municipio_id" required>
+                <option value="" disabled selected>Selecione o Município</option>
+                @foreach ($municipios as $municipio)
+                    <option value="{{$municipio->id}}" @selected(old('municipio_id') ?? $aluno->municipio_id == $municipio->id)>{{$municipio->nome}}</option>
+                @endforeach
+            </select>
 
-<script src="{{ asset('js/bootstrap-filestyle.min.js')}}"> </script>
+            @error('municipio_id')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
 
+        <div class="form-group">
+            <label for="escola_id" class="form-label">Escolas</label>
+            <select class="form-control @error('escola_id') is-invalid @enderror" name="escola_id" id="escola_id" required>
+                <option value="" disabled selected>Selecione a Escola</option>
+                @foreach ($escolas as $escola)
+                <option value="{{$escola->id}}" @selected(old('escola_id') ?? $aluno->escola_id == $escola->id)>{{$escola->nome}}</option>
+                    
+                @endforeach
+            </select>
+
+            @error('escola_id')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="escolaridade_atual_aluno" class="form-label">Escolaridade</label>
+            <select class="form-control @error('escolaridade_atual_aluno') is-invalid @enderror" name="escolaridade_atual_aluno" id="escolaridade_atual_aluno" required>
+                <option value="" disabled selected>Selecione a Escolaridade</option>
+                @foreach ($escolaridadeAluno as $escolaridade)
+                    <option value="{{$escolaridade}}" @selected(old('escolaridade_atual_aluno') ?? $aluno->escolaridade_atual_aluno == $escolaridade)>{{$escolaridade}}</option>
+                    
+                @endforeach
+            </select>
+
+            @error('escolaridade_aluno')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="historico_comum" class="form-label">Histórico escolar (comum) e antecedentes relevantes</label>
+            <input value="{{old('historico_comum') ?? $aluno->historico_comum}}" type="text" class="form-control @error('historico_comum') is-invalid @enderror" id="historico_comum" name="historico_comum" required>
+
+            @error('historico_comum')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="historico_especifico" class="form-label">Histórico escolar (específico) e antecedentes relevantes</label>
+            <input value="{{old('historico_especifico') ?? $aluno->historico_especifico}}" type="text" class="form-control @error('historico_especifico') is-invalid @enderror" id="historico_especifico" name="historico_especifico" required>
+
+            @error('historico_especifico')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="motivo_encaminhamento_aee" class="form-label">Motivo do encaminhamento para o Atendimento Educacional Especializado (dificuldades apresentadas pelo estudante):</label>
+            <input value="{{old('motivo_encaminhamento_aee') ?? $aluno->motivo_encaminhamento_aee}}" type="text" class="form-control @error('motivo_encaminhamento_aee') is-invalid @enderror" id="motivo_encaminhamento_aee" name="motivo_encaminhamento_aee" required>
+
+            @error('motivo_encaminhamento_aee')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="avaliacao_geral_familiar" class="form-label">Avaliação geral: âmbito familiar</label>
+            <input value="{{old('avaliacao_geral_familiar') ?? $aluno->avaliacao_geral_familiar}}" type="text" class="form-control @error('avaliacao_geral_familiar') is-invalid @enderror" id="avaliacao_geral_familiar" name="avaliacao_geral_familiar" required>
+
+            @error('avaliacao_geral_familiar')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="avaliacao_geral_escolar" class="form-label">Avaliação geral: âmbito escolar</label>
+            <input value="{{old('avaliacao_geral_escolar') ?? $aluno->avaliacao_geral_escolar}}" type="text" class="form-control @error('avaliacao_geral_escolar') is-invalid @enderror" id="avaliacao_geral_escolar" name="avaliacao_geral_escolar" required>
+
+            @error('avaliacao_geral_escolar')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{$message}}</strong>
+                </span>
+            @enderror
+        </div>
+
+        <div>
+            <label class="form-label">O estudante tem laudo?</label>
+            <fieldset>
+                <label for="tem_anexos_laudos_sim" class="form-check-label form-check-inline">
+                    <input type="radio" id="tem_anexos_laudos_sim" name="tem_anexos_laudos" value="true" class="form-check-input">
+                    Sim
+                </label>
+                <label for="tem_anexos_laudos_nao" class="form-check-label form-check-inline">
+                    <input type="radio" id="tem_anexos_laudos_nao" name="tem_anexos_laudos" value="false" class="form-check-input">
+                    Não
+                </label>
+            </fieldset>
+        </div>
+
+        <div id="tem_anexos_laudos" class="d-none">
+            <div class="form-group">
+                <label for="anexos_laudos" class="form-label">Anexar outros documentos e informações relevantes, se tiver (ex. Laudo, Documentos)</label>
+                <input value="{{old('anexos_laudos')}}" type="file" class="form-control @error('anexos_laudos') is-invalid @enderror" id="anexos_laudos" name="anexos_laudos">
+                @error('anexos_laudos')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center gap-4 m-3">
+            <a class="btn btn-secondary w-25" href="{{ route('alunos.index') }}">
+                Voltar
+            </a>
+            <button type="submit" class="btn btn-success w-25">
+                Cadastrar
+            </button>
+        </div>
+
+    </form>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            function marcarRadio(nomeCampo, valorEsperado) {
+                $('input[name="' + nomeCampo + '"]').each(function() {
+                    if ($(this).val() === String(valorEsperado)) {
+                        $(this).click();
+                    }
+                });
+            }
+
+            marcarRadio('tem_anexos_laudos', @json(old('anexos_laudos') ?? false));
+
+            
+        });
+
+
+        ocultarDiv('tem_anexos_laudos');
+
+        function ocultarDiv(nomeInput) {
+            $(`input[name="${nomeInput}"]`).on('change', function() {
+                if ($(`#${nomeInput}_sim`).is(':checked')) {
+                    $(`#${nomeInput}`).removeClass('d-none');
+                } else {
+                    $(`#${nomeInput}`).addClass('d-none');
+                }
+            });
+        }
+    </script>
+    <script>
+        var dados = @json($gres);
+    </script>
+    <script src="{{ asset('js/filtrar-gre.js') }}"></script>
+@endpush

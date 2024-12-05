@@ -130,11 +130,11 @@
                 </div>
             </div>
 
-            <div class="col-md-12 text-center" style="padding-top:20px;">
-                <a class="btn btn-secondary" href="{{ route('login') }}" id="menu-a">
+            <div class="d-flex justify-content-center gap-4 m-3">
+                <a class="btn btn-secondary w-25" href="{{ route('login') }}">
                     Voltar
                 </a>
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-success w-25">
                     Cadastrar
                 </button>
             </div>
