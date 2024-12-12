@@ -11,14 +11,17 @@ class Municipio extends Model
 
     protected $fillable = [
         'nome',
-        'gre_id'
     ];
 
-    public function gre(){
-        return $this->belongsTo(Gre::class);
+    public function gres(){
+        return $this->belongsToMany(Gre::class, 'gre_municipio', 'municipio_id', 'gre_id');
     }
 
     public function escolas(){
         return $this->hasMany(Escola::class);
+    }
+
+    public function enderecos(){
+        return $this->hasMany(Endereco::class);
     }
 }

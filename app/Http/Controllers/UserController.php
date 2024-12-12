@@ -26,7 +26,7 @@ class UserController extends Controller
         $users = QueryBuilder::for(User::class)
         ->allowedFilters([
             AllowedFilter::exact('escola_id', 'escolas.id'),
-            AllowedFilter::exact('gre_id', 'municipio.gre_id'),
+            AllowedFilter::exact('gre_id', 'escolas.municipio.gres.id'),
             AllowedFilter::exact('municipio_id'), 
         ])
         ->defaultSort('nome')

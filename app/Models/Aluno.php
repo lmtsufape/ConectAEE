@@ -37,7 +37,6 @@ class Aluno extends Model
             'cid',
             'descricao_cid',
             'imagem',
-            'municipio_id',
             'escola_id',
             'endereco_id',
             'professor_responsavel'
@@ -62,8 +61,4 @@ class Aluno extends Model
     public function escola(){
         return $this->belongsTo(Escola::class);
     }
-
-    public function municipio(){
-        return $this->belongsTo(Municipio::class);
-    } 
 }

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\escolas\StoreEscolaRequest;
+use App\Http\Requests\escolas\UpdateEscolaRequest;
+use App\Models\Endereco;
 use App\Models\Escola;
 use App\Models\Gre;
 use App\Models\Municipio;
@@ -15,7 +18,7 @@ class EscolaController extends Controller
     public function index(Request $request){
         $escolas = QueryBuilder::for(Escola::class)
         ->allowedFilters([
-            AllowedFilter::exact('gre_id', 'municipio.gre_id'),
+            AllowedFilter::exact('gre_id','municipio.gres.id'),
             AllowedFilter::exact('municipio_id'), 
         ]) 
         ->defaultSort('nome')      
@@ -33,15 +36,16 @@ class EscolaController extends Controller
     }
 
     public function create(){
-        $escolas = Escola::all();
+        $municipios = Municipio::all();
 
-        return view('escolas.create', compact('escolas'));
+        return view('escolas.create', compact('municipios'));
     }
 
-    public function store(Request $request){
-        $escolas = Escola::all();
+    public function store(StoreEscolaRequest $request){
+        $endereco = Endereco::create($request->only(['logradouro', 'numero', 'bairro', 'cep', 'municipio_id']));
+        $escola = Escola::create($request->only(['codigo_mec', 'nome', 'telefone', 'email', 'municipio_id']) + ['endereco_id' => $endereco->id]);
 
-        return view('escolas.index', compact('escolas'));
+        return redirect()->route('escolas.index')->with('success', 'Escola Criada com Sucesso!');
     }
 
     public function edit($escola_id){
@@ -51,20 +55,13 @@ class EscolaController extends Controller
         return view('escolas.edit', compact('escola', 'municipios'));
     }
 
-    public function update(Request $request, $escola_id){
-        $dados = $request->validate([
-            'nome' => 'required|string|min:3',
-            'municipio_id' => 'required|integer|exists:municipios,id'
-        ]);
+    public function update(UpdateEscolaRequest $request, $escola_id){
+        $escola = Escola::findOrFail($escola_id);
 
-        try {
-            $escola = Escola::find($escola_id);
-            $escola->update($dados);
-        } catch (Exception $e) {
-            return redirect()->back()->withErrors("Ocorreu um erro ao atualizar os dados da escola. [$e->getMessage()]");
-        }
+        $escola->update($request->only(['codigo_mec', 'nome', 'telefone', 'email', 'municipio_id']));
+        $escola->endereco->update($request->only(['logradouro', 'numero', 'bairro', 'cep', 'municipio_id']));
         
-        return redirect()->route('escolas.index')->with('Escola atualizada com sucesso!');
+        return redirect()->route('escolas.index')->with('success','Escola Atualizada com Sucesso!');
     }
 
     public function destroy($escola_id){

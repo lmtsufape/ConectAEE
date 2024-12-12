@@ -45,7 +45,6 @@ class CreateAlunosTable extends Migration
             $table->string('imagem')->nullable();
 
             $table->foreignId('endereco_id')->constrained();
-            $table->foreignId('municipio_id')->constrained();
             $table->foreignId('escola_id')->constrained();
             $table->foreignId('professor_responsavel')->constrained('users');
 

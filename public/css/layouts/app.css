@@ -2,7 +2,3 @@ label[for]:has(+ input[required])::after {
     content: " *";
     color: red;
 }
-
-.content {
-    color: #12583C;
-}

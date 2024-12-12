@@ -23,7 +23,7 @@ class EscolaSeeder extends Seeder
             while (($linha = fgetcsv($handle)) !== false) {
                 $data = array_combine($first_linha, $linha);
 
-                Escola::firstOrCreate(['codigo_mec' => $data['Cod Mec'], 'nome' => $data['Escola'], 'municipio_id' => Municipio::where('nome', $data['Município'])->value('id')]);
+                Escola::firstOrCreate(['codigo_mec' => $data['Cod Mec'], 'nome' => $data['Escola'], 'municipio_id' => Municipio::where('nome', $data['Município'])->value('id'),'endereco_id' => 1]);
             }
 
             fclose($handle);

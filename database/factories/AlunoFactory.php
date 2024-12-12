@@ -48,6 +48,6 @@ $factory->define(Aluno::class, function (Faker $faker) {
     'cpf' => $faker->cpf,
     'descricao_cid' => 'Perda de audição ototóxica',
     'data_nascimento' => $faker->date(),
-    'municipio_id' => 1,
+    'endereco_id' => 1,
   ];
 });

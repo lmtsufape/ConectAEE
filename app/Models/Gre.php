@@ -14,6 +14,6 @@ class Gre extends Model
     ];
     
     public function municipios(){
-        return $this->hasMany(Municipio::class);
+        return $this->belongsToMany(Municipio::class, 'gre_municipio', 'gre_id', 'municipio_id');
     }
 }

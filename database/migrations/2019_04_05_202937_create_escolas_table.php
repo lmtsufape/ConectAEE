@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('nome');
             $table->string('telefone')->nullable();
             $table->string('email')->nullable();
-            $table->foreignId('municipio_id')->constrained();
+            $table->foreignId('municipio_id')->constrained();//refletir sobre o uso dessa relacao
+            $table->foreignId('endereco_id')->constrained();
 
             $table->timestamps();
         });

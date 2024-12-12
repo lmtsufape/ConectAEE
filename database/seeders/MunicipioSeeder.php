@@ -23,7 +23,8 @@ class MunicipioSeeder extends Seeder
             while (($linha = fgetcsv($handle)) !== false) {
                 $data = array_combine($first_linha, $linha);
 
-                Municipio::firstOrCreate(['nome' => $data['Município'], 'gre_id' => Gre::where('nome', $data['Gre'])->value('id')]);
+                $municipio = Municipio::firstOrCreate(['nome' => $data['Município']]);
+                $municipio->gres()->syncWithoutDetaching(Gre::where('nome', $data['Gre'])->value('id'));
             }
 
             fclose($handle);

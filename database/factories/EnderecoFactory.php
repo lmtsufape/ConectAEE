@@ -11,7 +11,7 @@ $factory->define(Endereco::class, function (Faker $faker) {
       'logradouro' => $faker->streetName,
       'bairro' => $faker->citySuffix,
       'cep' => '55295250',
-      'cidade' => 'Garanhuns',
+      'municipio_id' => 2,
       // 'cidade' => $faker->city,
       // 'estado' => $faker->stateAbbr,
     ];

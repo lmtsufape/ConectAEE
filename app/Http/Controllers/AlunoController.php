@@ -36,7 +36,7 @@ class AlunoController extends Controller
             $alunos = QueryBuilder::for(Aluno::class)
             ->allowedFilters([
                 AllowedFilter::exact('escola_id'),
-                AllowedFilter::exact('gre_id', 'municipio.gre_id'),
+                AllowedFilter::exact('gre_id', 'escola.municipio.gres.id'),
                 AllowedFilter::exact('municipio_id')
             ])
             ->orderBy('escola_id', 'asc')

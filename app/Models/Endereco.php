@@ -12,8 +12,8 @@ class Endereco extends Model
     'logradouro',
     'numero',
     'bairro',
-    'cidade',
     'cep',
+    'municipio_id',
   ];
 
   public function alunos()
@@ -21,13 +21,13 @@ class Endereco extends Model
      return $this->hasMany(Aluno::class);
   }
 
-  public function users(): HasMany
-  {
-    return $this->hasMany(User::class);
-  }
-
   public function escolas(): HasMany
   {
     return $this->hasMany(Escola::class);
+  }
+
+  public function municipio()
+  {
+    return $this->belongsTo(Municipio::class);
   }
 }

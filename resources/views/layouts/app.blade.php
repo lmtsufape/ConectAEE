@@ -69,6 +69,8 @@
         @include('layouts.navbar')
     </header>
 
+    @include('layouts.components.messages')
+
     <main class="flex-grow-1">
         @stack('nav-form')
         @auth
