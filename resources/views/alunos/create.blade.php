@@ -142,10 +142,16 @@
                     </span>
                 @enderror
             </div>
-            <div>
-                <label for="cidade" class="form-label">Cidade</label>
-                <input value="{{old('cidade')}}" type="text" class="form-control @error('cidade') is-invalid @enderror" id="cidade" name="cidade" required>
-                @error('cidade')
+            <div class="form-group">
+                <label for="municipio_id" class="form-label">Município</label>
+                <select class="form-control @error('municipio_id') is-invalid @enderror" name="municipio_id" id="municipio_id" required>
+                    <option value="" selected>Selecione o Município</option>
+                    @foreach ($municipios as $municipio)
+                        <option value="{{$municipio->id}}">{{$municipio->nome}}</option>
+                    @endforeach
+                </select>
+    
+                @error('municipio_id')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
                     </span>

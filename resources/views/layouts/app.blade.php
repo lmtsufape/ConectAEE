@@ -71,7 +71,7 @@
 
     @include('layouts.components.messages')
 
-    <main class="flex-grow-1">
+    <main class="flex-grow-1 my-5">
         @stack('nav-form')
         @auth
             <div class="container-md border rounded-4 shadow-lg bg-white p-4">

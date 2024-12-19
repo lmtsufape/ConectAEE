@@ -27,7 +27,7 @@ class UserController extends Controller
         ->allowedFilters([
             AllowedFilter::exact('escola_id', 'escolas.id'),
             AllowedFilter::exact('gre_id', 'escolas.municipio.gres.id'),
-            AllowedFilter::exact('municipio_id'), 
+            AllowedFilter::exact('municipio_id', 'escolas.municipio.id'), 
         ])
         ->defaultSort('nome')
         ->paginate(10);

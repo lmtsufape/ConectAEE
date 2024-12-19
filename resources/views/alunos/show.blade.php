@@ -23,18 +23,17 @@
             <a class="btn btn-info" data-toggle="modal" data-target="#modalRelatorio">
                 Relatório
             </a>
-            <a class="btn btn-primary" href="{{route('objetivo.listar', ['aluno_id'=>$aluno->id]) }}">
-                Objetivos
-            </a>
 
             <div class="btn-group">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     Ações
                 </button>
+                @include('layouts.components.delete_modal', ['route' => 'alunos.destroy', 'param' => 'aluno_id', 'entity_id' => $aluno->id])
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{route('alunos.edit', ['aluno_id'=>$aluno->id]) }}" data-toggle="tooltip" title="Editar aluno">Editar</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal">
+
+                    <li><button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal{{$aluno->id}}">
                             Excluir
                         </button>
                     </li>
@@ -87,8 +86,7 @@
                             echo $aluno->endereco->logradouro, ", nº ",
                             $aluno->endereco->numero, ", ",
                             $aluno->endereco->bairro, ", ",
-                            $aluno->endereco->cidade, " - ",
-                            $aluno->endereco->estado;
+                            $aluno->endereco->municipio->nome;
                             ?>
                     </p>
                     @if($aluno->cid != null)
@@ -102,7 +100,7 @@
                     @endif
                 </div>
                 <div class="col-md-6">
-                    <p><strong style="color: #12583C">Instituições:</strong></p>
+                    <p><strong style="color: #12583C">Escola:</strong></p>
                 </div>
             </div>
             <div class="text-justify">
@@ -114,49 +112,7 @@
             </div>
         </div>
     </div>
-    <hr style="border-top: 1px solid #AAA;">
 
-    <h2>
-        <strong style="color: #12583C">
-            Álbuns
-        </strong>
-    </h2>
-
-    <div class="row">
-        <div class="container col-md-12">
-            <div class="col-md-3 mt-3 border" style="opacity: 0.7;">
-                <a href="{{route('album.cadastrar' , ['aluno_id'=>$aluno->id])}}" data-toggle="tooltip">
-                    <div class="text-center" style="border-radius: 20px;  width: 230px; height: 230px">
-                        <div class="d-flex justify-content-center">
-                            <h2 style="margin-top:80px;">
-                                <img src="{{asset('images/album.png')}}"
-                                        style="width:44px; height:44px;">
-                                <br>
-                                Novo Álbum
-                            </h2>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            @foreach ($albuns as $album)
-                <div class="col-md-3 mt-3">
-                    <div class="card cartao text-center"
-                            style="border-radius: 20px; background: #4e555b; width: 230px; height: 230px">
-                        <div class="card-body d-flex justify-content-center"
-                                style="border-radius: 20px; background: #EEE; height: 100%">
-                            <a href="{{route('album.ver', ['id_album'=>$album->id])}}">
-                                <img style="border-radius: 20px; width: 224.2px; height: 224.2px;"
-                                        src="{{asset('storage/albuns/'.$aluno->id.'/'.$album->fotos[0]->imagem)}}">
-                            </a>
-                            &nbsp; &nbsp;
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-
-    @include('layouts.components.delete_modal', ['route' => 'alunos.destroy', 'param' => 'aluno_id', 'entity_id' => $aluno->id])
     <!-- Modal -->
     <div class="modal fade" id="modalRelatorio" tabindex="-1" role="dialog"
             aria-labelledby="modalRelatorioLabel" aria-hidden="true">

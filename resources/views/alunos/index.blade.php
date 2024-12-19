@@ -48,7 +48,7 @@
 
                     <h2 class="fs-5 pt-3" style="max-width: 132px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">{{$aluno->nome}}</h2>
                     <span class="fs-5">{{$aluno->data_de_nascimento}}</span>
-                    <span class="fs-5">{{$aluno->endereco->cidade}} - {{$aluno->endereco->estado}}</span>
+                    <span class="fs-5">{{$aluno->endereco->municipio->nome}}</span>
                     <span class="fs-5">{{$aluno->cid}}</span>
                 </div>
             </a>

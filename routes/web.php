@@ -133,7 +133,7 @@ Route::middleware(['auth', 'ativo'])->group(function() {
             Route::post('/criar', 'store')->name('store');
             Route::get('/{pdi_id}/editar', 'edit')->name('edit');
             Route::post('/atualizar', 'update')->name('update');
-            Route::get('/{pdi_id}/excluir', 'delete')->name('delete');
+            Route::delete('/{pdi_id}/excluir', 'destroy')->name('destroy');
 
             Route::get('/{aluno_id}/cadastrarArquivo', 'cadastrarArquivo')->name('cadastrarArquivo');
             Route::post('/criarArquivo', 'criarArquivo')->name('criarArquivo');

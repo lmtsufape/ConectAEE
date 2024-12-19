@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-between align-items-baseline mt-5 px-5" style="background: #538970;">
+<div class="d-flex justify-content-between align-items-baseline px-5" style="background: #538970;">
     <div class="text-center">
         <img src="{{ asset('images/logo.png') }}" alt="logo-conectaee" width="160px">
     </div>

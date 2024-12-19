@@ -37,7 +37,7 @@ class AlunoController extends Controller
             ->allowedFilters([
                 AllowedFilter::exact('escola_id'),
                 AllowedFilter::exact('gre_id', 'escola.municipio.gres.id'),
-                AllowedFilter::exact('municipio_id')
+                AllowedFilter::exact('municipio_id', 'endereco.municipio.id')
             ])
             ->orderBy('escola_id', 'asc')
             ->paginate(15);
@@ -74,16 +74,18 @@ class AlunoController extends Controller
 
     public function create()
     {
-        $gres = Gre::select('id', 'nome')
+        $gres = Gre::select('gres.id', 'gres.nome')
         ->with([
             'municipios' => function ($query) {
-                $query->select('id', 'nome', 'gre_id')->orderBy('nome');  // Ordena os municípios pelo nome
+                $query->select('municipios.id', 'municipios.nome')
+                      ->orderBy('municipios.nome');
             },
             'municipios.escolas' => function ($query) {
-                $query->select('id', 'nome', 'municipio_id')->orderBy('nome');  // Ordena as escolas pelo nome
+                $query->select('escolas.id', 'escolas.nome', 'escolas.municipio_id')
+                      ->orderBy('escolas.nome');
             }
         ])
-        ->orderBy('nome')  // Ordena as Gres pelo nome
+        ->orderBy('gres.nome') // Ordena as Gres pelo nome
         ->get();    
     
         $municipios = Municipio::all();
@@ -103,7 +105,7 @@ class AlunoController extends Controller
             $endereco = Endereco::create(['logradouro' => $request->logradouro,
                                 'numero'  => $request->numero,
                                 'bairro'  => $request->bairro,
-                                'cidade'  => $request->cidade,
+                                'municipio_id'  => $request->municipio_id,
                                 'cep'  => $request->cep]);
                                 
             
@@ -134,16 +136,18 @@ class AlunoController extends Controller
     public function edit($aluno_id)
     {
         $aluno = Aluno::find($aluno_id);
-        $gres = Gre::select('id', 'nome')
+        $gres = Gre::select('gres.id', 'gres.nome')
         ->with([
             'municipios' => function ($query) {
-                $query->select('id', 'nome', 'gre_id')->orderBy('nome');  // Ordena os municípios pelo nome
+                $query->select('municipios.id', 'municipios.nome')
+                      ->orderBy('municipios.nome');
             },
             'municipios.escolas' => function ($query) {
-                $query->select('id', 'nome', 'municipio_id')->orderBy('nome');  // Ordena as escolas pelo nome
+                $query->select('escolas.id', 'escolas.nome', 'escolas.municipio_id')
+                      ->orderBy('escolas.nome');
             }
         ])
-        ->orderBy('nome')  // Ordena as Gres pelo nome
+        ->orderBy('gres.nome')
         ->get();    
     
         $municipios = Municipio::all();

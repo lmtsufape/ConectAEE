@@ -77,18 +77,18 @@ class PdiController extends Controller
     public function show($id_pdi)
     {
         $pdi = Pdi::find($id_pdi);
-        return view('pdis.ver', [
+        return view('pdis.show', [
             'pdi' => $pdi,
         ]);
     }
 
-    public function delete($id_pdi)
+    public function destroy($pdi_id)
     {
-        $pdi = Pdi::find($id_pdi);
+        $pdi = Pdi::findOrFail($pdi_id);
         $aluno = $pdi->aluno_id;
         $pdi->delete();
 
-        return redirect()->route("pdis.index", $aluno->id)->with('success', 'O PDI foi excluído.');;
+        return redirect()->back()->with('success', 'O PDI foi deletado com sucesso!');;
     }
 
     public function create_finalizacao(Request $request, $pdi_id){

@@ -20,9 +20,9 @@
                                     <div style="font-size: 14px" id="login-card">
                                         <a href="{{route('alunos.index')}}">Início</a>
                                         > <a href="{{route('alunos.index')}}">Início</a>> <a
-                                                href="{{route('alunos.gerenciar',$pdi->aluno_id)}}">Perfil de
-                                            <strong>{{ explode(" ", \App\Aluno::find($pdi->aluno_id)->nome)[0]}}</strong></a>>
-                                        <a href="{{route('pdi.listar', $pdi->aluno_id)}}">Listar PDI's</a>>
+                                                href="{{route('alunos.show',$pdi->aluno_id)}}">Perfil de
+                                            <strong>{{ $pdi->aluno->nome}}</strong></a>>
+                                        <a href="{{route('pdis.index', $pdi->aluno_id)}}">Listar PDI's</a>>
                                         Pdi
                                     </div>
                                 </h2>
@@ -242,7 +242,7 @@
 
                     <div class="panel-footer" style="background-color:white" id="login-card">
                         <div class="text-center" id="login-card">
-                            <a class="btn btn-secondary" href="{{route('pdi.listar', $pdi->aluno_id)}}" id="menu-a">
+                            <a class="btn btn-secondary" href="{{route('pdis.index', $pdi->aluno_id)}}" id="menu-a">
                                 Voltar
                             </a>
                         </div>

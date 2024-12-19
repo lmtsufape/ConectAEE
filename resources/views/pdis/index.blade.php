@@ -55,13 +55,12 @@
                                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
                             </svg>
                         </a>
-        
-                        <a class="btn btn-danger" onclick="return confirm('\A Tem certeza que deseja excluir esse PDI ?')"
-                            href="{{route('pdis.delete', $pdi->id)}}">
+                        @include('layouts.components.delete_modal', ['route' => 'pdis.destroy', 'param' => 'pdi_id', 'entity_id' => $pdi->id])
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{$pdi->id}}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash2-fill" viewBox="0 0 16 16">
                                 <path d="M2.037 3.225A.7.7 0 0 1 2 3c0-1.105 2.686-2 6-2s6 .895 6 2a.7.7 0 0 1-.037.225l-1.684 10.104A2 2 0 0 1 10.305 15H5.694a2 2 0 0 1-1.973-1.671zm9.89-.69C10.966 2.214 9.578 2 8 2c-1.58 0-2.968.215-3.926.534-.477.16-.795.327-.975.466.18.14.498.307.975.466C5.032 3.786 6.42 4 8 4s2.967-.215 3.926-.534c.477-.16.795-.327.975-.466-.18-.14-.498-.307-.975-.466z"/>
                             </svg>
-                        </a>
+                        </button>
                     </td>
                 </tr>
             @endforeach
