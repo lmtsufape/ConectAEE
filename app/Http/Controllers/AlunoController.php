@@ -105,7 +105,7 @@ class AlunoController extends Controller
             $endereco = Endereco::create(['logradouro' => $request->logradouro,
                                 'numero'  => $request->numero,
                                 'bairro'  => $request->bairro,
-                                'municipio_id'  => $request->municipio_id,
+                                'municipio_id'  => $request->aluno_municipio_id,
                                 'cep'  => $request->cep]);
                                 
             
@@ -130,7 +130,7 @@ class AlunoController extends Controller
             $aluno->update();
         });
         
-        return redirect()->route('alunos.index');
+        return redirect()->route('alunos.index')->with('success', 'Aluno criado com sucesso!');
     }
 
     public function edit($aluno_id)
