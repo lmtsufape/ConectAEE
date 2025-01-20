@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('recursos_materias_equipamentos');
 
 
-            $table->foreignId('pdi_id')->constrained();
+            $table->foreignId('pdi_id')->constrained()->cascadeOnDelete();
 
 
             $table->timestamps();

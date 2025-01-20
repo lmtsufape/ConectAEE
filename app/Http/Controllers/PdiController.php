@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aluno;
+use App\Models\Finalizacao;
 use App\Models\Pdi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +36,7 @@ class PdiController extends Controller
 
     public function store($aluno_id)
     {
-        $pdi = Pdi::where('aluno_id', $aluno_id)->orderByDesc('created_at')->with('condicaoSaude', 'desenvolvimento', 'especificidade', 'recursosMultifuncionais')->first();
+        $pdi = Pdi::where('aluno_id', $aluno_id)->has('finalizacao')->orderByDesc('created_at')->with('condicaoSaude', 'desenvolvimento', 'especificidade', 'recursosMultifuncionais', 'finalizacao')->first();
 
         if($pdi){
             $novoPdi = $pdi->replicate();
@@ -53,6 +54,9 @@ class PdiController extends Controller
             $novaEntidade = $pdi->recursosMultifuncionais->replicate();
             $novaEntidade->pdi_id = $novoPdi->id;
             $novaEntidade->save(); 
+            $novaEntidade = $pdi->finalizacao->replicate();
+            $novaEntidade->pdi_id = $novoPdi->id;
+            $novaEntidade->save(); 
             
             return $novoPdi;
         }
@@ -64,8 +68,7 @@ class PdiController extends Controller
     public function finalizacao(Request $request, $pdi_id){
         $pdi = Pdi::find($pdi_id);
         if($pdi->condicaoSaude()->exists() && $pdi->desenvolvimento()->exists() && $pdi->especificidade()->exists() && $pdi->recursosMultifuncionais()->exists()){
-            $pdi->resumo_avaliacao_trimestral_aluno = $request->resumo_avaliacao_trimestral_aluno;//implementado desta forma para garantir a data que o formulário foi submetido.
-            $pdi->save();
+            Finalizacao::create( $request->merge(['pdi_id' => $pdi_id])->all());
 
             return redirect()->route('pdis.index', ['aluno_id' => $pdi->aluno_id]);
         }
@@ -85,10 +88,13 @@ class PdiController extends Controller
     public function destroy($pdi_id)
     {
         $pdi = Pdi::findOrFail($pdi_id);
-        $aluno = $pdi->aluno_id;
-        $pdi->delete();
+        if(!$pdi->finalizacao()->exists()){
+            $pdi->delete();
 
-        return redirect()->back()->with('success', 'O PDI foi deletado com sucesso!');;
+            return redirect()->back()->with('success', 'O PDI foi deletado com sucesso!');;
+        }
+
+        return redirect()->back()->with('fail', 'Este PDI já foi finalizado e não pode ser excluído!');;
     }
 
     public function create_finalizacao(Request $request, $pdi_id){

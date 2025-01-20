@@ -31,7 +31,7 @@ return new class extends Migration
             $table->boolean('faz_acompanhamento')->default(false);
             $table->text('acompanhamento')->nullable(); 
 
-            $table->foreignId('pdi_id')->constrained();
+            $table->foreignId('pdi_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -43,7 +43,7 @@ return new class extends Migration
             $table->string('profissionais_educacao_necessarios');
             $table->string('profissionais_educacao_outro')->nullable();//analisar a permanencia
             
-            $table->foreignId('pdi_id')->constrained();
+            $table->foreignId('pdi_id')->constrained()->cascadeOnDelete();
 
             $table->timestamps();
         });

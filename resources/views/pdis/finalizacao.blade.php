@@ -12,7 +12,7 @@
         <div class="form-group">
             <label for="resumo_avaliacao_trimestral_aluno" class="form-label">Síntese da Avaliação Trimestral do estudante</label>
             <textarea class="form-control @error('resumo_avaliacao_trimestral_aluno') is-invalid @enderror" name="resumo_avaliacao_trimestral_aluno" id="resumo_avaliacao_trimestral_aluno" 
-                cols="30" rows="10">{{old('resumo_avaliacao_trimestral_aluno') ?? $pdi->resumo_avaliacao_trimestral_aluno ?? ''}}</textarea>
+                cols="30" rows="10">{{old('resumo_avaliacao_trimestral_aluno') ?? $pdi->finalizacao->resumo_avaliacao_trimestral_aluno ?? ''}}</textarea>
                 
             @error('resumo_avaliacao_trimestral_aluno')
                 <span class="invalid-feedback" role="alert">

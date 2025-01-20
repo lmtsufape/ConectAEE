@@ -31,7 +31,7 @@ return new class extends Migration
             $table->text('area_emocional_afetiva_social')->nullable();
             $table->text('atividades_vida_autonoma')->nullable();
 
-            $table->foreignId('pdi_id')->constrained();
+            $table->foreignId('pdi_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

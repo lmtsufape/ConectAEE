@@ -24,13 +24,20 @@ class Pdi extends Model
     public function condicaoSaude(){
         return $this->hasOne(CondicaoSaude::class);
     }
+
     public function desenvolvimento(){
         return $this->hasOne(Desenvolvimento::class);
     }
+
     public function especificidade(){
         return $this->hasOne(EspecificidadeEducacional::class);
     }
+
     public function recursosMultifuncionais(){
         return $this->hasOne(RecursosMultifuncionais::class);
+    }
+
+    public function finalizacao(){
+        return $this->hasOne(Finalizacao::class);
     }
 }
