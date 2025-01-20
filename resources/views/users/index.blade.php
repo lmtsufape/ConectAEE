@@ -90,7 +90,7 @@
     </table>
 
     <div class="d-flex justify-content-center">
-      {{$users->links()}}
+      {{$users->appends(request()->query())->links()}}
     </div>
 
     <a class="btn btn-secondary" href="{{route('home')}}">

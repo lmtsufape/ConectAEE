@@ -40,7 +40,7 @@ class AlunoController extends Controller
                 AllowedFilter::exact('municipio_id', 'endereco.municipio.id')
             ])
             ->orderBy('escola_id', 'asc')
-            ->paginate(15);
+            ->paginate(15)->appends(request()->query());
             
             $escolas = Escola::all();
             $gres = Gre::all();

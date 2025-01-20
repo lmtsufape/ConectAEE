@@ -22,7 +22,7 @@ class EscolaController extends Controller
             AllowedFilter::exact('municipio_id'), 
         ]) 
         ->defaultSort('nome')      
-        ->paginate(10);
+        ->paginate(10)->appends(request()->query());
         $gres = Gre::all();
         $municipios = Municipio::all();
         

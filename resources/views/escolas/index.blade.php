@@ -76,7 +76,7 @@
     </table>
 
     <div class="d-flex justify-content-center">
-      {{$escolas->links()}}
+      {{$escolas->appends(request()->query())->links() }}
     </div>
     {{-- <div class="pagination-info ml-auto">
         <p>

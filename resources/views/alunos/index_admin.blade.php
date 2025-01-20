@@ -67,7 +67,7 @@
     </table>
 
     <div class="d-flex justify-content-center">
-        {{$alunos->links()}}
+        {{$alunos->appends(request()->query())->links()}}
     </div>
 
     <a class="btn btn-secondary" href="{{route('home')}}">
