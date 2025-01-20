@@ -69,16 +69,9 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        $usuario = User::find($id);
+        $user = User::find($id);
         
-
-        $usuario->name = $request->name;
-        $usuario->username = $request->username;
-        $usuario->email = $request->email;
-        $usuario->cpf = $request->cpf;
-        $usuario->telefone = $request->telefone;
-
-        $usuario->update();
+        $user->update($request->all());
 
         return redirect()->route("alunos.index")->with('success', 'Seus dados foram atualizados!');
     }

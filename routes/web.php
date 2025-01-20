@@ -49,6 +49,7 @@ Route::middleware(['auth', 'ativo'])->group(function() {
         Route::get('/edit/{user_id}', 'edit')->name('edit');
         Route::put('/', 'update')->name('update');
         Route::delete('/{user_id}', 'destroy')->name('destroy');
+        Route::get('/auth/{user_id}', '')->name('autorizacao');
         
     });
     Route::prefix('escolas')->controller(EscolaController::class)->name('escolas.')->group(function(){

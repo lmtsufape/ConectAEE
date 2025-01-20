@@ -21,62 +21,23 @@
                 </div>
 
                 <div>
-                    @if (\Session::has('success'))
-                        <div class="alert alert-success">
-                            <strong>Sucesso!</strong>
-                            {!! \Session::get('success') !!}
-                        </div>
-                    @elseif (\Session::has('fail'))
-                        <div class="alert alert-danger">
-                            <strong>Erro!</strong>
-                            {!! \Session::get('fail') !!}
-                        </div>
-                    @endif
 
                     <div class="col-md-8 col-md-offset-2">
                         <form method="POST" action="{{ route('users.update') }}">
                             @csrf
                             @method('update')
 
-                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="name" class="col-md-12 control-label">Nome<font color="red">*</font>
-                                    </label>
+                            <div class="form-group @error('nome') is-invalid @enderror">
+                                <label for="nome" class="col-md-12 form-label">Nome</label>
 
-                                <div class="col-md-12">
-                                    @if (old('nome', null) != null)
-                                        <input id="nome" type="text" class="form-control" name="nome"
-                                            value="{{ old('nome') }}" required autofocus>
-                                    @else
-                                        <input id="nome" type="text" class="form-control" name="nome"
-                                            value="{{ $usuario->nome }}" required autofocus>
-                                    @endif
+                                <input id="nome" type="text" class="form-control" name="nome"
+                                    value="{{ old('nome') }}" required autofocus>
 
                                     @error('nome')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                                <label for="username" class="col-md-12 control-label">Nome de Usuário<font color="red">*
-                                    </font></label>
-
-                                <div class="col-md-12">
-                                    @if (old('username', null) != null)
-                                        <input id="username" type="username" class="form-control" name="username"
-                                            value="{{ old('username') }}">
-                                    @else
-                                        <input id="username" type="username" class="form-control" name="username"
-                                            value="{{ $usuario->username }}">
-                                    @endif
-
-                                    @if ($errors->has('username'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('username') }}</strong>
-                                        </span>
-                                    @endif
                                 </div>
                             </div>
 
@@ -101,41 +62,24 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('cpf') ? ' has-error' : '' }}">
-                                <label for="cpf" class="col-md-12 control-label">CPF<font color="red">*</font>
-                                    </label>
-
-                                <div class="col-md-12">
-                                    @if (old('cpf', null) != null)
-                                        <input id="cpf" type="text" class="form-control" name="cpf"
-                                            value="{{ old('cpf') }}">
-                                    @else
-                                        <input id="cpf" type="text" class="form-control" name="cpf"
-                                            value="{{ $usuario->cpf }}">
-                                    @endif
-
-                                    @error('cpf')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                            <div class="form-group @error('cpf') is-invalid @enderror">
+                                <label for="cpf" class="col-md-12 control-label">CPF</label>
+                                <input id="cpf" type="text" class="form-control" name="cpf" value="{{ old('cpf') }}">
+                        
+                                @error('cpf')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
-                            <div class="form-group{{ $errors->has('telefone') ? ' has-error' : '' }}">
-                                <label for="telefone" class="col-md-12 control-label">Telefone<font color="red">*</font>
-                                    </label>
+                            <div class="form-group @error('telefone') is-invalid @enderror">
+                                <label for="telefone" class="col-md-12 control-label">Telefone</label>
 
                                 <div class="col-md-12">
-                                    @if (old('telefone', null) != null)
-                                        <input type="text" name="telefone" id="telefone" minlength="10"
-                                            placeholder="DDD+Telefone" maxlength="11" class="form-control"
-                                            value="{{ old('telefone') }}">
-                                    @else
-                                        <input type="text" name="telefone" id="telefone" minlength="10"
-                                            placeholder="DDD+Telefone" maxlength="11" class="form-control"
-                                            value="{{ $usuario->telefone }}">
-                                    @endif
+                                    <input type="text" name="telefone" id="telefone" minlength="10"
+                                        placeholder="(99) 99999-9999" maxlength="11" class="form-control"
+                                        value="{{ old('telefone') }}">
 
                                     @error('telefone')
                                         <span class="invalid-feedback" role="alert">

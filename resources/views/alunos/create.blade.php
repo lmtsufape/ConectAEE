@@ -11,7 +11,7 @@
             </strong>
         </h3>
 
-        <div class="row pb-3">
+        <div class="row mb-3">
             <div class="form-group col-md-6">
                 <label for="nome" class="form-label">Nome Completo:</label>
                 <input value="{{old('nome')}}" type="text" class="form-control @error('nome') is-invalid @enderror" id="nome" name="nome" required>
@@ -41,7 +41,7 @@
             </div>
         </div>
 
-        <div class="row pb-3">
+        <div class="row mb-3">
             <div class="form-group col-md-4">
                 <label for="data_nascimento" class="form-label">Data de nascimento:</label>
                 <input value="{{old('data_nascimento')}}" type="date" class="form-control @error('data_nascimento') is-invalid @enderror" id="data_nascimento" name="data_nascimento" required>
@@ -71,7 +71,7 @@
             </div>
         </div>
 
-        <div class="row pb-3">
+        <div class="row mb-3">
             <div class="form-group col-md-4">
                 <label for="cid" class="form-label"> Código CID</label>
                 <input value="{{old('cid')}}" type="text" class="form-control @error('cid') is-invalid @enderror" id="cid" name="cid" required>
@@ -101,7 +101,7 @@
             </div>
         </div>
 
-        <div class="form-group pb-3">
+        <div class="form-group mb-3">
             <label for="aluno_municipio_id" class="form-label">Município</label>
             <select class="form-control @error('aluno_municipio_id') is-invalid @enderror" name="aluno_municipio_id" id="aluno_municipio_id" required>
                 <option value=""disabled selected>Selecione o Município</option>
@@ -116,7 +116,7 @@
                 </span>
             @enderror
         </div>
-        <div class="row pb-3">
+        <div class="row mb-3">
             <div class="form-group col-md-5">
                 <label for="logradouro" class="form-label">Logradouro</label>
                 <input value="{{old('logradouro')}}" type="text" class="form-control @error('logradouro') is-invalid @enderror" id="logradouro" name="logradouro" required>
@@ -168,7 +168,7 @@
 
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group pb-3">
+                <div class="form-group mb-3">
                     <label for="nome_pai" class="form-label">Nome do pai</label>
                     <input value="{{old('nome_pai')}}" type="text" class="form-control @error('nome_pai') is-invalid @enderror" id="nome_pai" name="nome_pai" required>
                     @error('nome_pai')
@@ -177,7 +177,7 @@
                         </span>
                     @enderror
                 </div>
-                <div class="form-group pb-3">
+                <div class="form-group mb-3">
                     <label for="escolaridade_pai" class="form-label">Escolaridade do pai</label>
                     <select class="form-control @error('escolaridade_pai') is-invalid @enderror" name="escolaridade_pai" id="escolaridade_pai" required>
                         <option value="" disabled selected>Selecione a Escolaridade do Pai</option>
@@ -191,7 +191,7 @@
                         </span>
                     @enderror
                 </div>
-                <div class="form-group pb-3">
+                <div class="form-group mb-3">
                     <label for="profissao_pai" class="form-label">Profissão do pai</label>
                     <input value="{{old('profissao_pai')}}" type="text" class="form-control @error('profissao_pai') is-invalid @enderror" id="profissao_pai" name="profissao_pai" required>
                     @error('profissao_pai')
@@ -202,7 +202,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="form-group pb-3">
+                <div class="form-group mb-3">
                     <label for="nome_mae" class="form-label">Nome da mãe</label>
                     <input value="{{old('nome_mae')}}" type="text" class="form-control @error('nome_mae') is-invalid @enderror" id="nome_mae" name="nome_mae" required>
                     @error('nome_mae')
@@ -211,7 +211,7 @@
                         </span>
                     @enderror
                 </div>
-                <div class="form-group pb-3">
+                <div class="form-group mb-3">
                     <label for="escolaridade_mae" class="form-label">Escolaridade da mãe</label>
                     <select class="form-control @error('escolaridade_mae') is-invalid @enderror" name="escolaridade_mae" id="escolaridade_mae" required>
                         <option value="" disabled selected>Selecione a Escolaridade da Mãe</option>
@@ -225,7 +225,7 @@
                         </span>
                     @enderror
                 </div>
-                <div class="form-group pb-3">
+                <div class="form-group mb-3">
                     <label for="profissao_mae" class="form-label">Profissão da mãe</label>
                     <input value="{{old('profissao_mae')}}" type="text" class="form-control @error('profissao_mae') is-invalid @enderror" id="profissao_mae" name="profissao_mae" required>
                     @error('profissao_mae')
@@ -237,7 +237,7 @@
             </div>
         </div>
 
-        <div class="row pb-3">
+        <div class="row mb-3">
             <div class="form-group col-md-2">
                 <label for="num_irmaos" class="form-label">Números de irmãos</label>
                 <input value="{{old('num_irmaos')}}" type="number" class="form-control @error('num_irmaos') is-invalid @enderror" id="num_irmaos" name="num_irmaos" required>
@@ -275,46 +275,43 @@
             </strong>
         </h3>
 
-        <div class="form-group">
-            <label for="gre_id" class="form-label">GRE</label>
-            <select class="form-control @error('gre_id') is-invalid @enderror" name="gre_id" id="gre_id" required>
-                <option value="" disabled selected>Selecione a GRE</option>
-                @foreach ($gres as $gre)
-                    <option value="{{$gre->id}}" @selected(old('gre_id') == $gre->id)>{{$gre->nome}}</option>
-                @endforeach
-            </select>
-
-            @error('gre_id')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{$message}}</strong>
-                </span>
-            @enderror
+        <div class="row mb-3">
+            <div class="form-group col-md-6">
+                <label for="gre_id" class="form-label">GRE</label>
+                <select class="form-control @error('gre_id') is-invalid @enderror" name="gre_id" id="gre_id" required>
+                    <option value="" disabled selected>Selecione a GRE</option>
+                    @foreach ($gres as $gre)
+                        <option value="{{$gre->id}}" @selected(old('gre_id') == $gre->id)>{{$gre->nome}}</option>
+                    @endforeach
+                </select>
+                @error('gre_id')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
+                @enderror
+            </div>
+            <div class="form-group col-md-6">
+                <label for="municipio_id" class="form-label">Municípios</label>
+                <select class="form-control @error('municipio_id') is-invalid @enderror" name="municipio_id" id="municipio_id" required>
+                    <option value="" disabled selected>Selecione o Município</option>
+                    @foreach ($municipios as $municipio)
+                        <option value="{{$municipio->id}}" @selected(old('municipio_id') == $municipio->id)>{{$municipio->nome}}</option>
+                    @endforeach
+                </select>
+                @error('municipio_id')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
+                @enderror
+            </div>
         </div>
 
-
-        <div class="form-group">
-            <label for="municipio_id" class="form-label">Municípios</label>
-            <select class="form-control @error('municipio_id') is-invalid @enderror" name="municipio_id" id="municipio_id" required>
-                <option value="" disabled selected>Selecione o Município</option>
-                @foreach ($municipios as $municipio)
-                    <option value="{{$municipio->id}}" @selected(old('municipio_id') == $municipio->id)>{{$municipio->nome}}</option>
-                @endforeach
-            </select>
-
-            @error('municipio_id')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{$message}}</strong>
-                </span>
-            @enderror
-        </div>
-
-        <div class="form-group">
+        <div class="form-group mb-3">
             <label for="escola_id" class="form-label">Escolas</label>
             <select class="form-control @error('escola_id') is-invalid @enderror" name="escola_id" id="escola_id" required>
                 <option value="" disabled selected>Selecione a Escola</option>
                 @foreach ($escolas as $escola)
-                <option value="{{$escola->id}}" @selected(old('escola_id') == $escola->id)>{{$escola->nome}}</option>
-                    
+                    <option value="{{$escola->id}}" @selected(old('escola_id') == $escola->id)>{{$escola->nome}}</option>
                 @endforeach
             </select>
 
@@ -325,7 +322,7 @@
             @enderror
         </div>
 
-        <div class="form-group">
+        <div class="form-group  mb-3">
             <label for="escolaridade_atual_aluno" class="form-label">Escolaridade</label>
             <select class="form-control @error('escolaridade_atual_aluno') is-invalid @enderror" name="escolaridade_atual_aluno" id="escolaridade_atual_aluno" required>
                 <option value="" disabled selected>Selecione a Escolaridade</option>
@@ -342,7 +339,7 @@
             @enderror
         </div>
 
-        <div class="form-group">
+        <div class="form-group  mb-3">
             <label for="historico_comum" class="form-label">Histórico escolar (comum) e antecedentes relevantes</label>
             <input value="{{old('historico_comum')}}" type="text" class="form-control @error('historico_comum') is-invalid @enderror" id="historico_comum" name="historico_comum" required>
 
@@ -353,7 +350,7 @@
             @enderror
         </div>
 
-        <div class="form-group">
+        <div class="form-group mb-3">
             <label for="historico_especifico" class="form-label">Histórico escolar (específico) e antecedentes relevantes</label>
             <input value="{{old('historico_especifico')}}" type="text" class="form-control @error('historico_especifico') is-invalid @enderror" id="historico_especifico" name="historico_especifico" required>
 
@@ -364,7 +361,7 @@
             @enderror
         </div>
 
-        <div class="form-group">
+        <div class="form-group mb-3">
             <label for="motivo_encaminhamento_aee" class="form-label">Motivo do encaminhamento para o Atendimento Educacional Especializado (dificuldades apresentadas pelo estudante):</label>
             <input value="{{old('motivo_encaminhamento_aee')}}" type="text" class="form-control @error('motivo_encaminhamento_aee') is-invalid @enderror" id="motivo_encaminhamento_aee" name="motivo_encaminhamento_aee" required>
 
@@ -375,7 +372,7 @@
             @enderror
         </div>
 
-        <div class="form-group">
+        <div class="form-group mb-3">
             <label for="avaliacao_geral_familiar" class="form-label">Avaliação geral: âmbito familiar</label>
             <input value="{{old('avaliacao_geral_familiar')}}" type="text" class="form-control @error('avaliacao_geral_familiar') is-invalid @enderror" id="avaliacao_geral_familiar" name="avaliacao_geral_familiar" required>
 
@@ -386,7 +383,7 @@
             @enderror
         </div>
 
-        <div class="form-group">
+        <div class="form-group mb-3">
             <label for="avaliacao_geral_escolar" class="form-label">Avaliação geral: âmbito escolar</label>
             <input value="{{old('avaliacao_geral_escolar')}}" type="text" class="form-control @error('avaliacao_geral_escolar') is-invalid @enderror" id="avaliacao_geral_escolar" name="avaliacao_geral_escolar" required>
 

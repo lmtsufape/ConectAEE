@@ -34,7 +34,7 @@
                     <div class="row pb-3">
                         <div class="form-group col-md-6">
                             <label for="codigo_mec" class="form-label">Código MEC</label>
-                            <input type="number" class="form-control @error('codigo_mec') is-invalid @enderror" name="codigo_mec" id="codigo_mec">
+                            <input type="number" class="form-control @error('codigo_mec') is-invalid @enderror" name="codigo_mec" id="codigo_mec" value="{{old('codigo_mec')}}">
                             @error('codigo_mec')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{$message}}</strong>
@@ -44,8 +44,7 @@
                         <div class="form-group col-md-6">
                             <label for="telefone" class="form-label">Telefone</label>
                             <input type="digit" class="form-control @error('telefone') is-invalid @enderror" name="telefone" id="telefone" minlength="13"
-                                placeholder="DDD+Telefone" maxlength="14" value="{{ old('telefone') }}"
-                                onkeypress="mask(this, mphone);" onblur="mask(this, mphone);">
+                                placeholder="(99) 99999-9999" maxlength="14" value="{{ old('telefone') }}">
                             @error('telefone')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{$message}}</strong>
