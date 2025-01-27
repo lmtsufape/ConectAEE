@@ -44,12 +44,12 @@ Route::middleware(['auth', 'ativo'])->group(function() {
     Route::prefix('users')->controller(UserController::class)->name('users.')->group(function(){
 
         Route::get('/', 'index')->name('index');
-        Route::get('/create', 'create')->name('create')->withoutMiddleware('auth');
+        Route::get('/create', action: 'create')->name('create')->withoutMiddleware('auth');
         Route::post('/store', 'store')->name('store')->withoutMiddleware('auth');
         Route::get('/edit/{user_id}', 'edit')->name('edit');
-        Route::put('/', 'update')->name('update');
+        Route::put('/{user_id}', 'update')->name('update');
         Route::delete('/{user_id}', 'destroy')->name('destroy');
-        Route::get('/auth/{user_id}', '')->name('autorizacao');
+        Route::get('/auth/{user_id}', 'autorizacao')->name('autorizacao');
         
     });
     Route::prefix('escolas')->controller(EscolaController::class)->name('escolas.')->group(function(){

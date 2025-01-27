@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\users\UpdateUserRequest;
 use App\Http\Requests\users\StoreUserRequest;
 use App\Models\Escola;
 use App\Models\Especialidade;
@@ -54,10 +55,14 @@ class UserController extends Controller
             $user->roles()->attach(2);
             $user->especialidades()->attach($request->especialidade);
             
-            Auth::login($user);
+            if(Auth::check()){
+                Auth::login($user);
+        
+                return redirect()->route('home');
+            }else{// Quando for o adm criando o user
+                return redirect()->back()->with('success', 'Usuário Criado com Sucesso!');
+            }
         });
-
-        return redirect()->route('home');
     }
 
     public function edit($id): View
@@ -67,13 +72,13 @@ class UserController extends Controller
         return view("users.edit", ['usuario' => $usuario]);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $user_id)
     {
-        $user = User::find($id);
+        $user = User::find($user_id);
         
         $user->update($request->all());
 
-        return redirect()->route("alunos.index")->with('success', 'Seus dados foram atualizados!');
+        return redirect()->back()->with('success', 'Dados atualizados com sucesso!');
     }
 
     public function destroy($user_id){
@@ -87,36 +92,15 @@ class UserController extends Controller
 
     }
 
+    public function autorizacao($user_id){
+        $user = User::findOrFail($user_id);
 
-    public function editarSenha()
-    {
-        return view('users.editarSenha');
-    }
-
-
-    public static function atualizarSenha(Request $request)
-    {
-        $usuario = Auth::user();
-
-        if (!(Hash::check($request->senha_atual, $usuario->password))) {
-            return redirect()->back()->with('fail', 'Senha atual incorreta.');
+        if($user->flag_ativo){
+            $user->update(['flag_ativo' => false]);
+        }else{
+            $user->update(['flag_ativo' => true]);
         }
 
-        if ($request->nova_senha != $request->nova_senha_confirm) {
-            return redirect()->back()->with('fail', 'Nova senha e confirmação são diferentes.');
-        }
-
-        $validator = Validator::make($request->all(), [
-            'nova_senha' => 'min:6|max:16'
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->errors())->withInput();
-        }
-
-        $usuario->password = bcrypt($request->nova_senha);
-        $usuario->update();
-
-        return redirect()->route("alunos.index")->with('success', 'Sua senha foi atualizada!');
+        return redirect()->back()->with('success', 'Autorização do usuário atualizada com sucesso');
     }
 }

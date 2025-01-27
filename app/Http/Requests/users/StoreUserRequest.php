@@ -23,12 +23,12 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'nome' => 'required','string', 'max:255',
-            'email' => 'required', 'email', 'unique:users',
-            'cpf' => 'required', 'unique:users',
+            'email' => 'required', 'email', 'unique:users,email',
+            'cpf' => 'required|unique:users,cpf',
             'matricula' => 'required',
             'especialidade' => 'required',
             'telefone' => 'required',
-            'password' => 'required', 'string', 'min:8', 'confirmed',
+            'password' => 'required|min:8|confirmed',
 
         ];
     }
@@ -37,6 +37,7 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'nome.required' => 'obrigatorio',
+            'password.confirmed' => 'As senhas não coincidem.',
         ];
     }
 }

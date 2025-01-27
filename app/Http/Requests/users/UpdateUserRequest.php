@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\users;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -11,7 +11,7 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,24 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules(): array
     {
+        $user_id = $this->route('user_id');
+
         return [
-            //
+            'nome' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $user_id,
+            'cpf' => 'required|unique:users,cpf,' . $user_id,
+            'matricula' => 'required',
+            'especialidade' => 'required',
+            'telefone' => 'required',
+            'password' => 'nullable|min:8|confirmed',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'nome.required' => 'O campo nome é obrigatório',
+            'password.confirmed' => 'As senhas não coincidem.',
         ];
     }
 }

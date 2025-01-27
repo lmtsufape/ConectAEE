@@ -43,7 +43,7 @@ class LoginController extends Controller
     if ($user->flag_ativo){
       return redirect()->route('home');
     } else{
-      return redirect()->route("usuario.completarCadastro");
+      return redirect()->route("inativo");
     }
   }
 

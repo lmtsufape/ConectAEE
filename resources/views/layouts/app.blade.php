@@ -79,7 +79,7 @@
             @yield('content')
         @endauth
     </main>
-
+    @stack('modais')
     <footer>
         @include('layouts.footer')
     </footer>
