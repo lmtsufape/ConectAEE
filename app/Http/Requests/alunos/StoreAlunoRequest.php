@@ -25,7 +25,7 @@ class StoreAlunoRequest extends FormRequest
             'nome' => ['required'], 
             'data_nascimento' => ['required'], 
             'cpf' => ['required', 'cpf', 'unique:alunos,cpf'], 
-            'matricula' => ['required'], 
+            'matricula' => ['required', 'unique:alunos,matricula'], 
             'aluno_municipio_id' => ['required', 'exists:municipios,id'],
             'logradouro' => ['required'],
             'numero' => ['required'],

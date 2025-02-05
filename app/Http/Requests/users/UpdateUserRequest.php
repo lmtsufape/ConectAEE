@@ -24,13 +24,13 @@ class UpdateUserRequest extends FormRequest
         $user_id = $this->route('user_id');
 
         return [
-            'nome' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $user_id,
-            'cpf' => 'required|unique:users,cpf,' . $user_id,
-            'matricula' => 'required',
-            'especialidade' => 'required',
-            'telefone' => 'required',
-            'password' => 'nullable|min:8|confirmed',
+            'nome' => ['required|string|max:255'],
+            'email' => ['required|email|unique:users,email,' . $user_id],
+            'cpf' => ['required|unique:users,cpf,' . $user_id],
+            'matricula' => ['required'],
+            'especialidade' => ['required'],
+            'telefone' => ['required'],
+            'password' => ['nullable|min:8'],
         ];
     }
 

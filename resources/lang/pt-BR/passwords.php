@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'password' => 'A senha precisa ter ao menos seis caracteres e coincidir com a confirmação.',
+    'password' => 'A senha precisa ter ao menos oito caracteres e coincidir com a confirmação.',
     'reset' => 'Sua senha foi redefinida!',
-    'sent' => 'Lhe enviamos um e-mail com o link de redefinição de senha!',
-    'token' => 'Essa token de redefinição de senha é inválido.',
-    'user' => "Não não encontramos um usuário com este endereço de e-mail.",
+    'sent' => 'Enviamos um e-mail com o link de redefinição de senha!',
+    'token' => 'Esse token de redefinição de senha é inválido.',
+    'user' => "Não encontramos um usuário com este endereço de e-mail.",
 
 ];

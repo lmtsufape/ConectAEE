@@ -171,25 +171,17 @@ class AlunoController extends Controller
         $endereco->estado = $request->estado;
         $endereco->update();
 
-        if ($request->imagem != null) {
-            $nome = uniqid(date('HisYmd'));
-            $extensao = $request->imagem->extension();
+        if ($request->file('imagem')) {
+            $nome = 'perfil_'. now()->format('d-m-Y_H-i-s');
+            $extensao = $request->imagem->getClientOriginalExtension();
             $nomeArquivo = "{$nome}.{$extensao}";
-            $request->imagem->storeAs('public/avatars', $nomeArquivo);
-            $aluno->imagem = $nomeArquivo;
+            $aluno->imagem = $request->imagem->storeAs('alunos/'. $aluno->id. '/images', $nomeArquivo);
         }
+        if($request->file('anexos_laudos')){
+            $aluno->anexos_laudos = now()->format('d-m-Y_H-i-s') . $request->anexos_laudos->getClientOriginalExtension();
 
-        $aluno->nome = $request->nome;
-        $aluno->sexo = $request->sexo;
-        $aluno->cid = $request->cid;
-        $aluno->descricao_cid = $request->descricaoCid;
-        $aluno->observacao = $request->observacao;
-        $aluno->data_de_nascimento = $request->data_nascimento;
-        $aluno->endereco_id = $endereco->id;
-
+        }
         $aluno->update();
-        $aluno->instituicoes()->detach();
-        $aluno->instituicoes()->attach($request->instituicoes);
 
         return redirect()->route("alunos.index")->with('success', 'O Aluno ' . $aluno->nome . ' foi atualizado.');
     }

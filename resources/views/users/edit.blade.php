@@ -23,7 +23,7 @@
                 <div>
 
                     <div class="col-md-8 col-md-offset-2">
-                        <form method="POST" action="{{ route('users.update') }}">
+                        <form method="POST" action="{{ route('users.update', ['user_id' => $user->id]) }}">
                             @csrf
                             @method('update')
 
@@ -31,7 +31,7 @@
                                 <label for="nome" class="col-md-12 form-label">Nome</label>
 
                                 <input id="nome" type="text" class="form-control" name="nome"
-                                    value="{{ old('nome') }}" required autofocus>
+                                    value="{{ old('nome') ?? $user->nome}}" required autofocus>
 
                                     @error('nome')
                                         <span class="invalid-feedback" role="alert">
@@ -41,19 +41,15 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <div class="form-group @error('email') is-error @enderror">
                                 <label for="email" class="col-md-12 control-label">E-mail<font color="red">*</font>
                                     </label>
 
                                 <div class="col-md-12">
-                                    @if (old('email', null) != null)
-                                        <input id="email" type="email" class="form-control" name="email"
-                                            value="{{ old('email') }}">
-                                    @else
-                                        <input id="email" type="email" class="form-control" name="email"
-                                            value="{{ $usuario->email }}">
-                                    @endif
-
+                              
+                                    <input id="email" type="email" class="form-control" name="email"
+                                        value="{{old('email') ?? $user->email}}">
+                                  
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -64,7 +60,7 @@
 
                             <div class="form-group @error('cpf') is-invalid @enderror">
                                 <label for="cpf" class="col-md-12 control-label">CPF</label>
-                                <input id="cpf" type="text" class="form-control" name="cpf" value="{{ old('cpf') }}">
+                                <input id="cpf" type="text" class="form-control" name="cpf" value="{{ old('cpf') ?? $user->cpf}}">
                         
                                 @error('cpf')
                                     <span class="invalid-feedback" role="alert">
@@ -79,7 +75,7 @@
                                 <div class="col-md-12">
                                     <input type="text" name="telefone" id="telefone" minlength="10"
                                         placeholder="(99) 99999-9999" maxlength="11" class="form-control"
-                                        value="{{ old('telefone') }}">
+                                        value="{{ old('telefone') ?? $user->telefone}}">
 
                                     @error('telefone')
                                         <span class="invalid-feedback" role="alert">
@@ -89,37 +85,20 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('senha') ? ' has-error' : '' }}">
-                                <label for="senha" class="col-md-12 control-label">Confirme sua senha<font
-                                        color="red">*</font></label>
+                         
+                            <div class="d-flex justify-content-center gap-4 m-3">
 
-                                <div class="col-md-12">
-                                    <input type="password" name="senha" class="form-control">
+                                <a class="btn btn-secondary w-25" href="{{url()->previous()}}">
+                                    Voltar
+                                </a>
 
-                                    @error('senha')
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
+                                <a href="" class="btn btn-primary w-25">
+                                    Redefinir Senha
+                                </a>
 
-                            <div class="form-group">
-                                <div class="row col-md-12 text-center">
-                                    <br>
-
-                                    <div class="col-md-6">
-                                        <a href="" class="btn btn-secondary" id="menu-a">
-                                            Alterar Senha
-                                        </a>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <button type="submit" class="btn btn-primary">
-                                            Atualizar
-                                        </button>
-                                    </div>
-                                </div>
+                                <button type="submit" class="btn btn-success w-25">
+                                    Atualizar
+                                </button>
                             </div>
 
                         </form>

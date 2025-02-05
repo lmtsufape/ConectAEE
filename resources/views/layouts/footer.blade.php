@@ -14,15 +14,15 @@
     </div>
 
     <div class="text-center">
-        <a href="#">
+        <a href="mailto:lmts@ufape.edu.br">
             <img src="{{ asset('images/layouts/footer/email.svg') }}" alt="">
         </a>
 
-        <a href="#" class="mx-4">
+        <a href="https://www.facebook.com/LMTSUFAPE/" class="mx-4">
             <img src="{{ asset('images/layouts/footer/facebook.svg') }}" alt="">
         </a>
 
-        <a href="#">
+        <a href="https://www.instagram.com/lmts_ufape/">
             <img src="{{ asset('images/layouts/footer/instagram.svg') }}" alt="">
         </a>
     </div>

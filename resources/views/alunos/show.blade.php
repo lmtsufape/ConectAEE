@@ -70,13 +70,7 @@
         <div class="col-md-9">
             <div class="row">
                 <div class="col-md-6">
-                    <p style="color: #12583C">
-                        @if($aluno->sexo == 'M')
-                            <strong>Sexo:</strong> Masculino
-                        @else
-                            <strong>Sexo:</strong> Feminino
-                        @endif
-                    </p>
+                
                     <p>
                         <strong>Data de Nascimento:</strong> {{$aluno->data_de_nascimento}}
                     </p>

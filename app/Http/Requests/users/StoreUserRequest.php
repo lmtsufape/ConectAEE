@@ -22,13 +22,13 @@ class StoreUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => 'required','string', 'max:255',
-            'email' => 'required', 'email', 'unique:users,email',
-            'cpf' => 'required|unique:users,cpf',
-            'matricula' => 'required',
-            'especialidade' => 'required',
-            'telefone' => 'required',
-            'password' => 'required|min:8|confirmed',
+            'nome' => ['required','string', 'max:255'],
+            'email' => ['required', 'email', 'unique:users,email'],
+            'cpf' => ['required', 'unique:users,cpf'],
+            'matricula' => ['required', 'unique:users,matricula'],
+            'especialidade' => ['required'],
+            'telefone' => ['required', 'unique:users,telefone'],
+            'password' => ['required', 'min:8', 'confirmed'],
 
         ];
     }
@@ -36,8 +36,8 @@ class StoreUserRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'nome.required' => 'obrigatorio',
-            'password.confirmed' => 'As senhas não coincidem.',
+            'nome.required' => 'O campo nome é obrigatório',
+            'password.confirmed' => 'As senhas não coincidem',
         ];
     }
 }

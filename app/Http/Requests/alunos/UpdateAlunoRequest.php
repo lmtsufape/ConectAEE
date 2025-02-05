@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\alunos;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -23,9 +23,14 @@ class UpdateAlunoRequest extends FormRequest
     {
         return [
             'nome' => ['required'], 
-            'data_de_nascimento' => ['required'], 
-            'cpf' => ['required', 'cpf'], 
+            'data_nascimento' => ['required'], 
+            'cpf' => ['required', 'cpf', 'unique:alunos,cpf'], 
             'matricula' => ['required'], 
+            'aluno_municipio_id' => ['required', 'exists:municipios,id'],
+            'logradouro' => ['required'],
+            'numero' => ['required'],
+            'bairro' => ['required'],
+            'cep' => ['required'],
             'idade_inicio_estudos' => ['required'], 
             'idade_escola_atual' => ['required'], 
             'nome_pai' => ['required'], 
@@ -36,6 +41,20 @@ class UpdateAlunoRequest extends FormRequest
             'profissao_mae' => ['required'], 
             'num_irmaos' => ['required'], 
             'contato_responsavel' => ['required'],
+            'mora_com' => ['required'],
+            'historico_comum' => ['required'],
+            'historico_especifico' => ['required'],
+            'motivo_encaminhamento_aee' => ['required'],
+            'escolaridade_atual_aluno' => ['required'],
+            'avaliacao_geral_familiar' => ['required'],
+            'avaliacao_geral_escolar' => ['required'],
+            'anexos_laudos' => ['required_if:tem_anexos_laudos,true'],
+            'cid' => ['required'],
+            'descricao_cid' => ['required'],
+            'imagem' => ['mimes:jpeg,png,jpg|max:2048'],
+            'gre_id' => 'required|exists:gres,id',
+            'municipio_id' => 'required|exists:municipios,id',
+            'escola_id' => 'required|exists:escolas,id',
         ];
     }
 

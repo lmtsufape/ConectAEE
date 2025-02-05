@@ -54,7 +54,7 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="idade_inicio_estudos" class="form-label">Idade de início dos estudos </label>
-                <input value="{{old('idade_inicio_estudos') ?? $aluno->idade_inicio_estudos}}" type="number" class="form-control @error('idade_inicio_estudos') is-invalid @enderror" id="idade_inicio_estudos" name="idade_inicio_estudos" required>
+                <input value="{{old('idade_inicio_estudos') ?? $aluno->idade_inicio_estudos}}" type="number" min="0" class="form-control @error('idade_inicio_estudos') is-invalid @enderror" id="idade_inicio_estudos" name="idade_inicio_estudos" required>
                 @error('idade_inicio_estudos')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
@@ -63,7 +63,7 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="idade_escola_atual" class="form-label">Idade de início dos estudos na escola atual</label>
-                <input value="{{old('idade_escola_atual') ?? $aluno->idade_escola_atual}}" type="number" class="form-control @error('idade_escola_atual') is-invalid @enderror" id="idade_escola_atual" name="idade_escola_atual" required>
+                <input value="{{old('idade_escola_atual') ?? $aluno->idade_escola_atual}}" type="number" min="0" class="form-control @error('idade_escola_atual') is-invalid @enderror" id="idade_escola_atual" name="idade_escola_atual" required>
                 @error('idade_escola_atual')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
@@ -242,7 +242,7 @@
         <div class="row">
             <div class="form-group col-md-4">
                 <label for="num_irmaos" class="form-label">Números de irmãos</label>
-                <input value="{{old('num_irmaos') ?? $aluno->num_irmaos}}" type="number" class="form-control @error('num_irmaos') is-invalid @enderror" id="num_irmaos" name="num_irmaos" required>
+                <input value="{{old('num_irmaos') ?? $aluno->num_irmaos}}" type="number" min="0" class="form-control @error('num_irmaos') is-invalid @enderror" id="num_irmaos" name="num_irmaos" required>
                 @error('num_irmaos')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>

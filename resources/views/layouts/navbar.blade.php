@@ -74,13 +74,13 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                Profissionais
+                                Usuários
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{route('escolas.index')}}">
+                                <li><a class="dropdown-item" href="{{route('users.index')}}">
                                         Listar
                                     </a></li>
-                                <li><a class="dropdown-item" href="{{route('escolas.create')}}">
+                                <li><a class="dropdown-item" href="{{route('users.create')}}">
                                         Cadastrar
                                     </a></li>
                             </ul>
@@ -91,12 +91,14 @@
                                 Alunos
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{route('escolas.index')}}">
+                                <li><a class="dropdown-item" href="{{route('alunos.index')}}">
                                         Listar
                                     </a></li>
-                                <li><a class="dropdown-item" href="{{route('escolas.create')}}">
-                                        Cadastrar
-                                    </a></li>
+                                @can('professorSection', Auth()->user())
+                                    <li><a class="dropdown-item" href="{{route('alunos.create')}}">
+                                            Cadastrar
+                                        </a></li>
+                                @endcan
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -105,10 +107,10 @@
                                 Relatórios
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{route('escolas.index')}}">
+                                <li><a class="dropdown-item" href="">
                                         Listar
                                     </a></li>
-                                <li><a class="dropdown-item" href="{{route('escolas.create')}}">
+                                <li><a class="dropdown-item" href="">
                                         Cadastrar
                                     </a></li>
                             </ul>
