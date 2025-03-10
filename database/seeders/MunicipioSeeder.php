@@ -24,7 +24,6 @@ class MunicipioSeeder extends Seeder
                 $data = array_combine($first_linha, $linha);
 
                 $municipio = Municipio::firstOrCreate(['nome' => $data['Município']]);
-                $municipio->gres()->syncWithoutDetaching(Gre::where('nome', $data['Gre'])->value('id'));
             }
 
             fclose($handle);

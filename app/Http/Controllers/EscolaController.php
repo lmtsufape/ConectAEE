@@ -19,7 +19,7 @@ class EscolaController extends Controller
         $escolas = QueryBuilder::for(Escola::class)
         ->allowedFilters([
             AllowedFilter::exact('gre_id','municipio.gres.id'),
-            AllowedFilter::exact('municipio_id'), 
+            AllowedFilter::exact('municipio_id', 'municipio.id'), 
         ]) 
         ->defaultSort('nome')      
         ->paginate(10)->appends(request()->query());
@@ -37,13 +37,15 @@ class EscolaController extends Controller
 
     public function create(){
         $municipios = Municipio::all();
+        $gres = Gre::all();
 
-        return view('escolas.create', compact('municipios'));
+        return view('escolas.create', compact('municipios', 'gres'));
     }
 
     public function store(StoreEscolaRequest $request){
         $endereco = Endereco::create($request->only(['logradouro', 'numero', 'bairro', 'cep', 'municipio_id']));
-        $escola = Escola::create($request->only(['codigo_mec', 'nome', 'telefone', 'email', 'municipio_id']) + ['endereco_id' => $endereco->id]);
+        $escola = Escola::create($request->only(['codigo_mec', 'nome', 'telefone', 'email']) + ['endereco_id' => $endereco->id]);
+        $escola->municipio()->attach($request->municipio_id, ['gre_id' => $request->gre_id]);
 
         return redirect()->route('escolas.index')->with('success', 'Escola Criada com Sucesso!');
     }
@@ -51,8 +53,9 @@ class EscolaController extends Controller
     public function edit($escola_id){
         $escola = Escola::find($escola_id);
         $municipios = Municipio::orderBy('nome')->get();
+        $gres = Gre::all();
 
-        return view('escolas.edit', compact('escola', 'municipios'));
+        return view('escolas.edit', compact('escola', 'municipios', 'gres'));
     }
 
     public function update(UpdateEscolaRequest $request, $escola_id){

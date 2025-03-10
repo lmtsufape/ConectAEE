@@ -14,11 +14,16 @@ class Municipio extends Model
     ];
 
     public function gres(){
-        return $this->belongsToMany(Gre::class, 'gre_municipio', 'municipio_id', 'gre_id');
+        return $this->belongsToMany(Gre::class, 'gre_municipio_escola', 'municipio_id', 'gre_id')
+                    ->withPivot('gre_id')
+                    ->withTimestamps();
     }
 
-    public function escolas(){
-        return $this->hasMany(Escola::class);
+    public function escolas()
+    {
+        return $this->belongsToMany(Escola::class, 'gre_municipio_escola', 'municipio_id', 'escola_id')
+                    ->withPivot('municipio_id')
+                    ->withTimestamps();
     }
 
     public function enderecos(){

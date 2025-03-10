@@ -103,4 +103,8 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', 'Autorização do usuário atualizada com sucesso');
     }
+
+    public function redefinir_senha(){
+
+    }
 }

@@ -24,8 +24,9 @@ function filtrarMunicipios(greId) {
         // Busca a GRE selecionada nos dados
         var gre = dados.find(g => g.id == greId);
         if (gre) {
-            // Adiciona os municípios da GRE ao select
-            $.each(gre.municipios, function (index, municipio) {
+            let municipiosUnicos = [...new Map(gre.municipios.map(m => [m.id, m])).values()];
+            
+            $.each(municipiosUnicos, function (index, municipio) {
                 municipiosOptions += '<option value="' + municipio.id + '">' + municipio.nome + '</option>';
             });
             $('#municipio_id').html(municipiosOptions).prop('disabled', false);
@@ -48,7 +49,7 @@ function filtrarEscolas(municipioId) {
             if (municipio) {
                 // Adiciona as escolas do município ao select
                 $.each(municipio.escolas, function (index, escola) {
-                    escolasOptions += '<option value="' + escola.id + '">' + escola.nome + '</option>';
+                    escolasOptions += `<option value="${escola.id}">${escola.nome}</option>`;
                 });
                 $('#escola_id').html(escolasOptions).prop('disabled', false);
             }

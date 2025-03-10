@@ -45,8 +45,8 @@
         @foreach ($escolas as $escola)
           <tr>
             <td>{{ $escola->nome }}</td>
-            <td>{{ $escola->municipio->gres->first()?->nome }}</td>
-            <td>{{ $escola->municipio->nome }}</td>
+            <td>{{ $escola->gre->first()->nome }}</td>
+            <td>{{ $escola->municipio->first()->nome }}</td>
 
             <td>
               <a class="btn btn-primary" href="{{ route("escolas.show" , ['escola_id' => $escola->id]) }}">

@@ -175,8 +175,8 @@
 
 @endsection
 
-<script>
-    @push('scripts')
+@push('scripts')
+    <script>
 
         $(document).ready(function() {
             function marcarRadio(nomeCampo, valorEsperado) {
@@ -224,5 +224,5 @@
 
 
         
-    @endpush
-</script>
+    </script>
+@endpush

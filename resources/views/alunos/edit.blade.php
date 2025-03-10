@@ -101,13 +101,12 @@
                 @enderror
             </div>
         </div>
-
         <div class="form-group mb-3">
             <label for="aluno_municipio_id" class="form-label">Município</label>
             <select class="form-control @error('aluno_municipio_id') is-invalid @enderror" name="aluno_municipio_id" id="aluno_municipio_id" required>
                 <option value=""disabled selected>Selecione o Município</option>
                 @foreach ($municipios as $municipio)
-                    <option value="{{$municipio->id}}" @checked(old('aluno_municipio_id' == $municipio->id))>{{$municipio->nome}}</option>
+                    <option value="{{$municipio->id}}" @selected(old('aluno_municipio_id', $aluno->endereco->municipio_id) == $municipio->id)>{{$municipio->nome}}</option>
                 @endforeach
             </select>
 
@@ -121,7 +120,7 @@
         <div class="row mb-3">
             <div class="form-group col-md-5">
                 <label for="logradouro" class="form-label">Logradouro</label>
-                <input value="{{old('logradouro') ?? $aluno->logradouro}}" type="text" class="form-control @error('logradouro') is-invalid @enderror" id="logradouro" name="logradouro" required>
+                <input value="{{old('logradouro') ?? $aluno->endereco->logradouro ?? ''}}" type="text" class="form-control @error('logradouro') is-invalid @enderror" id="logradouro" name="logradouro" required>
                 @error('logradouro')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
@@ -131,7 +130,7 @@
             
             <div class="form-group col-md-2">
                 <label for="numero" class="form-label">Número</label>
-                <input value="{{old('numero') ?? $aluno->numero}}" type="text" class="form-control @error('numero') is-invalid @enderror" id="numero" name="numero" required>
+                <input value="{{old('numero') ?? $aluno->endereco->numero ?? ''}}" type="text" class="form-control @error('numero') is-invalid @enderror" id="numero" name="numero" required>
                 @error('numero')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
@@ -140,7 +139,7 @@
             </div>
             <div class="form-group col-md-3">
                 <label for="bairro" class="form-label">Bairro</label>
-                <input value="{{old('bairro') ?? $aluno->bairro}}" type="text" class="form-control @error('bairro') is-invalid @enderror" id="bairro" name="bairro" required>
+                <input value="{{old('bairro') ?? $aluno->endereco->bairro ?? ''}}" type="text" class="form-control @error('bairro') is-invalid @enderror" id="bairro" name="bairro" required>
                 @error('bairro')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
@@ -149,7 +148,7 @@
             </div>
             <div class="form-group col-md-2">
                 <label for="cep" class="form-label">CEP</label>
-                <input value="{{old('cep') ?? $aluno->cep}}" type="text" class="form-control @error('cep') is-invalid @enderror" id="cep" name="cep" required>
+                <input value="{{old('cep') ?? $aluno->endereco->cep ?? ''}}" type="text" class="form-control @error('cep') is-invalid @enderror" id="cep" name="cep" required>
                 @error('cep')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{$message}}</strong>
@@ -184,7 +183,7 @@
                     <select class="form-control @error('escolaridade_pai') is-invalid @enderror" name="escolaridade_pai" id="escolaridade_pai" required>
                         <option value="" disabled selected>Selecione a Escolaridade do Pai</option>
                         @foreach ($escolaridadeAdulto as $escolaridade)
-                            <option value="{{$escolaridade}}" @selected(old('escolaridade_pai') ?? $aluno->escolaridade_pai == $escolaridade)>{{$escolaridade}}</option>
+                            <option value="{{$escolaridade}}" @selected(old('escolaridade_pai', $aluno->escolaridade_pai) == $escolaridade)>{{$escolaridade}}</option>
                         @endforeach
                     </select>
                     @error('escolaridade_pai')
@@ -276,14 +275,13 @@
                 Dados da escolaridade do Estudante
             </strong>
         </h3>
-
         <div class="row mb-3">
             <div class="form-group col-md-6">
                 <label for="gre_id" class="form-label">GRE</label>
                 <select class="form-control @error('gre_id') is-invalid @enderror" name="gre_id" id="gre_id" required>
                     <option value="" disabled selected>Selecione a GRE</option>
                     @foreach ($gres as $gre)
-                        <option value="{{$gre->id}}" @selected(old('gre_id') ?? $aluno->gre_id == $gre->id)>{{$gre->nome}}</option>
+                        <option value="{{$gre->id}}" @selected(old('gre_id', $aluno->escola->gre->first()->id) == $gre->id)>{{$gre->nome}}</option>
                     @endforeach
                 </select>
                 @error('gre_id')

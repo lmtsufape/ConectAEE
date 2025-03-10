@@ -52,14 +52,30 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="form-group ">
-                        <label for="email" class="col-md-12 form-label">E-Mail</label>
-                        <input id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{$message}}</strong>
-                            </span>
-                        @enderror
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="email" class="form-label">E-Mail</label>
+                            <input id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="gre_id" class="form-label">GRE</label>
+                            <select name="gre_id" id="gre_id" class="form-control @error('gre_id') is-invalid @enderror">
+                                <option value="" selected disabled>Selecione a GRE</option>
+                                @foreach ($gres as $gre)
+                                    <option value="{{$gre->id}}" @selected(old('gre_id') == $gre->id)>{{$gre->nome}}</option>
+                                @endforeach
+                            </select>
+                            @error('gre_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     </div>
                 </div>
             </div>

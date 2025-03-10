@@ -30,7 +30,8 @@ class StoreEscolaRequest extends FormRequest
             'nome'          => 'required', 
             'telefone'      => 'required', 
             'email'         => 'required', 
-            'municipio_id'  => 'required'
+            'municipio_id'  => 'required',
+            'gre_id'  => 'required'
         ];
     }
 }

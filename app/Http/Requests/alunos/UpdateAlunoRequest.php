@@ -3,6 +3,7 @@
 namespace App\Http\Requests\alunos;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateAlunoRequest extends FormRequest
 {
@@ -21,10 +22,11 @@ class UpdateAlunoRequest extends FormRequest
      */
     public function rules(): array
     {
+        $aluno_id = $this->route('aluno_id');
         return [
             'nome' => ['required'], 
             'data_nascimento' => ['required'], 
-            'cpf' => ['required', 'cpf', 'unique:alunos,cpf'], 
+            'cpf' => ['required', 'cpf', Rule::unique('alunos')->ignore($aluno_id)], 
             'matricula' => ['required'], 
             'aluno_municipio_id' => ['required', 'exists:municipios,id'],
             'logradouro' => ['required'],

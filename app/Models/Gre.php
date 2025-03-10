@@ -14,6 +14,15 @@ class Gre extends Model
     ];
     
     public function municipios(){
-        return $this->belongsToMany(Municipio::class, 'gre_municipio', 'gre_id', 'municipio_id');
+        return $this->belongsToMany(Municipio::class, 'gre_municipio_escola', 'gre_id', 'municipio_id')
+                    ->withPivot('escola_id')
+                    ->withTimestamps();
+    }
+
+    public function escolas()
+    {
+        return $this->belongsToMany(Escola::class, 'gre_municipio_escola', 'gre_id', 'escola_id')
+                    ->withPivot('municipio_id')
+                    ->withTimestamps();
     }
 }

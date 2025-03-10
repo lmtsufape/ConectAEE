@@ -49,6 +49,7 @@ Route::middleware(['auth', 'ativo'])->group(function() {
         Route::get('/edit/{user_id}', 'edit')->name('edit');
         Route::put('/{user_id}', 'update')->name('update');
         Route::delete('/{user_id}', 'destroy')->name('destroy');
+        Route::get('/{user_id}/redefinir', 'redefinir_senha')->name('redefinir-senha');
         Route::get('/auth/{user_id}', 'autorizacao')->name('autorizacao');
         
     });

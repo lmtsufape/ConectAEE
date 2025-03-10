@@ -402,7 +402,7 @@
                     Sim
                 </label>
                 <label for="tem_anexos_laudos_nao" class="form-check-label form-check-inline">
-                    <input type="radio" id="tem_anexos_laudos_nao" name="tem_anexos_laudos" value="false" class="form-check-input">
+                    <input type="radio" id="tem_anexos_laudos_nao" name="tem_anexos_laudos" value="false" class="form-check-input" checked>
                     Não
                 </label>
             </fieldset>
@@ -421,7 +421,6 @@
         </div>
 
         <div class="d-flex justify-content-center gap-4 m-3">
-            <br>
             <a class="btn btn-secondary w-25" href="{{ route('alunos.index') }}">
                 Voltar
             </a>

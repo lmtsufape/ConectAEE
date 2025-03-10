@@ -47,8 +47,7 @@
                         <div class="form-group col-md-6">
                             <label for="telefone" class="form-label">Telefone</label>
                             <input type="digit" class="form-control @error('telefone') is-invalid @enderror" name="telefone" id="telefone" minlength="13"
-                                placeholder="DDD+Telefone" maxlength="14" value="{{ old('telefone') ?? $escola->telefone}}"
-                                onkeypress="mask(this, mphone);" onblur="mask(this, mphone);">
+                                placeholder="(99) 99999-9999" maxlength="14" value="{{ old('telefone') ?? $escola->telefone}}">
                             @error('telefone')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{$message}}</strong>
@@ -56,14 +55,30 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="email" class="col-md-12 form-label">E-Mail</label>
-                        <input id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') ?? $escola->email}}">
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{$message}}</strong>
-                            </span>
-                        @enderror
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="email" class="col-md-12 form-label">E-Mail</label>
+                            <input id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') ?? $escola->email}}">
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="gre_id" class="form-label">GRE</label>
+                            <select name="gre_id" id="gre_id" class="form-control @error('gre_id') is-invalid @enderror">
+                                <option value="" selected disabled>Selecione a GRE</option>
+                                @foreach ($gres as $gre)
+                                    <option value="{{$gre->id}}" @selected(old('gre_id') || $escola->gre->first()->id == $gre->id)>{{$gre->nome}}</option>
+                                @endforeach
+                            </select>
+                            @error('gre_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     </div>
                 </div>
             </div>
@@ -75,7 +90,7 @@
                         <select name="municipio_id" id="municipio_id" class="form-control">
                             <option value="" selected disabled>Selecione o Município</option>
                             @foreach ($municipios as $municipio)
-                                <option value="{{$municipio->id}}" @selected(old('municipio_id') ?? $escola->municipio_id == $municipio->id)>{{$municipio->nome}}</option>
+                                <option value="{{$municipio->id}}" @selected(old('municipio_id') ?? $escola->endereco->municipio_id == $municipio->id)>{{$municipio->nome}}</option>
                             @endforeach
                         </select>
                         @error('municipio_id')

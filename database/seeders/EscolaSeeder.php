@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Escola;
+use App\Models\Gre;
 use App\Models\Municipio;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -23,7 +24,8 @@ class EscolaSeeder extends Seeder
             while (($linha = fgetcsv($handle)) !== false) {
                 $data = array_combine($first_linha, $linha);
 
-                Escola::firstOrCreate(['codigo_mec' => $data['Cod Mec'], 'nome' => $data['Escola'], 'municipio_id' => Municipio::where('nome', $data['Município'])->value('id'),'endereco_id' => 1]);
+                $escola = Escola::firstOrCreate(['codigo_mec' => $data['Cod Mec'], 'nome' => $data['Escola'],'endereco_id' => 1]);
+                $escola->municipiosGres()->attach( Municipio::where('nome', $data['Município'])->value('id'), ['gre_id' => Gre::where('nome', $data['Gre'])->value('id')]);
             }
 
             fclose($handle);

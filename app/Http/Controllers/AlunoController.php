@@ -74,19 +74,13 @@ class AlunoController extends Controller
 
     public function create()
     {
-        $gres = Gre::select('gres.id', 'gres.nome')
-        ->with([
-            'municipios' => function ($query) {
-                $query->select('municipios.id', 'municipios.nome')
-                      ->orderBy('municipios.nome');
-            },
-            'municipios.escolas' => function ($query) {
-                $query->select('escolas.id', 'escolas.nome', 'escolas.municipio_id')
-                      ->orderBy('escolas.nome');
-            }
+        $gres = Gre::with([
+            'municipios:id,nome', 
+            'municipios.escolas:id,nome'  
         ])
-        ->orderBy('gres.nome') // Ordena as Gres pelo nome
-        ->get();    
+        ->select('id', 'nome')
+        ->orderBy('nome')
+        ->get();  
     
         $municipios = Municipio::all();
         $escolas = Escola::all();
@@ -136,19 +130,13 @@ class AlunoController extends Controller
     public function edit($aluno_id)
     {
         $aluno = Aluno::find($aluno_id);
-        $gres = Gre::select('gres.id', 'gres.nome')
-        ->with([
-            'municipios' => function ($query) {
-                $query->select('municipios.id', 'municipios.nome')
-                      ->orderBy('municipios.nome');
-            },
-            'municipios.escolas' => function ($query) {
-                $query->select('escolas.id', 'escolas.nome', 'escolas.municipio_id')
-                      ->orderBy('escolas.nome');
-            }
+        $gres = Gre::with([
+            'municipios:id,nome', 
+            'escolas:id,nome'  
         ])
-        ->orderBy('gres.nome')
-        ->get();    
+        ->select('id', 'nome')
+        ->orderBy('nome')
+        ->get();     
     
         $municipios = Municipio::all();
         $escolas = Escola::all();
@@ -162,14 +150,7 @@ class AlunoController extends Controller
     {
         $aluno = Aluno::find($request->aluno_id);
 
-        $endereco = Endereco::find($request->id_endereco);
-        $endereco->cep = $request->cep;
-        $endereco->rua = $request->rua;
-        $endereco->numero = $request->numero;
-        $endereco->bairro = $request->bairro;
-        $endereco->cidade = $request->cidade;
-        $endereco->estado = $request->estado;
-        $endereco->update();
+        $aluno->endereco->update($request->only([ 'logradouro', 'numero', 'bairro', 'cep', 'municipio_id' => 'aluno_municipio_id']));
 
         if ($request->file('imagem')) {
             $nome = 'perfil_'. now()->format('d-m-Y_H-i-s');
@@ -177,14 +158,16 @@ class AlunoController extends Controller
             $nomeArquivo = "{$nome}.{$extensao}";
             $aluno->imagem = $request->imagem->storeAs('alunos/'. $aluno->id. '/images', $nomeArquivo);
         }
+
         if($request->file('anexos_laudos')){
             $aluno->anexos_laudos = now()->format('d-m-Y_H-i-s') . $request->anexos_laudos->getClientOriginalExtension();
 
         }
-        $aluno->update();
+        $aluno->update($request->except([ 'logradouro', 'numero', 'bairro', 'cep', 'municipio_id' => 'aluno_municipio_id', 'imagem', 'anexos_laudos']));
 
         return redirect()->route("alunos.index")->with('success', 'O Aluno ' . $aluno->nome . ' foi atualizado.');
     }
+    
     public function destroy($aluno_id)
     {
         $aluno = Aluno::findOrFail($aluno_id);
