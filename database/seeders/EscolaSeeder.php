@@ -25,7 +25,7 @@ class EscolaSeeder extends Seeder
                 $data = array_combine($first_linha, $linha);
 
                 $escola = Escola::firstOrCreate(['codigo_mec' => $data['Cod Mec'], 'nome' => $data['Escola'],'endereco_id' => 1]);
-                $escola->municipiosGres()->attach( Municipio::where('nome', $data['Município'])->value('id'), ['gre_id' => Gre::where('nome', $data['Gre'])->value('id')]);
+                $escola->municipio()->attach( Municipio::where('nome', $data['Município'])->value('id'), ['gre_id' => Gre::where('nome', $data['Gre'])->value('id')]);
             }
 
             fclose($handle);
