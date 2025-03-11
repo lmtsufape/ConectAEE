@@ -13,7 +13,7 @@ class PdiController extends Controller
 
     public function index($aluno_id)
     {
-        $pdis = Pdi::where('aluno_id', $aluno_id)->get();
+        $pdis = Pdi::where('aluno_id', $aluno_id)->latest()->get();
         $aluno = Aluno::find($aluno_id);
         return view("pdis.index", [
             'pdis' => $pdis,
