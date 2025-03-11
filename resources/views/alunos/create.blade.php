@@ -106,7 +106,7 @@
             <select class="form-control @error('aluno_municipio_id') is-invalid @enderror" name="aluno_municipio_id" id="aluno_municipio_id" required>
                 <option value=""disabled selected>Selecione o Município</option>
                 @foreach ($municipios as $municipio)
-                    <option value="{{$municipio->id}}" @checked(old('aluno_municipio_id' == $municipio->id))>{{$municipio->nome}}</option>
+                    <option value="{{$municipio->id}}" @selected(old('aluno_municipio_id') == $municipio->id)>{{$municipio->nome}}</option>
                 @endforeach
             </select>
 
