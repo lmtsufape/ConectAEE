@@ -23,10 +23,8 @@ class EscolaController extends Controller
         ]) 
         ->defaultSort('nome')      
         ->paginate(10)->appends(request()->query());
-        $gres = Gre::all();
-        $municipios = Municipio::all();
         
-        return view('escolas.index', compact('escolas', 'gres', 'municipios'));
+        return view('escolas.index', compact('escolas'));
     }
 
     public function show($escola_id){
