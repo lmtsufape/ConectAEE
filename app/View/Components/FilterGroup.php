@@ -36,7 +36,7 @@ class FilterGroup extends Component
                     'placeholder' => 'Todos os Municípios',
                 ],
             ],
-            'users' => [
+            'users', 'alunos' => [
                 [
                     'name' => 'gre_id',
                     'label' => 'GRE',

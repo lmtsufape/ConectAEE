@@ -41,12 +41,8 @@ class AlunoController extends Controller
             ])
             ->orderBy('escola_id', 'asc')
             ->paginate(15)->appends(request()->query());
-            
-            $escolas = Escola::all();
-            $gres = Gre::all();
-            $municipios = Municipio::all();
 
-            return view("alunos.index_admin", compact('alunos', 'escolas', 'gres', 'municipios'));
+            return view("alunos.index_admin", compact('alunos'));
         }
 
         $alunos = Aluno::where('professor_responsavel', Auth::user()->id)->orderBy('nome', 'asc')->paginate(15);
