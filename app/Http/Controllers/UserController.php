@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rules\Password;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -104,7 +105,27 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'Autorização do usuário atualizada com sucesso');
     }
 
-    public function redefinir_senha(){
+    public function redefinir_senha(Request $request){
+          $request->validate([
+            'senha_atual' => ['required'],
+            'nova_senha' => ['required', 'min:8', 'confirmed'],
+        ]);
 
+        $user = Auth::user();
+        // Se a senha atual não estiver correta, retorna erro
+        if (!Hash::check($request->senha_atual, $user->password)) {
+            return back()->withErrors(['senha_atual' => 'A senha atual está incorreta.']);
+        }
+
+        // Se a nova senha for igual à antiga, evita atualização desnecessária
+        if ($request->senha_atual === $request->nova_senha) {
+            return back()->withErrors(['nova_senha' => 'A nova senha deve ser diferente da atual.']);
+        }
+
+        // Atualiza a senha do usuário
+        $user->update(['password' => Hash::make($request->nova_senha)]);
+
+
+        return back()->with('success', 'Senha alterada com sucesso!');
     }
 }

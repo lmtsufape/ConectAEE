@@ -7,61 +7,70 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('users.redefinir-senha', ['user_id' => auth()->user()->id]) }}">
+                <form method="POST" action="{{ route('users.redefinir-senha')}}">
                     @csrf
       
-                    <div class="form-group{{ $errors->has('senha_atual') ? ' has-error' : '' }}" id="login-card">
-                      <label for="senha_atual" class="col-md-12 control-label">Senha atual <font color="red">*</font> </label>
+                    <div class="form-group">
+                      <label for="senha_atual" class="control-label">Senha atual</label>
       
-                      <div class="col-md-12" id="login-card">
-                        <input id="senha_atual" type="password" class="form-control" name="senha_atual" value="{{ old('senha_atual') }}">
+                        <input id="senha_atual" type="password" class="form-control @error('senha_atual') is-invalid @enderror" name="senha_atual" value="{{ old('senha_atual') }}" required>
       
-                        @if ($errors->has('senha_atual'))
-                        <span class="help-block">
-                          <strong>{{ $errors->first('senha_atual') }}</strong>
-                        </span>
-                        @endif
-                      </div>
+                        @error('senha_atual')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
       
-                    <div class="form-group{{ $errors->has('nova_senha') ? ' has-error' : '' }}" id="login-card">
-                      <label for="nova_senha" class="col-md-12 control-label">Nova senha <font color="red">*</font> </label>
+                    <div class="form-group">
+                        <label for="nova_senha" class="control-label">Nova senha</label>
       
-                      <div class="col-md-12" id="login-card">
-                        <input id="nova_senha" type="password" class="form-control" name="nova_senha" value="{{ old('nova_senha') }}">
+                        <input id="nova_senha" type="password" class="form-control @error('nova_senha') is-invalid @enderror" name="nova_senha" value="{{ old('nova_senha') }}" required>
       
-                        @if ($errors->has('nova_senha'))
-                        <span class="help-block">
-                          <strong>{{ $errors->first('nova_senha') }}</strong>
-                        </span>
-                        @endif
-                      </div>
+                        @error ('nova_senha')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
                     </div>
       
-                    <div class="form-group{{ $errors->has('nova_senha_confirm') ? ' has-error' : '' }}" id="login-card">
-                      <label for="nova_senha_confirm" class="col-md-12 control-label">Confirme nova senha <font color="red">*</font> </label>
+                    <div class="form-group">
+                        <label for="nova_senha_confirm" class="control-label">Confirme nova senha</label>
       
-                      <div class="col-md-12" id="login-card">
-                        <input id="nova_senha_confirm" type="password" class="form-control" name="nova_senha_confirm" value="{{ old('nova_senha_confirm') }}">
+                        <input id="nova_senha_confirm" type="password" class="form-control @error('nova_senha_confirm') is-invalid @enderror" name="nova_senha_confirm" value="{{ old('nova_senha_confirm') }}" required>
       
-                        @if ($errors->has('nova_senha_confirm'))
-                        <span class="help-block">
-                          <strong>{{ $errors->first('nova_senha_confirm') }}</strong>
-                        </span>
-                        @endif
-                      </div>
+                        @error('nova_senha_confirm')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
                     </div>
       
-                    <div class="form-group" id="login-card">
-                      <div class="row col-md-12 text-center" id="login-card">
-            
-                        <button type="submit" class="btn btn-primary">
+                    <div class="d-flex justify-content-center pt-3">
+                        <button type="submit" class="btn btn-success">
                           Atualizar
                         </button>
-                      </div>
                     </div>
-                  </form>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        @if ($errors->any())
+            $('#redefinirModal').modal('show');
+        @endif
+        $('#redefinirModal').on('hidden.bs.modal', function () {
+            $(this).find('input').each(function () {
+                if ($(this).hasClass('is-invalid')) {
+                    $(this).removeClass('is-invalid invalid-feedback');
+                }
+                $(this).val('');
+            });
+        });
+    });
+</script>
+@endpush
