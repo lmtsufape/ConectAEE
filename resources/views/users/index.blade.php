@@ -90,6 +90,8 @@
         @endforeach
       </tbody>
     </table>
+    
+    <x-pagination-info :paginator="$users" />
 
     <div class="d-flex justify-content-center">
       {{$users->appends(request()->query())->links()}}

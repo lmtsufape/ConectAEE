@@ -66,6 +66,8 @@
       </tbody>
     </table>
 
+    <x-pagination-info :paginator="$alunos" />
+
     <div class="d-flex justify-content-center">
         {{$alunos->appends(request()->query())->links()}}
     </div>
