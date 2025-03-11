@@ -81,7 +81,7 @@ Route::middleware(['auth', 'ativo'])->group(function() {
         Route::put('/{aluno_id}/atualizar', 'update')->name('alunos.update');
         Route::get('/buscar', 'buscar')->name('alunos.buscar');
         Route::get('/buscarCPF', 'buscarCPF')->name('alunos.buscarCPF');
-        Route::get('/buscarAluno', 'buscarAluno')->name('alunos.buscarAluno');
+        Route::get('/search', 'search')->name('alunos.search');
         Route::delete('/{aluno_id}', 'destroy')->name('alunos.destroy');
         
 

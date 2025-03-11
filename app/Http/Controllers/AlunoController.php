@@ -173,17 +173,9 @@ class AlunoController extends Controller
         return redirect()->route("alunos.index")->with('success', 'Aluno deletado com sucesso!');
     }
 
-    public static function buscarAluno(Request $request)
+    public function search(Request $request)
     {
-
-        $gerenciars = Auth::user()->gerenciars;
-        $ids_alunos = array();
-
-        foreach ($gerenciars as $gerenciar) {
-            array_push($ids_alunos, $gerenciar->aluno_id);
-        }
-
-        $alunos = Aluno::whereIn('id', $ids_alunos)->where('nome', 'ilike', '%' . $request->termo . '%')->paginate(12);
+        $alunos = Aluno::where('professor_responsavel', Auth::user()->id)->where('nome', 'ilike', '%' . $request->termo . '%')->orderBy('nome', 'asc')->paginate(15);
 
         return view("alunos.index", [
             'alunos' => $alunos,

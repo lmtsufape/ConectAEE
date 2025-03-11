@@ -12,14 +12,14 @@
         </div>
                                        
         <div class="d-flex justify-content-center">
-            <form method="GET" action="{{ route("alunos.index") }}">
+            <form method="GET" action="{{ route("alunos.search") }}">
                 <div class="input-group">
-                    <input class="form-control" id="search" type="text" name="search" autofocus placeholder="Pesquise aqui...">
-                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <input class="form-control" id="termo" type="text" name="termo" value="{{request()->termo}}" autofocus placeholder="Pesquise aqui...">
+                    <button class="btn btn-primary" type="submit">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                         </svg>
-                    </a>
+                    </button>
                 </div>
             </form>
         </div>                 
@@ -56,6 +56,6 @@
     </div>
     
     <div class="d-flex justify-content-center pt-5">
-        {{$alunos->links()}}
+        {{$alunos->appends(request()->termo)->links()}}
     </div>
 @endsection
