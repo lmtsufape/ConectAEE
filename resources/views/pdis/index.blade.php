@@ -69,6 +69,8 @@
         </tbody>
     </table>
 
+    <x-pagination-info :paginator="$pdis" />
+
     <div>
         <a class="btn btn-secondary" href="{{route('alunos.show',$aluno->id)}}">
             Voltar
