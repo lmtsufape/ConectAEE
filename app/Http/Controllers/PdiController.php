@@ -14,7 +14,7 @@ class PdiController extends Controller
     public function index($aluno_id)
     {
         $aluno = Aluno::find($aluno_id);
-        $pdis = $aluno->pdis()->paginate(10);
+        $pdis = $aluno->pdis()->latest()->paginate(10);
 
         return view("pdis.index", compact('pdis', 'aluno'));
     }

@@ -22,15 +22,16 @@ class UpdateEscolaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'logradouro'    => 'required', 
-            'numero'        => 'required', 
-            'bairro'        => 'required', 
-            'cep'           => 'required',
-            'codigo_mec'    => 'required', 
-            'nome'          => 'required', 
-            'telefone'      => 'required', 
-            'email'         => 'required', 
-            'municipio_id'  => 'required'
+            'logradouro' => ['required', 'string', 'min:3', 'max:255'],
+            'numero'        => ['required'], 
+            'bairro' => ['required', 'string', 'min:3', 'max:255'],
+            'cep'           => ['required'],
+            'codigo_mec'    => ['required'], 
+            'nome' =>       ['required', 'string', 'min:3', 'max:255'],
+            'telefone'      => ['required'], 
+            'email'         => ['required', 'email'], 
+            'municipio_id'  => ['required', 'exists:municipios,id'],
+            'gre_id'  => ['required', 'exists:gres,id']
         ];
     }
 }
