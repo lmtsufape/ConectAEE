@@ -13,12 +13,10 @@ class PdiController extends Controller
 
     public function index($aluno_id)
     {
-        $pdis = Pdi::where('aluno_id', $aluno_id)->get();
         $aluno = Aluno::find($aluno_id);
-        return view("pdis.index", [
-            'pdis' => $pdis,
-            'aluno' => $aluno,
-        ]);
+        $pdis = $aluno->pdis()->paginate(10);
+
+        return view("pdis.index", compact('pdis', 'aluno'));
     }
 
     public function create($aluno_id)
