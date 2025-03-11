@@ -53,8 +53,8 @@
                 </div>
             </a>
         @endforeach 
-
     </div>
+    
     <div class="d-flex justify-content-center pt-5">
         {{$alunos->links()}}
     </div>

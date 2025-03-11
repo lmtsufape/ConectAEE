@@ -42,6 +42,7 @@
         color: white;
         background-color: #538970;
         border-radius: 0px 18px 0px 0px;
+        border-left-color: #43725c;
         width: 100%;
         height: 100%;
         font-weight: bold;
@@ -49,6 +50,10 @@
 
     .filter-button:hover {
         background-color: #43725c;
+    }
+
+    .filter .form-select {
+        background-color: #e8fff4;
     }
 
     .filter-item {

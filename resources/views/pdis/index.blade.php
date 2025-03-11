@@ -71,6 +71,10 @@
 
     <x-pagination-info :paginator="$pdis" />
 
+    <div class="d-flex justify-content-center">
+        {{ $pdis->appends(request()->query())->links() }}
+    </div>
+
     <div>
         <a class="btn btn-secondary" href="{{route('alunos.show',$aluno->id)}}">
             Voltar

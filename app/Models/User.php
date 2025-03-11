@@ -45,7 +45,7 @@ class User extends Authenticatable
 
     public function especialidades()
     {
-        return $this->belongsToMany(Especialidade::class, 'especialidade_user', 'user_id', 'especialidade_id');
+        return $this->belongsToMany(Especialidade::class);
     }
 
     public function hasAnyRoles($roles){
