@@ -36,6 +36,26 @@ class FilterGroup extends Component
                     'placeholder' => 'Todos os Municípios',
                 ],
             ],
+            'users', 'alunos' => [
+                [
+                    'name' => 'gre_id',
+                    'label' => 'GRE',
+                    'options' => \App\Models\Gre::orderBy('nome')->get(['id', 'nome']),
+                    'placeholder' => 'Todas as GREs',
+                ],
+                [
+                    'name' => 'municipio_id',
+                    'label' => 'Município',
+                    'options' => \App\Models\Municipio::orderBy('nome')->get(['id', 'nome']),
+                    'placeholder' => 'Todos os Municípios',
+                ],
+                [
+                    'name' => 'escola_id',
+                    'label' => 'Escola',
+                    'options' => \App\Models\Escola::orderBy('nome')->get(['id', 'nome']),
+                    'placeholder' => 'Todas a Escolas',
+                ],
+            ],
             // Outros contextos podem ser adicionados aqui
             default => [],
         };

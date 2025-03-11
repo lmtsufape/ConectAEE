@@ -34,12 +34,9 @@ class UserController extends Controller
         ->defaultSort('nome')
         ->paginate(10)->appends(request()->query());
 
-        $gres = Gre::all();
-        $municipios = Municipio::all();
-        $escolas = Escola::all();
         $especialidades = Especialidade::all();
 
-        return view('users.index', compact('users', 'gres', 'municipios', 'especialidades', 'escolas'));
+        return view('users.index', compact('users', 'especialidades'));
     }
 
     public function create(): View
