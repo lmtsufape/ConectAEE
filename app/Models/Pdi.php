@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pdi extends Model
 {
     protected $fillable = [
-        'resumo_avaliacao_trimestral_aluno', 'aluno_id', 'user_id'
+        'aluno_id', 'user_id'
 
     ];
 

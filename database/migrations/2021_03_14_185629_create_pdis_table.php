@@ -16,8 +16,6 @@ class CreatePdisTable extends Migration
         Schema::create('pdis', function (Blueprint $table) {
             $table->id();
 
-            $table->string('resumo_avaliacao_trimestral_aluno')->nullable();
-
             $table->foreignId('aluno_id')->constrained();
             $table->foreignId('user_id')->constrained();
 
