@@ -35,11 +35,11 @@
                     </div>
       
                     <div class="form-group">
-                        <label for="nova_senha_confirm" class="control-label">Confirme nova senha</label>
+                        <label for="nova_senha_confirmation" class="control-label">Confirme nova senha</label>
       
-                        <input id="nova_senha_confirm" type="password" class="form-control @error('nova_senha_confirm') is-invalid @enderror" name="nova_senha_confirm" value="{{ old('nova_senha_confirm') }}" required>
+                        <input id="nova_senha_confirmation" type="password" class="form-control @error('nova_senha_confirmation') is-invalid @enderror" name="nova_senha_confirmation" value="{{ old('nova_senha_confirmation') }}" required>
       
-                        @error('nova_senha_confirm')
+                        @error('nova_senha_confirmation')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{$message}}</strong>
                             </span>

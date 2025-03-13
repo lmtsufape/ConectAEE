@@ -85,7 +85,7 @@
                 
                 <div class="d-flex justify-content-center gap-4 m-3 pt-5">
 
-                    <a class="btn btn-secondary w-25" href="{{session()->previousUrl() ?? route('home')}}">
+                    <a class="btn btn-secondary w-25" href="{{route('home')}}">
                         Voltar
                     </a>
 
