@@ -28,9 +28,8 @@ class UpdateUserRequest extends FormRequest
             'email' => ['required','email','unique:users,email,' . $user_id],
             'cpf' => ['required','unique:users,cpf,' . $user_id],
             'matricula' => ['required'],
-            'especialidade' => ['required'],
+            'especialidade' => ['sometimes', 'required'],
             'telefone' => ['required'],
-            'password' => ['min:8'],
         ];
     }
 
@@ -38,7 +37,6 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'nome.required' => 'O campo nome é obrigatório',
-            'password.confirmed' => 'As senhas não coincidem.',
         ];
     }
 }

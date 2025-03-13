@@ -75,8 +75,9 @@ class UserController extends Controller
         $user = User::findOrFail($user_id);
         
         $user->update($request->all());
+        $user->especialidades()->sync($request->especialidade ?? []);
 
-        return redirect()->back()->with('success', 'Dados atualizados com sucesso!');
+        return back()->with('success', 'Dados atualizados com sucesso!');
     }
 
     public function destroy($user_id){
