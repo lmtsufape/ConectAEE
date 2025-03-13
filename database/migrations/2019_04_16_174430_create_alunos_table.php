@@ -48,6 +48,7 @@ class CreateAlunosTable extends Migration
             $table->foreignId('escola_id')->constrained();
             $table->foreignId('professor_responsavel')->constrained('users');
 
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

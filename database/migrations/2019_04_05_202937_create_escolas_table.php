@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->foreignId('endereco_id')->constrained();
 
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

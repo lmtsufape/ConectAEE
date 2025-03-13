@@ -39,7 +39,7 @@ class AlunoController extends Controller
                 AllowedFilter::exact('gre_id', 'escola.municipio.gres.id'),
                 AllowedFilter::exact('municipio_id', 'endereco.municipio.id')
             ])
-            ->orderBy('escola_id', 'asc')
+            ->orderBy('nome', 'asc')
             ->paginate(15)->appends(request()->query());
 
             return view("alunos.index_admin", compact('alunos'));

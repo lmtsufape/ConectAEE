@@ -48,19 +48,30 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
-        DB::transaction(function () use ($request) {
+        DB::beginTransaction();
+
+        try{
             $user = User::create(array_merge($request->except('password'), ['password' => Hash::make($request->password)]));
             $user->roles()->attach(2);
             $user->especialidades()->attach($request->especialidade);
-            
-            if(Auth::check()){
-                Auth::login($user);
+
+            DB::commit();
+        } catch(\Exception $e) {
+            DB::rollBack();
+
+            return redirect()->back()->with('error', $e->getMessage());
+        }
         
-                return redirect()->route('home');
-            }else{// Quando for o adm criando o user
-                return redirect()->back()->with('success', 'Usuário Criado com Sucesso!');
-            }
-        });
+
+        if(!Auth::check()) {
+            Auth::login($user);
+    
+            return redirect()->route('home');
+        } else {// Quando for o adm criando o user
+            $user->update(['flag_ativo' => true]);
+            
+            return redirect()->back()->with('success', 'Usuário Criado com Sucesso!');
+        }
     }
 
     public function edit($user_id): View
