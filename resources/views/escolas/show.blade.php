@@ -44,7 +44,7 @@
     </div>
 
     <div class="text-center">
-        <a class="btn btn-secondary" href="{{ route('escolas.index') }}">
+        <a class="btn btn-secondary" href="javascript:history.back()">
             Voltar
         </a>
     </div>
