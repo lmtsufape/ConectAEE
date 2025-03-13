@@ -25,7 +25,8 @@ function filtrarMunicipios(greId) {
         var gre = dados.find(g => g.id == greId);
         if (gre) {
             let municipiosUnicos = [...new Map(gre.municipios.map(m => [m.id, m])).values()];
-            
+            municipiosUnicos.sort((a, b) => a.nome.localeCompare(b.nome));
+
             $.each(municipiosUnicos, function (index, municipio) {
                 municipiosOptions += '<option value="' + municipio.id + '">' + municipio.nome + '</option>';
             });
@@ -48,6 +49,7 @@ function filtrarEscolas(municipioId) {
             var municipio = gre.municipios.find(m => m.id == municipioId);
             if (municipio) {
                 // Adiciona as escolas do município ao select
+                municipio.escolas.sort((a, b) => a.nome.localeCompare(b.nome));
                 $.each(municipio.escolas, function (index, escola) {
                     escolasOptions += `<option value="${escola.id}">${escola.nome}</option>`;
                 });

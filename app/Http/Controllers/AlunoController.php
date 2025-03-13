@@ -78,8 +78,8 @@ class AlunoController extends Controller
         ->orderBy('nome')
         ->get();  
     
-        $municipios = Municipio::all();
-        $escolas = Escola::all();
+        $municipios = Municipio::orderBy('nome')->get();
+        $escolas = Escola::orderBy('nome')->get();
         $escolaridadeAluno = Escolaridade::anosEscolaridade();
         $escolaridadeAdulto = Escolaridade::escolaridadeAdulto(); 
         
@@ -128,14 +128,14 @@ class AlunoController extends Controller
         $aluno = Aluno::find($aluno_id);
         $gres = Gre::with([
             'municipios:id,nome', 
-            'escolas:id,nome'  
+            'municipios.escolas:id,nome'  
         ])
         ->select('id', 'nome')
         ->orderBy('nome')
         ->get();     
     
-        $municipios = Municipio::all();
-        $escolas = Escola::all();
+        $municipios = Municipio::orderBy('nome')->get();
+        $escolas = Escola::orderBy('nome')->get();
         $escolaridadeAluno = Escolaridade::anosEscolaridade();
         $escolaridadeAdulto = Escolaridade::escolaridadeAdulto(); 
 

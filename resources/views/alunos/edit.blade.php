@@ -258,7 +258,7 @@
                 @enderror
             </div>
             <div class="form-group col-md-4">
-                <label for="mora_com" class="form-label">Com que mora</label>
+                <label for="mora_com" class="form-label">Com quem mora</label>
                 <input value="{{old('mora_com') ?? $aluno->mora_com}}" type="text" class="form-control @error('mora_com') is-invalid @enderror" id="mora_com" name="mora_com" required>
                 @error('mora_com')
                     <span class="invalid-feedback" role="alert">
