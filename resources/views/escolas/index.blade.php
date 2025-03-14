@@ -33,7 +33,7 @@
                     <th>Nome</th>
                     <th>GRE</th>
                     <th>Município</th>
-                    <th class="text-center">Ações</th>
+                    <th class="col-md-2 text-center">Ações</th>
                 </tr>
 
             </thead>
@@ -44,7 +44,7 @@
                         <td>{{ $escola->gre->first()->nome }}</td>
                         <td>{{ $escola->municipio->first()->nome }}</td>
 
-                        <td>
+                        <td class="col-md-2 text-center">
                             <a class="btn btn-primary" href="{{ route('escolas.show', ['escola_id' => $escola->id]) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-eye-fill" viewBox="0 0 16 16">
