@@ -15,9 +15,11 @@ $(document).ready(function () {
 
 function filtrarMunicipios(greId) {
     var municipiosOptions = '<option value="">Selecione o Município</option>';
+    var escolasOptions = '<option value="">Selecione a Escola</option>';
 
-    // Reseta o select de município
-    $('#municipio_id').html(municipiosOptions).prop('disabled', true);
+    // Reseta os selects de município e escola
+    $('#municipio_id').html(municipiosOptions).val('').prop('disabled', true);
+    $('#escola_id').html(escolasOptions).val('').prop('disabled', true);
 
     if (greId) {
         // Busca a GRE selecionada nos dados
