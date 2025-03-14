@@ -183,7 +183,7 @@
                     <select class="form-control @error('escolaridade_pai') is-invalid @enderror" name="escolaridade_pai" id="escolaridade_pai" required>
                         <option value="" disabled selected>Selecione a Escolaridade do Pai</option>
                         @foreach ($escolaridadeAdulto as $escolaridade)
-                            <option value="{{$escolaridade}}" @selected(old('escolaridade_pai', $aluno->escolaridade_pai) == $escolaridade)>{{$escolaridade}}</option>
+                            <option value="{{$escolaridade}}" @selected((old('escolaridade_pai') || $aluno->escolaridade_pai) == $escolaridade)>{{$escolaridade}}</option>
                         @endforeach
                     </select>
                     @error('escolaridade_pai')
@@ -217,7 +217,7 @@
                     <select class="form-control @error('escolaridade_mae') is-invalid @enderror" name="escolaridade_mae" id="escolaridade_mae" required>
                         <option value="" disabled selected>Selecione a Escolaridade da Mãe</option>
                         @foreach ($escolaridadeAdulto as $escolaridade)
-                            <option value="{{$escolaridade}}" @selected(old('escolaridade_mae') ?? $aluno->escolaridade_mae == $escolaridade)>{{$escolaridade}}</option>
+                            <option value="{{$escolaridade}}" @selected((old('escolaridade_mae') || $aluno->escolaridade_mae) == $escolaridade)>{{$escolaridade}}</option>
                         @endforeach
                     </select>
                     @error('escolaridade_mae')
@@ -435,6 +435,7 @@
 
 @push('scripts')
     <script>
+
         $(document).ready(function() {
             function marcarRadio(nomeCampo, valorEsperado) {
                 $('input[name="' + nomeCampo + '"]').each(function() {
@@ -444,9 +445,8 @@
                 });
             }
 
-            marcarRadio('tem_anexos_laudos', @json(old('anexos_laudos') ?? false));
+            marcarRadio('tem_anexos_laudos', @json(old('tem_anexos_laudos') ?? false));
 
-            
         });
 
 
@@ -463,7 +463,12 @@
         }
     </script>
     <script>
-        var dados = @json($gres);
+        var dados = @json([$aluno->escola->gre->first()->id, $aluno->escola_id]);
+        var routeMunicipios = `{{ route('alunos.municipios', ':gre_id') }}`;
+        var routeEscolas = `{{ route('alunos.escolas', ':municipio_id') }}`;
+        var municipio = @json(old('municipio_id') ?? $aluno->escola->municipio[0]->id);
+        var escola = @json(old('municipio_id') ?? $aluno->escola_id);
+
     </script>
     <script src="{{ asset('js/filtrar-gre.js') }}"></script>
 @endpush

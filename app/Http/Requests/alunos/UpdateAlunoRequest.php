@@ -63,7 +63,8 @@ class UpdateAlunoRequest extends FormRequest
     public function messages(): array
     {
         return [
-
+            'data_nascimento.before_or_equal' => 'A data de nascimento não pode ser posterior a hoje.',
+            'anexos_laudos.required_if' => 'O campo para anexar os documentos é obrigatório quando o estudante tiver laudos.'
         ];
     }
 }

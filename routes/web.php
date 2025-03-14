@@ -14,6 +14,7 @@ use App\Http\Controllers\NotificacaoController;
 use App\Http\Controllers\ObjetivoController;
 use App\Http\Controllers\PdiController;
 use App\Http\Controllers\RecursosMultifuncionaisController;
+use App\Http\Controllers\RelatorioController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -83,6 +84,9 @@ Route::middleware(['auth', 'ativo'])->group(function() {
         Route::get('/buscarCPF', 'buscarCPF')->name('alunos.buscarCPF');
         Route::get('/search', 'search')->name('alunos.search');
         Route::delete('/{aluno_id}', 'destroy')->name('alunos.destroy');
+        Route::get('/municipios/{gre_id}', 'getMunicipios')->name('alunos.municipios');
+        Route::get('/escolas/{municipio_id}', 'getEscolas')->name('alunos.escolas');
+
         
 
         Route::prefix('aluno/objetivos')->controller(ObjetivoController::class)->group(function(){
@@ -166,7 +170,10 @@ Route::middleware(['auth', 'ativo'])->group(function() {
         });
 
         //Rotas para relatorio
-        Route::get('/aluno/{aluno_id}/relatorio', 'RelatorioController@gerarRelatorio')->name('relatorio.gerar');
+        
+    });
+    Route::prefix('relatorios')->controller(RelatorioController::class)->group(function(){
+        Route::get('/', 'index')->name('relatorios.index');
 
     });
 });

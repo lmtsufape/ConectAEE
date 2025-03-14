@@ -9,29 +9,37 @@ $(document).ready(function () {
         filtrarEscolas($(this).val()); // Passa o valor selecionado (ID do Município)
     });
 
-    filtrarMunicipios();
+    filtrarMunicipios(dados[0]);
+    filtrarEscolas(dados[1])
 });
 
 function filtrarMunicipios(greId) {
     var municipiosOptions = '<option value="">Selecione o Município</option>';
-    var escolasOptions = '<option value="">Selecione a Escola</option>';
 
-    // Reseta os selects de município e escola
+    // Reseta o select de município
     $('#municipio_id').html(municipiosOptions).prop('disabled', true);
-    $('#escola_id').html(escolasOptions).prop('disabled', true);
 
     if (greId) {
         // Busca a GRE selecionada nos dados
-        var gre = dados.find(g => g.id == greId);
-        if (gre) {
-            let municipiosUnicos = [...new Map(gre.municipios.map(m => [m.id, m])).values()];
-            municipiosUnicos.sort((a, b) => a.nome.localeCompare(b.nome));
+        
+        axios.get(routeMunicipios.replace(':gre_id', greId))
+            .then(response => {
+                let municipiosUnicos = [...new Map(response.data.map(m => [m.id, m])).values()];
+    
+                $.each(municipiosUnicos, function (index, municipio) {
+                    municipiosOptions += `<option value="${municipio.id}"> ${municipio.nome}</option>`;
+                });
+                $('#municipio_id').html(municipiosOptions).prop('disabled', false);
 
-            $.each(municipiosUnicos, function (index, municipio) {
-                municipiosOptions += '<option value="' + municipio.id + '">' + municipio.nome + '</option>';
+                if(municipio && $('#municipio_id').find(`option[value="${municipio}"]`).length > 0){
+                    $('#municipio_id').val(municipio)
+                }
+            })
+            .catch(error => {
+                console.error("Erro na requisição:", error);
             });
-            $('#municipio_id').html(municipiosOptions).prop('disabled', false);
-        }
+            
+       
     }
 }
 
@@ -42,19 +50,21 @@ function filtrarEscolas(municipioId) {
     $('#escola_id').html(escolasOptions).prop('disabled', true);
 
     if (municipioId) {
-        // Busca o município selecionado dentro da GRE selecionada
-        var greId = $('#gre_id').val(); // Obtém a GRE selecionada
-        var gre = dados.find(g => g.id == greId);
-        if (gre) {
-            var municipio = gre.municipios.find(m => m.id == municipioId);
-            if (municipio) {
-                // Adiciona as escolas do município ao select
-                municipio.escolas.sort((a, b) => a.nome.localeCompare(b.nome));
-                $.each(municipio.escolas, function (index, escola) {
+        axios.get(routeEscolas.replace(':municipio_id', municipioId))
+            .then(response => {
+                
+                $.each(response.data, function (index, escola) {
                     escolasOptions += `<option value="${escola.id}">${escola.nome}</option>`;
                 });
                 $('#escola_id').html(escolasOptions).prop('disabled', false);
-            }
-        }
+                if(escola && $('#escola_id').find(`option[value="${escola}"]`).length > 0){
+                    $('#escola_id').val(escola)
+                }
+            })
+            .catch(error => {
+                console.error("Erro na requisição:", error);
+            });
+            
+ 
     }
 }
