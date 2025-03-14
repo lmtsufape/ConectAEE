@@ -179,18 +179,33 @@ class AlunoController extends Controller
             'alunos' => $alunos,
             'termo' => $request->termo
         ]);
-
+       
     }
-
     public function getMunicipios($gre_id){
-        $municipios = Gre::find($gre_id)->municipios()->orderBy('nome', 'asc')->get(['municipios.id', 'municipios.nome']);
-
+        $gre = Gre::find($gre_id);
+    
+        if (!$gre) {
+            return response()->json(['error' => 'GRE não encontrada'], 404);
+        }
+    
+        $municipios = $gre->municipios()
+            ->orderBy('nome', 'asc')
+            ->get(['municipios.id', 'municipios.nome']);
+    
         return response()->json($municipios);
     }
 
     public function getEscolas($municipio_id){
-        $escolas = Municipio::find($municipio_id)->escolas()->orderBy('nome')->get(['escolas.id', 'escolas.nome']);
-
+        $municipio = Municipio::find($municipio_id);
+    
+        if (!$municipio) {
+            return response()->json(['error' => 'Município não encontrado'], 404);
+        }
+    
+        $escolas = $municipio->escolas()
+            ->orderBy('nome')
+            ->get(['escolas.id', 'escolas.nome']);
+    
         return response()->json($escolas); 
     }
 
