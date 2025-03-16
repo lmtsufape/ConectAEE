@@ -463,11 +463,11 @@
         }
     </script>
     <script>
-        var dados = @json([$aluno->escola->gre->first()->id, $aluno->escola_id]);
+        var dados = @json([$aluno->escola->gre->first()->id, $aluno->escola->municipio[0]->id]);
         var routeMunicipios = `{{ route('alunos.municipios', ':gre_id') }}`;
         var routeEscolas = `{{ route('alunos.escolas', ':municipio_id') }}`;
         var municipio = @json(old('municipio_id') ?? $aluno->escola->municipio[0]->id);
-        var escola = @json(old('municipio_id') ?? $aluno->escola_id);
+        var escola = @json(old('escola_id') ?? $aluno->escola_id);
 
     </script>
     <script src="{{ asset('js/filtrar-gre.js') }}"></script>

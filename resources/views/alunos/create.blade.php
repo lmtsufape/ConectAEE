@@ -465,7 +465,7 @@
         var routeMunicipios = `{{ route('alunos.municipios', ':gre_id') }}`;
         var routeEscolas = `{{ route('alunos.escolas', ':municipio_id') }}`;
         var municipio = @json(old('municipio_id'));
-        var escola = @json(old('municipio_id'));
+        var escola = @json(old('escola_id'));
     </script>
     <script src="{{ asset('js/filtrar-gre.js') }}"></script>
 @endpush
