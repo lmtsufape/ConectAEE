@@ -44,7 +44,7 @@
             <td>{{ $user->nome }}</td>
             <td>{{ $user->email }}</td>
             <td>{{ $user->matricula }}</td>
-            <td>{{ $user->especialidades->pluck('nome') }}</td>
+            <td>{{ $user->especialidades->value('nome') }}</td>
             <td>@if($user->flag_ativo)Ativo @else Inativo @endif</td>
 
 
