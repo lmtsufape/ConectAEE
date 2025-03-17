@@ -1,12 +1,16 @@
 @extends('layouts.app')
 @section('title','Redefinir Senha')
 @section('content')
-<div class="container" style="background-color:#12583C;">
-  <br><br><br>
+
+<br><br><br>
+
+<div class="container justify row" style="background-color:#F1F5F4;">
+
+  <div class="col-md-6"></div>
 
   <div class="panel panel-default col-md-6 col-md-offset-3 sombra">
     <div class="panel-heading text-center">
-      <h2>
+      <h2 style="color: #12583C;">
         <strong>
           Redefinir Senha
         </strong>
@@ -63,7 +67,7 @@
 
         <div class="form-group">
           <div class="col-md-12 text-center" style="padding-top:20px;">
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn" style="background-color: #538970; color: white;">
               Redefinir
             </button>
           </div>
