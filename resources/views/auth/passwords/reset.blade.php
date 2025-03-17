@@ -1,4 +1,4 @@
-@extends('layouts.background_verde')
+@extends('layouts.app')
 @section('title','Redefinir Senha')
 @section('content')
 <div class="container" style="background-color:#12583C;">
@@ -16,7 +16,7 @@
     <div class="panel-body panel-body-cadastro">
       <form method="POST" action="{{ route('password.request') }}">
         {{ csrf_field() }}
-
+        
         <input type="hidden" name="token" value="{{ $token }}">
 
         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
