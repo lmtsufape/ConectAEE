@@ -1,8 +1,12 @@
 @extends('layouts.app')
 @section('title','Redefinir Senha')
 @section('content')
-<div class="container" style="background-color:#12583C;">
-  <br><br><br>
+
+<br><br><br>
+
+<div class="container justify row" style="background-color:#F1F5F4;">
+
+  <div class="col-md-6"></div>
 
   <div class="panel panel-default col-md-6 col-md-offset-3 sombra">
     <div class="panel-heading text-center">
