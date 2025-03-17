@@ -72,7 +72,6 @@ class AlunoController extends Controller
     {
         $gres = Gre::with([
             'municipios:id,nome', 
-            'municipios.escolas:id,nome'  
         ])
         ->select('id', 'nome')
         ->orderBy('nome')
@@ -128,7 +127,6 @@ class AlunoController extends Controller
         $aluno = Aluno::find($aluno_id);
         $gres = Gre::with([
             'municipios:id,nome', 
-            'municipios.escolas:id,nome'  
         ])
         ->select('id', 'nome')
         ->orderBy('nome')
@@ -181,7 +179,34 @@ class AlunoController extends Controller
             'alunos' => $alunos,
             'termo' => $request->termo
         ]);
+       
+    }
+    public function getMunicipios($gre_id){
+        $gre = Gre::find($gre_id);
+    
+        if (!$gre) {
+            return response()->json(['error' => 'GRE não encontrada'], 404);
+        }
+    
+        $municipios = $gre->municipios()
+            ->orderBy('nome', 'asc')
+            ->get(['municipios.id', 'municipios.nome']);
+    
+        return response()->json($municipios);
+    }
 
+    public function getEscolas($municipio_id){
+        $municipio = Municipio::find($municipio_id);
+    
+        if (!$municipio) {
+            return response()->json(['error' => 'Município não encontrado'], 404);
+        }
+    
+        $escolas = $municipio->escolas()
+            ->orderBy('nome')
+            ->get(['escolas.id', 'escolas.nome']);
+    
+        return response()->json($escolas); 
     }
 
     public function buscarCPF(Request $request)
