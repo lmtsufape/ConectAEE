@@ -101,19 +101,10 @@
                                 @endcan
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                        <li class="nav-item">
+                            <a class="nav-link btn" href="{{ route('relatorios.index') }}" aria-label="Acesse os relatórios">
                                 Relatórios
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="">
-                                        Listar
-                                    </a></li>
-                                <li><a class="dropdown-item" href="">
-                                        Cadastrar
-                                    </a></li>
-                            </ul>
                         </li>
                  
                     @endcan
