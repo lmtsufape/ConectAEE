@@ -13,10 +13,11 @@ class EspecialidadeSeeder extends Seeder
      */
     public function run(): void
     {
-        Especialidade::createMany([
+        Especialidade::insert([
             ['nome' => 'Professor do AEE'], 
             ['nome' => 'Professor Brailista'], 
             ['nome' => 'Professor Intérprete de Libras'], 
-            ['nome' => 'Professor Instrutor de Libras']]);
+            ['nome' => 'Professor Instrutor de Libras']
+        ]);
     }
 }
