@@ -24,7 +24,7 @@
         </fieldset>
         <div id="tem_diagnostico-sim" class="d-none">
             <div class="form-group">
-                <label for="data_diagnostico" class="form-label">Qual a data</label>
+                <label for="data_diagnostico" class="form-label">Qual a data?</label>
                 <input type="date" name="data_diagnostico" id="data_diagnostico" value="{{old('data_diagnostico') ?? $pdi->condicaoSaude->data_diagnostico ?? ''}}" class="form-control @error('data_diagnostico') is-invalid @enderror">
 
                 @error('data_diagnostico')
@@ -35,7 +35,7 @@
             </div>
     
             <div class="form-group">
-                <label for="resultado_diagnostico" class="form-label">Qual o resultado</label>
+                <label for="resultado_diagnostico" class="form-label">Qual o resultado?</label>
                 <input type="text" name="resultado_diagnostico" id="resultado_diagnostico" value="{{old('resultado_diagnostico') ?? $pdi->condicaoSaude->resultado_diagnostico ?? ''}}" class="form-control @error('resultado_diagnostico') is-invalid @enderror">
 
                 @error('resultado_diagnostico')
@@ -48,7 +48,7 @@
         </div>
         <div id="tem_diagnostico-nao" class="d-none">
             <div class="form-group">
-                <label for="situacao_diagnostico" class="form-label">qual a situação do diagnostico?</label>
+                <label for="situacao_diagnostico" class="form-label">Qual a situação do diagnostico?</label>
                 <input type="text" name="situacao_diagnostico" id="situacao_diagnostico" value="{{old('situacao_diagnostico') ?? $pdi->condicaoSaude->situacao_diagnostico ?? ''}}" class="form-control @error('situacao_diagnostico') is-invalid @enderror">
    
                 @error('situacao_diagnostico')
@@ -102,7 +102,7 @@
         </fieldset>
         <div id="faz_uso_medicacao-sim" class="d-none">
             <div class="form-group">
-                <label for="medicacoes" class="form-label">qual a situação do diagnostico?</label>
+                <label for="medicacoes" class="form-label">Liste e explique:</label>
                 <input type="text" name="medicacoes" id="medicacoes" value="{{old('medicacoes') ?? $pdi->condicaoSaude->medicacoes ?? ''}}" class="form-control @error('medicacoes') is-invalid @enderror">
       
                 @error('medicacoes')
@@ -129,7 +129,7 @@
         </fieldset>
         <div id="tem_recomendacoes-sim" class="d-none">
             <div class="form-group">
-                <label for="recomendacoes" class="form-label">qual a situação do diagnostico?</label>
+                <label for="recomendacoes" class="form-label">Quais?</label>
                 <input type="text" name="recomendacoes" id="recomendacoes" value="{{old('recomendacoes') ?? $pdi->condicaoSaude->recomendacoes ?? ''}}" class="form-control @error('recomendacoes') is-invalid @enderror">
      
                 @error('recomendacoes')
@@ -156,7 +156,7 @@
         </fieldset>
         <div id="faz_acompanhamento-sim" class="d-none">
             <div class="form-group">
-                <label for="acompanhamento" class="form-label">qual a situação do diagnostico?</label>
+                <label for="acompanhamento" class="form-label">Cite o(s) tipo(os):</label>
                 <input type="text" name="acompanhamento" id="acompanhamento" value="{{old('acompanhamento') ?? $pdi->condicaoSaude->acompanhamento ?? ''}}" class="form-control @error('acompanhamento') is-invalid @enderror">
       
                 @error('acompanhamento')
